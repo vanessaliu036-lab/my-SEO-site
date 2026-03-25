@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
 
 export default function HomePage() {
@@ -67,7 +68,7 @@ export default function HomePage() {
       </div>
 
       {isShareOpen && (
-        <div className="fixed inset-0 bg-gray-100/95 backdrop-blur-sm z-30 flex items-center justify-center">
+        <div className="fixed inset-0 bg-gray-100/95 backdrop-blur-sm z-40 flex items-center justify-center pointer-events-auto">
           <div className="max-w-md w-full px-8">
             <div className="space-y-12">
               {/* Close button */}
@@ -141,7 +142,7 @@ export default function HomePage() {
       )}
 
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-gray-100/95 backdrop-blur-sm z-30 flex items-center justify-center">
+        <div className="fixed inset-0 bg-gray-100/95 backdrop-blur-sm z-40 flex items-center justify-center pointer-events-auto">
           <div className="max-w-2xl w-full px-8">
             <div className="space-y-12">
               {/* Close button */}
@@ -154,35 +155,59 @@ export default function HomePage() {
 
               {/* Menu Items */}
               <div className="space-y-8">
-                <div className="border-b border-gray-300 pb-6">
+                <Link
+                  href="/vision"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left border-b border-gray-300 pb-6 transition-colors hover:border-gray-400"
+                >
                   <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">Vision</h3>
                   <p className="text-gray-600 text-sm tracking-wide">overview, philosophy, the big idea</p>
-                </div>
+                </Link>
 
-                <div className="border-b border-gray-300 pb-6">
+                <Link
+                  href="/system"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left border-b border-gray-300 pb-6 transition-colors hover:border-gray-400"
+                >
                   <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">System</h3>
                   <p className="text-gray-600 text-sm tracking-wide">methodology, process, frameworks</p>
-                </div>
+                </Link>
 
-                <div className="border-b border-gray-300 pb-6">
+                <Link
+                  href="/archive"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left border-b border-gray-300 pb-6 transition-colors hover:border-gray-400"
+                >
                   <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">Archive</h3>
                   <p className="text-gray-600 text-sm tracking-wide">past projects, experiments, case studies</p>
-                </div>
+                </Link>
 
-                <div className="border-b border-gray-300 pb-6">
+                <Link
+                  href="/matter"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left border-b border-gray-300 pb-6 transition-colors hover:border-gray-400"
+                >
                   <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">Matter</h3>
                   <p className="text-gray-600 text-sm tracking-wide">resources, tools, downloads</p>
-                </div>
+                </Link>
 
-                <div className="border-b border-gray-300 pb-6">
+                <Link
+                  href="/signal"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left border-b border-gray-300 pb-6 transition-colors hover:border-gray-400"
+                >
                   <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">Signal</h3>
                   <p className="text-gray-600 text-sm tracking-wide">blog, updates, publications</p>
-                </div>
+                </Link>
 
-                <div className="pb-6">
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left pb-6 transition-colors hover:text-gray-900"
+                >
                   <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">Contact</h3>
                   <p className="text-gray-600 text-sm tracking-wide">connect, collaborate, reach out</p>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
