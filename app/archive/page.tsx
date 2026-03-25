@@ -1,29 +1,56 @@
+import Link from "next/link"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Archive",
-  description: "Archive page",
+  title: "Archive | Arunéra Coffee Cambodia",
+  description:
+    "Browse Arunéra archive for projects, coffee experiments, and case studies from Cambodia's specialty coffee journey.",
+  alternates: {
+    canonical: "https://arunera.com/archive",
+  },
 }
 
 export default function ArchivePage() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://你的網域.com"
-  const pageUrl = `${baseUrl}/archive`
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "🔧 請替換為網站名稱"
+  const pageUrl = "https://arunera.com/archive"
   const description = "past projects, experiments, case studies"
 
-  const jsonLd = {
+  const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${siteName} - Archive`,
+    name: "Archive | Arunéra Coffee Cambodia",
     description,
     url: pageUrl,
   }
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://arunera.com" },
+      { "@type": "ListItem", position: 2, name: "Archive", item: pageUrl },
+    ],
+  }
+
   return (
-    <main className="min-h-screen bg-gray-100 px-8 py-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <h1 className="text-5xl font-bold tracking-wider text-gray-800 mb-6">Archive</h1>
-      <p className="text-gray-600 text-lg">past projects, experiments, case studies</p>
-    </main>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <main className="min-h-screen bg-gray-100 px-8 py-24">
+        <div className="max-w-5xl mx-auto">
+          <Link href="/" className="text-sm tracking-wider text-gray-600 hover:text-gray-900">
+            ← HOME
+          </Link>
+          <h1 className="mt-8 text-6xl font-bold tracking-tight text-gray-900">ARCHIVE</h1>
+          <p className="mt-6 text-gray-600 text-lg max-w-3xl">
+            past projects, experiments, case studies. A record of practical learning and coffee quality improvements.
+          </p>
+          <div className="mt-16 flex justify-end">
+            <Link href="/matter" className="text-sm tracking-widest uppercase text-gray-500 hover:text-gray-900">
+              Next: Matter →
+            </Link>
+          </div>
+        </div>
+      </main>
+    </>
   )
 }
