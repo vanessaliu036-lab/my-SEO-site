@@ -1,69 +1,61 @@
-// app/components/Navigation.tsx
-import Link from "next/link";
+// app/layout.tsx
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navigation from "@/components/Navigation";
 
-export default function Navigation() {
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Origin Coffee Crafter | OCC",
+  description: "Specialty coffee B2B supplier in Cambodia. Engineering consistency and digital sovereignty.",
+  keywords: ["Wholesale coffee beans Cambodia", "Specialty coffee B2B", "Mondulkiri Arabica", "Precision Roasting"],
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <nav className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center">
-      {/* Logo */}
-      <div className="mb-4 md:mb-0">
-        <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-70 transition-opacity">
-          OCC
-        </Link>
-        <p className="text-[10px] text-gray-400 tracking-widest mt-1 hidden md:block">
-          ORIGIN COFFEE CRAFTER
-        </p>
-      </div>
+    <html lang="en">
+      <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
+        {/* 全版面設計：左側導航欄無背景色 */}
+        <div className="flex flex-col md:flex-row min-h-screen">
+          
+          {/* 左側導航欄 - 移除背景色和邊框 */}
+          <aside className="w-full md:w-80 lg:w-96 md:h-screen md:sticky md:top-0 overflow-y-auto bg-transparent z-30">
+            <Navigation />
+          </aside>
 
-      {/* 導航連結 */}
-      <ul className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm">
-        {/* About 下拉選單 (或直接顯示) */}
-        <li className="relative group">
-          <span className="text-gray-600 hover:text-black transition-colors cursor-pointer">
-            About
-          </span>
-          <ul className="absolute top-full left-0 mt-2 bg-white border border-gray-100 shadow-lg rounded-md py-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-            <li>
-              <Link href="/about/mission" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
-                Mission
-              </Link>
-            </li>
-            <li>
-              <Link href="/about/founder" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
-                Founder
-              </Link>
-            </li>
-            <li>
-              <Link href="/about/manifesto" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
-                Manifesto
-              </Link>
-            </li>
-            <li>
-              <Link href="/about/sustainability" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
-                Sustainability
-              </Link>
-            </li>
-          </ul>
-        </li>
+          {/* 右側內容區塊 */}
+          <main className="flex-1 relative bg-white">
+            {children}
+          </main>
+          
+        </div>
 
-        <li>
-          <Link href="/solutions" className="text-gray-600 hover:text-black transition-colors">
-            Solutions
-          </Link>
-        </li>
-
-        <li>
-          <Link href="/origin" className="text-gray-600 hover:text-black transition-colors">
-            Origin
-          </Link>
-        </li>
-      </ul>
-
-      {/* 底部品牌訊息 (移動版) */}
-      <div className="mt-4 md:hidden text-center">
-        <p className="text-[10px] text-gray-400 tracking-widest">
-          ZERO-COMPROMISE COFFEE INFRASTRUCTURE
-        </p>
-      </div>
-    </nav>
+        {/* SEO / GEO 數據標註 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Origin Coffee Crafter",
+              "alternateName": "OCC",
+              "url": "https://yourdomain.com",
+              "logo": "https://yourdomain.com/logo.png",
+              "description": "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Phnom Penh",
+                "addressCountry": "Cambodia"
+              }
+            }),
+          }}
+        />
+      </body>
+    </html>
   );
 }
