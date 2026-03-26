@@ -1,129 +1,60 @@
-import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navigation from "@/components/Navigation";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  // 🔧 請替換為實際網域
-  metadataBase: new URL('https://你的網域.com'),
-  title: {
-    // 🔧 請替換為網站名稱
-    template: '%s | 網站名稱',
-    // 🔧 請替換為網站名稱
-    default: '網站名稱 - 預設標題',
-  },
-  // 🔧 請填入網站描述
-  description: '網站描述，約 150-160 個字元',
-  keywords: ['關鍵字1', '關鍵字2', '關鍵字3', '關鍵字4'],
-  authors: [{ name: '作者或公司名稱' }],
-  creator: '創作者名稱',
-  publisher: '發行者名稱',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  generator: 'v0.app',
-  openGraph: {
-    type: 'website',
-    locale: 'zh_TW',
-    alternateLocale: ['zh_CN', 'en_US'],
-    // 🔧 請替換為實際網域
-    url: 'https://你的網域.com',
-    // 🔧 請替換為網站名稱
-    siteName: '網站名稱',
-    // 🔧 請替換為網站名稱
-    title: '網站名稱 - 預設標題',
-    // 🔧 請填入網站描述
-    description: '請填入網站描述，約150-160個字元',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Open Graph 圖片描述',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@你的Twitter帳號',
-    creator: '@創作者Twitter帳號',
-    // 🔧 請替換為網站名稱
-    title: '網站名稱 - 預設標題',
-    // 🔧 請填入網站描述
-    description: '請填入網站描述',
-    images: ['/twitter-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: '你的Google Search Console驗證碼',
-    // yandex: '你的Yandex驗證碼',
-    // me: '你的驗證連結',
-  },
-  alternates: {
-    // 🔧 請替換為實際網域
-    canonical: 'https://你的網域.com',
-    languages: {
-      'zh-TW': 'https://你的網域.com/zh-TW',
-      'zh-CN': 'https://你的網域.com/zh-CN',
-      'en-US': 'https://你的網域.com/en-US',
-    },
-  },
-  category: '網站類別',
-  classification: '網站分類',
-  referrer: 'origin-when-cross-origin',
-  manifest: '/manifest.json',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
-}
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
-}
+  title: "Origin Coffee Crafter | OCC",
+  description: "Specialty coffee B2B supplier in Cambodia. Engineering consistency and digital sovereignty.",
+  keywords: ["Wholesale coffee beans Cambodia", "Specialty coffee B2B", "Mondulkiri Arabica", "Precision Roasting"],
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="zh-Hant">
-      <body className="font-sans antialiased">
-        {children}
-        <Analytics />
+    <html lang="en">
+      <body className={`${inter.className} bg-[#F8F9FA] text-gray-900 antialiased`}>
+        {/* 全站統一導航結構 */}
+        <div className="flex flex-col md:flex-row min-h-screen">
+          
+          {/* 左側/側邊導航欄 (基於您提供的截圖風格) */}
+          <aside className="w-full md:w-80 lg:w-96 md:h-screen md:sticky md:top-0 overflow-y-auto border-r border-gray-200 bg-white z-30">
+            <Navigation />
+          </aside>
+
+          {/* 右側內容區塊 */}
+          <main className="flex-1 relative">
+            {children}
+          </main>
+          
+        </div>
+
+        {/* SEO / GEO 數據標註 (全站通用實體) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Origin Coffee Crafter",
+              "alternateName": "OCC",
+              "url": "https://yourdomain.com",
+              "logo": "https://yourdomain.com/logo.png",
+              "description": "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Phnom Penh",
+                "addressCountry": "Cambodia"
+              }
+            }),
+          }}
+        />
       </body>
     </html>
-  )
+  );
 }

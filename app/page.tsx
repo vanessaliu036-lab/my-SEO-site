@@ -155,6 +155,16 @@ export default function HomePage() {
 
               {/* Menu Items */}
               <div className="space-y-8">
+                {/* ✅ About - 新增 */}
+                <Link
+                  href="/about"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left border-b border-gray-300 pb-6 transition-colors hover:border-gray-400"
+                >
+                  <h3 className="text-xl font-medium text-gray-800 tracking-wide mb-2">About</h3>
+                  <p className="text-gray-600 text-sm tracking-wide">philosophy, mission, manifesto</p>
+                </Link>
+
                 <Link
                   href="/vision"
                   onClick={() => setIsMenuOpen(false)}
