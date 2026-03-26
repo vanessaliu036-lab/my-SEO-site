@@ -16,39 +16,39 @@ export default function Navigation() {
 
       {/* 主導航連結 */}
       <ul className="space-y-6">
-        {/* About 區塊 (包含子頁面) */}
+        {/* About 區塊 */}
         <li>
           <div className="text-gray-400 text-xs tracking-widest mb-3">
             ABOUT
           </div>
           <ul className="space-y-3">
             <li>
-              <Link 
-                href="/about/mission" 
+              <Link
+                href="/about/mission"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Mission</span>
               </Link>
             </li>
             <li>
-              <Link 
-                href="/about/founder" 
+              <Link
+                href="/about/founder"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Founder</span>
               </Link>
             </li>
             <li>
-              <Link 
-                href="/about/manifesto" 
+              <Link
+                href="/about/manifesto"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Manifesto</span>
               </Link>
             </li>
             <li>
-              <Link 
-                href="/about/sustainability" 
+              <Link
+                href="/about/sustainability"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Sustainability</span>
@@ -57,20 +57,51 @@ export default function Navigation() {
           </ul>
         </li>
 
-        {/* Solutions - 新增 */}
+        {/* Solutions 區塊 */}
         <li className="pt-4">
-          <Link 
-            href="/solutions" 
-            className="text-gray-900 font-medium text-sm tracking-wide hover:text-black transition-colors block group"
-          >
-            <span className="group-hover:pl-2 transition-all duration-200">SOLUTIONS</span>
-          </Link>
+          <div className="text-gray-400 text-xs tracking-widest mb-3">
+            SOLUTIONS
+          </div>
+          <ul className="space-y-3">
+            <li>
+              <Link
+                href="/solutions/wholesale"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">Wholesale</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/solutions/roasting"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">Roasting Program</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/solutions/academy"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">Barista Staffing</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/solutions/equipment"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">Equipment Service</span>
+              </Link>
+            </li>
+          </ul>
         </li>
 
         {/* Origin (預留) */}
-        <li>
-          <Link 
-            href="/origin" 
+        <li className="pt-4">
+          <Link
+            href="/origin"
             className="text-gray-500 text-sm hover:text-black transition-colors block group"
           >
             <span className="group-hover:pl-2 transition-all duration-200">Origin</span>
