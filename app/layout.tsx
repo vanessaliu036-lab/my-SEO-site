@@ -1,60 +1,69 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navigation from "@/components/Navigation";
+// app/components/Navigation.tsx
+import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Origin Coffee Crafter | OCC",
-  description: "Specialty coffee B2B supplier in Cambodia. Engineering consistency and digital sovereignty.",
-  keywords: ["Wholesale coffee beans Cambodia", "Specialty coffee B2B", "Mondulkiri Arabica", "Precision Roasting"],
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Navigation() {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-[#F8F9FA] text-gray-900 antialiased`}>
-        {/* 全站統一導航結構 */}
-        <div className="flex flex-col md:flex-row min-h-screen">
-          
-          {/* 左側/側邊導航欄 (基於您提供的截圖風格) */}
-          <aside className="w-full md:w-80 lg:w-96 md:h-screen md:sticky md:top-0 overflow-y-auto border-r border-gray-200 bg-white z-30">
-            <Navigation />
-          </aside>
+    <nav className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center">
+      {/* Logo */}
+      <div className="mb-4 md:mb-0">
+        <Link href="/" className="text-2xl font-bold tracking-tighter hover:opacity-70 transition-opacity">
+          OCC
+        </Link>
+        <p className="text-[10px] text-gray-400 tracking-widest mt-1 hidden md:block">
+          ORIGIN COFFEE CRAFTER
+        </p>
+      </div>
 
-          {/* 右側內容區塊 */}
-          <main className="flex-1 relative">
-            {children}
-          </main>
-          
-        </div>
+      {/* 導航連結 */}
+      <ul className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm">
+        {/* About 下拉選單 (或直接顯示) */}
+        <li className="relative group">
+          <span className="text-gray-600 hover:text-black transition-colors cursor-pointer">
+            About
+          </span>
+          <ul className="absolute top-full left-0 mt-2 bg-white border border-gray-100 shadow-lg rounded-md py-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+            <li>
+              <Link href="/about/mission" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
+                Mission
+              </Link>
+            </li>
+            <li>
+              <Link href="/about/founder" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
+                Founder
+              </Link>
+            </li>
+            <li>
+              <Link href="/about/manifesto" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
+                Manifesto
+              </Link>
+            </li>
+            <li>
+              <Link href="/about/sustainability" className="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50">
+                Sustainability
+              </Link>
+            </li>
+          </ul>
+        </li>
 
-        {/* SEO / GEO 數據標註 (全站通用實體) */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Origin Coffee Crafter",
-              "alternateName": "OCC",
-              "url": "https://yourdomain.com",
-              "logo": "https://yourdomain.com/logo.png",
-              "description": "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Phnom Penh",
-                "addressCountry": "Cambodia"
-              }
-            }),
-          }}
-        />
-      </body>
-    </html>
+        <li>
+          <Link href="/solutions" className="text-gray-600 hover:text-black transition-colors">
+            Solutions
+          </Link>
+        </li>
+
+        <li>
+          <Link href="/origin" className="text-gray-600 hover:text-black transition-colors">
+            Origin
+          </Link>
+        </li>
+      </ul>
+
+      {/* 底部品牌訊息 (移動版) */}
+      <div className="mt-4 md:hidden text-center">
+        <p className="text-[10px] text-gray-400 tracking-widest">
+          ZERO-COMPROMISE COFFEE INFRASTRUCTURE
+        </p>
+      </div>
+    </nav>
   );
 }
