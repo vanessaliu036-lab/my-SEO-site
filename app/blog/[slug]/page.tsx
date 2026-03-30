@@ -18,7 +18,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
-  if (!post) notFound();
+
+  if (!post) {
+    return notFound();
+  }
 
   return (
     <main className="min-h-screen bg-white">
@@ -42,7 +45,13 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </h1>
         <div className="flex items-center gap-6 text-xs text-neutral-400 tracking-wide mb-12 pb-8 border-b border-neutral-100">
           {post.publish_date && (
-            <span>{new Date(post.publish_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>
+              {new Date(post.publish_date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </span>
           )}
           {post.author && <span>{post.author}</span>}
         </div>
