@@ -31,7 +31,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           />
         </div>
       )}
-
       <div className="max-w-3xl mx-auto px-6 py-16">
         {post.category && (
           <span className="text-xs tracking-widest uppercase text-neutral-400">
@@ -41,18 +40,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <h1 className="text-3xl md:text-4xl font-light text-neutral-900 mt-3 mb-4 leading-tight">
           {post.title}
         </h1>
-
         <div className="flex items-center gap-6 text-xs text-neutral-400 tracking-wide mb-12 pb-8 border-b border-neutral-100">
           {post.publish_date && (
             <span>{new Date(post.publish_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
           )}
           {post.author && <span>{post.author}</span>}
         </div>
-
         <div className="prose prose-neutral max-w-none text-neutral-700 leading-relaxed whitespace-pre-wrap">
           {post.content}
         </div>
-
         <div className="mt-20 pt-8 border-t border-neutral-100">
           
             href="/blog"
