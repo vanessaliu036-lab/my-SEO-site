@@ -98,6 +98,16 @@ export default function Navigation() {
           </ul>
         </li>
 
+        {/* Blog 區塊 */}
+        <li className="pt-4">
+          <Link
+            href="/blog"
+            className="text-gray-700 hover:text-black transition-colors text-sm block group"
+          >
+            <span className="group-hover:pl-2 transition-all duration-200">Blog</span>
+          </Link>
+        </li>
+
         {/* Origin (預留) */}
         <li className="pt-4">
           <Link
