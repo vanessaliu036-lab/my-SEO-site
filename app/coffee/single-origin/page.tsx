@@ -46,6 +46,45 @@ const originSchema = {
   ],
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What makes Cambodian single-origin coffee unique?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cambodian specialty coffee grows in highland volcanic basalt soils at elevations between 400 m and 1,000 m in provinces like Mondulkiri and Ratanakiri. The combination of high-altitude thermal variance, rich ferruginous laterite soil, and traditional shade-grown cultivation produces a cup profile characterised by heavy body, balanced acidity, and earthy-chocolate undertones distinct from other Southeast Asian origins.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the flavour profile of Mondulkiri coffee?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Mondulkiri coffee, grown at 800–1,000 m on volcanic red basalt soil, is known for high bean density, balanced acidity, and nutty undertones. The highland thermal variance slows cherry development, allowing greater sugar accumulation and a cleaner, more nuanced cup compared to lowland lots.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does Ratanakiri coffee differ from Mondulkiri?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ratanakiri coffee grows at lower elevations (400–600 m) in ferruginous latosol — iron-rich red earth. This produces a heavier-bodied cup with prominent dark chocolate notes and lower acidity. The region is particularly suited to premium Robusta, which thrives in the dense mineral soil and humid lowland climate.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does OCC offer single-origin lots for wholesale buyers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. OCC supplies traceable single-origin lots from Mondulkiri and Ratanakiri to wholesale and hospitality clients across Cambodia. Each lot ships with full provenance documentation including farm coordinates, processing method, harvest date, and cupping score. Contact us for current available lots and minimum order quantities.",
+      },
+    },
+  ],
+}
+
 export default function SingleOriginPage() {
   const regions = [
     {
@@ -75,6 +114,10 @@ export default function SingleOriginPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="min-h-screen bg-[#F8F9FA] relative overflow-hidden font-sans">
         <div className="absolute top-8 left-8 z-20">

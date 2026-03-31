@@ -100,6 +100,52 @@ const originSchema = {
     },
   ],
 };
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Where does Arunéra source its coffee in Cambodia?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Arunéra sources directly from highland farming communities in Mondulkiri and Ratanakiri provinces in eastern Cambodia, as well as coastal estates in Kampot. Each lot is purchased through direct trade relationships with individual farmers, bypassing commodity markets entirely.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What does direct trade mean for Cambodian coffee farmers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Direct trade means Arunéra negotiates price individually with each farm, consistently paying above Fair Trade floor prices. Farmers receive payment within 30 days of delivery, retain full decision-making over processing methods, and receive written feedback from every cupping session so they can improve quality year-over-year.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does OCC verify the traceability of its coffee supply chain?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Every batch in the OCC system carries a full traceability record: GPS coordinates of the farm plot, the processing method used (washed, natural, or honey), harvest date, roast date, and cupping score. Wholesale clients receive this documentation with every order as standard.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is Cambodian specialty coffee certified organic or Fair Trade?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Most small-scale highland farms in Cambodia practice chemical-free cultivation without holding formal organic certification, as the certification cost is prohibitive for individual smallholders. OCC's direct trade model provides greater farmer premiums than Fair Trade certification in practice, and we document farming practices as part of our traceability protocol.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What environmental practices does Arunéra require from its farm partners?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "OCC prioritises farms that use shade-grown cultivation to preserve forest canopy, manage wastewater from wet processing to avoid stream contamination, and avoid synthetic pesticides. These practices are assessed during annual farm visits and documented in our supplier records.",
+      },
+    },
+  ],
+}
 export default function SustainabilityPage() {
   return (
     <>
@@ -110,6 +156,10 @@ export default function SustainabilityPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
