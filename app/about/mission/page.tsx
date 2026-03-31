@@ -1,5 +1,6 @@
-// app/about/mission/page.tsx
 import Link from "next/link";
+import { siteUrl } from "@/lib/siteConfig"
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,25 +10,24 @@ export const metadata: Metadata = {
   keywords:
     "specialty coffee supplier Cambodia, coffee roaster Phnom Penh, Cambodia coffee culture, coffee mission, OCC mission",
   alternates: {
-    canonical: "https://arunera.com/about/mission",
+    canonical: `${siteUrl}/about/mission`,
   },
   openGraph: {
     title: "Mission | Arunéra Coffee Cambodia - OCC",
     description:
       "Vision, Mission, and Why We Exist. OCC exists to close the gap in Cambodia's coffee market.",
-    url: "https://arunera.com/about/mission",
+    url: `${siteUrl}/about/mission`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
   },
 };
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "OCC Mission",
   description: "Vision, Mission, and Why We Exist",
-  url: "https://arunera.com/about/mission",
+  url: `${siteUrl}/about/mission`,
   isPartOf: {
     "@type": "Organization",
     name: "Origin Coffee Crafter (OCC)",
@@ -35,7 +35,6 @@ const jsonLd = {
       "Specialty coffee supplier Cambodia, coffee roaster Phnom Penh, empowering Cambodia's coffee culture.",
   },
 };
-
 export default function MissionPage() {
   return (
     <>
@@ -43,7 +42,6 @@ export default function MissionPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
         <nav className="absolute top-8 left-8 z-20">
@@ -54,7 +52,6 @@ export default function MissionPage() {
             <span aria-hidden="true">←</span> BACK TO ABOUT
           </Link>
         </nav>
-
         <main className="max-w-6xl mx-auto pt-40 pb-24 px-8 md:px-16">
           {/* 章節標題模組 */}
           <div className="border-b border-gray-300 pb-12 mb-16">
@@ -68,7 +65,6 @@ export default function MissionPage() {
               VISION, MISSION, AND WHY WE EXIST.
             </p>
           </div>
-
           {/* ① 箴言 + ② 品牌宣言 + ③ 橋樑句 */}
           <div className="border-l-4 border-gray-900 pl-8 mb-20">
             <p className="text-gray-700 text-xl italic mb-6 leading-relaxed">
@@ -82,7 +78,6 @@ export default function MissionPage() {
               exists.
             </p>
           </div>
-
           {/* ④ Vision */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -100,7 +95,6 @@ export default function MissionPage() {
               </p>
             </div>
           </div>
-
           {/* ⑤ Mission */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -119,7 +113,6 @@ export default function MissionPage() {
               </p>
             </div>
           </div>
-
           {/* ⑥ Why We Exist（段落） */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -142,7 +135,6 @@ export default function MissionPage() {
               </p>
             </div>
           </div>
-
           {/* 結尾：自然導向下一個分頁 Founder */}
           <div className="mt-32 pt-12 border-t border-gray-200 flex justify-between items-center">
             <div className="text-left">
@@ -162,13 +154,11 @@ export default function MissionPage() {
                 Philosophy, Credentials, and the Big Idea.
               </p>
             </div>
-
             <div className="hidden md:block text-right text-xs text-gray-400">
               About / 01
             </div>
           </div>
         </main>
-
         {/* 底部浮動背景字 */}
         <div
           className="fixed -bottom-10 -left-10 text-[200px] font-bold text-gray-200/50 -z-10 pointer-events-none select-none"
@@ -179,4 +169,3 @@ export default function MissionPage() {
       </div>
     </>
   );
-}

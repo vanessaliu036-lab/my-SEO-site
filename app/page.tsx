@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import { siteUrl, siteName, siteDescription } from "@/lib/siteConfig"
 
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -9,14 +10,14 @@ export default function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: process.env.NEXT_PUBLIC_SITE_NAME || "🔧 請替換為網站名稱",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "🔧 請替換為實際網域",
-    description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "🔧 請填入網站描述",
+    name: siteName,
+    url: siteUrl,
+    description: siteDescription,
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || "🔧 請替換為實際網域"}/search?q={search_term_string}`,
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -25,13 +26,13 @@ export default function HomePage() {
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: process.env.NEXT_PUBLIC_SITE_NAME || "🔧 請替換為網站名稱",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "🔧 請替換為實際網域",
-    description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "🔧 請填入網站描述",
+    name: siteName,
+    url: siteUrl,
+    description: siteDescription,
     mainEntity: {
       "@type": "WebSite",
-      name: process.env.NEXT_PUBLIC_SITE_NAME || "🔧 請替換為網站名稱",
-      url: process.env.NEXT_PUBLIC_SITE_URL || "🔧 請替換為實際網域",
+      name: siteName,
+      url: siteUrl,
     },
   }
 

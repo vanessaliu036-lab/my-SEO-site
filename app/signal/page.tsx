@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   description:
     "Read Arunéra updates, publications, and coffee insights. Follow new releases, events, and specialty coffee knowledge from Cambodia.",
   alternates: {
-    canonical: "https://arunera.com/signal",
+    canonical: `${siteUrl}/signal`,
   },
 }
 
 export default function SignalPage() {
-  const pageUrl = "https://arunera.com/signal"
+  const pageUrl = `${siteUrl}/signal`
   const description = "blog, updates, publications"
 
   const webPageSchema = {
@@ -26,7 +26,7 @@ export default function SignalPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://arunera.com" },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}` },
       { "@type": "ListItem", position: 2, name: "Signal", item: pageUrl },
     ],
   }

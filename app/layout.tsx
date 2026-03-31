@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import { siteUrl } from "@/lib/siteConfig";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,8 +45,8 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Origin Coffee Crafter",
               "alternateName": "OCC",
-              "url": "https://yourdomain.com",
-              "logo": "https://yourdomain.com/logo.png",
+              "url": siteUrl,
+              "logo": `${siteUrl}/logo.png`,
               "description": "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
               "address": {
                 "@type": "PostalAddress",

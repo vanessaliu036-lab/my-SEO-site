@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { siteUrl } from "@/lib/siteConfig"
+
 import { Metadata } from "next"
 
 // SEO Metadata
@@ -9,13 +11,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Ecosystem | Arunéra Coffee Cambodia",
     description: "From farm to cup - building a skilled barista army and sustainable coffee ecosystem in Cambodia.",
-    url: "https://arunera.com/system",
+    url: `${siteUrl}/system`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://arunera.com/images/ecosystem-og-image.jpg",
+        url: `${siteUrl}/images/ecosystem-og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Arunéra Coffee Cambodia Ecosystem - Academy, Equipment, Green Bean Trading"
@@ -26,21 +28,20 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Ecosystem | Arunéra Coffee Cambodia",
     description: "Building Cambodia's coffee future through education, equipment, and sustainable supply chains.",
-    images: ["https://arunera.com/images/ecosystem-twitter-card.jpg"]
+    images: [`${siteUrl}/images/ecosystem-twitter-card.jpg`]
   },
   alternates: {
-    canonical: "https://arunera.com/system"
+    canonical: `${siteUrl}/system`
   }
 }
-
 export default function SystemPage() {
   // Schema.org 結構化資料 - Organization
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Arunéra Coffee Cambodia",
-    "url": "https://arunera.com",
-    "logo": "https://arunera.com/images/logo.png",
+    "url": `${siteUrl}`,
+    "logo": `${siteUrl}/images/logo.png`,
     "description": "Specialty coffee roaster building Cambodia's coffee ecosystem through The Academy, equipment supply, green bean trading, and professional training.",
     "address": {
       "@type": "PostalAddress",
@@ -65,7 +66,6 @@ export default function SystemPage() {
       "Specialty Coffee Supply Chain"
     ]
   }
-
   // Schema.org 結構化資料 - BreadcrumbList
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -75,23 +75,22 @@ export default function SystemPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://arunera.com"
+        "item": `${siteUrl}`
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "The Ecosystem",
-        "item": "https://arunera.com/system"
+        "item": `${siteUrl}/system`
       }
     ]
   }
-
   // Schema.org 結構化資料 - EducationalOrganization (針對 The Academy)
   const academySchema = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": "Arunéra Coffee Academy",
-    "url": "https://arunera.com/system",
+    "url": `${siteUrl}/system`,
     "description": "A new kind of coffee academy built from scratch to shape truly skilled baristas in Cambodia. Offering free enrollment for qualified individuals and second chance opportunities.",
     "address": {
       "@type": "PostalAddress",
@@ -111,7 +110,6 @@ export default function SystemPage() {
       "availability": "https://schema.org/PreOrder"
     }
   }
-
   const entities = [
     "Coffee Equipment & Accessories",
     "Packaging Solutions",
@@ -119,7 +117,6 @@ export default function SystemPage() {
     "Green Bean Trading",
     "The Academy (Future Initiative)"
   ]
-
   return (
     <>
       {/* Schema.org JSON-LD */}
@@ -135,7 +132,6 @@ export default function SystemPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(academySchema) }}
       />
-
       <div className="min-h-screen bg-gray-100 relative overflow-hidden font-sans">
         {/* Back Navigation */}
         <nav className="absolute top-8 left-8 z-20" aria-label="Breadcrumb">
@@ -147,11 +143,9 @@ export default function SystemPage() {
             <span aria-hidden="true">←</span> HOME
           </Link>
         </nav>
-
         {/* 背景幾何裝飾 */}
         <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gray-200/40 rounded-bl-full -z-10" aria-hidden="true"></div>
         <div className="absolute left-1/4 bottom-0 w-px h-64 border-l border-dashed border-gray-400 -z-10" aria-hidden="true"></div>
-
         <main className="max-w-6xl mx-auto pt-32 pb-24 px-8 md:px-16">
           {/* Header */}
           <header className="mb-24 border-b border-gray-300 pb-12 relative">
@@ -162,7 +156,6 @@ export default function SystemPage() {
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tighter mb-4">THE ECOSYSTEM</h1>
             <p className="text-gray-500 tracking-widest text-xs uppercase">Origin Coffee Crafter (OCC) & Beyond</p>
           </header>
-
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
             {/* Section 1: The Problem */}
             <section className="md:col-span-5 space-y-8">
@@ -186,7 +179,6 @@ export default function SystemPage() {
                 </div>
               </div>
             </section>
-
             {/* Section 2: The Academy Solution */}
             <section className="md:col-span-7 bg-white p-12 shadow-sm relative">
               <div className="absolute -top-4 -right-4 w-24 h-24 border border-gray-300 -z-10" aria-hidden="true"></div>
@@ -214,7 +206,6 @@ export default function SystemPage() {
               </div>
             </section>
           </div>
-
           {/* Scalability Section */}
           <section className="mt-32">
             <h2 className="text-sm tracking-[0.3em] font-bold text-gray-400 uppercase mb-12">Scalability & Sustainability</h2>
@@ -232,7 +223,6 @@ export default function SystemPage() {
               Building a "Skilled Barista Army" to uplift the community and the industry.
             </p>
           </section>
-
           {/* CTA Section */}
           <section className="mt-32 pt-12 border-t border-gray-300">
             <div className="bg-gray-900 p-12 text-center">
@@ -248,7 +238,6 @@ export default function SystemPage() {
               </Link>
             </div>
           </section>
-
           {/* Footer Navigation - 加入 About 連結 */}
           <footer className="mt-24 pt-12 border-t border-gray-300 flex justify-between items-end">
             <div>
@@ -273,7 +262,6 @@ export default function SystemPage() {
             </div>
           </footer>
         </main>
-
         {/* 側邊垂直裝飾線 */}
         <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 items-center" aria-hidden="true">
           <div className="w-px h-12 bg-gray-300"></div>
@@ -283,4 +271,3 @@ export default function SystemPage() {
       </div>
     </>
   )
-}

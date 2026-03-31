@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Metadata } from "next"
+import { siteUrl } from "@/lib/siteConfig"
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -9,13 +10,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Origin | Arunéra Coffee Cambodia - OCC",
     description: "Unlike celebrity-driven roasters, OCC builds infrastructure. We're reconstructing Cambodia's specialty coffee supply chain from the ground up.",
-    url: "https://arunera.com/about",
+    url: `${siteUrl}/about`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://arunera.com/images/about-og-image.jpg",
+        url: `${siteUrl}/images/about-og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Arunéra Coffee Cambodia - Origin Coffee Crafter (OCC) About Page"
@@ -26,10 +27,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Origin | Arunéra Coffee Cambodia",
     description: "Building infrastructure for Cambodia's specialty coffee future.",
-    images: ["https://arunera.com/images/about-twitter-card.jpg"]
+    images: [`${siteUrl}/images/about-twitter-card.jpg`]
   },
   alternates: {
-    canonical: "https://arunera.com/about"
+    canonical: `${siteUrl}/about`
   }
 }
 
@@ -39,8 +40,8 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "Origin Coffee Crafter (OCC)",
   "alternateName": "Arunéra Coffee Cambodia",
-  "url": "https://arunera.com",
-  "logo": "https://arunera.com/images/logo.png",
+  "url": `${siteUrl}`,
+  "logo": `${siteUrl}/images/logo.png`,
   "description": "Specialty coffee infrastructure company reconstructing Cambodia's coffee supply chain through ethical sourcing, traceability, and professional training.",
   "address": {
     "@type": "PostalAddress",
@@ -80,13 +81,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://arunera.com"
+      "item": `${siteUrl}`
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "About",
-      "item": "https://arunera.com/about"
+      "item": `${siteUrl}/about`
     }
   ]
 }
@@ -96,7 +97,7 @@ const aboutPageSchema = {
   "@type": "AboutPage",
   "name": "About Origin Coffee Crafter",
   "description": "Origin Coffee Crafter (OCC) is building infrastructure for Cambodia's specialty coffee industry - from ethical sourcing to professional training.",
-  "url": "https://arunera.com/about",
+  "url": `${siteUrl}/about`,
   "mainEntity": {
     "@type": "Organization",
     "name": "Origin Coffee Crafter (OCC)",

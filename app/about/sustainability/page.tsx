@@ -1,5 +1,6 @@
-// app/about/sustainability/page.tsx
 import Link from "next/link";
+import { siteUrl } from "@/lib/siteConfig"
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,13 +10,13 @@ export const metadata: Metadata = {
   keywords:
     "ethical coffee Cambodia, traceable coffee beans Cambodia, direct trade coffee Cambodia, Mondulkiri coffee origin, Ratanakiri arabica sourcing, sustainable coffee farming Cambodia, coffee traceability protocol, specialty coffee wholesale transparency, fair trade specialty coffee Southeast Asia, shade grown coffee Mondulkiri",
   alternates: {
-    canonical: "https://arunera.com/about/sustainability",
+    canonical: `${siteUrl}/about/sustainability`,
   },
   openGraph: {
     title: "Sustainability | Arunéra Coffee Cambodia - OCC",
     description:
       "Ethical sourcing and traceability protocol. A cup is only as honest as the chain behind it. We built ours to withstand scrutiny at every link.",
-    url: "https://arunera.com/about/sustainability",
+    url: `${siteUrl}/about/sustainability`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
@@ -27,14 +28,13 @@ export const metadata: Metadata = {
       "Ethical sourcing and traceability protocol. Direct trade. Traceable beans. Environmental responsibility.",
   },
 };
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "OCC Sustainability — Ethical Sourcing and Traceability Protocol",
   description:
     "Every coffee we carry has a name, a location, and a story. We work directly with farmers across Mondulkiri, Ratanakiri, and beyond. Traceability is not optional — it is the foundation of specialty coffee done right.",
-  url: "https://arunera.com/about/sustainability",
+  url: `${siteUrl}/about/sustainability`,
   isPartOf: {
     "@type": "Organization",
     name: "Origin Coffee Crafter (OCC)",
@@ -75,7 +75,6 @@ const jsonLd = {
     ],
   },
 };
-
 export default function SustainabilityPage() {
   return (
     <>
@@ -83,7 +82,6 @@ export default function SustainabilityPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
         <nav className="absolute top-8 left-8 z-20">
@@ -94,7 +92,6 @@ export default function SustainabilityPage() {
             <span aria-hidden="true">←</span> BACK TO ABOUT
           </Link>
         </nav>
-
         <main className="max-w-6xl mx-auto pt-40 pb-24 px-8 md:px-16">
           {/* 章節標題模組 */}
           <div className="border-b border-gray-300 pb-12 mb-16">
@@ -108,7 +105,6 @@ export default function SustainabilityPage() {
               ETHICAL SOURCING AND TRACEABILITY PROTOCOL.
             </p>
           </div>
-
           {/* 開頭：呼應品牌箴言 */}
           <div className="border-l-4 border-gray-900 pl-8 mb-12">
             <p className="text-gray-900 text-xl font-medium leading-relaxed mb-6">
@@ -120,7 +116,6 @@ export default function SustainabilityPage() {
               withstand scrutiny at every link.
             </p>
           </div>
-
           {/* 第一段：產地透明度 (Origin Transparency) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -148,7 +143,6 @@ export default function SustainabilityPage() {
               </p>
             </div>
           </div>
-
           {/* 第二段：道德採購承諾 (Ethical Sourcing Protocol) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -174,7 +168,6 @@ export default function SustainabilityPage() {
               </p>
             </div>
           </div>
-
           {/* 第三段：可追溯性協議 (Traceability Protocol) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -200,7 +193,6 @@ export default function SustainabilityPage() {
               </p>
             </div>
           </div>
-
           {/* 第四段：環境責任 (Environmental Commitment) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -227,7 +219,6 @@ export default function SustainabilityPage() {
               </p>
             </div>
           </div>
-
           {/* 結尾：回到品牌核心，自然橋接到 Solutions */}
           <div className="border-l-4 border-gray-900 pl-8 mt-16 mb-12">
             <p className="text-gray-900 text-lg font-medium leading-relaxed mb-4">
@@ -241,7 +232,6 @@ export default function SustainabilityPage() {
               right place.
             </p>
           </div>
-
           {/* 結尾：導向 Solutions */}
           <div className="mt-12 pt-8 border-t border-gray-200 flex justify-between items-center">
             <div className="text-left">
@@ -255,13 +245,11 @@ export default function SustainabilityPage() {
                 </span>
               </Link>
             </div>
-
             <div className="hidden md:block text-right text-xs text-gray-400">
               About / 04
             </div>
           </div>
         </main>
-
         {/* 底部浮動背景字 */}
         <div
           className="fixed -bottom-10 -left-10 text-[200px] font-bold text-gray-200/50 -z-10 pointer-events-none select-none"
@@ -272,4 +260,3 @@ export default function SustainabilityPage() {
       </div>
     </>
   );
-}

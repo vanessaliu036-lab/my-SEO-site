@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   description:
     "Find Arunéra resources, tools, and downloadable materials for brewing standards, coffee operations, and partner training.",
   alternates: {
-    canonical: "https://arunera.com/matter",
+    canonical: `${siteUrl}/matter`,
   },
 }
 
 export default function MatterPage() {
-  const pageUrl = "https://arunera.com/matter"
+  const pageUrl = `${siteUrl}/matter`
   const description = "resources, tools, downloads"
 
   const webPageSchema = {
@@ -26,7 +26,7 @@ export default function MatterPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://arunera.com" },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}` },
       { "@type": "ListItem", position: 2, name: "Matter", item: pageUrl },
     ],
   }

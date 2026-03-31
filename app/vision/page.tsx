@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { siteUrl } from "@/lib/siteConfig"
+
 import { Metadata } from "next"
 
 // SEO Metadata (需在 layout.tsx 或 page.tsx 中配置)
@@ -9,13 +11,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vision & Mission | Arunéra Coffee Cambodia",
     description: "Empowering Cambodia's coffee community through quality roasting, knowledge sharing, and professional wholesale support.",
-    url: "https://arunera.com/vision",
+    url: `${siteUrl}/vision`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://arunera.com/images/vision-og-image.jpg",
+        url: `${siteUrl}/images/vision-og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Arunéra Coffee Cambodia Vision and Mission"
@@ -26,21 +28,20 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vision & Mission | Arunéra Coffee Cambodia",
     description: "Elevating Cambodia's coffee culture through craftsmanship and education.",
-    images: ["https://arunera.com/images/vision-twitter-card.jpg"]
+    images: [`${siteUrl}/images/vision-twitter-card.jpg`]
   },
   alternates: {
-    canonical: "https://arunera.com/vision"
+    canonical: `${siteUrl}/vision`
   }
 }
-
 export default function VisionPage() {
   // Schema.org 結構化資料
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Arunéra Coffee Cambodia",
-    "url": "https://arunera.com",
-    "logo": "https://arunera.com/images/logo.png",
+    "url": `${siteUrl}`,
+    "logo": `${siteUrl}/images/logo.png`,
     "description": "Specialty coffee roaster elevating Cambodia's coffee culture through exceptional quality, origin transparency, and wholesale technical support.",
     "address": {
       "@type": "PostalAddress",
@@ -64,7 +65,6 @@ export default function VisionPage() {
       "Traceable Coffee Beans"
     ]
   }
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -73,17 +73,16 @@ export default function VisionPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://arunera.com"
+        "item": `${siteUrl}`
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Vision & Mission",
-        "item": "https://arunera.com/vision"
+        "item": `${siteUrl}/vision`
       }
     ]
   }
-
   return (
     <>
       {/* Schema.org JSON-LD */}
@@ -95,7 +94,6 @@ export default function VisionPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-
       <div className="min-h-screen bg-gray-100 relative overflow-hidden font-sans selection:bg-gray-900 selection:text-white">
         
         {/* 頂部導航 - 返回首頁 */}
@@ -108,7 +106,6 @@ export default function VisionPage() {
             <span aria-hidden="true">←</span> HOME
           </Link>
         </nav>
-
         {/* 背景幾何裝飾 (與首頁呼應) */}
         <div className="absolute right-0 top-0 w-1/3 h-1/3 bg-gray-200/40 rounded-bl-full -z-10" aria-hidden="true"></div>
         <div className="absolute left-1/4 bottom-0 w-px h-64 border-l border-dashed border-gray-400 -z-10" aria-hidden="true"></div>
@@ -126,7 +123,6 @@ export default function VisionPage() {
             </h1>
             <p className="mt-8 text-gray-500 tracking-widest text-sm uppercase">Arunéra — Elevating Cambodia's Coffee Culture</p>
           </header>
-
           {/* 內容格線佈局 */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
             
@@ -153,7 +149,6 @@ export default function VisionPage() {
                   </p>
                 </div>
               </section>
-
               {/* Mission Section */}
               <section className="group">
                 <div className="flex items-baseline gap-4 mb-6">
@@ -163,7 +158,6 @@ export default function VisionPage() {
                 <p className="text-lg text-gray-600 leading-loose mb-8">
                   To <span className="text-gray-900 font-medium underline underline-offset-4">empower</span> Cambodia's coffee community by supplying exceptionally roasted coffee, sharing practical knowledge, and supporting partners with the tools and training they need to thrive.
                 </p>
-
                 {/* SEO 延伸內容 */}
                 <div className="prose prose-gray max-w-none">
                   <p className="text-base text-gray-600 leading-relaxed">
@@ -173,7 +167,6 @@ export default function VisionPage() {
                     We bridge the gap between Cambodia's exceptional coffee-growing regions and the nation's evolving café culture through <strong>transparency</strong>, <strong>consistency</strong>, and unwavering quality standards. Every roast batch is meticulously profiled, every origin story is thoroughly documented, and every wholesale partner receives dedicated technical support to ensure their success.
                   </p>
                 </div>
-
                 {/* Mission 核心支柱 */}
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-white p-6 border-l-4 border-gray-900">
@@ -203,7 +196,6 @@ export default function VisionPage() {
                 </div>
               </section>
             </div>
-
             {/* 右側:Why Arunéra (幾何色塊區塊) */}
             <aside className="md:col-span-5 relative">
               <div className="bg-gray-900 text-gray-100 p-10 md:p-12 transform md:translate-y-24 shadow-2xl">
@@ -211,7 +203,6 @@ export default function VisionPage() {
                 <p className="text-sm leading-relaxed mb-6 text-gray-300">
                   Currently, many local coffee suppliers offer inconsistent roast quality and limited transparency. Arunéra exists to bridge this gap.
                 </p>
-
                 {/* SEO 延伸段落 */}
                 <p className="text-sm leading-relaxed mb-10 text-gray-300">
                   <strong>Cambodia's coffee market</strong> faces significant challenges: inconsistent roast quality from local suppliers, limited origin transparency, and insufficient technical support for wholesale customers. Arunéra was founded to address these critical gaps by establishing a new standard for <strong>specialty coffee roasting in Cambodia</strong>—one built on traceability, quality consistency, professional service, and collaborative partnerships with café owners, restaurants, and hospitality businesses.
@@ -247,7 +238,6 @@ export default function VisionPage() {
                   ))}
                 </ul>
               </div>
-
               {/* 裝飾性點陣圖 */}
               <div className="absolute -bottom-12 -right-12 grid grid-cols-4 gap-2 opacity-30" aria-hidden="true">
                 {Array.from({ length: 16 }).map((_, i) => (
@@ -256,7 +246,6 @@ export default function VisionPage() {
               </div>
             </aside>
           </div>
-
           {/* 新增:服務對象與影響範圍 (GEO優化) */}
           <section className="mt-32 pt-16 border-t border-gray-300">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 tracking-tight">Serving Cambodia's Coffee Community</h2>
@@ -281,7 +270,6 @@ export default function VisionPage() {
               </div>
             </div>
           </section>
-
           {/* 底部導引 - 加入 About 連結 */}
           <footer className="mt-48 pt-12 border-t border-gray-300 flex justify-between items-end">
             <div>
@@ -305,17 +293,13 @@ export default function VisionPage() {
               </Link>
             </div>
           </footer>
-
         </main>
-
         {/* 側邊垂直裝飾線 */}
         <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 items-center" aria-hidden="true">
           <div className="w-px h-12 bg-gray-300"></div>
           <span className="text-[10px] text-gray-400 [writing-mode:vertical-lr] tracking-widest uppercase">Cambodia</span>
           <div className="w-px h-12 bg-gray-300"></div>
         </div>
-
       </div>
     </>
   )
-}

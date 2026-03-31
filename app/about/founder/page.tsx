@@ -1,5 +1,6 @@
-// app/about/founder/page.tsx
 import Link from "next/link";
+import { siteUrl } from "@/lib/siteConfig"
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,13 +10,13 @@ export const metadata: Metadata = {
   keywords:
     "coffee founder Cambodia, OCC founder, specialty coffee philosophy Cambodia, coffee craftsmanship, Phnom Penh coffee roaster origin",
   alternates: {
-    canonical: "https://arunera.com/about/founder",
+    canonical: `${siteUrl}/about/founder`,
   },
   openGraph: {
     title: "Founder | Arunéra Coffee Cambodia - OCC",
     description:
       "Philosophy, Credentials, and the Big Idea. OCC didn't begin with a business plan. It began with a question no one was asking.",
-    url: "https://arunera.com/about/founder",
+    url: `${siteUrl}/about/founder`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
@@ -27,14 +28,13 @@ export const metadata: Metadata = {
       "Philosophy, Credentials, and the Big Idea. The story behind Cambodia's most uncompromising coffee infrastructure company.",
   },
 };
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "OCC Founder — Philosophy, Credentials, and the Big Idea",
   description:
     "OCC didn't begin with a business plan. It began with a question no one in Cambodia's coffee industry was asking: why does a great origin produce a forgettable cup?",
-  url: "https://arunera.com/about/founder",
+  url: `${siteUrl}/about/founder`,
   isPartOf: {
     "@type": "Organization",
     name: "Origin Coffee Crafter (OCC)",
@@ -56,7 +56,6 @@ const jsonLd = {
     ],
   },
 };
-
 export default function FounderPage() {
   return (
     <>
@@ -64,7 +63,6 @@ export default function FounderPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
         <nav className="absolute top-8 left-8 z-20">
@@ -75,7 +73,6 @@ export default function FounderPage() {
             <span aria-hidden="true">←</span> BACK TO ABOUT
           </Link>
         </nav>
-
         <main className="max-w-6xl mx-auto pt-40 pb-24 px-8 md:px-16">
           {/* 章節標題模組 */}
           <div className="border-b border-gray-300 pb-12 mb-16">
@@ -89,7 +86,6 @@ export default function FounderPage() {
               PHILOSOPHY, CREDENTIALS, AND THE BIG IDEA.
             </p>
           </div>
-
           {/* 開頭：信念的起源 */}
           <div className="border-l-4 border-gray-900 pl-8 mb-20">
             <p className="text-gray-900 text-xl font-medium leading-relaxed mb-6">
@@ -98,7 +94,6 @@ export default function FounderPage() {
               origin produce a forgettable cup?
             </p>
           </div>
-
           {/* 核心理念段落：創辦人看到的現象 */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -119,7 +114,6 @@ export default function FounderPage() {
               </p>
             </div>
           </div>
-
           {/* 職人精神的具體化 */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -139,7 +133,6 @@ export default function FounderPage() {
               </p>
             </div>
           </div>
-
           {/* 邀請訪客成為一員 */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -158,7 +151,6 @@ export default function FounderPage() {
               </p>
             </div>
           </div>
-
           {/* 結尾：自然橋接到 Manifesto */}
           <div className="mt-32 pt-12 border-t border-gray-200 flex justify-between items-center">
             <div className="text-left">
@@ -178,7 +170,6 @@ export default function FounderPage() {
                 The Barista Army Thesis: Why We'll Never Open a Cafe.
               </p>
             </div>
-
             <div className="hidden md:block text-right text-xs text-gray-400">
               <p className="italic text-gray-500 max-w-xs text-right">
                 Which brings us to the big idea. The one that made everyone
@@ -186,7 +177,6 @@ export default function FounderPage() {
               </p>
             </div>
           </div>
-
           {/* 懸念句（移動端顯示） */}
           <div className="mt-8 md:hidden text-center">
             <p className="text-sm italic text-gray-500">
@@ -195,7 +185,6 @@ export default function FounderPage() {
             </p>
           </div>
         </main>
-
         {/* 底部浮動背景字 */}
         <div
           className="fixed -bottom-10 -left-10 text-[200px] font-bold text-gray-200/50 -z-10 pointer-events-none select-none"
@@ -206,4 +195,3 @@ export default function FounderPage() {
       </div>
     </>
   );
-}

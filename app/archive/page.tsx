@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   description:
     "Browse Arunéra archive for projects, coffee experiments, and case studies from Cambodia's specialty coffee journey.",
   alternates: {
-    canonical: "https://arunera.com/archive",
+    canonical: `${siteUrl}/archive`,
   },
 }
 
 export default function ArchivePage() {
-  const pageUrl = "https://arunera.com/archive"
+  const pageUrl = `${siteUrl}/archive`
   const description = "past projects, experiments, case studies"
 
   const webPageSchema = {
@@ -26,7 +26,7 @@ export default function ArchivePage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://arunera.com" },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}` },
       { "@type": "ListItem", position: 2, name: "Archive", item: pageUrl },
     ],
   }

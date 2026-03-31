@@ -1,5 +1,6 @@
-// app/solutions/page.tsx
 import Link from "next/link";
+import { siteUrl } from "@/lib/siteConfig"
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,13 +10,13 @@ export const metadata: Metadata = {
   keywords:
     "coffee wholesale supplier Cambodia, best coffee wholesale supplier in Cambodia, B2B coffee supplier Phnom Penh, fresh roasted coffee wholesale Cambodia, consistent coffee supply Cambodia, on demand coffee roasting B2B, private label coffee roasting Cambodia, single origin coffee supplier Phnom Penh, specialty coffee wholesale transparency, carbonic maceration coffee wholesale, wholesale roasted coffee Phnom Penh, specialty coffee account management, coffee wholesale support Cambodia",
   alternates: {
-    canonical: "https://arunera.com/solutions",
+    canonical: `${siteUrl}/solutions`,
   },
   openGraph: {
     title: "Wholesale Solutions | Arunéra Coffee Cambodia - OCC",
     description:
       "We don't just supply coffee. We supply certainty. The Partner Protocol: consistent supply, on-demand roasting, and after-sales partnership.",
-    url: "https://arunera.com/solutions",
+    url: `${siteUrl}/solutions`,
     siteName: "Arunéra Coffee Cambodia",
     locale: "en_US",
     type: "website",
@@ -27,7 +28,6 @@ export const metadata: Metadata = {
       "The Partner Protocol: consistency, freshness, traceability, and support. Built for businesses who refuse to compromise.",
   },
 };
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -70,7 +70,6 @@ const jsonLd = {
     "Specialty Coffee Wholesale",
   ],
 };
-
 export default function SolutionsPage() {
   const coffeeProducts = [
     "Single origin lots from Mondulkiri, Ratanakiri, and select partner farms",
@@ -79,21 +78,18 @@ export default function SolutionsPage() {
     "Private label roasting for boutique hotels and café groups",
     "Toll roasting for larger volume commitments on contract basis",
   ];
-
   const partnerBenefits = [
     "Dedicated account support — a direct line, not a ticket system",
     "Brew ratio and extraction guidance for every coffee we supply",
     "Access to OCC's barista network for staffing recommendations",
     "Priority access to limited and seasonal lots before general release",
   ];
-
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
         <nav className="absolute top-8 left-8 z-20">
@@ -104,7 +100,6 @@ export default function SolutionsPage() {
             <span aria-hidden="true">←</span> HOME
           </Link>
         </nav>
-
         <main className="max-w-6xl mx-auto pt-40 pb-24 px-8 md:px-16">
           {/* 章節標題模組 */}
           <div className="border-b border-gray-300 pb-12 mb-16">
@@ -118,7 +113,6 @@ export default function SolutionsPage() {
               WE DON'T JUST SUPPLY COFFEE. WE SUPPLY CERTAINTY.
             </p>
           </div>
-
           {/* 開頭：Partner Protocol 登場 */}
           <div className="border-l-4 border-gray-900 pl-8 mb-12">
             <p className="text-gray-900 text-xl font-medium leading-relaxed mb-6">
@@ -129,7 +123,6 @@ export default function SolutionsPage() {
               and stay to make sure it works.
             </p>
           </div>
-
           {/* 第一段：一致性協議 (Consistency Protocol) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -153,7 +146,6 @@ export default function SolutionsPage() {
               </p>
             </div>
           </div>
-
           {/* 第二段：按需烘焙 (On-Demand Roasting) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -181,7 +173,6 @@ export default function SolutionsPage() {
               </p>
             </div>
           </div>
-
           {/* 第三段：產品選項 (Volume & Variety) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -210,7 +201,6 @@ export default function SolutionsPage() {
               </ul>
             </div>
           </div>
-
           {/* 第四段：售後支援 (After-Sales Partnership) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -237,7 +227,6 @@ export default function SolutionsPage() {
               </ul>
             </div>
           </div>
-
           {/* 第五段：價格邏輯 (Volume Pricing) */}
           <div className="grid grid-cols-12 gap-x-12 gap-y-8 mb-20">
             <div className="col-span-12 md:col-span-5">
@@ -260,7 +249,6 @@ export default function SolutionsPage() {
               </p>
             </div>
           </div>
-
           {/* 結尾 CTA - 雙重出口 */}
           <div className="mt-16 pt-12 border-t border-gray-200 flex flex-col md:flex-row gap-6 justify-between items-center">
             <Link
@@ -272,7 +260,6 @@ export default function SolutionsPage() {
                 /b2b-inquiry
               </span>
             </Link>
-
             <Link
               href="/products"
               className="group flex items-center gap-3 text-xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
@@ -283,7 +270,6 @@ export default function SolutionsPage() {
               </span>
             </Link>
           </div>
-
           {/* 品牌標語 */}
           <div className="mt-20 pt-8 text-center">
             <p className="text-[10px] tracking-[0.3em] font-bold text-gray-400 uppercase">
@@ -291,7 +277,6 @@ export default function SolutionsPage() {
             </p>
           </div>
         </main>
-
         {/* 底部浮動背景字 */}
         <div
           className="fixed -bottom-10 -left-10 text-[200px] font-bold text-gray-200/50 -z-10 pointer-events-none select-none"
@@ -302,4 +287,3 @@ export default function SolutionsPage() {
       </div>
     </>
   );
-}
