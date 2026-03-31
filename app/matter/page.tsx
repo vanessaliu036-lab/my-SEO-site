@@ -1,5 +1,6 @@
 import Link from "next/link"
 import type { Metadata } from "next"
+import { siteUrl } from "@/lib/siteConfig"
 
 export const metadata: Metadata = {
   title: "Matter | Arunéra Coffee Cambodia",

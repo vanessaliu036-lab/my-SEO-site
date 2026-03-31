@@ -1,11 +1,8 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import { siteUrl } from "@/lib/siteConfig";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Origin Coffee Crafter | OCC",
@@ -20,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
+      <body className="font-sans bg-white text-gray-900 antialiased">
         {/* 全版面設計：左側導航欄無背景色 */}
         <div className="flex flex-col md:flex-row min-h-screen">
           

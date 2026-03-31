@@ -63,36 +63,44 @@ export default function Navigation() {
             SOLUTIONS
           </div>
           <ul className="space-y-3">
+            {/* TODO: replace href with /solutions/wholesale once page is built */}
             <li>
               <Link
-                href="/solutions/wholesale"
+                href="/contact"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Wholesale</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
               </Link>
             </li>
+            {/* TODO: replace href with /solutions/roasting once page is built */}
             <li>
               <Link
-                href="/solutions/roasting"
+                href="/contact"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Roasting Program</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
               </Link>
             </li>
+            {/* TODO: replace href with /solutions/academy once page is built */}
             <li>
               <Link
-                href="/solutions/academy"
+                href="/contact"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Barista Staffing</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
               </Link>
             </li>
+            {/* TODO: replace href with /solutions/equipment once page is built */}
             <li>
               <Link
-                href="/solutions/equipment"
+                href="/contact"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Equipment Service</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
               </Link>
             </li>
           </ul>
@@ -108,13 +116,14 @@ export default function Navigation() {
           </Link>
         </li>
 
-        {/* Origin (預留) */}
+        {/* Origin — TODO: replace href with /origin once page is built */}
         <li className="pt-4">
           <Link
-            href="/origin"
+            href="/contact"
             className="text-gray-500 text-sm hover:text-black transition-colors block group"
           >
             <span className="group-hover:pl-2 transition-all duration-200">Origin</span>
+            <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
           </Link>
         </li>
       </ul>
