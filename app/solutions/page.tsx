@@ -84,11 +84,23 @@ export default function SolutionsPage() {
     "Access to OCC's barista network for staffing recommendations",
     "Priority access to limited and seasonal lots before general release",
   ];
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Solutions", item: `${siteUrl}/solutions` },
+    ],
+  }
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}

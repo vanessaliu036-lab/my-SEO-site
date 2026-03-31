@@ -85,6 +85,16 @@ const faqSchema = {
   ],
 }
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Coffee", item: `${siteUrl}/coffee` },
+    { "@type": "ListItem", position: 3, name: "Single Origin", item: `${siteUrl}/coffee/single-origin` },
+  ],
+}
+
 export default function SingleOriginPage() {
   const regions = [
     {
@@ -118,6 +128,10 @@ export default function SingleOriginPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="min-h-screen bg-[#F8F9FA] relative overflow-hidden font-sans">
         <div className="absolute top-8 left-8 z-20">

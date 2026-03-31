@@ -56,12 +56,25 @@ const jsonLd = {
     ],
   },
 };
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
+    { "@type": "ListItem", position: 3, name: "Founder", item: `${siteUrl}/about/founder` },
+  ],
+}
 export default function FounderPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}

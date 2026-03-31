@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import { Analytics } from "@vercel/analytics/react";
 import { siteUrl } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
@@ -32,6 +33,8 @@ export default function RootLayout({
           </main>
           
         </div>
+
+        <Analytics />
 
         {/* SEO / GEO 數據標註 */}
         <script

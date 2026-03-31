@@ -66,7 +66,7 @@ export default function Navigation() {
             {/* TODO: replace href with /solutions/wholesale once page is built */}
             <li>
               <Link
-                href="/contact"
+                href="/contact?interest=wholesale"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Wholesale</span>
@@ -76,7 +76,7 @@ export default function Navigation() {
             {/* TODO: replace href with /solutions/roasting once page is built */}
             <li>
               <Link
-                href="/contact"
+                href="/contact?interest=roasting"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Roasting Program</span>
@@ -86,7 +86,7 @@ export default function Navigation() {
             {/* TODO: replace href with /solutions/academy once page is built */}
             <li>
               <Link
-                href="/contact"
+                href="/contact?interest=staffing"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Barista Staffing</span>
@@ -96,7 +96,7 @@ export default function Navigation() {
             {/* TODO: replace href with /solutions/equipment once page is built */}
             <li>
               <Link
-                href="/contact"
+                href="/contact?interest=equipment"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Equipment Service</span>
@@ -119,7 +119,7 @@ export default function Navigation() {
         {/* Origin — TODO: replace href with /origin once page is built */}
         <li className="pt-4">
           <Link
-            href="/contact"
+            href="/contact?interest=origin"
             className="text-gray-500 text-sm hover:text-black transition-colors block group"
           >
             <span className="group-hover:pl-2 transition-all duration-200">Origin</span>
