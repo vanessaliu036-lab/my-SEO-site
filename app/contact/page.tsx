@@ -34,22 +34,35 @@ export const metadata: Metadata = {
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "WholesaleStore",
+  "@id": `${siteUrl}/contact`,
   name: "Origin Coffee Crafter (OCC)",
   alternateName: "Arunéra Coffee Cambodia",
+  image: `${siteUrl}/og-image.png`,
   url: siteUrl,
+  // TODO: replace with actual phone number
+  telephone: "+855-XX-XXXXXX",
   description:
     "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
   address: {
     "@type": "PostalAddress",
+    // TODO: replace with actual street address
+    streetAddress: "",
     addressLocality: "Phnom Penh",
     addressCountry: "KH",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: "11.5564",
-    longitude: "104.9282",
+    latitude: 11.5564,
+    longitude: 104.9282,
   },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  priceRange: "$$$",
   areaServed: { "@type": "Country", name: "Cambodia" },
   contactPoint: {
     "@type": "ContactPoint",
