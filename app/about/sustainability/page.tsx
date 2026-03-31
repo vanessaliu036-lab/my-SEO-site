@@ -75,12 +75,41 @@ const jsonLd = {
     ],
   },
 };
+const originSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Arunera Coffee Origins",
+  itemListElement: [
+    {
+      "@type": "Place",
+      name: "Mondulkiri Province",
+      description: "Highland coffee region in Eastern Cambodia known for volcanic soil.",
+      geo: { "@type": "GeoCoordinates", latitude: 12.46, longitude: 107.10 },
+    },
+    {
+      "@type": "Place",
+      name: "Ratanakiri Province",
+      description: "Northeastern province famous for its rich red soil and premium Robusta.",
+      geo: { "@type": "GeoCoordinates", latitude: 13.73, longitude: 107.01 },
+    },
+    {
+      "@type": "Place",
+      name: "Kampot Province",
+      description: "Coastal region producing unique flavor profiles due to sea breeze.",
+      geo: { "@type": "GeoCoordinates", latitude: 10.62, longitude: 104.18 },
+    },
+  ],
+};
 export default function SustainabilityPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }}
       />
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
