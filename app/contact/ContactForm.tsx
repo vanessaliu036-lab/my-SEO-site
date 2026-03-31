@@ -27,9 +27,11 @@ const labelBase =
 interface ContactFormProps {
   /** CSS variable classNames injected by the Server Component parent */
   fontVars: string
+  /** Pre-select a service radio button based on the navigation link that was clicked */
+  defaultInterest?: ContactFormData["service"]
 }
 
-export default function ContactForm({ fontVars }: ContactFormProps) {
+export default function ContactForm({ fontVars, defaultInterest }: ContactFormProps) {
   const [isPending, startTransition] = useTransition()
   const [isSuccess, setIsSuccess] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
@@ -41,6 +43,7 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues: defaultInterest ? { service: defaultInterest } : undefined,
   })
 
   const selectedService = watch("service")

@@ -1,6 +1,15 @@
 import type { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
 import ContactForm from "./ContactForm"
+import type { ContactFormData } from "./action"
+
+// Map URL query param values to ContactFormData["service"] enum values
+const INTEREST_MAP: Record<string, ContactFormData["service"]> = {
+  wholesale: "Wholesale",
+  roasting: "Roasting Program",
+  staffing: "Barista Staffing",
+  equipment: "Equipment Service",
+}
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 
@@ -96,7 +105,14 @@ const breadcrumbSchema = {
 
 // ── Page (Server Component) ───────────────────────────────────────────────────
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ interest?: string }>
+}) {
+  const { interest } = await searchParams
+  const defaultInterest = interest ? INTEREST_MAP[interest.toLowerCase()] : undefined
+
   return (
     <>
       {/*
@@ -136,7 +152,7 @@ export default function ContactPage() {
       />
 
       {/* Interactive contact form — Client Component */}
-      <ContactForm fontVars="contact-font-vars" />
+      <ContactForm fontVars="contact-font-vars" defaultInterest={defaultInterest} />
     </>
   )
 }
