@@ -248,11 +248,7 @@ export default function HomePage() {
         </div>
 
         {/* Dotted Pattern Elements */}
-        <div className="absolute left-1/3 top-1/3 grid grid-cols-8 gap-1">
-          {Array.from({ length: 64 }).map((_, i) => (
-            <div key={i} className="w-1 h-1 bg-gray-400 rounded-full"></div>
-          ))}
-        </div>
+        <div className="absolute left-1/3 top-1/3 w-[152px] h-[152px] opacity-40 [background-image:radial-gradient(#9ca3af_1px,transparent_1px)] [background-size:20px_20px]" aria-hidden="true" />
 
         {/* Decorative X Symbols */}
         <div className="absolute top-16 left-1/2 -translate-x-1/2 text-gray-600 text-xl">✕✕</div>

@@ -6,7 +6,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: [
+        '/api/',
+        '/archive/', // thin content — stub page
+        '/matter/',  // thin content — stub page
+        '/signal/',  // thin content — stub page
+      ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   }
