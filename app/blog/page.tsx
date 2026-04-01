@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteUrl}/blog` },
 }
 
-export const dynamic = "force-dynamic"
+export const revalidate = 3600
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",

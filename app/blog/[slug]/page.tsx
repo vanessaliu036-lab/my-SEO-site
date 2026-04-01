@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteUrl, siteName } from "@/lib/siteConfig"
 import { getPostBySlug, getAllPosts } from "@/lib/airtable"
 
-export const dynamic = "force-dynamic"
+// ISR: regenerate this page in the background at most once per hour.
+// For instant updates, POST to /api/revalidate with the correct secret.
+export const revalidate = 3600
 
 export async function generateMetadata({
   params,
@@ -56,7 +58,7 @@ export default async function BlogPostPage({
     datePublished: post.publish_date,
     publisher: {
       "@type": "Organization",
-      name: "Origin Coffee Crafter",
+      name: siteName,
       url: siteUrl,
     },
     url: `${siteUrl}/blog/${post.slug}`,
