@@ -52,6 +52,14 @@ export default function RootLayout({
                 "@type": "PostalAddress",
                 "addressLocality": "Phnom Penh",
                 "addressCountry": "Cambodia"
+              },
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": `${siteUrl}/blog?q={search_term_string}`
+                },
+                "query-input": "required name=search_term_string"
               }
             }),
           }}
