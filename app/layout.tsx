@@ -4,7 +4,7 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
 import { pageAlternates } from "@/lib/seo";
 
