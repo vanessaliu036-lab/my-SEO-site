@@ -1,14 +1,13 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Archive | Origin Coffee Cambodia",
   description:
     "Browse OCC archive for projects, coffee experiments, and case studies from Cambodia's specialty coffee journey.",
-  alternates: {
-    canonical: `${siteUrl}/archive`,
-  },
+  alternates: pageAlternates("/archive"),
 }
 
 export default function ArchivePage() {

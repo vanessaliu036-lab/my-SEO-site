@@ -1,14 +1,13 @@
 import Link from "next/link"
 import { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Solutions | OCC — Wholesale, Roasting, Staffing, Equipment",
   description:
     "Coffee solutions in Cambodia: wholesale supply, custom roasting program, barista staffing, and commercial equipment service.",
-  alternates: {
-    canonical: `${siteUrl}/solutions`,
-  },
+  alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Solutions | OCC",
     description: "Wholesale, roasting, staffing, and equipment for Cambodia's coffee industry.",

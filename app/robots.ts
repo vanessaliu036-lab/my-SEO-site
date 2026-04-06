@@ -16,11 +16,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      // Thin / stub routes — not listed in `app/sitemap.ts` so crawlers are not nudged to index them.
       disallow: [
         '/api/',
-        '/archive/', // thin content — stub page
-        '/matter/',  // thin content — stub page
-        '/signal/',  // thin content — stub page
+        '/archive/',
+        '/matter/',
+        '/signal/',
       ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,

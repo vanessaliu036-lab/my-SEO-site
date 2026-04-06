@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { Metadata } from "next"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { areaServedCambodia } from "@/lib/organizationSchema"
+import { pageAlternates } from "@/lib/seo"
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -29,9 +31,7 @@ export const metadata: Metadata = {
     description: "Building infrastructure for Cambodia's specialty coffee future.",
     images: [`${siteUrl}/images/about-twitter-card.jpg`]
   },
-  alternates: {
-    canonical: `${siteUrl}/about`
-  }
+  alternates: pageAlternates("/about"),
 }
 
 // Schema.org 結構化資料
@@ -41,22 +41,9 @@ const organizationSchema = {
   "name": "Origin Coffee Cambodia (OCC)",
   "alternateName": "Origin Coffee Cambodia",
   "url": `${siteUrl}`,
-  "logo": `${siteUrl}/images/logo.png`,
+  "logo": siteLogoUrl,
   "description": "Specialty coffee infrastructure company reconstructing Cambodia's coffee supply chain through ethical sourcing, traceability, and professional training.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Phnom Penh",
-    "addressCountry": "Cambodia"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "11.5564",
-    "longitude": "104.9282"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Cambodia"
-  },
+  "areaServed": areaServedCambodia,
   "knowsAbout": [
     "Specialty Coffee Supply Chain",
     "Coffee Infrastructure",

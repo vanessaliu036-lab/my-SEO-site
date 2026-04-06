@@ -1,5 +1,7 @@
 import Link from "next/link"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { areaServedCambodia } from "@/lib/organizationSchema"
+import { pageAlternates } from "@/lib/seo"
 
 import { Metadata } from "next"
 
@@ -30,9 +32,7 @@ export const metadata: Metadata = {
     description: "Elevating Cambodia's coffee culture through craftsmanship and education.",
     images: [`${siteUrl}/images/vision-twitter-card.jpg`]
   },
-  alternates: {
-    canonical: `${siteUrl}/vision`
-  }
+  alternates: pageAlternates("/vision"),
 }
 export default function VisionPage() {
   // Schema.org 結構化資料
@@ -41,22 +41,9 @@ export default function VisionPage() {
     "@type": "Organization",
     "name": "Origin Coffee Cambodia",
     "url": `${siteUrl}`,
-    "logo": `${siteUrl}/images/logo.png`,
+    "logo": siteLogoUrl,
     "description": "Specialty coffee roaster elevating Cambodia's coffee culture through exceptional quality, origin transparency, and wholesale technical support.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Phnom Penh",
-      "addressCountry": "Cambodia"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "11.5564",
-      "longitude": "104.9282"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Cambodia"
-    },
+    "areaServed": areaServedCambodia,
     "knowsAbout": [
       "Specialty Coffee Roasting",
       "Cambodian Coffee Origins",

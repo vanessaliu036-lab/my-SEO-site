@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Metadata } from "next"
 import { siteUrl, ogImage } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Wholesale Coffee Supply Cambodia | OCC - Direct Trade Coffee Supplier",
@@ -18,9 +19,7 @@ export const metadata: Metadata = {
     title: "Wholesale Coffee Supply | OCC Cambodia",
     description: "Direct-origin beans. Reliable volume. B2B supply built for Cambodia's café industry.",
   },
-  alternates: {
-    canonical: `${siteUrl}/solutions/wholesale`,
-  },
+  alternates: pageAlternates("/solutions/wholesale"),
 }
 
 const faqSchema = {

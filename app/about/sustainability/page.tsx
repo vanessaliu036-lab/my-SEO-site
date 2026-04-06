@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 import type { Metadata } from "next";
 
@@ -9,9 +10,7 @@ export const metadata: Metadata = {
     "Ethical sourcing and traceability protocol. Every coffee we carry has a name, a location, and a story. We operate on direct trade, pay above market rate, and document every link in the supply chain.",
   keywords:
     "ethical coffee Cambodia, traceable coffee beans Cambodia, direct trade coffee Cambodia, Mondulkiri coffee origin, Ratanakiri arabica sourcing, sustainable coffee farming Cambodia, coffee traceability protocol, specialty coffee wholesale transparency, fair trade specialty coffee Southeast Asia, shade grown coffee Mondulkiri",
-  alternates: {
-    canonical: `${siteUrl}/about/sustainability`,
-  },
+  alternates: pageAlternates("/about/sustainability"),
   openGraph: {
     title: "Sustainability | Origin Coffee Cambodia - OCC",
     description:

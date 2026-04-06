@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { siteUrl } from "@/lib/siteConfig"
+import { alternatesFromCanonical } from "@/lib/seo"
 
 const POSTS_PER_PAGE = 5
 
@@ -73,7 +74,7 @@ export async function generateMetadata({
     title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
     description:
       "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
-    alternates: { canonical },
+    alternates: alternatesFromCanonical(canonical),
   }
 }
 

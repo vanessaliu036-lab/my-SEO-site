@@ -1,5 +1,7 @@
 import Link from "next/link"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { areaServedCambodia } from "@/lib/organizationSchema"
+import { pageAlternates } from "@/lib/seo"
 
 import { Metadata } from "next"
 
@@ -30,9 +32,7 @@ export const metadata: Metadata = {
     description: "Building Cambodia's coffee future through education, equipment, and sustainable supply chains.",
     images: [`${siteUrl}/images/ecosystem-twitter-card.jpg`]
   },
-  alternates: {
-    canonical: `${siteUrl}/system`
-  }
+  alternates: pageAlternates("/system"),
 }
 export default function SystemPage() {
   // Schema.org 結構化資料 - Organization
@@ -41,22 +41,9 @@ export default function SystemPage() {
     "@type": "Organization",
     "name": "Origin Coffee Cambodia",
     "url": `${siteUrl}`,
-    "logo": `${siteUrl}/images/logo.png`,
+    "logo": siteLogoUrl,
     "description": "Specialty coffee roaster building Cambodia's coffee ecosystem through The Academy, equipment supply, green bean trading, and professional training.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Phnom Penh",
-      "addressCountry": "Cambodia"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "11.5564",
-      "longitude": "104.9282"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Cambodia"
-    },
+    "areaServed": areaServedCambodia,
     "knowsAbout": [
       "Coffee Education",
       "Barista Training",
@@ -92,15 +79,7 @@ export default function SystemPage() {
     "name": "OCC Coffee Academy",
     "url": `${siteUrl}/system`,
     "description": "A new kind of coffee academy built from scratch to shape truly skilled baristas in Cambodia. Offering free enrollment for qualified individuals and second chance opportunities.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Phnom Penh",
-      "addressCountry": "Cambodia"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Cambodia"
-    },
+    "areaServed": areaServedCambodia,
     "knowsAbout": ["Barista Training", "Coffee Education", "Professional Coffee Skills"],
     "offers": {
       "@type": "Offer",

@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl, ogImage, siteDescription } from "@/lib/siteConfig"
+import { areaServedCambodia } from "@/lib/organizationSchema"
+import { pageAlternates } from "@/lib/seo"
 import ContactForm from "./ContactForm"
 import type { ContactFormData } from "./action"
 
@@ -19,9 +21,7 @@ export const metadata: Metadata = {
     "Get in touch with Origin Coffee Cambodia (OCC). Enquire about wholesale supply, custom roasting programs, barista staffing, or equipment service in Cambodia.",
   keywords:
     "contact OCC Cambodia, coffee wholesale enquiry Phnom Penh, specialty coffee contact Cambodia, coffee supplier contact, OCC enquiry, OCC contact",
-  alternates: {
-    canonical: `${siteUrl}/contact`,
-  },
+  alternates: pageAlternates("/contact"),
   openGraph: {
     title: "Contact | Origin Coffee Cambodia - OCC",
     description:
@@ -41,46 +41,24 @@ export const metadata: Metadata = {
 
 // ── JSON-LD ───────────────────────────────────────────────────────────────────
 
-const localBusinessSchema = {
+/** Online-first B2B — logo matches sitewide `siteLogoUrl`; no street address. */
+const contactOrganizationSchema = {
   "@context": "https://schema.org",
-  "@type": "WholesaleStore",
-  "@id": `${siteUrl}/contact`,
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   name: "Origin Coffee Cambodia (OCC)",
   alternateName: "Origin Coffee Cambodia",
-  image: `${siteUrl}/og-image.png`,
   url: siteUrl,
-  // TODO: replace with actual phone number
-  telephone: "+855-XX-XXXXXX",
-  description:
-    "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
-  address: {
-    "@type": "PostalAddress",
-    // TODO: replace with actual street address
-    streetAddress: "",
-    addressLocality: "Phnom Penh",
-    addressCountry: "KH",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 11.5564,
-    longitude: 104.9282,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "09:00",
-    closes: "18:00",
-  },
-  priceRange: "$$$",
-  areaServed: { "@type": "Country", name: "Cambodia" },
+  logo: siteLogoUrl,
+  image: ogImage,
+  description: siteDescription,
+  areaServed: areaServedCambodia,
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",
+    url: `${siteUrl}/contact`,
     availableLanguage: ["English"],
-    hoursAvailable: {
-      "@type": "OpeningHoursSpecification",
-      description: "Response within 1 business day",
-    },
+    areaServed: areaServedCambodia,
   },
 }
 
@@ -144,7 +122,7 @@ export default async function ContactPage({
       {/* Structured data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactOrganizationSchema) }}
       />
       <script
         type="application/ld+json"

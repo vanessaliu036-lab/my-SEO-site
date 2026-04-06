@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/siteConfig"
+import { publisherLogoImageObject } from "@/lib/organizationSchema"
+import { pageAlternates } from "@/lib/seo"
 
 import type { Metadata } from "next";
 
@@ -9,9 +11,7 @@ export const metadata: Metadata = {
     "The Barista Army Thesis: Why We'll Never Open a Café. Cambodia doesn't have a coffee problem. It has a consistency problem. We're building the skilled barista army to solve it.",
   keywords:
     "barista training Cambodia, skilled barista army, coffee manifesto, OCC manifesto, specialty coffee infrastructure Cambodia, why we never open a cafe, coffee consistency Cambodia",
-  alternates: {
-    canonical: `${siteUrl}/about/manifesto`,
-  },
+  alternates: pageAlternates("/about/manifesto"),
   openGraph: {
     title: "Manifesto | Origin Coffee Cambodia - OCC",
     description:
@@ -42,10 +42,7 @@ const jsonLd = {
   publisher: {
     "@type": "Organization",
     name: "Origin Coffee Cambodia (OCC)",
-    logo: {
-      "@type": "ImageObject",
-      url: `${siteUrl}/images/logo.png`,
-    },
+    logo: publisherLogoImageObject(),
   },
   datePublished: "2024-01-15",
   dateModified: "2024-01-15",

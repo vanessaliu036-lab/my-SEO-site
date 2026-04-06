@@ -2,6 +2,8 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { siteUrl, siteName } from "@/lib/siteConfig"
+import { alternatesFromCanonical } from "@/lib/seo"
+import { publisherLogoImageObject } from "@/lib/organizationSchema"
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -162,7 +164,7 @@ export async function generateMetadata({
     title: `${post.title} | OCC — Origin Coffee Cambodia`,
     description: post.summary || post.excerpt,
     keywords: post.keywords,
-    alternates: { canonical: `${siteUrl}/blog/${post.slug}` },
+    alternates: alternatesFromCanonical(`${siteUrl}/blog/${post.slug}`),
     openGraph: {
       title: post.title,
       description: post.summary || post.excerpt,
@@ -208,7 +210,12 @@ export default async function BlogPostPage({
     author: { "@type": "Person", name: post.author },
     datePublished: post.publish_date,
     dateModified: post.publish_date,
-    publisher: { "@type": "Organization", name: siteName, url: siteUrl },
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl,
+      logo: publisherLogoImageObject(),
+    },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/blog/${post.slug}` },
     url: `${siteUrl}/blog/${post.slug}`,
     ...(post.featured_image_url && { image: post.featured_image_url }),

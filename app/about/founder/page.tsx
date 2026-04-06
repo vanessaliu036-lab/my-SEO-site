@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 import type { Metadata } from "next";
 
@@ -9,9 +10,7 @@ export const metadata: Metadata = {
     "OCC didn't begin with a business plan. It began with a question no one in Cambodia's coffee industry was asking. Meet the philosophy behind the craft.",
   keywords:
     "coffee founder Cambodia, OCC founder, specialty coffee philosophy Cambodia, coffee craftsmanship, Phnom Penh coffee roaster origin",
-  alternates: {
-    canonical: `${siteUrl}/about/founder`,
-  },
+  alternates: pageAlternates("/about/founder"),
   openGraph: {
     title: "Founder | Origin Coffee Cambodia - OCC",
     description:

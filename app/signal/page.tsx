@@ -1,14 +1,13 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Signal | Origin Coffee Cambodia",
   description:
     "Read OCC updates, publications, and coffee insights. Follow new releases, events, and specialty coffee knowledge from Cambodia.",
-  alternates: {
-    canonical: `${siteUrl}/signal`,
-  },
+  alternates: pageAlternates("/signal"),
 }
 
 export default function SignalPage() {

@@ -2,15 +2,17 @@ import type { MetadataRoute } from 'next'
 import { siteUrl } from '@/lib/siteConfig'
 import { getAllPosts } from '@/lib/airtable'
 
+/**
+ * Only URLs that should be indexed (aligned with `app/robots.ts`).
+ * Do not add routes that are `disallow` there (e.g. /archive, /matter, /signal).
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
   // Fetch blog posts from Airtable — falls back to [] if env vars not set
+  // getAllPosts() already filters to URL-safe slugs (same as lib/airtable)
   const posts = await getAllPosts()
-  const VALID_SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
-  const blogEntries: MetadataRoute.Sitemap = posts
-    .filter((p) => p.slug && VALID_SLUG.test(p.slug))
-    .map((p) => ({
+  const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
       url: `${siteUrl}/blog/${p.slug}`,
       lastModified: p.publish_date ? new Date(p.publish_date) : now,
       changeFrequency: 'monthly' as const,

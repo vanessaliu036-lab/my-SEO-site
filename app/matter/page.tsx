@@ -1,14 +1,13 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Matter | Origin Coffee Cambodia",
   description:
     "Find OCC resources, tools, and downloadable materials for brewing standards, coffee operations, and partner training.",
-  alternates: {
-    canonical: `${siteUrl}/matter`,
-  },
+  alternates: pageAlternates("/matter"),
 }
 
 export default function MatterPage() {

@@ -1,14 +1,13 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Single Origin Coffee | Origin Coffee Cambodia",
   description:
     "Explore Cambodia's specialty coffee terroir — Mondulkiri and Ratanakiri highlands mapped by elevation, soil composition, and sensory profile.",
-  alternates: {
-    canonical: `${siteUrl}/coffee/single-origin`,
-  },
+  alternates: pageAlternates("/coffee/single-origin"),
   openGraph: {
     title: "Single Origin Coffee | Origin Coffee Cambodia",
     description:

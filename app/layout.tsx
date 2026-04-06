@@ -5,7 +5,8 @@ import Script from "next/script";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import { Analytics } from "@vercel/analytics/react";
-import { siteUrl } from "@/lib/siteConfig";
+import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
+import { pageAlternates } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,11 +24,21 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Origin Coffee Cambodia | OCC",
-  description: "Specialty coffee B2B supplier in Cambodia. Engineering consistency and digital sovereignty.",
+  description: siteDescription,
   keywords: ["Wholesale coffee beans Cambodia", "Specialty coffee B2B", "Mondulkiri Arabica", "Precision Roasting"],
-  alternates: {
-    canonical: siteUrl,
+  alternates: pageAlternates("/"),
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName,
+    locale: "en_KH",
+    images: [{ url: ogImage, width: 180, height: 180, alt: siteName }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [ogImage],
   },
 };
 
@@ -39,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans bg-white text-gray-900 antialiased">
         {/* 全版面設計：左側導航欄無背景色 */}
         <div className="flex flex-col md:flex-row min-h-screen">
@@ -91,21 +102,12 @@ export default function RootLayout({
               "name": "Origin Coffee Cambodia",
               "alternateName": "OCC",
               "url": siteUrl,
-              "logo": `${siteUrl}/logo.png`,
+              "logo": siteLogoUrl,
               "description": "Specialty coffee B2B supplier and technical roasting authority in Cambodia.",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Phnom Penh",
-                "addressCountry": "Cambodia"
+              "areaServed": {
+                "@type": "Country",
+                "name": "Cambodia",
               },
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": {
-                  "@type": "EntryPoint",
-                  "urlTemplate": `${siteUrl}/blog?q={search_term_string}`
-                },
-                "query-input": "required name=search_term_string"
-              }
             }),
           }}
         />

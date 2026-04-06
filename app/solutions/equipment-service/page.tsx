@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Metadata } from "next"
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Coffee Equipment Service Cambodia | OCC",
@@ -14,9 +15,7 @@ export const metadata: Metadata = {
     url: `${siteUrl}/solutions/equipment-service`,
     type: "website",
   },
-  alternates: {
-    canonical: `${siteUrl}/solutions/equipment-service`,
-  },
+  alternates: pageAlternates("/solutions/equipment-service"),
 }
 
 const faqSchema = {

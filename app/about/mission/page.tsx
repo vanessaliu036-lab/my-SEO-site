@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/siteConfig"
+import { pageAlternates } from "@/lib/seo"
 
 import type { Metadata } from "next";
 
@@ -9,9 +10,7 @@ export const metadata: Metadata = {
     "OCC exists to empower Cambodia's coffee community through exceptional roasting, knowledge, and training. Learn our vision, mission, and purpose.",
   keywords:
     "specialty coffee supplier Cambodia, coffee roaster Phnom Penh, Cambodia coffee culture, coffee mission, OCC mission",
-  alternates: {
-    canonical: `${siteUrl}/about/mission`,
-  },
+  alternates: pageAlternates("/about/mission"),
   openGraph: {
     title: "Mission | Origin Coffee Cambodia - OCC",
     description:
