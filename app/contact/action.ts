@@ -29,6 +29,37 @@ export type ContactActionResult =
   | { success: true }
   | { success: false; error: string }
 
+// ── Airtable helpers ──────────────────────────────────────────────────────────
+
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
+const CONTACT_TABLE = "OCC_Contact_Enquiries"
+
+async function createAirtableRecord(fields: Record<string, string>): Promise<void> {
+  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
+    console.warn("[ContactForm] Airtable env vars not set — skipping Airtable write")
+    return
+  }
+
+  const res = await fetch(
+    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(CONTACT_TABLE)}`,
+    {
+      method: "POST",
+      // Headers must be a plain object { name: value } — NOT an array of { key, value } objects
+      headers: {
+        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields }),
+    }
+  )
+
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`Airtable write failed (${res.status}): ${text}`)
+  }
+}
+
 // ── Server Action ─────────────────────────────────────────────────────────────
 
 export async function submitContactForm(
@@ -45,46 +76,19 @@ export async function submitContactForm(
 
   const { name, email, service, message } = parsed.data
 
-  // Simulate submission — remove once Airtable credentials are configured
-  console.log("[ContactForm] New enquiry received:", {
-    name,
-    email,
-    service,
-    message: message ?? "(no message)",
-    timestamp: new Date().toISOString(),
-  })
-
-  // ── Airtable integration stub ──────────────────────────────────────────────
-  // 1. Install the Airtable SDK:  npm install airtable
-  // 2. Add to .env.local:
-  //      AIRTABLE_API_KEY=your_personal_access_token
-  //      AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
-  // 3. Create a table "OCC_Contact_Enquiries" with these fields:
-  //      Name (Single line text)
-  //      Email (Email)
-  //      Service (Single select: Wholesale / Roasting Program / Barista Staffing / Equipment Service)
-  //      Message (Long text)
-  //      Status (Single select: New / In Progress / Resolved)
-  //      SubmittedAt (Date)
-  // 4. Uncomment the block below and delete the console.log above.
-  //
-  // import Airtable from "airtable"
-  // const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  //   process.env.AIRTABLE_BASE_ID!
-  // )
-  // await base("OCC_Contact_Enquiries").create([
-  //   {
-  //     fields: {
-  //       Name: name,
-  //       Email: email,
-  //       Service: service,
-  //       Message: message ?? "",
-  //       Status: "New",
-  //       SubmittedAt: new Date().toISOString(),
-  //     },
-  //   },
-  // ])
-  // ──────────────────────────────────────────────────────────────────────────
+  try {
+    await createAirtableRecord({
+      Name: name,
+      Email: email,
+      Service: service,
+      Message: message ?? "",
+      Status: "New",
+      SubmittedAt: new Date().toISOString(),
+    })
+  } catch (err) {
+    console.error("[ContactForm] Airtable error:", err)
+    return { success: false, error: "Failed to submit enquiry. Please try again." }
+  }
 
   return { success: true }
 }
