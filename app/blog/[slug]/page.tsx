@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
+import { Marked, type Renderer, type Tokens } from "marked"
 import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { getAllPosts, getPostBySlug } from "@/lib/airtable"
 
-// Plain-text → readable HTML with internal links injected
+// 後台填的關鍵字 → 站內路徑。出現在文章本文時自動替換成連結。
 const INTERNAL_LINKS: Record<string, string> = {
   "specialty coffee": "/solutions/wholesale",
   "wholesale coffee": "/solutions/wholesale",
@@ -20,11 +21,14 @@ const INTERNAL_LINKS: Record<string, string> = {
   "equipment": "/solutions/equipment-service",
 }
 
+const INTERNAL_LINK_ENTRIES = Object.entries(INTERNAL_LINKS).sort(
+  ([a], [b]) => b.length - a.length
+)
+
 function addInternalLinks(text: string): string {
-  const entries = Object.entries(INTERNAL_LINKS).sort(([a], [b]) => b.length - a.length)
   const replacements: Array<{ href: string; match: string }> = []
   let result = text
-  for (const [kw, href] of entries) {
+  for (const [kw, href] of INTERNAL_LINK_ENTRIES) {
     const re = new RegExp(`\\b(${kw})\\b`, "gi")
     result = result.replace(re, (match) => {
       replacements.push({ href, match })
@@ -37,23 +41,49 @@ function addInternalLinks(text: string): string {
   })
 }
 
-function isHeading(line: string): boolean {
-  return line.length < 65 && !/[.,:;?!]$/.test(line) && line === line.trim()
+/** 走過 marked 產生的 HTML：只在純文字節點上注入內部連結，
+ *  並跳過 <a>/<code>/<pre> 內部以避免巢狀連結與破壞程式碼。 */
+function injectInternalLinksHtml(html: string): string {
+  let skipDepth = 0
+  return html.replace(
+    /(<(\/?)(a|code|pre)\b[^>]*>)|(<[^>]+>)|([^<]+)/gi,
+    (match, sensitiveTag, slash, _name, otherTag, text) => {
+      if (sensitiveTag) {
+        if (slash === "/") skipDepth = Math.max(0, skipDepth - 1)
+        else if (!sensitiveTag.endsWith("/>")) skipDepth += 1
+        return sensitiveTag
+      }
+      if (otherTag) return otherTag
+      if (text !== undefined) {
+        if (skipDepth > 0) return text
+        return addInternalLinks(text)
+      }
+      return match
+    }
+  )
 }
 
-function formatContent(raw: string, title: string): string {
+/** 以隔離的 marked instance 渲染，避免與其他模組共用全域 renderer。
+ *  H1 一律降級成 H2：頁面 header 已經有一個 <h1>{title}</h1>，
+ *  作者若在 markdown 開頭也寫 # 標題，避免雙 H1 影響 SEO。 */
+const markdown = new Marked({
+  gfm: true,
+  breaks: false,
+})
+markdown.use({
+  renderer: {
+    heading(this: Renderer, { tokens, depth }: Tokens.Heading) {
+      const level = depth === 1 ? 2 : depth
+      const inline = this.parser.parseInline(tokens)
+      return `<h${level}>${inline}</h${level}>\n`
+    },
+  },
+})
+
+function formatContent(raw: string): string {
   if (!raw) return ""
-  const lines = raw.split("\n").map((l) => l.trim()).filter((l) => l)
-  const start = lines[0]?.toLowerCase() === title.toLowerCase() ? 1 : 0
-  const body = lines.slice(start)
-  return body
-    .map((line) => {
-      if (isHeading(line)) {
-        return `<h2>${line}</h2>`
-      }
-      return `<p>${addInternalLinks(line)}</p>`
-    })
-    .join("")
+  const html = markdown.parse(raw, { async: false }) as string
+  return injectInternalLinksHtml(html)
 }
 
 function readingTime(content: string): number {
@@ -108,7 +138,7 @@ export default async function BlogPostPage({
 
   const related = allPosts.filter((p: { slug: string }) => p.slug !== post.slug).slice(0, 3)
   const mins = readingTime(post.content)
-  const formattedContent = formatContent(post.content, post.title)
+  const formattedContent = formatContent(post.content)
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -197,14 +227,36 @@ export default async function BlogPostPage({
             </div>
           </header>
 
-          {/* Article content */}
+          {/* Article content (rendered from Markdown) */}
           {formattedContent ? (
             <div
               className="
-                [&>h2]:text-lg sm:[&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:tracking-tight
-                [&>h2]:uppercase [&>h2]:mt-8 sm:[&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:pb-2
-                [&>h2]:border-b [&>h2]:border-dashed [&>h2]:border-gray-200
-                [&>p]:text-gray-700 [&>p]:leading-[1.85] sm:[&>p]:leading-[1.9] [&>p]:text-[16px] sm:[&>p]:text-[17px] [&>p]:mb-5 [&>p]:break-words
+                prose prose-gray max-w-none
+                prose-headings:text-gray-900 prose-headings:tracking-tight
+                prose-h2:text-lg sm:prose-h2:text-xl prose-h2:font-bold prose-h2:uppercase
+                prose-h2:mt-10 sm:prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-2
+                prose-h2:border-b prose-h2:border-dashed prose-h2:border-gray-200
+                prose-h3:text-base sm:prose-h3:text-lg prose-h3:font-bold prose-h3:mt-8 prose-h3:mb-3
+                prose-h4:text-sm prose-h4:font-bold prose-h4:uppercase prose-h4:tracking-wider prose-h4:mt-6 prose-h4:mb-2
+                prose-p:text-gray-700 prose-p:leading-[1.85] sm:prose-p:leading-[1.9]
+                prose-p:text-[16px] sm:prose-p:text-[17px] prose-p:mb-5 prose-p:break-words
+                prose-li:text-gray-700 prose-li:leading-[1.8] prose-li:my-1
+                prose-ul:my-5 prose-ol:my-5 prose-ul:pl-6 prose-ol:pl-6
+                prose-strong:text-gray-900 prose-strong:font-semibold
+                prose-em:text-gray-800
+                prose-a:text-gray-900 prose-a:no-underline prose-a:border-b prose-a:border-dashed
+                prose-a:border-gray-400 hover:prose-a:border-gray-900
+                prose-blockquote:border-l-2 prose-blockquote:border-l-gray-900
+                prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:font-light
+                prose-blockquote:text-gray-600 prose-blockquote:my-6
+                prose-code:text-gray-900 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5
+                prose-code:rounded prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none
+                prose-pre:bg-gray-950 prose-pre:text-gray-100 prose-pre:rounded-none prose-pre:p-5
+                prose-hr:border-dashed prose-hr:border-gray-200 prose-hr:my-10
+                prose-table:text-sm prose-th:bg-gray-50 prose-th:text-gray-900
+                prose-th:font-bold prose-th:text-left prose-th:p-3
+                prose-td:p-3 prose-td:border-t prose-td:border-gray-200
+                prose-img:rounded prose-img:my-6
               "
               dangerouslySetInnerHTML={{ __html: formattedContent }}
             />
