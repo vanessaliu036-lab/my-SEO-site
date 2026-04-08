@@ -191,10 +191,13 @@ async function fetchBlogTableRecords(): Promise<{
     let offset: string | undefined
 
     do {
+      // 注意：Airtable 的 `maxRecords` 是「整個請求全部頁加總」的上限，
+      // 不是單頁筆數；之前誤設成 '100' 會讓表內第 101 筆之後永遠拿不到，
+      // 造成 /blog 顯示篇數與 Airtable 已發佈數對不上。每頁筆數要用 `pageSize`。
       const params = new URLSearchParams({
         'sort[0][field]': 'publish_date',
         'sort[0][direction]': 'desc',
-        maxRecords: '100',
+        pageSize: '100',
       })
       if (offset) params.set('offset', offset)
 
@@ -202,7 +205,7 @@ async function fetchBlogTableRecords(): Promise<{
         `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${params.toString()}`,
         {
           headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-          next: { revalidate: 60 },
+          next: { revalidate: 3600 },
         }
       )
 
@@ -327,7 +330,7 @@ async function fetchRecordById(recordId: string): Promise<AirtableRecord | null>
   try {
     const res = await fetch(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${encodeURIComponent(recordId)}`,
-      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
+      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 3600 } }
     )
     if (!res.ok) return null
     const data = await res.json()
@@ -373,7 +376,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
     })
     let res = await fetch(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${q1.toString()}`,
-      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
+      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 3600 } }
     )
 
     let data = res.ok ? await res.json() : null
@@ -388,7 +391,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
       })
       res = await fetch(
         `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${q2.toString()}`,
-        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 3600 } }
       )
       data = res.ok ? await res.json() : null
       records = data?.records && Array.isArray(data.records) ? data.records : []
