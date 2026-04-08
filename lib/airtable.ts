@@ -2,30 +2,70 @@
  * Airtable 表 `OCC_Blog_Posts` 欄位與後台截圖一致（請勿改名）：
  * title, slug, publish_date, status, author, summary, Content
  */
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
+/** Vercel 上常見名稱 AIRTABLE_TOKEN，與 PAT / API_KEY 擇一即可 */
+const AIRTABLE_API_KEY =
+  process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 const AIRTABLE_TABLE_NAME = 'OCC_Blog_Posts'
 
 /** API 讀取順序：截圖欄位名優先，其餘為相容舊表。 */
 const K = {
   title: ['title', 'Title'] as const,
-  slug: ['slug', 'Slug'] as const,
+  slug: ['slug', 'Slug', 'URL slug', 'url_slug'] as const,
   publishDate: ['publish_date', 'Publish Date', 'Last Modified'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
-  content: ['Content', 'content'] as const,
+  content: ['Content', 'content', 'Body', 'body', 'Post', '正文'] as const,
 }
 
 type AirtableRecord = { id: string; fields: Record<string, unknown> }
 
+/** 畫面上欄名與 API 鍵偶爾不完全一致（空白、全形等），用正規化比對。 */
+function findFieldRaw(fields: Record<string, unknown>, canonical: string): unknown {
+  const want = canonical.trim().toLowerCase()
+  for (const [key, val] of Object.entries(fields)) {
+    if (key.trim().toLowerCase() === want) return val
+  }
+  return undefined
+}
+
+function stringifyFieldValue(value: unknown): string {
+  if (typeof value === 'string' && value.trim() !== '') return value
+  if (typeof value === 'number' && Number.isFinite(value)) return String(value)
+  if (typeof value === 'boolean') return value ? 'true' : ''
+  if (typeof value === 'object' && value !== null && 'name' in value) {
+    const name = String((value as { name: unknown }).name ?? '').trim()
+    if (name !== '') return name
+  }
+  if (typeof value === 'object' && value !== null) {
+    const o = value as Record<string, unknown>
+    for (const k of ['text', 'value', 'markdown', 'plain_text', 'body', 'content'] as const) {
+      const inner = o[k]
+      if (typeof inner === 'string' && inner.trim() !== '') return inner
+    }
+  }
+  if (Array.isArray(value)) {
+    const parts = value
+      .map((item) => {
+        if (typeof item === 'string') return item.trim()
+        if (typeof item === 'number' && Number.isFinite(item)) return String(item)
+        if (typeof item === 'object' && item !== null && 'name' in item) {
+          return String((item as { name: unknown }).name ?? '').trim()
+        }
+        return stringifyFieldValue(item)
+      })
+      .filter(Boolean)
+    if (parts.length > 0) return parts.join('\n')
+  }
+  return ''
+}
+
 function pickField(fields: Record<string, unknown>, keys: readonly string[], fallback = ''): string {
   for (const key of keys) {
-    const value = fields[key]
-    if (typeof value === 'string' && value.trim() !== '') return value
-    if (typeof value === 'object' && value !== null && 'name' in value) {
-      const name = String((value as { name: unknown }).name ?? '').trim()
-      if (name !== '') return name
-    }
+    let raw = fields[key]
+    if (raw === undefined) raw = findFieldRaw(fields, key)
+    const s = stringifyFieldValue(raw)
+    if (s !== '') return s
   }
   return fallback
 }
@@ -39,13 +79,14 @@ function escapeAirtableQuoted(value: string): string {
   return value.replace(/'/g, "''")
 }
 
-/** 僅使用截圖中的 status 欄位。 */
+/** 僅使用 status 欄位（相容 API 鍵名空白／大小寫）。 */
 function getStatus(fields: Record<string, unknown>): string {
-  const raw = fields.status ?? fields.Status ?? ''
+  let raw: unknown = fields.status ?? fields.Status
+  if (raw === undefined) raw = findFieldRaw(fields, 'status')
   if (typeof raw === 'object' && raw !== null && 'name' in raw) {
     return String((raw as { name: unknown }).name ?? '').trim().toLowerCase()
   }
-  return String(raw).trim().toLowerCase()
+  return String(raw ?? '').trim().toLowerCase()
 }
 
 function isPublishStatus(fields: Record<string, unknown>): boolean {
@@ -86,9 +127,22 @@ function isDisplayableRecord(fields: Record<string, unknown>): boolean {
   return skipReasonForFields(fields) === null
 }
 
+/** 後台常見全形／長橫線，與網址 ASCII 不一致時先正規化再驗證。 */
+function normalizeSlugForUrl(slug: string): string {
+  return slug
+    .trim()
+    .replace(/[\u2010-\u2015\u2212\ufe58\ufe63\uff0d\u3000]/g, '-')
+    .replace(/\s+/g, '-')
+}
+
 function isAcceptableSlug(slug: string): boolean {
-  const t = slug.trim()
+  const t = normalizeSlugForUrl(slug)
   return t.length > 0 && /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/i.test(t)
+}
+
+/** 列表／網址用 slug（與後台可能含全形橫線之欄位對齊）。 */
+function slugFromFields(fields: Record<string, unknown>): string {
+  return normalizeSlugForUrl(pickField(fields, K.slug))
 }
 
 /** 與截圖欄位對應；不含 category / 圖片／keywords 等額外欄。 */
@@ -133,26 +187,41 @@ async function fetchBlogTableRecords(): Promise<{
   }
 
   try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?sort[0][field]=publish_date&sort[0][direction]=desc&maxRecords=100`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        next: { revalidate: 60 },
+    const all: AirtableRecord[] = []
+    let offset: string | undefined
+
+    do {
+      const params = new URLSearchParams({
+        'sort[0][field]': 'publish_date',
+        'sort[0][direction]': 'desc',
+        maxRecords: '100',
+      })
+      if (offset) params.set('offset', offset)
+
+      const res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${params.toString()}`,
+        {
+          headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+          next: { revalidate: 60 },
+        }
+      )
+
+      if (!res.ok) {
+        const text = await res.text()
+        return { ok: false, records: all, apiError: text.slice(0, 500) }
       }
-    )
 
-    if (!res.ok) {
-      const text = await res.text()
-      return { ok: false, records: [], apiError: text.slice(0, 500) }
-    }
+      const data = await res.json()
 
-    const data = await res.json()
+      if (!data.records || !Array.isArray(data.records)) {
+        return { ok: false, records: all, apiError: 'unexpected_response_shape' }
+      }
 
-    if (!data.records || !Array.isArray(data.records)) {
-      return { ok: false, records: [], apiError: 'unexpected_response_shape' }
-    }
+      all.push(...(data.records as AirtableRecord[]))
+      offset = typeof data.offset === 'string' && data.offset.length > 0 ? data.offset : undefined
+    } while (offset)
 
-    return { ok: true, records: data.records as AirtableRecord[] }
+    return { ok: true, records: all }
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error)
     return { ok: false, records: [], apiError: msg }
@@ -194,7 +263,7 @@ export async function getBlogAlignmentReport(): Promise<BlogAlignmentReport> {
       displayable.push({
         id: record.id,
         title: pickField(fields, K.title, 'Untitled'),
-        slug: pickField(fields, K.slug),
+        slug: slugFromFields(fields),
         summary: pickField(fields, K.summary),
         author: pickField(fields, K.author, 'OCC Team'),
         publish_date: pickPublishDate(fields),
@@ -225,7 +294,7 @@ export async function getBlogAlignmentReport(): Promise<BlogAlignmentReport> {
 
 export async function getAllPosts(): Promise<BlogPost[]> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
-    console.error('Missing Airtable env vars: AIRTABLE_API_KEY/AIRTABLE_PAT or AIRTABLE_BASE_ID')
+    console.error('Missing Airtable env vars: AIRTABLE_TOKEN / AIRTABLE_API_KEY / AIRTABLE_PAT or AIRTABLE_BASE_ID')
     return []
   }
 
@@ -241,7 +310,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       .map((record: AirtableRecord): BlogPost => ({
         id: record.id,
         title: pickField(record.fields, K.title, 'Untitled'),
-        slug: pickField(record.fields, K.slug),
+        slug: slugFromFields(record.fields),
         summary: pickField(record.fields, K.summary),
         author: pickField(record.fields, K.author, 'OCC Team'),
         publish_date: pickPublishDate(record.fields),
@@ -274,7 +343,7 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   return {
     id: record.id,
     title: pickField(record.fields, K.title, 'Untitled'),
-    slug: pickField(record.fields, K.slug),
+    slug: slugFromFields(record.fields),
     content: pickField(record.fields, K.content),
     summary: pickField(record.fields, K.summary),
     author: pickField(record.fields, K.author, 'OCC Team'),
@@ -292,6 +361,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
     /* 非標準編碼時沿用原字串 */
   }
   if (!trimmed) return null
+
+  const normalizedPath = normalizeSlugForUrl(trimmed)
 
   try {
     // 1) 與 Airtable 完全一致（最快）
@@ -326,7 +397,11 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
     // 3) 用已通過篩選的列表對 slug 做不分大小寫比對，再依 record id 拉一筆（避開公式邊界情況）
     if (records.length === 0) {
       const list = await getAllPosts()
-      const hit = list.find((p) => p.slug.toLowerCase() === trimmed.toLowerCase())
+      const hit = list.find(
+        (p) =>
+          p.slug.toLowerCase() === trimmed.toLowerCase() ||
+          p.slug.toLowerCase() === normalizedPath.toLowerCase()
+      )
       if (hit) {
         const byId = await fetchRecordById(hit.id)
         if (byId) return recordToDetail(byId)

@@ -2,21 +2,30 @@
  * 與 Next 網站讀同一套 lib/airtable（需先載入 .env.local / .env）。
  * 用法：npm run check:blog
  * 抽單篇：npm run check:blog -- my-post-slug
+ *
+ * 注意：必須先 dotenv 再動態 import airtable，否則 airtable 頂層讀到的 env 永遠是空的。
  */
+import { existsSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { config } from 'dotenv'
 
-config({ path: '.env.local' })
-config({ path: '.env' })
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
-import { getBlogAlignmentReport, getPostBySlug } from '../lib/airtable'
+function loadEnv(): void {
+  const envFile = path.join(projectRoot, '.env')
+  const localFile = path.join(projectRoot, '.env.local')
+  config({ path: envFile })
+  config({ path: localFile, override: true })
+}
 
 function normalizeSlugInput(raw: string): string {
   let s = raw.trim()
   try {
     if (s.includes('://')) {
       const u = new URL(s)
-      const path = u.pathname.replace(/\/$/, '')
-      const m = path.match(/\/blog\/(?:blog\/)?(.+)$/)
+      const pathStr = u.pathname.replace(/\/$/, '')
+      const m = pathStr.match(/\/blog\/(?:blog\/)?(.+)$/)
       if (m) return decodeURIComponent(m[1])
     }
   } catch {
@@ -39,6 +48,10 @@ const REASON_ZH: Record<string, string> = {
 }
 
 async function main() {
+  loadEnv()
+
+  const { getBlogAlignmentReport, getPostBySlug } = await import('../lib/airtable')
+
   const slugArg = process.argv[2] ? normalizeSlugInput(process.argv[2]) : ''
 
   console.log('=== OCC blog 對齊檢查（與線上同一套規則）===\n')
@@ -46,12 +59,21 @@ async function main() {
   const report = await getBlogAlignmentReport()
 
   console.log('環境變數')
-  console.log(`  AIRTABLE_API_KEY 或 AIRTABLE_PAT: ${report.env.hasKey ? '已設定' : '未設定'}`)
+  console.log(`  AIRTABLE_TOKEN / API_KEY / PAT（擇一）: ${report.env.hasKey ? '已設定' : '未設定'}`)
   console.log(`  AIRTABLE_BASE_ID: ${report.env.hasBase ? '已設定' : '未設定'}`)
   console.log('')
 
   if (!report.env.hasKey || !report.env.hasBase) {
-    console.error('請在 .env.local 設定 AIRTABLE_API_KEY（或 AIRTABLE_PAT）與 AIRTABLE_BASE_ID，與 Vercel Production 一致。')
+    const pLocal = path.join(projectRoot, '.env.local')
+    const pEnv = path.join(projectRoot, '.env')
+    console.log('找不到 Airtable 環境變數。')
+    console.log(`  專案根目錄: ${projectRoot}`)
+    console.log(`  .env.local 是否存在: ${existsSync(pLocal) ? '是' : '否'}`)
+    console.log(`  .env 是否存在: ${existsSync(pEnv) ? '是' : '否'}`)
+    console.log('')
+    console.log('請在專案根目錄建立 .env.local（勿提交到 Git），內容與 Vercel → Project → Settings → Environment Variables（Production）相同，例如：')
+    console.log('  AIRTABLE_TOKEN=pat...   或 AIRTABLE_API_KEY=... / AIRTABLE_PAT=...')
+    console.log('  AIRTABLE_BASE_ID=app...')
     process.exit(1)
   }
 
@@ -60,7 +82,7 @@ async function main() {
     process.exit(1)
   }
 
-  console.log(`表內筆數（最多 100）: ${report.totalRecords}`)
+  console.log(`表內總筆數（含分頁載入）: ${report.totalRecords}`)
   console.log(`可公開顯示篇數: ${report.displayableCount}`)
   console.log('')
 
