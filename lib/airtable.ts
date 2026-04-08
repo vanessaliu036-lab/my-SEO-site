@@ -127,12 +127,20 @@ function isDisplayableRecord(fields: Record<string, unknown>): boolean {
   return skipReasonForFields(fields) === null
 }
 
-/** 後台常見全形／長橫線，與網址 ASCII 不一致時先正規化再驗證。 */
+/** 後台常見全形／長橫線，與網址 ASCII 不一致時先正規化再驗證。
+ *  另外處理：作者習慣把整段 path（含 `/blog/`）貼進 slug 欄，例如
+ *  `/blog/my-post`、`blog/my-post`、`/my-post`，全部正規化成 `my-post`。
+ *  若不剝掉這個前綴，slug 會卡在 `bad_slug`，整批文章不會出現在 /blog。 */
 function normalizeSlugForUrl(slug: string): string {
-  return slug
+  let s = slug
     .trim()
     .replace(/[\u2010-\u2015\u2212\ufe58\ufe63\uff0d\u3000]/g, '-')
     .replace(/\s+/g, '-')
+  // 連續的前導 / 與選擇性的 blog/ 段：/blog/x、//blog/x、blog/x、/x → x
+  s = s.replace(/^\/+/, '')
+  s = s.replace(/^blog\/+/, '')
+  s = s.replace(/\/+$/, '')
+  return s
 }
 
 function isAcceptableSlug(slug: string): boolean {
@@ -368,10 +376,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
   const normalizedPath = normalizeSlugForUrl(trimmed)
 
   try {
-    // 1) 與 Airtable 完全一致（最快）
+    // 1) 與 Airtable 完全一致（最快）。後台習慣會把整段 path（含 `/blog/`）
+    // 貼進 slug 欄，所以同時嘗試 `xxx` 與 `/blog/xxx` 兩種寫法。
     const exact = escapeFormulaValue(trimmed)
+    const exactWithPrefix = escapeFormulaValue(`/blog/${trimmed}`)
     const q1 = new URLSearchParams({
-      filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}')`,
+      filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}',{slug}='${exactWithPrefix}',{Slug}='${exactWithPrefix}')`,
       maxRecords: '1',
     })
     let res = await fetch(
@@ -382,11 +392,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
     let data = res.ok ? await res.json() : null
     let records: AirtableRecord[] = data?.records && Array.isArray(data.records) ? data.records : []
 
-    // 2) 不分大小寫（網址 / 後台 slug 大小寫不一致時）
+    // 2) 不分大小寫（網址 / 後台 slug 大小寫不一致時），同樣涵蓋兩種寫法
     if (records.length === 0) {
       const q = escapeAirtableQuoted(trimmed.toLowerCase())
+      const qWithPrefix = escapeAirtableQuoted(`/blog/${trimmed}`.toLowerCase())
       const q2 = new URLSearchParams({
-        filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}')`,
+        filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}',LOWER({slug})='${qWithPrefix}',LOWER({Slug})='${qWithPrefix}')`,
         maxRecords: '1',
       })
       res = await fetch(
