@@ -3,62 +3,9 @@ import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { siteUrl } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
+import { getAllPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
-
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const TABLE = "OCC_Blog_Posts"
-
-function pickField(fields: Record<string, unknown>, keys: string[], fallback = ""): string {
-  for (const key of keys) {
-    const value = fields[key]
-    if (typeof value === "string" && value.trim() !== "") return value
-    if (typeof value === "object" && value !== null && "name" in value) {
-      const name = String((value as { name: unknown }).name ?? "").trim()
-      if (name !== "") return name
-    }
-  }
-  return fallback
-}
-
-function getStatus(fields: Record<string, unknown>): string {
-  const raw = fields.status ?? fields.Status ?? ""
-  if (typeof raw === "object" && raw !== null && "name" in raw) {
-    return String((raw as { name: unknown }).name ?? "").trim().toLowerCase()
-  }
-  return String(raw).trim().toLowerCase()
-}
-
-async function getAllPosts() {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return []
-  try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE}?sort[0][field]=publish_date&sort[0][direction]=desc&maxRecords=100`,
-      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
-    )
-    if (!res.ok) return []
-    const data = await res.json()
-    if (!data.records || !Array.isArray(data.records)) return []
-    return data.records
-      .filter((r: { fields: Record<string, unknown> }) => {
-        const status = getStatus(r.fields)
-        return status === "published" || status === ""
-      })
-      .map((r: { id: string; fields: Record<string, unknown> }) => ({
-        id: r.id,
-        title: pickField(r.fields, ["title", "Title"], "Untitled"),
-        slug: pickField(r.fields, ["slug", "Slug"]),
-        summary: pickField(r.fields, ["summary", "Summary"]),
-        author: pickField(r.fields, ["author", "Author"], "OCC Team"),
-        publish_date: pickField(r.fields, ["publish_date", "Publish Date", "Last Modified"]),
-        category: pickField(r.fields, ["Category", "category"]),
-      }))
-      .filter((p: { slug: string }) => p.slug)
-  } catch {
-    return []
-  }
-}
 
 export async function generateMetadata({
   searchParams,
@@ -120,7 +67,6 @@ export default async function BlogPage({
       <main className="min-h-screen bg-white font-sans overflow-x-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-20">
 
-          {/* Header */}
           <header className="mb-10 md:mb-16 border-b border-gray-200 pb-8 md:pb-12">
             <span className="text-[10px] tracking-[0.5em] text-gray-400 uppercase italic mb-4 block">
               Field Notes &amp; Craft
@@ -142,7 +88,7 @@ export default async function BlogPage({
           ) : (
             <>
             <ul className="divide-y divide-gray-100">
-              {pagePosts.map((post: { id: string; slug: string; title: string; category: string; summary: string; publish_date: string; author: string }) => (
+              {pagePosts.map((post) => (
                 <li key={post.id} className="py-8 md:py-10 group">
                   <Link href={`/blog/${post.slug}`} className="block active:opacity-90">
                     <div className="flex items-start justify-between gap-4 sm:gap-8">

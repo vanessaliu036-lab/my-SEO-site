@@ -4,95 +4,7 @@ import type { Metadata } from "next"
 import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
-
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const TABLE = "OCC_Blog_Posts"
-
-function pickField(fields: Record<string, unknown>, keys: string[], fallback = ""): string {
-  for (const key of keys) {
-    const value = fields[key]
-    if (typeof value === "string" && value.trim() !== "") return value
-    if (typeof value === "object" && value !== null && "name" in value) {
-      const name = String((value as { name: unknown }).name ?? "").trim()
-      if (name !== "") return name
-    }
-  }
-  return fallback
-}
-
-function getStatus(fields: Record<string, unknown>): string {
-  const raw = fields.status ?? fields.Status ?? ""
-  if (typeof raw === "object" && raw !== null && "name" in raw) {
-    return String((raw as { name: unknown }).name ?? "").trim().toLowerCase()
-  }
-  return String(raw).trim().toLowerCase()
-}
-
-async function getAllPosts() {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return []
-  try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE}?sort[0][field]=publish_date&sort[0][direction]=desc&maxRecords=100`,
-      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
-    )
-    if (!res.ok) return []
-    const data = await res.json()
-    if (!data.records || !Array.isArray(data.records)) return []
-    return data.records
-      .filter((r: { fields: Record<string, unknown> }) => {
-        const status = getStatus(r.fields)
-        return status === "published" || status === ""
-      })
-      .map((r: { id: string; fields: Record<string, unknown> }) => ({
-        id: r.id,
-        title: pickField(r.fields, ["title", "Title"], "Untitled"),
-        slug: pickField(r.fields, ["slug", "Slug"]),
-        summary: pickField(r.fields, ["summary", "Summary"]),
-        category: pickField(r.fields, ["Category", "category"]),
-        publish_date: pickField(r.fields, ["publish_date", "Publish Date", "Last Modified"]),
-      }))
-      .filter((p: { slug: string }) => p.slug)
-  } catch {
-    return []
-  }
-}
-
-async function getPostBySlug(slug: string) {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
-  try {
-    const safe = slug.replace(/'/g, "\\'")
-    const query = new URLSearchParams({
-      filterByFormula: `OR({slug}='${safe}',{Slug}='${safe}')`,
-      maxRecords: "1",
-    })
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE}?${query}`,
-      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
-    )
-    if (!res.ok) return null
-    const data = await res.json()
-    if (!data.records || data.records.length === 0) return null
-    const r = data.records[0]
-    const status = getStatus(r.fields)
-    if (status !== "published" && status !== "") return null
-    return {
-      id: r.id,
-      title: pickField(r.fields, ["title", "Title"], "Untitled"),
-      slug: pickField(r.fields, ["slug", "Slug"]),
-      content: pickField(r.fields, ["Content", "content"]),
-      summary: pickField(r.fields, ["summary", "Summary"]),
-      author: pickField(r.fields, ["author", "Author"], "OCC Team"),
-      publish_date: pickField(r.fields, ["publish_date", "Publish Date", "Last Modified"]),
-      featured_image_url: pickField(r.fields, ["featured_image_url", "Featured Image URL"]),
-      category: pickField(r.fields, ["Category", "category"]),
-      excerpt: pickField(r.fields, ["Excerpt", "excerpt"]),
-      keywords: pickField(r.fields, ["Keywords", "keywords"]),
-    }
-  } catch {
-    return null
-  }
-}
+import { getAllPosts, getPostBySlug } from "@/lib/airtable"
 
 // Plain-text → readable HTML with internal links injected
 const INTERNAL_LINKS: Record<string, string> = {
@@ -151,6 +63,9 @@ function readingTime(content: string): number {
 
 export const revalidate = 3600
 
+/** 列表未預建的 slug 仍可開文（與 getAllPosts 規則一致）。 */
+export const dynamicParams = true
+
 export async function generateMetadata({
   params,
 }: {
@@ -180,7 +95,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
-  return posts.filter((p: { slug: string }) => p.slug).map((p: { slug: string }) => ({ slug: p.slug }))
+  return posts.map((p) => ({ slug: p.slug }))
 }
 
 export default async function BlogPostPage({
@@ -193,7 +108,7 @@ export default async function BlogPostPage({
 
   if (!post) notFound()
 
-  const related = allPosts.filter((p: { slug: string }) => p.slug !== post.slug).slice(0, 3)
+  const related = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
   const mins = readingTime(post.content)
   const keywordList = post.keywords
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
@@ -344,7 +259,7 @@ export default async function BlogPostPage({
             <div className="border-t border-dashed border-gray-200 pt-12">
               <p className="text-[10px] tracking-[0.4em] text-gray-400 uppercase mb-8">More Articles</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {related.map((r: { slug: string; title: string; category: string; publish_date: string; summary: string }) => (
+                {related.map((r) => (
                   <Link
                     key={r.slug}
                     href={`/blog/${r.slug}`}
