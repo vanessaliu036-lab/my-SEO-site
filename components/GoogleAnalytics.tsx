@@ -3,17 +3,17 @@
 import Script from "next/script"
 
 /**
- * GA4 — `lazyOnload` defers gtag until after the window load event to reduce
- * main-thread contention (INP / FCP / LCP in lab tests). Hits may be slightly delayed.
+ * GA4 — `afterInteractive` loads gtag after hydration so short sessions and
+ * typical crawlers are more likely to be counted (vs `lazyOnload` after full page load).
  */
 export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   return (
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="lazyOnload"
+        strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="lazyOnload">
+      <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
