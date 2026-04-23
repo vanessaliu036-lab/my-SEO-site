@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description:
     "Read OCC updates, publications, and coffee insights. Follow new releases, events, and specialty coffee knowledge from Cambodia.",
   alternates: pageAlternates("/signal"),
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function SignalPage() {

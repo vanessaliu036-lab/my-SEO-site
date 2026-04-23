@@ -19,9 +19,6 @@ export default function robots(): MetadataRoute.Robots {
       // Thin / stub routes — not listed in `app/sitemap.ts` so crawlers are not nudged to index them.
       disallow: [
         '/api/',
-        '/archive/',
-        '/matter/',
-        '/signal/',
       ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,

@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description:
     "Browse OCC archive for projects, coffee experiments, and case studies from Cambodia's specialty coffee journey.",
   alternates: pageAlternates("/archive"),
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function ArchivePage() {

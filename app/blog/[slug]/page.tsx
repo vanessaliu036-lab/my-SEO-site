@@ -226,6 +226,34 @@ function readingTime(content: string): number {
   return Math.max(1, Math.round(words / 200))
 }
 
+function plainTextExcerpt(content: string, title: string): string {
+  const excerpt = content
+    .split("\n")
+    .map((line) => stripMarkdown(line.trim()))
+    .filter((line) => {
+      if (!line || isPromptNote(line)) return false
+      if (/^Meta Description:/i.test(line)) return false
+      if (/^\[INTERNAL LINK:/i.test(line)) return false
+      return line.toLowerCase() !== title.toLowerCase()
+    })
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim()
+
+  if (excerpt.length <= 155) return excerpt
+  return `${excerpt.slice(0, 152).replace(/\s+\S*$/, "")}...`
+}
+
+function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>): string {
+  if (!post) return "Specialty coffee insights from Origin Coffee Cambodia."
+  return (
+    post.summary ||
+    post.excerpt ||
+    plainTextExcerpt(post.content, post.title) ||
+    "Specialty coffee insights from Origin Coffee Cambodia."
+  )
+}
+
 export const revalidate = 3600
 
 /** 列表未預建的 slug 仍可開文（與 getAllPosts 規則一致）。 */
@@ -239,15 +267,16 @@ export async function generateMetadata({
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return { title: "Post not found" }
+  const description = metaDescriptionForPost(post)
 
   return {
     title: `${post.title} | OCC — Origin Coffee Cambodia`,
-    description: post.summary || post.excerpt,
+    description,
     keywords: post.keywords,
     alternates: alternatesFromCanonical(`${siteUrl}/blog/${post.slug}`),
     openGraph: {
       title: post.title,
-      description: post.summary || post.excerpt,
+      description,
       url: `${siteUrl}/blog/${post.slug}`,
       siteName,
       type: "article",

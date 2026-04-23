@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description:
     "Find OCC resources, tools, and downloadable materials for brewing standards, coffee operations, and partner training.",
   alternates: pageAlternates("/matter"),
+  robots: {
+    index: false,
+    follow: true,
+  },
 }
 
 export default function MatterPage() {
