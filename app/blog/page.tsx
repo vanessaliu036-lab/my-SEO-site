@@ -64,53 +64,53 @@ export default async function BlogPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="min-h-screen bg-white font-sans overflow-x-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+      <main className="min-h-screen bg-[#fbfaf7] font-sans overflow-x-hidden">
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16">
 
-          <header className="mb-10 md:mb-16 border-b border-gray-200 pb-8 md:pb-12">
-            <span className="text-[10px] tracking-[0.5em] text-gray-400 uppercase italic mb-4 block">
+          <header className="mb-8 md:mb-12 border-b border-stone-200 pb-8 md:pb-10">
+            <span className="text-[10px] tracking-[0.26em] text-stone-400 uppercase mb-4 block">
               Field Notes &amp; Craft
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 tracking-tighter mb-4 uppercase">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-stone-950 tracking-normal leading-none mb-4">
               The Signal.
             </h1>
-            <p className="text-xs sm:text-sm text-gray-500 tracking-widest uppercase font-light leading-relaxed">
+            <p className="max-w-xl text-sm sm:text-base text-stone-500 font-light leading-relaxed">
               Origin intelligence from the OCC team.
             </p>
           </header>
 
           {posts.length === 0 ? (
             <div className="py-24 text-center">
-              <p className="text-gray-400 text-sm tracking-widest uppercase">
+              <p className="text-stone-400 text-sm tracking-[0.18em] uppercase">
                 Articles coming soon.
               </p>
             </div>
           ) : (
             <>
-            <ul className="divide-y divide-gray-100">
+            <ul className="divide-y divide-stone-200">
               {pagePosts.map((post) => (
-                <li key={post.id} className="py-8 md:py-10 group">
+                <li key={post.id} className="py-8 md:py-11 group">
                   <Link href={`/blog/${post.slug}`} className="block active:opacity-90">
-                    <div className="flex items-start justify-between gap-4 sm:gap-8">
+                    <div className="flex items-start justify-between gap-5 sm:gap-10">
                       <div className="flex-1 min-w-0">
                         {post.category && (
-                          <span className="text-[10px] tracking-[0.3em] text-gray-400 uppercase mb-3 block">
+                          <span className="text-[10px] tracking-[0.22em] text-stone-400 uppercase mb-3 block">
                             {post.category}
                           </span>
                         )}
-                        <h2 className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight mb-3 group-hover:underline underline-offset-4 uppercase break-words">
+                        <h2 className="max-w-4xl font-serif text-2xl sm:text-[1.8rem] md:text-[2.15rem] font-normal text-stone-950 tracking-normal leading-[1.12] mb-4 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
                           {post.title}
                         </h2>
                         {post.summary && (
-                          <p className="text-sm text-gray-500 font-light leading-relaxed max-w-2xl [text-wrap:pretty]">
+                          <p className="text-sm sm:text-[15px] text-stone-500 font-light leading-relaxed max-w-2xl [text-wrap:pretty]">
                             {post.summary}
                           </p>
                         )}
-                        <div className="flex items-center gap-4 mt-4">
+                        <div className="flex items-center gap-3 mt-5">
                           {post.publish_date && (
                             <time
                               dateTime={post.publish_date}
-                              className="text-[11px] tracking-widest text-gray-400 uppercase"
+                              className="text-[10px] tracking-[0.18em] text-stone-400 uppercase"
                             >
                               {new Date(post.publish_date).toLocaleDateString("en-US", {
                                 year: "numeric",
@@ -120,14 +120,14 @@ export default async function BlogPage({
                             </time>
                           )}
                           {post.author && post.author !== "OCC Team" && (
-                            <span className="text-[11px] tracking-widest text-gray-400 uppercase">
-                              — {post.author}
+                            <span className="text-[10px] tracking-[0.18em] text-stone-400 uppercase">
+                              / {post.author}
                             </span>
                           )}
                         </div>
                       </div>
                       <span
-                        className="text-gray-300 text-xl flex-shrink-0 group-hover:text-gray-900 transition-colors mt-1"
+                        className="text-stone-300 text-xl flex-shrink-0 group-hover:text-stone-950 transition-colors mt-2"
                         aria-hidden="true"
                       >
                         →
@@ -140,33 +140,33 @@ export default async function BlogPage({
 
             {totalPages > 1 && (
               <nav
-                className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-gray-100 pt-10 md:pt-12"
+                className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
                 aria-label="Blog pagination"
               >
                 {page > 1 ? (
                   <Link
                     href={page === 2 ? "/blog" : `/blog?page=${page - 1}`}
-                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-widest uppercase text-gray-600 border border-gray-200 px-5 py-2.5 hover:border-gray-900 hover:text-gray-900 transition-colors"
+                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
                   >
                     ← Previous
                   </Link>
                 ) : (
-                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-widest uppercase text-gray-300 border border-gray-100 px-5 py-2.5 cursor-not-allowed">
+                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
                     ← Previous
                   </span>
                 )}
-                <span className="text-[11px] tracking-widest text-gray-400 px-2">
+                <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
                   Page {page} / {totalPages}
                 </span>
                 {page < totalPages ? (
                   <Link
                     href={`/blog?page=${page + 1}`}
-                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-widest uppercase text-gray-600 border border-gray-200 px-5 py-2.5 hover:border-gray-900 hover:text-gray-900 transition-colors"
+                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
                   >
                     Next →
                   </Link>
                 ) : (
-                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-widest uppercase text-gray-300 border border-gray-100 px-5 py-2.5 cursor-not-allowed">
+                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
                     Next →
                   </span>
                 )}
