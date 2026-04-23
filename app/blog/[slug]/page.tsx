@@ -368,8 +368,8 @@ export default async function BlogPostPage({
 
         <article className="max-w-5xl mx-auto px-5 sm:px-8 py-10 md:py-16">
           {/* Header */}
-          <header className="mx-auto max-w-[760px] mb-12 md:mb-14">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
+          <header className="mx-auto max-w-[680px] mb-10 md:mb-12">
+            <div className="flex flex-wrap items-center gap-3 mb-5">
               {post.category && (
                 <span className="text-[10px] tracking-[0.26em] text-stone-600 border border-stone-300 px-2.5 py-1 uppercase">
                   {post.category}
@@ -378,7 +378,7 @@ export default async function BlogPostPage({
               <span className="text-[11px] text-stone-400 tracking-[0.18em] uppercase">{mins} min read</span>
             </div>
 
-            <h1 className="font-serif text-[2.35rem] sm:text-[3rem] md:text-[3.65rem] lg:text-[4rem] font-normal text-stone-950 tracking-normal leading-[1.02] mb-7 [text-wrap:balance]">
+            <h1 className="font-serif text-[2rem] sm:text-[2.35rem] md:text-[2.7rem] lg:text-[2.9rem] font-normal text-stone-950 tracking-normal leading-[1.08] mb-6 [text-wrap:balance]">
               {post.title}
             </h1>
 
