@@ -134,8 +134,8 @@ export default function SingleOriginPage() {
       />
       <div className="min-h-screen bg-[#F8F9FA] relative overflow-hidden font-sans">
         <div className="absolute top-8 left-8 z-20">
-          <Link href="/coffee" className="text-gray-400 text-[10px] font-bold tracking-[0.3em] hover:text-gray-900 transition-colors uppercase">
-            ← BACK
+          <Link href="/" className="text-gray-400 text-[10px] font-bold tracking-[0.3em] hover:text-gray-900 transition-colors uppercase">
+            ← HOME
           </Link>
         </div>
 
