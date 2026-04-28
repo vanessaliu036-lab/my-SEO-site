@@ -185,7 +185,7 @@ export interface BlogAlignmentReport {
   skipped: BlogAlignmentSkipped[]
 }
 
-async function fetchBlogTableRecords(): Promise<{
+async function fetchBlogTableRecords(publishedOnly = false): Promise<{
   ok: boolean
   records: AirtableRecord[]
   apiError?: string
@@ -199,14 +199,14 @@ async function fetchBlogTableRecords(): Promise<{
     let offset: string | undefined
 
     do {
-      // 注意：Airtable 的 `maxRecords` 是「整個請求全部頁加總」的上限，
-      // 不是單頁筆數；之前誤設成 '100' 會讓表內第 101 筆之後永遠拿不到，
-      // 造成 /blog 顯示篇數與 Airtable 已發佈數對不上。每頁筆數要用 `pageSize`。
       const params = new URLSearchParams({
         'sort[0][field]': 'publish_date',
         'sort[0][direction]': 'desc',
         pageSize: '100',
       })
+      if (publishedOnly) {
+        params.set('filterByFormula', "OR({status}='Published',{status}='Publish')")
+      }
       if (offset) params.set('offset', offset)
 
       const res = await fetch(
@@ -293,12 +293,20 @@ export async function getBlogAlignmentReport(): Promise<BlogAlignmentReport> {
 
   const filtered = displayable.filter((post) => post.slug && isAcceptableSlug(post.slug))
 
+  const seen = new Set<string>()
+  const deduped = filtered.filter((post) => {
+    const key = post.slug.toLowerCase()
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+
   return {
     env,
     apiOk: true,
     totalRecords: records.length,
-    displayableCount: filtered.length,
-    displayable: filtered,
+    displayableCount: deduped.length,
+    displayable: deduped,
     skipped,
   }
 }
@@ -309,14 +317,14 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     return []
   }
 
-  const { ok, records, apiError } = await fetchBlogTableRecords()
+  const { ok, records, apiError } = await fetchBlogTableRecords(true)
   if (!ok) {
     console.error('Airtable API Error:', apiError)
     return []
   }
 
   try {
-    return records
+    const all = records
       .filter((record) => isDisplayableRecord(record.fields))
       .map((record: AirtableRecord): BlogPost => ({
         id: record.id,
@@ -327,6 +335,14 @@ export async function getAllPosts(): Promise<BlogPost[]> {
         publish_date: pickPublishDate(record.fields),
       }))
       .filter((post) => post.slug && isAcceptableSlug(post.slug))
+
+    const seen = new Set<string>()
+    return all.filter((post) => {
+      const key = post.slug.toLowerCase()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
   } catch (error) {
     console.error('Error fetching posts:', error)
     return []
@@ -380,8 +396,9 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
     // 貼進 slug 欄，所以同時嘗試 `xxx` 與 `/blog/xxx` 兩種寫法。
     const exact = escapeFormulaValue(trimmed)
     const exactWithPrefix = escapeFormulaValue(`/blog/${trimmed}`)
+    const statusFilter = "OR({status}='Published',{status}='Publish')"
     const q1 = new URLSearchParams({
-      filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}',{slug}='${exactWithPrefix}',{Slug}='${exactWithPrefix}')`,
+      filterByFormula: `AND(${statusFilter},OR({slug}='${exact}',{Slug}='${exact}',{slug}='${exactWithPrefix}',{Slug}='${exactWithPrefix}'))`,
       maxRecords: '1',
     })
     let res = await fetch(
@@ -397,7 +414,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPostDetail | null
       const q = escapeAirtableQuoted(trimmed.toLowerCase())
       const qWithPrefix = escapeAirtableQuoted(`/blog/${trimmed}`.toLowerCase())
       const q2 = new URLSearchParams({
-        filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}',LOWER({slug})='${qWithPrefix}',LOWER({Slug})='${qWithPrefix}')`,
+        filterByFormula: `AND(${statusFilter},OR(LOWER({slug})='${q}',LOWER({Slug})='${q}',LOWER({slug})='${qWithPrefix}',LOWER({Slug})='${qWithPrefix}'))`,
         maxRecords: '1',
       })
       res = await fetch(
