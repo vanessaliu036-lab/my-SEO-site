@@ -74,7 +74,7 @@ export default async function BlogPage({
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-stone-950 tracking-normal leading-none mb-4">
               The Signal.
             </h1>
-            <p className="max-w-xl text-sm sm:text-base text-stone-500 font-light leading-relaxed">
+            <p className="max-w-xl text-sm sm:text-base text-stone-600 font-normal leading-[1.75]">
               Origin intelligence from the OCC team.
             </p>
           </header>
@@ -102,7 +102,7 @@ export default async function BlogPage({
                           {post.title}
                         </h2>
                         {post.summary && (
-                          <p className="text-sm sm:text-[15px] text-stone-500 font-light leading-relaxed max-w-2xl [text-wrap:pretty]">
+                          <p className="text-sm sm:text-base text-stone-600 font-normal leading-[1.75] max-w-2xl [text-wrap:pretty]">
                             {post.summary}
                           </p>
                         )}

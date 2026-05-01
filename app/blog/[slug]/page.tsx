@@ -383,7 +383,7 @@ export default async function BlogPostPage({
             </h1>
 
             {(post.summary || post.excerpt) && (
-              <p className="article-summary max-w-2xl text-base sm:text-lg text-stone-600 font-light leading-relaxed border-l border-stone-950 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
+              <p className="article-summary max-w-2xl text-base sm:text-lg text-stone-700 font-normal leading-[1.75] border-l border-stone-950 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
                 {post.summary || post.excerpt}
               </p>
             )}
@@ -413,18 +413,18 @@ export default async function BlogPostPage({
                 [&>h2]:border-t [&>h2]:border-stone-200
                 [&>h3]:font-sans [&>h3]:text-[1.05rem] sm:[&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-stone-900
                 [&>h3]:tracking-normal [&>h3]:leading-snug [&>h3]:mt-10 [&>h3]:mb-4
-                [&>p]:font-serif [&>p]:text-stone-700 [&>p]:leading-[1.85] sm:[&>p]:leading-[1.9] [&>p]:text-[18px] sm:[&>p]:text-[19px] [&>p]:mb-7 [&>p]:break-words
+                [&>p]:font-serif [&>p]:text-stone-700 [&>p]:leading-[1.75] sm:[&>p]:leading-[1.75] [&>p]:text-[15px] sm:[&>p]:text-[16px] [&>p]:mb-7 [&>p]:break-words
                 [&_strong]:font-semibold [&_strong]:text-stone-950
                 [&>ul]:my-7 [&>ul]:space-y-3 [&>ul]:pl-6 [&>ul]:list-disc
                 [&>ol]:my-7 [&>ol]:space-y-3 [&>ol]:pl-6 [&>ol]:list-decimal
-                [&_li]:font-serif [&_li]:text-[18px] sm:[&_li]:text-[19px] [&_li]:leading-[1.75] [&_li]:text-stone-700 [&_li]:pl-1
+                [&_li]:font-serif [&_li]:text-[15px] sm:[&_li]:text-[16px] [&_li]:leading-[1.75] [&_li]:text-stone-700 [&_li]:pl-1
                 [&_.article-link-note]:my-8 [&_.article-link-note]:border-l [&_.article-link-note]:border-stone-950 [&_.article-link-note]:bg-white/60 [&_.article-link-note]:px-5 [&_.article-link-note]:py-4
                 [&_.article-link-note_span]:block [&_.article-link-note_span]:font-sans [&_.article-link-note_span]:text-[10px] [&_.article-link-note_span]:uppercase [&_.article-link-note_span]:tracking-[0.22em] [&_.article-link-note_span]:text-stone-400 [&_.article-link-note_span]:mb-1
                 [&_.article-link-note_a]:font-sans [&_.article-link-note_a]:text-sm [&_.article-link-note_a]:font-medium [&_.article-link-note_a]:text-stone-950 [&_.article-link-note_a]:border-b [&_.article-link-note_a]:border-stone-300 [&_.article-link-note_a]:hover:border-stone-950
                 [&_.article-table-wrap]:my-10 [&_.article-table-wrap]:overflow-x-auto [&_.article-table-wrap]:border-y [&_.article-table-wrap]:border-stone-200
                 [&_table]:w-full [&_table]:min-w-[620px] [&_table]:border-collapse
                 [&_th]:py-4 [&_th]:pr-6 [&_th]:text-left [&_th]:font-sans [&_th]:text-[11px] [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-[0.16em] [&_th]:text-stone-500
-                [&_td]:border-t [&_td]:border-stone-200 [&_td]:py-4 [&_td]:pr-6 [&_td]:font-serif [&_td]:text-[17px] [&_td]:leading-relaxed [&_td]:text-stone-700
+                [&_td]:border-t [&_td]:border-stone-200 [&_td]:py-4 [&_td]:pr-6 [&_td]:font-serif [&_td]:text-[15px] [&_td]:leading-[1.75] [&_td]:text-stone-700
               "
               dangerouslySetInnerHTML={{ __html: formattedContent }}
             />
