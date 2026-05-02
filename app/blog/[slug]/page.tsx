@@ -378,7 +378,7 @@ export default async function BlogPostPage({
               <span className="text-[11px] text-stone-400 tracking-[0.18em] uppercase">{mins} min read</span>
             </div>
 
-            <h1 className="font-sans text-[1.17rem] sm:text-[1.2rem] md:text-[1.26rem] lg:text-[1.32rem] font-semibold text-stone-950 tracking-tight leading-[1.3] mb-5 [text-wrap:balance]">
+            <h1 className="font-sans text-[18.5px] font-semibold text-stone-950 tracking-tight leading-[1.35] mb-5 [text-wrap:balance]">
               {post.title}
             </h1>
 

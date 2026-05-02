@@ -98,7 +98,7 @@ export default async function BlogPage({
                             {post.category}
                           </span>
                         )}
-                        <h2 className="max-w-4xl font-sans text-[1.05rem] sm:text-[1.2rem] md:text-[1.35rem] font-semibold text-stone-950 tracking-tight leading-[1.25] mb-3 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
+                        <h2 className="max-w-4xl font-sans text-[16px] font-semibold text-stone-950 tracking-tight leading-[1.35] mb-3 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
                           {post.title}
                         </h2>
                         {post.summary && (
