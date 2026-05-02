@@ -378,12 +378,12 @@ export default async function BlogPostPage({
               <span className="text-[11px] text-stone-400 tracking-[0.18em] uppercase">{mins} min read</span>
             </div>
 
-            <h1 className="font-serif text-[2rem] sm:text-[2.35rem] md:text-[2.7rem] lg:text-[2.9rem] font-normal text-stone-950 tracking-normal leading-[1.08] mb-6 [text-wrap:balance]">
+            <h1 className="font-sans text-[1.17rem] sm:text-[1.2rem] md:text-[1.26rem] lg:text-[1.32rem] font-semibold text-stone-950 tracking-tight leading-[1.3] mb-5 [text-wrap:balance]">
               {post.title}
             </h1>
 
             {(post.summary || post.excerpt) && (
-              <p className="article-summary max-w-2xl text-base sm:text-lg text-stone-600 font-light leading-relaxed border-l border-stone-950 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
+              <p className="article-summary max-w-2xl font-sans text-[13px] sm:text-sm text-stone-600 leading-relaxed border-l border-stone-950 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
                 {post.summary || post.excerpt}
               </p>
             )}
@@ -408,23 +408,23 @@ export default async function BlogPostPage({
             <div
               className="
                 mx-auto max-w-[720px]
-                [&>h2]:font-sans [&>h2]:text-[1.65rem] sm:[&>h2]:text-[2rem] [&>h2]:font-semibold [&>h2]:text-stone-950 [&>h2]:tracking-normal
-                [&>h2]:leading-tight [&>h2]:mt-14 sm:[&>h2]:mt-16 [&>h2]:mb-5 [&>h2]:pt-8
+                [&>h2]:font-sans [&>h2]:text-[1.2rem] sm:[&>h2]:text-[1.35rem] [&>h2]:font-semibold [&>h2]:text-stone-950 [&>h2]:tracking-tight
+                [&>h2]:leading-[1.2] [&>h2]:mt-12 sm:[&>h2]:mt-14 [&>h2]:mb-4 [&>h2]:pt-7
                 [&>h2]:border-t [&>h2]:border-stone-200
-                [&>h3]:font-sans [&>h3]:text-[1.05rem] sm:[&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-stone-900
+                [&>h3]:font-sans [&>h3]:text-[0.95rem] sm:[&>h3]:text-base [&>h3]:font-semibold [&>h3]:text-stone-900
                 [&>h3]:tracking-normal [&>h3]:leading-snug [&>h3]:mt-10 [&>h3]:mb-4
-                [&>p]:font-serif [&>p]:text-stone-700 [&>p]:leading-[1.85] sm:[&>p]:leading-[1.9] [&>p]:text-[18px] sm:[&>p]:text-[19px] [&>p]:mb-7 [&>p]:break-words
+                [&>p]:font-sans [&>p]:text-stone-700 [&>p]:leading-relaxed sm:[&>p]:leading-[1.8] [&>p]:text-[15px] sm:[&>p]:text-base [&>p]:mb-6 [&>p]:break-words
                 [&_strong]:font-semibold [&_strong]:text-stone-950
                 [&>ul]:my-7 [&>ul]:space-y-3 [&>ul]:pl-6 [&>ul]:list-disc
                 [&>ol]:my-7 [&>ol]:space-y-3 [&>ol]:pl-6 [&>ol]:list-decimal
-                [&_li]:font-serif [&_li]:text-[18px] sm:[&_li]:text-[19px] [&_li]:leading-[1.75] [&_li]:text-stone-700 [&_li]:pl-1
+                [&_li]:font-sans [&_li]:text-[15px] sm:[&_li]:text-base [&_li]:leading-[1.75] [&_li]:text-stone-700 [&_li]:pl-1
                 [&_.article-link-note]:my-8 [&_.article-link-note]:border-l [&_.article-link-note]:border-stone-950 [&_.article-link-note]:bg-white/60 [&_.article-link-note]:px-5 [&_.article-link-note]:py-4
                 [&_.article-link-note_span]:block [&_.article-link-note_span]:font-sans [&_.article-link-note_span]:text-[10px] [&_.article-link-note_span]:uppercase [&_.article-link-note_span]:tracking-[0.22em] [&_.article-link-note_span]:text-stone-400 [&_.article-link-note_span]:mb-1
                 [&_.article-link-note_a]:font-sans [&_.article-link-note_a]:text-sm [&_.article-link-note_a]:font-medium [&_.article-link-note_a]:text-stone-950 [&_.article-link-note_a]:border-b [&_.article-link-note_a]:border-stone-300 [&_.article-link-note_a]:hover:border-stone-950
                 [&_.article-table-wrap]:my-10 [&_.article-table-wrap]:overflow-x-auto [&_.article-table-wrap]:border-y [&_.article-table-wrap]:border-stone-200
                 [&_table]:w-full [&_table]:min-w-[620px] [&_table]:border-collapse
                 [&_th]:py-4 [&_th]:pr-6 [&_th]:text-left [&_th]:font-sans [&_th]:text-[11px] [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-[0.16em] [&_th]:text-stone-500
-                [&_td]:border-t [&_td]:border-stone-200 [&_td]:py-4 [&_td]:pr-6 [&_td]:font-serif [&_td]:text-[17px] [&_td]:leading-relaxed [&_td]:text-stone-700
+                [&_td]:border-t [&_td]:border-stone-200 [&_td]:py-4 [&_td]:pr-6 [&_td]:font-sans [&_td]:text-[13px] sm:[&_td]:text-sm [&_td]:leading-relaxed [&_td]:text-stone-700
               "
               dangerouslySetInnerHTML={{ __html: formattedContent }}
             />

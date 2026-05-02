@@ -71,10 +71,10 @@ export default async function BlogPage({
             <span className="text-[10px] tracking-[0.26em] text-stone-400 uppercase mb-4 block">
               Field Notes &amp; Craft
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-stone-950 tracking-normal leading-none mb-4">
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-[3rem] font-semibold text-stone-950 tracking-tight leading-none mb-4">
               The Signal.
             </h1>
-            <p className="max-w-xl text-sm sm:text-base text-stone-500 font-light leading-relaxed">
+            <p className="max-w-xl font-sans text-sm sm:text-base text-stone-500 leading-relaxed">
               Origin intelligence from the OCC team.
             </p>
           </header>
@@ -98,11 +98,11 @@ export default async function BlogPage({
                             {post.category}
                           </span>
                         )}
-                        <h2 className="max-w-4xl font-serif text-2xl sm:text-[1.8rem] md:text-[2.15rem] font-normal text-stone-950 tracking-normal leading-[1.12] mb-4 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
+                        <h2 className="max-w-4xl font-sans text-[1.05rem] sm:text-[1.2rem] md:text-[1.35rem] font-semibold text-stone-950 tracking-tight leading-[1.25] mb-3 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
                           {post.title}
                         </h2>
                         {post.summary && (
-                          <p className="text-sm sm:text-[15px] text-stone-500 font-light leading-relaxed max-w-2xl [text-wrap:pretty]">
+                          <p className="font-sans text-[13px] sm:text-sm text-stone-500 leading-relaxed max-w-2xl [text-wrap:pretty]">
                             {post.summary}
                           </p>
                         )}
