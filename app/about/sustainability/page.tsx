@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Ethical sourcing and traceability protocol. A cup is only as honest as the chain behind it. We built ours to withstand scrutiny at every link.",
     url: `${siteUrl}/about/sustainability`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
   },
   twitter: {

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "From farm to cup - building a skilled barista army and sustainable coffee ecosystem in Cambodia.",
     url: `${siteUrl}/system`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
     images: [
       {

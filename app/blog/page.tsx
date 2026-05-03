@@ -19,6 +19,14 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
     alternates: alternatesFromCanonical(canonical),
+    openGraph: {
+      title: titleBase,
+      description:
+        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
+      url: canonical,
+      locale: "en_KH",
+      type: "website",
+    },
   }
 }
 
@@ -36,9 +44,27 @@ export default async function BlogPage() {
   const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
   const pagePosts = posts.slice(0, POSTS_PER_PAGE)
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: titleBase,
+    url: `${siteUrl}/blog`,
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: posts.length,
+      itemListElement: posts.slice(0, 20).map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${siteUrl}/blog/${p.slug}`,
+        name: p.title,
+      })),
+    },
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <main className="min-h-screen bg-white font-sans overflow-x-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-20">
           <BlogList pagePosts={pagePosts} page={1} totalPages={totalPages} />

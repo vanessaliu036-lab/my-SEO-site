@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: "Unlike celebrity-driven roasters, OCC builds infrastructure. We're reconstructing Cambodia's specialty coffee supply chain from the ground up.",
     url: `${siteUrl}/about`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
     images: [
       {

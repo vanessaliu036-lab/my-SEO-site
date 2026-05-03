@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "Wholesale Coffee Supply | OCC Cambodia",
     description: "Direct-origin beans. Reliable volume. B2B supply built for Cambodia's café industry.",
     url: `${siteUrl}/solutions/wholesale`,
+    locale: "en_KH",
     type: "website",
     images: [{ url: ogImage, width: 1200, height: 630, alt: "Wholesale Coffee Supply Cambodia — OCC" }],
   },

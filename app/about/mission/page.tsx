@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Vision, Mission, and Why We Exist. OCC exists to close the gap in Cambodia's coffee market.",
     url: `${siteUrl}/about/mission`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
   },
 };

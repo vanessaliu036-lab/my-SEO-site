@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "Empowering Cambodia's coffee community through quality roasting, knowledge sharing, and professional wholesale support.",
     url: `${siteUrl}/vision`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
     images: [
       {

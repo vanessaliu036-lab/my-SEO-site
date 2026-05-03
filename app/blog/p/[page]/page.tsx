@@ -41,6 +41,12 @@ const breadcrumbSchema = (pageNum: number) => ({
   ],
 })
 
+export async function generateStaticParams() {
+  const posts = await getAllPosts()
+  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({ page: String(i + 2) }))
+}
+
 export default async function BlogPagedPage({
   params,
 }: {

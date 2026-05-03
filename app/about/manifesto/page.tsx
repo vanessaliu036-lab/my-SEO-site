@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "The Barista Army Thesis: Why We'll Never Open a Café. Instead of building one great café, we decided to build the people who make great cafés possible.",
     url: `${siteUrl}/about/manifesto`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
   },
   twitter: {

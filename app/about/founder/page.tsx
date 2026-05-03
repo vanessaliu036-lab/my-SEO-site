@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Philosophy, Credentials, and the Big Idea. OCC didn't begin with a business plan. It began with a question no one was asking.",
     url: `${siteUrl}/about/founder`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
   },
   twitter: {

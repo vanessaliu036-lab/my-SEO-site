@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "Solutions | OCC",
     description: "Wholesale, roasting, staffing, and equipment for Cambodia's coffee industry.",
     url: `${siteUrl}/solutions`,
+    locale: "en_KH",
     type: "website",
   },
 }

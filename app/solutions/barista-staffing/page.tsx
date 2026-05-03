@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: "Barista Staffing | OCC",
     description: "Trained hands. Consistent service. Ready when you are.",
     url: `${siteUrl}/solutions/barista-staffing`,
+    locale: "en_KH",
     type: "website",
   },
   alternates: pageAlternates("/solutions/barista-staffing"),

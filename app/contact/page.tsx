@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Every serious operation starts with a conversation. Reach out for wholesale, roasting, staffing, or equipment enquiries.",
     url: `${siteUrl}/contact`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
   },
   twitter: {

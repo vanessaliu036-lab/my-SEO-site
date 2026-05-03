@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: "Equipment Service | OCC",
     description: "Preventive care. Fast response. Zero downtime tolerance.",
     url: `${siteUrl}/solutions/equipment-service`,
+    locale: "en_KH",
     type: "website",
   },
   alternates: pageAlternates("/solutions/equipment-service"),

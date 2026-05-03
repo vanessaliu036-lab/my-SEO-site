@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Geographic analysis of Cambodia's highland coffee regions. Terroir architecture mapping the sensory coordinates of Mondulkiri and Ratanakiri.",
     url: `${siteUrl}/coffee/single-origin`,
     siteName: "Origin Coffee Cambodia",
-    locale: "en_US",
+    locale: "en_KH",
     type: "website",
   },
 }

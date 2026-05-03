@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       "Your profile. Your brand. Roasted with precision.",
     url: `${siteUrl}/solutions/roasting-program`,
+    locale: "en_KH",
     type: "website",
   },
   alternates: pageAlternates("/solutions/roasting-program"),

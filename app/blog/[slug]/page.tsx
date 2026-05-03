@@ -114,6 +114,7 @@ export async function generateMetadata({
       description: post.summary || undefined,
       url: `${siteUrl}/blog/${post.slug}`,
       siteName,
+      locale: "en_KH",
       type: "article",
       publishedTime: post.publish_date,
       authors: [post.author],
@@ -151,6 +152,7 @@ export default async function BlogPostPage({
     dateModified: post.publish_date,
     publisher: {
       "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
       name: siteName,
       url: siteUrl,
       logo: publisherLogoImageObject(),
