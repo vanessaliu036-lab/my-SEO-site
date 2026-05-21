@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl, ogImage } from "@/lib/siteConfig"
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
@@ -19,10 +19,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/images/ecosystem-og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Origin Coffee Cambodia Ecosystem - Academy, Equipment, Green Bean Trading"
+        url: ogImage,
+        alt: "Origin Coffee Cambodia — The Ecosystem"
       }
     ]
   },
@@ -30,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Ecosystem | Origin Coffee Cambodia",
     description: "Building Cambodia's coffee future through education, equipment, and sustainable supply chains.",
-    images: [`${siteUrl}/images/ecosystem-twitter-card.jpg`]
+    images: [ogImage]
   },
   alternates: pageAlternates("/system"),
 }
@@ -39,6 +37,7 @@ export default function SystemPage() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     "name": "Origin Coffee Cambodia",
     "url": `${siteUrl}`,
     "logo": siteLogoUrl,

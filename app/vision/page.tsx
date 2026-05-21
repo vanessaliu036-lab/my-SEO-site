@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl, ogImage } from "@/lib/siteConfig"
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
@@ -19,10 +19,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/images/vision-og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Origin Coffee Cambodia Vision and Mission"
+        url: ogImage,
+        alt: "Origin Coffee Cambodia — Vision and Mission"
       }
     ]
   },
@@ -30,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vision & Mission | Origin Coffee Cambodia",
     description: "Elevating Cambodia's coffee culture through craftsmanship and education.",
-    images: [`${siteUrl}/images/vision-twitter-card.jpg`]
+    images: [ogImage]
   },
   alternates: pageAlternates("/vision"),
 }
@@ -39,6 +37,7 @@ export default function VisionPage() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     "name": "Origin Coffee Cambodia",
     "url": `${siteUrl}`,
     "logo": siteLogoUrl,

@@ -78,7 +78,6 @@ const serviceSchema = {
   },
 }
 
-// 蝡?????銵?
 const internalLinks: Record<string, string> = {
   "roasted beans": "/solutions/roasting-program",
   "roasted bean": "/solutions/roasting-program",
@@ -89,7 +88,6 @@ const internalLinks: Record<string, string> = {
   "cupping": "/coffee/single-origin",
 }
 
-// ???扳?銝剔??摮??? (Server Component ?詨捆)
 const renderWithLinks = (text: string) => {
   const patterns = Object.keys(internalLinks).sort((a, b) => b.length - a.length)
   let result = text
@@ -114,7 +112,7 @@ export default function WholesalePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       <div className="min-h-screen bg-white text-gray-800">
-        {/* ???蝬脫 */}
+        {/* Fixed background grid lines */}
         <div className="fixed inset-0 pointer-events-none">
           <div className="absolute left-[10%] top-0 bottom-0 w-px" style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #e5e5e5, #e5e5e5 1px, transparent 1px, transparent 24px)' }} />
           <div className="absolute right-[15%] top-0 bottom-0 w-px" style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #e5e5e5, #e5e5e5 1px, transparent 1px, transparent 24px)' }} />
@@ -122,7 +120,7 @@ export default function WholesalePage() {
           <div className="absolute left-0 right-0 bottom-[20%] h-px" style={{ backgroundImage: 'repeating-linear-gradient(to right, #e5e5e5, #e5e5e5 1px, transparent 1px, transparent 24px)' }} />
         </div>
 
-        {/* Breadcrumb 撠 */}
+        {/* Breadcrumb */}
         <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-dashed border-gray-200">
           <div className="max-w-7xl mx-auto px-8 py-4">
             <div className="flex items-center gap-2 text-xs tracking-wider text-gray-500">
@@ -136,7 +134,7 @@ export default function WholesalePage() {
         </nav>
 
         <main className="max-w-7xl mx-auto px-8 pt-16 pb-24">
-          {/* ?湧??璅惜 + Hero */}
+          {/* Hero */}
           <div className="relative mb-32">
             <div className="absolute -left-16 top-0 bottom-0 flex items-center">
               <div className="transform -rotate-90 whitespace-nowrap tracking-[0.3em] text-[10px] font-light text-gray-400">
@@ -154,9 +152,9 @@ export default function WholesalePage() {
             <div className="absolute top-0 right-0 w-24 h-24 border border-dashed border-gray-300 -z-10" />
           </div>
 
-          {/* 銝餃摰寞蝺?- 撌血蝺刻??憛?/ ?喳瘛梯?∠? */}
+          {/* Main grid: left content + right supply terms */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            {/* 撌血?批捆? (雿?甈? */}
+            {/* Left content (main column) */}
             <div className="lg:col-span-2 space-y-20">
               {/* 01/ Who It's For */}
               <div className="space-y-4">
@@ -212,7 +210,7 @@ export default function WholesalePage() {
               </div>
             </div>
 
-            {/* ?喳瘛梯?∠? */}
+            {/* Right sidebar: supply terms */}
             <div className="bg-gray-900 text-white p-8 h-fit">
               <h3 className="text-sm tracking-wider text-gray-400 mb-6">SUPPLY TERMS</h3>
               <div className="space-y-4">
@@ -232,7 +230,7 @@ export default function WholesalePage() {
             </div>
           </div>
 
-          {/* FAQ ?憛?*/}
+          {/* FAQ section */}
           <section className="mt-24 pt-12 border-t border-dashed border-gray-200">
             <h2 className="text-sm tracking-[0.3em] font-light text-gray-400 uppercase mb-12">Frequently Asked Questions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -255,7 +253,7 @@ export default function WholesalePage() {
             </div>
           </section>
 
-          {/* Related Services 摨?∠? */}
+          {/* Related services */}
           <section className="mt-24">
             <h2 className="text-sm tracking-[0.3em] font-light text-gray-400 uppercase mb-8">You may also need</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -269,7 +267,7 @@ export default function WholesalePage() {
             </div>
           </section>
 
-          {/* CTA ?憛?*/}
+          {/* CTA section */}
           <section className="mt-24 pt-12 border-t border-dashed border-gray-200 text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">Ready to scale your coffee program?</h2>
             <Link href="/contact" className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 text-sm tracking-wider hover:bg-gray-800 transition-colors group">

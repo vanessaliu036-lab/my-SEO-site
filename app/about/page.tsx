@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Metadata } from "next"
-import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl, ogImage } from "@/lib/siteConfig"
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
@@ -18,10 +18,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/images/about-og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Origin Coffee Cambodia - Origin Coffee Cambodia (OCC) About Page"
+        url: ogImage,
+        alt: "Origin Coffee Cambodia (OCC) — About"
       }
     ]
   },
@@ -29,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Origin | Origin Coffee Cambodia",
     description: "Building infrastructure for Cambodia's specialty coffee future.",
-    images: [`${siteUrl}/images/about-twitter-card.jpg`]
+    images: [ogImage]
   },
   alternates: pageAlternates("/about"),
 }
@@ -38,6 +36,7 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   "name": "Origin Coffee Cambodia (OCC)",
   "alternateName": "Origin Coffee Cambodia",
   "url": `${siteUrl}`,
@@ -52,12 +51,7 @@ const organizationSchema = {
     "Cambodian Coffee Industry",
     "Coffee Roasting Technology"
   ],
-  "foundingDate": "2020",
-  "founder": {
-    "@type": "Person",
-    "name": "OCC Founder",
-    "jobTitle": "Founder & Head Roaster"
-  }
+  "foundingDate": "2020"
 }
 
 const breadcrumbSchema = {
@@ -172,7 +166,7 @@ export default function AboutPage() {
               <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-600">
                 Unlike celebrity-driven roasters, <span className="text-gray-900 font-bold">OCC builds infrastructure.</span>
               </p>
-              <p className="text-base text-gray-500 leading-relaxed">
+              <p lang="zh-Hant" className="text-base text-gray-500 leading-relaxed">
                 我們不只是在烘焙咖啡，我們在重構柬埔寨的精品咖啡供應鏈。
               </p>
               <p className="text-sm text-gray-500 leading-relaxed mt-4">

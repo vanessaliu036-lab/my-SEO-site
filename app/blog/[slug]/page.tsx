@@ -318,7 +318,7 @@ export default async function BlogPostPage({
     wordCount: post.content.split(/\s+/).length,
     author: { "@type": "Person", name: post.author },
     datePublished: post.publish_date,
-    dateModified: post.publish_date,
+    dateModified: post.last_modified || post.publish_date,
     publisher: {
       "@type": "Organization",
       name: siteName,

@@ -84,6 +84,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": `${siteUrl}/#organization`,
               "name": "Origin Coffee Cambodia",
               "alternateName": "OCC",
               "url": siteUrl,

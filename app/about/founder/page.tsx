@@ -36,23 +36,10 @@ const jsonLd = {
   url: `${siteUrl}/about/founder`,
   isPartOf: {
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia (OCC)",
     description:
       "Specialty coffee infrastructure company based in Phnom Penh, Cambodia.",
-  },
-  mainEntity: {
-    "@type": "Person",
-    name: "OCC Founder",
-    jobTitle: "Founder & Head Roaster",
-    description:
-      "Craftsman who refused to accept that Cambodia's coffee culture was defined by its weakest cup.",
-    knowsAbout: [
-      "Specialty Coffee Roasting",
-      "Coffee Supply Chain Infrastructure",
-      "Barista Training",
-      "Coffee Traceability",
-      "Cambodian Coffee Industry",
-    ],
   },
 };
 const breadcrumbSchema = {

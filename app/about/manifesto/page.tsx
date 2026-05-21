@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/siteConfig"
-import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
 import type { Metadata } from "next";
@@ -30,25 +29,15 @@ export const metadata: Metadata = {
 };
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "The Barista Army Thesis: Why We'll Never Open a Café",
+  "@type": "AboutPage",
+  name: "The Barista Army Thesis: Why We'll Never Open a Café",
   description:
     "Cambodia doesn't have a coffee problem. It has a consistency problem. Instead of building one great café, we decided to build the people who make great cafés possible.",
   url: `${siteUrl}/about/manifesto`,
-  author: {
+  isPartOf: {
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia (OCC)",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    logo: publisherLogoImageObject(),
-  },
-  datePublished: "2024-01-15",
-  dateModified: "2024-01-15",
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": `${siteUrl}/about/manifesto`,
   },
   keywords:
     "barista training Cambodia, skilled barista army, coffee manifesto, coffee consistency, specialty coffee infrastructure",

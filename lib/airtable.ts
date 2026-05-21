@@ -7,6 +7,7 @@ const K = {
   title: ['title', 'Title'] as const,
   slug: ['slug', 'Slug'] as const,
   publishDate: ['publish_date', 'Publish Date', 'Last Modified'] as const,
+  lastModified: ['Last Modified', 'last_modified', 'lastModified'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
   content: ['Content', 'content'] as const,
@@ -93,6 +94,7 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
     summary: pickField(record.fields, K.summary),
     author: pickField(record.fields, K.author, 'OCC Team'),
     publish_date: pickField(record.fields, K.publishDate),
+    last_modified: pickField(record.fields, K.lastModified),
     featured_image_url: pickField(record.fields, K.featured),
     category: pickField(record.fields, K.category),
   }
@@ -132,6 +134,7 @@ export interface BlogPost {
   summary: string
   author: string
   publish_date: string
+  last_modified: string
   featured_image_url: string
   category: string
 }

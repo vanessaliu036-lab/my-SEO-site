@@ -12,12 +12,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch blog posts from Airtable — falls back to [] if env vars not set
   // getAllPosts() already filters to URL-safe slugs (same as lib/airtable)
   const posts = await getAllPosts()
-  const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
-      url: `${siteUrl}/blog/${p.slug}`,
-      lastModified: p.publish_date ? new Date(p.publish_date) : now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }))
+  const blogEntries: MetadataRoute.Sitemap = posts.map((p) => {
+      const modified = p.last_modified || p.publish_date
+      return {
+        url: `${siteUrl}/blog/${p.slug}`,
+        lastModified: modified ? new Date(modified) : now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      }
+    })
 
   return [
     // ── Core ──────────────────────────────────────────────────────────────
