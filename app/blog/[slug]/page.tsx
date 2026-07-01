@@ -244,11 +244,26 @@ function plainTextExcerpt(content: string, title: string): string {
   return `${excerpt.slice(0, 152).replace(/\s+\S*$/, "")}...`
 }
 
+function isLowSignalSeoText(text: string, title = ""): boolean {
+  const value = text.trim().replace(/\s+/g, " ")
+  if (!value) return true
+  const lower = value.toLowerCase()
+  const titleLower = title.trim().replace(/\s+/g, " ").toLowerCase()
+  if (lower === "occ") return true
+  if (lower === "origin coffee cambodia") return true
+  if (/^meta description[:\s-]/i.test(value)) return true
+  if (titleLower && lower === titleLower) return true
+  if (value.length < 30) return true
+  return false
+}
+
 function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>): string {
   if (!post) return "Specialty coffee insights from Origin Coffee Cambodia."
+  const summary = post.summary && !isLowSignalSeoText(post.summary, post.title) ? post.summary : ""
+  const excerpt = post.excerpt && !isLowSignalSeoText(post.excerpt, post.title) ? post.excerpt : ""
   return (
-    post.summary ||
-    post.excerpt ||
+    summary ||
+    excerpt ||
     plainTextExcerpt(post.content, post.title) ||
     "Specialty coffee insights from Origin Coffee Cambodia."
   )
@@ -313,7 +328,7 @@ export default async function BlogPostPage({
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
-    description: post.summary || post.excerpt,
+    description: metaDescriptionForPost(post),
     keywords: post.keywords,
     wordCount: post.content.split(/\s+/).length,
     author: { "@type": "Person", name: post.author },

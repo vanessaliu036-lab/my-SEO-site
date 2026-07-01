@@ -1,7 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteUrl, siteName, ogImage } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { getAllPosts } from "@/lib/airtable"
 
@@ -22,6 +22,23 @@ export async function generateMetadata({
     description:
       "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
     alternates: alternatesFromCanonical(canonical),
+    openGraph: {
+      title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
+      description:
+        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
+      url: canonical,
+      siteName,
+      locale: "en_US",
+      type: "website",
+      images: [{ url: ogImage, width: 180, height: 180, alt: siteName }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
+      description:
+        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
+      images: [ogImage],
+    },
   }
 }
 

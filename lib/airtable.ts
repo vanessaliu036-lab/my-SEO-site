@@ -1,22 +1,30 @@
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const AIRTABLE_TABLE_NAME = 'OCC_Blog_Posts'
+const AIRTABLE_TABLE_NAMES = (
+  process.env.AIRTABLE_TABLE_NAME ||
+  process.env.AIRTABLE_TABLE_NAMES ||
+  'Articles,OCC_Blog_Posts'
+)
+  .split(',')
+  .map((name) => name.trim())
+  .filter(Boolean)
 
 const K = {
   title: ['title', 'Title'] as const,
+  sourceTitle: ['source_title', 'Source Title', 'Source_title'] as const,
   slug: ['slug', 'Slug'] as const,
   publishDate: ['publish_date', 'Publish Date', 'Last Modified'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
-  content: ['Content', 'content'] as const,
+  content: ['content', 'Content'] as const,
   category: ['Category', 'category'] as const,
   excerpt: ['Excerpt', 'excerpt'] as const,
   keywords: ['Keywords', 'keywords'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
 }
 
-type AirtableRecord = { id: string; fields: Record<string, unknown> }
+type AirtableRecord = { id: string; fields: Record<string, unknown>; tableName: string }
 
 function pickField(fields: Record<string, unknown>, keys: readonly string[], fallback = ''): string {
   for (const key of keys) {
@@ -28,6 +36,74 @@ function pickField(fields: Record<string, unknown>, keys: readonly string[], fal
     }
   }
   return fallback
+}
+
+function normalizeText(text: string): string {
+  return text.trim().replace(/\s+/g, ' ')
+}
+
+function slugifyText(text: string): string {
+  return normalizeText(text)
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase()
+}
+
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/^#{1,6}\s+/, '')
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '$1')
+    .trim()
+}
+
+function isLowSignalText(text: string, title = ''): boolean {
+  const value = normalizeText(text)
+  if (!value) return true
+
+  const lower = value.toLowerCase()
+  const titleLower = normalizeText(title).toLowerCase()
+
+  if (lower === 'occ') return true
+  if (lower === 'origin coffee cambodia') return true
+  if (/^meta description[:\s-]/i.test(value)) return true
+  if (titleLower && lower === titleLower) return true
+  if (value.length < 30) return true
+  return false
+}
+
+function normalizeAuthor(text: string): string {
+  const value = normalizeText(text)
+  if (!value) return 'OCC Team'
+  if (isLowSignalText(value)) return 'OCC Team'
+  return value
+}
+
+function summaryFromContent(content: string, title = ''): string {
+  const lines = content
+    .split('\n')
+    .map((line) => stripMarkdown(line.trim()))
+    .map(normalizeText)
+    .filter((line) => Boolean(line))
+    .filter((line) => !/^#{1,6}\s+/.test(line))
+    .filter((line) => !/^\[INTERNAL LINK:/i.test(line))
+    .filter((line) => !isLowSignalText(line, title))
+
+  if (!lines.length) return ''
+
+  const parts: string[] = []
+  for (const line of lines) {
+    parts.push(line)
+    const joined = parts.join(' ')
+    if (joined.length >= 155) return `${joined.slice(0, 152).replace(/\s+\S*$/, '')}...`
+  }
+
+  return parts.join(' ')
 }
 
 function getStatus(fields: Record<string, unknown>): string {
@@ -81,36 +157,67 @@ function isAcceptableSlug(s: string): boolean {
   return s.length > 0 && /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/i.test(s)
 }
 
+function slugFromRecord(record: AirtableRecord): string {
+  const direct = canonicalSlugForUrl(pickField(record.fields, K.slug))
+  if (isAcceptableSlug(direct)) return direct
+
+  const titleCandidate =
+    pickField(record.fields, K.title) ||
+    pickField(record.fields, K.sourceTitle) ||
+    ''
+  const derived = slugifyText(titleCandidate)
+  return isAcceptableSlug(derived) ? derived : ''
+}
+
+function sortFieldForTable(tableName: string): string {
+  const lower = tableName.toLowerCase()
+  if (lower.includes('article')) return 'scout_date'
+  return 'publish_date'
+}
+
 function recordToListItem(record: AirtableRecord): BlogPost | null {
   if (!isPublished(record.fields)) return null
-  const raw = pickField(record.fields, K.slug).trim()
-  const slug = canonicalSlugForUrl(raw)
+  const slug = slugFromRecord(record)
   if (!slug || !isAcceptableSlug(slug)) return null
+  const title =
+    pickField(record.fields, K.title) ||
+    pickField(record.fields, K.sourceTitle) ||
+    'Untitled'
+  const content = pickField(record.fields, K.content)
+  const excerpt = pickField(record.fields, K.excerpt)
+  const summaryField = pickField(record.fields, K.summary)
+  const summary =
+    (!isLowSignalText(summaryField, title) ? summaryField : '') ||
+    (!isLowSignalText(excerpt, title) ? excerpt : '') ||
+    summaryFromContent(content, title) ||
+    excerpt ||
+    summaryField
   return {
     id: record.id,
-    title: pickField(record.fields, K.title, 'Untitled'),
+    title,
     slug,
-    summary: pickField(record.fields, K.summary),
-    author: pickField(record.fields, K.author, 'OCC Team'),
+    summary,
+    author: normalizeAuthor(pickField(record.fields, K.author, 'OCC Team')),
     publish_date: pickField(record.fields, K.publishDate),
     featured_image_url: pickField(record.fields, K.featured),
     category: pickField(record.fields, K.category),
+    table_name: record.tableName,
   }
 }
 
-async function fetchAllTableRecords(): Promise<AirtableRecord[]> {
+async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return []
   const all: AirtableRecord[] = []
   let offset: string | undefined
   do {
     const params = new URLSearchParams({
-      'sort[0][field]': 'publish_date',
+      'sort[0][field]': sortFieldForTable(tableName),
       'sort[0][direction]': 'desc',
       maxRecords: '100',
     })
     if (offset) params.set('offset', offset)
     const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${params.toString()}`,
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
       {
         headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
         next: { revalidate: 3600 },
@@ -119,7 +226,12 @@ async function fetchAllTableRecords(): Promise<AirtableRecord[]> {
     if (!res.ok) break
     const data = await res.json()
     if (!data.records || !Array.isArray(data.records)) break
-    all.push(...(data.records as AirtableRecord[]))
+    all.push(
+      ...(data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
+        ...record,
+        tableName,
+      }))
+    )
     offset = typeof data.offset === 'string' && data.offset.length > 0 ? data.offset : undefined
   } while (offset)
   return all
@@ -134,6 +246,7 @@ export interface BlogPost {
   publish_date: string
   featured_image_url: string
   category: string
+  table_name: string
 }
 
 export interface BlogPostDetail extends BlogPost {
@@ -148,7 +261,8 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     return []
   }
   try {
-    const records = await fetchAllTableRecords()
+    const recordGroups = await Promise.all(AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName)))
+    const records = recordGroups.flat()
     const mapped: BlogPost[] = []
     const seenSlug = new Set<string>()
     for (const record of records) {
@@ -178,22 +292,25 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
 }
 
 async function fetchRecordById(recordId: string): Promise<AirtableRecord | null> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
-  try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${encodeURIComponent(recordId)}`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        next: { revalidate: 3600 },
-      }
-    )
-    if (!res.ok) return null
-    const data = await res.json()
-    if (!data?.fields) return null
-    return { id: data.id, fields: data.fields as Record<string, unknown> }
-  } catch {
-    return null
+  for (const tableName of AIRTABLE_TABLE_NAMES) {
+    if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
+    try {
+      const res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`,
+        {
+          headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+          next: { revalidate: 3600 },
+        }
+      )
+      if (!res.ok) continue
+      const data = await res.json()
+      if (!data?.fields) continue
+      return { id: data.id, fields: data.fields as Record<string, unknown>, tableName }
+    } catch {
+      continue
+    }
   }
+  return null
 }
 
 export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
@@ -205,41 +322,54 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
   try {
     const exact = escapeFormulaValue(keyLast)
-    const q1 = new URLSearchParams({
-      filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}')`,
-      maxRecords: '1',
-    })
-    let res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${q1.toString()}`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        next: { revalidate: 3600 },
-      }
-    )
-    let data = res.ok ? await res.json() : null
-    let rows: AirtableRecord[] =
-      data?.records && Array.isArray(data.records) ? data.records : []
-
-    if (rows.length === 0) {
-      const q = escapeAirtableQuoted(keyLast.toLowerCase())
-      const q2 = new URLSearchParams({
-        filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}')`,
+    for (const tableName of AIRTABLE_TABLE_NAMES) {
+      const q1 = new URLSearchParams({
+        filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}')`,
         maxRecords: '1',
       })
-      res = await fetch(
-        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?${q2.toString()}`,
+      let res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${q1.toString()}`,
         {
           headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
           next: { revalidate: 3600 },
         }
       )
-      data = res.ok ? await res.json() : null
-      rows = data?.records && Array.isArray(data.records) ? data.records : []
-    }
+      let data = res.ok ? await res.json() : null
+      let rows: AirtableRecord[] =
+        data?.records && Array.isArray(data.records)
+          ? (data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
+              ...record,
+              tableName,
+            }))
+          : []
 
-    if (rows.length > 0) {
-      const detail = recordToDetail(rows[0])
-      if (detail) return detail
+      if (rows.length === 0) {
+        const q = escapeAirtableQuoted(keyLast.toLowerCase())
+        const q2 = new URLSearchParams({
+          filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}')`,
+          maxRecords: '1',
+        })
+        res = await fetch(
+          `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${q2.toString()}`,
+          {
+            headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+            next: { revalidate: 3600 },
+          }
+        )
+        data = res.ok ? await res.json() : null
+        rows =
+          data?.records && Array.isArray(data.records)
+            ? (data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
+                ...record,
+                tableName,
+              }))
+            : []
+      }
+
+      if (rows.length > 0) {
+        const detail = recordToDetail(rows[0])
+        if (detail) return detail
+      }
     }
 
     const list = await getAllPosts()
