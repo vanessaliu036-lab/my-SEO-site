@@ -42,7 +42,7 @@ export async function generateMetadata({
   }
 }
 
-export const revalidate = 60
+export const revalidate = 30
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -129,7 +129,7 @@ export default async function BlogPage({
                               dateTime={post.publish_date}
                               className="text-[10px] tracking-[0.18em] text-stone-400 uppercase"
                             >
-                              {new Date(post.publish_date).toLocaleDateString("en-US", {
+                              {new Date(post.publish_date).toLocaleDateString("en-GB", {
                                 year: "numeric",
                                 month: "long",
                                 day: "numeric",

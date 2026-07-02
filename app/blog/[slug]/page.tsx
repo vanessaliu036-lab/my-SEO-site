@@ -406,7 +406,7 @@ export default async function BlogPostPage({
             <div className="flex flex-wrap items-center gap-3 text-[11px] tracking-[0.18em] text-stone-400 uppercase border-t border-stone-200 pt-5">
               {post.publish_date && (
                 <time dateTime={post.publish_date}>
-                  {new Date(post.publish_date).toLocaleDateString("en-US", {
+                  {new Date(post.publish_date).toLocaleDateString("en-GB", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
