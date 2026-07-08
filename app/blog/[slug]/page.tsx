@@ -269,7 +269,7 @@ function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>)
   )
 }
 
-export const revalidate = 3600
+export const revalidate = 60
 
 /** 列表未預建的 slug 仍可開文（與 getAllPosts 規則一致）。 */
 export const dynamicParams = true

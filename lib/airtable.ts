@@ -114,10 +114,38 @@ function getStatus(fields: Record<string, unknown>): string {
   return String(raw).trim().toLowerCase()
 }
 
-/** 僅後台標成已發布才顯示（不再把空白 status 當上線，避免列表比「已上架」多）。 */
+/**
+ * 僅後台標成已發布才顯示（不再把空白 status 當上線，避免列表比「已上架」多）。
+ *
+ * 兼容字串（不分大小寫、不分單複數）：
+ *   - 已發布：publish / published / live / ready / sent / online
+ *   - 未發布：draft / archived / archive / inactive / unpublish / unpublished
+ *
+ * 變體邏輯集中在這一支；改規則只動這裡，別處不必動。
+ */
+const PUBLISHED_TOKENS = new Set([
+  'publish',
+  'published',
+  'live',
+  'ready',
+  'sent',
+  'online',
+])
+
+const UNPUBLISHED_TOKENS = new Set([
+  'draft',
+  'archived',
+  'archive',
+  'inactive',
+  'unpublish',
+  'unpublished',
+])
+
 function isPublished(fields: Record<string, unknown>): boolean {
   const s = getStatus(fields)
-  return s === 'publish' || s === 'published'
+  if (!s) return false // 空字串不算發布，避免 Draft 漏欄位時誤判
+  if (UNPUBLISHED_TOKENS.has(s)) return false
+  return PUBLISHED_TOKENS.has(s)
 }
 
 function escapeFormulaValue(value: string): string {
@@ -220,7 +248,9 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
       {
         headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        next: { revalidate: 3600 },
+        // 60s 短窗：後台推 status=publish 後，前台最遲 60s 顯示，
+        // 配合 /api/revalidate 主動刷新可達即時。
+        next: { revalidate: 60 },
       }
     )
     if (!res.ok) break
@@ -299,7 +329,7 @@ async function fetchRecordById(recordId: string): Promise<AirtableRecord | null>
         `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`,
         {
           headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-          next: { revalidate: 3600 },
+          next: { revalidate: 60 },
         }
       )
       if (!res.ok) continue
@@ -331,7 +361,7 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
         `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${q1.toString()}`,
         {
           headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-          next: { revalidate: 3600 },
+          next: { revalidate: 60 },
         }
       )
       let data = res.ok ? await res.json() : null
@@ -353,7 +383,7 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
           `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${q2.toString()}`,
           {
             headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-            next: { revalidate: 3600 },
+            next: { revalidate: 60 },
           }
         )
         data = res.ok ? await res.json() : null
