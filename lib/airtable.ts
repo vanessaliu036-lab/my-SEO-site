@@ -241,7 +241,9 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
     const params = new URLSearchParams({
       'sort[0][field]': sortFieldForTable(tableName),
       'sort[0][direction]': 'desc',
-      maxRecords: '100',
+      // 抓完全部 records（先前 100 筆上限會把較舊的 published 文章切掉）。
+      // Airtable API 上限 100/頁，這個參數是「總筆數上限」，不是分頁大小。
+      maxRecords: '1000',
     })
     if (offset) params.set('offset', offset)
     const res = await fetch(
