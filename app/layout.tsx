@@ -5,6 +5,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
 import { pageAlternates } from "@/lib/seo";
 
@@ -76,6 +77,19 @@ export default function RootLayout({
 
         <Analytics />
         {gaMeasurementId ? <GoogleAnalytics measurementId={gaMeasurementId} /> : null}
+
+        {/* Microsoft Clarity — 流量分析 / heatmap / session recording */}
+        <Script
+          id="microsoft-clarity"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "xjlld0s2hz");`,
+          }}
+        />
 
         {/* SEO / GEO 數據標註 */}
         <script
