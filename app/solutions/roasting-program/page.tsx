@@ -50,6 +50,40 @@ const faqSchema = {
   ],
 }
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Solutions", item: `${siteUrl}/solutions` },
+    { "@type": "ListItem", position: 3, name: "Roasting Program", item: `${siteUrl}/solutions/roasting-program` },
+  ],
+}
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Custom Roasting Program",
+  description:
+    "Custom roast profile development, white-label roasting, and house-blend engineering for Cambodian coffee brands. Includes cupping, sample iterations, and production batches from 10kg.",
+  provider: {
+    "@type": "Organization",
+    name: "Origin Coffee Cambodia (OCC)",
+    url: siteUrl,
+  },
+  serviceType: "Coffee Roasting & Profile Development",
+  areaServed: [
+    { "@type": "City", name: "Phnom Penh" },
+    { "@type": "Country", name: "Cambodia" },
+  ],
+  offers: {
+    "@type": "Offer",
+    eligibleCustomerType: "Business",
+    description:
+      "Minimum production batch 10kg per profile. 2-3 week profile development lead time. Client-supplied packaging supported.",
+  },
+}
+
 const internalLinks: Record<string, string> = {
   "roasted beans": "/solutions/roasting-program",
   barista: "/solutions/barista-staffing",
@@ -85,6 +119,14 @@ export default function RoastingProgramPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       <div className="min-h-screen bg-white text-gray-800">

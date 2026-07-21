@@ -39,6 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@OCCoffeeKh",
+    creator: "@OCCoffeeKh",
     images: [ogImage],
   },
 };
@@ -106,6 +108,17 @@ export default function RootLayout({
               "areaServed": {
                 "@type": "Country",
                 "name": "Cambodia",
+              },
+              "sameAs": [
+                "https://www.linkedin.com/company/origin-coffee-cambodia",
+                "https://www.facebook.com/origincoffeecambodia",
+                "https://www.instagram.com/origin.coffee.cambodia",
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "sales",
+                "url": `${siteUrl}/contact`,
+                "availableLanguage": ["English", "Khmer"],
               },
             }),
           }}

@@ -65,6 +65,16 @@ const serviceSchema = {
   serviceType: "Commercial coffee equipment installation, maintenance, and repair",
 }
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Solutions", item: `${siteUrl}/solutions` },
+    { "@type": "ListItem", position: 3, name: "Equipment Service", item: `${siteUrl}/solutions/equipment-service` },
+  ],
+}
+
 const internalLinks: Record<string, string> = {
   "roasted beans": "/solutions/roasting-program",
   barista: "/solutions/barista-staffing",
@@ -99,6 +109,7 @@ export default function EquipmentServicePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="min-h-screen bg-white text-gray-800">
         <main className="max-w-7xl mx-auto px-8 pt-16 pb-24">
