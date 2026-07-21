@@ -40,8 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/solutions/roasting-program`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/solutions/barista-staffing`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/solutions/equipment-service`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${siteUrl}/system`,                   lastModified: now, changeFrequency: 'monthly',  priority: 0.7 },
-    { url: `${siteUrl}/vision`,                   lastModified: now, changeFrequency: 'monthly',  priority: 0.7 },
+    // /system + /vision removed from sitemap 2026-07-21 (noindex, kept for archive/backlinks)
 
     // ── Blog index ────────────────────────────────────────────────────────
     { url: `${siteUrl}/blog`,                     lastModified: now, changeFrequency: 'weekly',   priority: 0.8 },
