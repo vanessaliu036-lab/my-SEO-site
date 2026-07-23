@@ -175,6 +175,7 @@ export default function ContactForm({ fontVars, defaultInterest }: ContactFormPr
                 id="name"
                 type="text"
                 autoComplete="name"
+                data-clarity-mask="true"
                 placeholder="Your name"
                 className={inputBase}
                 aria-invalid={!!errors.name}
@@ -197,6 +198,7 @@ export default function ContactForm({ fontVars, defaultInterest }: ContactFormPr
                 id="email"
                 type="email"
                 autoComplete="email"
+                data-clarity-mask="true"
                 placeholder="your@email.com"
                 className={inputBase}
                 aria-invalid={!!errors.email}
@@ -264,6 +266,7 @@ export default function ContactForm({ fontVars, defaultInterest }: ContactFormPr
               <textarea
                 id="message"
                 rows={4}
+                data-clarity-mask="true"
                 placeholder="Tell us about your operation, volume requirements, or any questions."
                 className={`${inputBase} resize-none`}
                 aria-describedby={errors.message ? "message-error" : undefined}

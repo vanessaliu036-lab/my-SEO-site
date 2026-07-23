@@ -64,6 +64,30 @@ const breadcrumbSchema = {
     { "@type": "ListItem", position: 3, name: "Founder", item: `${siteUrl}/about/founder` },
   ],
 }
+// FAQ 內容 — schema 與頁面可見區塊共用同一來源（Google 要求 FAQPage 內容必須可見）
+const faqs = [
+  {
+    q: "Why was OCC founded?",
+    a: "OCC began with a question no one in Cambodia's coffee industry was asking: why does a great origin produce a forgettable cup? The answer was never the bean — it was the roast, the training, and the supplier who moved on after the sale. OCC was built to fix the system, not one part of it.",
+  },
+  {
+    q: "What is the founder's philosophy on craftsmanship?",
+    a: "Craftsmanship at OCC is not a credential. It is a standard held internally before anyone else applies it. Every roast profile, every training session, every service call is either right or it isn't — there is no in between.",
+  },
+  {
+    q: "What does the OCC founder focus on today?",
+    a: "Specialty coffee roasting, coffee supply chain infrastructure, barista training, and traceability across Cambodia's coffee industry — the four handoffs where quality is usually lost.",
+  },
+]
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+}
 export default function FounderPage() {
   return (
     <>
@@ -74,6 +98,10 @@ export default function FounderPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="min-h-screen bg-white relative overflow-hidden font-sans text-gray-900">
         {/* 導航 */}
@@ -163,6 +191,25 @@ export default function FounderPage() {
               </p>
             </div>
           </div>
+          {/* FAQ 區塊 — 與 FAQPage schema 內容一致 */}
+          <section className="mt-24 pt-12 border-t border-gray-200">
+            <h2 className="text-sm tracking-[0.3em] font-light text-gray-400 uppercase mb-12">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-10">
+              {faqs.map(({ q, a }) => (
+                <div key={q} className="grid grid-cols-12 gap-x-12 gap-y-3">
+                  <h3 className="col-span-12 md:col-span-5 text-lg font-bold text-gray-900 tracking-tight border-l-4 border-gray-900 pl-4">
+                    {q}
+                  </h3>
+                  <p className="col-span-12 md:col-span-7 text-gray-600 text-base leading-relaxed">
+                    {a}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* 結尾：自然橋接到 Manifesto */}
           <div className="mt-32 pt-12 border-t border-gray-200 flex justify-between items-center">
             <div className="text-left">
