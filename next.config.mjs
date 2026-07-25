@@ -8,7 +8,12 @@ const nextConfig = {
   // 30 deleted blog posts (Airtable purge Apr–May 2026) returning 404 in GSC.
   // 301 → /blog so any external backlinks still pass SEO signal and visitors land on the hub.
   // 2 _next/static/media/*.woff2 404s are build-hash churn — ignored (Google re-crawls after next deploy).
+  // /coffee (bare) → /coffee/single-origin (only child route exists in app/).
   async redirects() {
+    // /coffee bare → child route
+    const structural = [
+      { source: '/coffee', destination: '/coffee/single-origin', permanent: true },
+    ]
     const dead = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
       'unique-gifts-from-southeast-asia-7-ideas-that-go-beyond-the-ordinary',
@@ -22,7 +27,6 @@ const nextConfig = {
       'cambodia-business-travel-gifts-what-to-bring-back-for-the-office',
       'wet-processed-vs-natural-robusta-what-the-science-says-about-flavor',
       'cambodias-coffee-culture-ancient-land-new-brew-revolution',
-      'the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia',
       'phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs',
       'cambodias-coffee-export-industry-challenges-opportunities-and-the-occ-model',
       'high-altitude-robusta-vs-commercial-robusta-a-technical-breakdown',
@@ -41,11 +45,14 @@ const nextConfig = {
       'terroir-in-coffee-what-the-concept-actually-means-and-why-cambodia-is-relevant',
       'is-cambodian-coffee-good-an-honest-assessment',
     ]
-    return dead.map((slug) => ({
-      source: `/blog/${slug}`,
-      destination: '/blog',
-      permanent: true,
-    }))
+    return [
+      ...structural,
+      ...dead.map((slug) => ({
+        source: `/blog/${slug}`,
+        destination: '/blog',
+        permanent: true,
+      })),
+    ]
   },
 }
 

@@ -13,7 +13,7 @@ export const siteName =
 
 export const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-  'Specialty coffee B2B supplier in Cambodia. Engineering consistency and digital sovereignty.'
+  'Origin Coffee Cambodia is a B2B coffee supplier and industry platform focused on Fine Robusta, specialty coffee, precision roasting, and Cambodian coffee origins.'
 
 /** Default OG / social preview — must exist under `public/` (override with NEXT_PUBLIC_OG_IMAGE). */
 export const ogImage =
