@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import HomePageClient from "./HomePageClient"
 import { siteUrl, siteName, siteDescription } from "@/lib/siteConfig"
+import { homeFaqs, homeDateModified } from "@/lib/homeContent"
 
 export const metadata: Metadata = {
   title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
@@ -58,6 +59,7 @@ const webPageJsonLd = {
   name: siteName,
   url: siteUrl,
   description: siteDescription,
+  dateModified: homeDateModified,
   mainEntity: {
     "@type": "WebSite",
     name: siteName,
@@ -65,11 +67,22 @@ const webPageJsonLd = {
   },
 }
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+}
+
 export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <HomePageClient />
     </>
   )

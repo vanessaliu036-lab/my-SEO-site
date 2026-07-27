@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import SiteSidebar from "@/components/SiteSidebar";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
@@ -79,10 +79,8 @@ export default function RootLayout({
         {/* 全版面設計：左側導航欄無背景色 */}
         <div className="flex flex-col md:flex-row min-h-screen">
           
-          {/* 左側導航欄 - 移除背景色和邊框 */}
-          <aside className="w-full md:w-80 lg:w-96 md:h-screen md:sticky md:top-0 overflow-y-auto bg-transparent z-30">
-            <Navigation />
-          </aside>
+          {/* 左側導航欄 - 首頁隱藏（滿版），內頁保留 */}
+          <SiteSidebar />
 
           {/* 右側內容區塊 */}
           <main className="flex-1 relative bg-white">
