@@ -102,6 +102,50 @@ export default function Navigation() {
           </ul>
         </li>
 
+        {/* Collection 區塊 */}
+        <li className="pt-4">
+          <div className="text-gray-400 text-xs tracking-widest mb-3">
+            COLLECTION
+          </div>
+          <ul className="space-y-3">
+            <li>
+              <Link
+                href="/collection"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">Mondulkiri Origin Collection</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/collection/sovann"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">SOVANN</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/collection/prek"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">PREK</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/collection/angkar"
+                className="text-gray-700 hover:text-black transition-colors text-sm block group"
+              >
+                <span className="group-hover:pl-2 transition-all duration-200">ANGKAR</span>
+                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
+              </Link>
+            </li>
+          </ul>
+        </li>
+
         {/* Blog 區塊 */}
         <li className="pt-4">
           <Link
