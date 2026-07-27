@@ -50,33 +50,35 @@ export default function HomePageClient() {
 
   return (
     <>
-      {/* Hero — 滿版視覺（整張設計圖），另附隱藏式 H1 供搜尋引擎/AI 讀取 */}
-      <section className="relative w-full bg-[#f3f0ea]">
-        <h1 className="sr-only">
-          Fine Robusta. Exceptional Origins. Global Connection. — Origin Coffee
-          Cambodia connects Cambodian Fine Robusta from Mondulkiri to the world.
-        </h1>
+      {/* Hero — 主視覺（整張設計圖），限制在一個視窗高度內、置中，避免大螢幕被放大 */}
+      <section className="w-full bg-[#f3f0ea] flex justify-center">
+        <div className="relative">
+          <h1 className="sr-only">
+            Fine Robusta. Exceptional Origins. Global Connection. — Origin Coffee
+            Cambodia connects Cambodian Fine Robusta from Mondulkiri to the world.
+          </h1>
 
-        {/* 設計主視覺 */}
-        <img
-          src="/hero-home.png"
-          alt="Origin Coffee Cambodia — Fine Robusta from Mondulkiri, Cambodia. Honey process, 99% ripe cherries. Bold and grounded."
-          className="w-full h-auto select-none"
-          draggable={false}
-        />
+          {/* 設計主視覺（WebP，約 85KB） */}
+          <img
+            src="/hero-home.webp"
+            alt="Origin Coffee Cambodia — Fine Robusta from Mondulkiri, Cambodia. Honey process, 99% ripe cherries. Bold and grounded."
+            className="block w-auto h-auto max-w-full max-h-[100svh] select-none"
+            draggable={false}
+          />
 
-        {/* 隱形可點區：MENU（左上）開啟導覽 */}
-        <button
-          onClick={() => setIsMenuOpen(true)}
-          aria-label="Open navigation menu"
-          className="absolute top-0 left-0 w-[22%] h-[12%] z-20 cursor-pointer"
-        />
-        {/* 隱形可點區：SHARE（右上） */}
-        <button
-          onClick={handleShare}
-          aria-label="Share this page"
-          className="absolute top-0 right-0 w-[22%] h-[12%] z-20 cursor-pointer"
-        />
+          {/* 隱形可點區：MENU（左上）開啟導覽 */}
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open navigation menu"
+            className="absolute top-0 left-0 w-[22%] h-[13%] z-20 cursor-pointer"
+          />
+          {/* 隱形可點區：SHARE（右上） */}
+          <button
+            onClick={handleShare}
+            aria-label="Share this page"
+            className="absolute top-0 right-0 w-[22%] h-[13%] z-20 cursor-pointer"
+          />
+        </div>
       </section>
 
       {/* 導覽 Overlay */}
