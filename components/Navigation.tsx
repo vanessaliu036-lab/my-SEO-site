@@ -174,6 +174,15 @@ export default function Navigation() {
           COFFEE INFRASTRUCTURE
         </p>
       </div>
+
+      {/* 浮水印：固定在 menu 底部下方,被菜單文字遮住是預期 */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute left-[-60px] bottom-[-40px] text-[150px] font-bold text-[rgba(230,230,230,0.6)] leading-none whitespace-nowrap"
+        style={{ fontFamily: "var(--font-sans), Inter, Arial, sans-serif" }}
+      >
+        OCC.
+      </div>
     </nav>
   );
 }

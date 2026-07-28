@@ -101,9 +101,9 @@ export default function CollectionPage() {
           __html: `
             .occ-collection .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#888}
             .occ-collection h1,.occ-collection h2,.occ-collection h3,.occ-collection .display{font-family:var(--font-display),Georgia,serif;font-weight:600;letter-spacing:-.055em;line-height:.82}
-            .occ-collection h1{font-size:48px;margin:18px 0 0}
+            .occ-collection h1{font-size:36px;margin:18px 0 0}
             .occ-collection h2{font-size:34px;line-height:1.25;letter-spacing:0;margin:0 0 24px;font-weight:500}
-            .occ-collection .display-lg{font-size:96px;line-height:.9;letter-spacing:-.04em}
+            .occ-collection .display-lg{font-size:48px;line-height:.95;letter-spacing:-.03em}
             .occ-collection .lead{font-size:24px;line-height:1.5;font-weight:600;margin:0;font-family:var(--font-sans),Inter,Arial,sans-serif;letter-spacing:0}
             .occ-collection .copy{font-size:16px;line-height:1.9;color:#555;margin:0;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-collection .hero-sub{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-top:28px;font-family:var(--font-sans),Inter,Arial,sans-serif}
@@ -123,13 +123,14 @@ export default function CollectionPage() {
             .occ-collection .back:hover{color:#111}
             .occ-collection .pill{border:1px solid #d8d8d8;padding:8px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-collection .pill-soft{border:1px solid #ddd;padding:6px 10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#666;font-family:var(--font-sans),Inter,Arial,sans-serif}
-            @media(min-width:768px){
+            @media(min-width:640px){
+              .occ-collection h1{font-size:48px}
+              .occ-collection .display-lg{font-size:72px}
+            }
+            @media(min-width:1024px){
               .occ-collection h1{font-size:72px}
               .occ-collection .display-lg{font-size:96px}
             }
-            @media(max-width:850px){
-              .occ-collection h1{font-size:48px}
-              .occ-collection .display-lg{font-size:64px}
               .occ-collection .fact-grid{grid-template-columns:1fr}
               .occ-collection .fact:nth-child(2),.occ-collection .fact:nth-child(3){padding-left:0;border-left:0}
               .occ-collection .quote{font-size:29px}
@@ -222,13 +223,6 @@ export default function CollectionPage() {
             </Link>
           </section>
         </main>
-        <div
-          aria-hidden="true"
-          className="fixed left-[-28px] bottom-[-50px] text-[190px] font-bold text-[rgba(230,230,230,0.5)] z-[-1] select-none pointer-events-none"
-          style={{ fontFamily: "var(--font-sans), Inter, Arial, sans-serif" }}
-        >
-          OCC.
-        </div>
       </div>
     </>
   )
