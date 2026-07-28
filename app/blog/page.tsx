@@ -81,7 +81,7 @@ export default async function BlogPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="min-h-screen bg-[#fbfaf7] font-sans overflow-x-hidden">
+      <main className="min-h-screen bg-white font-sans overflow-x-hidden">
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16">
 
           <header className="mb-8 md:mb-12 border-b border-stone-200 pb-8 md:pb-10">

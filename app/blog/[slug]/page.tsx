@@ -364,14 +364,14 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <div className="min-h-screen bg-[#fbfaf7] text-stone-950 overflow-x-hidden">
+      <div className="min-h-screen bg-white text-stone-950 overflow-x-hidden">
         {/* Reading progress bar */}
         <div className="fixed top-0 left-0 right-0 h-[2px] bg-gray-100 z-50">
           <div className="h-full bg-gray-900 w-0" style={{ transition: "width 0.1s" }} id="reading-progress" />
         </div>
 
         {/* Breadcrumb nav */}
-        <nav className="sticky top-0 z-40 bg-[#fbfaf7]/90 backdrop-blur-sm border-b border-stone-200">
+        <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-stone-200">
           <div className="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.16em] text-stone-400 uppercase min-w-0">
             <Link href="/" className="hover:text-stone-950 transition-colors shrink-0">Home</Link>
             <span className="shrink-0">/</span>
