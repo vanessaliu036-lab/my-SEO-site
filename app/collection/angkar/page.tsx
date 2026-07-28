@@ -74,10 +74,10 @@ export default function AngkarProductPage() {
           __html: `
             .occ-angkar .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#888}
             .occ-angkar h1,.occ-angkar h2,.occ-angkar h3,.occ-angkar .display{font-family:var(--font-display),Georgia,serif;font-weight:600;letter-spacing:-.055em;line-height:.82}
-            .occ-angkar h1{font-size:116px;margin:18px 0 0}
+            .occ-angkar h1{font-size:48px;margin:18px 0 0}
             .occ-angkar h2{font-size:34px;line-height:1.25;letter-spacing:0;margin:0 0 24px;font-weight:500}
             .occ-angkar h3{font-size:26px;margin:28px 0 18px;line-height:1.2}
-            .occ-angkar .display-lg{font-size:140px;line-height:.82;letter-spacing:-.055em}
+            .occ-angkar .display-lg{font-size:96px;line-height:.9;letter-spacing:-.04em}
             .occ-angkar .lead{font-size:24px;line-height:1.5;font-weight:600;margin:0;font-family:var(--font-sans),Inter,Arial,sans-serif;letter-spacing:0}
             .occ-angkar .copy{font-size:16px;line-height:1.9;color:#555;margin:0 0 18px;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-angkar .hero-sub{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-top:28px;font-family:var(--font-sans),Inter,Arial,sans-serif}
@@ -114,9 +114,13 @@ export default function AngkarProductPage() {
             .occ-angkar .cta a:hover,.occ-angkar .cta-link:hover{background:#111;color:#fff}
             .occ-angkar .cta-link.soft{border-color:#ddd;color:#666}
             .occ-angkar .cta-link.soft:hover{border-color:#111;color:#111;background:transparent}
+            @media(min-width:768px){
+              .occ-angkar h1{font-size:72px}
+              .occ-angkar .display-lg{font-size:96px}
+            }
             @media(max-width:850px){
-              .occ-angkar h1{font-size:76px}
-              .occ-angkar .display-lg{font-size:80px}
+              .occ-angkar h1{font-size:48px}
+              .occ-angkar .display-lg{font-size:64px}
               .occ-angkar .panel{min-height:300px}
               .occ-angkar .fact-grid,.occ-angkar .flavor-grid{grid-template-columns:1fr}
               .occ-angkar .fact:nth-child(2),.occ-angkar .fact:nth-child(3){padding-left:0;border-left:0}

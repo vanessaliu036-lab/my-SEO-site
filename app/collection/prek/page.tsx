@@ -74,10 +74,10 @@ export default function PrekProductPage() {
           __html: `
             .occ-prek .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#888}
             .occ-prek h1,.occ-prek h2,.occ-prek h3,.occ-prek .display{font-family:var(--font-display),Georgia,serif;font-weight:600;letter-spacing:-.055em;line-height:.82}
-            .occ-prek h1{font-size:116px;margin:18px 0 0}
+            .occ-prek h1{font-size:48px;margin:18px 0 0}
             .occ-prek h2{font-size:34px;line-height:1.25;letter-spacing:0;margin:0 0 24px;font-weight:500}
             .occ-prek h3{font-size:26px;margin:28px 0 18px;line-height:1.2}
-            .occ-prek .display-lg{font-size:140px;line-height:.82;letter-spacing:-.055em}
+            .occ-prek .display-lg{font-size:96px;line-height:.9;letter-spacing:-.04em}
             .occ-prek .lead{font-size:24px;line-height:1.5;font-weight:600;margin:0;font-family:var(--font-sans),Inter,Arial,sans-serif;letter-spacing:0}
             .occ-prek .copy{font-size:16px;line-height:1.9;color:#555;margin:0 0 18px;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-prek .hero-sub{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-top:28px;font-family:var(--font-sans),Inter,Arial,sans-serif}
@@ -114,9 +114,13 @@ export default function PrekProductPage() {
             .occ-prek .cta a:hover,.occ-prek .cta-link:hover{background:#111;color:#fff}
             .occ-prek .cta-link.soft{border-color:#ddd;color:#666}
             .occ-prek .cta-link.soft:hover{border-color:#111;color:#111;background:transparent}
+            @media(min-width:768px){
+              .occ-prek h1{font-size:72px}
+              .occ-prek .display-lg{font-size:96px}
+            }
             @media(max-width:850px){
-              .occ-prek h1{font-size:76px}
-              .occ-prek .display-lg{font-size:80px}
+              .occ-prek h1{font-size:48px}
+              .occ-prek .display-lg{font-size:64px}
               .occ-prek .panel{min-height:300px}
               .occ-prek .fact-grid,.occ-prek .flavor-grid{grid-template-columns:1fr}
               .occ-prek .fact:nth-child(2),.occ-prek .fact:nth-child(3){padding-left:0;border-left:0}

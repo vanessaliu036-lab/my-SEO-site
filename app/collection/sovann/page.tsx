@@ -93,10 +93,10 @@ export default function SovannProductPage() {
           __html: `
             .occ-sovann .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#888}
             .occ-sovann h1,.occ-sovann h2,.occ-sovann h3,.occ-sovann .display{font-family:var(--font-display),Georgia,serif;font-weight:600;letter-spacing:-.055em;line-height:.82}
-            .occ-sovann h1{font-size:116px;margin:18px 0 0}
+            .occ-sovann h1{font-size:48px;margin:18px 0 0}
             .occ-sovann h2{font-size:34px;line-height:1.25;letter-spacing:0;margin:0 0 24px;font-weight:500}
             .occ-sovann h3{font-size:26px;margin:28px 0 18px;line-height:1.2}
-            .occ-sovann .display-lg{font-size:140px;line-height:.82;letter-spacing:-.055em}
+            .occ-sovann .display-lg{font-size:96px;line-height:.9;letter-spacing:-.04em}
             .occ-sovann .lead{font-size:24px;line-height:1.5;font-weight:600;margin:0;font-family:var(--font-sans),Inter,Arial,sans-serif;letter-spacing:0}
             .occ-sovann .copy{font-size:16px;line-height:1.9;color:#555;margin:0 0 18px;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-sovann .hero-sub{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-top:28px;font-family:var(--font-sans),Inter,Arial,sans-serif}
@@ -137,9 +137,13 @@ export default function SovannProductPage() {
             .occ-sovann .cta a:hover,.occ-sovann .cta-link:hover{background:#111;color:#fff}
             .occ-sovann .cta-link.soft{border-color:#ddd;color:#666}
             .occ-sovann .cta-link.soft:hover{border-color:#111;color:#111;background:transparent}
+            @media(min-width:768px){
+              .occ-sovann h1{font-size:72px}
+              .occ-sovann .display-lg{font-size:96px}
+            }
             @media(max-width:850px){
-              .occ-sovann h1{font-size:76px}
-              .occ-sovann .display-lg{font-size:80px}
+              .occ-sovann h1{font-size:48px}
+              .occ-sovann .display-lg{font-size:64px}
               .occ-sovann .panel{min-height:300px}
               .occ-sovann .fact-grid,.occ-sovann .flavor-grid{grid-template-columns:1fr}
               .occ-sovann .fact:nth-child(2),.occ-sovann .fact:nth-child(3){padding-left:0;border-left:0}
