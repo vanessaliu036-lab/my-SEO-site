@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { homeFaqs, homeDateModified } from "@/lib/homeContent"
+import { homeFaqs } from "@/lib/homeContent"
 
 const navGroups = [
   {
@@ -21,6 +21,15 @@ const navGroups = [
       { href: "/solutions/roasting-program", name: "Roasting Program" },
       { href: "/solutions/barista-staffing", name: "Barista Staffing" },
       { href: "/solutions/equipment-service", name: "Equipment Service" },
+    ],
+  },
+  {
+    label: "Collection",
+    links: [
+      { href: "/collection", name: "Mondulkiri Origin Collection" },
+      { href: "/collection/sovann", name: "SOVANN" },
+      { href: "/collection/prek", name: "PREK" },
+      { href: "/collection/angkar", name: "ANGKAR" },
     ],
   },
   {
@@ -51,7 +60,7 @@ export default function HomePageClient() {
   return (
     <>
       {/* Hero — 主視覺（整張設計圖），限制在一個視窗高度內、置中，避免大螢幕被放大 */}
-      <section className="w-full bg-[#f3f0ea] flex justify-center">
+      <section className="w-full bg-white flex justify-center">
         <div className="relative">
           <h1 className="sr-only">
             Fine Robusta. Exceptional Origins. Global Connection. — Origin Coffee
@@ -83,7 +92,7 @@ export default function HomePageClient() {
 
       {/* 導覽 Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[#f3f0ea] z-50 flex items-center justify-center px-8">
+        <div className="fixed inset-0 bg-white z-50 flex items-center justify-center px-8">
           <div className="max-w-3xl w-full">
             <div className="flex justify-between items-center mb-12">
               <Link
@@ -128,7 +137,7 @@ export default function HomePageClient() {
       )}
 
       {/* AEO 內容區塊 — hero 之下，供 AI 引擎擷取（自包含直答 + FAQ + 權威引用） */}
-      <section className="bg-[#f3f0ea] border-t border-gray-200 px-8 py-24">
+      <section className="bg-white border-t border-gray-200 px-8 py-24">
         <div className="max-w-4xl mx-auto">
           <p className="text-xs tracking-[0.35em] font-medium text-gray-500 uppercase mb-4">
             Origin Coffee Cambodia
@@ -170,11 +179,6 @@ export default function HomePageClient() {
               ))}
             </div>
           </div>
-
-          <p className="mt-16 text-xs text-gray-400 tracking-wider">
-            Last updated{" "}
-            <time dateTime={homeDateModified}>{homeDateModified}</time>
-          </p>
         </div>
       </section>
     </>
