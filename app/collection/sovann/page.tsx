@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "SOVANN — The Golden Highland | Mondulkiri Robusta Coffee by OCC",
   description:
-    "Discover SOVANN, a balanced Mondulkiri Robusta coffee with chocolate, brown sugar, and roasted almond notes. Explore the climate, red soils, humidity, farming, flavor, and origin behind this Cambodian Robusta.",
+    "SOVANN: a balanced Mondulkiri Robusta with chocolate, brown sugar, and roasted almond notes. Explore the climate, soil, and farming behind it.",
   keywords: [
     "SOVANN coffee",
     "Mondulkiri Robusta coffee",

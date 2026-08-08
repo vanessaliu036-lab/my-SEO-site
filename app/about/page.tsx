@@ -7,7 +7,7 @@ import { pageAlternates } from "@/lib/seo"
 // SEO Metadata
 export const metadata: Metadata = {
   title: "About Origin | Origin Coffee Cambodia - OCC Coffee Roaster",
-  description: "Learn about Origin Coffee Cambodia (OCC) - building infrastructure, not just roasting coffee. We're reconstructing Cambodia's specialty coffee supply chain through ethical sourcing, traceability, and professional training.",
+  description: "Origin Coffee Cambodia (OCC) builds infrastructure, not just roasts coffee — reconstructing the supply chain through ethical sourcing and traceability.",
   keywords: "about coffee roaster Cambodia, OCC coffee, Origin Coffee Cambodia, Cambodia coffee supply chain, specialty coffee infrastructure Cambodia, coffee sourcing Cambodia, ethical coffee Cambodia, coffee roaster Phnom Penh about",
   openGraph: {
     title: "About Origin | Origin Coffee Cambodia - OCC",

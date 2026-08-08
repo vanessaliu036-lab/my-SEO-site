@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   // but no signal to crawlers (see app/sitemap.ts).
   robots: { index: false, follow: false },
   title: "Vision & Mission | Origin Coffee Cambodia - Specialty Coffee Roaster",
-  description: "Discover OCC's vision to elevate Cambodia's coffee culture through exceptional roasting, origin transparency, and wholesale technical support. Leading specialty coffee supplier in Phnom Penh.",
+  description: "OCC's vision: elevate Cambodia's coffee culture through exceptional roasting, origin transparency, and wholesale technical support in Phnom Penh.",
   keywords: "Cambodia coffee mission, specialty coffee vision Cambodia, Cambodian coffee culture, coffee roasting excellence Cambodia, traceable coffee beans Cambodia, wholesale coffee support Phnom Penh, Cambodia coffee suppliers",
   openGraph: {
     title: "Vision & Mission | Origin Coffee Cambodia",
