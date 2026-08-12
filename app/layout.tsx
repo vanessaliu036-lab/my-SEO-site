@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     "Fine Robusta Cambodia",
     "Specialty Robusta",
     "Specialty Robusta Coffee",
+    "Coffea canephora",
     "Cambodian Coffee",
     "Cambodia Coffee Supplier",
     "Specialty Coffee Cambodia",
@@ -45,7 +46,6 @@ export const metadata: Metadata = {
     "Precision Roasting",
     "Single Origin Coffee",
     "Mondulkiri Coffee",
-    "Mondulkiri Arabica",
     "Sustainable Coffee",
     "Cambodian Coffee Industry",
     "Specialty Coffee B2B",
@@ -67,6 +67,7 @@ export const metadata: Metadata = {
 };
 
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const organizationId = `${siteUrl}/#organization`;
 
 export default function RootLayout({
   children,
@@ -76,20 +77,13 @@ export default function RootLayout({
   return (
     <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans bg-white text-gray-900 antialiased">
-        {/* 全版面設計：左側導航欄無背景色 */}
         <div className="flex flex-col md:flex-row min-h-screen">
-          
-          {/* 左側導航欄 - 首頁隱藏（滿版），內頁保留 */}
           <SiteSidebar />
-
-          {/* 右側內容區塊 */}
           <main className="flex-1 relative bg-white">
             {children}
           </main>
-
         </div>
 
-        {/* 固定右側裝飾 */}
         <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-20 hidden md:flex" aria-hidden="true">
           <div className="w-px h-12 bg-gray-300" />
           <span className="text-[10px] text-gray-400 [writing-mode:vertical-lr] tracking-widest">OCC</span>
@@ -99,7 +93,6 @@ export default function RootLayout({
         <Analytics />
         {gaMeasurementId ? <GoogleAnalytics measurementId={gaMeasurementId} /> : null}
 
-        {/* Microsoft Clarity — 流量分析 / heatmap / session recording */}
         <Script
           id="microsoft-clarity"
           strategy="afterInteractive"
@@ -112,13 +105,13 @@ export default function RootLayout({
           }}
         />
 
-        {/* SEO / GEO 數據標註 */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": organizationId,
               "name": "Origin Coffee Cambodia",
               "alternateName": "OCC",
               "url": siteUrl,
@@ -132,6 +125,7 @@ export default function RootLayout({
               "knowsAbout": [
                 "Fine Robusta",
                 "Specialty Robusta",
+                "Coffea canephora",
                 "Cambodian Coffee",
                 "CQI Fine Robusta Standards",
                 "Robusta Grading",
@@ -152,6 +146,10 @@ export default function RootLayout({
                 "url": `${siteUrl}/contact`,
                 "availableLanguage": ["English", "Khmer"],
               },
+              "subjectOf": [
+                { "@id": `${siteUrl}/#webpage` },
+                { "@id": `${siteUrl}/blog#blog` },
+              ],
             }),
           }}
         />
