@@ -2,7 +2,12 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { homeFaqs } from "@/lib/homeContent"
+import {
+  homeAuthoritySections,
+  homeDirectAnswer,
+  homeFaqs,
+  homeSources,
+} from "@/lib/homeContent"
 
 const navGroups = [
   {
@@ -59,7 +64,7 @@ export default function HomePageClient() {
 
   return (
     <>
-      {/* Hero — 主視覺（整張設計圖），限制在一個視窗高度內、置中，避免大螢幕被放大 */}
+      {/* Hero — main visual */}
       <section className="w-full bg-white flex justify-center">
         <div className="relative">
           <h1 className="sr-only">
@@ -67,7 +72,6 @@ export default function HomePageClient() {
             Cambodia connects Cambodian Fine Robusta from Mondulkiri to the world.
           </h1>
 
-          {/* 設計主視覺（WebP，約 85KB） */}
           <img
             src="/hero-home.webp"
             alt="Origin Coffee Cambodia — Fine Robusta from Mondulkiri, Cambodia. Honey process, 99% ripe cherries. Bold and grounded."
@@ -75,13 +79,11 @@ export default function HomePageClient() {
             draggable={false}
           />
 
-          {/* 隱形可點區：MENU（左上）開啟導覽 */}
           <button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open navigation menu"
             className="absolute top-0 left-0 w-[22%] h-[13%] z-20 cursor-pointer"
           />
-          {/* 隱形可點區：SHARE（右上） */}
           <button
             onClick={handleShare}
             aria-label="Share this page"
@@ -90,7 +92,6 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* 導覽 Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-white z-50 flex items-center justify-center px-8">
           <div className="max-w-3xl w-full">
@@ -136,32 +137,77 @@ export default function HomePageClient() {
         </div>
       )}
 
-      {/* AEO 內容區塊 — hero 之下，供 AI 引擎擷取（自包含直答 + FAQ + 權威引用） */}
-      <section className="bg-white border-t border-gray-200 px-8 py-24">
+      {/* Visible AEO authority layer: BLUF + definitions + lists + sources + FAQs. */}
+      <section className="bg-white border-t border-gray-200 px-6 sm:px-8 py-20 md:py-24">
         <div className="max-w-4xl mx-auto">
           <p className="text-xs tracking-[0.35em] font-medium text-gray-500 uppercase mb-4">
             Origin Coffee Cambodia
           </p>
-          {/* 定義區塊 — 首段自包含直答 */}
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight leading-tight mb-6">
-            Cambodia&apos;s specialty coffee company, built on Fine Robusta.
+            Cambodian Fine Robusta, explained for global coffee buyers.
           </h2>
           <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl">
-            Origin Coffee Cambodia (OCC) is a B2B specialty coffee supplier and industry
-            platform that sources, grades, and roasts Cambodian Fine Robusta for roasters,
-            importers, cafés, and distributors worldwide. OCC grades every lot against the{" "}
-            <a
-              href="https://www.coffeeinstitute.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline decoration-gray-400 underline-offset-4 hover:text-gray-900 transition-colors"
-            >
-              Coffee Quality Institute
-            </a>{" "}
-            Fine Robusta protocol, controlling quality at every handoff from farm to cup.
+            {homeDirectAnswer}
           </p>
 
-          {/* 問答區塊 — 與 FAQPage schema 內容一致 */}
+          <div className="mt-16 md:mt-20 border-t border-gray-200">
+            {homeAuthoritySections.map((section, sectionIndex) => (
+              <section
+                key={section.id}
+                id={section.id}
+                className="grid grid-cols-12 gap-x-8 md:gap-x-12 gap-y-5 py-12 md:py-14 border-b border-gray-200 scroll-mt-24"
+              >
+                <div className="col-span-12 md:col-span-4">
+                  <p className="text-[10px] tracking-[0.28em] text-gray-400 uppercase mb-3">
+                    {String(sectionIndex + 1).padStart(2, "0")} / {section.eyebrow}
+                  </p>
+                  <h2 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight leading-snug">
+                    {section.title}
+                  </h2>
+                </div>
+                <div className="col-span-12 md:col-span-8">
+                  <div className="space-y-5 text-[15px] md:text-base text-gray-700 leading-[1.8]">
+                    {section.body.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  {"items" in section && section.items ? (
+                    <ol className="mt-8 space-y-4 list-decimal pl-6 marker:font-semibold marker:text-gray-900">
+                      {section.items.map((item) => (
+                        <li key={item} className="pl-2 text-[15px] md:text-base text-gray-700 leading-[1.75]">
+                          {item}
+                        </li>
+                      ))}
+                    </ol>
+                  ) : null}
+                </div>
+              </section>
+            ))}
+          </div>
+
+          <section className="mt-14 md:mt-16" aria-labelledby="primary-sources-heading">
+            <h2
+              id="primary-sources-heading"
+              className="text-sm tracking-[0.3em] font-light text-gray-400 uppercase mb-7"
+            >
+              Primary Sources
+            </h2>
+            <ol className="space-y-3 list-decimal pl-5">
+              {homeSources.map((source) => (
+                <li key={source.href} className="pl-2 text-sm md:text-[15px] text-gray-600 leading-relaxed">
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-gray-300 underline-offset-4 hover:text-gray-900 hover:decoration-gray-900 transition-colors"
+                  >
+                    {source.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+
           <div className="mt-20 pt-12 border-t border-gray-200">
             <h2 className="text-sm tracking-[0.3em] font-light text-gray-400 uppercase mb-12">
               Frequently Asked Questions
