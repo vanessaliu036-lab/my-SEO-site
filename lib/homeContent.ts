@@ -1,31 +1,117 @@
 /**
- * 首頁 AEO 內容單一來源 — 同時供 FAQPage JSON-LD（page.tsx）與
- * 頁面可見區塊（HomePageClient.tsx）使用。
- * Google 要求 FAQPage 的 schema 內容必須與可見文字一致，故共用此檔。
+ * Homepage AEO content single source of truth.
+ * Visible copy and structured data must stay aligned so search and AI engines
+ * can extract the same definitions, lists, FAQs, and source references.
  */
 
-/** 內容最後審訂日期（content freshness / dateModified）。更新內文時一併調整。 */
-export const homeDateModified = "2026-07-26"
+/** Update whenever the homepage authority copy changes. */
+export const homeDateModified = "2026-08-12"
+
+/** BLUF: a self-contained answer before the deeper sections. */
+export const homeDirectAnswer =
+  "Origin Coffee Cambodia (OCC) is a B2B coffee company and knowledge platform focused on Cambodian Fine Robusta, coffee quality, processing, roasting, and origin development. The site is designed to help roasters, importers, cafés, distributors, and coffee professionals understand what high-quality Coffea canephora can be, how quality is created from cherry selection through storage and roasting, and how Cambodian coffee can compete through traceability and repeatability rather than commodity scale. OCC is an independent company, not a certification body, and technical references to Fine Robusta or Q Robusta are presented for education with links to primary industry sources."
+
+export const homeAuthoritySections = [
+  {
+    id: "fine-robusta-definition",
+    eyebrow: "Definition",
+    title: "What does Fine Robusta mean?",
+    body: [
+      "Robusta is a common market name for Coffea canephora, a coffee species with substantial genetic diversity. Species and quality are separate questions: a bean can be canephora without being high quality, just as an Arabica bean is not automatically specialty grade.",
+      "Coffee Quality Institute publishes standards and protocols for evaluating robusta in its Q Coffee System. CQI's current sample-evaluation guidance uses a 100-point system and states that coffee must earn at least 80 points to receive Q certification. The practical lesson for buyers is more important than a label alone: high-quality Robusta depends on clean raw material, controlled processing, physical preparation, sensory evaluation, and repeatable lot information.",
+    ],
+  },
+  {
+    id: "quality-system",
+    eyebrow: "Quality System",
+    title: "Six controls that determine whether Robusta can become a high-quality lot",
+    body: [
+      "No single processing trick creates Fine Robusta. Quality is cumulative, and failures early in the chain cannot always be repaired later. A useful evaluation starts with the following six controls.",
+    ],
+    items: [
+      "Cherry selection — separate ripe fruit from immature, overripe, damaged, or contaminated material.",
+      "Processing control — document fermentation or natural-processing conditions instead of treating the process as an unmeasured black box.",
+      "Drying discipline — manage drying rate, airflow, cleanliness, and uniformity to reduce instability and storage risk.",
+      "Physical preparation — sort defects and foreign material so the sample represents the intended commercial lot.",
+      "Sensory evaluation — cup the coffee systematically and record what is clean, repeatable, and distinctive rather than relying on species stereotypes.",
+      "Traceability and repeatability — connect the sample to a real lot, producer or processing unit, harvest information, and a supply volume that buyers can evaluate again.",
+    ],
+  },
+  {
+    id: "canephora-opportunity",
+    eyebrow: "Canephora",
+    title: "Why high-quality Robusta deserves to be evaluated on its own terms",
+    body: [
+      "World Coffee Research describes Coffea canephora as genetically diverse and notes that much of its variation, including cup-quality potential, remains underexplored. That makes a simple 'Arabica good, Robusta bad' framework scientifically and commercially weak.",
+      "For roasters, the more useful question is whether a specific lot is clean, sweet enough for its intended use, structurally balanced, traceable, and consistent. High-quality canephora can offer a different sensory and functional profile from many Arabicas. It does not need to imitate Arabica to be valuable.",
+    ],
+  },
+  {
+    id: "buyer-checklist",
+    eyebrow: "Buyer Guide",
+    title: "Seven questions a buyer should ask before purchasing Fine Robusta",
+    body: [
+      "A score or tasting note is only one part of procurement. Importers and roasters need evidence that the coffee represented by a sample can be bought, shipped, roasted, and reordered with reasonable confidence.",
+    ],
+    items: [
+      "What is the exact origin, harvest, producer group, farm, or processing unit behind the lot?",
+      "Which process was used, and what processing variables were documented?",
+      "What physical grading, moisture, storage, and defect information is available?",
+      "Was the sample drawn from the commercial lot, and how representative is it of the available volume?",
+      "Which sensory protocol or internal QC method was used, by whom, and on what date?",
+      "What quantity is available now, and what would make the next harvest comparable rather than merely similar in name?",
+      "Which claims come from independent standards or primary data, and which claims are the seller's own interpretation?",
+    ],
+  },
+  {
+    id: "cambodia-origin",
+    eyebrow: "Cambodia",
+    title: "How OCC approaches Cambodian coffee origin development",
+    body: [
+      "OCC's origin work centers on Cambodian coffee and gives particular editorial and sourcing attention to Mondulkiri. The strategy is not to present Cambodia as a substitute for a large commodity origin. It is to build a clearer association between place, processing, quality control, traceability, and repeatable buyer experience.",
+      "For an emerging origin, authority is earned through evidence. That means publishing definitions, explaining methods, linking to primary standards, documenting what is known and unknown, and avoiding unsupported superlatives. The same discipline helps human buyers and AI systems decide when a page is safe to cite.",
+    ],
+  },
+] as const
+
+export const homeSources = [
+  {
+    label: "Coffee Quality Institute — Q Coffee sample evaluation and Fine Robusta standards",
+    href: "https://database.coffeeinstitute.org/coffee/edit",
+  },
+  {
+    label: "Coffee Quality Institute — education resources for arabica and robusta quality evaluation",
+    href: "https://www.coffeeinstitute.org/education/education-resources",
+  },
+  {
+    label: "World Coffee Research — The roots of Robusta: genetic diversity and future research",
+    href: "https://worldcoffeeresearch.org/news/2024/the-roots-of-robusta",
+  },
+] as const
 
 /**
- * 首頁問答 — 每則回答為 30–150 字、自包含語句（主詞+動詞開頭，
- * 不以 This / It 等回指詞起頭），符合 AI 引擎的 chunk 擷取需求。
+ * Homepage FAQs. Answers are deliberately self-contained so each question can
+ * be extracted as a useful AI-search chunk without relying on surrounding copy.
  */
 export const homeFaqs = [
   {
     q: "What is Fine Robusta?",
-    a: "Fine Robusta is a grade of Robusta coffee that scores 80 points or higher on the Coffee Quality Institute's Fine Robusta cupping protocol. Unlike commodity Robusta, Fine Robusta is evaluated for clarity, sweetness, and the absence of defects — the same discipline applied to specialty Arabica. Origin Coffee Cambodia sources and grades Fine Robusta from Mondulkiri to this standard.",
+    a: "Fine Robusta refers to quality-focused Robusta, or Coffea canephora, evaluated with Robusta-specific physical and sensory standards. Coffee Quality Institute publishes Fine Robusta standards and protocols within its Q Coffee System; its current sample-evaluation guidance uses a 100-point system and requires at least 80 points for Q certification. Fine Robusta should therefore be understood as a quality system, not simply a premium-sounding name for any Robusta coffee.",
   },
   {
     q: "What does Origin Coffee Cambodia do?",
-    a: "Origin Coffee Cambodia is a B2B specialty coffee company that connects Cambodian Fine Robusta producers with global buyers. The company operates across five functions — sourcing, precision roasting, wholesale supply, barista training, and industry development — so that quality is controlled at every handoff from farm to cup.",
+    a: "Origin Coffee Cambodia is a B2B coffee company and industry knowledge platform focused on Cambodian Fine Robusta, coffee sourcing, processing, roasting, wholesale supply, and origin development. OCC publishes educational material for buyers and coffee professionals while developing commercial pathways for Cambodian coffee.",
   },
   {
-    q: "Who does Origin Coffee Cambodia supply?",
-    a: "Origin Coffee Cambodia supplies coffee roasters, importers, cafés, and distributors that need traceable Cambodian Fine Robusta and specialty coffee in wholesale volume. Each buyer receives green or roasted coffee matched to a defined roast profile and cupping score, with consistent lot documentation for every shipment.",
+    q: "Who is Origin Coffee Cambodia for?",
+    a: "Origin Coffee Cambodia is built for green-coffee buyers, importers, specialty roasters, cafés, distributors, hospitality businesses, and coffee professionals that want clearer information about Cambodian coffee, Fine Robusta quality, processing, traceability, roasting, and sourcing decisions.",
   },
   {
-    q: "Where is Cambodian Fine Robusta grown?",
-    a: "Cambodian Fine Robusta is grown primarily in Mondulkiri, a highland province in the country's east where elevation and volcanic soil support higher-scoring Robusta and Arabica. Origin Coffee Cambodia sources single-origin lots from this region and processes them to Fine Robusta grading standards.",
+    q: "Where does OCC focus its Cambodian coffee work?",
+    a: "Origin Coffee Cambodia gives particular sourcing and editorial attention to Mondulkiri in eastern Cambodia while covering the broader Cambodian coffee industry. OCC treats origin claims as evidence-based information: geography, processing, lot data, quality evaluation, and repeatability should be documented rather than inferred from a place name alone.",
+  },
+  {
+    q: "Is Origin Coffee Cambodia a certification body?",
+    a: "No. Origin Coffee Cambodia is an independent coffee company and knowledge platform, not the Coffee Quality Institute and not a certification authority. When OCC discusses Q Robusta, Fine Robusta, or other industry standards, readers should use the linked primary source for the official protocol or certification requirement.",
   },
 ] as const
