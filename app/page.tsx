@@ -1,7 +1,13 @@
 import type { Metadata } from "next"
 import HomePageClient from "./HomePageClient"
-import { siteUrl, siteName, siteDescription } from "@/lib/siteConfig"
-import { homeFaqs, homeDateModified } from "@/lib/homeContent"
+import { ogImage, siteUrl, siteName, siteDescription } from "@/lib/siteConfig"
+import {
+  homeAuthoritySections,
+  homeDateModified,
+  homeDirectAnswer,
+  homeFaqs,
+  homeSources,
+} from "@/lib/homeContent"
 
 export const metadata: Metadata = {
   title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
@@ -12,6 +18,7 @@ export const metadata: Metadata = {
     "Fine Robusta Cambodia",
     "Specialty Robusta",
     "Specialty Robusta Coffee",
+    "Coffea canephora",
     "Cambodian Coffee",
     "Cambodia Coffee Supplier",
     "Specialty Coffee Cambodia",
@@ -23,7 +30,6 @@ export const metadata: Metadata = {
     "Precision Roasting",
     "Single Origin Coffee",
     "Mondulkiri Coffee",
-    "Mondulkiri Arabica",
     "Sustainable Coffee",
     "Cambodian Coffee Industry",
     "Specialty Coffee B2B",
@@ -37,39 +43,69 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     type: "website",
+    images: [{ url: ogImage, alt: siteName }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
     description: siteDescription,
+    images: [ogImage],
   },
 }
+
+const organizationId = `${siteUrl}/#organization`
+const websiteId = `${siteUrl}/#website`
+const webpageId = `${siteUrl}/#webpage`
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": websiteId,
   name: siteName,
   url: siteUrl,
   description: siteDescription,
+  publisher: { "@id": organizationId },
+  inLanguage: "en",
 }
 
 const webPageJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "@id": webpageId,
   name: siteName,
   url: siteUrl,
-  description: siteDescription,
+  description: homeDirectAnswer,
   dateModified: homeDateModified,
+  isPartOf: { "@id": websiteId },
+  about: [
+    {
+      "@type": "DefinedTerm",
+      name: "Fine Robusta",
+      description:
+        "Quality-focused Coffea canephora evaluated with Robusta-specific physical and sensory standards.",
+    },
+    { "@type": "Thing", name: "Coffea canephora" },
+    { "@type": "Thing", name: "Cambodian coffee" },
+    { "@type": "Place", name: "Mondulkiri, Cambodia" },
+  ],
+  citation: homeSources.map((source) => source.href),
   mainEntity: {
-    "@type": "WebSite",
-    name: siteName,
-    url: siteUrl,
+    "@type": "ItemList",
+    name: "Fine Robusta buyer and quality guide",
+    itemListElement: homeAuthoritySections.map((section, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: section.title,
+      url: `${siteUrl}/#${section.id}`,
+    })),
   },
 }
 
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${siteUrl}/#faq`,
+  isPartOf: { "@id": webpageId },
   mainEntity: homeFaqs.map(({ q, a }) => ({
     "@type": "Question",
     name: q,
