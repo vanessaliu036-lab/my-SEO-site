@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "ANGKAR — The Deep Foundation | Mondulkiri Robusta by OCC",
   description:
-    "Discover ANGKAR, a deep full-bodied Mondulkiri Robusta with dark cocoa, roasted peanut, and molasses notes. Explore direct trade, farmer relationships, local roasting, and traditional Cambodian coffee structure.",
+    "ANGKAR: a deep, full-bodied Mondulkiri Robusta with dark cocoa, roasted peanut, and molasses notes. Direct trade, farmer relationships, local roasting.",
   keywords: [
     "ANGKAR coffee",
     "Mondulkiri Robusta",

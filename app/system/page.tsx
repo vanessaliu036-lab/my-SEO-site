@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   // but no signal to crawlers (see app/sitemap.ts).
   robots: { index: false, follow: false },
   title: "The Ecosystem | Origin Coffee Cambodia - Coffee Academy & Supply Chain",
-  description: "Building Cambodia's coffee ecosystem through The Academy, equipment supply, green bean trading, and professional training programs. Creating a skilled barista army to elevate the industry.",
+  description: "Building Cambodia's coffee ecosystem through The Academy, equipment supply, green bean trading, and training — creating a skilled barista army.",
   keywords: "coffee academy Cambodia, barista training Phnom Penh, coffee equipment supply Cambodia, green bean trading Cambodia, coffee ecosystem, coffee packaging solutions, coffee service maintenance, specialty coffee supply chain Cambodia",
   openGraph: {
     title: "The Ecosystem | Origin Coffee Cambodia",

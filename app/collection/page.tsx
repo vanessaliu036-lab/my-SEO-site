@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Mondulkiri Origin Collection | SOVANN, PREK, ANGKAR — OCC",
   description:
-    "Three single-origin expressions from Mondulkiri, Cambodia: SOVANN (Balance), PREK (Bright Current), ANGKAR (Deep Foundation). Direct trade, local roasting, traceable terroir.",
+    "Three single-origin expressions from Mondulkiri, Cambodia: SOVANN, PREK, ANGKAR. Direct trade, local roasting, traceable terroir.",
   alternates: pageAlternates("/collection"),
   openGraph: {
     title: "Mondulkiri Origin Collection | OCC",
