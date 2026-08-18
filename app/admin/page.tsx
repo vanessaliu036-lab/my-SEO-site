@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import AdminDashboard from "./AdminDashboard"
+import AdminPasswordGate from "./AdminPasswordGate"
 
 export const metadata: Metadata = {
   title: "Admin | Origin Coffee Cambodia",
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function AdminPage() {
-  return <AdminDashboard />
+  return (
+    <AdminPasswordGate>
+      <AdminDashboard />
+    </AdminPasswordGate>
+  )
 }
