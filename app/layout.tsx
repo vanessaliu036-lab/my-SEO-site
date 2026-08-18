@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import SiteSidebar from "@/components/SiteSidebar";
+import AdminFrontendSwitch from "@/components/AdminFrontendSwitch";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
@@ -77,6 +78,8 @@ export default function RootLayout({
   return (
     <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans bg-white text-gray-900 antialiased">
+        <AdminFrontendSwitch />
+
         <div className="flex flex-col md:flex-row min-h-screen">
           <SiteSidebar />
           <main className="flex-1 relative bg-white">
