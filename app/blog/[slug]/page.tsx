@@ -120,14 +120,26 @@ function stripMarkdown(text: string): string {
 
 function renderInlineMarkdown(text: string): string {
   const escaped = escapeHtml(normalizeEditorialCaps(text))
-  return addInternalLinks(escaped)
+  const markdownLinks: Array<{ label: string; href: string }> = []
+  const protectedText = escaped.replace(
+    /\[(.*?)\]\((https?:\/\/[^)]+|\/[^)]*)\)/g,
+    (_match, label, href) => {
+      markdownLinks.push({ label, href })
+      return `\x01${markdownLinks.length - 1}\x01`
+    }
+  )
+
+  const rendered = addInternalLinks(protectedText)
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\[(.*?)\]\((https?:\/\/[^)]+|\/[^)]+)\)/g, (_match, label, href) => {
-      return `<a href="${href}" class="border-b border-stone-300 text-stone-950 transition-colors hover:border-stone-950">${label}</a>`
-    })
     .replace(/\[([^\]]+)\]/g, (_match, label) => {
       return `<a href="/contact" class="border-b border-stone-300 text-stone-950 transition-colors hover:border-stone-950">${label}</a>`
     })
+
+  return rendered.replace(/\x01(\d+)\x01/g, (_match, index) => {
+    const { label, href } = markdownLinks[Number(index)]
+    const renderedLabel = label.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    return `<a href="${href}" class="border-b border-stone-300 text-stone-950 transition-colors hover:border-stone-950">${renderedLabel}</a>`
+  })
 }
 
 function addInternalLinks(text: string): string {
