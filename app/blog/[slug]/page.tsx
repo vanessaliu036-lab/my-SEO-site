@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
-import { getAllPosts, getPostBySlug, type BlogPost } from "@/lib/airtable"
+import { getAllPosts, getPostBySlug } from "@/lib/airtable"
 
 // Plain-text / Markdown -> readable HTML with internal links injected
 const INTERNAL_LINKS: Record<string, string> = {
@@ -22,7 +22,48 @@ const INTERNAL_LINKS: Record<string, string> = {
 
 const ROBUSTA_PILLAR_SLUG = "cambodia-specialty-robusta-coffee-guide"
 const ROBUSTA_PILLAR_HREF = `/blog/${ROBUSTA_PILLAR_SLUG}`
-const ROBUSTA_CLUSTER_LIMIT = 40
+const ROBUSTA_CLUSTER_SLUGS = new Set([
+  "what-is-specialty-robusta-coffee-complete-guide",
+  "what-makes-fine-robusta",
+  "fine-robusta-grading-standards-cqi-certification-for-cambodia",
+  "evaluating-fine-robusta-suppliers-key-technical-standards-for-quality-assurance",
+  "fine-robusta-vs-arabica-buyer-guide",
+  "fine-robusta-post-harvest-quality",
+  "robusta-vs-arabica-processing",
+  "is-coffee-industry-undervaluing-canephora-quality",
+  "cambodian-robusta-vs-vietnamese-robusta",
+  "what-makes-mondulkiri-robusta-different",
+  "could-mondulkiri-reference-origin-fine-robusta-asia",
+  "mondulkiri-coffee-processing-facility",
+  "how-to-verify-mondulkiri-coffee-origin",
+  "cambodia-coffee-selective-harvesting",
+  "farmer-payment-structure-coffee-quality",
+  "mondulkiri-coffee-cherry-price",
+  "700-tonnes-mondulkiri-coffee-purchase",
+  "cambodia-coffee-production-vs-consumption",
+  "why-cambodia-imports-coffee",
+  "could-cambodia-replace-10-percent-coffee-imports",
+  "cambodia-coffee-industry-2030-fine-robusta-scenario",
+  "sample-cambodian-coffee-before-buying-lot",
+  "roaster-checklist-buying-cambodian-green-coffee",
+  "coffee-contract-quality-tolerances-fine-robusta",
+  "green-coffee-purchase-contract-checklist-roasters",
+  "offer-vs-pre-shipment-vs-arrival-coffee-sample",
+  "how-many-green-coffee-samples-before-approving-lot",
+  "green-coffee-arrival-inspection-checklist",
+  "green-coffee-shipment-fails-arrival-qc",
+  "why-great-coffee-sample-fails-commercial-scale",
+  "why-green-coffee-moisture-consistency-matters",
+  "why-coffee-origins-need-lot-codes-before-blockchain",
+  "what-creates-fine-robusta-price-premium",
+  "fine-robusta-price-score-traceability-consistency",
+  "fine-robusta-consistency-vs-extra-cup-point",
+  "fine-robusta-premium-espresso-milk-single-origin",
+  "risk-growing-cambodia-fine-robusta-too-fast",
+  "navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers",
+  "understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee",
+  "cambodia-specialty-coffee-wholesale-buyer-checklist",
+])
 const ROBUSTA_PILLAR_ANCHORS = [
   "Robusta Cambodia",
   "Cambodia Robusta guide",
@@ -30,33 +71,6 @@ const ROBUSTA_PILLAR_ANCHORS = [
   "Fine Robusta from Cambodia",
   "Cambodia Robusta sourcing guide",
 ]
-
-function robustaRelevanceScore(post: BlogPost): number {
-  const text = `${post.title} ${post.slug} ${post.category} ${post.summary}`.toLowerCase()
-  let score = 0
-
-  if (/\bfine\s+robusta\b/.test(text)) score += 14
-  if (/\brobusta\b/.test(text)) score += 12
-  if (/\bcanephora\b/.test(text)) score += 10
-  if (/\bmondulkiri\b/.test(text)) score += 9
-  if (/\bgreen\s+coffee\b/.test(text)) score += 6
-  if (/\b(supplier|exporter|sourcing|buyer|buyers|importer|importers|wholesale)\b/.test(text)) score += 4
-  if (/\b(processing|cupping|quality|sample|samples|espresso|milk)\b/.test(text)) score += 2
-  if (/\bcambodia(n)?\b/.test(text)) score += 1
-
-  return score
-}
-
-function getRobustaClusterSlugs(posts: BlogPost[]): Set<string> {
-  const ranked = posts
-    .filter((post) => post.slug !== ROBUSTA_PILLAR_SLUG)
-    .map((post) => ({ slug: post.slug, score: robustaRelevanceScore(post) }))
-    .filter((post) => post.score >= 8)
-    .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
-    .slice(0, ROBUSTA_CLUSTER_LIMIT)
-
-  return new Set(ranked.map((post) => post.slug))
-}
 
 function robustaAnchorForSlug(slug: string): string {
   const hash = Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 0)
@@ -366,9 +380,8 @@ export default async function BlogPostPage({
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title)
-  const robustaClusterSlugs = getRobustaClusterSlugs(allPosts)
   const showRobustaPillarLink =
-    post.slug !== ROBUSTA_PILLAR_SLUG && robustaClusterSlugs.has(post.slug)
+    post.slug !== ROBUSTA_PILLAR_SLUG && ROBUSTA_CLUSTER_SLUGS.has(post.slug)
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
 
   const articleSchema = {
@@ -494,7 +507,7 @@ export default async function BlogPostPage({
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
           )}
 
-          {/* Robusta Cambodia pillar backlink: only the 40 strongest related published posts */}
+          {/* Robusta Cambodia pillar backlink: curated 40-post cluster */}
           {showRobustaPillarLink && (
             <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
               <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Core guide</p>
