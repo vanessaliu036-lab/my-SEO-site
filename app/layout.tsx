@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import SiteSidebar from "@/components/SiteSidebar";
+import PublicSiteChrome from "@/components/PublicSiteChrome";
 import AdminFrontendSwitch from "@/components/AdminFrontendSwitch";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
@@ -80,12 +80,9 @@ export default function RootLayout({
       <body className="font-sans bg-white text-gray-900 antialiased">
         <AdminFrontendSwitch />
 
-        <div className="flex flex-col md:flex-row min-h-screen">
-          <SiteSidebar />
-          <main className="flex-1 relative bg-white">
-            {children}
-          </main>
-        </div>
+        <PublicSiteChrome>
+          <main className="relative min-h-screen bg-white">{children}</main>
+        </PublicSiteChrome>
 
         <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-20 hidden md:flex" aria-hidden="true">
           <div className="w-px h-12 bg-gray-300" />
