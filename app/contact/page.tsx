@@ -5,15 +5,12 @@ import { pageAlternates } from "@/lib/seo"
 import ContactForm from "./ContactForm"
 import type { ContactFormData } from "./action"
 
-// Map URL query param values to ContactFormData["service"] enum values
 const INTEREST_MAP: Record<string, ContactFormData["service"]> = {
   wholesale: "Wholesale",
   roasting: "Roasting Program",
   staffing: "Barista Staffing",
   equipment: "Equipment Service",
 }
-
-// ── Metadata ──────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: "Contact | Origin Coffee Cambodia - OCC",
@@ -39,9 +36,6 @@ export const metadata: Metadata = {
   },
 }
 
-// ── JSON-LD ───────────────────────────────────────────────────────────────────
-
-/** Online-first B2B — logo matches sitewide `siteLogoUrl`; no street address. */
 const contactOrganizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -81,8 +75,6 @@ const breadcrumbSchema = {
   ],
 }
 
-// ── Page (Server Component) ───────────────────────────────────────────────────
-
 export default async function ContactPage({
   searchParams,
 }: {
@@ -93,43 +85,17 @@ export default async function ContactPage({
 
   return (
     <>
-      {/*
-       * Font loading strategy:
-       * - The <link> tags use React 19's stylesheet hoisting (precedence prop)
-       *   which inserts them into <head> at runtime — zero build-time network calls.
-       * - The <style> block defines CSS variables as fallback font stacks;
-       *   once the Google Fonts stylesheet loads these get overridden naturally
-       *   because the font-family names match what Google Fonts provides.
-       */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow+Condensed:wght@300;400;500&display=swap"
-        // @ts-ignore — precedence is a React 19 stylesheet hoisting prop, not yet in @types/react
-        precedence="default"
-      />
-      {/* Define CSS variables so ContactForm can reference fonts via var() */}
       <style>{`
         .contact-font-vars {
-          --font-bebas: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
-          --font-barlow: 'Barlow', Arial, sans-serif;
-          --font-barlow-condensed: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+          --font-bebas: var(--font-display), Georgia, serif;
+          --font-barlow: var(--font-sans), Inter, Arial, sans-serif;
+          --font-barlow-condensed: var(--font-sans), Inter, Arial, sans-serif;
         }
       `}</style>
 
-      {/* Structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactOrganizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactOrganizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Interactive contact form — Client Component */}
       <ContactForm fontVars="contact-font-vars" defaultInterest={defaultInterest} />
     </>
   )
