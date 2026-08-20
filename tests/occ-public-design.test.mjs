@@ -54,3 +54,21 @@ test("collection uses the approved overlapping three-package composition without
   assert.match(stage, /CoffeeBagVisual/)
   assert.match(stage, /\/collection\/\$\{item\.slug\}/)
 })
+
+test("origin page exposes four source-backed features and alternating motion while preserving JSON-LD", () => {
+  const page = read("app/coffee/single-origin/page.tsx")
+  const feature = read("components/ui/origin-feature-strip.tsx")
+  const reveal = read("components/ui/alternating-reveal-section.tsx")
+
+  for (const label of ["ALTITUDE", "TERROIR", "ORIGIN", "TRACEABILITY"]) {
+    assert.match(page, new RegExp(label))
+  }
+  assert.match(feature, /lucide-react/)
+  assert.match(reveal, /whileInView/)
+  assert.match(reveal, /amount:\s*0\.25/)
+  assert.match(reveal, /useReducedMotion/)
+  assert.match(page, /ItemList/)
+  assert.match(page, /FAQPage/)
+  assert.match(page, /BreadcrumbList/)
+  assert.match(page, /Terroir Architecture\./)
+})
