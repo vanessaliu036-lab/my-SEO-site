@@ -43,9 +43,14 @@ const nextConfig = {
   // 2 _next/static/media/*.woff2 404s are build-hash churn — ignored (Google re-crawls after next deploy).
   // /coffee (bare) → /coffee/single-origin (only child route exists in app/).
   async redirects() {
-    // /coffee bare → child route
+    // Structural canonical redirects + /coffee bare → child route.
     const structural = [
       { source: '/coffee', destination: '/coffee/single-origin', permanent: true },
+      {
+        source: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-and-export-capacity',
+        destination: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-export-capacity',
+        permanent: true,
+      },
     ]
     const dead = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
