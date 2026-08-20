@@ -241,11 +241,123 @@
     margin-inline: auto;
   }
 
+  .occ-horizontal-editorial main > .max-w-5xl,
+  .occ-horizontal-editorial main > .max-w-6xl,
+  .occ-horizontal-editorial main > .max-w-7xl {
+    max-width: var(--occ-wide) !important;
+  }
+
+  .occ-horizontal-editorial main > .max-w-5xl > header {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
+    column-gap: 2rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .occ-horizontal-editorial main > .max-w-5xl > header > span,
+  .occ-horizontal-editorial main > .max-w-5xl > header > p {
+    grid-column: 1 / span 3;
+  }
+
+  .occ-horizontal-editorial main > .max-w-5xl > header > h1 {
+    grid-column: 4 / -1;
+    margin-bottom: 0 !important;
+    font-family: var(--font-display), Georgia, serif !important;
+    font-size: clamp(4rem, 7.8vw, 8.6rem) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.055em !important;
+    line-height: 0.9 !important;
+  }
+
+  .occ-horizontal-editorial main > .max-w-5xl > ul > li {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .occ-horizontal-editorial main > .max-w-5xl > ul h2 {
+    max-width: none !important;
+    font-family: var(--font-display), Georgia, serif !important;
+    font-size: clamp(1.65rem, 2.4vw, 2.6rem) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.08 !important;
+    text-decoration: none !important;
+  }
+
+  .occ-horizontal-editorial article.max-w-5xl {
+    max-width: var(--occ-wide) !important;
+  }
+
+  .occ-horizontal-editorial article.max-w-5xl > header {
+    max-width: none !important;
+    border-bottom: 1px solid var(--occ-line);
+    padding-bottom: 3rem;
+  }
+
+  .occ-horizontal-editorial article.max-w-5xl > header h1 {
+    font-family: var(--font-display), Georgia, serif !important;
+    font-size: clamp(3.2rem, 6.6vw, 7.6rem) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.05em !important;
+    line-height: 0.94 !important;
+  }
+
+  .occ-horizontal-editorial article.max-w-5xl > header .article-summary {
+    max-width: 760px !important;
+    border-left-color: var(--occ-ink) !important;
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  .occ-horizontal-editorial aside[aria-label*="related buyer guide"] {
+    max-width: 1120px !important;
+    margin-top: 2.5rem !important;
+    margin-bottom: 4rem !important;
+    background: rgba(255, 255, 255, 0.38) !important;
+    border-left-color: var(--occ-ink) !important;
+  }
+
+  .occ-horizontal-contact .contact-font-vars {
+    background: var(--occ-ivory) !important;
+  }
+
+  .occ-horizontal-contact .contact-font-vars h1 {
+    font-family: var(--font-display), Georgia, serif !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.055em !important;
+    line-height: 0.9 !important;
+    text-transform: none;
+  }
+
+  .occ-horizontal-contact .contact-font-vars button[type="submit"] {
+    border-radius: 9999px;
+    background: var(--occ-ink) !important;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
   @media (min-width: 768px) {
     .occ-horizontal-service main,
     .occ-horizontal-editorial main,
     .occ-horizontal-contact main {
       width: min(calc(100% - 4rem), var(--occ-wide));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .occ-horizontal-editorial main > .max-w-5xl > header {
+      display: block;
+    }
+
+    .occ-horizontal-editorial main > .max-w-5xl > header > h1 {
+      margin-top: 1rem;
+      font-size: clamp(3.3rem, 16vw, 5rem) !important;
+    }
+
+    .occ-horizontal-editorial article.max-w-5xl > header h1 {
+      font-size: clamp(2.8rem, 13vw, 4.6rem) !important;
     }
   }
 }
