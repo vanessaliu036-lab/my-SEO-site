@@ -131,7 +131,7 @@ export default function HomePageClient() {
           <h1 className="mx-auto max-w-5xl text-balance text-5xl font-normal leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]">
             Cambodia’s Fine Robusta. Built for the World.
           </h1>
-          <p className="mx-auto mt-7 max-w-2xl text-pretty text-sm font-light leading-7 text-white/78 sm:text-base md:text-lg md:leading-8">
+          <p className="mx-auto mt-7 max-w-2xl text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
             From Mondulkiri farms to global roasters, we connect quality-focused Cambodian canephora with buyers who care about process, traceability, and cup performance.
           </p>
 
