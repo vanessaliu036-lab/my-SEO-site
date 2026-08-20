@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import HomePageClient from "./HomePageClient"
+import HomeTemplate from "@/components/templates/home-template"
 import { ogImage, siteUrl, siteName, siteDescription } from "@/lib/siteConfig"
 import {
   homeAuthoritySections,
@@ -119,7 +119,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <HomePageClient />
+      <HomeTemplate />
     </>
   )
 }

@@ -1,5 +1,4 @@
 import BlogScrollToContent from "./BlogScrollToContent"
-import { OccHorizontalFrame } from "@/components/ui/occ-horizontal-frame"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { siteDescription, siteName, siteUrl } from "@/lib/siteConfig"
 
@@ -40,7 +39,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
       <BlogScrollToContent />
-      <OccHorizontalFrame variant="editorial">{children}</OccHorizontalFrame>
+      {children}
     </>
   )
 }
