@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
+import { ArrowUpRight } from "lucide-react"
 import { siteUrl, siteName, ogImage } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { getAllPosts } from "@/lib/airtable"
@@ -15,8 +16,7 @@ export async function generateMetadata({
   const { page: pageStr } = await searchParams
   const page = Math.max(1, parseInt(pageStr || "1", 10) || 1)
   const titleBase = "Blog | Origin Coffee Cambodia"
-  const canonical =
-    page <= 1 ? `${siteUrl}/blog` : `${siteUrl}/blog?page=${page}`
+  const canonical = page <= 1 ? `${siteUrl}/blog` : `${siteUrl}/blog?page=${page}`
   return {
     title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
     description:
@@ -65,133 +65,102 @@ export default async function BlogPage({
   const posts = await getAllPosts()
   const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
 
-  if (posts.length > 0 && page > totalPages) {
-    redirect(`/blog?page=${totalPages}`)
-  }
-  if (page < 1) {
-    redirect("/blog")
-  }
+  if (posts.length > 0 && page > totalPages) redirect(`/blog?page=${totalPages}`)
+  if (page < 1) redirect("/blog")
 
   const start = (page - 1) * POSTS_PER_PAGE
   const pagePosts = posts.slice(start, start + POSTS_PER_PAGE)
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <main className="min-h-screen bg-white font-sans overflow-x-hidden">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <main className="min-h-screen overflow-x-hidden bg-[#f6f3ea] text-[#182019]">
+        <section className="relative border-b border-black/10">
+          <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.06] md:grid" aria-hidden="true">
+            {Array.from({ length: 12 }).map((_, index) => <div key={index} />)}
+          </div>
+          <div className="relative mx-auto grid min-h-[58svh] w-full max-w-[1680px] grid-cols-1 items-end gap-10 px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20 lg:pt-32">
+            <div className="md:col-span-3 md:pb-3">
+              <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Field Notes &amp; Craft</p>
+              <p className="mt-6 max-w-xs text-[15px] leading-7 text-black/52">Origin intelligence from the OCC team.</p>
+            </div>
+            <div className="md:col-span-7 md:col-start-4">
+              <h1 className="font-[var(--font-display)] text-[clamp(5rem,10vw,10rem)] font-normal leading-[0.78] tracking-[-0.065em]">THE SIGNAL.</h1>
+            </div>
+            <div className="md:col-span-2 md:pb-3">
+              <div className="border-t border-black/10 pt-5 text-[10px] uppercase leading-6 tracking-[0.18em] text-black/38">
+                <p>Journal / OCC</p>
+                <p>Page {page} / {totalPages}</p>
+                <p>{posts.length} Articles</p>
+              </div>
+            </div>
+          </div>
+          <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
+            <span>Origin Coffee Cambodia</span>
+            <span className="hidden sm:block">Research · Buyers · Origins</span>
+            <span>04 / Blog</span>
+          </div>
+        </section>
 
-          <header className="mb-8 md:mb-12 border-b border-stone-200 pb-8 md:pb-10">
-            <span className="text-[10px] tracking-[0.26em] text-stone-400 uppercase mb-4 block">
-              Field Notes &amp; Craft
-            </span>
-            <h1 className="font-sans text-3xl sm:text-4xl md:text-[3rem] font-semibold text-stone-950 tracking-tight leading-none mb-4">
-              The Signal.
-            </h1>
-            <p className="max-w-xl font-sans text-sm sm:text-base text-stone-500 leading-relaxed">
-              Origin intelligence from the OCC team.
-            </p>
-          </header>
-
+        <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
           {posts.length === 0 ? (
             <div className="py-24 text-center">
-              <p className="text-stone-400 text-sm tracking-[0.18em] uppercase">
-                Articles coming soon.
-              </p>
+              <p className="text-sm uppercase tracking-[0.18em] text-black/35">Articles coming soon.</p>
             </div>
           ) : (
             <>
-            <ul className="divide-y divide-stone-200">
-              {pagePosts.map((post) => (
-                <li key={post.id} className="py-8 md:py-11 group">
-                  <Link href={`/blog/${post.slug}`} className="block active:opacity-90">
-                    <div className="flex items-start justify-between gap-5 sm:gap-10">
-                      <div className="flex-1 min-w-0">
-                        {post.category && (
-                          <span className="text-[10px] tracking-[0.22em] text-stone-400 uppercase mb-3 block">
-                            {post.category}
-                          </span>
-                        )}
-                        <h2 className="max-w-4xl font-sans text-[16px] font-semibold text-stone-950 tracking-tight leading-[1.35] mb-3 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
-                          {post.title}
-                        </h2>
-                        {post.summary && (
-                          <p className="font-sans text-[13px] sm:text-sm text-stone-500 leading-relaxed max-w-2xl [text-wrap:pretty]">
-                            {post.summary}
-                          </p>
-                        )}
-                        <div className="flex items-center gap-3 mt-5">
-                          {post.publish_date && (
-                            <time
-                              dateTime={post.publish_date}
-                              className="text-[10px] tracking-[0.18em] text-stone-400 uppercase"
-                            >
-                              {new Date(post.publish_date).toLocaleDateString("en-GB", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              })}
-                            </time>
-                          )}
-                          {post.author && post.author !== "OCC Team" && (
-                            <span className="text-[10px] tracking-[0.18em] text-stone-400 uppercase">
-                              / {post.author}
-                            </span>
-                          )}
+              <section className="border-b border-black/10 py-14 lg:py-20" aria-label="Journal articles">
+                <div className="border-t border-black/10">
+                  {pagePosts.map((post, index) => (
+                    <article key={post.id} className="group border-b border-black/10">
+                      <Link href={`/blog/${post.slug}`} className="grid grid-cols-1 gap-5 py-8 transition-colors hover:bg-white/30 md:grid-cols-12 md:items-start md:gap-6 lg:py-10">
+                        <div className="md:col-span-1">
+                          <span className="text-[9px] tracking-[0.2em] text-black/30">{String(start + index + 1).padStart(3, "0")}</span>
                         </div>
-                      </div>
-                      <span
-                        className="text-stone-300 text-xl flex-shrink-0 group-hover:text-stone-950 transition-colors mt-2"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                        <div className="md:col-span-6">
+                          {post.category && <span className="mb-3 block text-[9px] uppercase tracking-[0.22em] text-black/35">{post.category}</span>}
+                          <h2 className="max-w-4xl font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.035em] transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl lg:text-[2.8rem]">
+                            {post.title}
+                          </h2>
+                        </div>
+                        <div className="md:col-span-3">
+                          {post.summary && <p className="max-w-md text-sm leading-7 text-black/50">{post.summary}</p>}
+                        </div>
+                        <div className="flex items-end justify-between gap-4 md:col-span-2 md:min-h-[110px] md:flex-col md:items-end">
+                          <div className="text-[9px] uppercase leading-5 tracking-[0.16em] text-black/34 md:text-right">
+                            {post.publish_date && (
+                              <time dateTime={post.publish_date}>
+                                {new Date(post.publish_date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}
+                              </time>
+                            )}
+                            {post.author && post.author !== "OCC Team" && <p>{post.author}</p>}
+                          </div>
+                          <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
+                        </div>
+                      </Link>
+                    </article>
+                  ))}
+                </div>
+              </section>
 
-            {totalPages > 1 && (
-              <nav
-                className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
-                aria-label="Blog pagination"
-              >
-                {page > 1 ? (
-                  <Link
-                    href={page === 2 ? "/blog" : `/blog?page=${page - 1}`}
-                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
-                  >
-                    ← Previous
-                  </Link>
-                ) : (
-                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
-                    ← Previous
-                  </span>
-                )}
-                <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
-                  Page {page} / {totalPages}
-                </span>
-                {page < totalPages ? (
-                  <Link
-                    href={`/blog?page=${page + 1}`}
-                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
-                  >
-                    Next →
-                  </Link>
-                ) : (
-                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
-                    Next →
-                  </span>
-                )}
-              </nav>
-            )}
+              {totalPages > 1 && (
+                <nav className="flex flex-wrap items-center justify-between gap-4 border-b border-black/10 py-10" aria-label="Blog pagination">
+                  {page > 1 ? (
+                    <Link href={page === 2 ? "/blog" : `/blog?page=${page - 1}`} className="text-[10px] font-medium uppercase tracking-[0.18em] text-black/55 transition-colors hover:text-black">← Previous</Link>
+                  ) : <span className="text-[10px] uppercase tracking-[0.18em] text-black/20">← Previous</span>}
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-black/35">Page {page} / {totalPages}</span>
+                  {page < totalPages ? (
+                    <Link href={`/blog?page=${page + 1}`} className="text-[10px] font-medium uppercase tracking-[0.18em] text-black/55 transition-colors hover:text-black">Next →</Link>
+                  ) : <span className="text-[10px] uppercase tracking-[0.18em] text-black/20">Next →</span>}
+                </nav>
+              )}
             </>
           )}
 
+          <footer className="flex flex-col gap-4 py-9 text-[9px] uppercase tracking-[0.19em] text-black/34 sm:flex-row sm:justify-between">
+            <span>Origin Coffee Cambodia · OCC</span>
+            <span>Journal / The Signal</span>
+          </footer>
         </div>
       </main>
     </>

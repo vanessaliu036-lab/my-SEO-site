@@ -4,6 +4,7 @@ import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 import ContactForm from "./ContactForm"
 import type { ContactFormData } from "./action"
+import "./contact-editorial.css"
 
 const INTEREST_MAP: Record<string, ContactFormData["service"]> = {
   wholesale: "Wholesale",
@@ -60,18 +61,8 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: siteUrl,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Contact",
-      item: `${siteUrl}/contact`,
-    },
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Contact", item: `${siteUrl}/contact` },
   ],
 }
 
@@ -92,11 +83,11 @@ export default async function ContactPage({
           --font-barlow-condensed: var(--font-sans), Inter, Arial, sans-serif;
         }
       `}</style>
-
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactOrganizationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-
-      <ContactForm fontVars="contact-font-vars" defaultInterest={defaultInterest} />
+      <div className="occ-contact-shell">
+        <ContactForm fontVars="contact-font-vars" defaultInterest={defaultInterest} />
+      </div>
     </>
   )
 }
