@@ -4,107 +4,55 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 
-test("public chrome keeps the original five independent OCC navigation groups and removes legacy sidebar", () => {
-  const nav = read("components/ui/public-top-nav.tsx")
-  const layout = read("app/layout.tsx")
+test("retained ABOUT and COLLECTION pages preserve their SEO semantics after route grouping", () => {
+  const about = read("app/(site)/about/page.tsx")
+  const collection = read("app/(site)/collection/page.tsx")
 
-  for (const label of ["ABOUT", "SOLUTIONS", "COLLECTION", "BLOG", "CONTACT"]) {
-    assert.match(nav, new RegExp(label))
-  }
-
-  for (const forbidden of ["HOME", "COFFEE", "INSIGHTS", "CULTURE & ETHICS"]) {
-    assert.doesNotMatch(nav, new RegExp(`label: \\"${forbidden}\\"`))
-  }
-
-  assert.doesNotMatch(layout, /SiteSidebar/)
-  assert.match(layout, /PublicSiteChrome/)
-})
-
-test("about uses the reusable minimalist hero with a coffee package and preserves SEO semantics", () => {
-  const hero = read("components/ui/minimalist-hero.tsx")
-  const bag = read("components/ui/coffee-bag-visual.tsx")
-  const about = read("app/about/page.tsx")
-
-  assert.match(hero, /framer-motion/)
-  assert.match(hero, /@\/lib\/utils/)
-  assert.match(bag, /FINE ROBUSTA/)
-  assert.match(about, /MinimalistHero/)
-  assert.match(about, /CoffeeBagVisual/)
-  assert.match(about, /ABOUT/)
-  assert.match(about, /ORIGIN\./)
-  assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
   assert.match(about, /AboutPage/)
-})
-
-test("collection uses the approved overlapping three-package composition without changing routes or schema", () => {
-  const page = read("app/collection/page.tsx")
-  const stage = read("components/ui/collection-package-stage.tsx")
-
-  assert.match(page, /CollectionPackageStage/)
-  assert.match(page, /THREE EXPRESSIONS/)
-  assert.match(page, /CollectionPage/)
+  assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
+  assert.match(collection, /CollectionPage/)
   for (const slug of ["sovann", "prek", "angkar"]) {
-    assert.match(page, new RegExp(`slug: "${slug}"`))
+    assert.match(collection, new RegExp(`slug: "${slug}"`))
   }
-  assert.match(stage, /framer-motion/)
-  assert.match(stage, /CoffeeBagVisual/)
-  assert.match(stage, /\/collection\/\$\{item\.slug\}/)
 })
 
-test("origin page exposes four source-backed features and alternating motion while preserving JSON-LD", () => {
-  const page = read("app/coffee/single-origin/page.tsx")
-  const feature = read("components/ui/origin-feature-strip.tsx")
-  const reveal = read("components/ui/alternating-reveal-section.tsx")
+test("shared site shell owns chrome while blog keeps non-visual schema and pillar helpers", () => {
+  const siteLayout = read("app/(site)/layout.tsx")
+  const siteShell = read("components/site/site-shell.tsx")
+  const blogLayout = read("app/(site)/blog/layout.tsx")
+  const postLayout = read("app/(site)/blog/[slug]/layout.tsx")
 
-  for (const label of ["ALTITUDE", "TERROIR", "ORIGIN", "TRACEABILITY"]) {
-    assert.match(page, new RegExp(label))
-  }
-  assert.match(feature, /lucide-react/)
-  assert.match(reveal, /whileInView/)
-  assert.match(reveal, /amount:\s*0\.25/)
-  assert.match(reveal, /useReducedMotion/)
-  assert.match(page, /ItemList/)
-  assert.match(page, /FAQPage/)
-  assert.match(page, /BreadcrumbList/)
-  assert.match(page, /Terroir Architecture\./)
-})
-
-test("route families share one OCC horizontal frame while page-level SEO logic remains owned by each route", () => {
-  const frame = read("components/ui/occ-horizontal-frame.tsx")
-  assert.match(frame, /occ-horizontal-frame/)
-
-  for (const layoutPath of [
-    "app/about/layout.tsx",
-    "app/solutions/layout.tsx",
-    "app/collection/layout.tsx",
-    "app/coffee/layout.tsx",
-    "app/contact/layout.tsx",
-    "app/vision/layout.tsx",
-    "app/system/layout.tsx",
-    "app/signal/layout.tsx",
-    "app/matter/layout.tsx",
-    "app/archive/layout.tsx",
-  ]) {
-    assert.match(read(layoutPath), /OccHorizontalFrame/)
-  }
-
-  const blogLayout = read("app/blog/layout.tsx")
-  assert.match(blogLayout, /OccHorizontalFrame/)
+  assert.match(siteLayout, /SiteShell/)
+  assert.match(siteShell, /SiteHeader/)
   assert.match(blogLayout, /"@type": "Blog"/)
+  assert.doesNotMatch(blogLayout, /OccHorizontalFrame/)
+  assert.match(postLayout, /MONEY_PILLARS/)
+  assert.match(postLayout, /Related buyer guide/)
+})
 
-  const wholesale = read("app/solutions/wholesale/page.tsx")
+test("retained service, article, and contact SEO/function logic remains in place", () => {
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const article = read("app/(site)/blog/[slug]/page.tsx")
+  const contact = read("app/(site)/contact/page.tsx")
+  const contactAction = read("app/(site)/contact/action.ts")
+
   assert.match(wholesale, /"@type": "FAQPage"/)
   assert.match(wholesale, /"@type": "Service"/)
   assert.match(wholesale, /"@type": "BreadcrumbList"/)
-
-  const article = read("app/blog/[slug]/page.tsx")
-  assert.match(article, /ROBUSTA_PILLAR_SLUG/)
   assert.match(article, /Article/)
   assert.match(article, /BreadcrumbList/)
-
-  const contact = read("app/contact/page.tsx")
   assert.match(contact, /ContactForm/)
+  assert.match(contactAction, /"use server"/)
+})
 
-  const signal = read("app/signal/page.tsx")
-  assert.match(signal, /index:\s*false/)
+test("approved reusable product and motion primitives remain available for the visual redesign phase", () => {
+  const packageStage = read("components/ui/collection-package-stage.tsx")
+  const bag = read("components/ui/coffee-bag-visual.tsx")
+  const reveal = read("components/ui/alternating-reveal-section.tsx")
+
+  assert.match(packageStage, /framer-motion/)
+  assert.match(packageStage, /CoffeeBagVisual/)
+  assert.match(bag, /FINE ROBUSTA/)
+  assert.match(reveal, /whileInView/)
+  assert.match(reveal, /useReducedMotion/)
 })
