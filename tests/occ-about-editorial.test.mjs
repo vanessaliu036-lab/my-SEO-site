@@ -19,6 +19,15 @@ test("ABOUT uses the approved editorial template instead of the old demo hero", 
   assert.match(template, /OCC BUILDS INFRASTRUCTURE\./)
 })
 
+test("ABOUT preserves its existing visible brand copy while changing presentation", () => {
+  const template = read(templatePath)
+
+  assert.match(template, /Full traceability from farm to cup, documenting every step of our coffee's journey from Mondulkiri, Ratanakiri, and Kampot to your espresso machine\./)
+  assert.match(template, /Building a skilled barista army through comprehensive education programs that elevate service standards across Cambodia's café industry\./)
+  assert.match(template, /Long-term relationships with farmers, café owners, and hospitality businesses built on trust, consistency, and shared growth\./)
+  assert.match(template, /Partnering with cafés, hotels, restaurants, and coffee enthusiasts across Cambodia/)
+})
+
 test("ABOUT preserves SEO semantics and only links into the five-section architecture", () => {
   const about = read("app/(site)/about/page.tsx")
 
