@@ -166,9 +166,9 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
           <div className="mt-10 md:col-span-7 md:col-start-6 md:mt-0">
             {[
-              ["Supply Chain Transparency", "Full traceability from farm to cup, documenting every step of our coffee's journey from Cambodian origin to the buyer."],
-              ["Professional Training", "Building professional capability through education programs that raise service and coffee standards across Cambodia."],
-              ["Sustainable Partnerships", "Long-term relationships with farmers, café owners, hospitality businesses, and buyers built on consistency and shared growth."],
+              ["Supply Chain Transparency", "Full traceability from farm to cup, documenting every step of our coffee's journey from Mondulkiri, Ratanakiri, and Kampot to your espresso machine."],
+              ["Professional Training", "Building a skilled barista army through comprehensive education programs that elevate service standards across Cambodia's café industry."],
+              ["Sustainable Partnerships", "Long-term relationships with farmers, café owners, and hospitality businesses built on trust, consistency, and shared growth."],
             ].map(([title, copy], index) => (
               <div key={title} className="grid grid-cols-[44px_1fr] gap-5 border-t border-black/10 py-7 last:border-b">
                 <span className="text-[9px] tracking-[0.2em] text-black/34">0{index + 1}</span>
@@ -194,7 +194,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               Phnom Penh · Siem Reap · Sihanoukville · Battambang · Kampot
             </p>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-black/45">
-              Partnering with cafés, hotels, restaurants, coffee professionals, and buyers across Cambodia.
+              Partnering with cafés, hotels, restaurants, and coffee enthusiasts across Cambodia
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href="/solutions" className="inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-200 hover:-translate-y-0.5">
