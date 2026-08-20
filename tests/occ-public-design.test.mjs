@@ -23,3 +23,19 @@ test("public chrome exposes all seven OCC categories and removes legacy sidebar 
   assert.doesNotMatch(layout, /SiteSidebar/)
   assert.match(layout, /PublicSiteChrome/)
 })
+
+test("about uses the reusable minimalist hero with a coffee package and preserves SEO semantics", () => {
+  const hero = read("components/ui/minimalist-hero.tsx")
+  const bag = read("components/ui/coffee-bag-visual.tsx")
+  const about = read("app/about/page.tsx")
+
+  assert.match(hero, /framer-motion/)
+  assert.match(hero, /@\/lib\/utils/)
+  assert.match(bag, /FINE ROBUSTA/)
+  assert.match(about, /MinimalistHero/)
+  assert.match(about, /CoffeeBagVisual/)
+  assert.match(about, /ABOUT/)
+  assert.match(about, /ORIGIN\./)
+  assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
+  assert.match(about, /AboutPage/)
+})
