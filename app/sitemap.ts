@@ -4,7 +4,7 @@ import { getAllPosts } from '@/lib/airtable'
 
 /**
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
- * Do not add routes that are `disallow` there (e.g. /archive, /matter, /signal).
+ * Legacy public routes are handled by permanent redirects and are not emitted.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -31,18 +31,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/about/manifesto`,          lastModified: now, changeFrequency: 'monthly',  priority: 0.7 },
     { url: `${siteUrl}/about/sustainability`,     lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
 
-    // ── Coffee / Origin ────────────────────────────────────────────────────
-    { url: `${siteUrl}/coffee/single-origin`,     lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
-
-    // ── Solutions / System / Vision ────────────────────────────────────────
+    // ── Solutions ─────────────────────────────────────────────────────────
     { url: `${siteUrl}/solutions`,                lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
     { url: `${siteUrl}/solutions/wholesale`,      lastModified: now, changeFrequency: 'monthly',  priority: 0.9 },
     { url: `${siteUrl}/solutions/roasting-program`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/solutions/barista-staffing`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/solutions/equipment-service`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    // /system + /vision removed from sitemap 2026-07-21 (noindex, kept for archive/backlinks)
 
-    // ── Collection (Mondulkiri Origin) ─────────────────────────────────────
+    // ── Collection (Mondulkiri Origin) ────────────────────────────────────
     { url: `${siteUrl}/collection`,             lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
     { url: `${siteUrl}/collection/sovann`,      lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
     { url: `${siteUrl}/collection/prek`,        lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
