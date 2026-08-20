@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "PREK — The Bright Current | Mondulkiri Robusta by OCC",
   description:
-    "Discover PREK, a bright modern Mondulkiri Robusta with bittersweet chocolate, red berry, and citrus peel notes. Explore processing, freshness, acidity, and contemporary Cambodian coffee culture.",
+    "Discover PREK, a bright Mondulkiri Robusta with bittersweet chocolate, red berry, and citrus peel notes, shaped by processing and freshness.",
   keywords: [
     "PREK coffee",
     "Mondulkiri Robusta",
@@ -50,25 +50,20 @@ const breadcrumbSchema = {
   ],
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     { "@type": "Question", name: "What is PREK?", acceptedAnswer: { "@type": "Answer", text: "PREK is OCC's bright modern Mondulkiri Robusta expression, built around bittersweet chocolate, red berry, and citrus peel." } },
     { "@type": "Question", name: "Is PREK acidic?", acceptedAnswer: { "@type": "Answer", text: "It has more brightness than SOVANN or ANGKAR, but the acidity is intended to be clean and integrated rather than sour." } },
     { "@type": "Question", name: "Why does PREK show fruit notes?", acceptedAnswer: { "@type": "Answer", text: "Fruit notes can result from cherry ripeness, processing, fermentation, drying, roast development, and brewing." } },
     { "@type": "Question", name: "Is PREK suitable for black coffee?", acceptedAnswer: { "@type": "Answer", text: "Yes. Its clarity and citrus finish make it especially suitable for filter-style or clean black coffee preparations." } },
     { "@type": "Question", name: "How is PREK different from SOVANN?", acceptedAnswer: { "@type": "Answer", text: "SOVANN is softer and more balanced. PREK is brighter, more aromatic, and more fruit-led." } },
     { "@type": "Question", name: "How is PREK different from ANGKAR?", acceptedAnswer: { "@type": "Answer", text: "ANGKAR emphasizes body, roast depth, and darker sweetness, while PREK emphasizes clarity and movement." } },
-  ],
-}
+]
 
 export default function PrekProductPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -228,7 +223,7 @@ export default function PrekProductPage() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-5"><h2 className="section-title">PREK<br />FAQ.</h2></div>
               <div className="md:col-span-7">
-                {faqSchema.mainEntity.map((q) => (
+                {faqItems.map((q) => (
                   <div key={q.name} className="faq-item">
                     <h3>{q.name}</h3>
                     <p>{(q.acceptedAnswer as { text: string }).text}</p>

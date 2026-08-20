@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { siteUrl, siteName } from "@/lib/siteConfig"
-import { alternatesFromCanonical } from "@/lib/seo"
+import { alternatesFromCanonical, seoDescription, seoTitle } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { getAllPosts, getPostBySlug } from "@/lib/airtable"
 
@@ -330,7 +330,7 @@ function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>)
   if (!post) return "Specialty coffee insights from Origin Coffee Cambodia."
   const summary = post.summary && !isLowSignalSeoText(post.summary, post.title) ? post.summary : ""
   const excerpt = post.excerpt && !isLowSignalSeoText(post.excerpt, post.title) ? post.excerpt : ""
-  return (
+  return seoDescription(
     summary ||
     excerpt ||
     plainTextExcerpt(post.content, post.title) ||
@@ -354,7 +354,7 @@ export async function generateMetadata({
   const description = metaDescriptionForPost(post)
 
   return {
-    title: `${post.title} | OCC — Origin Coffee Cambodia`,
+    title: seoTitle(post.title),
     description,
     keywords: post.keywords,
     alternates: alternatesFromCanonical(`${siteUrl}/blog/${post.slug}`),

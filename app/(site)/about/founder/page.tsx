@@ -83,7 +83,7 @@ const faqs = [
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  // FAQ content is rendered visibly; no FAQ structured data is emitted.
   mainEntity: faqs.map(({ q, a }) => ({
     "@type": "Question",
     name: q,
@@ -117,7 +117,6 @@ export default function FounderPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AboutInstitutionalTemplate
         index="02"
         title="FOUNDER"

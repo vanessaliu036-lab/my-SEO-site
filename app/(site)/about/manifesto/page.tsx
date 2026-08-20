@@ -7,7 +7,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Manifesto | Origin Coffee Cambodia - OCC",
   description:
-    "The Barista Army Thesis: Why We'll Never Open a Café. Cambodia doesn't have a coffee problem. It has a consistency problem. We're building the skilled barista army to solve it.",
+    "OCC is building Cambodia's specialty coffee infrastructure from farmer to cup, with training and quality control at every handoff.",
   keywords:
     "barista training Cambodia, skilled barista army, coffee manifesto, OCC manifesto, specialty coffee infrastructure Cambodia, why we never open a cafe, coffee consistency Cambodia",
   alternates: pageAlternates("/about/manifesto"),
@@ -81,7 +81,7 @@ const faqs = [
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  // Visible FAQs remain on the page; structured FAQ data is intentionally omitted.
   mainEntity: faqs.map(({ q, a }) => ({
     "@type": "Question",
     name: q,
@@ -121,7 +121,6 @@ export default function ManifestoPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AboutInstitutionalTemplate
         index="03"
         title="MANIFESTO"

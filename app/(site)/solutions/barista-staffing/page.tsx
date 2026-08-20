@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  // FAQ content is rendered visibly; no FAQ structured data is emitted.
   mainEntity: [
     {
       "@type": "Question",
@@ -132,7 +132,6 @@ export default function BaristaStaffingPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <SolutionDetailTemplate

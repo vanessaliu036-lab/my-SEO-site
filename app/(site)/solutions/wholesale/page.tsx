@@ -4,8 +4,8 @@ import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Wholesale Coffee Supply Cambodia | OCC - Direct Trade Coffee Supplier",
-  description: "OCC provides B2B wholesale coffee supply for cafés, hotels, and restaurants in Phnom Penh, Siem Reap, and Sihanoukville. Direct-origin beans, flexible delivery, dedicated account management. Minimum 5kg.",
+  title: "Wholesale Coffee Supply Cambodia | OCC",
+  description: "OCC supplies direct-origin coffee to cafés, hotels, and restaurants in Cambodia with flexible delivery, account support, and orders from 5kg.",
   keywords: "wholesale coffee Cambodia, coffee supplier Phnom Penh, B2B coffee supply Cambodia, café coffee wholesale, restaurant coffee supplier, direct trade coffee Cambodia, OCC wholesale, Siem Reap coffee supplier",
   openGraph: {
     title: "Wholesale Coffee Supply | OCC Cambodia",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  // Visible FAQs remain on the page; structured FAQ data is intentionally omitted.
   "mainEntity": [
     {
       "@type": "Question",
@@ -133,7 +133,6 @@ export default function WholesalePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <SolutionDetailTemplate

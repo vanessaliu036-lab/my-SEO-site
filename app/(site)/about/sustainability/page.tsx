@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Sustainability | Origin Coffee Cambodia - OCC",
   description:
-    "Ethical sourcing and traceability protocol. Every coffee we carry has a name, a location, and a story. We operate on direct trade, pay above market rate, and document every link in the supply chain.",
+    "OCC documents Cambodian coffee sourcing, producer relationships, lot traceability, and quality controls across Mondulkiri, Ratanakiri, and Kampot.",
   keywords:
     "ethical coffee Cambodia, traceable coffee beans Cambodia, direct trade coffee Cambodia, Mondulkiri coffee origin, Ratanakiri arabica sourcing, sustainable coffee farming Cambodia, coffee traceability protocol, specialty coffee wholesale transparency, fair trade specialty coffee Southeast Asia, shade grown coffee Mondulkiri",
   alternates: pageAlternates("/about/sustainability"),
@@ -103,7 +103,7 @@ const originSchema = {
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
+  // Visible FAQs remain on the page; structured FAQ data is intentionally omitted.
   mainEntity: [
     {
       "@type": "Question",
@@ -194,7 +194,6 @@ export default function SustainabilityPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="04"

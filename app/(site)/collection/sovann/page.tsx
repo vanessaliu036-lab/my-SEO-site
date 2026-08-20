@@ -4,9 +4,9 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "SOVANN — The Golden Highland | Mondulkiri Robusta Coffee by OCC",
+  title: "SOVANN — The Golden Highland | OCC",
   description:
-    "Discover SOVANN, a balanced Mondulkiri Robusta coffee with chocolate, brown sugar, and roasted almond notes. Explore the climate, red soils, humidity, farming, flavor, and origin behind this Cambodian Robusta.",
+    "Discover SOVANN, a balanced Mondulkiri Robusta with chocolate, brown sugar, and roasted almond notes, shaped by Cambodian climate, soil, and farming.",
   keywords: [
     "SOVANN coffee",
     "Mondulkiri Robusta coffee",
@@ -51,18 +51,14 @@ const breadcrumbSchema = {
   ],
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     { "@type": "Question", name: "What is SOVANN?", acceptedAnswer: { "@type": "Answer", text: "SOVANN is OCC's balanced Mondulkiri Robusta expression, built around chocolate, brown sugar, and roasted almond notes." } },
     { "@type": "Question", name: "Where is SOVANN from?", acceptedAnswer: { "@type": "Answer", text: "It is positioned within the Mondulkiri Origin Collection and represents coffee grown in Mondulkiri, Cambodia." } },
     { "@type": "Question", name: "Is SOVANN a dark roast?", acceptedAnswer: { "@type": "Answer", text: "No. It is designed as a balanced origin-led profile rather than the deepest roast in the collection." } },
     { "@type": "Question", name: "Why does the coffee taste like chocolate?", acceptedAnswer: { "@type": "Answer", text: "Chocolate is a tasting description created by the interaction of variety, ripeness, processing, and roasting. No chocolate is added." } },
     { "@type": "Question", name: "What makes Mondulkiri suitable for Robusta?", acceptedAnswer: { "@type": "Answer", text: "Its climate, humidity, rainfall patterns, elevation, and soil conditions provide a distinctive growing environment for Robusta." } },
     { "@type": "Question", name: "How is SOVANN different from PREK and ANGKAR?", acceptedAnswer: { "@type": "Answer", text: "SOVANN emphasizes balance and origin. PREK is brighter and fruit-led, while ANGKAR is deeper and more full-bodied." } },
-  ],
-}
+]
 
 const keywordTerritory = [
   "Mondulkiri Robusta coffee",
@@ -87,7 +83,6 @@ export default function SovannProductPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -266,7 +261,7 @@ export default function SovannProductPage() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-5"><h2 className="section-title">SOVANN<br />FAQ.</h2></div>
               <div className="md:col-span-7">
-                {faqSchema.mainEntity.map((q) => (
+                {faqItems.map((q) => (
                   <div key={q.name} className="faq-item">
                     <h3>{q.name}</h3>
                     <p>{(q.acceptedAnswer as { text: string }).text}</p>

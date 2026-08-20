@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "ANGKAR — The Deep Foundation | Mondulkiri Robusta by OCC",
   description:
-    "Discover ANGKAR, a deep full-bodied Mondulkiri Robusta with dark cocoa, roasted peanut, and molasses notes. Explore direct trade, farmer relationships, local roasting, and traditional Cambodian coffee structure.",
+    "Discover ANGKAR, a deep, full-bodied Mondulkiri Robusta with dark cocoa, roasted peanut, and molasses notes from Cambodian origin and roasting.",
   keywords: [
     "ANGKAR coffee",
     "Mondulkiri Robusta",
@@ -50,25 +50,20 @@ const breadcrumbSchema = {
   ],
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     { "@type": "Question", name: "What is ANGKAR?", acceptedAnswer: { "@type": "Answer", text: "ANGKAR is OCC's deep full-bodied Mondulkiri Robusta expression, built around dark cocoa, roasted peanut, and molasses." } },
     { "@type": "Question", name: "Is ANGKAR a dark roast?", acceptedAnswer: { "@type": "Answer", text: "It is the deepest roast expression in the collection, but it is designed to preserve sweetness and structure rather than taste burnt." } },
     { "@type": "Question", name: "What does direct trade mean here?", acceptedAnswer: { "@type": "Answer", text: "It refers to closer sourcing relationships with growers and producers, clearer communication, and fewer unnecessary layers in the supply chain." } },
     { "@type": "Question", name: "Why is ANGKAR full-bodied?", acceptedAnswer: { "@type": "Answer", text: "Robusta naturally contributes body, while processing, roasting, and brewing further shape texture and weight." } },
     { "@type": "Question", name: "Is ANGKAR suitable for milk coffee?", acceptedAnswer: { "@type": "Answer", text: "Yes. Its structure and dark sweetness allow it to remain present in milk-based drinks." } },
     { "@type": "Question", name: "How is ANGKAR different from SOVANN and PREK?", acceptedAnswer: { "@type": "Answer", text: "SOVANN emphasizes balance, PREK emphasizes brightness, and ANGKAR emphasizes depth, body, and roast structure." } },
-  ],
-}
+]
 
 export default function AngkarProductPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -226,7 +221,7 @@ export default function AngkarProductPage() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-5"><h2 className="section-title">ANGKAR<br />FAQ.</h2></div>
               <div className="md:col-span-7">
-                {faqSchema.mainEntity.map((q) => (
+                {faqItems.map((q) => (
                   <div key={q.name} className="faq-item">
                     <h3>{q.name}</h3>
                     <p>{(q.acceptedAnswer as { text: string }).text}</p>

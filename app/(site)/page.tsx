@@ -5,13 +5,13 @@ import {
   homeAuthoritySections,
   homeDateModified,
   homeDirectAnswer,
-  homeFaqs,
   homeSources,
 } from "@/lib/homeContent"
+import { seoDescription, seoTitle } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
-  description: siteDescription,
+  title: seoTitle("Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"),
+  description: seoDescription(siteDescription),
   keywords: [
     "Fine Robusta",
     "Fine Robusta Coffee",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
-    description: siteDescription,
+    title: seoTitle("Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"),
+    description: seoDescription(siteDescription),
     url: siteUrl,
     siteName,
     type: "website",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
-    description: siteDescription,
+    title: seoTitle("Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"),
+    description: seoDescription(siteDescription),
     images: [ogImage],
   },
 }
@@ -56,6 +56,8 @@ export const metadata: Metadata = {
 const organizationId = `${siteUrl}/#organization`
 const websiteId = `${siteUrl}/#website`
 const webpageId = `${siteUrl}/#webpage`
+const homeHeroImageUrl =
+  "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=90"
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -101,24 +103,13 @@ const webPageJsonLd = {
   },
 }
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": `${siteUrl}/#faq`,
-  isPartOf: { "@id": webpageId },
-  mainEntity: homeFaqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-}
-
 export default function HomePage() {
   return (
     <>
+      <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+      <link rel="preload" as="image" href={homeHeroImageUrl} fetchPriority="high" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <HomeTemplate />
     </>
   )
