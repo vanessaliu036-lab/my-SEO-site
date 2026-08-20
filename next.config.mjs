@@ -59,6 +59,31 @@ const nextConfig = {
         destination: '/blog/what-is-fine-robusta-coffee-a-complete-beginners-guide',
         permanent: true,
       },
+      {
+        source: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist-draft-save-test',
+        destination: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist',
+        permanent: true,
+      },
+      {
+        source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-procurement',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-buyers',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/blog/the-complete-guide-to-fine-robusta-standards-cqi-quality-protocols-explained',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/blog/cqi-fine-robusta-standard-complete-guide',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
     ]
     const dead = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
