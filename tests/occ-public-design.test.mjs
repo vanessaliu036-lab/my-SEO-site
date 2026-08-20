@@ -72,3 +72,43 @@ test("origin page exposes four source-backed features and alternating motion whi
   assert.match(page, /BreadcrumbList/)
   assert.match(page, /Terroir Architecture\./)
 })
+
+test("route families share one OCC horizontal frame while page-level SEO logic remains owned by each route", () => {
+  const frame = read("components/ui/occ-horizontal-frame.tsx")
+  assert.match(frame, /occ-horizontal-frame/)
+
+  for (const layoutPath of [
+    "app/about/layout.tsx",
+    "app/solutions/layout.tsx",
+    "app/collection/layout.tsx",
+    "app/coffee/layout.tsx",
+    "app/contact/layout.tsx",
+    "app/vision/layout.tsx",
+    "app/system/layout.tsx",
+    "app/signal/layout.tsx",
+    "app/matter/layout.tsx",
+    "app/archive/layout.tsx",
+  ]) {
+    assert.match(read(layoutPath), /OccHorizontalFrame/)
+  }
+
+  const blogLayout = read("app/blog/layout.tsx")
+  assert.match(blogLayout, /OccHorizontalFrame/)
+  assert.match(blogLayout, /"@type": "Blog"/)
+
+  const wholesale = read("app/solutions/wholesale/page.tsx")
+  assert.match(wholesale, /"@type": "FAQPage"/)
+  assert.match(wholesale, /"@type": "Service"/)
+  assert.match(wholesale, /"@type": "BreadcrumbList"/)
+
+  const article = read("app/blog/[slug]/page.tsx")
+  assert.match(article, /ROBUSTA_PILLAR_SLUG/)
+  assert.match(article, /Article/)
+  assert.match(article, /BreadcrumbList/)
+
+  const contact = read("app/contact/page.tsx")
+  assert.match(contact, /ContactForm/)
+
+  const signal = read("app/signal/page.tsx")
+  assert.match(signal, /index:\s*false/)
+})
