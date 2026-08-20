@@ -48,7 +48,7 @@ const navGroups = [
 ]
 
 const primaryNav = [
-  { href: "/fine-robusta-cambodia", label: "Fine Robusta" },
+  { href: "/blog/cambodia-specialty-robusta-coffee-guide", label: "Fine Robusta" },
   { href: "/collection", label: "Collection" },
   { href: "/solutions/wholesale", label: "Wholesale" },
   { href: "/blog", label: "Journal" },
@@ -149,7 +149,7 @@ export default function HomePageClient() {
               </span>
             </Link>
             <Link
-              href="/fine-robusta-cambodia"
+              href="/blog/cambodia-specialty-robusta-coffee-guide"
               className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white"
             >
               Discover Fine Robusta
