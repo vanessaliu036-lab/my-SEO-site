@@ -1,5 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
+import { OriginFeatureStrip } from "@/components/ui/origin-feature-strip"
+import { AlternatingRevealSection } from "@/components/ui/alternating-reveal-section"
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
@@ -118,71 +120,146 @@ export default function SingleOriginPage() {
     }
   ]
 
+  const originFeatures = [
+    {
+      label: "ALTITUDE",
+      value: "Highland lots mapped from 400 m to 1,000 m.",
+      icon: "altitude" as const,
+    },
+    {
+      label: "TERROIR",
+      value: "Volcanic red basalt and ferruginous latosol shape the regional profiles.",
+      icon: "terroir" as const,
+    },
+    {
+      label: "ORIGIN",
+      value: "Mondulkiri and Ratanakiri are the core highland regions mapped here.",
+      icon: "origin" as const,
+    },
+    {
+      label: "TRACEABILITY",
+      value: "Wholesale lots include provenance documentation such as coordinates, processing method, harvest date, and cupping score.",
+      icon: "traceability" as const,
+    },
+  ]
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <div className="min-h-screen bg-[#F8F9FA] relative overflow-hidden font-sans">
-        <div className="absolute top-8 left-8 z-20">
-          <Link href="/coffee" className="text-gray-400 text-[10px] font-bold tracking-[0.3em] hover:text-gray-900 transition-colors uppercase">
-            ← BACK
-          </Link>
-        </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-        <main className="max-w-6xl mx-auto pt-32 pb-24 px-8 md:px-16">
-          <header className="mb-24 border-b border-gray-300 pb-12">
-            <span className="text-[10px] tracking-[0.5em] text-gray-400 uppercase italic mb-4 block">03 / GEOGRAPHIC ANALYSIS</span>
-            <h1 className="text-5xl font-bold text-gray-900 tracking-tighter mb-4 uppercase">Terroir Architecture.</h1>
-            <p className="text-gray-500 tracking-widest text-[10px] uppercase font-light">Mapping the sensory coordinates of Cambodia.</p>
-          </header>
+      <div className="min-h-screen bg-[#f6f3ea] text-[#182019]">
+        <section className="relative overflow-hidden bg-[#1c211b] text-white">
+          <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-white/[0.08] md:grid" aria-hidden="true">
+            {Array.from({ length: 12 }).map((_, index) => <div key={index} />)}
+          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(231,242,201,0.10),transparent_30%)]" aria-hidden="true" />
 
-          <div className="space-y-40">
-            {regions.map((region) => (
-              <div key={region.id} className="grid grid-cols-1 md:grid-cols-12 gap-16 group">
-                <section className="md:col-span-5 space-y-10">
-                  <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-[0.2em] border-l-4 border-gray-900 pl-4">
-                    {region.id} / {region.name}
-                  </h2>
-                  <div className="space-y-5 font-mono text-[10px] text-gray-500 uppercase leading-loose">
-                    <div className="flex justify-between border-b border-gray-200 pb-2"><span>Coordinates</span><span className="text-gray-900 font-bold">{region.coordinates}</span></div>
-                    <div className="flex justify-between border-b border-gray-200 pb-2"><span>Elevation</span><span className="text-gray-900 font-bold">{region.altitude}</span></div>
-                    <div className="flex justify-between border-b border-gray-200 pb-2"><span>Soil Composition</span><span className="text-gray-900 font-bold">{region.soil}</span></div>
-                  </div>
-                </section>
-
-                <section className="md:col-span-7 bg-white p-12 shadow-sm relative overflow-hidden">
-                  <h3 className="text-xl font-bold text-gray-900 mb-8 tracking-tight uppercase">Technical Profile</h3>
-                  <p className="text-gray-600 text-sm leading-loose mb-10 font-light">
-                    {region.profile}. High-altitude thermal variance optimizes the <span className="underline font-bold text-gray-900 uppercase">molecular sugar conversion</span>, processed under strict physical constraints.
-                  </p>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="border border-gray-100 p-6 bg-[#FCFCFC]">
-                      <h4 className="font-bold text-[9px] tracking-[0.2em] text-gray-400 uppercase mb-4 text-center">Density Analysis</h4>
-                      <div className="w-full bg-gray-100 h-[2px] relative">
-                        <div className="absolute top-0 left-0 bg-gray-900 h-full" style={{ width: region.density }}></div>
-                      </div>
-                    </div>
-                    <div className="border border-gray-100 p-6 bg-[#FCFCFC]">
-                      <h4 className="font-bold text-[9px] tracking-[0.2em] text-gray-400 uppercase mb-4 text-center">Moisture Content</h4>
-                      <div className="w-full bg-gray-100 h-[2px] relative">
-                        <div className="absolute top-0 left-0 bg-gray-900 h-full" style={{ width: region.moisture }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+          <div className="relative z-10 mx-auto max-w-[1680px] px-6 pb-12 pt-16 sm:px-8 md:px-12 lg:px-16 lg:pb-16 lg:pt-24">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end">
+              <div className="md:col-span-3">
+                <p className="occ-eyebrow text-white/45">03 / Geographic Analysis</p>
+                <p className="mt-6 max-w-[260px] text-xs leading-6 text-white/45">
+                  Mapping the sensory coordinates of Cambodia through altitude, soil, origin, and lot-level provenance.
+                </p>
               </div>
+              <div className="md:col-span-9">
+                <h1 className="occ-editorial-title max-w-6xl text-[4.4rem] sm:text-[6rem] md:text-[7.5rem] lg:text-[9.2rem]">
+                  Terroir Architecture.
+                </h1>
+              </div>
+            </div>
+
+            <div className="mt-14 lg:mt-20">
+              <OriginFeatureStrip features={originFeatures} />
+            </div>
+          </div>
+        </section>
+
+        <main className="mx-auto w-full max-w-[1680px] overflow-hidden px-6 sm:px-8 md:px-12 lg:px-16">
+          <section className="grid grid-cols-1 gap-8 border-b border-black/10 py-14 md:grid-cols-12 lg:py-20">
+            <div className="md:col-span-3">
+              <p className="occ-eyebrow text-black/38">Regional analysis</p>
+            </div>
+            <div className="md:col-span-9">
+              <p className="max-w-5xl font-[var(--font-display)] text-3xl leading-[1.15] tracking-[-0.025em] sm:text-4xl lg:text-5xl">
+                Cambodia’s coffee regions are not one uniform profile. Elevation, soil composition, density, moisture, and thermal conditions change the cup.
+              </p>
+            </div>
+          </section>
+
+          <div className="py-4 lg:py-8">
+            {regions.map((region, index) => (
+              <AlternatingRevealSection
+                key={region.id}
+                index={index}
+                className="grid grid-cols-1 gap-10 border-b border-black/10 py-16 md:grid-cols-12 md:gap-0 lg:py-24"
+              >
+                <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"} md:col-span-5 md:px-8 lg:px-12`}>
+                  <div className="sticky top-28">
+                    <p className="occ-eyebrow text-black/35">{region.id} / Region</p>
+                    <h2 className="mt-5 font-[var(--font-display)] text-5xl font-normal leading-[0.94] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+                      {region.name}
+                    </h2>
+                    <p className="mt-8 max-w-lg text-sm leading-8 text-black/52">
+                      {region.profile}. High-altitude thermal variance optimizes the <span className="font-medium text-[#182019]">molecular sugar conversion</span>, processed under strict physical constraints.
+                    </p>
+                  </div>
+                </div>
+
+                <div className={`${index % 2 === 0 ? "md:order-2 md:border-l" : "md:order-1 md:border-r"} md:col-span-7 md:border-black/10 md:px-8 lg:px-12`}>
+                  <div className="border-y border-black/10">
+                    {[
+                      ["Coordinates", region.coordinates],
+                      ["Elevation", region.altitude],
+                      ["Soil Composition", region.soil],
+                    ].map(([label, value]) => (
+                      <div key={label} className="grid grid-cols-[130px_1fr] gap-5 border-b border-black/10 py-5 last:border-b-0 sm:grid-cols-[180px_1fr]">
+                        <span className="text-[9px] uppercase tracking-[0.18em] text-black/35">{label}</span>
+                        <span className="text-right text-xs font-medium uppercase tracking-[0.08em] sm:text-sm">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-10 grid grid-cols-2 border border-black/10">
+                    <div className="p-6 sm:p-8">
+                      <p className="text-[9px] uppercase tracking-[0.18em] text-black/35">Density Analysis</p>
+                      <p className="mt-8 font-[var(--font-display)] text-5xl leading-none tracking-[-0.04em]">{region.density}</p>
+                      <div className="mt-6 h-px w-full bg-black/10">
+                        <div className="h-px bg-[#182019]" style={{ width: region.density }} />
+                      </div>
+                    </div>
+                    <div className="border-l border-black/10 p-6 sm:p-8">
+                      <p className="text-[9px] uppercase tracking-[0.18em] text-black/35">Moisture Content</p>
+                      <p className="mt-8 font-[var(--font-display)] text-5xl leading-none tracking-[-0.04em]">{region.moisture}</p>
+                      <div className="mt-6 h-px w-full bg-black/10">
+                        <div className="h-px bg-[#182019]" style={{ width: region.moisture }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AlternatingRevealSection>
             ))}
           </div>
+
+          <section className="grid grid-cols-1 gap-8 py-20 md:grid-cols-12 lg:py-28">
+            <div className="md:col-span-4">
+              <p className="occ-eyebrow text-black/38">Wholesale provenance</p>
+            </div>
+            <div className="md:col-span-8">
+              <h2 className="font-[var(--font-display)] text-5xl font-normal leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+                Source the lot,<br />not the category.
+              </h2>
+              <p className="mt-7 max-w-2xl text-sm leading-8 text-black/52 sm:text-base">
+                OCC supplies traceable single-origin lots from Mondulkiri and Ratanakiri to wholesale and hospitality clients across Cambodia. Each lot ships with full provenance documentation including farm coordinates, processing method, harvest date, and cupping score.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link href="/solutions/wholesale" className="occ-pill px-7 py-3.5 text-[10px] font-medium uppercase tracking-[0.16em]">Wholesale sourcing ↗</Link>
+                <Link href="/contact" className="inline-flex items-center border-b border-black/30 px-1 py-3 text-[10px] font-medium uppercase tracking-[0.16em]">Request current lots</Link>
+              </div>
+            </div>
+          </section>
         </main>
       </div>
     </>
