@@ -1,5 +1,6 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
+import "./article-editorial.css"
 
 type PillarConfig = {
   slug: string
@@ -139,7 +140,7 @@ export default async function BlogPostLayout({
   const pillar = pillarForCluster(slug)
 
   return (
-    <>
+    <div className="occ-article-shell">
       {children}
       {pillar && (
         <aside
@@ -157,6 +158,6 @@ export default async function BlogPostLayout({
           </Link>
         </aside>
       )}
-    </>
+    </div>
   )
 }
