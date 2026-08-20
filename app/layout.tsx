@@ -2,8 +2,6 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import PublicSiteChrome from "@/components/PublicSiteChrome";
-import AdminFrontendSwitch from "@/components/AdminFrontendSwitch";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
@@ -78,17 +76,7 @@ export default function RootLayout({
   return (
     <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans bg-white text-gray-900 antialiased">
-        <AdminFrontendSwitch />
-
-        <PublicSiteChrome>
-          <main className="relative min-h-screen bg-white">{children}</main>
-        </PublicSiteChrome>
-
-        <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-20 hidden md:flex" aria-hidden="true">
-          <div className="w-px h-12 bg-gray-300" />
-          <span className="text-[10px] text-gray-400 [writing-mode:vertical-lr] tracking-widest">OCC</span>
-          <div className="w-px h-12 bg-gray-300" />
-        </div>
+        {children}
 
         <Analytics />
         {gaMeasurementId ? <GoogleAnalytics measurementId={gaMeasurementId} /> : null}
