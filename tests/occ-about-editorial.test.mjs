@@ -3,10 +3,12 @@ import assert from "node:assert/strict"
 import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
+const templatePath = "components/templates/about-editorial-template.tsx"
 
 test("ABOUT uses the approved editorial template instead of the old demo hero", () => {
   const about = read("app/(site)/about/page.tsx")
-  const template = read("components/templates/about-editorial-template.tsx")
+  assert.equal(fs.existsSync(templatePath), true, "editorial ABOUT template must exist")
+  const template = read(templatePath)
 
   assert.match(about, /AboutEditorialTemplate/)
   assert.doesNotMatch(about, /MinimalistHero/)
@@ -32,7 +34,8 @@ test("ABOUT preserves SEO semantics and only links into the five-section archite
 })
 
 test("ABOUT editorial motion is restrained and reduced-motion aware", () => {
-  const template = read("components/templates/about-editorial-template.tsx")
+  assert.equal(fs.existsSync(templatePath), true, "editorial ABOUT template must exist")
+  const template = read(templatePath)
 
   assert.match(template, /framer-motion/)
   assert.match(template, /useReducedMotion/)
