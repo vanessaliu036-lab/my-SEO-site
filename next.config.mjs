@@ -51,6 +51,11 @@ const nextConfig = {
         destination: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-export-capacity',
         permanent: true,
       },
+      {
+        source: '/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia',
+        destination: '/blog/what-is-fine-robusta-coffee-a-complete-beginners-guide',
+        permanent: true,
+      },
     ]
     const dead = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
