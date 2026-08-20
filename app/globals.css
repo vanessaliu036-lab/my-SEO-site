@@ -43,6 +43,16 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --occ-ink: #182019;
+    --occ-olive: #1c211b;
+    --occ-forest: #273229;
+    --occ-ivory: #f6f3ea;
+    --occ-stone: #d8d3c8;
+    --occ-lime: #e7f2c9;
+    --occ-line: rgba(24, 32, 25, 0.14);
+    --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --occ-wide: 1680px;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -84,6 +94,9 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans), system-ui, sans-serif;
@@ -95,7 +108,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Display headings — Cormorant Garamond */
   h1 {
     font-family: var(--font-display), Georgia, serif;
     font-weight: 600;
@@ -103,7 +115,6 @@
     letter-spacing: -0.02em;
   }
 
-  /* Section headings — Inter, structured */
   h2 {
     font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 600;
@@ -118,15 +129,74 @@
     letter-spacing: 0.02em;
   }
 
-  /* Navigation, labels — Inter light */
   nav, label {
     font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 400;
   }
 
-  /* Paragraphs */
   p {
     font-family: var(--font-sans), system-ui, sans-serif;
     line-height: 1.75;
+  }
+}
+
+@layer components {
+  .occ-public-shell {
+    background: var(--occ-ivory);
+    color: var(--occ-ink);
+  }
+
+  .occ-wide {
+    width: min(calc(100% - 2.5rem), var(--occ-wide));
+    margin-inline: auto;
+  }
+
+  .occ-grid-lines {
+    background-image: linear-gradient(to right, transparent calc(100% - 1px), rgba(24, 32, 25, 0.08) calc(100% - 1px));
+    background-size: calc(100% / 12) 100%;
+  }
+
+  .occ-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+
+  .occ-editorial-title {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+  }
+
+  .occ-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--occ-lime);
+    color: var(--occ-ink);
+    transition: transform 220ms var(--occ-ease), background-color 220ms var(--occ-ease);
+  }
+
+  .occ-pill:hover {
+    transform: translateY(-2px);
+    background: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
