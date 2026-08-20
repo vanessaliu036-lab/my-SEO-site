@@ -39,3 +39,18 @@ test("about uses the reusable minimalist hero with a coffee package and preserve
   assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
   assert.match(about, /AboutPage/)
 })
+
+test("collection uses the approved overlapping three-package composition without changing routes or schema", () => {
+  const page = read("app/collection/page.tsx")
+  const stage = read("components/ui/collection-package-stage.tsx")
+
+  assert.match(page, /CollectionPackageStage/)
+  assert.match(page, /THREE EXPRESSIONS/)
+  assert.match(page, /CollectionPage/)
+  for (const slug of ["sovann", "prek", "angkar"]) {
+    assert.match(page, new RegExp(`slug: "${slug}"`))
+  }
+  assert.match(stage, /framer-motion/)
+  assert.match(stage, /CoffeeBagVisual/)
+  assert.match(stage, /\/collection\/\$\{item\.slug\}/)
+})
