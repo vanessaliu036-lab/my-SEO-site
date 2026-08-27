@@ -4,16 +4,16 @@ import { pageAlternates } from "@/lib/seo"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Sustainability | Origin Coffee Cambodia - OCC",
+  title: "Sustainability & Traceability Research | Origin Coffee Cambodia",
   description:
-    "OCC documents Cambodian coffee sourcing, producer relationships, lot traceability, and quality controls across Mondulkiri, Ratanakiri, and Kampot.",
+    "How OCC evaluates sustainability, traceability, producer-economics, and environmental claims in Cambodian coffee: source quality, scope, documentation, and research limits.",
   keywords:
-    "ethical coffee Cambodia, traceable coffee beans Cambodia, direct trade coffee Cambodia, Mondulkiri coffee origin, Ratanakiri arabica sourcing, sustainable coffee farming Cambodia, coffee traceability protocol, specialty coffee wholesale transparency, fair trade specialty coffee Southeast Asia, shade grown coffee Mondulkiri",
+    "Cambodia coffee sustainability research, coffee traceability evidence, producer economics coffee, sustainable coffee Cambodia, coffee environmental research, Mondulkiri coffee traceability",
   alternates: pageAlternates("/about/sustainability"),
   openGraph: {
-    title: "Sustainability | Origin Coffee Cambodia - OCC",
+    title: "Sustainability & Traceability Research | OCC",
     description:
-      "Ethical sourcing and traceability protocol. A cup is only as honest as the chain behind it. We built ours to withstand scrutiny at every link.",
+      "A research framework for evaluating sustainability and traceability claims in Cambodian coffee without treating marketing language as evidence.",
     url: `${siteUrl}/about/sustainability`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -21,130 +21,25 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sustainability | Origin Coffee Cambodia - OCC",
+    title: "Sustainability & Traceability Research | OCC",
     description:
-      "Ethical sourcing and traceability protocol. Direct trade. Traceable beans. Environmental responsibility.",
+      "How OCC evaluates evidence behind coffee sustainability, traceability, producer-economics, and environmental claims.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "OCC Sustainability — Ethical Sourcing and Traceability Protocol",
+  name: "OCC Sustainability and Traceability Research Framework",
   description:
-    "Every coffee we carry has a name, a location, and a story. We work directly with farmers across Mondulkiri, Ratanakiri, and beyond. Traceability is not optional — it is the foundation of specialty coffee done right.",
+    "How Origin Coffee Cambodia evaluates sustainability, traceability, producer-economics, and environmental evidence in coffee research.",
   url: `${siteUrl}/about/sustainability`,
-  isPartOf: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    description:
-      "Specialty coffee infrastructure company based in Phnom Penh, Cambodia.",
-  },
-  mainEntity: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    description:
-      "Ethical coffee supplier Cambodia operating on direct trade model with full traceability from farm to cup.",
-    areaServed: {
-      "@type": "Country",
-      name: "Cambodia",
-    },
-    makesOffer: [
-      {
-        "@type": "Offer",
-        name: "Traceable Specialty Coffee",
-        description:
-          "Every batch carries complete record: farm coordinates, processing method, roast date, cupping score.",
-      },
-      {
-        "@type": "Offer",
-        name: "Direct Trade Coffee",
-        description:
-          "We pay above market rate for exceptional lots and build long-term relationships with farmers.",
-      },
-    ],
-    knowsAbout: [
-      "Ethical Coffee Sourcing",
-      "Coffee Traceability",
-      "Direct Trade",
-      "Sustainable Coffee Farming",
-      "Mondulkiri Coffee",
-      "Ratanakiri Arabica",
-      "Specialty Coffee Supply Chain",
-    ],
-  },
-}
-
-const originSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "OCC Coffee Origins",
-  itemListElement: [
-    {
-      "@type": "Place",
-      name: "Mondulkiri Province",
-      description: "Highland coffee region in Eastern Cambodia known for volcanic soil.",
-      geo: { "@type": "GeoCoordinates", latitude: 12.46, longitude: 107.10 },
-    },
-    {
-      "@type": "Place",
-      name: "Ratanakiri Province",
-      description: "Northeastern province famous for its rich red soil and premium Robusta.",
-      geo: { "@type": "GeoCoordinates", latitude: 13.73, longitude: 107.01 },
-    },
-    {
-      "@type": "Place",
-      name: "Kampot Province",
-      description: "Coastal region producing unique flavor profiles due to sea breeze.",
-      geo: { "@type": "GeoCoordinates", latitude: 10.62, longitude: 104.18 },
-    },
-  ],
-}
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  // Visible FAQs remain on the page; structured FAQ data is intentionally omitted.
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Where does OCC source its coffee in Cambodia?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "OCC sources directly from highland farming communities in Mondulkiri and Ratanakiri provinces in eastern Cambodia, as well as coastal estates in Kampot. Each lot is purchased through direct trade relationships with individual farmers, bypassing commodity markets entirely.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What does direct trade mean for Cambodian coffee farmers?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Direct trade means OCC negotiates price individually with each farm, consistently paying above Fair Trade floor prices. Farmers receive payment within 30 days of delivery, retain full decision-making over processing methods, and receive written feedback from every cupping session so they can improve quality year-over-year.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How does OCC verify the traceability of its coffee supply chain?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Every batch in the OCC system carries a full traceability record: GPS coordinates of the farm plot, the processing method used (washed, natural, or honey), harvest date, roast date, and cupping score. Wholesale clients receive this documentation with every order as standard.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is Cambodian specialty coffee certified organic or Fair Trade?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Most small-scale highland farms in Cambodia practice chemical-free cultivation without holding formal organic certification, as the certification cost is prohibitive for individual smallholders. OCC's direct trade model provides greater farmer premiums than Fair Trade certification in practice, and we document farming practices as part of our traceability protocol.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What environmental practices does OCC require from its farm partners?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "OCC prioritises farms that use shade-grown cultivation to preserve forest canopy, manage wastewater from wet processing to avoid stream contamination, and avoid synthetic pesticides. These practices are assessed during annual farm visits and documented in our supplier records.",
-      },
-    },
+  about: [
+    { "@type": "Thing", name: "Coffee sustainability" },
+    { "@type": "Thing", name: "Coffee traceability" },
+    { "@type": "Thing", name: "Producer economics" },
+    { "@type": "Thing", name: "Coffee environmental impact" },
+    { "@type": "Thing", name: "Cambodian coffee" },
   ],
 }
 
@@ -158,33 +53,52 @@ const breadcrumbSchema = {
   ],
 }
 
+const faqs = [
+  {
+    q: "Does OCC claim that Cambodian coffee is automatically sustainable?",
+    a: "No. Sustainability is not a property that can be inferred from country, farm size, species, or a marketing label alone. OCC looks for documented practices, dates, scope, measurable outcomes, and independent or clearly attributed evidence.",
+  },
+  {
+    q: "How does OCC evaluate coffee traceability claims?",
+    a: "A strong traceability claim should identify what is being traced, which records exist, who maintains them, how lots are separated, and where the chain of documentation begins and ends. A place name by itself is not full traceability.",
+  },
+  {
+    q: "How does OCC cover farmer income or producer economics?",
+    a: "Producer-economics claims require dated price information, a clear unit of measure, production or cost context, and geographic scope. OCC avoids converting a single farm example into a claim about an entire province or country.",
+  },
+  {
+    q: "What evidence is useful for environmental claims?",
+    a: "Peer-reviewed research, field measurements, government or institutional datasets, documented farm-management records, and clearly described methods can all contribute. The strength of the conclusion depends on the quality and representativeness of the evidence.",
+  },
+]
+
 const sections = [
   {
-    title: "Origin Transparency",
+    title: "Sustainability Is a Research Question",
     paragraphs: [
-      "Every coffee we carry has a name, a location, and a story that begins long before it reaches our roastery. We work directly with farmers and cooperatives across Cambodia's finest growing regions — Mondulkiri, Ratanakiri, and beyond — ensuring that origin transparency is not a marketing claim, but a documented reality.",
-      "When you order from OCC, you know where your coffee came from. Not just the country. The farm. The altitude. The harvest season. Because traceability is not optional — it is the foundation of specialty coffee done right.",
+      "Words such as sustainable, ethical, regenerative, shade-grown, and direct trade can describe meaningful practices, but the words themselves are not evidence. OCC treats sustainability as a set of questions that need definition, scope, and documentation.",
+      "The first step is to ask what outcome is being claimed: higher producer income, lower water use, forest retention, reduced chemical inputs, better soil condition, lower emissions, stronger traceability, or something else. Different claims require different evidence.",
     ],
   },
   {
-    title: "Ethical Sourcing Protocol",
+    title: "Traceability Evidence",
     paragraphs: [
-      "Cambodia's coffee farmers operate in one of Southeast Asia's most underrecognized growing regions. Their craft deserves fair recognition — not just in the cup, but in the price they receive for their work.",
-      "OCC operates on a direct trade model wherever possible. We pay above market rate for exceptional lots. We build relationships that last beyond a single harvest. Because a supply chain built on shortcuts produces exactly that — shortcuts in the cup.",
+      "Traceability can range from a country-level origin statement to a documented link between farm, harvest, processing unit, lot code, storage, and evaluation record. OCC distinguishes these levels instead of treating all origin information as equivalent.",
+      "Useful documentation may include lot identifiers, harvest dates, processing records, producer or cooperative records, physical quality data, sensory records, and chain-of-custody information. The absence of one document does not automatically invalidate an origin claim, but the limitation should be visible.",
     ],
   },
   {
-    title: "Traceability Protocol",
+    title: "Producer Economics",
     paragraphs: [
-      "Every batch that leaves our roastery carries a complete record — farm coordinates, processing method, roast date, and cupping score. This is not compliance documentation. It is our commitment to accountability at every stage of the supply chain.",
-      "For our wholesale partners, this means you can answer every question your customers ask about what's in their cup. For us, it means we answer for everything — exactly as we promised.",
+      "Price alone does not describe farmer welfare. A meaningful economic analysis may also need yield, labor, input costs, processing responsibility, payment timing, quality premiums, rejected volume, and household or farm-level context.",
+      "For Cambodia, where public datasets can be sparse or uneven, OCC dates numerical claims and avoids treating a small sample as a national benchmark.",
     ],
   },
   {
-    title: "Environmental Commitment",
+    title: "Environmental Evidence",
     paragraphs: [
-      "Specialty coffee and environmental responsibility are not in conflict — they are dependent on each other. The highland ecosystems of Mondulkiri and Ratanakiri that produce Cambodia's finest arabica are fragile. Protecting them is not a corporate initiative. It is a prerequisite for everything we do.",
-      "We prioritize suppliers who practice shade-grown cultivation, water conservation, and responsible land management. Not because it makes for good marketing. Because without healthy farms, there is no story worth telling.",
+      "Environmental conclusions should be tied to measured variables where possible. Shade, soil moisture, water use, biodiversity, wastewater, land management, and climate exposure are separate questions and should not be collapsed into a single sustainability score without a transparent method.",
+      "OCC uses international coffee research to explain mechanisms, but Cambodia-specific conclusions are reserved for Cambodia-specific evidence or clearly labelled field observations.",
     ],
   },
 ]
@@ -193,25 +107,25 @@ export default function SustainabilityPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(originSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="04"
         title="SUSTAINABILITY"
-        subtitle="ETHICAL SOURCING AND TRACEABILITY PROTOCOL."
+        subtitle="HOW OCC EVALUATES SUSTAINABILITY AND TRACEABILITY EVIDENCE."
         lead={[
-          "Perfection is not a destination. It applies to everything — including how we source.",
-          "A cup is only as honest as the chain behind it. We built ours to withstand scrutiny at every link.",
+          "Sustainability claims deserve the same scrutiny as quality claims.",
+          "OCC separates labels from evidence and asks what was measured, where, when, and by whom.",
         ]}
         sections={sections}
         closing={[
-          "Settle for nothing. Answer for everything.",
-          "This is what that means in practice — from the farm to the roastery, from the roastery to your cup. If you're looking for a coffee partner who holds their supply chain to the same standard as their roast profiles, you're in the right place.",
+          "A credible sustainability statement has boundaries.",
+          "The job of research is to make those boundaries visible so readers can distinguish documented practice from assumption.",
         ]}
+        faqs={faqs}
         next={{
-          href: "/solutions",
-          label: "Solutions",
-          description: "Explore Our Solutions",
+          href: "/blog",
+          label: "Journal",
+          description: "Explore OCC research and technical editorial.",
         }}
       />
     </>
