@@ -13,6 +13,8 @@ const homeContent = read('lib/homeContent.ts')
 const homeTemplate = read('components/templates/home-template.tsx')
 const navigation = read('components/site/navigation-data.ts')
 const sitemap = read('app/sitemap.ts')
+const blogPage = read('app/(site)/blog/page.tsx')
+const blogLayout = read('app/(site)/blog/layout.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
@@ -32,9 +34,16 @@ test('homepage is editorial and research-led rather than a wholesale acquisition
   assert.match(publicHome, /research/i)
 })
 
-test('commercial solutions are removed from navigation and sitemap', () => {
-  assert.doesNotMatch(navigation, /SOLUTIONS|\/solutions\//)
-  assert.doesNotMatch(sitemap, /\/solutions/)
+test('commercial solutions and product collection are removed from navigation and sitemap', () => {
+  assert.doesNotMatch(navigation, /SOLUTIONS|COLLECTION|\/solutions|\/collection/)
+  assert.doesNotMatch(sitemap, /\/solutions|\/collection/)
+})
+
+test('blog index uses research and standards language rather than buyer acquisition language', () => {
+  const blogSurface = `${blogPage}\n${blogLayout}`
+  assert.doesNotMatch(blogSurface, /buyer education|specialty coffee sourcing|Research · Buyers · Origins/i)
+  assert.match(blogSurface, /research/i)
+  assert.match(blogSurface, /standards/i)
 })
 
 test('article shell does not inject commercial money-pillar supplier or exporter guides', () => {
@@ -57,5 +66,18 @@ test('legacy solution URLs permanently redirect to the research journal', () => 
   ]) {
     const source = read(path)
     assert.match(source, /permanentRedirect\(["']\/blog["']\)/)
+  }
+})
+
+test('legacy collection product URLs permanently redirect to the research journal', () => {
+  for (const path of [
+    'app/(site)/collection/page.tsx',
+    'app/(site)/collection/sovann/page.tsx',
+    'app/(site)/collection/prek/page.tsx',
+    'app/(site)/collection/angkar/page.tsx',
+  ]) {
+    const source = read(path)
+    assert.match(source, /permanentRedirect\(["']\/blog["']\)/)
+    assert.doesNotMatch(source, /@type["']?\s*:\s*["']Product["']|Request a Collection Sample|TASTE THE COLLECTION/i)
   }
 })
