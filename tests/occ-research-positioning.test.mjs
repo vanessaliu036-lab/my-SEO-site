@@ -16,6 +16,7 @@ const sitemap = read('app/sitemap.ts')
 const blogPage = read('app/(site)/blog/page.tsx')
 const blogLayout = read('app/(site)/blog/layout.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
+const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
 const contactAction = read('app/(site)/contact/action.ts')
@@ -53,6 +54,13 @@ test('blog index uses research and standards language rather than buyer acquisit
 
 test('article shell does not inject commercial money-pillar supplier or exporter guides', () => {
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
+})
+
+test('article renderer does not inject sales routes or commercial CTA text', () => {
+  assert.doesNotMatch(articlePage, /\/solutions\//i)
+  assert.doesNotMatch(articlePage, /Need wholesale supply or roasting support|Talk to Our Team/i)
+  assert.doesNotMatch(articlePage, /href=\"\/contact\"[^\n]*class=\"shrink-0|lower\.includes\(\"wholesale\"\).*\/solutions/i)
+  assert.match(articlePage, /Editorial standards|evidence-led coffee research/i)
 })
 
 test('contact surface is general editorial contact, not a sales-service lead form', () => {
