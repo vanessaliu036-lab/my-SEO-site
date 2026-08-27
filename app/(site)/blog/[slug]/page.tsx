@@ -6,19 +6,8 @@ import { alternatesFromCanonical, seoDescription, seoTitle } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { getAllPosts, getPostBySlug } from "@/lib/airtable"
 
-// Plain-text / Markdown -> readable HTML with internal links injected
-const INTERNAL_LINKS: Record<string, string> = {
-  "specialty coffee": "/solutions/wholesale",
-  "wholesale coffee": "/solutions/wholesale",
-  "wholesale": "/solutions/wholesale",
-  "custom roasting": "/solutions/roasting-program",
-  "roast profile": "/solutions/roasting-program",
-  "roasting program": "/solutions/roasting-program",
-  "barista staffing": "/solutions/barista-staffing",
-  "barista": "/solutions/barista-staffing",
-  "equipment service": "/solutions/equipment-service",
-  "equipment": "/solutions/equipment-service",
-}
+// Plain-text / Markdown -> readable HTML. Commercial auto-linking is intentionally disabled.
+const INTERNAL_LINKS: Record<string, string> = {}
 
 const ROBUSTA_PILLAR_SLUG = "cambodia-specialty-robusta-coffee-guide"
 const ROBUSTA_PILLAR_HREF = `/blog/${ROBUSTA_PILLAR_SLUG}`
@@ -69,7 +58,7 @@ const ROBUSTA_PILLAR_ANCHORS = [
   "Cambodia Robusta guide",
   "Cambodian Robusta",
   "Fine Robusta from Cambodia",
-  "Cambodia Robusta sourcing guide",
+  "Cambodia Robusta research guide",
 ]
 
 function robustaAnchorForSlug(slug: string): string {
@@ -131,9 +120,7 @@ function renderInlineMarkdown(text: string): string {
 
   const rendered = addInternalLinks(protectedText)
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\[([^\]]+)\]/g, (_match, label) => {
-      return `<a href="/contact" class="border-b border-stone-300 text-stone-950 transition-colors hover:border-stone-950">${label}</a>`
-    })
+    .replace(/\[([^\]]+)\]/g, (_match, label) => label)
 
   return rendered.replace(/\x01(\d+)\x01/g, (_match, index) => {
     const { label, href } = markdownLinks[Number(index)]
@@ -169,9 +156,7 @@ function isPromptNote(line: string): boolean {
 
 function placeholderHref(label: string): string {
   const lower = label.toLowerCase()
-  if (lower.includes("wholesale")) return "/solutions/wholesale"
-  if (lower.includes("processing") || lower.includes("roast")) return "/solutions/roasting-program"
-  if (lower.includes("checklist") || lower.includes("sourcing")) return "/contact"
+  if (lower.includes("robusta") || lower.includes("cambodia")) return ROBUSTA_PILLAR_HREF
   return "/blog"
 }
 
@@ -327,14 +312,14 @@ function isLowSignalSeoText(text: string, title = ""): boolean {
 }
 
 function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>): string {
-  if (!post) return "Specialty coffee insights from Origin Coffee Cambodia."
+  if (!post) return "Evidence-led coffee research and technical editorial from Origin Coffee Cambodia."
   const summary = post.summary && !isLowSignalSeoText(post.summary, post.title) ? post.summary : ""
   const excerpt = post.excerpt && !isLowSignalSeoText(post.excerpt, post.title) ? post.excerpt : ""
   return seoDescription(
     summary ||
     excerpt ||
     plainTextExcerpt(post.content, post.title) ||
-    "Specialty coffee insights from Origin Coffee Cambodia."
+    "Evidence-led coffee research and technical editorial from Origin Coffee Cambodia."
   )
 }
 
@@ -519,7 +504,7 @@ export default async function BlogPostPage({
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
           )}
 
-          {/* Robusta Cambodia pillar backlink: curated 40-post cluster */}
+          {/* Robusta Cambodia pillar backlink: curated cluster */}
           {showRobustaPillarLink && (
             <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
               <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Core guide</p>
@@ -530,7 +515,7 @@ export default async function BlogPostPage({
                 {robustaPillarAnchor} →
               </Link>
               <p className="mt-2 text-xs leading-relaxed text-stone-500">
-                Use the central guide for origin, quality, sourcing and buyer context before comparing individual Cambodia Robusta topics.
+                Use the central guide for origin, quality, processing, standards and research context before comparing individual Cambodia Robusta topics.
               </p>
             </aside>
           )}
@@ -549,17 +534,17 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          {/* CTA */}
+          {/* Editorial note */}
           <div className="mx-auto max-w-[720px] mt-12 bg-stone-950 text-white p-7 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
               <p className="text-xs tracking-[0.24em] text-stone-400 uppercase mb-1">Origin Coffee Cambodia</p>
-              <p className="font-bold tracking-tight">Need wholesale supply or roasting support?</p>
+              <p className="font-bold tracking-tight">Evidence-led coffee research and technical editorial.</p>
             </div>
             <Link
-              href="/contact"
+              href="/about/manifesto"
               className="shrink-0 text-xs tracking-[0.14em] border border-white px-5 py-2.5 hover:bg-white hover:text-stone-950 transition-colors uppercase"
             >
-              Talk to Our Team →
+              Editorial standards →
             </Link>
           </div>
         </article>
