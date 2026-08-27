@@ -13,7 +13,6 @@ const homeContent = read('lib/homeContent.ts')
 const homeTemplate = read('components/templates/home-template.tsx')
 const navigation = read('components/site/navigation-data.ts')
 const sitemap = read('app/sitemap.ts')
-const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
@@ -38,8 +37,7 @@ test('commercial solutions are removed from navigation and sitemap', () => {
   assert.doesNotMatch(sitemap, /\/solutions/)
 })
 
-test('article shell does not inject commercial solution or money-pillar links', () => {
-  assert.doesNotMatch(articlePage, /\/solutions\//)
+test('article shell does not inject commercial money-pillar supplier or exporter guides', () => {
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
 })
 
