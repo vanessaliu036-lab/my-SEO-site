@@ -136,3 +136,8 @@ test('legacy collection product URLs permanently redirect to the research journa
     assert.doesNotMatch(source, /@type["']?\s*:\s*["']Product["']|Request a Collection Sample|TASTE THE COLLECTION/i)
   }
 })
+
+test('sitemap always reflects the current Airtable publication gate instead of serving stale ISR data', () => {
+  assert.match(sitemap, /export const dynamic\s*=\s*["']force-dynamic["']/)
+  assert.match(sitemap, /export const revalidate\s*=\s*0/)
+})
