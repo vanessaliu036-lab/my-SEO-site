@@ -37,22 +37,22 @@ export default function HomeTemplate() {
 
         <div className="relative z-20 mx-auto w-full max-w-6xl px-6 pb-24 pt-32 text-center sm:px-8 md:pb-20">
           <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 sm:text-xs">
-            Mondulkiri · Cambodia · Fine Robusta
+            Cambodia · Coffea canephora · Fine Robusta
           </p>
           <h1 className="mx-auto max-w-5xl text-balance text-5xl font-normal leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]">
-            Cambodia’s Fine Robusta. Built for the World.
+            Cambodian Coffee, Studied in Context.
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
-            From Mondulkiri farms to global roasters, we connect quality-focused Cambodian canephora with buyers who care about process, traceability, and cup performance.
+            Independent research and evidence-led editorial on Cambodian coffee, canephora quality, processing, roasting, sensory evaluation, standards, and origin systems.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/solutions/wholesale"
+              href="/blog"
               className="group inline-flex items-center rounded-full text-sm font-medium text-[#172018]"
             >
               <span className="rounded-full bg-[#e7f2c9] px-6 py-3.5 transition-colors duration-300 group-hover:bg-white">
-                Explore Wholesale
+                Explore Research
               </span>
               <span className="relative -ml-px flex size-[50px] items-center justify-center overflow-hidden rounded-full bg-[#e7f2c9] transition-colors duration-300 group-hover:bg-white">
                 <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-6 group-hover:-translate-y-6" />
@@ -63,14 +63,14 @@ export default function HomeTemplate() {
               href="/blog/cambodia-specialty-robusta-coffee-guide"
               className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white"
             >
-              Discover Fine Robusta
+              Fine Robusta Guide
             </Link>
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between border-t border-white/15 px-5 py-5 text-[9px] uppercase tracking-[0.24em] text-white/55 sm:px-8 lg:px-12">
           <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:inline">From origin to global buyers</span>
+          <span className="hidden sm:inline">Evidence · Standards · Origin</span>
           <span>01 / Home</span>
         </div>
       </section>
@@ -78,7 +78,7 @@ export default function HomeTemplate() {
       <section className="border-t border-gray-200 bg-white px-6 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-gray-500">Origin Coffee Cambodia</p>
-          <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian Fine Robusta, explained for global coffee buyers.</h2>
+          <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee and Fine Robusta, explained through evidence.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">{homeDirectAnswer}</p>
           <div className="mt-16 border-t border-gray-200 md:mt-20">
             {homeAuthoritySections.map((section, sectionIndex) => (
