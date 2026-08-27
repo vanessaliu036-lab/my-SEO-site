@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "test:seo-publishing": "node --test tests/publication-policy.test.mjs tests/blog-slug-policy.test.mjs",
+    "test:seo-publishing": "node --test tests/publication-policy.test.mjs tests/blog-slug-policy.test.mjs tests/occ-research-positioning.test.mjs",
     "prebuild": "npm run test:seo-publishing",
     "build": "next build",
     "dev": "next dev",
