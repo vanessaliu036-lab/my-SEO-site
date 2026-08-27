@@ -1,9 +1,29 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { join } from 'node:path'
+
+const ROOT = fileURLToPath(new URL('../', import.meta.url))
 
 function read(path) {
   return readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
+}
+
+function sourceFiles(dir) {
+  const root = join(ROOT, dir)
+  const out = []
+  for (const name of readdirSync(root)) {
+    const full = join(root, name)
+    const stat = statSync(full)
+    if (stat.isDirectory()) out.push(...sourceFiles(`${dir}/${name}`))
+    else if (/\.(?:ts|tsx|mts|mjs)$/.test(name)) out.push(full)
+  }
+  return out
+}
+
+function readAbsolute(path) {
+  return readFileSync(path, 'utf8')
 }
 
 const siteConfig = read('lib/siteConfig.ts')
@@ -75,6 +95,20 @@ test('about surfaces describe OCC as a research platform rather than a supplier 
   assert.match(aboutSurface, /evidence/i)
   assert.doesNotMatch(aboutSurface, /specialty coffee supplier|coffee roaster Phnom Penh|infrastructure company|Head Roaster|barista training|service call|source from OCC|Sourcing from OCC|When you order from OCC|wholesale partners|makesOffer|Request a Collection Sample|\/solutions/i)
   assert.doesNotMatch(aboutSurface, /we carry|our roastery|supplying exceptionally roasted coffee|supplier who moved on after the sale|not just as a supplier/i)
+})
+
+test('public source contains no known commercial positioning regressions', () => {
+  const files = [
+    ...sourceFiles('app/(site)'),
+    join(ROOT, 'app/layout.tsx'),
+    ...sourceFiles('components/site'),
+    ...sourceFiles('components/templates'),
+    join(ROOT, 'lib/siteConfig.ts'),
+    join(ROOT, 'lib/organizationSchema.ts'),
+  ]
+  const publicSource = files.map(readAbsolute).join('\n')
+  assert.doesNotMatch(publicSource, /B2B coffee supplier|Explore Wholesale|Request a Collection Sample|Need wholesale supply or roasting support|Talk to Our Team|contactType\s*:\s*["']sales["']|makesOffer\s*:/i)
+  assert.doesNotMatch(publicSource, /connect quality-focused Cambodian canephora with buyers|commercial pathways|Related buyer guide|MONEY_PILLARS/i)
 })
 
 test('legacy solution URLs permanently redirect to the research journal', () => {
