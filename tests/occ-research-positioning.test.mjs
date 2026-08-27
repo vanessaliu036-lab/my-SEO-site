@@ -45,6 +45,7 @@ const missionPage = read('app/(site)/about/mission/page.tsx')
 const founderPage = read('app/(site)/about/founder/page.tsx')
 const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
+const airtableSource = read('lib/airtable.ts')
 
 test('OCC identifies itself as an independent information and research platform', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
@@ -109,6 +110,12 @@ test('public source contains no known commercial positioning regressions', () =>
   const publicSource = files.map(readAbsolute).join('\n')
   assert.doesNotMatch(publicSource, /B2B coffee supplier|Explore Wholesale|Request a Collection Sample|Need wholesale supply or roasting support|Talk to Our Team|contactType\s*:\s*["']sales["']|makesOffer\s*:/i)
   assert.doesNotMatch(publicSource, /connect quality-focused Cambodian canephora with buyers|commercial pathways|Related buyer guide|MONEY_PILLARS/i)
+})
+
+test('public publishing reads only OCC_Blog_Posts and never the legacy Articles table', () => {
+  assert.match(airtableSource, /PUBLIC_AIRTABLE_TABLE_NAMES/)
+  assert.match(airtableSource, /OCC_Blog_Posts/)
+  assert.doesNotMatch(airtableSource, /['"]Articles,OCC_Blog_Posts['"]/)
 })
 
 test('legacy solution URLs permanently redirect to the research journal', () => {
