@@ -9,7 +9,7 @@ const blogSchema = {
   name: `${siteName} Journal`,
   url: `${siteUrl}/blog`,
   description:
-    "Research, buyer education, and industry analysis about Fine Robusta, Coffea canephora, Cambodian coffee, processing, roasting, sourcing, and origin development.",
+    "Evidence-led research and technical editorial on Fine Robusta, Coffea canephora, Cambodian coffee, processing, roasting, sensory evaluation, quality standards, and origin systems.",
   inLanguage: "en",
   isPartOf: {
     "@type": "WebSite",
@@ -31,6 +31,8 @@ const blogSchema = {
     { "@type": "Thing", name: "Cambodian coffee" },
     { "@type": "Thing", name: "Coffee processing" },
     { "@type": "Thing", name: "Coffee roasting" },
+    { "@type": "Thing", name: "Coffee sensory evaluation" },
+    { "@type": "Thing", name: "Coffee quality standards" },
   ],
 }
 
