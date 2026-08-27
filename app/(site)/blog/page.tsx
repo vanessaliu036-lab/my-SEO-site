@@ -7,6 +7,8 @@ import { alternatesFromCanonical } from "@/lib/seo"
 import { getAllPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
+const JOURNAL_DESCRIPTION =
+  "Evidence-led research and technical editorial on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin systems."
 
 export async function generateMetadata({
   searchParams,
@@ -15,17 +17,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { page: pageStr } = await searchParams
   const page = Math.max(1, parseInt(pageStr || "1", 10) || 1)
-  const titleBase = "Blog | Origin Coffee Cambodia"
+  const titleBase = "Research Journal | Origin Coffee Cambodia"
   const canonical = page <= 1 ? `${siteUrl}/blog` : `${siteUrl}/blog?page=${page}`
   return {
     title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
-    description:
-      "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
+    description: JOURNAL_DESCRIPTION,
     alternates: alternatesFromCanonical(canonical),
     openGraph: {
       title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
-      description:
-        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
+      description: JOURNAL_DESCRIPTION,
       url: canonical,
       siteName,
       locale: "en_US",
@@ -35,8 +35,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
-      description:
-        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
+      description: JOURNAL_DESCRIPTION,
       images: [ogImage],
     },
   }
@@ -49,7 +48,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
+    { "@type": "ListItem", position: 2, name: "Research Journal", item: `${siteUrl}/blog` },
   ],
 }
 
@@ -81,15 +80,15 @@ export default async function BlogPage({
           </div>
           <div className="relative mx-auto grid min-h-[58svh] w-full max-w-[1680px] grid-cols-1 items-end gap-10 px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20 lg:pt-32">
             <div className="md:col-span-3 md:pb-3">
-              <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Field Notes &amp; Craft</p>
-              <p className="mt-6 max-w-xs text-[15px] leading-7 text-black/52">Origin intelligence from the OCC team.</p>
+              <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Research Notes &amp; Analysis</p>
+              <p className="mt-6 max-w-xs text-[15px] leading-7 text-black/52">Evidence, standards, and origin research from OCC.</p>
             </div>
             <div className="md:col-span-7 md:col-start-4">
               <h1 className="font-[var(--font-display)] text-[clamp(5rem,10vw,10rem)] font-normal leading-[0.78] tracking-[-0.065em]">THE SIGNAL.</h1>
             </div>
             <div className="md:col-span-2 md:pb-3">
               <div className="border-t border-black/10 pt-5 text-[10px] uppercase leading-6 tracking-[0.18em] text-black/38">
-                <p>Journal / OCC</p>
+                <p>Research Journal / OCC</p>
                 <p>Page {page} / {totalPages}</p>
                 <p>{posts.length} Articles</p>
               </div>
@@ -97,8 +96,8 @@ export default async function BlogPage({
           </div>
           <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
             <span>Origin Coffee Cambodia</span>
-            <span className="hidden sm:block">Research · Buyers · Origins</span>
-            <span>04 / Blog</span>
+            <span className="hidden sm:block">Research · Standards · Origins</span>
+            <span>03 / Blog</span>
           </div>
         </section>
 
@@ -159,7 +158,7 @@ export default async function BlogPage({
 
           <footer className="flex flex-col gap-4 py-9 text-[9px] uppercase tracking-[0.19em] text-black/34 sm:flex-row sm:justify-between">
             <span>Origin Coffee Cambodia · OCC</span>
-            <span>Journal / The Signal</span>
+            <span>Research Journal / The Signal</span>
           </footer>
         </div>
       </main>
