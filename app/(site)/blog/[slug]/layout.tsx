@@ -1,5 +1,7 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import type { ReactNode } from "react"
+import { getPostBySlug } from "@/lib/airtable"
 import "./article-editorial.css"
 
 type PillarConfig = {
@@ -127,6 +129,28 @@ function pillarForCluster(slug: string): PillarConfig | null {
 function anchorForSlug(slug: string, anchors: string[]): string {
   const hash = Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 0)
   return anchors[hash % anchors.length]
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
+
+  if (!post || post.indexable) return {}
+
+  return {
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: {
+        index: false,
+        follow: true,
+      },
+    },
+  }
 }
 
 export default async function BlogPostLayout({
