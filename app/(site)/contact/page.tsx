@@ -3,27 +3,19 @@ import { siteUrl, siteLogoUrl, ogImage, siteDescription } from "@/lib/siteConfig
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 import ContactForm from "./ContactForm"
-import type { ContactFormData } from "./action"
 import "./contact-editorial.css"
-
-const INTEREST_MAP: Record<string, ContactFormData["service"]> = {
-  wholesale: "Wholesale",
-  roasting: "Roasting Program",
-  staffing: "Barista Staffing",
-  equipment: "Equipment Service",
-}
 
 export const metadata: Metadata = {
   title: "Contact | Origin Coffee Cambodia - OCC",
   description:
-    "Get in touch with Origin Coffee Cambodia (OCC). Enquire about wholesale supply, custom roasting programs, barista staffing, or equipment service in Cambodia.",
+    "Contact Origin Coffee Cambodia (OCC) with editorial questions, source corrections, media enquiries, or general questions about the research platform.",
   keywords:
-    "contact OCC Cambodia, coffee wholesale enquiry Phnom Penh, specialty coffee contact Cambodia, coffee supplier contact, OCC enquiry, OCC contact",
+    "Origin Coffee Cambodia contact, OCC editorial contact, coffee research enquiry, Cambodia coffee information",
   alternates: pageAlternates("/contact"),
   openGraph: {
     title: "Contact | Origin Coffee Cambodia - OCC",
     description:
-      "Every serious operation starts with a conversation. Reach out for wholesale, roasting, staffing, or equipment enquiries.",
+      "Contact OCC about editorial questions, source corrections, media enquiries, or general research-platform questions.",
     url: `${siteUrl}/contact`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -33,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | Origin Coffee Cambodia - OCC",
     description:
-      "Get in touch with OCC for wholesale coffee supply, roasting programs, and barista staffing in Cambodia.",
+      "Contact OCC about editorial questions, source corrections, media enquiries, or general research-platform questions.",
   },
 }
 
@@ -50,7 +42,7 @@ const contactOrganizationSchema = {
   areaServed: areaServedCambodia,
   contactPoint: {
     "@type": "ContactPoint",
-    contactType: "sales",
+    contactType: "general inquiries",
     url: `${siteUrl}/contact`,
     availableLanguage: ["English"],
     areaServed: areaServedCambodia,
@@ -66,14 +58,7 @@ const breadcrumbSchema = {
   ],
 }
 
-export default async function ContactPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ interest?: string }>
-}) {
-  const { interest } = await searchParams
-  const defaultInterest = interest ? INTEREST_MAP[interest.toLowerCase()] : undefined
-
+export default function ContactPage() {
   return (
     <>
       <style>{`
@@ -86,7 +71,7 @@ export default async function ContactPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactOrganizationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="occ-contact-shell">
-        <ContactForm fontVars="contact-font-vars" defaultInterest={defaultInterest} />
+        <ContactForm fontVars="contact-font-vars" />
       </div>
     </>
   )
