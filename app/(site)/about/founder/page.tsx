@@ -1,19 +1,19 @@
 import { AboutInstitutionalTemplate } from "@/components/templates/about-institutional-template"
-import { siteUrl } from "@/lib/siteConfig"
+import { siteDescription, siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Founder | Origin Coffee Cambodia - OCC",
   description:
-    "OCC didn't begin with a business plan. It began with a question no one in Cambodia's coffee industry was asking. Meet the philosophy behind the craft.",
+    "The editorial philosophy behind Origin Coffee Cambodia: study Cambodian coffee with evidence, distinguish what is known from what is inferred, and publish limitations clearly.",
   keywords:
-    "coffee founder Cambodia, OCC founder, specialty coffee philosophy Cambodia, coffee craftsmanship, Phnom Penh coffee roaster origin",
+    "Origin Coffee Cambodia founder, OCC editorial philosophy, Cambodia coffee research, Fine Robusta research, Coffea canephora research",
   alternates: pageAlternates("/about/founder"),
   openGraph: {
     title: "Founder | Origin Coffee Cambodia - OCC",
     description:
-      "Philosophy, Credentials, and the Big Idea. OCC didn't begin with a business plan. It began with a question no one was asking.",
+      "The editorial philosophy behind OCC and the question that shaped its research-first approach to Cambodian coffee.",
     url: `${siteUrl}/about/founder`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -23,36 +23,23 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Founder | Origin Coffee Cambodia - OCC",
     description:
-      "Philosophy, Credentials, and the Big Idea. The story behind Cambodia's most uncompromising coffee infrastructure company.",
+      "Why OCC treats Cambodian coffee as a subject to document, test, and explain rather than a claim to promote.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "OCC Founder — Philosophy, Credentials, and the Big Idea",
+  name: "OCC Founder — Editorial Philosophy",
   description:
-    "OCC didn't begin with a business plan. It began with a question no one in Cambodia's coffee industry was asking: why does a great origin produce a forgettable cup?",
+    "The editorial philosophy behind Origin Coffee Cambodia and its evidence-led approach to Cambodian coffee research.",
   url: `${siteUrl}/about/founder`,
   isPartOf: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    description:
-      "Specialty coffee infrastructure company based in Phnom Penh, Cambodia.",
-  },
-  mainEntity: {
-    "@type": "Person",
-    name: "OCC Founder",
-    jobTitle: "Founder & Head Roaster",
-    description:
-      "Craftsman who refused to accept that Cambodia's coffee culture was defined by its weakest cup.",
-    knowsAbout: [
-      "Specialty Coffee Roasting",
-      "Coffee Supply Chain Infrastructure",
-      "Barista Training",
-      "Coffee Traceability",
-      "Cambodian Coffee Industry",
-    ],
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    name: "Origin Coffee Cambodia",
+    url: siteUrl,
+    description: siteDescription,
   },
 }
 
@@ -68,46 +55,37 @@ const breadcrumbSchema = {
 
 const faqs = [
   {
-    q: "Why was OCC founded?",
-    a: "OCC began with a question no one in Cambodia's coffee industry was asking: why does a great origin produce a forgettable cup? The answer was never the bean — it was the roast, the training, and the supplier who moved on after the sale. OCC was built to fix the system, not one part of it.",
+    q: "Why was OCC created?",
+    a: "OCC was created because reliable information about Cambodian coffee is scattered across research papers, standards documents, local reporting, industry records, and field observations. The project brings those sources into a clearer editorial framework without pretending that incomplete evidence is complete.",
   },
   {
-    q: "What is the founder's philosophy on craftsmanship?",
-    a: "Craftsmanship at OCC is not a credential. It is a standard held internally before anyone else applies it. Every roast profile, every training session, every service call is either right or it isn't — there is no in between.",
+    q: "What is the editorial philosophy behind OCC?",
+    a: "Separate evidence from inference. Date numerical claims. Identify geographic scope. Prefer primary sources where possible. State uncertainty and limitations instead of smoothing them away.",
   },
   {
-    q: "What does the OCC founder focus on today?",
-    a: "Specialty coffee roasting, coffee supply chain infrastructure, barista training, and traceability across Cambodia's coffee industry — the four handoffs where quality is usually lost.",
+    q: "What does OCC focus on?",
+    a: "Cambodian coffee, Fine Robusta, Coffea canephora, genetics, climate, processing, drying, roasting, brewing, sensory evaluation, quality standards, traceability, and the evidence used to describe emerging coffee origins.",
   },
 ]
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  // FAQ content is rendered visibly; no FAQ structured data is emitted.
-  mainEntity: faqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-}
 
 const sections = [
   {
     title: "The Question",
     paragraphs: [
-      "The answer was never the bean. It was everything that happened after. The roast that wasn't dialed in. The barista who wasn't trained. The supplier who moved on after the sale. We saw a system that was broken at every handoff — and decided that fixing one part wasn't enough.",
+      "The project began with a simple question: how much of what is repeated about Cambodian coffee is actually documented, and how much is assumption? Answering that question requires more than tasting notes or origin storytelling. It requires dates, methods, standards, local context, and a willingness to leave some questions open.",
     ],
   },
   {
-    title: "Craftsmanship",
+    title: "Editorial Standard",
     paragraphs: [
-      "Craftsmanship, to us, is not a credential. It is a standard we hold ourselves to before anyone else does. Every roast profile, every training session, every service call — each one is either right or it isn't. There is no in between.",
+      "OCC treats accuracy as an editorial practice. A production figure needs a year and scope. A sensory claim needs a method or clear attribution. A study from another species or country can provide context, but it should not be presented as direct evidence for Cambodian canephora.",
+      "This approach is deliberately cautious because emerging origins are easy to overdescribe. Credibility grows when the boundary between evidence and interpretation stays visible.",
     ],
   },
   {
-    title: "One of Us",
+    title: "What Comes Next",
     paragraphs: [
-      "OCC was built by people who refused to accept that Cambodia's coffee culture was defined by its weakest cup. If you're reading this, you probably feel the same way. That makes you one of us.",
+      "The long-term goal is a stronger evidence base for Cambodian coffee: better source mapping, more primary research, clearer standards interpretation, and eventually more first-party datasets that can be examined rather than merely repeated.",
     ],
   },
 ]
@@ -120,17 +98,18 @@ export default function FounderPage() {
       <AboutInstitutionalTemplate
         index="02"
         title="FOUNDER"
-        subtitle="PHILOSOPHY, CREDENTIALS, AND THE BIG IDEA."
+        subtitle="THE EDITORIAL PHILOSOPHY BEHIND OCC."
         lead={[
-          "OCC didn't begin with a business plan. It began with a question no one in Cambodia's coffee industry was asking: why does a great origin produce a forgettable cup?",
+          "OCC began with a research problem, not a product catalogue.",
+          "The central question is still the same: what can the available evidence actually support?",
         ]}
         sections={sections}
         faqs={faqs}
         next={{
           href: "/about/manifesto",
           label: "Manifesto",
-          description: "The Barista Army Thesis: Why We'll Never Open a Cafe.",
-          note: "Which brings us to the big idea. The one that made everyone think we were crazy.",
+          description: "Evidence before claims. Context before promotion.",
+          note: "A research platform needs a clear rule for what it will and will not claim.",
         }}
       />
     </>
