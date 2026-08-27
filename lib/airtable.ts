@@ -1,3 +1,5 @@
+import { isIndexableBySeoGate } from './publicationPolicy.mjs'
+
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -203,7 +205,7 @@ function sortFieldForTable(tableName: string): string {
   return 'publish_date'
 }
 
-function recordToListItem(record: AirtableRecord): BlogPost | null {
+function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
   if (!isPublished(record.fields)) return null
   const slug = slugFromRecord(record)
   if (!slug || !isAcceptableSlug(slug)) return null
@@ -230,7 +232,14 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
     featured_image_url: pickField(record.fields, K.featured),
     category: pickField(record.fields, K.category),
     table_name: record.tableName,
+    indexable: isIndexableBySeoGate(record.fields),
   }
+}
+
+function recordToListItem(record: AirtableRecord): BlogPost | null {
+  const item = recordToPublishedItem(record)
+  if (!item || !item.indexable) return null
+  return item
 }
 
 async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
@@ -279,6 +288,7 @@ export interface BlogPost {
   featured_image_url: string
   category: string
   table_name: string
+  indexable: boolean
 }
 
 export interface BlogPostDetail extends BlogPost {
@@ -313,7 +323,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
-  const base = recordToListItem(record)
+  const base = recordToPublishedItem(record)
   if (!base) return null
   return {
     ...base,
@@ -354,6 +364,8 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
   try {
     const exact = escapeFormulaValue(keyLast)
+    let nonIndexableFallback: BlogPostDetail | null = null
+
     for (const tableName of AIRTABLE_TABLE_NAMES) {
       const q1 = new URLSearchParams({
         filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}')`,
@@ -400,16 +412,23 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
       if (rows.length > 0) {
         const detail = recordToDetail(rows[0])
-        if (detail) return detail
+        if (!detail) continue
+        if (detail.indexable) return detail
+        if (!nonIndexableFallback) nonIndexableFallback = detail
       }
     }
 
     const list = await getAllPosts()
     const hit = list.find((p) => p.slug.toLowerCase() === keyLast.toLowerCase())
-    if (!hit) return null
-    const full = await fetchRecordById(hit.id)
-    if (!full) return null
-    return recordToDetail(full)
+    if (hit) {
+      const full = await fetchRecordById(hit.id)
+      if (full) {
+        const detail = recordToDetail(full)
+        if (detail) return detail
+      }
+    }
+
+    return nonIndexableFallback
   } catch (e) {
     console.error('getPostBySlug', e)
     return null
