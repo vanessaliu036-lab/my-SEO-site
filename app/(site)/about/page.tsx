@@ -1,16 +1,19 @@
 import { Metadata } from "next"
 import { AboutEditorialTemplate } from "@/components/templates/about-editorial-template"
-import { siteUrl, siteLogoUrl } from "@/lib/siteConfig"
+import { siteDescription, siteUrl, siteLogoUrl } from "@/lib/siteConfig"
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "About Origin | Origin Coffee Cambodia - OCC Coffee Roaster",
-  description: "Learn how Origin Coffee Cambodia builds a traceable specialty coffee supply chain through ethical sourcing, quality control, and professional training.",
-  keywords: "about coffee roaster Cambodia, OCC coffee, Origin Coffee Cambodia, Cambodia coffee supply chain, specialty coffee infrastructure Cambodia, coffee sourcing Cambodia, ethical coffee Cambodia, coffee roaster Phnom Penh about",
+  title: "About OCC | Independent Coffee Research Platform",
+  description:
+    "Origin Coffee Cambodia (OCC) is an independent coffee information and research platform publishing evidence-led work on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, and quality standards.",
+  keywords:
+    "Cambodia coffee research, Fine Robusta research, Coffea canephora Cambodia, coffee quality standards, coffee processing research, coffee sensory evaluation, Mondulkiri coffee research",
   openGraph: {
-    title: "About Origin | Origin Coffee Cambodia - OCC",
-    description: "Unlike celebrity-driven roasters, OCC builds infrastructure. We're reconstructing Cambodia's specialty coffee supply chain from the ground up.",
+    title: "About OCC | Origin Coffee Cambodia",
+    description:
+      "Independent coffee information and research focused on Cambodian coffee, Fine Robusta, canephora quality, processing, roasting, sensory evaluation, and standards.",
     url: `${siteUrl}/about`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -20,14 +23,14 @@ export const metadata: Metadata = {
         url: `${siteUrl}/images/about-og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Origin Coffee Cambodia - Origin Coffee Cambodia (OCC) About Page"
+        alt: "Origin Coffee Cambodia research platform"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Origin | Origin Coffee Cambodia",
-    description: "Building infrastructure for Cambodia's specialty coffee future.",
+    title: "About OCC | Origin Coffee Cambodia",
+    description: "Independent, evidence-led coffee research and editorial focused on Cambodia and Coffea canephora.",
     images: [`${siteUrl}/images/about-twitter-card.jpg`]
   },
   alternates: pageAlternates("/about"),
@@ -36,80 +39,66 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Origin Coffee Cambodia (OCC)",
-  "alternateName": "Origin Coffee Cambodia",
-  "url": `${siteUrl}`,
-  "logo": siteLogoUrl,
-  "description": "Specialty coffee infrastructure company reconstructing Cambodia's coffee supply chain through ethical sourcing, traceability, and professional training.",
-  "areaServed": areaServedCambodia,
-  "knowsAbout": [
-    "Specialty Coffee Supply Chain",
-    "Coffee Infrastructure",
-    "Ethical Coffee Sourcing",
-    "Coffee Traceability",
-    "Cambodian Coffee Industry",
-    "Coffee Roasting Technology"
-  ],
-  "foundingDate": "2020",
-  "founder": {
-    "@type": "Person",
-    "name": "OCC Founder",
-    "jobTitle": "Founder & Head Roaster"
-  }
+  "@id": `${siteUrl}/#organization`,
+  name: "Origin Coffee Cambodia",
+  alternateName: "OCC",
+  url: siteUrl,
+  logo: siteLogoUrl,
+  description: siteDescription,
+  areaServed: areaServedCambodia,
+  knowsAbout: [
+    "Cambodian Coffee",
+    "Fine Robusta",
+    "Coffea canephora",
+    "Coffee Quality Standards",
+    "Coffee Processing",
+    "Coffee Fermentation",
+    "Coffee Drying",
+    "Coffee Roasting",
+    "Coffee Sensory Evaluation",
+    "Mondulkiri Coffee",
+    "Coffee Origin Research"
+  ]
 }
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": `${siteUrl}`
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "About",
-      "item": `${siteUrl}/about`
-    }
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` }
   ]
 }
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "name": "About Origin Coffee Cambodia",
-  "description": "Origin Coffee Cambodia (OCC) is building infrastructure for Cambodia's specialty coffee industry - from ethical sourcing to professional training.",
-  "url": `${siteUrl}/about`,
-  "mainEntity": {
-    "@type": "Organization",
-    "name": "Origin Coffee Cambodia (OCC)",
-    "description": "We don't just roast coffee. We reconstruct Cambodia's specialty coffee supply chain."
-  }
+  name: "About Origin Coffee Cambodia",
+  description: siteDescription,
+  url: `${siteUrl}/about`,
+  mainEntity: { "@id": `${siteUrl}/#organization` }
 }
 
 const sections = [
   {
     title: "Mission",
     href: "/about/mission",
-    desc: "Vision, Mission, and Why We Exist."
+    desc: "Why OCC publishes evidence-led coffee research."
   },
   {
     title: "Founder",
     href: "/about/founder",
-    desc: "Philosophy, Credentials, and the Big Idea."
+    desc: "The editorial philosophy behind OCC."
   },
   {
     title: "Manifesto",
     href: "/about/manifesto",
-    desc: "The Barista Army Thesis: Why We'll Never Open a Cafe."
+    desc: "Evidence before claims. Context before promotion."
   },
   {
     title: "Sustainability",
     href: "/about/sustainability",
-    desc: "Ethical sourcing and traceability protocol."
+    desc: "How OCC evaluates sustainability, traceability, and origin evidence."
   },
 ]
 
