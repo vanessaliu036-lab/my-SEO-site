@@ -116,15 +116,6 @@ function getStatus(fields: Record<string, unknown>): string {
   return String(raw).trim().toLowerCase()
 }
 
-/**
- * 僅後台標成已發布才顯示（不再把空白 status 當上線，避免列表比「已上架」多）。
- *
- * 兼容字串（不分大小寫、不分單複數）：
- *   - 已發布：publish / published / live / ready / sent / online
- *   - 未發布：draft / archived / archive / inactive / unpublish / unpublished
- *
- * 變體邏輯集中在這一支；改規則只動這裡，別處不必動。
- */
 const PUBLISHED_TOKENS = new Set([
   'publish',
   'published',
@@ -145,7 +136,7 @@ const UNPUBLISHED_TOKENS = new Set([
 
 function isPublished(fields: Record<string, unknown>): boolean {
   const s = getStatus(fields)
-  if (!s) return false // 空字串不算發布，避免 Draft 漏欄位時誤判
+  if (!s) return false
   if (UNPUBLISHED_TOKENS.has(s)) return false
   return PUBLISHED_TOKENS.has(s)
 }
@@ -158,7 +149,6 @@ function escapeAirtableQuoted(value: string): string {
   return value.replace(/'/g, "''")
 }
 
-/** 網址列 slug：解碼、去掉前綴 blog/ */
 function normalizeSlugParam(raw: string): string {
   let t = raw.trim()
   try {
@@ -173,10 +163,6 @@ function normalizeSlugParam(raw: string): string {
     .trim()
 }
 
-/**
- * Airtable 可能存整段路徑；Next `[slug]` 只有一層，取最後一段作為網址 slug，
- * 與列表連結一致，避免點進 404。
- */
 function canonicalSlugForUrl(rawSlug: string): string {
   const n = normalizeSlugParam(rawSlug)
   const parts = n.split('/').filter(Boolean)
@@ -250,8 +236,6 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
     const params = new URLSearchParams({
       'sort[0][field]': sortFieldForTable(tableName),
       'sort[0][direction]': 'desc',
-      // 抓完全部 records（先前 100 筆上限會把較舊的 published 文章切掉）。
-      // Airtable API 上限 100/頁，這個參數是「總筆數上限」，不是分頁大小。
       maxRecords: '1000',
     })
     if (offset) params.set('offset', offset)
@@ -259,8 +243,6 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
       {
         headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        // 60s 短窗：後台推 status=publish 後，前台最遲 60s 顯示，
-        // 配合 /api/revalidate 主動刷新可達即時。
         next: { revalidate: 60 },
       }
     )
@@ -368,7 +350,7 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
     for (const tableName of AIRTABLE_TABLE_NAMES) {
       const q1 = new URLSearchParams({
-        filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}')`,
+        filterByFormula: `{slug}='${exact}'`,
         maxRecords: '1',
       })
       let res = await fetch(
@@ -390,7 +372,7 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
       if (rows.length === 0) {
         const q = escapeAirtableQuoted(keyLast.toLowerCase())
         const q2 = new URLSearchParams({
-          filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}')`,
+          filterByFormula: `LOWER({slug})='${q}'`,
           maxRecords: '1',
         })
         res = await fetch(
