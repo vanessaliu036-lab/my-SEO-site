@@ -7,14 +7,14 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Manifesto | Origin Coffee Cambodia - OCC",
   description:
-    "OCC is building Cambodia's specialty coffee infrastructure from farmer to cup, with training and quality control at every handoff.",
+    "The OCC editorial manifesto: evidence before claims, context before certainty, and transparent limits when research on Cambodian coffee is incomplete.",
   keywords:
-    "barista training Cambodia, skilled barista army, coffee manifesto, OCC manifesto, specialty coffee infrastructure Cambodia, why we never open a cafe, coffee consistency Cambodia",
+    "coffee research manifesto, Cambodia coffee evidence, Fine Robusta research, Coffea canephora standards, coffee editorial principles",
   alternates: pageAlternates("/about/manifesto"),
   openGraph: {
     title: "Manifesto | Origin Coffee Cambodia - OCC",
     description:
-      "The Barista Army Thesis: Why We'll Never Open a Café. Instead of building one great café, we decided to build the people who make great cafés possible.",
+      "Evidence before claims. Context before certainty. OCC publishes coffee research without turning every conclusion into promotion.",
     url: `${siteUrl}/about/manifesto`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -24,16 +24,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Manifesto | Origin Coffee Cambodia - OCC",
     description:
-      "The Barista Army Thesis: Why We'll Never Open a Café. Cambodia doesn't have a coffee problem. It has a consistency problem.",
+      "The editorial rules behind OCC's evidence-led work on Cambodian coffee and Coffea canephora.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "The Barista Army Thesis: Why We'll Never Open a Café",
+  headline: "Evidence Before Claims: The OCC Editorial Manifesto",
   description:
-    "Cambodia doesn't have a coffee problem. It has a consistency problem. Instead of building one great café, we decided to build the people who make great cafés possible.",
+    "Origin Coffee Cambodia's editorial principles for research, standards interpretation, source quality, uncertainty, and transparent limitations.",
   url: `${siteUrl}/about/manifesto`,
   author: {
     "@type": "Organization",
@@ -44,14 +44,13 @@ const jsonLd = {
     name: "Origin Coffee Cambodia (OCC)",
     logo: publisherLogoImageObject(),
   },
-  datePublished: "2024-01-15",
-  dateModified: "2024-01-15",
+  dateModified: "2026-08-27",
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": `${siteUrl}/about/manifesto`,
   },
   keywords:
-    "barista training Cambodia, skilled barista army, coffee manifesto, coffee consistency, specialty coffee infrastructure",
+    "Cambodian coffee research, Fine Robusta, Coffea canephora, coffee standards, source quality, research limitations",
 }
 
 const breadcrumbSchema = {
@@ -66,52 +65,46 @@ const breadcrumbSchema = {
 
 const faqs = [
   {
-    q: "Why will OCC never open a café?",
-    a: "Opening a café solves one problem in one location. It does nothing for the industry — nothing for the untrained barista down the street, or the café owner whose coffee tastes different every morning. OCC builds the infrastructure behind great cafés instead of competing with them.",
+    q: "Does OCC sell coffee?",
+    a: "No. OCC currently operates as an independent coffee information and research platform. Its editorial work is not written to convert readers into product customers.",
   },
   {
-    q: "What is the Skilled Barista Army?",
-    a: "A pipeline, not a training program: free enrollment, intensive education, and placement within businesses that understand what quality means. Every graduate carries OCC's standard with them.",
+    q: "How does OCC decide whether a claim is strong enough to publish?",
+    a: "OCC looks for a clear source, date, geographic scope, method, and an appropriate link between the evidence and the conclusion. Where those elements are missing, the uncertainty should remain visible.",
   },
   {
-    q: "What is zero-compromise coffee infrastructure?",
-    a: "A system where every link holds: fresh roasts that arrive on time, baristas trained to use them correctly, and service support when something goes wrong. Sourcing from OCC means buying into that system, not just a bag of beans.",
+    q: "What happens when research is limited or indirect?",
+    a: "Indirect evidence can be useful as context, but OCC labels the limitation. Evidence from another species, origin, processing system, or experimental setup should not be presented as direct proof for Cambodian canephora.",
   },
 ]
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  // Visible FAQs remain on the page; structured FAQ data is intentionally omitted.
-  mainEntity: faqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-}
 
 const sections = [
   {
     title: "The Problem",
     paragraphs: [
-      "Cambodia doesn't have a coffee problem. It has a consistency problem. Walk into ten cafés in Phnom Penh. You'll find ten different interpretations of the same bean — some extraordinary, most forgettable. The difference was never the origin. It was the person behind the machine, and whether anyone had ever taught them to care.",
+      "Coffee writing becomes unreliable when repeated language replaces evidence. Emerging origins are especially vulnerable to this because a small number of facts can quickly become generalized into claims about an entire country, species, or quality category.",
+      "OCC treats that as an editorial problem. A useful article should show where a claim comes from and how far the evidence can reasonably travel.",
     ],
   },
   {
-    title: "Why Not a Café?",
+    title: "Evidence Before Claims",
     paragraphs: [
-      "Opening a café solves one problem in one location. It creates a great experience for the people who walk through that door. But it does nothing for the industry. Nothing for the barista at the hotel down the street who never had proper training. Nothing for the café owner who can't figure out why her coffee tastes different every morning. Nothing for Cambodia's coffee culture at large.",
+      "Primary research, official standards, institutional data, dated local records, and clearly attributed field evidence come before unsourced repetition. A citation is not decoration. It should support the specific statement attached to it.",
+      "When several sources disagree, the disagreement is part of the story. When a number is old, it should remain old rather than being silently presented as current.",
     ],
   },
   {
-    title: "Skilled Barista Army",
+    title: "Context Before Certainty",
     paragraphs: [
-      "So we made a different choice. Instead of building one great café, we decided to build the people who make great cafés possible. The Skilled Barista Army is not a training program. It is a pipeline — from free enrollment, to intensive education, to placement within businesses that understand what quality means. Every graduate carries OCC's standard with them. Every cup they make is an answer to the problem we set out to solve.",
+      "Coffee quality is shaped by genetics, environment, harvest, processing, drying, storage, roasting, brewing, and sensory method. OCC avoids explanations that collapse those variables into a single stereotype about species or origin.",
+      "The same discipline applies to Cambodian coffee. Local evidence is preferred when the question is local. International research is used to explain mechanisms or provide comparison, not to manufacture certainty where Cambodia-specific data do not yet exist.",
     ],
   },
   {
-    title: "Zero-Compromise Infrastructure",
+    title: "What We Will Not Do",
     paragraphs: [
-      "When you source from OCC, you're not buying a bag of beans. You're buying into a system. Fresh roasts that arrive on time. Baristas who know exactly what to do with them. Service support when something goes wrong. We call it zero-compromise coffee infrastructure — because every link in the chain has to hold, or the whole thing fails.",
+      "OCC will not turn an editorial conclusion into a disguised sales recommendation. It will not present a marketing term as a standard, a supplier claim as independent proof, or a limited case study as a province-wide fact.",
+      "Authority is built by showing the boundary of the evidence, not by pretending the boundary is not there.",
     ],
   },
 ]
@@ -124,21 +117,21 @@ export default function ManifestoPage() {
       <AboutInstitutionalTemplate
         index="03"
         title="MANIFESTO"
-        subtitle="THE BARISTA ARMY THESIS: WHY WE'LL NEVER OPEN A CAFÉ."
+        subtitle="EVIDENCE BEFORE CLAIMS."
         lead={[
-          "Everyone who heard our plan told us the same thing: just open a café. It's simpler. It's safer. It's what everyone does.",
-          "We said no. Here's why.",
+          "A research platform earns trust by making the basis of its conclusions visible.",
+          "That means being precise about what is known, what is inferred, and what still needs to be studied.",
         ]}
         sections={sections}
         closing={[
-          "Perfection is not a destination. It is the only direction.",
-          "That's why we'll never open a café. Because what we're building is worth more than any single cup — and we're not done yet.",
+          "Accuracy is not certainty at any cost.",
+          "Sometimes the most accurate conclusion is that the evidence is not yet strong enough. OCC will keep that answer available.",
         ]}
         faqs={faqs}
         next={{
           href: "/about/sustainability",
           label: "Sustainability",
-          description: "Ethical sourcing and traceability protocol.",
+          description: "How OCC evaluates sustainability and traceability evidence.",
         }}
       />
     </>
