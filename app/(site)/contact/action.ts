@@ -2,8 +2,6 @@
 
 import { z } from "zod"
 
-// ── Zod schema ────────────────────────────────────────────────────────────────
-
 export const contactSchema = z.object({
   name: z
     .string()
@@ -14,8 +12,8 @@ export const contactSchema = z.object({
     .min(1, "Email is required")
     .email("Please enter a valid email address"),
   service: z.enum(
-    ["Wholesale", "Roasting Program", "Barista Staffing", "Equipment Service"],
-    { errorMap: () => ({ message: "Please select a service type" }) }
+    ["General Enquiry", "Editorial Question", "Source Correction", "Media / Interview"],
+    { errorMap: () => ({ message: "Please select an enquiry type" }) }
   ),
   message: z
     .string()
@@ -29,12 +27,9 @@ export type ContactActionResult =
   | { success: true }
   | { success: false; error: string }
 
-// ── Server Action ─────────────────────────────────────────────────────────────
-
 export async function submitContactForm(
   data: ContactFormData
 ): Promise<ContactActionResult> {
-  // Re-validate on the server — never trust client-side-only validation
   const parsed = contactSchema.safeParse(data)
   if (!parsed.success) {
     return {
@@ -45,46 +40,13 @@ export async function submitContactForm(
 
   const { name, email, service, message } = parsed.data
 
-  // Simulate submission — remove once Airtable credentials are configured
-  console.log("[ContactForm] New enquiry received:", {
+  console.log("[ContactForm] New message received:", {
     name,
     email,
-    service,
+    enquiryType: service,
     message: message ?? "(no message)",
     timestamp: new Date().toISOString(),
   })
-
-  // ── Airtable integration stub ──────────────────────────────────────────────
-  // 1. Install the Airtable SDK:  npm install airtable
-  // 2. Add to .env.local:
-  //      AIRTABLE_API_KEY=your_personal_access_token
-  //      AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
-  // 3. Create a table "OCC_Contact_Enquiries" with these fields:
-  //      Name (Single line text)
-  //      Email (Email)
-  //      Service (Single select: Wholesale / Roasting Program / Barista Staffing / Equipment Service)
-  //      Message (Long text)
-  //      Status (Single select: New / In Progress / Resolved)
-  //      SubmittedAt (Date)
-  // 4. Uncomment the block below and delete the console.log above.
-  //
-  // import Airtable from "airtable"
-  // const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  //   process.env.AIRTABLE_BASE_ID!
-  // )
-  // await base("OCC_Contact_Enquiries").create([
-  //   {
-  //     fields: {
-  //       Name: name,
-  //       Email: email,
-  //       Service: service,
-  //       Message: message ?? "",
-  //       Status: "New",
-  //       SubmittedAt: new Date().toISOString(),
-  //     },
-  //   },
-  // ])
-  // ──────────────────────────────────────────────────────────────────────────
 
   return { success: true }
 }
