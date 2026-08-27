@@ -13,7 +13,7 @@ export const siteName =
 
 export const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-  'Origin Coffee Cambodia is a B2B coffee supplier and industry platform focused on Fine Robusta, specialty coffee, precision roasting, and Cambodian coffee origins.'
+  'Origin Coffee Cambodia (OCC) is an independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.'
 
 /** Default OG / social preview — must exist under `public/` (override with NEXT_PUBLIC_OG_IMAGE). */
 export const ogImage =
