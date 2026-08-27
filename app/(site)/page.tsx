@@ -10,35 +10,33 @@ import {
 import { seoDescription, seoTitle } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: seoTitle("Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"),
+  title: seoTitle("Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge"),
   description: seoDescription(siteDescription),
   keywords: [
     "Fine Robusta",
     "Fine Robusta Coffee",
     "Fine Robusta Cambodia",
-    "Specialty Robusta",
-    "Specialty Robusta Coffee",
     "Coffea canephora",
     "Cambodian Coffee",
-    "Cambodia Coffee Supplier",
-    "Specialty Coffee Cambodia",
-    "Wholesale Coffee Beans Cambodia",
+    "Cambodia Coffee Research",
     "Coffee Quality Institute Fine Robusta",
     "CQI Fine Robusta Standards",
     "Robusta Grading",
     "Coffee Processing",
-    "Precision Roasting",
-    "Single Origin Coffee",
+    "Coffee Fermentation",
+    "Coffee Drying",
+    "Coffee Roasting",
+    "Coffee Sensory Evaluation",
+    "Coffee Quality Standards",
     "Mondulkiri Coffee",
-    "Sustainable Coffee",
     "Cambodian Coffee Industry",
-    "Specialty Coffee B2B",
+    "Coffee Origin Research",
   ],
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: seoTitle("Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"),
+    title: seoTitle("Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge"),
     description: seoDescription(siteDescription),
     url: siteUrl,
     siteName,
@@ -47,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: seoTitle("Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"),
+    title: seoTitle("Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge"),
     description: seoDescription(siteDescription),
     images: [ogImage],
   },
@@ -93,7 +91,7 @@ const webPageJsonLd = {
   citation: homeSources.map((source) => source.href),
   mainEntity: {
     "@type": "ItemList",
-    name: "Fine Robusta buyer and quality guide",
+    name: "Fine Robusta research and quality guide",
     itemListElement: homeAuthoritySections.map((section, index) => ({
       "@type": "ListItem",
       position: index + 1,
