@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "test:publication-policy": "node --test tests/publication-policy.test.mjs",
-    "prebuild": "npm run test:publication-policy",
+    "test:seo-publishing": "node --test tests/publication-policy.test.mjs tests/blog-slug-policy.test.mjs",
+    "prebuild": "npm run test:seo-publishing",
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
