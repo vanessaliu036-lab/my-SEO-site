@@ -346,11 +346,13 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
   try {
     const exact = escapeFormulaValue(keyLast)
+    const exactBlog = escapeFormulaValue(`blog/${keyLast}`)
+    const exactSlashBlog = escapeFormulaValue(`/blog/${keyLast}`)
     let nonIndexableFallback: BlogPostDetail | null = null
 
     for (const tableName of AIRTABLE_TABLE_NAMES) {
       const q1 = new URLSearchParams({
-        filterByFormula: `{slug}='${exact}'`,
+        filterByFormula: `OR({slug}='${exact}',{slug}='${exactBlog}',{slug}='${exactSlashBlog}')`,
         maxRecords: '1',
       })
       let res = await fetch(
@@ -371,8 +373,10 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
       if (rows.length === 0) {
         const q = escapeAirtableQuoted(keyLast.toLowerCase())
+        const qBlog = escapeAirtableQuoted(`blog/${keyLast.toLowerCase()}`)
+        const qSlashBlog = escapeAirtableQuoted(`/blog/${keyLast.toLowerCase()}`)
         const q2 = new URLSearchParams({
-          filterByFormula: `LOWER({slug})='${q}'`,
+          filterByFormula: `OR(LOWER({slug})='${q}',LOWER({slug})='${qBlog}',LOWER({slug})='${qSlashBlog}')`,
           maxRecords: '1',
         })
         res = await fetch(
