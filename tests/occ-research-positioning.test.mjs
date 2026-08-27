@@ -19,6 +19,11 @@ const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
 const contactAction = read('app/(site)/contact/action.ts')
+const aboutPage = read('app/(site)/about/page.tsx')
+const missionPage = read('app/(site)/about/mission/page.tsx')
+const founderPage = read('app/(site)/about/founder/page.tsx')
+const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
+const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 
 test('OCC identifies itself as an independent information and research platform', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
@@ -54,6 +59,14 @@ test('contact surface is general editorial contact, not a sales-service lead for
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
   assert.doesNotMatch(contact, /contactType\s*:\s*["']sales["']|Wholesale|Roasting Program|Barista Staffing|Equipment Service/i)
   assert.match(contact, /General Enquiry|Editorial Question/i)
+})
+
+test('about surfaces describe OCC as a research platform rather than a supplier or roaster', () => {
+  const aboutSurface = `${aboutPage}\n${missionPage}\n${founderPage}\n${manifestoPage}\n${sustainabilityPage}`
+  assert.match(aboutSurface, /independent coffee information and research platform/i)
+  assert.match(aboutSurface, /evidence/i)
+  assert.doesNotMatch(aboutSurface, /specialty coffee supplier|coffee roaster Phnom Penh|infrastructure company|Head Roaster|barista training|service call|source from OCC|Sourcing from OCC|When you order from OCC|wholesale partners|makesOffer|Request a Collection Sample|\/solutions/i)
+  assert.doesNotMatch(aboutSurface, /we carry|our roastery|supplying exceptionally roasted coffee|supplier who moved on after the sale|not just as a supplier/i)
 })
 
 test('legacy solution URLs permanently redirect to the research journal', () => {
