@@ -37,13 +37,13 @@ const nextConfig = {
     ]
   },
 
-  // Permanent redirects preserve legacy backlinks while the public information
-  // architecture is reduced to ABOUT / SOLUTIONS / COLLECTION / BLOG / CONTACT.
-  // Historical deleted-blog redirects remain intact below.
+  // Framework-level redirects cover structural legacy paths and a small set of
+  // typo/duplicate slugs. Editorial article migrations live in proxy.ts so the
+  // source of truth is not split across two competing redirect maps.
   async redirects() {
     const structural = [
-      { source: '/coffee', destination: '/collection', permanent: true },
-      { source: '/coffee/single-origin', destination: '/collection', permanent: true },
+      { source: '/coffee', destination: '/blog', permanent: true },
+      { source: '/coffee/single-origin', destination: '/blog', permanent: true },
       { source: '/vision', destination: '/about', permanent: true },
       { source: '/system', destination: '/about', permanent: true },
       { source: '/signal', destination: '/blog', permanent: true },
@@ -51,17 +51,12 @@ const nextConfig = {
       { source: '/archive', destination: '/blog', permanent: true },
       {
         source: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-and-export-capacity',
-        destination: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-export-capacity',
-        permanent: true,
-      },
-      {
-        source: '/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia',
-        destination: '/blog/what-is-fine-robusta-coffee-a-complete-beginners-guide',
+        destination: '/blog/cambodia-fine-robusta-coffee-ecosystem',
         permanent: true,
       },
       {
         source: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist-draft-save-test',
-        destination: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist',
+        destination: '/blog/cambodia-specialty-robusta-coffee-guide',
         permanent: true,
       },
       {
@@ -85,12 +80,11 @@ const nextConfig = {
         permanent: true,
       },
     ]
-    const dead = [
+
+    const retiredToJournal = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
       'unique-gifts-from-southeast-asia-7-ideas-that-go-beyond-the-ordinary',
       'the-best-coffee-beans-to-bring-home-from-asia-a-country-by-country-guide',
-      'why-coffee-competitions-are-paying-attention-to-robusta',
-      'indigenous-farmers-and-specialty-coffee-the-bunong-model-in-cambodia',
       'sustainable-coffee-brands-in-asia-worth-supporting-the-2025-guide',
       'third-wave-coffees-new-frontier-in-2025-the-origins-you-should-be-watching',
       'roasting-high-altitude-robusta-profile-development-for-cambodian-beans',
@@ -98,27 +92,11 @@ const nextConfig = {
       'cambodia-business-travel-gifts-what-to-bring-back-for-the-office',
       'wet-processed-vs-natural-robusta-what-the-science-says-about-flavor',
       'cambodias-coffee-culture-ancient-land-new-brew-revolution',
-      'phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs',
-      'cambodias-coffee-export-industry-challenges-opportunities-and-the-occ-model',
-      'high-altitude-robusta-vs-commercial-robusta-a-technical-breakdown',
-      'the-best-luxury-gift-boxes-from-cambodia-a-curated-guide-for-discerning-givers',
-      'the-best-gifts-to-bring-elderly-parents-from-cambodia-that-theyll-actually-love',
-      'angkor-wat-must-buy-souvenirs-beyond-the-temple-replicas',
-      'how-to-shop-ethically-in-cambodia-a-guide-to-supporting-real-communities',
-      'shade-grown-coffee-how-forest-canopy-changes-whats-in-your-cup',
-      'rethinking-robusta-in-espresso-the-case-for-high-altitude-single-origin',
-      'specialty-coffee-sourcing-in-emerging-markets-why-cambodia-belongs-on-your-radar',
-      'what-to-buy-in-cambodia-souvenir-guide',
-      'the-best-coffee-gifts-for-travel-lovers-origins-that-tell-a-story',
-      'the-premium-robusta-flavor-revolution-why-everything-you-knew-was-wrong',
-      'how-specialty-pricing-changes-farmer-economics-the-math-behind-occs-model',
-      'what-does-specialty-grade-robusta-actually-mean-a-buyers-guide',
-      'terroir-in-coffee-what-the-concept-actually-means-and-why-cambodia-is-relevant',
-      'is-cambodian-coffee-good-an-honest-assessment',
     ]
+
     return [
       ...structural,
-      ...dead.map((slug) => ({
+      ...retiredToJournal.map((slug) => ({
         source: `/blog/${slug}`,
         destination: '/blog',
         permanent: true,
