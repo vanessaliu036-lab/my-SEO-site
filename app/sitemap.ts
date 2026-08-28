@@ -2,6 +2,11 @@ import type { MetadataRoute } from 'next'
 import { siteUrl } from '@/lib/siteConfig'
 import { getAllPosts } from '@/lib/airtable'
 
+// OCC publishes from Airtable throughout the day. Keep the sitemap request-time
+// dynamic so a newly published, indexable record can be discovered without
+// waiting for a separate Vercel deployment or a stale metadata-route cache.
+export const dynamic = 'force-dynamic'
+
 /**
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
  * Legacy commercial and product routes redirect to the research journal and are not emitted.
