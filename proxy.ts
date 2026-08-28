@@ -1,39 +1,29 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// Article migration belongs here so historical URLs have one canonical handling
+// layer. Every redirect target below is a current OCC research route.
 const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   "/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia":
-    "/blog/specialty-robusta-market-2025-boom",
-  "/blog/phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs":
-    "/blog/cambodian-coffee-souvenir-gift-sets-2025",
+    "/blog/what-makes-fine-robusta",
   "/blog/cambodias-coffee-export-industry-challenges-opportunities-and-the-occ-model":
-    "/blog/cambodia-specialty-coffee-market-supply-side-dynamics-export-capacity",
+    "/blog/cambodia-fine-robusta-coffee-ecosystem",
   "/blog/high-altitude-robusta-vs-commercial-robusta-a-technical-breakdown":
-    "/blog/mondulkiri-robusta-sourcing-geographic-and-climatic-data",
-  "/blog/the-best-luxury-gift-boxes-from-cambodia-a-curated-guide-for-discerning-givers":
-    "/blog/premium-coffee-gift-box-complete-guide",
-  "/blog/the-best-gifts-to-bring-elderly-parents-from-cambodia-that-theyll-actually-love":
-    "/blog/specialty-coffee-gift-set-ultimate-guide",
-  "/blog/angkor-wat-must-buy-souvenirs-beyond-the-temple-replicas":
-    "/blog/cambodian-coffee-souvenir-gift-sets-2025",
+    "/blog/mondulkiri-robusta-growing-conditions",
   "/blog/how-to-shop-ethically-in-cambodia-a-guide-to-supporting-real-communities":
     "/about/sustainability",
   "/blog/rethinking-robusta-in-espresso-the-case-for-high-altitude-single-origin":
-    "/blog/specialty-robusta-espresso-blend-guide",
+    "/blog/fine-robusta-espresso-recipe",
   "/blog/specialty-coffee-sourcing-in-emerging-markets-why-cambodia-belongs-on-your-radar":
-    "/blog/beyond-the-bean-why-sourcing-specialty-cambodia-coffee-elevates-your-cafe-s-brand-and-profitability",
-  "/blog/what-to-buy-in-cambodia-souvenir-guide":
-    "/blog/cambodian-coffee-souvenir-gift-sets-2025",
-  "/blog/the-best-coffee-gifts-for-travel-lovers-origins-that-tell-a-story":
-    "/blog/single-origin-coffee-gift-terroir",
+    "/blog/cambodia-specialty-robusta-coffee-guide",
   "/blog/the-premium-robusta-flavor-revolution-why-everything-you-knew-was-wrong":
-    "/blog/robusta-coffee-flavor-profile-deep-dive",
+    "/blog/fine-robusta-flavor-notes",
   "/blog/how-specialty-pricing-changes-farmer-economics-the-math-behind-occs-model":
     "/about/sustainability",
   "/blog/what-does-specialty-grade-robusta-actually-mean-a-buyers-guide":
-    "/blog/what-is-specialty-robusta-coffee-complete-guide",
+    "/blog/what-makes-fine-robusta",
   "/blog/is-cambodian-coffee-good-an-honest-assessment":
-    "/blog/cambodia-specialty-robusta-coffee-guide",
+    "/blog/cambodia-coffee",
 
   // 2026-08-28 migration map: preserve relevant legacy equity after the
   // public journal switched from Articles to moderated OCC_Blog_Posts.
@@ -61,8 +51,17 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
     "/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia",
 };
 
+// These topics were deliberately retired because they no longer fit OCC's
+// independent research positioning and do not have a semantically equivalent
+// replacement. 410 is preferable to a generic /blog redirect (soft-404 risk).
 const RETIRED_BLOG_PATHS = new Set([
   "/blog/corporate-coffee-gift-ideas-2025",
+  "/blog/phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs",
+  "/blog/the-best-luxury-gift-boxes-from-cambodia-a-curated-guide-for-discerning-givers",
+  "/blog/the-best-gifts-to-bring-elderly-parents-from-cambodia-that-theyll-actually-love",
+  "/blog/angkor-wat-must-buy-souvenirs-beyond-the-temple-replicas",
+  "/blog/what-to-buy-in-cambodia-souvenir-guide",
+  "/blog/the-best-coffee-gifts-for-travel-lovers-origins-that-tell-a-story",
 ]);
 
 export function proxy(request: NextRequest) {
