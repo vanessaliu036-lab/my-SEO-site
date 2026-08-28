@@ -3,14 +3,11 @@ import { isIndexableBySeoGate } from './publicationPolicy.mjs'
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const AIRTABLE_TABLE_NAMES = (
-  process.env.AIRTABLE_TABLE_NAME ||
-  process.env.AIRTABLE_TABLE_NAMES ||
-  'Articles,OCC_Blog_Posts'
-)
-  .split(',')
-  .map((name) => name.trim())
-  .filter(Boolean)
+
+// Public OCC publishing is intentionally allowlisted to the moderated table.
+// Legacy tables may remain in Airtable for archive/migration work, but they must
+// never flow into the public blog, sitemap, metadata generation, or direct routes.
+const PUBLIC_AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts'] as const
 
 const K = {
   title: ['title', 'Title'] as const,
@@ -285,7 +282,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     return []
   }
   try {
-    const recordGroups = await Promise.all(AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName)))
+    const recordGroups = await Promise.all(
+      PUBLIC_AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName))
+    )
     const records = recordGroups.flat()
     const mapped: BlogPost[] = []
     const seenSlug = new Set<string>()
@@ -316,7 +315,7 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
 }
 
 async function fetchRecordById(recordId: string): Promise<AirtableRecord | null> {
-  for (const tableName of AIRTABLE_TABLE_NAMES) {
+  for (const tableName of PUBLIC_AIRTABLE_TABLE_NAMES) {
     if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
     try {
       const res = await fetch(
@@ -350,7 +349,7 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
     const exactSlashBlog = escapeFormulaValue(`/blog/${keyLast}`)
     let nonIndexableFallback: BlogPostDetail | null = null
 
-    for (const tableName of AIRTABLE_TABLE_NAMES) {
+    for (const tableName of PUBLIC_AIRTABLE_TABLE_NAMES) {
       const q1 = new URLSearchParams({
         filterByFormula: `OR({slug}='${exact}',{slug}='${exactBlog}',{slug}='${exactSlashBlog}')`,
         maxRecords: '1',
