@@ -9,39 +9,45 @@ import {
 
 const airtableSource = readFileSync(new URL('../lib/airtable.ts', import.meta.url), 'utf8')
 
-test('OCC public runtime reads only the consolidated OCC_Blog_Posts master table', () => {
-  assert.match(
-    airtableSource,
-    /const PUBLIC_AIRTABLE_TABLE_NAMES = \[\s*['"]OCC_Blog_Posts['"]\s*\]/
-  )
-  assert.doesNotMatch(airtableSource, /configuredPublicTableNames/)
-  assert.doesNotMatch(airtableSource, /process\.env\.AIRTABLE_TABLE_NAMES/)
+test('OCC public runtime permanently reads both the live master and the frozen Articles corpus', () => {
+  assert.match(airtableSource, /['"]OCC_Blog_Posts['"]/)
+  assert.match(airtableSource, /['"]Articles['"]/)
+  assert.match(airtableSource, /PUBLIC_AIRTABLE_TABLE_NAMES/)
 })
 
-test('the 387 historical Blogger-public Articles remain frozen as recovery evidence', () => {
+test('the frozen historical public corpus is exactly 387 unique records and slugs', () => {
   assert.equal(LEGACY_PUBLISHED_ARTICLE_MANIFEST.length, 387)
   assert.equal(LEGACY_PUBLISHED_ARTICLE_IDS.size, 387)
   assert.equal(LEGACY_PUBLISHED_ARTICLE_SLUGS.size, 387)
+  assert.equal(new Set(LEGACY_PUBLISHED_ARTICLE_MANIFEST.map((entry) => entry.id)).size, 387)
   assert.equal(new Set(LEGACY_PUBLISHED_ARTICLE_MANIFEST.map((entry) => entry.slug)).size, 387)
 })
 
-test('migrated historical public rows are protected inside the master by Legacy Indexed', () => {
-  assert.match(airtableSource, /Legacy Indexed/)
-  assert.match(airtableSource, /isLegacyIndexed/)
+test('frozen Articles are protected independently from editorial status and SEO Gate', () => {
+  assert.match(airtableSource, /LEGACY_PUBLISHED_ARTICLE_IDS/)
+  assert.match(airtableSource, /LEGACY_PUBLISHED_ARTICLE_SLUGS/)
+  assert.match(airtableSource, /function isLegacyPublic/)
   assert.match(
     airtableSource,
-    /isLegacyIndexed\(record\.fields\)\s*\|\|\s*isIndexableBySeoGate\(record\.fields\)/
+    /isLegacyPublic\(record\)\s*\|\|\s*isIndexableBySeoGate\(record\.fields\)/
   )
 })
 
-test('Airtable pagination does not truncate the consolidated master corpus', () => {
+test('legacy Blogger-public rows remain published even when their workflow status is draft', () => {
+  assert.match(airtableSource, /BLOGGER_STATUS_KEYS/)
+  assert.match(airtableSource, /PUBLISHED_TOKENS\.has\(bloggerStatus\)/)
+  assert.match(airtableSource, /isLegacyArticles/)
+})
+
+test('Articles listing is filtered to the frozen published Blogger corpus and paginates fully', () => {
+  assert.match(airtableSource, /function filterFormulaForTable/)
+  assert.match(airtableSource, /LOWER\(\{ Blogger Status\}\)=['"]published['"]/)
   assert.match(airtableSource, /pageSize:\s*['"]100['"]/)
-  assert.doesNotMatch(airtableSource, /maxRecords:\s*['"]1000['"]/)
   assert.match(airtableSource, /attempt <= 3/)
 })
 
-test('blog list fetches projected metadata and includes Legacy Indexed protection state', () => {
-  assert.match(airtableSource, /function listFieldsForTable/)
-  assert.match(airtableSource, /params\.append\(['"]fields\[\]['"]/)
-  assert.match(airtableSource, /['"]Legacy Indexed['"]/)
+test('legacy article details can be fetched from either public Airtable source', () => {
+  assert.match(airtableSource, /for \(const tableName of PUBLIC_AIRTABLE_TABLE_NAMES\)/)
+  assert.match(airtableSource, /Blogger Version/)
+  assert.match(airtableSource, /Blogger URL/)
 })
