@@ -1,4 +1,8 @@
 import { isIndexableBySeoGate } from './publicationPolicy.mjs'
+import {
+  LEGACY_PUBLISHED_ARTICLE_IDS,
+  LEGACY_PUBLISHED_ARTICLE_SLUGS,
+} from './legacyPublishedArticles.mjs'
 
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
@@ -6,15 +10,29 @@ const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
 // Keep the moderated table first so a migrated/current record wins slug de-duplication,
 // while preserving legacy public Articles that were already published before the cutover.
-const PUBLIC_AIRTABLE_TABLE_NAMES = (
-  process.env.AIRTABLE_TABLE_NAME ||
-  process.env.AIRTABLE_TABLE_NAMES ||
-  'OCC_Blog_Posts,Articles'
+const configuredPublicTableNames = (
+  process.env.AIRTABLE_TABLE_NAMES || process.env.AIRTABLE_TABLE_NAME || ''
 )
   .split(',')
   .map((name) => name.trim())
   .filter(Boolean)
-  .filter((name, index, names) => names.indexOf(name) === index)
+
+// Both public sources are mandatory. An environment override may add a
+// source, but it must never hide Articles, which contains the frozen legacy
+// public corpus.
+const PUBLIC_AIRTABLE_TABLE_NAMES = [
+  'OCC_Blog_Posts',
+  'Articles',
+  ...configuredPublicTableNames,
+].filter((name, index, names) => names.indexOf(name) === index)
+
+export const LEGACY_PUBLISHED_ARTICLES_FREEZE = Object.freeze({
+  tableName: 'Articles',
+  baselineCount: 387,
+  statusField: ' Blogger Status',
+  publishedValue: 'Published',
+  protectedFields: ['title', 'slug', 'Blogger URL', 'Blogger Version', 'content'],
+})
 
 const K = {
   title: ['title', 'Title'] as const,
@@ -173,7 +191,8 @@ function isPublished(record: AirtableRecord): boolean {
 
 function isLegacyPublic(record: AirtableRecord): boolean {
   return record.tableName.trim().toLowerCase() === 'articles' &&
-    PUBLISHED_TOKENS.has(getBloggerStatus(record.fields))
+    (LEGACY_PUBLISHED_ARTICLE_IDS.has(record.id) ||
+      PUBLISHED_TOKENS.has(getBloggerStatus(record.fields)))
 }
 
 function escapeFormulaValue(value: string): string {
@@ -209,6 +228,11 @@ function isAcceptableSlug(s: string): boolean {
 }
 
 function slugFromRecord(record: AirtableRecord): string {
+  if (record.tableName.trim().toLowerCase() === 'articles') {
+    const frozenSlug = LEGACY_PUBLISHED_ARTICLE_SLUGS.get(record.id)
+    if (frozenSlug && isAcceptableSlug(frozenSlug)) return frozenSlug
+  }
+
   const direct = canonicalSlugForUrl(pickField(record.fields, K.slug))
   if (isAcceptableSlug(direct)) return direct
 
@@ -282,24 +306,33 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
 // article body out of these requests prevents large legacy records from being
 // truncated or rejected by the data cache. Full content is fetched by record ID
 // only when an individual article is opened.
-function listFieldsForTable(): string[] {
+function listFieldsForTable(tableName: string): string[] {
+  if (tableName.trim().toLowerCase() === 'articles') {
+    return [
+      'title',
+      'scout_date',
+      'status',
+      'Blogger Version',
+      ' Blogger Status',
+      'Blogger URL',
+      'source_title',
+      'slug',
+      'SEO_Gate',
+    ]
+  }
+
   return [
-    ...K.title,
-    ...K.sourceTitle,
-    ...K.slug,
-    ...K.publishDate,
-    ...K.author,
-    ...K.summary,
-    ...K.category,
-    ...K.excerpt,
-    ...K.featured,
-    ...K.bloggerUrl,
+    'title',
+    'slug',
+    'publish_date',
     'status',
-    'Status',
+    'author',
+    'summary',
+    'featured_image_url',
+    'Category',
+    'Keywords',
     'SEO_Gate',
-    'SEO Gate',
-    ...BLOGGER_STATUS_KEYS,
-  ].filter((field, index, fields) => fields.indexOf(field) === index)
+  ]
 }
 
 async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
@@ -313,7 +346,7 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
       pageSize: '100',
     })
     if (offset) params.set('offset', offset)
-    for (const field of listFieldsForTable()) params.append('fields[]', field)
+    for (const field of listFieldsForTable(tableName)) params.append('fields[]', field)
     const res = await fetch(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
       {
@@ -321,7 +354,10 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
         next: { revalidate: 60 },
       }
     )
-    if (!res.ok) break
+    if (!res.ok) {
+      console.error(`Airtable list failed for ${tableName}: ${res.status}`)
+      break
+    }
     const data = await res.json()
     if (!data.records || !Array.isArray(data.records)) break
     all.push(
