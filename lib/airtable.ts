@@ -2,8 +2,8 @@ const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
-// Frontend corpus parity rule: both Airtable corpora are public inputs.
-// Workflow status is metadata only and must never hide records from the frontend.
+// Public OCC corpus: Published rows from both authoritative Airtable article tables.
+// There is deliberately NO maxRecords cap; pagination must run until Airtable returns no offset.
 const AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
 type AirtableTableName = (typeof AIRTABLE_TABLE_NAMES)[number]
 
@@ -18,6 +18,7 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'title',
     'slug',
     'publish_date',
+    'status',
     'author',
     'summary',
     'featured_image_url',
@@ -29,6 +30,7 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'source_title',
     'slug',
     'scout_date',
+    'status',
     'category',
     'keyword',
   ],
@@ -38,6 +40,7 @@ const K = {
   title: ['title', 'Title', 'source_title', 'Source Title', 'Title (Blogger URL)'] as const,
   slug: ['slug', 'Slug'] as const,
   publishDate: ['publish_date', 'scout_date', 'Publish Date', 'Last Modified'] as const,
+  status: ['status', 'Status'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary', 'Summary (Blogger URL)'] as const,
   content: ['content', 'Content', 'Blogger Version'] as const,
@@ -84,7 +87,7 @@ function normalizeSlugParam(raw: string): string {
   try {
     value = decodeURIComponent(value)
   } catch {
-    // Keep the original string when URL decoding fails.
+    // Preserve the original value if URL decoding fails.
   }
   return value.replace(/^\/+/, '').replace(/^\/?blog\/?/i, '').trim()
 }
@@ -92,7 +95,7 @@ function normalizeSlugParam(raw: string): string {
 function canonicalSlugForUrl(rawSlug: string): string {
   const normalized = normalizeSlugParam(rawSlug)
   const parts = normalized.split('/').filter(Boolean)
-  return (parts.at(-1) || normalized).trim()
+  return (parts.length ? parts[parts.length - 1] : normalized).trim()
 }
 
 function isAcceptableSlug(slug: string): boolean {
@@ -114,7 +117,16 @@ function sortFieldForTable(tableName: AirtableTableName): string {
   return tableName === 'OCC_INDEXED_PROTECTED' ? 'scout_date' : 'publish_date'
 }
 
+function publishedStatusForTable(tableName: AirtableTableName): string {
+  return tableName === 'OCC_INDEXED_PROTECTED' ? 'publish' : 'Published'
+}
+
+function isPublishedRecord(record: AirtableRecord): boolean {
+  return pickField(record.fields, K.status).toLowerCase() === publishedStatusForTable(record.tableName).toLowerCase()
+}
+
 function recordToListItem(record: AirtableRecord): BlogPost | null {
+  if (!isPublishedRecord(record)) return null
   const slug = slugFromRecord(record)
   if (!slug) return null
   return {
@@ -139,6 +151,7 @@ async function fetchTableRecords(tableName: AirtableTableName): Promise<Airtable
   do {
     const params = new URLSearchParams()
     params.set('pageSize', '100')
+    params.set('filterByFormula', `{status}='${publishedStatusForTable(tableName)}'`)
     params.set('sort[0][field]', sortFieldForTable(tableName))
     params.set('sort[0][direction]', 'desc')
     for (const field of LIST_FIELDS[tableName]) params.append('fields[]', field)
@@ -200,8 +213,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     const seenSlug = new Set<string>()
     const posts: BlogPost[] = []
 
-    // OCC_Blog_Posts is the current working copy. Protected records fill only
-    // genuinely missing public slugs, so recovered/indexed URLs never disappear.
+    // Current OCC_Blog_Posts wins on true slug collisions; protected-only published URLs are appended.
     for (const record of groups.flat()) {
       const item = recordToListItem(record)
       if (!item) continue
@@ -238,8 +250,9 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
 async function fetchBySlug(tableName: AirtableTableName, slug: string): Promise<AirtableRecord | null> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
 
+  const status = publishedStatusForTable(tableName)
   const params = new URLSearchParams({
-    filterByFormula: `{slug}='${escapeFormulaValue(slug)}'`,
+    filterByFormula: `AND({slug}='${escapeFormulaValue(slug)}',{status}='${status}')`,
     maxRecords: '1',
   })
 
@@ -278,14 +291,13 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
   if (!slug) return null
 
   try {
-    // Prefer the current working corpus, then fall back to protected indexed content.
     for (const tableName of AIRTABLE_TABLE_NAMES) {
       const record = await fetchBySlug(tableName, slug)
       const detail = record ? recordToDetail(record) : null
       if (detail) return detail
     }
 
-    // Last-resort derived-slug lookup for legacy rows whose stored slug is blank/invalid.
+    // Legacy fallback for published rows whose stored slug is blank or malformed.
     const hit = (await getAllPosts()).find((post) => post.slug.toLowerCase() === slug.toLowerCase())
     if (!hit) return null
     const full = await fetchRecordById(hit.id, hit.table_name as AirtableTableName)
