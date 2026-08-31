@@ -14,7 +14,12 @@ test('legacy Articles can remain public when Blogger Status is Published', () =>
   assert.match(airtableSource, /published/i)
 })
 
-test('Airtable pagination does not truncate the 1310-row legacy Articles table', () => {
+test('Airtable pagination does not truncate the legacy article corpus', () => {
   assert.match(airtableSource, /pageSize:\s*['"]100['"]/)
   assert.doesNotMatch(airtableSource, /maxRecords:\s*['"]1000['"]/)
+})
+
+test('blog list fetches project metadata instead of full article bodies', () => {
+  assert.match(airtableSource, /function listFieldsForTable/)
+  assert.match(airtableSource, /params\.append\(['"]fields\[\]['"]/)
 })
