@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import SiteSidebar from "@/components/SiteSidebar";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
@@ -25,28 +26,29 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge",
+  title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
   description: siteDescription,
   keywords: [
     "Fine Robusta",
     "Fine Robusta Coffee",
     "Fine Robusta Cambodia",
     "Specialty Robusta",
+    "Specialty Robusta Coffee",
     "Coffea canephora",
     "Cambodian Coffee",
-    "Cambodia Coffee Research",
+    "Cambodia Coffee Supplier",
+    "Specialty Coffee Cambodia",
+    "Wholesale Coffee Beans Cambodia",
     "Coffee Quality Institute Fine Robusta",
     "CQI Fine Robusta Standards",
     "Robusta Grading",
     "Coffee Processing",
-    "Coffee Fermentation",
-    "Coffee Drying",
-    "Coffee Roasting",
-    "Coffee Sensory Evaluation",
-    "Coffee Quality Standards",
+    "Precision Roasting",
+    "Single Origin Coffee",
     "Mondulkiri Coffee",
+    "Sustainable Coffee",
     "Cambodian Coffee Industry",
-    "Coffee Origin Research",
+    "Specialty Coffee B2B",
   ],
   alternates: pageAlternates("/"),
   openGraph: {
@@ -75,7 +77,18 @@ export default function RootLayout({
   return (
     <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans bg-white text-gray-900 antialiased">
-        {children}
+        <div className="flex flex-col md:flex-row min-h-screen">
+          <SiteSidebar />
+          <main className="flex-1 relative bg-white">
+            {children}
+          </main>
+        </div>
+
+        <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-20 hidden md:flex" aria-hidden="true">
+          <div className="w-px h-12 bg-gray-300" />
+          <span className="text-[10px] text-gray-400 [writing-mode:vertical-lr] tracking-widest">OCC</span>
+          <div className="w-px h-12 bg-gray-300" />
+        </div>
 
         <Analytics />
         {gaMeasurementId ? <GoogleAnalytics measurementId={gaMeasurementId} /> : null}
@@ -103,24 +116,24 @@ export default function RootLayout({
               "alternateName": "OCC",
               "url": siteUrl,
               "logo": siteLogoUrl,
-              "description": siteDescription,
+              "description":
+                "Origin Coffee Cambodia is a B2B coffee supplier and industry platform focused on Fine Robusta, specialty coffee, precision roasting, and Cambodian coffee origins.",
               "areaServed": {
                 "@type": "Country",
                 "name": "Cambodia",
               },
               "knowsAbout": [
                 "Fine Robusta",
+                "Specialty Robusta",
                 "Coffea canephora",
                 "Cambodian Coffee",
-                "Coffee Quality Standards",
+                "CQI Fine Robusta Standards",
+                "Robusta Grading",
                 "Coffee Processing",
-                "Coffee Fermentation",
-                "Coffee Drying",
-                "Coffee Roasting",
-                "Coffee Sensory Evaluation",
+                "Precision Roasting",
+                "Single Origin Coffee",
                 "Mondulkiri Coffee",
                 "Cambodian Coffee Industry",
-                "Coffee Origin Research",
               ],
               "sameAs": [
                 "https://www.linkedin.com/company/origin-coffee-cambodia",
@@ -129,7 +142,7 @@ export default function RootLayout({
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "contactType": "general inquiries",
+                "contactType": "sales",
                 "url": `${siteUrl}/contact`,
                 "availableLanguage": ["English", "Khmer"],
               },
