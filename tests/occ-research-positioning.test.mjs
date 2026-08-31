@@ -69,15 +69,7 @@ test('legacy solution URLs permanently redirect to the research journal', () => 
   }
 })
 
-test('legacy collection product URLs permanently redirect to the research journal', () => {
-  for (const path of [
-    'app/(site)/collection/page.tsx',
-    'app/(site)/collection/sovann/page.tsx',
-    'app/(site)/collection/prek/page.tsx',
-    'app/(site)/collection/angkar/page.tsx',
-  ]) {
-    const source = read(path)
-    assert.match(source, /permanentRedirect\(["']\/blog["']\)/)
-    assert.doesNotMatch(source, /@type["']?\s*:\s*["']Product["']|Request a Collection Sample|TASTE THE COLLECTION/i)
-  }
+test('restored collection pages stay excluded from research navigation and sitemap', () => {
+  assert.doesNotMatch(navigation, /COLLECTION|\/collection/)
+  assert.doesNotMatch(sitemap, /\/collection/)
 })
