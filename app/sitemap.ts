@@ -2,36 +2,56 @@ import type { MetadataRoute } from 'next'
 import { siteUrl } from '@/lib/siteConfig'
 import { getAllPosts } from '@/lib/airtable'
 
-// OCC publishes from Airtable throughout the day. Keep the sitemap request-time
-// dynamic so a newly published, indexable record can be discovered without
-// waiting for a separate Vercel deployment or a stale metadata-route cache.
-export const dynamic = 'force-dynamic'
-export const maxDuration = 60
-
 /**
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
- * Legacy commercial and product routes redirect to the research journal and are not emitted.
+ * Do not add routes that are `disallow` there (e.g. /archive, /matter, /signal).
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
+  // Fetch blog posts from Airtable — falls back to [] if env vars not set
+  // getAllPosts() already filters to URL-safe slugs (same as lib/airtable)
   const posts = await getAllPosts()
   const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${siteUrl}/blog/${p.slug}`,
-    lastModified: p.publish_date ? new Date(p.publish_date) : now,
-  }))
+      url: `${siteUrl}/blog/${p.slug}`,
+      lastModified: p.publish_date ? new Date(p.publish_date) : now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
 
   return [
-    { url: siteUrl, lastModified: now },
-    { url: `${siteUrl}/contact`, lastModified: now },
+    // ── Core ──────────────────────────────────────────────────────────────
+    { url: siteUrl,                               lastModified: now, changeFrequency: 'monthly',  priority: 1.0 },
+    { url: `${siteUrl}/contact`,                  lastModified: now, changeFrequency: 'yearly',   priority: 0.9 },
 
-    { url: `${siteUrl}/about`, lastModified: now },
-    { url: `${siteUrl}/about/mission`, lastModified: now },
-    { url: `${siteUrl}/about/founder`, lastModified: now },
-    { url: `${siteUrl}/about/manifesto`, lastModified: now },
-    { url: `${siteUrl}/about/sustainability`, lastModified: now },
+    // ── About ─────────────────────────────────────────────────────────────
+    { url: `${siteUrl}/about`,                    lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+    { url: `${siteUrl}/about/mission`,            lastModified: now, changeFrequency: 'monthly',  priority: 0.7 },
+    { url: `${siteUrl}/about/founder`,            lastModified: now, changeFrequency: 'monthly',  priority: 0.7 },
+    { url: `${siteUrl}/about/manifesto`,          lastModified: now, changeFrequency: 'monthly',  priority: 0.7 },
+    { url: `${siteUrl}/about/sustainability`,     lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
 
-    { url: `${siteUrl}/blog`, lastModified: now },
+    // ── Coffee / Origin ────────────────────────────────────────────────────
+    { url: `${siteUrl}/coffee/single-origin`,     lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+
+    // ── Solutions / System / Vision ────────────────────────────────────────
+    { url: `${siteUrl}/solutions`,                lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+    { url: `${siteUrl}/solutions/wholesale`,      lastModified: now, changeFrequency: 'monthly',  priority: 0.9 },
+    { url: `${siteUrl}/solutions/roasting-program`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/solutions/barista-staffing`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/solutions/equipment-service`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // /system + /vision removed from sitemap 2026-07-21 (noindex, kept for archive/backlinks)
+
+    // ── Collection (Mondulkiri Origin) ─────────────────────────────────────
+    { url: `${siteUrl}/collection`,             lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+    { url: `${siteUrl}/collection/sovann`,      lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+    { url: `${siteUrl}/collection/prek`,        lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+    { url: `${siteUrl}/collection/angkar`,      lastModified: now, changeFrequency: 'monthly',  priority: 0.8 },
+
+    // ── Blog index ────────────────────────────────────────────────────────
+    { url: `${siteUrl}/blog`,                     lastModified: now, changeFrequency: 'weekly',   priority: 0.8 },
+
+    // ── Blog posts (dynamic, from Airtable) ───────────────────────────────
     ...blogEntries,
   ]
 }
