@@ -335,6 +335,15 @@ function listFieldsForTable(tableName: string): string[] {
   ]
 }
 
+function filterFormulaForTable(tableName: string): string | null {
+  if (tableName.trim().toLowerCase() === 'articles') {
+    // Query only the frozen historical public corpus. This keeps the runtime
+    // sitemap within serverless limits instead of paging through 1,310 drafts.
+    return "LOWER({ Blogger Status})='published'"
+  }
+  return null
+}
+
 async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return []
   const all: AirtableRecord[] = []
@@ -346,19 +355,30 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
       pageSize: '100',
     })
     if (offset) params.set('offset', offset)
+    const filterByFormula = filterFormulaForTable(tableName)
+    if (filterByFormula) params.set('filterByFormula', filterByFormula)
     for (const field of listFieldsForTable(tableName)) params.append('fields[]', field)
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        next: { revalidate: 60 },
+    let data: { records?: Array<{ id: string; fields: Record<string, unknown> }>; offset?: string } | undefined
+    let lastStatus = 0
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      const res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
+        {
+          headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+          next: { revalidate: 60 },
+        }
+      )
+      lastStatus = res.status
+      if (res.ok) {
+        data = (await res.json()) as NonNullable<typeof data>
+        break
       }
-    )
-    if (!res.ok) {
-      console.error(`Airtable list failed for ${tableName}: ${res.status}`)
-      break
+      console.error(`Airtable list failed for ${tableName}: ${res.status} (attempt ${attempt}/3)`)
+      if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 250))
     }
-    const data = await res.json()
+    if (!data) {
+      throw new Error(`Airtable list failed for ${tableName} after retries: ${lastStatus}`)
+    }
     if (!data.records || !Array.isArray(data.records)) break
     all.push(
       ...(data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
