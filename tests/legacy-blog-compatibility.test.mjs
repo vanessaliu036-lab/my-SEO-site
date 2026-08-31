@@ -33,6 +33,9 @@ test('legacy Articles can remain public when Blogger Status is Published', () =>
 test('Airtable pagination does not truncate the legacy article corpus', () => {
   assert.match(airtableSource, /pageSize:\s*['"]100['"]/)
   assert.doesNotMatch(airtableSource, /maxRecords:\s*['"]1000['"]/)
+  assert.match(airtableSource, /filterByFormula/)
+  assert.match(airtableSource, /LOWER\(\{ Blogger Status\}\)=['"]published['"]/)
+  assert.match(airtableSource, /attempt <= 3/)
 })
 
 test('blog list fetches project metadata instead of full article bodies', () => {
