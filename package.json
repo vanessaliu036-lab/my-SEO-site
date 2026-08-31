@@ -6,7 +6,7 @@
     "test": "node --test tests/*.test.mjs",
     "test:seo-publishing": "node --test tests/publication-policy.test.mjs tests/blog-slug-policy.test.mjs tests/occ-research-positioning.test.mjs tests/legacy-blog-compatibility.test.mjs tests/sitemap-dynamic.test.mjs tests/seo-url-migration.test.mjs",
     "prebuild": "npm run test:seo-publishing",
-    "build": "node scripts/classify-occ-master-v3.mjs --dry-run && next build",
+    "build": "node scripts/classify-occ-master-v3.mjs --execute",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start"
