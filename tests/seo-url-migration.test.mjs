@@ -19,6 +19,11 @@ test('live OCC sitemap articles are not captured by legacy redirect rules', () =
   }
 })
 
+test('legacy blog URL governance never emits explicit 404 responses', () => {
+  assert.doesNotMatch(proxy, /status:\s*404\b/)
+  assert.match(proxy, /NextResponse\.redirect\(url,\s*301\)/)
+})
+
 test('known legacy 404s have deliberate migration handling', () => {
   for (const slug of [
     'the-occ-advantage-why-our-coffee-meets-cambodia-s-toughest-procurement-standards',
