@@ -37,15 +37,53 @@ const nextConfig = {
     ]
   },
 
-  // SEO cleanup 2026-07-21:
-  // 30 deleted blog posts (Airtable purge Apr–May 2026) returning 404 in GSC.
-  // 301 → /blog so any external backlinks still pass SEO signal and visitors land on the hub.
-  // 2 _next/static/media/*.woff2 404s are build-hash churn — ignored (Google re-crawls after next deploy).
-  // /coffee (bare) → /coffee/single-origin (only child route exists in app/).
+  // Permanent redirects preserve legacy backlinks while the public information
+  // architecture is reduced to ABOUT / SOLUTIONS / COLLECTION / BLOG / CONTACT.
+  // Historical deleted-blog redirects remain intact below.
   async redirects() {
-    // /coffee bare → child route
     const structural = [
-      { source: '/coffee', destination: '/coffee/single-origin', permanent: true },
+      { source: '/coffee', destination: '/collection', permanent: true },
+      { source: '/coffee/single-origin', destination: '/collection', permanent: true },
+      { source: '/vision', destination: '/about', permanent: true },
+      { source: '/system', destination: '/about', permanent: true },
+      { source: '/signal', destination: '/blog', permanent: true },
+      { source: '/matter', destination: '/blog', permanent: true },
+      { source: '/archive', destination: '/blog', permanent: true },
+      {
+        source: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-and-export-capacity',
+        destination: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-export-capacity',
+        permanent: true,
+      },
+      {
+        source: '/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia',
+        destination: '/blog/what-is-fine-robusta-coffee-a-complete-beginners-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist-draft-save-test',
+        destination: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist',
+        permanent: true,
+      },
+      {
+        source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-procurement',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-buyers',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/blog/the-complete-guide-to-fine-robusta-standards-cqi-quality-protocols-explained',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/blog/cqi-fine-robusta-standard-complete-guide',
+        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        permanent: true,
+      },
     ]
     const dead = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
