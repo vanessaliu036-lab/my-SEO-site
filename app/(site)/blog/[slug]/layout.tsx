@@ -1,29 +1,10 @@
-import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { getPostBySlug } from "@/lib/airtable"
 import "./article-editorial.css"
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
-
-  if (!post || post.indexable) return {}
-
-  return {
-    robots: {
-      index: false,
-      follow: true,
-      googleBot: {
-        index: false,
-        follow: true,
-      },
-    },
-  }
-}
+// The OCC article corpus is large and Airtable-backed. Rendering article
+// routes on demand prevents Vercel builds from pre-rendering the entire
+// corpus while preserving the exact public article UI and URLs.
+export const dynamic = "force-dynamic"
 
 export default function BlogPostLayout({ children }: { children: ReactNode }) {
   return <div className="occ-article-shell">{children}</div>
