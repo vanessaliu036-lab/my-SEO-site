@@ -1,28 +1,61 @@
+import { isIndexableBySeoGate } from './publicationPolicy.mjs'
+import {
+  LEGACY_PUBLISHED_ARTICLE_IDS,
+  LEGACY_PUBLISHED_ARTICLE_SLUGS,
+} from './legacyPublishedArticles.mjs'
+
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const AIRTABLE_TABLE_NAMES = (
-  process.env.AIRTABLE_TABLE_NAME ||
-  process.env.AIRTABLE_TABLE_NAMES ||
-  'Articles,OCC_Blog_Posts'
+
+// Keep the moderated table first so a migrated/current record wins slug de-duplication,
+// while preserving legacy public Articles that were already published before the cutover.
+const configuredPublicTableNames = (
+  process.env.AIRTABLE_TABLE_NAMES || process.env.AIRTABLE_TABLE_NAME || ''
 )
   .split(',')
   .map((name) => name.trim())
   .filter(Boolean)
 
+// Both public sources are mandatory. An environment override may add a
+// source, but it must never hide Articles, which contains the frozen legacy
+// public corpus.
+const PUBLIC_AIRTABLE_TABLE_NAMES = [
+  'OCC_Blog_Posts',
+  'Articles',
+  ...configuredPublicTableNames,
+].filter((name, index, names) => names.indexOf(name) === index)
+
+export const LEGACY_PUBLISHED_ARTICLES_FREEZE = Object.freeze({
+  tableName: 'Articles',
+  baselineCount: 387,
+  statusField: ' Blogger Status',
+  publishedValue: 'Published',
+  protectedFields: ['title', 'slug', 'Blogger URL', 'Blogger Version', 'content'],
+})
+
 const K = {
   title: ['title', 'Title'] as const,
   sourceTitle: ['source_title', 'Source Title', 'Source_title'] as const,
   slug: ['slug', 'Slug'] as const,
-  publishDate: ['publish_date', 'Publish Date', 'Last Modified'] as const,
+  publishDate: ['publish_date', 'Publish Date', 'Last Modified', 'scout_date', 'Scout Date'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
   content: ['content', 'Content'] as const,
+  legacyContent: ['Blogger Version', 'Blogger_Version', 'blogger_version'] as const,
   category: ['Category', 'category'] as const,
   excerpt: ['Excerpt', 'excerpt'] as const,
   keywords: ['Keywords', 'keywords'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
+  bloggerUrl: ['Blogger URL', 'Blogger_URL', 'blogger_url'] as const,
 }
+
+const BLOGGER_STATUS_KEYS = [
+  ' Blogger Status',
+  'Blogger Status',
+  'Blogger_Status',
+  'blogger_status',
+] as const
 
 type AirtableRecord = { id: string; fields: Record<string, unknown>; tableName: string }
 
@@ -106,23 +139,24 @@ function summaryFromContent(content: string, title = ''): string {
   return parts.join(' ')
 }
 
-function getStatus(fields: Record<string, unknown>): string {
-  const raw = fields.status ?? fields.Status ?? ''
+function normalizeStatusValue(raw: unknown): string {
   if (typeof raw === 'object' && raw !== null && 'name' in raw) {
     return String((raw as { name: unknown }).name ?? '').trim().toLowerCase()
   }
-  return String(raw).trim().toLowerCase()
+  return String(raw ?? '').trim().toLowerCase()
 }
 
-/**
- * 僅後台標成已發布才顯示（不再把空白 status 當上線，避免列表比「已上架」多）。
- *
- * 兼容字串（不分大小寫、不分單複數）：
- *   - 已發布：publish / published / live / ready / sent / online
- *   - 未發布：draft / archived / archive / inactive / unpublish / unpublished
- *
- * 變體邏輯集中在這一支；改規則只動這裡，別處不必動。
- */
+function getStatus(fields: Record<string, unknown>): string {
+  return normalizeStatusValue(fields.status ?? fields.Status ?? '')
+}
+
+function getBloggerStatus(fields: Record<string, unknown>): string {
+  for (const key of BLOGGER_STATUS_KEYS) {
+    if (key in fields) return normalizeStatusValue(fields[key])
+  }
+  return ''
+}
+
 const PUBLISHED_TOKENS = new Set([
   'publish',
   'published',
@@ -141,11 +175,24 @@ const UNPUBLISHED_TOKENS = new Set([
   'unpublished',
 ])
 
-function isPublished(fields: Record<string, unknown>): boolean {
-  const s = getStatus(fields)
-  if (!s) return false // 空字串不算發布，避免 Draft 漏欄位時誤判
-  if (UNPUBLISHED_TOKENS.has(s)) return false
-  return PUBLISHED_TOKENS.has(s)
+function isPublished(record: AirtableRecord): boolean {
+  const primaryStatus = getStatus(record.fields)
+  const bloggerStatus = getBloggerStatus(record.fields)
+  const isLegacyArticles = record.tableName.trim().toLowerCase() === 'articles'
+
+  // Legacy Articles often kept workflow status=draft even after the Blogger/public
+  // publication completed. Preserve those historical public records explicitly.
+  if (isLegacyArticles && PUBLISHED_TOKENS.has(bloggerStatus)) return true
+
+  if (!primaryStatus) return false
+  if (UNPUBLISHED_TOKENS.has(primaryStatus)) return false
+  return PUBLISHED_TOKENS.has(primaryStatus)
+}
+
+function isLegacyPublic(record: AirtableRecord): boolean {
+  return record.tableName.trim().toLowerCase() === 'articles' &&
+    (LEGACY_PUBLISHED_ARTICLE_IDS.has(record.id) ||
+      PUBLISHED_TOKENS.has(getBloggerStatus(record.fields)))
 }
 
 function escapeFormulaValue(value: string): string {
@@ -156,7 +203,6 @@ function escapeAirtableQuoted(value: string): string {
   return value.replace(/'/g, "''")
 }
 
-/** 網址列 slug：解碼、去掉前綴 blog/ */
 function normalizeSlugParam(raw: string): string {
   let t = raw.trim()
   try {
@@ -171,10 +217,6 @@ function normalizeSlugParam(raw: string): string {
     .trim()
 }
 
-/**
- * Airtable 可能存整段路徑；Next `[slug]` 只有一層，取最後一段作為網址 slug，
- * 與列表連結一致，避免點進 404。
- */
 function canonicalSlugForUrl(rawSlug: string): string {
   const n = normalizeSlugParam(rawSlug)
   const parts = n.split('/').filter(Boolean)
@@ -186,8 +228,25 @@ function isAcceptableSlug(s: string): boolean {
 }
 
 function slugFromRecord(record: AirtableRecord): string {
+  if (record.tableName.trim().toLowerCase() === 'articles') {
+    const frozenSlug = LEGACY_PUBLISHED_ARTICLE_SLUGS.get(record.id)
+    if (frozenSlug && isAcceptableSlug(frozenSlug)) return frozenSlug
+  }
+
   const direct = canonicalSlugForUrl(pickField(record.fields, K.slug))
   if (isAcceptableSlug(direct)) return direct
+
+  const legacyUrl = pickField(record.fields, K.bloggerUrl)
+  if (legacyUrl) {
+    try {
+      const pathname = new URL(legacyUrl).pathname
+      const last = pathname.split('/').filter(Boolean).at(-1)?.replace(/\.html?$/i, '') || ''
+      const legacySlug = canonicalSlugForUrl(last)
+      if (isAcceptableSlug(legacySlug)) return legacySlug
+    } catch {
+      /* fall back to the title-derived slug */
+    }
+  }
 
   const titleCandidate =
     pickField(record.fields, K.title) ||
@@ -203,15 +262,16 @@ function sortFieldForTable(tableName: string): string {
   return 'publish_date'
 }
 
-function recordToListItem(record: AirtableRecord): BlogPost | null {
-  if (!isPublished(record.fields)) return null
+function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
+  if (!isPublished(record)) return null
   const slug = slugFromRecord(record)
   if (!slug || !isAcceptableSlug(slug)) return null
   const title =
     pickField(record.fields, K.title) ||
     pickField(record.fields, K.sourceTitle) ||
     'Untitled'
-  const content = pickField(record.fields, K.content)
+  const content =
+    pickField(record.fields, K.content) || pickField(record.fields, K.legacyContent)
   const excerpt = pickField(record.fields, K.excerpt)
   const summaryField = pickField(record.fields, K.summary)
   const summary =
@@ -230,7 +290,58 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
     featured_image_url: pickField(record.fields, K.featured),
     category: pickField(record.fields, K.category),
     table_name: record.tableName,
+    // Historical Blogger-public articles must remain public even if a later
+    // SEO audit marked their workflow gate for rewrite or deduplication.
+    indexable: isLegacyPublic(record) || isIndexableBySeoGate(record.fields),
   }
+}
+
+function recordToListItem(record: AirtableRecord): BlogPost | null {
+  const item = recordToPublishedItem(record)
+  if (!item || !item.indexable) return null
+  return item
+}
+
+// Listing, pagination, and sitemap generation only need metadata. Keeping the
+// article body out of these requests prevents large legacy records from being
+// truncated or rejected by the data cache. Full content is fetched by record ID
+// only when an individual article is opened.
+function listFieldsForTable(tableName: string): string[] {
+  if (tableName.trim().toLowerCase() === 'articles') {
+    return [
+      'title',
+      'scout_date',
+      'status',
+      'Blogger Version',
+      ' Blogger Status',
+      'Blogger URL',
+      'source_title',
+      'slug',
+      'SEO_Gate',
+    ]
+  }
+
+  return [
+    'title',
+    'slug',
+    'publish_date',
+    'status',
+    'author',
+    'summary',
+    'featured_image_url',
+    'Category',
+    'Keywords',
+    'SEO_Gate',
+  ]
+}
+
+function filterFormulaForTable(tableName: string): string | null {
+  if (tableName.trim().toLowerCase() === 'articles') {
+    // Query only the frozen historical public corpus. This keeps the runtime
+    // sitemap within serverless limits instead of paging through 1,310 drafts.
+    return "LOWER({ Blogger Status})='published'"
+  }
+  return null
 }
 
 async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
@@ -241,22 +352,33 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
     const params = new URLSearchParams({
       'sort[0][field]': sortFieldForTable(tableName),
       'sort[0][direction]': 'desc',
-      // 抓完全部 records（先前 100 筆上限會把較舊的 published 文章切掉）。
-      // Airtable API 上限 100/頁，這個參數是「總筆數上限」，不是分頁大小。
-      maxRecords: '1000',
+      pageSize: '100',
     })
     if (offset) params.set('offset', offset)
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        // 60s 短窗：後台推 status=publish 後，前台最遲 60s 顯示，
-        // 配合 /api/revalidate 主動刷新可達即時。
-        next: { revalidate: 60 },
+    const filterByFormula = filterFormulaForTable(tableName)
+    if (filterByFormula) params.set('filterByFormula', filterByFormula)
+    for (const field of listFieldsForTable(tableName)) params.append('fields[]', field)
+    let data: { records?: Array<{ id: string; fields: Record<string, unknown> }>; offset?: string } | undefined
+    let lastStatus = 0
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      const res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
+        {
+          headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+          next: { revalidate: 60 },
+        }
+      )
+      lastStatus = res.status
+      if (res.ok) {
+        data = (await res.json()) as NonNullable<typeof data>
+        break
       }
-    )
-    if (!res.ok) break
-    const data = await res.json()
+      console.error(`Airtable list failed for ${tableName}: ${res.status} (attempt ${attempt}/3)`)
+      if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 250))
+    }
+    if (!data) {
+      throw new Error(`Airtable list failed for ${tableName} after retries: ${lastStatus}`)
+    }
     if (!data.records || !Array.isArray(data.records)) break
     all.push(
       ...(data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
@@ -279,6 +401,7 @@ export interface BlogPost {
   featured_image_url: string
   category: string
   table_name: string
+  indexable: boolean
 }
 
 export interface BlogPostDetail extends BlogPost {
@@ -293,7 +416,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     return []
   }
   try {
-    const recordGroups = await Promise.all(AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName)))
+    const recordGroups = await Promise.all(
+      PUBLIC_AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName))
+    )
     const records = recordGroups.flat()
     const mapped: BlogPost[] = []
     const seenSlug = new Set<string>()
@@ -305,6 +430,16 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       seenSlug.add(key)
       mapped.push(item)
     }
+    mapped.sort((a, b) => {
+      const aTime = Date.parse(a.publish_date)
+      const bTime = Date.parse(b.publish_date)
+      const aValid = Number.isFinite(aTime)
+      const bValid = Number.isFinite(bTime)
+      if (aValid && bValid) return bTime - aTime
+      if (aValid) return -1
+      if (bValid) return 1
+      return a.title.localeCompare(b.title)
+    })
     return mapped
   } catch (e) {
     console.error('getAllPosts', e)
@@ -313,18 +448,18 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
-  const base = recordToListItem(record)
+  const base = recordToPublishedItem(record)
   if (!base) return null
   return {
     ...base,
-    content: pickField(record.fields, K.content),
+    content: pickField(record.fields, K.content) || pickField(record.fields, K.legacyContent),
     excerpt: pickField(record.fields, K.excerpt),
     keywords: pickField(record.fields, K.keywords),
   }
 }
 
 async function fetchRecordById(recordId: string): Promise<AirtableRecord | null> {
-  for (const tableName of AIRTABLE_TABLE_NAMES) {
+  for (const tableName of PUBLIC_AIRTABLE_TABLE_NAMES) {
     if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
     try {
       const res = await fetch(
@@ -354,9 +489,13 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
   try {
     const exact = escapeFormulaValue(keyLast)
-    for (const tableName of AIRTABLE_TABLE_NAMES) {
+    const exactBlog = escapeFormulaValue(`blog/${keyLast}`)
+    const exactSlashBlog = escapeFormulaValue(`/blog/${keyLast}`)
+    let nonIndexableFallback: BlogPostDetail | null = null
+
+    for (const tableName of PUBLIC_AIRTABLE_TABLE_NAMES) {
       const q1 = new URLSearchParams({
-        filterByFormula: `OR({slug}='${exact}',{Slug}='${exact}')`,
+        filterByFormula: `OR({slug}='${exact}',{slug}='${exactBlog}',{slug}='${exactSlashBlog}')`,
         maxRecords: '1',
       })
       let res = await fetch(
@@ -377,8 +516,10 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
       if (rows.length === 0) {
         const q = escapeAirtableQuoted(keyLast.toLowerCase())
+        const qBlog = escapeAirtableQuoted(`blog/${keyLast.toLowerCase()}`)
+        const qSlashBlog = escapeAirtableQuoted(`/blog/${keyLast.toLowerCase()}`)
         const q2 = new URLSearchParams({
-          filterByFormula: `OR(LOWER({slug})='${q}',LOWER({Slug})='${q}')`,
+          filterByFormula: `OR(LOWER({slug})='${q}',LOWER({slug})='${qBlog}',LOWER({slug})='${qSlashBlog}')`,
           maxRecords: '1',
         })
         res = await fetch(
@@ -400,16 +541,23 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
 
       if (rows.length > 0) {
         const detail = recordToDetail(rows[0])
-        if (detail) return detail
+        if (!detail) continue
+        if (detail.indexable) return detail
+        if (!nonIndexableFallback) nonIndexableFallback = detail
       }
     }
 
     const list = await getAllPosts()
     const hit = list.find((p) => p.slug.toLowerCase() === keyLast.toLowerCase())
-    if (!hit) return null
-    const full = await fetchRecordById(hit.id)
-    if (!full) return null
-    return recordToDetail(full)
+    if (hit) {
+      const full = await fetchRecordById(hit.id)
+      if (full) {
+        const detail = recordToDetail(full)
+        if (detail) return detail
+      }
+    }
+
+    return nonIndexableFallback
   } catch (e) {
     console.error('getPostBySlug', e)
     return null
