@@ -6,7 +6,7 @@
     "test": "node --test tests/*.test.mjs",
     "test:seo-publishing": "node --test tests/publication-policy.test.mjs tests/blog-slug-policy.test.mjs tests/occ-research-positioning.test.mjs tests/legacy-blog-compatibility.test.mjs tests/sitemap-dynamic.test.mjs tests/seo-url-migration.test.mjs",
     "prebuild": "npm run test:seo-publishing",
-    "build": "next build",
+    "build": "node scripts/restore-articles-into-master.mjs && next build",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start"
