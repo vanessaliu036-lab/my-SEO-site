@@ -143,6 +143,7 @@ const updates = []
 let skippedNoIdentity = 0
 let matchedBySlug = 0
 let matchedByTitle = 0
+let duplicateWithinSource = 0
 let legacyPublished = 0
 let legacyIndexed = 0
 
@@ -175,6 +176,22 @@ for (const source of sources) {
   const keyword = String(f.keyword || '').trim()
   const seoGate = pickSelect(f.SEO_Gate)
   const publishDate = String(f.scout_date || '').trim()
+
+  // A duplicate inside Articles may resolve to a create already planned in this run.
+  // Merge useful fields into that planned row instead of sending an invalid synthetic ID to Airtable.
+  if (target && String(target.id || '').startsWith('pending-')) {
+    duplicateWithinSource += 1
+    const tf = target.fields || {}
+    if (legacyUrl && !tf['Legacy Blogger URL']) tf['Legacy Blogger URL'] = legacyUrl
+    if (isIndexed) tf['Legacy Indexed'] = true
+    if (keyword && !tf['Legacy Keyword']) tf['Legacy Keyword'] = keyword
+    if (content && !String(tf.Content || '').trim()) tf.Content = content
+    if (publishDate && !tf.publish_date) tf.publish_date = publishDate
+    if (seoGate && !tf.SEO_Gate) tf.SEO_Gate = seoGate
+    if (!String(tf.summary || '').trim() && content) tf.summary = textSummary(content, title)
+    if (isPublished) tf.status = 'Published'
+    continue
+  }
 
   if (target) {
     const tf = target.fields || {}
@@ -209,9 +226,10 @@ for (const source of sources) {
   if (legacyUrl) fields['Legacy Blogger URL'] = legacyUrl
   if (keyword) fields['Legacy Keyword'] = keyword
   if (seoGate) fields.SEO_Gate = seoGate
-  creates.push({ fields })
+  const create = { fields }
+  creates.push(create)
 
-  const synthetic = { id: `pending-${creates.length}`, fields }
+  const synthetic = { id: `pending-${creates.length}`, fields: create.fields }
   bySlug.set(slug, synthetic)
   if (normalizedTitle) byTitle.set(normalizedTitle, synthetic)
 }
@@ -221,6 +239,7 @@ console.log(JSON.stringify({
   targetBefore: targets.length,
   matchedBySlug,
   matchedByTitle,
+  duplicateWithinSource,
   toUpdate: updates.length,
   toCreate: creates.length,
   skippedNoIdentity,
