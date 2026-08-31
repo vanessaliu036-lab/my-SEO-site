@@ -1,11 +1,7 @@
 // app/components/Navigation.tsx
 import Link from "next/link";
 
-type NavigationProps = {
-  onNavigate?: () => void;
-};
-
-export default function Navigation({ onNavigate }: NavigationProps) {
+export default function Navigation() {
   return (
     <nav className="p-8 md:p-12">
       {/* Logo / 品牌名稱 */}
@@ -29,7 +25,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/about/mission"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Mission</span>
@@ -38,7 +33,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/about/founder"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Founder</span>
@@ -47,7 +41,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/about/manifesto"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Manifesto</span>
@@ -56,7 +49,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/about/sustainability"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Sustainability</span>
@@ -74,7 +66,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/solutions/wholesale"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Wholesale</span>
@@ -84,7 +75,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/solutions/roasting-program"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Roasting Program</span>
@@ -94,7 +84,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/solutions/barista-staffing"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Barista Staffing</span>
@@ -104,7 +93,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/solutions/equipment-service"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Equipment Service</span>
@@ -123,7 +111,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/collection"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Mondulkiri Origin Collection</span>
@@ -132,7 +119,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/collection/sovann"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">SOVANN</span>
@@ -142,7 +128,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/collection/prek"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">PREK</span>
@@ -152,7 +137,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
             <li>
               <Link
                 href="/collection/angkar"
-                onClick={onNavigate}
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">ANGKAR</span>
@@ -166,7 +150,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
         <li className="pt-4">
           <Link
             href="/blog"
-            onClick={onNavigate}
             className="text-gray-700 hover:text-black transition-colors text-sm block group"
           >
             <span className="group-hover:pl-2 transition-all duration-200">Blog</span>
@@ -176,7 +159,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
         <li className="pt-4">
           <Link
             href="/contact"
-            onClick={onNavigate}
             className="text-gray-700 hover:text-black transition-colors text-sm block group"
           >
             <span className="group-hover:pl-2 transition-all duration-200">Contact</span>

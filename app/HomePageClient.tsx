@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
   homeAuthoritySections,
   homeDirectAnswer,
@@ -49,16 +49,6 @@ const navGroups = [
 export default function HomePageClient() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  useEffect(() => {
-    if (!isMenuOpen) return
-
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.body.style.overflow = previousOverflow
-    }
-  }, [isMenuOpen])
-
   const handleShare = async () => {
     const url = typeof window !== "undefined" ? window.location.href : ""
     try {
@@ -103,10 +93,9 @@ export default function HomePageClient() {
       </section>
 
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-white overscroll-contain">
-          <div className="flex min-h-[100svh] w-full items-start justify-center px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] sm:px-8">
-            <div className="w-full max-w-3xl">
-            <div className="mb-8 flex items-center justify-between border-b border-gray-200 pb-5 sm:mb-12 sm:border-0 sm:pb-0">
+        <div className="fixed inset-0 bg-white z-50 flex items-center justify-center px-8">
+          <div className="max-w-3xl w-full">
+            <div className="flex justify-between items-center mb-12">
               <Link
                 href="/"
                 onClick={() => setIsMenuOpen(false)}
@@ -117,12 +106,12 @@ export default function HomePageClient() {
               <button
                 onClick={() => setIsMenuOpen(false)}
                 aria-label="Close menu"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-300 text-2xl leading-none text-gray-600 hover:text-gray-900"
+                className="text-gray-600 hover:text-gray-900 text-2xl"
               >
-                <span aria-hidden="true">×</span>
+                ✕
               </button>
             </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {navGroups.map((group) => (
                 <div key={group.label}>
                   <p className="text-gray-400 text-xs tracking-widest mb-4 uppercase">
@@ -134,7 +123,7 @@ export default function HomePageClient() {
                         <Link
                           href={link.href}
                           onClick={() => setIsMenuOpen(false)}
-                          className="flex min-h-11 items-center text-lg text-gray-700 transition-colors hover:text-black"
+                          className="text-gray-700 hover:text-black transition-colors text-lg"
                         >
                           {link.name}
                         </Link>
@@ -144,7 +133,6 @@ export default function HomePageClient() {
                 </div>
               ))}
             </div>
-          </div>
           </div>
         </div>
       )}
