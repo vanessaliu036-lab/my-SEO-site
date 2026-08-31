@@ -13,6 +13,7 @@ test('legacy Articles can remain public when Blogger Status is Published', () =>
   assert.match(airtableSource, /Blogger Status|Blogger_Status|blogger status/i)
   assert.match(airtableSource, /published/i)
   assert.match(airtableSource, /Blogger Version|Blogger_Version|blogger_version/i)
+  assert.match(airtableSource, /isLegacyPublic/)
 })
 
 test('Airtable pagination does not truncate the legacy article corpus', () => {

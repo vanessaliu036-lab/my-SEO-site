@@ -171,6 +171,11 @@ function isPublished(record: AirtableRecord): boolean {
   return PUBLISHED_TOKENS.has(primaryStatus)
 }
 
+function isLegacyPublic(record: AirtableRecord): boolean {
+  return record.tableName.trim().toLowerCase() === 'articles' &&
+    PUBLISHED_TOKENS.has(getBloggerStatus(record.fields))
+}
+
 function escapeFormulaValue(value: string): string {
   return value.replace(/'/g, "\\'")
 }
@@ -261,7 +266,9 @@ function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
     featured_image_url: pickField(record.fields, K.featured),
     category: pickField(record.fields, K.category),
     table_name: record.tableName,
-    indexable: isIndexableBySeoGate(record.fields),
+    // Historical Blogger-public articles must remain public even if a later
+    // SEO audit marked their workflow gate for rewrite or deduplication.
+    indexable: isLegacyPublic(record) || isIndexableBySeoGate(record.fields),
   }
 }
 
