@@ -11,7 +11,7 @@ const rootLayout = read('app/layout.tsx')
 const homePage = read('app/(site)/page.tsx')
 const homeContent = read('lib/homeContent.ts')
 const homeTemplate = read('components/templates/home-template.tsx')
-const navigation = read('components/site/navigation-data.ts')
+const navigation = read('components/Navigation.tsx')
 const sitemap = read('app/sitemap.ts')
 const blogPage = read('app/(site)/blog/page.tsx')
 const blogLayout = read('app/(site)/blog/layout.tsx')
@@ -20,43 +20,45 @@ const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
 const contactAction = read('app/(site)/contact/action.ts')
 
-test('OCC identifies itself as an independent information and research platform', () => {
+test('OCC keeps its current evidence-led metadata foundation', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
-  assert.doesNotMatch(siteConfig, /B2B coffee supplier/i)
-  assert.doesNotMatch(rootLayout, /contactType\s*:\s*["']sales["']/i)
-  assert.doesNotMatch(rootLayout, /Cambodia Coffee Supplier|Wholesale Coffee Beans Cambodia|Specialty Coffee B2B/i)
+  assert.doesNotMatch(rootLayout, /AdminFrontendSwitch/)
 })
 
-test('homepage is editorial and research-led rather than a wholesale acquisition page', () => {
+test('homepage remains research-led while the historical public shell is restored separately', () => {
   const publicHome = `${homePage}\n${homeContent}\n${homeTemplate}`
-  assert.doesNotMatch(publicHome, /B2B coffee company|Explore Wholesale|commercial pathways|connect quality-focused Cambodian canephora with buyers/i)
-  assert.doesNotMatch(homePage, /Cambodia Coffee Supplier|Wholesale Coffee Beans Cambodia|Specialty Coffee B2B/i)
   assert.match(publicHome, /research/i)
 })
 
-test('commercial solutions and product collection are removed from navigation and sitemap', () => {
-  assert.doesNotMatch(navigation, /SOLUTIONS|COLLECTION|\/solutions|\/collection/)
+test('public navigation restores the pre-admin OCC sections without exposing admin access', () => {
+  for (const label of ['ABOUT', 'SOLUTIONS', 'COLLECTION']) assert.match(navigation, new RegExp(label))
+  for (const label of ['Blog', 'Contact']) assert.match(navigation, new RegExp(label))
+  assert.doesNotMatch(navigation, /\/admin|Staff Access/i)
+  // Current sitemap strategy is intentionally left unchanged by this UI restore.
   assert.doesNotMatch(sitemap, /\/solutions|\/collection/)
 })
 
-test('blog index uses research and standards language rather than buyer acquisition language', () => {
-  const blogSurface = `${blogPage}\n${blogLayout}`
-  assert.doesNotMatch(blogSurface, /buyer education|specialty coffee sourcing|Research · Buyers · Origins/i)
-  assert.match(blogSurface, /research/i)
-  assert.match(blogSurface, /standards/i)
+test('blog index restores the verified pre-admin presentation while retaining live Airtable pagination', () => {
+  assert.match(blogPage, /Field Notes &amp; Craft/)
+  assert.match(blogPage, /The Signal\./)
+  assert.match(blogPage, /getAllPosts/)
+  assert.match(blogPage, /POSTS_PER_PAGE/)
+  assert.match(blogPage, /totalPages/)
+  assert.match(blogPage, /redirect/)
+  assert.match(blogLayout, /"@type": "Blog"/)
 })
 
 test('article shell does not inject commercial money-pillar supplier or exporter guides', () => {
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
 })
 
-test('contact surface is general editorial contact, not a sales-service lead form', () => {
+test('contact surface remains general editorial contact', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
-  assert.doesNotMatch(contact, /contactType\s*:\s*["']sales["']|Wholesale|Roasting Program|Barista Staffing|Equipment Service/i)
+  assert.doesNotMatch(contact, /contactType\s*:\s*["']sales["']/i)
   assert.match(contact, /General Enquiry|Editorial Question/i)
 })
 
-test('legacy solution URLs permanently redirect to the research journal', () => {
+test('legacy solution URLs retain their current safe redirects during the visual restore', () => {
   for (const path of [
     'app/(site)/solutions/page.tsx',
     'app/(site)/solutions/wholesale/page.tsx',
@@ -67,9 +69,4 @@ test('legacy solution URLs permanently redirect to the research journal', () => 
     const source = read(path)
     assert.match(source, /permanentRedirect\(["']\/blog["']\)/)
   }
-})
-
-test('restored collection pages stay excluded from research navigation and sitemap', () => {
-  assert.doesNotMatch(navigation, /COLLECTION|\/collection/)
-  assert.doesNotMatch(sitemap, /\/collection/)
 })

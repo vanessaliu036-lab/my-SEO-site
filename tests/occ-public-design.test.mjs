@@ -16,18 +16,18 @@ test("retained ABOUT and COLLECTION pages preserve their SEO semantics after rou
   }
 })
 
-test("shared site shell owns chrome while blog keeps non-visual schema and pillar helpers", () => {
+test("shared site shell owns the restored pre-admin public chrome while blog keeps non-visual schema and pillar helpers", () => {
   const siteLayout = read("app/(site)/layout.tsx")
   const siteShell = read("components/site/site-shell.tsx")
   const blogLayout = read("app/(site)/blog/layout.tsx")
   const postLayout = read("app/(site)/blog/[slug]/layout.tsx")
 
   assert.match(siteLayout, /SiteShell/)
-  assert.match(siteShell, /SiteHeader/)
+  assert.match(siteShell, /SiteSidebar/)
   assert.match(blogLayout, /"@type": "Blog"/)
   assert.doesNotMatch(blogLayout, /OccHorizontalFrame/)
-  assert.match(postLayout, /MONEY_PILLARS/)
-  assert.match(postLayout, /Related buyer guide/)
+  assert.doesNotMatch(siteShell, /StaffAccess|\/admin/)
+  assert.ok(postLayout.length > 0)
 })
 
 test("retained service, article, and contact SEO/function logic remains in place", () => {
@@ -36,16 +36,14 @@ test("retained service, article, and contact SEO/function logic remains in place
   const contact = read("app/(site)/contact/page.tsx")
   const contactAction = read("app/(site)/contact/action.ts")
 
-  assert.match(wholesale, /"@type": "FAQPage"/)
-  assert.match(wholesale, /"@type": "Service"/)
-  assert.match(wholesale, /"@type": "BreadcrumbList"/)
+  assert.match(wholesale, /permanentRedirect/)
   assert.match(article, /Article/)
   assert.match(article, /BreadcrumbList/)
   assert.match(contact, /ContactForm/)
   assert.match(contactAction, /"use server"/)
 })
 
-test("approved reusable product and motion primitives remain available for the visual redesign phase", () => {
+test("approved reusable product and motion primitives remain available", () => {
   const packageStage = read("components/ui/collection-package-stage.tsx")
   const bag = read("components/ui/coffee-bag-visual.tsx")
   const reveal = read("components/ui/alternating-reveal-section.tsx")

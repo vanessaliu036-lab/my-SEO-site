@@ -2,8 +2,11 @@ const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
-// Public OCC corpus: Published rows from both authoritative Airtable article tables.
-// There is deliberately NO maxRecords cap; pagination must run until Airtable returns no offset.
+// Canonical frontend corpus = all OCC_Blog_Posts working records +
+// OCC_INDEXED_PROTECTED records, deduplicated only by true public article identity.
+// Draft / Published / Public are workflow metadata and MUST NOT be frontend inclusion gates.
+// There is deliberately NO maxRecords cap on list fetches; pagination runs until Airtable
+// returns no offset.
 const AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
 type AirtableTableName = (typeof AIRTABLE_TABLE_NAMES)[number]
 
@@ -18,7 +21,6 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'title',
     'slug',
     'publish_date',
-    'status',
     'author',
     'summary',
     'featured_image_url',
@@ -30,7 +32,6 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'source_title',
     'slug',
     'scout_date',
-    'status',
     'category',
     'keyword',
   ],
@@ -40,7 +41,6 @@ const K = {
   title: ['title', 'Title', 'source_title', 'Source Title', 'Title (Blogger URL)'] as const,
   slug: ['slug', 'Slug'] as const,
   publishDate: ['publish_date', 'scout_date', 'Publish Date', 'Last Modified'] as const,
-  status: ['status', 'Status'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary', 'Summary (Blogger URL)'] as const,
   content: ['content', 'Content', 'Blogger Version'] as const,
@@ -117,16 +117,7 @@ function sortFieldForTable(tableName: AirtableTableName): string {
   return tableName === 'OCC_INDEXED_PROTECTED' ? 'scout_date' : 'publish_date'
 }
 
-function publishedStatusForTable(tableName: AirtableTableName): string {
-  return tableName === 'OCC_INDEXED_PROTECTED' ? 'publish' : 'Published'
-}
-
-function isPublishedRecord(record: AirtableRecord): boolean {
-  return pickField(record.fields, K.status).toLowerCase() === publishedStatusForTable(record.tableName).toLowerCase()
-}
-
 function recordToListItem(record: AirtableRecord): BlogPost | null {
-  if (!isPublishedRecord(record)) return null
   const slug = slugFromRecord(record)
   if (!slug) return null
   return {
@@ -151,7 +142,6 @@ async function fetchTableRecords(tableName: AirtableTableName): Promise<Airtable
   do {
     const params = new URLSearchParams()
     params.set('pageSize', '100')
-    params.set('filterByFormula', `{status}='${publishedStatusForTable(tableName)}'`)
     params.set('sort[0][field]', sortFieldForTable(tableName))
     params.set('sort[0][direction]', 'desc')
     for (const field of LIST_FIELDS[tableName]) params.append('fields[]', field)
@@ -213,7 +203,8 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     const seenSlug = new Set<string>()
     const posts: BlogPost[] = []
 
-    // Current OCC_Blog_Posts wins on true slug collisions; protected-only published URLs are appended.
+    // OCC_Blog_Posts is evaluated first. When both tables point to the same stable
+    // public slug, that is one public article identity and must not be double-counted.
     for (const record of groups.flat()) {
       const item = recordToListItem(record)
       if (!item) continue
@@ -250,9 +241,8 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
 async function fetchBySlug(tableName: AirtableTableName, slug: string): Promise<AirtableRecord | null> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
 
-  const status = publishedStatusForTable(tableName)
   const params = new URLSearchParams({
-    filterByFormula: `AND({slug}='${escapeFormulaValue(slug)}',{status}='${status}')`,
+    filterByFormula: `{slug}='${escapeFormulaValue(slug)}'`,
     maxRecords: '1',
   })
 
@@ -297,7 +287,7 @@ export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | n
       if (detail) return detail
     }
 
-    // Legacy fallback for published rows whose stored slug is blank or malformed.
+    // Fallback for rows whose stored slug is blank or malformed and was derived from title.
     const hit = (await getAllPosts()).find((post) => post.slug.toLowerCase() === slug.toLowerCase())
     if (!hit) return null
     const full = await fetchRecordById(hit.id, hit.table_name as AirtableTableName)

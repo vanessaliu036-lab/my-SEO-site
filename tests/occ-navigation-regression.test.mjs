@@ -4,24 +4,19 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 
-test("OCC navigation is sourced from one five-section data file", () => {
-  const nav = read("components/site/navigation-data.ts")
-  const header = read("components/site/site-header.tsx")
-  const mobile = read("components/site/mobile-menu.tsx")
+test("OCC public shell restores the verified pre-admin navigation and exposes no admin entry", () => {
+  const nav = read("components/Navigation.tsx")
+  const sidebar = read("components/SiteSidebar.tsx")
+  const shell = read("components/site/site-shell.tsx")
 
   let cursor = -1
-  for (const label of ["ABOUT", "SOLUTIONS", "COLLECTION", "BLOG", "CONTACT"]) {
-    const next = nav.indexOf(`label: \"${label}\"`)
+  for (const label of ["ABOUT", "SOLUTIONS", "COLLECTION"]) {
+    const next = nav.indexOf(label)
     assert.ok(next > cursor, `${label} missing or out of order`)
     cursor = next
   }
-
-  for (const forbidden of ["HOME", "COFFEE", "INSIGHTS", "CULTURE & ETHICS"]) {
-    assert.doesNotMatch(nav, new RegExp(`label:\\s*[\"']${forbidden}`))
-  }
-
-  assert.match(header, /siteNavigation\.map/)
-  assert.match(mobile, /siteNavigation\.map/)
-  assert.match(header, /StaffAccess/)
-  assert.match(mobile, /Staff Access ↗/)
+  for (const label of ["Blog", "Contact"]) assert.match(nav, new RegExp(label))
+  assert.match(sidebar, /Navigation/)
+  assert.match(shell, /SiteSidebar/)
+  assert.doesNotMatch(`${nav}\n${sidebar}\n${shell}`, /\/admin|Staff Access/i)
 })
