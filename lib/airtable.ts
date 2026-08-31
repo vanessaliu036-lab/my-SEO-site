@@ -4,9 +4,10 @@ const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
-// OCC_Blog_Posts is the single runtime source of truth after corpus consolidation.
-// Articles remains recovery evidence in Airtable, but the public website must not query it.
-const PUBLIC_AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts']
+// Public runtime corpus = working master + permanently protected Google-indexed corpus.
+// SEO editing must never make a published article disappear from the frontend.
+const PUBLIC_AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
+const PROTECTED_TABLE = 'OCC_INDEXED_PROTECTED'
 
 const K = {
   title: ['title', 'Title'] as const,
@@ -18,7 +19,7 @@ const K = {
   content: ['content', 'Content'] as const,
   category: ['Category', 'category'] as const,
   excerpt: ['Excerpt', 'excerpt'] as const,
-  keywords: ['Keywords', 'keywords'] as const,
+  keywords: ['Keywords', 'keywords', 'SEO_Keyword', 'keyword'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
   bloggerUrl: ['Legacy Blogger URL', 'Blogger URL', 'Blogger_URL', 'blogger_url'] as const,
 } as const
@@ -64,16 +65,12 @@ function stripMarkdown(text: string): string {
 function isLowSignalText(text: string, title = ''): boolean {
   const value = normalizeText(text)
   if (!value) return true
-
   const lower = value.toLowerCase()
   const titleLower = normalizeText(title).toLowerCase()
-
-  if (lower === 'occ') return true
-  if (lower === 'origin coffee cambodia') return true
+  if (lower === 'occ' || lower === 'origin coffee cambodia') return true
   if (/^meta description[:\s-]/i.test(value)) return true
   if (titleLower && lower === titleLower) return true
-  if (value.length < 30) return true
-  return false
+  return value.length < 30
 }
 
 function normalizeAuthor(text: string): string {
@@ -90,17 +87,10 @@ function summaryFromContent(content: string, title = ''): string {
     .filter(Boolean)
     .filter((line) => !/^\[INTERNAL LINK:/i.test(line))
     .filter((line) => !isLowSignalText(line, title))
-
   if (!lines.length) return ''
-
-  const parts: string[] = []
-  for (const line of lines) {
-    parts.push(line)
-    const joined = parts.join(' ')
-    if (joined.length >= 155) return `${joined.slice(0, 152).replace(/\s+\S*$/, '')}...`
-  }
-
-  return parts.join(' ')
+  const joined = lines.join(' ')
+  if (joined.length <= 155) return joined
+  return `${joined.slice(0, 152).replace(/\s+\S*$/, '')}...`
 }
 
 function normalizeStatusValue(raw: unknown): string {
@@ -119,19 +109,8 @@ function isPublished(record: AirtableRecord): boolean {
   return PUBLISHED_TOKENS.has(status)
 }
 
-// Migrated members of the frozen historical public corpus are protected in the
-// consolidated master itself. They remain indexable even if a later editorial
-// SEO gate requests rewrite or deduplication.
 function isLegacyIndexed(fields: Record<string, unknown>): boolean {
-  return fields['Legacy Indexed'] === true
-}
-
-function escapeFormulaValue(value: string): string {
-  return value.replace(/'/g, "\\'")
-}
-
-function escapeAirtableQuoted(value: string): string {
-  return value.replace(/'/g, "''")
+  return fields['Legacy Indexed'] === true || fields.is_indexed === true
 }
 
 function normalizeSlugParam(raw: string): string {
@@ -139,102 +118,50 @@ function normalizeSlugParam(raw: string): string {
   try {
     t = decodeURIComponent(t)
   } catch {
-    /* ignore */
+    // keep original input
   }
-  return t
-    .trim()
-    .replace(/^\/+/, '')
-    .replace(/^\/?blog\/?/i, '')
-    .trim()
+  return t.trim().replace(/^\/+/, '').replace(/^\/?blog\/?/i, '').trim()
 }
 
 function canonicalSlugForUrl(rawSlug: string): string {
-  const n = normalizeSlugParam(rawSlug)
-  const parts = n.split('/').filter(Boolean)
-  return (parts.length > 0 ? parts[parts.length - 1] : n).trim()
+  const normalized = normalizeSlugParam(rawSlug)
+  const parts = normalized.split('/').filter(Boolean)
+  return (parts.length ? parts[parts.length - 1] : normalized).trim()
 }
 
-function isAcceptableSlug(s: string): boolean {
-  return s.length > 0 && /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/i.test(s)
+function isAcceptableSlug(slug: string): boolean {
+  return slug.length > 0 && /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/i.test(slug)
 }
 
 function slugFromRecord(record: AirtableRecord): string {
   const direct = canonicalSlugForUrl(pickField(record.fields, K.slug))
   if (isAcceptableSlug(direct)) return direct
-
   const legacyUrl = pickField(record.fields, K.bloggerUrl)
   if (legacyUrl) {
     try {
-      const pathname = new URL(legacyUrl).pathname
-      const last = pathname.split('/').filter(Boolean).at(-1)?.replace(/\.html?$/i, '') || ''
+      const last = new URL(legacyUrl).pathname.split('/').filter(Boolean).at(-1)?.replace(/\.html?$/i, '') || ''
       const legacySlug = canonicalSlugForUrl(last)
       if (isAcceptableSlug(legacySlug)) return legacySlug
     } catch {
-      /* fall back to the title-derived slug */
+      // fall through
     }
   }
-
-  const titleCandidate = pickField(record.fields, K.title) || pickField(record.fields, K.sourceTitle) || ''
-  const derived = slugifyText(titleCandidate)
+  const title = pickField(record.fields, K.title) || pickField(record.fields, K.sourceTitle)
+  const derived = slugifyText(title)
   return isAcceptableSlug(derived) ? derived : ''
 }
 
-function sortFieldForTable(_tableName: string): string {
-  return 'publish_date'
+function isProtected(record: AirtableRecord): boolean {
+  return record.tableName === PROTECTED_TABLE
 }
 
-function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
-  if (!isPublished(record)) return null
-  const slug = slugFromRecord(record)
-  if (!slug || !isAcceptableSlug(slug)) return null
-
-  const title = pickField(record.fields, K.title) || pickField(record.fields, K.sourceTitle) || 'Untitled'
-  const content = pickField(record.fields, K.content)
-  const excerpt = pickField(record.fields, K.excerpt)
-  const summaryField = pickField(record.fields, K.summary)
-  const summary =
-    (!isLowSignalText(summaryField, title) ? summaryField : '') ||
-    (!isLowSignalText(excerpt, title) ? excerpt : '') ||
-    summaryFromContent(content, title) ||
-    excerpt ||
-    summaryField
-
-  return {
-    id: record.id,
-    title,
-    slug,
-    summary,
-    author: normalizeAuthor(pickField(record.fields, K.author, 'OCC Team')),
-    publish_date: pickField(record.fields, K.publishDate),
-    featured_image_url: pickField(record.fields, K.featured),
-    category: pickField(record.fields, K.category),
-    table_name: record.tableName,
-    indexable: isLegacyIndexed(record.fields) || isIndexableBySeoGate(record.fields),
+function listFieldsForTable(tableName: string): string[] {
+  if (tableName === PROTECTED_TABLE) {
+    return ['title', 'slug', 'status', 'content', 'keyword', 'SEO_Gate', 'is_indexed', 'Blogger URL', 'source_title']
   }
-}
-
-function recordToListItem(record: AirtableRecord): BlogPost | null {
-  const item = recordToPublishedItem(record)
-  if (!item || !item.indexable) return null
-  return item
-}
-
-// Listing, pagination, and sitemap generation only need metadata. Full article
-// content is fetched only when an individual article is opened.
-function listFieldsForTable(_tableName: string): string[] {
   return [
-    'title',
-    'slug',
-    'publish_date',
-    'status',
-    'author',
-    'summary',
-    'featured_image_url',
-    'Category',
-    'Keywords',
-    'SEO_Gate',
-    'Legacy Indexed',
-    'Legacy Blogger URL',
+    'title', 'slug', 'publish_date', 'status', 'author', 'summary', 'featured_image_url',
+    'Category', 'Keywords', 'SEO_Keyword', 'SEO_Gate', 'Legacy Indexed', 'Legacy Blogger URL',
   ]
 }
 
@@ -244,11 +171,11 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
   let offset: string | undefined
 
   do {
-    const params = new URLSearchParams({
-      'sort[0][field]': sortFieldForTable(tableName),
-      'sort[0][direction]': 'desc',
-      pageSize: '100',
-    })
+    const params = new URLSearchParams({ pageSize: '100' })
+    if (tableName !== PROTECTED_TABLE) {
+      params.set('sort[0][field]', 'publish_date')
+      params.set('sort[0][direction]', 'desc')
+    }
     if (offset) params.set('offset', offset)
     for (const field of listFieldsForTable(tableName)) params.append('fields[]', field)
 
@@ -257,30 +184,20 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
     for (let attempt = 1; attempt <= 3; attempt += 1) {
       const res = await fetch(
         `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
-        {
-          headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-          next: { revalidate: 60 },
-        }
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
       )
       lastStatus = res.status
       if (res.ok) {
-        data = (await res.json()) as NonNullable<typeof data>
+        data = await res.json()
         break
       }
       console.error(`Airtable list failed for ${tableName}: ${res.status} (attempt ${attempt}/3)`)
       if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 250))
     }
-
     if (!data) throw new Error(`Airtable list failed for ${tableName} after retries: ${lastStatus}`)
-    if (!data.records || !Array.isArray(data.records)) break
-
-    all.push(
-      ...data.records.map((record) => ({
-        ...record,
-        tableName,
-      }))
-    )
-    offset = typeof data.offset === 'string' && data.offset.length > 0 ? data.offset : undefined
+    if (!Array.isArray(data.records)) break
+    all.push(...data.records.map((record) => ({ ...record, tableName })))
+    offset = typeof data.offset === 'string' && data.offset ? data.offset : undefined
   } while (offset)
 
   return all
@@ -305,43 +222,62 @@ export interface BlogPostDetail extends BlogPost {
   keywords: string
 }
 
+function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
+  if (!isPublished(record)) return null
+  const slug = slugFromRecord(record)
+  if (!slug || !isAcceptableSlug(slug)) return null
+  const title = pickField(record.fields, K.title) || pickField(record.fields, K.sourceTitle) || 'Untitled'
+  const content = pickField(record.fields, K.content)
+  const excerpt = pickField(record.fields, K.excerpt)
+  const summaryField = pickField(record.fields, K.summary)
+  const summary =
+    (!isLowSignalText(summaryField, title) ? summaryField : '') ||
+    (!isLowSignalText(excerpt, title) ? excerpt : '') ||
+    summaryFromContent(content, title) || excerpt || summaryField
+
+  return {
+    id: record.id,
+    title,
+    slug,
+    summary,
+    author: normalizeAuthor(pickField(record.fields, K.author, 'OCC Team')),
+    publish_date: pickField(record.fields, K.publishDate),
+    featured_image_url: pickField(record.fields, K.featured),
+    category: pickField(record.fields, K.category),
+    table_name: record.tableName,
+    indexable: isProtected(record) || isLegacyIndexed(record.fields) || isIndexableBySeoGate(record.fields),
+  }
+}
+
 export async function getAllPosts(): Promise<BlogPost[]> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
     console.error('Missing Airtable env: AIRTABLE_TOKEN / AIRTABLE_API_KEY / AIRTABLE_PAT or AIRTABLE_BASE_ID')
     return []
   }
-
   try {
-    const recordGroups = await Promise.all(
-      PUBLIC_AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName))
-    )
-    const records = recordGroups.flat()
+    const groups = await Promise.all(PUBLIC_AIRTABLE_TABLE_NAMES.map((tableName) => fetchTableRecords(tableName)))
     const mapped: BlogPost[] = []
     const seenSlug = new Set<string>()
-
-    for (const record of records) {
-      const item = recordToListItem(record)
+    for (const record of groups.flat()) {
+      // Visibility rule: every Published article is visible. SEO_Gate controls indexing, not frontend visibility.
+      const item = recordToPublishedItem(record)
       if (!item) continue
       const key = item.slug.toLowerCase()
       if (seenSlug.has(key)) continue
       seenSlug.add(key)
       mapped.push(item)
     }
-
     mapped.sort((a, b) => {
       const aTime = Date.parse(a.publish_date)
       const bTime = Date.parse(b.publish_date)
-      const aValid = Number.isFinite(aTime)
-      const bValid = Number.isFinite(bTime)
-      if (aValid && bValid) return bTime - aTime
-      if (aValid) return -1
-      if (bValid) return 1
+      if (Number.isFinite(aTime) && Number.isFinite(bTime)) return bTime - aTime
+      if (Number.isFinite(aTime)) return -1
+      if (Number.isFinite(bTime)) return 1
       return a.title.localeCompare(b.title)
     })
-
     return mapped
-  } catch (e) {
-    console.error('getAllPosts', e)
+  } catch (error) {
+    console.error('getAllPosts', error)
     return []
   }
 }
@@ -357,107 +293,58 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   }
 }
 
-async function fetchRecordById(recordId: string): Promise<AirtableRecord | null> {
+async function fetchRecordById(recordId: string, preferredTable?: string): Promise<AirtableRecord | null> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
-  const tableName = PUBLIC_AIRTABLE_TABLE_NAMES[0]
-
-  try {
-    const res = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        next: { revalidate: 60 },
-      }
-    )
-    if (!res.ok) return null
-    const data = await res.json()
-    if (!data?.fields) return null
-    return { id: data.id, fields: data.fields as Record<string, unknown>, tableName }
-  } catch {
-    return null
+  const tables = preferredTable
+    ? [preferredTable, ...PUBLIC_AIRTABLE_TABLE_NAMES.filter((name) => name !== preferredTable)]
+    : [...PUBLIC_AIRTABLE_TABLE_NAMES]
+  for (const tableName of tables) {
+    try {
+      const res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`,
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
+      )
+      if (!res.ok) continue
+      const data = await res.json()
+      if (data?.fields) return { id: data.id, fields: data.fields as Record<string, unknown>, tableName }
+    } catch {
+      // try next table
+    }
   }
+  return null
 }
 
 export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
-
-  const key = normalizeSlugParam(urlSlug)
-  const keyLast = canonicalSlugForUrl(key)
+  const keyLast = canonicalSlugForUrl(urlSlug)
   if (!keyLast) return null
 
   try {
-    const exact = escapeFormulaValue(keyLast)
-    const exactBlog = escapeFormulaValue(`blog/${keyLast}`)
-    const exactSlashBlog = escapeFormulaValue(`/blog/${keyLast}`)
-    let nonIndexableFallback: BlogPostDetail | null = null
-
     for (const tableName of PUBLIC_AIRTABLE_TABLE_NAMES) {
-      const q1 = new URLSearchParams({
-        filterByFormula: `OR({slug}='${exact}',{slug}='${exactBlog}',{slug}='${exactSlashBlog}')`,
+      const escaped = keyLast.replace(/'/g, "\\'")
+      const params = new URLSearchParams({
+        filterByFormula: `LOWER({slug})=LOWER('${escaped}')`,
         maxRecords: '1',
       })
-      let res = await fetch(
-        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${q1.toString()}`,
-        {
-          headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-          next: { revalidate: 60 },
-        }
+      const res = await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` }, next: { revalidate: 60 } }
       )
-      let data = res.ok ? await res.json() : null
-      let rows: AirtableRecord[] =
-        data?.records && Array.isArray(data.records)
-          ? (data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
-              ...record,
-              tableName,
-            }))
-          : []
-
-      if (rows.length === 0) {
-        const q = escapeAirtableQuoted(keyLast.toLowerCase())
-        const qBlog = escapeAirtableQuoted(`blog/${keyLast.toLowerCase()}`)
-        const qSlashBlog = escapeAirtableQuoted(`/blog/${keyLast.toLowerCase()}`)
-        const q2 = new URLSearchParams({
-          filterByFormula: `OR(LOWER({slug})='${q}',LOWER({slug})='${qBlog}',LOWER({slug})='${qSlashBlog}')`,
-          maxRecords: '1',
-        })
-        res = await fetch(
-          `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${q2.toString()}`,
-          {
-            headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-            next: { revalidate: 60 },
-          }
-        )
-        data = res.ok ? await res.json() : null
-        rows =
-          data?.records && Array.isArray(data.records)
-            ? (data.records as Array<{ id: string; fields: Record<string, unknown> }>).map((record) => ({
-                ...record,
-                tableName,
-              }))
-            : []
-      }
-
-      if (rows.length > 0) {
-        const detail = recordToDetail(rows[0])
-        if (!detail) continue
-        if (detail.indexable) return detail
-        if (!nonIndexableFallback) nonIndexableFallback = detail
-      }
+      if (!res.ok) continue
+      const data = await res.json()
+      const row = Array.isArray(data?.records) ? data.records[0] : null
+      if (!row?.fields) continue
+      const detail = recordToDetail({ id: row.id, fields: row.fields, tableName })
+      if (detail) return detail
     }
 
     const list = await getAllPosts()
-    const hit = list.find((p) => p.slug.toLowerCase() === keyLast.toLowerCase())
-    if (hit) {
-      const full = await fetchRecordById(hit.id)
-      if (full) {
-        const detail = recordToDetail(full)
-        if (detail) return detail
-      }
-    }
-
-    return nonIndexableFallback
-  } catch (e) {
-    console.error('getPostBySlug', e)
+    const hit = list.find((post) => post.slug.toLowerCase() === keyLast.toLowerCase())
+    if (!hit) return null
+    const full = await fetchRecordById(hit.id, hit.table_name)
+    return full ? recordToDetail(full) : null
+  } catch (error) {
+    console.error('getPostBySlug', error)
     return null
   }
 }
