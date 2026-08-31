@@ -1,26 +1,21 @@
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const AIRTABLE_TABLE_NAMES = (
-  process.env.AIRTABLE_TABLE_NAME ||
-  process.env.AIRTABLE_TABLE_NAMES ||
-  'Articles,OCC_Blog_Posts'
-)
-  .split(',')
-  .map((name) => name.trim())
-  .filter(Boolean)
+// The public site mirrors only the two Airtable article corpora.
+ // OCC_INDEXED_PROTECTED is included explicitly so the protected indexed set is never omitted.
+const AIRTABLE_TABLE_NAMES = ['OCC_INDEXED_PROTECTED', 'OCC_Blog_Posts'] as const
 
 const K = {
   title: ['title', 'Title'] as const,
   sourceTitle: ['source_title', 'Source Title', 'Source_title'] as const,
   slug: ['slug', 'Slug'] as const,
-  publishDate: ['publish_date', 'Publish Date', 'Last Modified'] as const,
+  publishDate: ['publish_date', 'scout_date', 'Publish Date', 'Last Modified'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
-  content: ['content', 'Content'] as const,
+  content: ['content', 'Content', 'Blogger Version'] as const,
   category: ['Category', 'category'] as const,
-  excerpt: ['Excerpt', 'excerpt'] as const,
-  keywords: ['Keywords', 'keywords'] as const,
+  excerpt: ['Excerpt', 'excerpt', 'Summary (Blogger URL)'] as const,
+  keywords: ['Keywords', 'keywords', 'SEO_Keyword', 'keyword'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
 }
 
@@ -198,9 +193,7 @@ function slugFromRecord(record: AirtableRecord): string {
 }
 
 function sortFieldForTable(tableName: string): string {
-  const lower = tableName.toLowerCase()
-  if (lower.includes('article')) return 'scout_date'
-  return 'publish_date'
+  return tableName === 'OCC_INDEXED_PROTECTED' ? 'scout_date' : 'publish_date'
 }
 
 function recordToListItem(record: AirtableRecord): BlogPost | null {
