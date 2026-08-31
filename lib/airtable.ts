@@ -256,6 +256,29 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
   return item
 }
 
+// Listing, pagination, and sitemap generation only need metadata. Keeping the
+// article body out of these requests prevents large legacy records from being
+// truncated or rejected by the data cache. Full content is fetched by record ID
+// only when an individual article is opened.
+function listFieldsForTable(): string[] {
+  return [
+    ...K.title,
+    ...K.sourceTitle,
+    ...K.slug,
+    ...K.publishDate,
+    ...K.author,
+    ...K.summary,
+    ...K.category,
+    ...K.excerpt,
+    ...K.featured,
+    'status',
+    'Status',
+    'SEO_Gate',
+    'SEO Gate',
+    ...BLOGGER_STATUS_KEYS,
+  ].filter((field, index, fields) => fields.indexOf(field) === index)
+}
+
 async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return []
   const all: AirtableRecord[] = []
@@ -267,6 +290,7 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
       pageSize: '100',
     })
     if (offset) params.set('offset', offset)
+    for (const field of listFieldsForTable()) params.append('fields[]', field)
     const res = await fetch(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
       {
