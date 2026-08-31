@@ -4,9 +4,9 @@ const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
-// Public runtime corpus = working master + permanently protected Google-indexed corpus.
-// SEO editing must never make a published article disappear from the frontend.
-const PUBLIC_AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
+// Frontend mirrors the complete backend article corpus. There is no publish/draft visibility gate.
+// Protected Google-indexed records are read first so their stable URL wins any temporary duplicate.
+const PUBLIC_AIRTABLE_TABLE_NAMES = ['OCC_INDEXED_PROTECTED', 'OCC_Blog_Posts'] as const
 const PROTECTED_TABLE = 'OCC_INDEXED_PROTECTED'
 
 const K = {
@@ -91,22 +91,6 @@ function summaryFromContent(content: string, title = ''): string {
   const joined = lines.join(' ')
   if (joined.length <= 155) return joined
   return `${joined.slice(0, 152).replace(/\s+\S*$/, '')}...`
-}
-
-function normalizeStatusValue(raw: unknown): string {
-  if (typeof raw === 'object' && raw !== null && 'name' in raw) {
-    return String((raw as { name: unknown }).name ?? '').trim().toLowerCase()
-  }
-  return String(raw ?? '').trim().toLowerCase()
-}
-
-const PUBLISHED_TOKENS = new Set(['publish', 'published', 'live', 'ready', 'sent', 'online'])
-const UNPUBLISHED_TOKENS = new Set(['draft', 'archived', 'archive', 'inactive', 'unpublish', 'unpublished'])
-
-function isPublished(record: AirtableRecord): boolean {
-  const status = normalizeStatusValue(record.fields.status ?? record.fields.Status ?? '')
-  if (!status || UNPUBLISHED_TOKENS.has(status)) return false
-  return PUBLISHED_TOKENS.has(status)
 }
 
 function isLegacyIndexed(fields: Record<string, unknown>): boolean {
@@ -222,8 +206,7 @@ export interface BlogPostDetail extends BlogPost {
   keywords: string
 }
 
-function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
-  if (!isPublished(record)) return null
+function recordToPublicItem(record: AirtableRecord): BlogPost | null {
   const slug = slugFromRecord(record)
   if (!slug || !isAcceptableSlug(slug)) return null
   const title = pickField(record.fields, K.title) || pickField(record.fields, K.sourceTitle) || 'Untitled'
@@ -259,8 +242,8 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     const mapped: BlogPost[] = []
     const seenSlug = new Set<string>()
     for (const record of groups.flat()) {
-      // Visibility rule: every Published article is visible. SEO_Gate controls indexing, not frontend visibility.
-      const item = recordToPublishedItem(record)
+      // Visibility rule: backend record exists = frontend article exists. No status gate.
+      const item = recordToPublicItem(record)
       if (!item) continue
       const key = item.slug.toLowerCase()
       if (seenSlug.has(key)) continue
@@ -283,7 +266,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
-  const base = recordToPublishedItem(record)
+  const base = recordToPublicItem(record)
   if (!base) return null
   return {
     ...base,
