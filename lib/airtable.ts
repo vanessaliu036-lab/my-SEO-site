@@ -24,10 +24,12 @@ const K = {
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
   content: ['content', 'Content'] as const,
+  legacyContent: ['Blogger Version', 'Blogger_Version', 'blogger_version'] as const,
   category: ['Category', 'category'] as const,
   excerpt: ['Excerpt', 'excerpt'] as const,
   keywords: ['Keywords', 'keywords'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
+  bloggerUrl: ['Blogger URL', 'Blogger_URL', 'blogger_url'] as const,
 }
 
 const BLOGGER_STATUS_KEYS = [
@@ -205,6 +207,18 @@ function slugFromRecord(record: AirtableRecord): string {
   const direct = canonicalSlugForUrl(pickField(record.fields, K.slug))
   if (isAcceptableSlug(direct)) return direct
 
+  const legacyUrl = pickField(record.fields, K.bloggerUrl)
+  if (legacyUrl) {
+    try {
+      const pathname = new URL(legacyUrl).pathname
+      const last = pathname.split('/').filter(Boolean).at(-1)?.replace(/\.html?$/i, '') || ''
+      const legacySlug = canonicalSlugForUrl(last)
+      if (isAcceptableSlug(legacySlug)) return legacySlug
+    } catch {
+      /* fall back to the title-derived slug */
+    }
+  }
+
   const titleCandidate =
     pickField(record.fields, K.title) ||
     pickField(record.fields, K.sourceTitle) ||
@@ -227,7 +241,8 @@ function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
     pickField(record.fields, K.title) ||
     pickField(record.fields, K.sourceTitle) ||
     'Untitled'
-  const content = pickField(record.fields, K.content)
+  const content =
+    pickField(record.fields, K.content) || pickField(record.fields, K.legacyContent)
   const excerpt = pickField(record.fields, K.excerpt)
   const summaryField = pickField(record.fields, K.summary)
   const summary =
@@ -271,6 +286,7 @@ function listFieldsForTable(): string[] {
     ...K.category,
     ...K.excerpt,
     ...K.featured,
+    ...K.bloggerUrl,
     'status',
     'Status',
     'SEO_Gate',
@@ -373,7 +389,7 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   if (!base) return null
   return {
     ...base,
-    content: pickField(record.fields, K.content),
+    content: pickField(record.fields, K.content) || pickField(record.fields, K.legacyContent),
     excerpt: pickField(record.fields, K.excerpt),
     keywords: pickField(record.fields, K.keywords),
   }
