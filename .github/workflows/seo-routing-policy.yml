@@ -1,0 +1,25 @@
+name: SEO Routing Policy
+
+on:
+  push:
+    branches:
+      - main
+      - fix/seo-owner-routing-recovery
+    paths:
+      - proxy.ts
+      - tests/seo-routing-policy.test.mjs
+      - .github/workflows/seo-routing-policy.yml
+  pull_request:
+    paths:
+      - proxy.ts
+      - tests/seo-routing-policy.test.mjs
+
+jobs:
+  routing-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/seo-routing-policy.test.mjs
