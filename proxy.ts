@@ -46,7 +46,7 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist":
     "/blog/cambodia-specialty-robusta-coffee-guide",
   "/blog/specialty-robusta-vs-arabica-honest-comparison":
-    "/blog/what-makes-fine-robusta",
+    "/blog/fine-robusta-vs-arabica-buyer-guide",
   "/blog/cambodia-robusta-buyer-due-diligence":
     "/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia",
 
@@ -105,9 +105,6 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   // Owner URL was live but noindex; recover it to an indexable origin page.
   "/blog/mondulkiri-next-specialty-coffee-origin":
     "/blog/mondulkiri-coffee-climate",
-  // Owner URL resolved to the wrong canonical intent; use the comparison page.
-  "/blog/specialty-robusta-vs-arabica-honest-comparison":
-    "/blog/fine-robusta-vs-arabica-buyer-guide",
 };
 
 // These topics were deliberately retired because they no longer fit OCC's
