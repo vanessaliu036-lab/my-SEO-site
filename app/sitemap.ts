@@ -6,6 +6,7 @@ import { getAllPosts } from '@/lib/airtable'
 // dynamic so a newly published, indexable record can be discovered without
 // waiting for a separate Vercel deployment or a stale metadata-route cache.
 export const dynamic = 'force-dynamic'
+export const maxDuration = 60
 
 /**
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
