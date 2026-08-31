@@ -9,33 +9,33 @@ import {
 
 const airtableSource = readFileSync(new URL('../lib/airtable.ts', import.meta.url), 'utf8')
 
-test('OCC public blog preserves both legacy Articles and moderated OCC_Blog_Posts sources', () => {
-  assert.match(airtableSource, /Articles/)
-  assert.match(airtableSource, /OCC_Blog_Posts/)
+test('OCC public runtime reads only the consolidated OCC_Blog_Posts master table', () => {
+  assert.match(
+    airtableSource,
+    /const PUBLIC_BLOG_TABLES\s*=\s*\[\s*['"]OCC_Blog_Posts['"]\s*\]/,
+  )
+  assert.doesNotMatch(airtableSource, /PUBLIC_BLOG_TABLES[^\n]*['"]Articles['"]/)
+  assert.doesNotMatch(airtableSource, /PUBLIC_AIRTABLE_TABLE_NAMES/)
 })
 
-test('the 387 historical Blogger-public Articles are frozen by ID and slug', () => {
+test('the 387 historical Blogger-public Articles remain frozen as recovery evidence', () => {
   assert.equal(LEGACY_PUBLISHED_ARTICLE_MANIFEST.length, 387)
   assert.equal(LEGACY_PUBLISHED_ARTICLE_IDS.size, 387)
   assert.equal(LEGACY_PUBLISHED_ARTICLE_SLUGS.size, 387)
   assert.equal(new Set(LEGACY_PUBLISHED_ARTICLE_MANIFEST.map((entry) => entry.slug)).size, 387)
-  assert.match(airtableSource, /LEGACY_PUBLISHED_ARTICLES_FREEZE/)
-  assert.match(airtableSource, /LEGACY_PUBLISHED_ARTICLE_IDS\.has\(record\.id\)/)
 })
 
-test('legacy Articles can remain public when Blogger Status is Published', () => {
-  assert.match(airtableSource, /Blogger Status|Blogger_Status|blogger status/i)
-  assert.match(airtableSource, /published/i)
-  assert.match(airtableSource, /Blogger Version|Blogger_Version|blogger_version/i)
-  assert.match(airtableSource, /isLegacyPublic/)
+test('migrated historically public master records can override a later SEO deny gate', () => {
+  assert.match(airtableSource, /Legacy Indexed/)
+  assert.match(airtableSource, /isLegacyIndexed/)
 })
 
-test('Airtable pagination does not truncate the legacy article corpus', () => {
+test('Airtable pagination does not truncate the consolidated article corpus', () => {
   assert.match(airtableSource, /pageSize:\s*['"]100['"]/)
   assert.doesNotMatch(airtableSource, /maxRecords:\s*['"]1000['"]/)
 })
 
-test('blog list fetches project metadata instead of full article bodies', () => {
+test('blog list fetches projected metadata instead of full article bodies', () => {
   assert.match(airtableSource, /function listFieldsForTable/)
   assert.match(airtableSource, /params\.append\(['"]fields\[\]['"]/)
 })
