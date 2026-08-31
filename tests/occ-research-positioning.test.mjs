@@ -112,10 +112,11 @@ test('public source contains no known commercial positioning regressions', () =>
   assert.doesNotMatch(publicSource, /connect quality-focused Cambodian canephora with buyers|commercial pathways|Related buyer guide|MONEY_PILLARS/i)
 })
 
-test('public publishing reads only OCC_Blog_Posts and never the legacy Articles table', () => {
+test('public publishing preserves moderated posts and legacy published Articles', () => {
   assert.match(airtableSource, /PUBLIC_AIRTABLE_TABLE_NAMES/)
   assert.match(airtableSource, /OCC_Blog_Posts/)
-  assert.doesNotMatch(airtableSource, /['"]Articles,OCC_Blog_Posts['"]/)
+  assert.match(airtableSource, /Articles/)
+  assert.match(airtableSource, /Blogger Status/i)
 })
 
 test('legacy solution URLs permanently redirect to the research journal', () => {
