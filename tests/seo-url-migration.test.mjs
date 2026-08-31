@@ -6,6 +6,7 @@ const nextConfig = readFileSync(new URL('../next.config.mjs', import.meta.url), 
 const proxy = readFileSync(new URL('../proxy.ts', import.meta.url), 'utf8')
 
 const liveEditorialSlugs = [
+  'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
   'why-coffee-competitions-are-paying-attention-to-robusta',
   'indigenous-farmers-and-specialty-coffee-the-bunong-model-in-cambodia',
   'shade-grown-coffee-how-forest-canopy-changes-whats-in-your-cup',
