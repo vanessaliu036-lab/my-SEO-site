@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "PREK — The Bright Current | Mondulkiri Robusta by OCC",
   description:
-    "Discover PREK, a bright modern Mondulkiri Robusta with bittersweet chocolate, red berry, and citrus peel notes. Explore processing, freshness, acidity, and contemporary Cambodian coffee culture.",
+    "PREK: a bright, modern Mondulkiri Robusta with bittersweet chocolate, red berry, and citrus peel notes. Processing, freshness, and acidity explored.",
   keywords: [
     "PREK coffee",
     "Mondulkiri Robusta",

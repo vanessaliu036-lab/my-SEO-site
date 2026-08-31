@@ -5,7 +5,7 @@ import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Wholesale Coffee Supply Cambodia | OCC - Direct Trade Coffee Supplier",
-  description: "OCC provides B2B wholesale coffee supply for cafés, hotels, and restaurants in Phnom Penh, Siem Reap, and Sihanoukville. Direct-origin beans, flexible delivery, dedicated account management. Minimum 5kg.",
+  description: "OCC provides B2B wholesale coffee supply for cafés, hotels, and restaurants in Phnom Penh, Siem Reap, and Sihanoukville. Direct-origin beans, minimum 5kg.",
   keywords: "wholesale coffee Cambodia, coffee supplier Phnom Penh, B2B coffee supply Cambodia, café coffee wholesale, restaurant coffee supplier, direct trade coffee Cambodia, OCC wholesale, Siem Reap coffee supplier",
   openGraph: {
     title: "Wholesale Coffee Supply | OCC Cambodia",

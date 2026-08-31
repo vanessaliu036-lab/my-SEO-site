@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Manifesto | Origin Coffee Cambodia - OCC",
   description:
-    "The Barista Army Thesis: Why We'll Never Open a Café. Cambodia doesn't have a coffee problem. It has a consistency problem. We're building the skilled barista army to solve it.",
+    "The Barista Army Thesis: Why We'll Never Open a Café. Cambodia's coffee problem is consistency — we're building the skilled barista army to solve it.",
   keywords:
     "barista training Cambodia, skilled barista army, coffee manifesto, OCC manifesto, specialty coffee infrastructure Cambodia, why we never open a cafe, coffee consistency Cambodia",
   alternates: pageAlternates("/about/manifesto"),
