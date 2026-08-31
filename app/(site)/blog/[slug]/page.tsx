@@ -108,7 +108,7 @@ function stripMarkdown(text: string): string {
 }
 
 function renderInlineMarkdown(text: string): string {
-  const escaped = escapeHtml(normalizeEditorialCaps(text)).replace(/&lt;\/?(?:b|strong)&gt;/gi, "")
+  const escaped = escapeHtml(normalizeEditorialCaps(text))
   const markdownLinks: Array<{ label: string; href: string }> = []
   const protectedText = escaped.replace(
     /\[(.*?)\]\((https?:\/\/[^)]+|\/[^)]*)\)/g,
@@ -119,12 +119,12 @@ function renderInlineMarkdown(text: string): string {
   )
 
   const rendered = addInternalLinks(protectedText)
-    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     .replace(/\[([^\]]+)\]/g, (_match, label) => label)
 
   return rendered.replace(/\x01(\d+)\x01/g, (_match, index) => {
     const { label, href } = markdownLinks[Number(index)]
-    const renderedLabel = label.replace(/\*\*(.*?)\*\*/g, "$1")
+    const renderedLabel = label.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     return `<a href="${href}" class="border-b border-stone-300 text-stone-950 transition-colors hover:border-stone-950">${renderedLabel}</a>`
   })
 }
@@ -197,28 +197,6 @@ function renderList(lines: string[], ordered: boolean): string {
   return ordered ? `<ol>${items}</ol>` : `<ul>${items}</ul>`
 }
 
-function headingId(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/<[^>]+>/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .slice(0, 80) || "section"
-}
-
-function extractArticleHeadings(content: string): Array<{ id: string; label: string }> {
-  const headings: Array<{ id: string; label: string }> = []
-  const re = /<h2 id="([^"]+)">([\s\S]*?)<\/h2>/g
-  let match: RegExpExecArray | null
-  while ((match = re.exec(content)) !== null) {
-    const label = match[2].replace(/<[^>]+>/g, "").trim()
-    if (label) headings.push({ id: match[1], label })
-  }
-  return headings
-}
-
 function formatContent(raw: string, title: string): string {
   if (!raw) return ""
   const lines = raw
@@ -282,14 +260,12 @@ function formatContent(raw: string, title: string): string {
     }
 
     if (/^##\s+/.test(line)) {
-      const heading = line.replace(/^##\s+/, "")
-      html.push(`<h2 id="${headingId(stripMarkdown(heading))}">${renderInlineMarkdown(heading)}</h2>`)
+      html.push(`<h2>${renderInlineMarkdown(line.replace(/^##\s+/, ""))}</h2>`)
       continue
     }
 
     if (/^#\s+/.test(line)) {
-      const heading = line.replace(/^#\s+/, "")
-      html.push(`<h2 id="${headingId(stripMarkdown(heading))}">${renderInlineMarkdown(heading)}</h2>`)
+      html.push(`<h2>${renderInlineMarkdown(line.replace(/^#\s+/, ""))}</h2>`)
       continue
     }
 
@@ -401,7 +377,6 @@ export default async function BlogPostPage({
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title)
-  const sectionHeadings = extractArticleHeadings(formattedContent)
   const showRobustaPillarLink =
     post.slug !== ROBUSTA_PILLAR_SLUG && ROBUSTA_CLUSTER_SLUGS.has(post.slug)
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
@@ -463,9 +438,9 @@ export default async function BlogPostPage({
           </div>
         </nav>
 
-        <article className="occ-article max-w-5xl mx-auto px-5 sm:px-8 py-10 md:py-16">
+        <article className="max-w-5xl mx-auto px-5 sm:px-8 py-10 md:py-16">
           {/* Header */}
-          <header className="occ-article-header mx-auto max-w-[680px] mb-10 md:mb-12">
+          <header className="mx-auto max-w-[680px] mb-10 md:mb-12">
             <div className="flex flex-wrap items-center gap-3 mb-5">
               {post.category && (
                 <span className="text-[10px] tracking-[0.26em] text-stone-600 border border-stone-300 px-2.5 py-1 uppercase">
@@ -500,24 +475,11 @@ export default async function BlogPostPage({
             </div>
           </header>
 
-          {sectionHeadings.length > 0 && (
-            <nav className="occ-on-page" aria-label="On this page">
-              <p className="occ-on-page__label">On this page</p>
-              <div className="occ-on-page__links">
-                {sectionHeadings.map((heading) => (
-                  <a key={heading.id} href={`#${heading.id}`}>
-                    {heading.label}
-                  </a>
-                ))}
-              </div>
-            </nav>
-          )}
-
           {/* Article content */}
           {formattedContent ? (
             <div
               className="
-                occ-article-body mx-auto max-w-[720px]
+                mx-auto max-w-[720px]
                 [&>h2]:font-sans [&>h2]:text-[1.2rem] sm:[&>h2]:text-[1.35rem] [&>h2]:font-semibold [&>h2]:text-stone-950 [&>h2]:tracking-tight
                 [&>h2]:leading-[1.2] [&>h2]:mt-12 sm:[&>h2]:mt-14 [&>h2]:mb-4 [&>h2]:pt-7
                 [&>h2]:border-t [&>h2]:border-stone-200
@@ -560,11 +522,11 @@ export default async function BlogPostPage({
 
           {/* Keywords */}
           {keywordList.length > 0 && (
-            <div className="occ-topics mx-auto max-w-[720px] mt-16 pt-8 border-t border-stone-200">
+            <div className="mx-auto max-w-[720px] mt-16 pt-8 border-t border-stone-200">
               <p className="text-[10px] tracking-[0.24em] text-stone-400 uppercase mb-3">Topics</p>
               <div className="flex flex-wrap gap-2">
                 {keywordList.map((kw) => (
-                  <span key={kw} className="occ-topic-link text-xs text-stone-600">
+                  <span key={kw} className="text-xs text-stone-600 border border-stone-300 px-3 py-1">
                     {kw}
                   </span>
                 ))}
@@ -572,28 +534,46 @@ export default async function BlogPostPage({
             </div>
           )}
 
+          {/* Editorial note */}
+          <div className="mx-auto max-w-[720px] mt-12 bg-stone-950 text-white p-7 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div>
+              <p className="text-xs tracking-[0.24em] text-stone-400 uppercase mb-1">Origin Coffee Cambodia</p>
+              <p className="font-bold tracking-tight">Evidence-led coffee research and technical editorial.</p>
+            </div>
+            <Link
+              href="/about/manifesto"
+              className="shrink-0 text-xs tracking-[0.14em] border border-white px-5 py-2.5 hover:bg-white hover:text-stone-950 transition-colors uppercase"
+            >
+              Editorial standards →
+            </Link>
+          </div>
         </article>
 
         {/* Related articles */}
         {related.length > 0 && (
-          <section className="occ-related max-w-5xl mx-auto px-5 sm:px-8 pb-16 md:pb-20">
+          <section className="max-w-5xl mx-auto px-5 sm:px-8 pb-16 md:pb-20">
             <div className="mx-auto max-w-[720px] border-t border-stone-200 pt-12">
               <p className="text-[10px] tracking-[0.24em] text-stone-400 uppercase mb-8">More Articles</p>
-              <div className="occ-related-list grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {related.map((r) => (
                   <Link
                     key={r.slug}
                     href={`/blog/${r.slug}`}
-                    className="occ-related-item group block border-t border-stone-200 pt-5 transition-all hover:-translate-y-0.5"
+                    className="group block border-t border-stone-200 pt-5 transition-all hover:-translate-y-0.5"
                   >
-                    <span className="occ-related-item__meta text-[9px] tracking-[0.22em] text-stone-400 uppercase block mb-2">
-                      {r.category || "OCC"}
-                    </span>
+                    {r.category && (
+                      <span className="text-[9px] tracking-[0.22em] text-stone-400 uppercase block mb-2">
+                        {r.category}
+                      </span>
+                    )}
                     <h3 className="text-sm font-semibold text-stone-950 leading-snug mb-2 group-hover:underline underline-offset-2">
                       {r.title}
                     </h3>
-                    <span className="occ-related-item__arrow inline-block mt-3 text-[10px] tracking-[0.14em] text-stone-400 group-hover:text-stone-950 group-hover:translate-x-1 transition-all">
-                      →
+                    {r.summary && (
+                      <p className="text-xs text-stone-500 leading-relaxed line-clamp-2">{r.summary}</p>
+                    )}
+                    <span className="inline-block mt-3 text-[10px] tracking-[0.14em] text-stone-400 group-hover:text-stone-950 group-hover:translate-x-1 transition-all">
+                      Read →
                     </span>
                   </Link>
                 ))}
