@@ -4,16 +4,23 @@ const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
-// Public OCC publishing is intentionally allowlisted to the moderated table.
-// Legacy tables may remain in Airtable for archive/migration work, but they must
-// never flow into the public blog, sitemap, metadata generation, or direct routes.
-const PUBLIC_AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts'] as const
+// Keep the moderated table first so a migrated/current record wins slug de-duplication,
+// while preserving legacy public Articles that were already published before the cutover.
+const PUBLIC_AIRTABLE_TABLE_NAMES = (
+  process.env.AIRTABLE_TABLE_NAME ||
+  process.env.AIRTABLE_TABLE_NAMES ||
+  'OCC_Blog_Posts,Articles'
+)
+  .split(',')
+  .map((name) => name.trim())
+  .filter(Boolean)
+  .filter((name, index, names) => names.indexOf(name) === index)
 
 const K = {
   title: ['title', 'Title'] as const,
   sourceTitle: ['source_title', 'Source Title', 'Source_title'] as const,
   slug: ['slug', 'Slug'] as const,
-  publishDate: ['publish_date', 'Publish Date', 'Last Modified'] as const,
+  publishDate: ['publish_date', 'Publish Date', 'Last Modified', 'scout_date', 'Scout Date'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary'] as const,
   content: ['content', 'Content'] as const,
@@ -22,6 +29,13 @@ const K = {
   keywords: ['Keywords', 'keywords'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
 }
+
+const BLOGGER_STATUS_KEYS = [
+  ' Blogger Status',
+  'Blogger Status',
+  'Blogger_Status',
+  'blogger_status',
+] as const
 
 type AirtableRecord = { id: string; fields: Record<string, unknown>; tableName: string }
 
@@ -105,12 +119,22 @@ function summaryFromContent(content: string, title = ''): string {
   return parts.join(' ')
 }
 
-function getStatus(fields: Record<string, unknown>): string {
-  const raw = fields.status ?? fields.Status ?? ''
+function normalizeStatusValue(raw: unknown): string {
   if (typeof raw === 'object' && raw !== null && 'name' in raw) {
     return String((raw as { name: unknown }).name ?? '').trim().toLowerCase()
   }
-  return String(raw).trim().toLowerCase()
+  return String(raw ?? '').trim().toLowerCase()
+}
+
+function getStatus(fields: Record<string, unknown>): string {
+  return normalizeStatusValue(fields.status ?? fields.Status ?? '')
+}
+
+function getBloggerStatus(fields: Record<string, unknown>): string {
+  for (const key of BLOGGER_STATUS_KEYS) {
+    if (key in fields) return normalizeStatusValue(fields[key])
+  }
+  return ''
 }
 
 const PUBLISHED_TOKENS = new Set([
@@ -131,11 +155,18 @@ const UNPUBLISHED_TOKENS = new Set([
   'unpublished',
 ])
 
-function isPublished(fields: Record<string, unknown>): boolean {
-  const s = getStatus(fields)
-  if (!s) return false
-  if (UNPUBLISHED_TOKENS.has(s)) return false
-  return PUBLISHED_TOKENS.has(s)
+function isPublished(record: AirtableRecord): boolean {
+  const primaryStatus = getStatus(record.fields)
+  const bloggerStatus = getBloggerStatus(record.fields)
+  const isLegacyArticles = record.tableName.trim().toLowerCase() === 'articles'
+
+  // Legacy Articles often kept workflow status=draft even after the Blogger/public
+  // publication completed. Preserve those historical public records explicitly.
+  if (isLegacyArticles && PUBLISHED_TOKENS.has(bloggerStatus)) return true
+
+  if (!primaryStatus) return false
+  if (UNPUBLISHED_TOKENS.has(primaryStatus)) return false
+  return PUBLISHED_TOKENS.has(primaryStatus)
 }
 
 function escapeFormulaValue(value: string): string {
@@ -189,7 +220,7 @@ function sortFieldForTable(tableName: string): string {
 }
 
 function recordToPublishedItem(record: AirtableRecord): BlogPost | null {
-  if (!isPublished(record.fields)) return null
+  if (!isPublished(record)) return null
   const slug = slugFromRecord(record)
   if (!slug || !isAcceptableSlug(slug)) return null
   const title =
@@ -233,7 +264,7 @@ async function fetchTableRecords(tableName: string): Promise<AirtableRecord[]> {
     const params = new URLSearchParams({
       'sort[0][field]': sortFieldForTable(tableName),
       'sort[0][direction]': 'desc',
-      maxRecords: '1000',
+      pageSize: '100',
     })
     if (offset) params.set('offset', offset)
     const res = await fetch(
@@ -296,6 +327,16 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       seenSlug.add(key)
       mapped.push(item)
     }
+    mapped.sort((a, b) => {
+      const aTime = Date.parse(a.publish_date)
+      const bTime = Date.parse(b.publish_date)
+      const aValid = Number.isFinite(aTime)
+      const bValid = Number.isFinite(bTime)
+      if (aValid && bValid) return bTime - aTime
+      if (aValid) return -1
+      if (bValid) return 1
+      return a.title.localeCompare(b.title)
+    })
     return mapped
   } catch (e) {
     console.error('getAllPosts', e)
