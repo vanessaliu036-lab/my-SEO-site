@@ -13,10 +13,26 @@ const liveEditorialSlugs = [
   'terroir-in-coffee-what-the-concept-actually-means-and-why-cambodia-is-relevant',
 ]
 
+function extractDeadSlugs(source) {
+  const block = source.match(/const dead = \[([\s\S]*?)\n\s*\]/)?.[1] ?? ''
+  return new Set([...block.matchAll(/'([^']+)'/g)].map((match) => match[1]))
+}
+
+function extractProxyBlogSlugs(source) {
+  return new Set([...source.matchAll(/["']\/blog\/([^"']+)["']/g)].map((match) => match[1]))
+}
+
 test('live OCC sitemap articles are not captured by legacy redirect rules', () => {
   for (const slug of liveEditorialSlugs) {
     assert.doesNotMatch(nextConfig, new RegExp(`['\"]${slug}['\"]`))
     assert.doesNotMatch(proxy, new RegExp(`['\"]/blog/${slug}['\"]\\s*:`))
+  }
+})
+
+test('proxy-managed blog URLs are not shadowed by generic dead redirects', () => {
+  const dead = extractDeadSlugs(nextConfig)
+  for (const slug of extractProxyBlogSlugs(proxy)) {
+    assert.equal(dead.has(slug), false, `/blog/${slug} must be handled by proxy.ts, not redirected generically`)
   }
 })
 
