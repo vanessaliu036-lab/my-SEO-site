@@ -16,6 +16,8 @@ const sitemap = read('app/sitemap.ts')
 const blogPage = read('app/(site)/blog/page.tsx')
 const blogLayout = read('app/(site)/blog/layout.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
+const articlePage = read('app/(site)/blog/[slug]/page.tsx')
+const fineRobustaOwner = read('app/(site)/fine-robusta-cambodia/page.tsx')
 const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
 const contactAction = read('app/(site)/contact/action.ts')
@@ -46,6 +48,15 @@ test('blog index restores the verified pre-admin presentation while retaining li
   assert.match(blogPage, /totalPages/)
   assert.match(blogPage, /redirect/)
   assert.match(blogLayout, /"@type": "Blog"/)
+})
+
+test('Fine Robusta Cambodia keeps one root owner and cluster authority points to it', () => {
+  assert.match(fineRobustaOwner, /const ownerPath = "\/fine-robusta-cambodia"/)
+  assert.match(fineRobustaOwner, /pageAlternates\("\/fine-robusta-cambodia"\)/)
+  assert.match(sitemap, /\/fine-robusta-cambodia/)
+  assert.match(articlePage, /const ROBUSTA_PILLAR_HREF = "\/fine-robusta-cambodia"/)
+  assert.match(articlePage, /ROBUSTA_CLUSTER_SLUGS\.has\(post\.slug\) \|\| post\.slug === ROBUSTA_PILLAR_SLUG/)
+  assert.doesNotMatch(articlePage, /const ROBUSTA_PILLAR_HREF = `\/blog\/\$\{ROBUSTA_PILLAR_SLUG\}`/)
 })
 
 test('article shell does not inject commercial money-pillar supplier or exporter guides', () => {
