@@ -55,13 +55,6 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               ) : null}
             </div>
           ))}
-          <Link
-            href="/admin"
-            onClick={onClose}
-            className="mt-8 inline-flex text-[9px] uppercase tracking-[0.18em] text-black/45 transition-colors hover:text-black"
-          >
-            Staff Access ↗
-          </Link>
         </nav>
       </div>
     </div>

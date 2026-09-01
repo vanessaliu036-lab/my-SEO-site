@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { MobileMenu } from "@/components/site/mobile-menu"
 import { siteNavigation } from "@/components/site/navigation-data"
-import { StaffAccess } from "@/components/site/staff-access"
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/"
@@ -18,23 +17,15 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const onHome = pathname === "/"
 
+  if (!onHome) return null
+
   return (
     <>
-      <header
-        className={`z-[70] w-full border-b ${
-          onHome
-            ? "absolute inset-x-0 top-0 border-white/15 bg-transparent text-white"
-            : "sticky top-0 border-black/10 bg-[#f6f3ea]/95 text-[#182019] backdrop-blur-md"
-        }`}
-      >
+      <header className="absolute inset-x-0 top-0 z-[70] w-full border-b border-white/15 bg-transparent text-white">
         <div className="mx-auto flex h-20 w-full max-w-[1680px] items-center gap-6 px-5 sm:px-8 lg:px-12">
           <Link href="/" className="flex shrink-0 items-end gap-3" aria-label="Origin Coffee Cambodia home">
             <span className="text-2xl font-semibold tracking-[-0.07em]">OCC</span>
-            <span
-              className={`mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] sm:block ${
-                onHome ? "text-white/65" : "text-[#6f746d]"
-              }`}
-            >
+            <span className="mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] text-white/65 sm:block">
               Origin Coffee
               <br />
               Cambodia
@@ -47,13 +38,7 @@ export function SiteHeader() {
                 <Link
                   href={item.href}
                   className={`inline-flex items-center gap-1 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] transition-colors ${
-                    onHome
-                      ? isActive(pathname, item.href)
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
-                      : isActive(pathname, item.href)
-                        ? "text-[#182019]"
-                        : "text-[#6f746d] hover:text-[#182019]"
+                    isActive(pathname, item.href) ? "text-white" : "text-white/70 hover:text-white"
                   }`}
                 >
                   {item.label}
@@ -77,13 +62,9 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <StaffAccess dark={onHome} />
-
           <button
             type="button"
-            className={`ml-auto inline-flex size-10 items-center justify-center rounded-full border transition-colors lg:hidden ${
-              onHome ? "border-white/30 text-white hover:bg-white hover:text-black" : "border-black/15 text-[#182019]"
-            }`}
+            className="ml-auto inline-flex size-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-black lg:hidden"
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={mobileOpen}
