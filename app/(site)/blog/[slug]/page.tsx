@@ -21,7 +21,7 @@ const INTERNAL_LINKS: Record<string, string> = {
 }
 
 const ROBUSTA_PILLAR_SLUG = "cambodia-specialty-robusta-coffee-guide"
-const ROBUSTA_PILLAR_HREF = `/blog/${ROBUSTA_PILLAR_SLUG}`
+const ROBUSTA_PILLAR_HREF = "/fine-robusta-cambodia"
 const ROBUSTA_CLUSTER_SLUGS = new Set([
   "what-is-specialty-robusta-coffee-complete-guide",
   "what-makes-fine-robusta",
@@ -392,7 +392,7 @@ export default async function BlogPostPage({
     : []
   const formattedContent = formatContent(post.content, post.title)
   const showRobustaPillarLink =
-    post.slug !== ROBUSTA_PILLAR_SLUG && ROBUSTA_CLUSTER_SLUGS.has(post.slug)
+    ROBUSTA_CLUSTER_SLUGS.has(post.slug) || post.slug === ROBUSTA_PILLAR_SLUG
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
 
   const articleSchema = {
