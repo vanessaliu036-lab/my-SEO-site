@@ -39,7 +39,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             className="order-3 border-t border-black/10 pt-7 md:order-1 md:col-span-3 md:border-t-0 md:pr-10 md:pt-0 lg:pr-14"
           >
             <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Infrastructure · Origin · Traceability</p>
-            <p className="mt-6 max-w-[310px] text-[15px] leading-7 text-black/62">
+            <p className="mt-6 max-w-[310px] text-[15px] leading-7 text-black/80">
               Unlike celebrity-driven roasters, OCC builds infrastructure. We reconstruct Cambodia&apos;s specialty coffee supply chain through sourcing, traceability, training, and long-term partnerships.
             </p>
             <Link href="#about-system" className="mt-7 inline-flex items-center gap-2 border-b border-black/25 pb-1 text-[10px] font-medium uppercase tracking-[0.18em] transition-colors hover:border-black">
@@ -72,10 +72,10 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             className="order-2 pb-10 text-center md:order-3 md:col-span-4 md:pb-0 md:text-left"
           >
             <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">Origin Coffee Cambodia</p>
-            <h1 className="font-[var(--font-display)] text-[clamp(4.8rem,8vw,9rem)] font-normal leading-[0.78] tracking-[-0.065em]">
-              ABOUT
+            <h1 className="font-[var(--font-display)] text-[clamp(2.4rem,4.4vw,4rem)] font-normal leading-[0.98] tracking-[-0.02em]">
+              About
               <br />
-              ORIGIN.
+              Origin.
             </h1>
           </motion.div>
         </div>
@@ -93,16 +93,16 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">02 / Position</p>
           </div>
           <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
-            <p className="font-[var(--font-display)] text-[clamp(3.4rem,6.4vw,7.2rem)] font-normal leading-[0.88] tracking-[-0.055em]">
-              OCC BUILDS
+            <p className="font-[var(--font-display)] text-[clamp(1.8rem,3vw,2.8rem)] font-normal leading-[1.08] tracking-[-0.02em]">
+              OCC builds
               <br />
-              INFRASTRUCTURE.
+              infrastructure.
             </p>
             <div className="mt-10 grid grid-cols-1 gap-8 border-t border-black/10 pt-8 lg:grid-cols-2 lg:gap-14">
-              <p className="text-lg leading-8 text-black/68">
+              <p className="text-lg leading-8 text-black/84">
                 我們不只是在烘焙咖啡，我們在重構柬埔寨的精品咖啡供應鏈。
               </p>
-              <p className="text-[15px] leading-7 text-black/52">
+              <p className="text-[15px] leading-7 text-black/76">
                 Origin Coffee Cambodia (OCC) is a specialty coffee infrastructure company based in Phnom Penh, Cambodia. We focus on building the foundational systems—from ethical sourcing and traceability protocols to professional training and supply chain optimization—that enable Cambodia&apos;s coffee industry to thrive sustainably.
               </p>
             </div>
@@ -113,7 +113,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">03 / Explore</p>
-              <h2 id="about-explore-title" className="mt-5 font-[var(--font-display)] text-5xl font-normal leading-[0.92] tracking-[-0.045em] sm:text-6xl">
+              <h2 id="about-explore-title" className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-4xl">
                 Four parts.
                 <br />One system.
               </h2>
@@ -128,7 +128,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                   >
                     <span className="pb-1 text-[9px] font-medium tracking-[0.2em] text-black/34">{String(index + 1).padStart(2, "0")}</span>
                     <div>
-                      <h3 className="font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.04em] transition-transform duration-300 group-hover:translate-x-2 sm:text-5xl lg:text-6xl">
+                      <h3 className="font-[var(--font-display)] text-2xl font-normal leading-none tracking-[-0.02em] transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
                         {section.title}
                       </h3>
                       <p className="mt-3 max-w-xl text-[11px] uppercase tracking-[0.13em] text-black/42">{section.desc}</p>
@@ -149,7 +149,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               ["Cambodia", "Origin network"],
             ].map(([value, label], index) => (
               <div key={label} className={`py-8 sm:px-8 ${index > 0 ? "border-t border-black/10 sm:border-l sm:border-t-0" : ""}`}>
-                <p className="font-[var(--font-display)] text-5xl font-normal leading-none tracking-[-0.04em] lg:text-6xl">{value}</p>
+                <p className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.02em] lg:text-4xl">{value}</p>
                 <p className="mt-3 text-[9px] font-medium uppercase tracking-[0.2em] text-black/38">{label}</p>
               </div>
             ))}
@@ -159,7 +159,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         <motion.section {...reveal()} className="grid grid-cols-1 border-b border-black/10 py-20 md:grid-cols-12 lg:py-28">
           <div className="md:col-span-4">
             <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">04 / Why infrastructure</p>
-            <h2 className="mt-5 font-[var(--font-display)] text-5xl font-normal leading-[0.92] tracking-[-0.045em] sm:text-6xl">
+            <h2 className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-4xl">
               Built beyond
               <br />the roast.
             </h2>
@@ -174,7 +174,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                 <span className="text-[9px] tracking-[0.2em] text-black/34">0{index + 1}</span>
                 <div>
                   <h3 className="text-base font-medium tracking-[-0.01em]">{title}</h3>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-black/50">{copy}</p>
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-black/76">{copy}</p>
                 </div>
               </div>
             ))}
@@ -184,13 +184,13 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         <motion.section {...reveal()} className="grid grid-cols-1 border-b border-black/10 py-20 md:grid-cols-12 lg:py-24">
           <div className="md:col-span-4">
             <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">05 / Cambodia network</p>
-            <h2 className="mt-5 font-[var(--font-display)] text-5xl font-normal leading-[0.92] tracking-[-0.045em] sm:text-6xl">
+            <h2 className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-4xl">
               Serving the
               <br />coffee community.
             </h2>
           </div>
           <div className="mt-10 border-t border-black/10 pt-8 md:col-span-7 md:col-start-6 md:mt-0">
-            <p className="text-sm uppercase leading-7 tracking-[0.14em] text-black/52">
+            <p className="text-sm uppercase leading-7 tracking-[0.14em] text-black/76">
               Phnom Penh · Siem Reap · Sihanoukville · Battambang · Kampot
             </p>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-black/45">
