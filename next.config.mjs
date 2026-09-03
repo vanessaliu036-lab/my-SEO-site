@@ -38,12 +38,12 @@ const nextConfig = {
   },
 
   // Permanent redirects preserve legacy backlinks while the public information
-  // architecture is reduced to ABOUT / SOLUTIONS / COLLECTION / BLOG / CONTACT.
+  // architecture uses ABOUT / SOLUTIONS / SINGLE ORIGIN / BLOG / CONTACT.
   // Historical deleted-blog redirects remain intact below.
   async redirects() {
     const structural = [
-      { source: '/coffee', destination: '/collection', permanent: true },
-      { source: '/coffee/single-origin', destination: '/collection', permanent: true },
+      { source: '/coffee', destination: '/coffee/single-origin', permanent: true },
+      { source: '/collection', destination: '/coffee/single-origin', permanent: true },
       { source: '/vision', destination: '/about', permanent: true },
       { source: '/system', destination: '/about', permanent: true },
       { source: '/signal', destination: '/blog', permanent: true },

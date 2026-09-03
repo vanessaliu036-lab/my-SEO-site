@@ -4,7 +4,7 @@ import { getAllPosts } from '@/lib/airtable'
 
 /**
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
- * Legacy commercial and product routes redirect to the research journal and are not emitted.
+ * Strategic published routes are emitted explicitly; the Airtable blog corpus expansion remains unchanged.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -26,6 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/about/sustainability`, lastModified: now },
 
     { url: `${siteUrl}/fine-robusta-cambodia`, lastModified: now },
+    { url: `${siteUrl}/coffee/single-origin`, lastModified: now },
+
+    { url: `${siteUrl}/solutions`, lastModified: now },
+    { url: `${siteUrl}/solutions/wholesale`, lastModified: now },
+    { url: `${siteUrl}/solutions/roasting-program`, lastModified: now },
+    { url: `${siteUrl}/solutions/barista-staffing`, lastModified: now },
+    { url: `${siteUrl}/solutions/equipment-service`, lastModified: now },
+
     { url: `${siteUrl}/blog`, lastModified: now },
     ...blogEntries,
   ]

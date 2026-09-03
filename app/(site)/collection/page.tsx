@@ -5,15 +5,15 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Mondulkiri Origin Collection | SOVANN, PREK, ANGKAR — OCC",
+  title: "Mondulkiri Single Origin Coffee | SOVANN, PREK, ANGKAR — OCC",
   description:
-    "Explore OCC's Mondulkiri Origin Collection: SOVANN, PREK, and ANGKAR, three Cambodian Robusta profiles shaped by origin and craft.",
-  alternates: pageAlternates("/collection"),
+    "Explore OCC's Mondulkiri single-origin coffee: SOVANN, PREK, and ANGKAR, three Cambodian Robusta profiles shaped by origin and craft.",
+  alternates: pageAlternates("/coffee/single-origin"),
   openGraph: {
-    title: "Mondulkiri Origin Collection | OCC",
+    title: "Mondulkiri Single Origin Coffee | OCC",
     description:
       "SOVANN, PREK, ANGKAR — three Mondulkiri Robusta expressions, structured by direct trade, processing, and local roasting.",
-    url: `${siteUrl}/collection`,
+    url: `${siteUrl}/coffee/single-origin`,
     type: "website",
   },
 }
@@ -65,8 +65,8 @@ const collection: readonly CollectionItem[] = [
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Mondulkiri Origin Collection",
-  url: `${siteUrl}/collection`,
+  name: "Mondulkiri Single Origin Coffee",
+  url: `${siteUrl}/coffee/single-origin`,
   description:
     "Three single-origin expressions from Mondulkiri, Cambodia, structured by direct trade, processing precision, and local roasting.",
   hasPart: collection.map((c) => ({
@@ -82,7 +82,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Collection", item: `${siteUrl}/collection` },
+    { "@type": "ListItem", position: 2, name: "Single Origin", item: `${siteUrl}/coffee/single-origin` },
   ],
 }
 

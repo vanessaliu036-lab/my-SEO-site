@@ -12,7 +12,9 @@ const homePage = read('app/(site)/page.tsx')
 const homeContent = read('lib/homeContent.ts')
 const homeTemplate = read('components/templates/home-template.tsx')
 const navigation = read('components/Navigation.tsx')
+const navigationData = read('components/site/navigation-data.ts')
 const sitemap = read('app/sitemap.ts')
+const nextConfig = read('next.config.mjs')
 const blogPage = read('app/(site)/blog/page.tsx')
 const blogLayout = read('app/(site)/blog/layout.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
@@ -32,12 +34,36 @@ test('homepage remains research-led while the historical public shell is restore
   assert.match(publicHome, /research/i)
 })
 
-test('public navigation restores the pre-admin OCC sections without exposing admin access', () => {
-  for (const label of ['ABOUT', 'SOLUTIONS', 'COLLECTION']) assert.match(navigation, new RegExp(label))
+test('public navigation uses SINGLE ORIGIN without exposing admin access', () => {
+  assert.match(navigation, /SINGLE ORIGIN/)
+  assert.match(navigation, /href="\/coffee\/single-origin"/)
+  assert.match(navigationData, /label: "SINGLE ORIGIN"/)
+  assert.match(navigationData, /href: "\/coffee\/single-origin"/)
+  for (const label of ['ABOUT', 'SOLUTIONS']) assert.match(navigation, new RegExp(label))
   for (const label of ['Blog', 'Contact']) assert.match(navigation, new RegExp(label))
   assert.doesNotMatch(navigation, /\/admin|Staff Access/i)
-  // Current sitemap strategy is intentionally left unchanged by this UI restore.
-  assert.doesNotMatch(sitemap, /\/solutions|\/collection/)
+})
+
+test('sitemap emits strategic routes while preserving the Airtable blog corpus expansion', () => {
+  for (const path of [
+    '/coffee/single-origin',
+    '/solutions',
+    '/solutions/wholesale',
+    '/solutions/roasting-program',
+    '/solutions/barista-staffing',
+    '/solutions/equipment-service',
+  ]) {
+    assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
+  }
+  assert.doesNotMatch(sitemap, /\$\{siteUrl\}\/collection`/)
+  assert.match(sitemap, /const posts = await getAllPosts\(\)/)
+  assert.match(sitemap, /\.\.\.blogEntries/)
+})
+
+test('single-origin is the canonical structural destination without a redirect chain', () => {
+  assert.match(nextConfig, /source: '\/collection', destination: '\/coffee\/single-origin'/)
+  assert.match(nextConfig, /source: '\/coffee', destination: '\/coffee\/single-origin'/)
+  assert.doesNotMatch(nextConfig, /source: '\/coffee\/single-origin', destination:/)
 })
 
 test('blog index restores the verified pre-admin presentation while retaining live Airtable pagination', () => {

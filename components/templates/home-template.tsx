@@ -40,10 +40,10 @@ export default function HomeTemplate() {
             Cambodia · Coffea canephora · Fine Robusta
           </p>
           <h1 className="mx-auto max-w-5xl text-balance text-5xl font-normal leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]">
-            Cambodian Coffee, Studied in Context.
+            Fine Robusta & Specialty Coffee from Cambodia
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
-            Independent research and evidence-led editorial on Cambodian coffee, canephora quality, processing, roasting, sensory evaluation, standards, and origin systems.
+            Origin Coffee Cambodia connects Cambodian coffee origins with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused knowledge.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">

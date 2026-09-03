@@ -102,15 +102,15 @@ export default function Navigation() {
           </ul>
         </li>
 
-        {/* Collection 區塊 */}
+        {/* Single Origin 區塊 */}
         <li className="pt-4">
           <div className="text-gray-400 text-xs tracking-widest mb-3">
-            COLLECTION
+            SINGLE ORIGIN
           </div>
           <ul className="space-y-3">
             <li>
               <Link
-                href="/collection"
+                href="/coffee/single-origin"
                 className="text-gray-700 hover:text-black transition-colors text-sm block group"
               >
                 <span className="group-hover:pl-2 transition-all duration-200">Mondulkiri Origin Collection</span>
