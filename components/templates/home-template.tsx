@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import {
@@ -11,13 +12,13 @@ export default function HomeTemplate() {
   return (
     <>
       <section className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-[#1c211b] text-white">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=90)",
-          }}
-          aria-hidden="true"
+        <Image
+          src="/hero-home.webp"
+          alt="Origin Coffee Cambodia hero image"
+          fill
+          preload
+          sizes="100vw"
+          className="absolute inset-0 object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
         <div
