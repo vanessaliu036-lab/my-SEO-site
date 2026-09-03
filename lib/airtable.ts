@@ -1,3 +1,5 @@
+import { unstable_cache } from 'next/cache'
+
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
@@ -5,8 +7,8 @@ const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 // Canonical frontend corpus = all OCC_Blog_Posts working records +
 // OCC_INDEXED_PROTECTED records, deduplicated only by true public article identity.
 // Draft / Published / Public are workflow metadata and MUST NOT be frontend inclusion gates.
-// There is deliberately NO maxRecords cap on list fetches; pagination runs until Airtable
-// returns no offset.
+// There is deliberately NO maxRecords cap on corpus list fetches; pagination runs until
+// Airtable returns no offset.
 const AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
 type AirtableTableName = (typeof AIRTABLE_TABLE_NAMES)[number]
 
@@ -48,6 +50,54 @@ const K = {
   excerpt: ['Excerpt', 'excerpt', 'Summary (Blogger URL)'] as const,
   keywords: ['Keywords', 'keywords', 'SEO_Keyword', 'keyword', 'seo_keywords'] as const,
   featured: ['featured_image_url', 'Featured Image URL'] as const,
+}
+
+// Airtable enforces a per-base request ceiling. A full OCC corpus refresh requires many
+// paginated requests, so requests inside a warm server process are serialized and spaced.
+// The cross-request Next.js cache below then prevents every article view from repeating
+// the full corpus scan.
+const AIRTABLE_MIN_REQUEST_INTERVAL_MS = 260
+let airtableRequestChain: Promise<void> = Promise.resolve()
+let nextAirtableRequestAt = 0
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function scheduledAirtableFetch(url: string): Promise<Response> {
+  const previous = airtableRequestChain
+  let release: () => void = () => undefined
+  airtableRequestChain = new Promise<void>((resolve) => {
+    release = resolve
+  })
+
+  await previous
+  try {
+    const waitMs = Math.max(0, nextAirtableRequestAt - Date.now())
+    if (waitMs > 0) await sleep(waitMs)
+    nextAirtableRequestAt = Date.now() + AIRTABLE_MIN_REQUEST_INTERVAL_MS
+
+    return await fetch(url, {
+      headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
+      cache: 'no-store',
+    })
+  } finally {
+    release()
+  }
+}
+
+function requireAirtableCredentials(): void {
+  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
+    throw new Error('Missing Airtable credentials')
+  }
+}
+
+async function responseErrorBody(response: Response): Promise<string> {
+  try {
+    return (await response.text()).slice(0, 500)
+  } catch {
+    return ''
+  }
 }
 
 function pickField(fields: Record<string, unknown>, keys: readonly string[], fallback = ''): string {
@@ -109,10 +159,6 @@ function slugFromRecord(record: AirtableRecord): string {
   return isAcceptableSlug(derived) ? derived : ''
 }
 
-function escapeFormulaValue(value: string): string {
-  return value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")
-}
-
 function sortFieldForTable(tableName: AirtableTableName): string {
   return tableName === 'OCC_INDEXED_PROTECTED' ? 'scout_date' : 'publish_date'
 }
@@ -134,7 +180,7 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
 }
 
 async function fetchTableRecords(tableName: AirtableTableName): Promise<AirtableRecord[]> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return []
+  requireAirtableCredentials()
 
   const all: AirtableRecord[] = []
   let offset: string | undefined
@@ -147,17 +193,13 @@ async function fetchTableRecords(tableName: AirtableTableName): Promise<Airtable
     for (const field of LIST_FIELDS[tableName]) params.append('fields[]', field)
     if (offset) params.set('offset', offset)
 
-    const response = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
-      {
-        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-        cache: 'no-store',
-      }
+    const response = await scheduledAirtableFetch(
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`
     )
 
     if (!response.ok) {
-      console.error(`Airtable list failed for ${tableName}:`, response.status, await response.text())
-      break
+      const body = await responseErrorBody(response)
+      throw new Error(`Airtable list failed for ${tableName}: ${response.status} ${body}`)
     }
 
     const data = await response.json()
@@ -192,39 +234,44 @@ export interface BlogPostDetail extends BlogPost {
   keywords: string
 }
 
+async function loadAllPosts(): Promise<BlogPost[]> {
+  requireAirtableCredentials()
+
+  // Keep table precedence unchanged: OCC_Blog_Posts is evaluated first so an identical
+  // stable slug in OCC_INDEXED_PROTECTED is the same public article, not a second page.
+  const groups: AirtableRecord[][] = []
+  for (const tableName of AIRTABLE_TABLE_NAMES) {
+    groups.push(await fetchTableRecords(tableName))
+  }
+
+  const seenSlug = new Set<string>()
+  const posts: BlogPost[] = []
+
+  for (const record of groups.flat()) {
+    const item = recordToListItem(record)
+    if (!item) continue
+    const identity = item.slug.toLowerCase()
+    if (seenSlug.has(identity)) continue
+    seenSlug.add(identity)
+    posts.push(item)
+  }
+
+  posts.sort((a, b) => {
+    const aTime = a.publish_date ? Date.parse(a.publish_date) || 0 : 0
+    const bTime = b.publish_date ? Date.parse(b.publish_date) || 0 : 0
+    return bTime - aTime
+  })
+
+  return posts
+}
+
+const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-corpus-v3'], {
+  revalidate: 30,
+})
+
 export async function getAllPosts(): Promise<BlogPost[]> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
-    console.error('Missing Airtable credentials')
-    return []
-  }
-
-  try {
-    const groups = await Promise.all(AIRTABLE_TABLE_NAMES.map(fetchTableRecords))
-    const seenSlug = new Set<string>()
-    const posts: BlogPost[] = []
-
-    // OCC_Blog_Posts is evaluated first. When both tables point to the same stable
-    // public slug, that is one public article identity and must not be double-counted.
-    for (const record of groups.flat()) {
-      const item = recordToListItem(record)
-      if (!item) continue
-      const identity = item.slug.toLowerCase()
-      if (seenSlug.has(identity)) continue
-      seenSlug.add(identity)
-      posts.push(item)
-    }
-
-    posts.sort((a, b) => {
-      const aTime = a.publish_date ? Date.parse(a.publish_date) || 0 : 0
-      const bTime = b.publish_date ? Date.parse(b.publish_date) || 0 : 0
-      return bTime - aTime
-    })
-
-    return posts
-  } catch (error) {
-    console.error('getAllPosts', error)
-    return []
-  }
+  requireAirtableCredentials()
+  return getAllPostsCached()
 }
 
 function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
@@ -238,62 +285,45 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   }
 }
 
-async function fetchBySlug(tableName: AirtableTableName, slug: string): Promise<AirtableRecord | null> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
+async function fetchRecordById(
+  recordId: string,
+  tableName: AirtableTableName
+): Promise<AirtableRecord | null> {
+  requireAirtableCredentials()
 
-  const params = new URLSearchParams({
-    filterByFormula: `{slug}='${escapeFormulaValue(slug)}'`,
-    maxRecords: '1',
-  })
-
-  const response = await fetch(
-    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`,
-    {
-      headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-      cache: 'no-store',
-    }
+  const response = await scheduledAirtableFetch(
+    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`
   )
 
-  if (!response.ok) return null
-  const data = await response.json()
-  const record = Array.isArray(data.records) ? data.records[0] : null
-  return record?.fields ? { ...record, tableName } : null
-}
+  if (!response.ok) {
+    const body = await responseErrorBody(response)
+    throw new Error(`Airtable request failed for ${tableName}/${recordId}: ${response.status} ${body}`)
+  }
 
-async function fetchRecordById(recordId: string, tableName: AirtableTableName): Promise<AirtableRecord | null> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
-  const response = await fetch(
-    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`,
-    {
-      headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` },
-      cache: 'no-store',
-    }
-  )
-  if (!response.ok) return null
   const data = await response.json()
   return data?.fields ? { id: data.id, fields: data.fields, tableName } : null
 }
 
-export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) return null
+async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
+  requireAirtableCredentials()
 
   const slug = canonicalSlugForUrl(urlSlug)
   if (!slug) return null
 
-  try {
-    for (const tableName of AIRTABLE_TABLE_NAMES) {
-      const record = await fetchBySlug(tableName, slug)
-      const detail = record ? recordToDetail(record) : null
-      if (detail) return detail
-    }
+  // Resolve public identity from the cached canonical corpus first. This avoids two
+  // Airtable formula lookups for every article request and preserves derived-slug support.
+  const hit = (await getAllPosts()).find((post) => post.slug.toLowerCase() === slug.toLowerCase())
+  if (!hit) return null
 
-    // Fallback for rows whose stored slug is blank or malformed and was derived from title.
-    const hit = (await getAllPosts()).find((post) => post.slug.toLowerCase() === slug.toLowerCase())
-    if (!hit) return null
-    const full = await fetchRecordById(hit.id, hit.table_name as AirtableTableName)
-    return full ? recordToDetail(full) : null
-  } catch (error) {
-    console.error('getPostBySlug', error)
-    return null
-  }
+  const full = await fetchRecordById(hit.id, hit.table_name as AirtableTableName)
+  return full ? recordToDetail(full) : null
+}
+
+const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v3'], {
+  revalidate: 60,
+})
+
+export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
+  requireAirtableCredentials()
+  return getPostBySlugCached(urlSlug)
 }
