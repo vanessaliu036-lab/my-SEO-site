@@ -9,8 +9,10 @@ import {
 } from "@/lib/homeContent"
 import { seoDescription, seoTitle } from "@/lib/seo"
 
+const homeTitle = "Origin Coffee Cambodia | Fine Robusta & Mondulkiri Research"
+
 export const metadata: Metadata = {
-  title: seoTitle("Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge"),
+  title: seoTitle(homeTitle),
   description: seoDescription(siteDescription),
   keywords: [
     "Fine Robusta",
@@ -36,16 +38,16 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: seoTitle("Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge"),
+    title: seoTitle(homeTitle),
     description: seoDescription(siteDescription),
     url: siteUrl,
     siteName,
     type: "website",
-    images: [{ url: ogImage, alt: siteName }],
+    images: [{ url: ogImage, alt: "Origin Coffee Cambodia coffee research and origin work" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: seoTitle("Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge"),
+    title: seoTitle(homeTitle),
     description: seoDescription(siteDescription),
     images: [ogImage],
   },
@@ -54,8 +56,6 @@ export const metadata: Metadata = {
 const organizationId = `${siteUrl}/#organization`
 const websiteId = `${siteUrl}/#website`
 const webpageId = `${siteUrl}/#webpage`
-const homeHeroImageUrl =
-  "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=90"
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -104,8 +104,6 @@ const webPageJsonLd = {
 export default function HomePage() {
   return (
     <>
-      <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-      <link rel="preload" as="image" href={homeHeroImageUrl} fetchPriority="high" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
       <HomeTemplate />

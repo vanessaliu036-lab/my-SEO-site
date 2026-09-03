@@ -34,6 +34,25 @@ test('homepage remains research-led while the historical public shell is restore
   assert.match(publicHome, /research/i)
 })
 
+test('homepage metadata separates the organization logo from the social sharing image', () => {
+  assert.match(siteConfig, /NEXT_PUBLIC_OG_IMAGE \|\| `\$\{siteUrl\}\/hero-home\.webp`/)
+  assert.match(rootLayout, /images:\s*\[\{\s*url:\s*ogImage/)
+  assert.doesNotMatch(rootLayout, /width:\s*180|height:\s*180/)
+  assert.match(homePage, /images:\s*\[\{\s*url:\s*ogImage/)
+  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"/)
+  assert.match(homePage, /title:\s*seoTitle\(homeTitle\)/)
+  assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteLogoUrl/)
+})
+
+test('homepage hero uses a semantic local image instead of a CSS-only remote background', () => {
+  assert.match(homeTemplate, /import Image from "next\/image"/)
+  assert.match(homeTemplate, /src="\/hero-home\.webp"/)
+  assert.match(homeTemplate, /alt="Origin Coffee Cambodia hero image"/)
+  assert.match(homeTemplate, /\bfill\b/)
+  assert.doesNotMatch(homeTemplate, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
+  assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
+})
+
 test('public navigation uses SINGLE ORIGIN without exposing admin access', () => {
   assert.match(navigation, /SINGLE ORIGIN/)
   assert.match(navigation, /href="\/coffee\/single-origin"/)
@@ -47,6 +66,9 @@ test('public navigation uses SINGLE ORIGIN without exposing admin access', () =>
 test('sitemap emits strategic routes while preserving the Airtable blog corpus expansion', () => {
   for (const path of [
     '/coffee/single-origin',
+    '/collection/sovann',
+    '/collection/prek',
+    '/collection/angkar',
     '/solutions',
     '/solutions/wholesale',
     '/solutions/roasting-program',
