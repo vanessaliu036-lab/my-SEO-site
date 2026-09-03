@@ -50,6 +50,11 @@ const nextConfig = {
       { source: '/matter', destination: '/blog', permanent: true },
       { source: '/archive', destination: '/blog', permanent: true },
       {
+        source: '/blog/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply',
+        destination: '/blog/cambodian-fine-robusta-wholesale-supply',
+        statusCode: 301,
+      },
+      {
         source: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-and-export-capacity',
         destination: '/blog/cambodia-specialty-coffee-market-supply-side-dynamics-export-capacity',
         permanent: true,
