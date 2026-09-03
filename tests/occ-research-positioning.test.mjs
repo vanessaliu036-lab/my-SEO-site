@@ -37,11 +37,12 @@ test('homepage remains research-led while the historical public shell is restore
 })
 
 test('homepage metadata separates the organization logo from the social sharing image', () => {
-  assert.match(siteConfig, /socialImage:\s*`\$\{siteUrl\}\/hero-home\.webp`/)
-  assert.match(rootLayout, /images:\s*\[siteConfig\.socialImage\]/)
-  assert.match(homePage, /images:\s*\[\{\s*url:\s*siteConfig\.socialImage/)
-  assert.match(homePage, /title:\s*"Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"/)
-  assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteConfig\.logo/)
+  assert.match(siteConfig, /NEXT_PUBLIC_OG_IMAGE \|\| `\$\{siteUrl\}\/hero-home\.webp`/)
+  assert.match(rootLayout, /images:\s*\[\{\s*url:\s*ogImage/)
+  assert.doesNotMatch(rootLayout, /width:\s*180|height:\s*180/)
+  assert.match(homePage, /images:\s*\[\{\s*url:\s*ogImage/)
+  assert.match(homePage, /seoTitle\("Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"\)/)
+  assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteLogoUrl/)
 })
 
 test('homepage hero uses a semantic local image instead of a CSS-only remote background', () => {
@@ -50,6 +51,7 @@ test('homepage hero uses a semantic local image instead of a CSS-only remote bac
   assert.match(homeTemplate, /alt="Mondulkiri coffee landscape in Cambodia"/)
   assert.match(homeTemplate, /\bfill\b/)
   assert.doesNotMatch(homeTemplate, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
+  assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
 })
 
 test('public navigation uses SINGLE ORIGIN without exposing admin access', () => {
