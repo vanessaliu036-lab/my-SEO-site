@@ -17,10 +17,10 @@ export const siteDescription =
 
 /** Default OG / social preview — must exist under `public/` (override with NEXT_PUBLIC_OG_IMAGE). */
 export const ogImage =
-  process.env.NEXT_PUBLIC_OG_IMAGE || `${siteUrl}/apple-icon.png`
+  process.env.NEXT_PUBLIC_OG_IMAGE || `${siteUrl}/hero-home.webp`
 
 /**
- * Organization / publisher logo URL (JSON-LD, OG). Default `apple-icon.png` in `public/`.
+ * Organization / publisher logo URL (JSON-LD, icons). Default `apple-icon.png` in `public/`.
  * Set `NEXT_PUBLIC_SITE_LOGO_URL` to an absolute URL if you host the asset elsewhere.
  */
 export const siteLogoUrl =
