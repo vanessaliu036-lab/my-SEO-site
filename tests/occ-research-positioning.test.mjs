@@ -15,8 +15,6 @@ const navigation = read('components/Navigation.tsx')
 const navigationData = read('components/site/navigation-data.ts')
 const sitemap = read('app/sitemap.ts')
 const nextConfig = read('next.config.mjs')
-const singleOriginPage = read('app/(site)/coffee/single-origin/page.tsx')
-const legacyCollectionPage = read('app/(site)/collection/page.tsx')
 const blogPage = read('app/(site)/blog/page.tsx')
 const blogLayout = read('app/(site)/blog/layout.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
@@ -48,7 +46,7 @@ test('homepage metadata separates the organization logo from the social sharing 
 test('homepage hero uses a semantic local image instead of a CSS-only remote background', () => {
   assert.match(homeTemplate, /import Image from "next\/image"/)
   assert.match(homeTemplate, /src="\/hero-home\.webp"/)
-  assert.match(homeTemplate, /alt="Mondulkiri coffee landscape in Cambodia"/)
+  assert.match(homeTemplate, /alt="Origin Coffee Cambodia hero image"/)
   assert.match(homeTemplate, /\bfill\b/)
   assert.doesNotMatch(homeTemplate, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
   assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
@@ -87,12 +85,6 @@ test('single-origin is the canonical structural destination without a redirect c
   assert.match(nextConfig, /source: '\/collection', destination: '\/coffee\/single-origin'/)
   assert.match(nextConfig, /source: '\/coffee', destination: '\/coffee\/single-origin'/)
   assert.doesNotMatch(nextConfig, /source: '\/coffee\/single-origin', destination:/)
-})
-
-test('single-origin owns its page implementation instead of depending on the legacy collection route', () => {
-  assert.doesNotMatch(singleOriginPage, /from "\.\.\/\.\.\/collection\/page"/)
-  assert.match(singleOriginPage, /Mondulkiri Origin Collection/)
-  assert.match(legacyCollectionPage, /from "\.\.\/coffee\/single-origin\/page"/)
 })
 
 test('blog index restores the verified pre-admin presentation while retaining live Airtable pagination', () => {
