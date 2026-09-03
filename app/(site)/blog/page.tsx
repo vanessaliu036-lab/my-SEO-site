@@ -30,7 +30,7 @@ export async function generateMetadata({
       siteName,
       locale: "en_US",
       type: "website",
-      images: [{ url: ogImage, width: 180, height: 180, alt: siteName }],
+      images: [{ url: ogImage, width: 1672, height: 941, alt: siteName }],
     },
     twitter: {
       card: "summary_large_image",
