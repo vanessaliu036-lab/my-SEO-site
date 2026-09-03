@@ -39,7 +39,8 @@ test('homepage metadata separates the organization logo from the social sharing 
   assert.match(rootLayout, /images:\s*\[\{\s*url:\s*ogImage/)
   assert.doesNotMatch(rootLayout, /width:\s*180|height:\s*180/)
   assert.match(homePage, /images:\s*\[\{\s*url:\s*ogImage/)
-  assert.match(homePage, /seoTitle\("Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"\)/)
+  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"/)
+  assert.match(homePage, /title:\s*seoTitle\(homeTitle\)/)
   assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteLogoUrl/)
 })
 
