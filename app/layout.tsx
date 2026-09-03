@@ -25,7 +25,7 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Origin Coffee Cambodia | Coffee Research & Fine Robusta Knowledge",
+  title: "Origin Coffee Cambodia | Fine Robusta & Mondulkiri Research",
   description: siteDescription,
   keywords: [
     "Fine Robusta",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     locale: "en_KH",
-    images: [{ url: ogImage, width: 180, height: 180, alt: siteName }],
+    images: [{ url: ogImage, alt: "Origin Coffee Cambodia coffee research and origin work" }],
   },
   twitter: {
     card: "summary_large_image",
