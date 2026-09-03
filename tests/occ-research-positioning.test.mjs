@@ -44,6 +44,14 @@ test('homepage metadata separates the organization logo from the social sharing 
   assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteLogoUrl/)
 })
 
+test('blog social metadata uses the actual hero image dimensions', () => {
+  assert.match(
+    blogPage,
+    /images:\s*\[\{\s*url:\s*ogImage,\s*width:\s*1672,\s*height:\s*941,\s*alt:\s*siteName\s*\}\]/,
+  )
+  assert.doesNotMatch(blogPage, /width:\s*180|height:\s*180/)
+})
+
 test('homepage hero uses a semantic local image instead of a CSS-only remote background', () => {
   assert.match(homeTemplate, /import Image from "next\/image"/)
   assert.match(homeTemplate, /src="\/hero-home\.webp"/)
