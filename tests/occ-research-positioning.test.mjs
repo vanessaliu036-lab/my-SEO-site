@@ -15,6 +15,8 @@ const navigation = read('components/Navigation.tsx')
 const navigationData = read('components/site/navigation-data.ts')
 const sitemap = read('app/sitemap.ts')
 const nextConfig = read('next.config.mjs')
+const singleOriginPage = read('app/(site)/coffee/single-origin/page.tsx')
+const legacyCollectionPage = read('app/(site)/collection/page.tsx')
 const blogPage = read('app/(site)/blog/page.tsx')
 const blogLayout = read('app/(site)/blog/layout.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
@@ -34,6 +36,22 @@ test('homepage remains research-led while the historical public shell is restore
   assert.match(publicHome, /research/i)
 })
 
+test('homepage metadata separates the organization logo from the social sharing image', () => {
+  assert.match(siteConfig, /socialImage:\s*`\$\{siteUrl\}\/hero-home\.webp`/)
+  assert.match(rootLayout, /images:\s*\[siteConfig\.socialImage\]/)
+  assert.match(homePage, /images:\s*\[\{\s*url:\s*siteConfig\.socialImage/)
+  assert.match(homePage, /title:\s*"Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"/)
+  assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteConfig\.logo/)
+})
+
+test('homepage hero uses a semantic local image instead of a CSS-only remote background', () => {
+  assert.match(homeTemplate, /import Image from "next\/image"/)
+  assert.match(homeTemplate, /src="\/hero-home\.webp"/)
+  assert.match(homeTemplate, /alt="Mondulkiri coffee landscape in Cambodia"/)
+  assert.match(homeTemplate, /\bfill\b/)
+  assert.doesNotMatch(homeTemplate, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
+})
+
 test('public navigation uses SINGLE ORIGIN without exposing admin access', () => {
   assert.match(navigation, /SINGLE ORIGIN/)
   assert.match(navigation, /href="\/coffee\/single-origin"/)
@@ -47,6 +65,9 @@ test('public navigation uses SINGLE ORIGIN without exposing admin access', () =>
 test('sitemap emits strategic routes while preserving the Airtable blog corpus expansion', () => {
   for (const path of [
     '/coffee/single-origin',
+    '/collection/sovann',
+    '/collection/prek',
+    '/collection/angkar',
     '/solutions',
     '/solutions/wholesale',
     '/solutions/roasting-program',
@@ -64,6 +85,12 @@ test('single-origin is the canonical structural destination without a redirect c
   assert.match(nextConfig, /source: '\/collection', destination: '\/coffee\/single-origin'/)
   assert.match(nextConfig, /source: '\/coffee', destination: '\/coffee\/single-origin'/)
   assert.doesNotMatch(nextConfig, /source: '\/coffee\/single-origin', destination:/)
+})
+
+test('single-origin owns its page implementation instead of depending on the legacy collection route', () => {
+  assert.doesNotMatch(singleOriginPage, /from "\.\.\/\.\.\/collection\/page"/)
+  assert.match(singleOriginPage, /Mondulkiri Origin Collection/)
+  assert.match(legacyCollectionPage, /from "\.\.\/coffee\/single-origin\/page"/)
 })
 
 test('blog index restores the verified pre-admin presentation while retaining live Airtable pagination', () => {
