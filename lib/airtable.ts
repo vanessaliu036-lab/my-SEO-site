@@ -10,6 +10,10 @@ const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 // There is deliberately NO maxRecords cap on corpus list fetches; pagination runs until
 // Airtable returns no offset.
 const AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
+const AIRTABLE_CACHE_SECONDS = 300
+const AIRTABLE_MAX_ATTEMPTS = 3
+const AIRTABLE_RETRY_BASE_MS = 250
+const TRANSIENT_AIRTABLE_STATUSES = new Set([429, 500, 502, 503, 504])
 type AirtableTableName = (typeof AIRTABLE_TABLE_NAMES)[number]
 
 type AirtableRecord = {
@@ -84,6 +88,29 @@ async function scheduledAirtableFetch(url: string): Promise<Response> {
   } finally {
     release()
   }
+}
+
+async function fetchAirtableWithRetry(url: string): Promise<Response> {
+  let lastNetworkError: unknown
+
+  for (let attempt = 0; attempt < AIRTABLE_MAX_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await scheduledAirtableFetch(url)
+      const shouldRetry = TRANSIENT_AIRTABLE_STATUSES.has(response.status)
+
+      if (!shouldRetry || attempt === AIRTABLE_MAX_ATTEMPTS - 1) {
+        return response
+      }
+    } catch (error) {
+      lastNetworkError = error
+      if (attempt === AIRTABLE_MAX_ATTEMPTS - 1) throw error
+    }
+
+    await sleep(AIRTABLE_RETRY_BASE_MS * 2 ** attempt)
+  }
+
+  if (lastNetworkError) throw lastNetworkError
+  throw new Error('Airtable retry loop exhausted')
 }
 
 function requireAirtableCredentials(): void {
@@ -193,7 +220,7 @@ async function fetchTableRecords(tableName: AirtableTableName): Promise<Airtable
     for (const field of LIST_FIELDS[tableName]) params.append('fields[]', field)
     if (offset) params.set('offset', offset)
 
-    const response = await scheduledAirtableFetch(
+    const response = await fetchAirtableWithRetry(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`
     )
 
@@ -265,8 +292,8 @@ async function loadAllPosts(): Promise<BlogPost[]> {
   return posts
 }
 
-const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-corpus-v3'], {
-  revalidate: 30,
+const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-corpus-v4'], {
+  revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
 export async function getAllPosts(): Promise<BlogPost[]> {
@@ -291,7 +318,7 @@ async function fetchRecordById(
 ): Promise<AirtableRecord | null> {
   requireAirtableCredentials()
 
-  const response = await scheduledAirtableFetch(
+  const response = await fetchAirtableWithRetry(
     `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}/${encodeURIComponent(recordId)}`
   )
 
@@ -319,8 +346,8 @@ async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   return full ? recordToDetail(full) : null
 }
 
-const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v3'], {
-  revalidate: 60,
+const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v4'], {
+  revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
 export async function getPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
