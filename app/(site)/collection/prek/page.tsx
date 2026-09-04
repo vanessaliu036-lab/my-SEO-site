@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "PREK — The Bright Current | Mondulkiri Robusta by OCC",
   description:
-    "Discover PREK, a bright Mondulkiri Robusta with bittersweet chocolate, red berry, and citrus peel notes, shaped by processing and freshness.",
+    "Discover PREK, a bright Mondulkiri Robusta with bittersweet chocolate, red berry, and citrus peel notes, framed by processing variables, freshness, and roast development.",
   keywords: [
     "PREK coffee",
     "Mondulkiri Robusta",
@@ -139,7 +139,7 @@ export default function PrekProductPage() {
               <div className="leftbar"><p className="lead">A brighter, more contemporary expression of Mondulkiri Robusta.</p></div>
             </div>
             <div className="md:col-span-7">
-              <p className="copy">PREK is OCC's modern interpretation of Mondulkiri: structured by bittersweet chocolate, lifted by red berry, and sharpened by citrus peel. It shows a cleaner, more vivid side of Cambodian Robusta — one shaped by freshness, careful processing, and a contemporary approach to roast development.</p>
+              <p className="copy">PREK is OCC's modern interpretation of Mondulkiri: structured by bittersweet chocolate, lifted by red berry, and sharpened by citrus peel. It shows a cleaner, more vivid side of Cambodian Robusta — framed by freshness, processing variables, and a contemporary approach to roast development.</p>
             </div>
           </section>
 
@@ -186,7 +186,7 @@ export default function PrekProductPage() {
               <div className="md:col-span-5"><h2>Freshness as part of flavor</h2></div>
               <div className="md:col-span-7">
                 <p className="copy">PREK places freshness at the center of the experience. A coffee with fruit-led notes must retain aroma, clarity, and balance from roast to brew.</p>
-                <p className="copy">For OCC, this means treating Robusta with the same discipline expected of high-quality specialty coffee: careful sourcing, intentional roasting, controlled resting, and brewing methods that preserve definition.</p>
+                <p className="copy">For this profile, freshness is treated as a quality variable: provenance documentation, roast development, post-roast rest, storage, and brewing can all affect definition.</p>
                 <p className="quote">Brightness is not the absence of depth. It is depth with movement.</p>
               </div>
             </div>
@@ -209,10 +209,10 @@ export default function PrekProductPage() {
               <div className="md:col-span-5"><h2 className="section-title">What shapes<br />the expression.</h2></div>
               <div className="md:col-span-7">
                 <div className="origin-list">
-                  <div className="origin-row"><span>01</span><div><strong>Careful cherry selection</strong><p>Fruit-led Robusta begins with mature cherries and disciplined sorting rather than roast manipulation alone.</p></div></div>
-                  <div className="origin-row"><span>02</span><div><strong>Processing precision</strong><p>Fermentation, washing, drying, and storage influence whether berry and citrus notes remain clear.</p></div></div>
-                  <div className="origin-row"><span>03</span><div><strong>Fresh regional sourcing</strong><p>Shorter supply chains and clear origin relationships help protect quality and maintain traceability.</p></div></div>
-                  <div className="origin-row"><span>04</span><div><strong>Modern roast development</strong><p>The roast is developed enough for sweetness and structure, but restrained enough to preserve aroma and brightness.</p></div></div>
+                  <div className="origin-row"><span>01</span><div><strong>Cherry maturity & sorting</strong><p>Fruit-led Robusta can be influenced by cherry maturity and disciplined sorting rather than roast manipulation alone.</p></div></div>
+                  <div className="origin-row"><span>02</span><div><strong>Processing variables</strong><p>Fermentation, washing, drying, and storage can influence whether berry and citrus notes remain clear.</p></div></div>
+                  <div className="origin-row"><span>03</span><div><strong>Origin documentation</strong><p>Lot-level provenance, processing history, storage, and traceability should be verified from documentation rather than assumed from the profile.</p></div></div>
+                  <div className="origin-row"><span>04</span><div><strong>Roast development</strong><p>Roast development can balance sweetness and structure while preserving aroma and brightness.</p></div></div>
                   <div className="origin-row"><span>05</span><div><strong>Contemporary Cambodian coffee culture</strong><p>PREK reflects a new generation of Cambodian coffee that values clarity, craft, and origin expression.</p></div></div>
                 </div>
               </div>
@@ -235,10 +235,10 @@ export default function PrekProductPage() {
 
           <section className="cta">
             <span className="eyebrow block mb-4">Mondulkiri Origin Collection / 02</span>
-            <h2>TASTE THE BRIGHT CURRENT.</h2>
+            <h2>EXPLORE THE BRIGHT CURRENT.</h2>
             <p>Vivid. Clean. A modern expression of Mondulkiri.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <Link href="/contact" className="cta-link">Shop PREK</Link>
+              <Link href="/contact" className="cta-link">Ask About PREK</Link>
               <Link href="/collection/angkar" className="cta-link soft">Next: ANGKAR →</Link>
             </div>
           </section>
