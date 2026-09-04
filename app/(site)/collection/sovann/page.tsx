@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "SOVANN — The Golden Highland | OCC",
   description:
-    "Discover SOVANN, a balanced Mondulkiri Robusta with chocolate, brown sugar, and roasted almond notes, shaped by Cambodian climate, soil, and farming.",
+    "Discover SOVANN, a balanced Mondulkiri Robusta with chocolate, brown sugar, and roasted almond notes within OCC's Mondulkiri origin framework.",
   keywords: [
     "SOVANN coffee",
     "Mondulkiri Robusta coffee",
@@ -60,24 +60,6 @@ const faqItems = [
     { "@type": "Question", name: "How is SOVANN different from PREK and ANGKAR?", acceptedAnswer: { "@type": "Answer", text: "SOVANN emphasizes balance and origin. PREK is brighter and fruit-led, while ANGKAR is deeper and more full-bodied." } },
 ]
 
-const keywordTerritory = [
-  "Mondulkiri Robusta coffee",
-  "Mondulkiri coffee",
-  "Cambodia Robusta coffee",
-  "Cambodian coffee origin",
-  "Fine Robusta Cambodia",
-  "Chocolate Robusta",
-  "Brown sugar coffee notes",
-  "Roasted almond coffee",
-  "Coffee terroir Cambodia",
-  "Red soil coffee",
-  "Robusta growing climate",
-  "Balanced Robusta coffee",
-  "Smooth Robusta coffee",
-  "Mondulkiri coffee farm",
-  "Cambodia coffee guide",
-]
-
 export default function SovannProductPage() {
   return (
     <>
@@ -118,10 +100,6 @@ export default function SovannProductPage() {
             .occ-sovann .origin-row span{font-size:10px;letter-spacing:.16em;color:#999;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-sovann .origin-row strong{font-size:18px;display:block;margin-bottom:6px;font-weight:600;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-sovann .origin-row p{font-size:14px;color:#666;margin:0;line-height:1.8;font-family:var(--font-sans),Inter,Arial,sans-serif}
-            .occ-sovann .cluster{margin-top:96px;padding:64px 0;border-top:1px solid #111;border-bottom:1px solid #111}
-            .occ-sovann .cluster h3{font-family:var(--font-display),Georgia,serif;font-size:56px;line-height:1.05;margin:0 0 24px;letter-spacing:-.03em;font-weight:600}
-            .occ-sovann .keyword-list{display:flex;flex-wrap:wrap;gap:8px}
-            .occ-sovann .keyword-list span{border:1px solid #d8d8d8;padding:8px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-sans),Inter,Arial,sans-serif}
             .occ-sovann .faq-item{padding:22px 0;border-top:1px solid #ddd}
             .occ-sovann .faq-item h3{font-size:17px;margin:0 0 10px;font-family:var(--font-sans),Inter,Arial,sans-serif;letter-spacing:0;line-height:1.3;font-weight:600}
             .occ-sovann .faq-item p{margin:0;color:#666;font-size:14px;line-height:1.8;font-family:var(--font-sans),Inter,Arial,sans-serif}
@@ -143,7 +121,6 @@ export default function SovannProductPage() {
               .occ-sovann .fact-grid,.occ-sovann .flavor-grid{grid-template-columns:1fr}
               .occ-sovann .fact:nth-child(2),.occ-sovann .fact:nth-child(3){padding-left:0;border-left:0}
               .occ-sovann .quote{font-size:29px}
-              .occ-sovann .cluster h3{font-size:42px}
               .occ-sovann .cta h2{font-size:46px}
             }
           `,
@@ -235,23 +212,7 @@ export default function SovannProductPage() {
                   <div className="origin-row"><span>02</span><div><strong>Humidity and rainfall</strong><p>Moisture supports growth, but careful harvest and drying remain critical to quality and consistency.</p></div></div>
                   <div className="origin-row"><span>03</span><div><strong>Red soils</strong><p>Mondulkiri is widely associated with red soils that influence drainage, root development, and overall growing conditions.</p></div></div>
                   <div className="origin-row"><span>04</span><div><strong>Farmer knowledge</strong><p>Local growing knowledge, selective harvesting, processing, and post-harvest control ultimately decide what reaches the cup.</p></div></div>
-                  <div className="origin-row"><span>05</span><div><strong>Roasting interpretation</strong><p>OCC refines the profile to preserve chocolate depth while maintaining sweetness, balance, and a clean finish.</p></div></div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="cluster">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-              <div className="md:col-span-5">
-                <span className="eyebrow block mb-4">SEO Cluster</span>
-                <h3>SOVANN keyword territory</h3>
-              </div>
-              <div className="md:col-span-7">
-                <div className="keyword-list">
-                  {keywordTerritory.map((k) => (
-                    <span key={k}>{k}</span>
-                  ))}
+                  <div className="origin-row"><span>05</span><div><strong>Roast development</strong><p>Roast development can preserve chocolate depth while maintaining sweetness, balance, and a clean finish.</p></div></div>
                 </div>
               </div>
             </div>
@@ -273,10 +234,10 @@ export default function SovannProductPage() {
 
           <section className="cta">
             <span className="eyebrow block mb-4">Mondulkiri Origin Collection / 01</span>
-            <h2>TASTE THE GOLDEN HIGHLAND.</h2>
+            <h2>EXPLORE THE GOLDEN HIGHLAND.</h2>
             <p>Balanced. Grounded. Rooted in Mondulkiri.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <Link href="/contact" className="cta-link">Shop SOVANN</Link>
+              <Link href="/contact" className="cta-link">Ask About SOVANN</Link>
               <Link href="/collection/prek" className="cta-link soft">Next: PREK →</Link>
             </div>
           </section>
