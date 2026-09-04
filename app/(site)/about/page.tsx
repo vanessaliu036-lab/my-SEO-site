@@ -5,30 +5,25 @@ import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "About Origin | Origin Coffee Cambodia - OCC Coffee Roaster",
-  description: "Learn how Origin Coffee Cambodia builds a traceable specialty coffee supply chain through ethical sourcing, quality control, and professional training.",
-  keywords: "about coffee roaster Cambodia, OCC coffee, Origin Coffee Cambodia, Cambodia coffee supply chain, specialty coffee infrastructure Cambodia, coffee sourcing Cambodia, ethical coffee Cambodia, coffee roaster Phnom Penh about",
+  title: "About OCC | Origin Coffee Cambodia Research",
+  description:
+    "Origin Coffee Cambodia (OCC) is an independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+  keywords:
+    "Origin Coffee Cambodia, OCC coffee research, Cambodian coffee research, Fine Robusta Cambodia, Coffea canephora, Mondulkiri coffee, coffee quality standards, coffee processing research",
   openGraph: {
-    title: "About Origin | Origin Coffee Cambodia - OCC",
-    description: "Unlike celebrity-driven roasters, OCC builds infrastructure. We're reconstructing Cambodia's specialty coffee supply chain from the ground up.",
+    title: "About OCC | Origin Coffee Cambodia Research",
+    description:
+      "An independent coffee information and research platform documenting Cambodian coffee, Fine Robusta, quality, processing, sensory evaluation, and origin evidence.",
     url: `${siteUrl}/about`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${siteUrl}/images/about-og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Origin Coffee Cambodia - Origin Coffee Cambodia (OCC) About Page"
-      }
-    ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Origin | Origin Coffee Cambodia",
-    description: "Building infrastructure for Cambodia's specialty coffee future.",
-    images: [`${siteUrl}/images/about-twitter-card.jpg`]
+    title: "About OCC | Origin Coffee Cambodia Research",
+    description:
+      "Independent research and technical editorial on Cambodian coffee, Fine Robusta, quality, processing, and origin evidence.",
   },
   alternates: pageAlternates("/about"),
 }
@@ -36,80 +31,83 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Origin Coffee Cambodia (OCC)",
-  "alternateName": "Origin Coffee Cambodia",
-  "url": `${siteUrl}`,
-  "logo": siteLogoUrl,
-  "description": "Specialty coffee infrastructure company reconstructing Cambodia's coffee supply chain through ethical sourcing, traceability, and professional training.",
-  "areaServed": areaServedCambodia,
-  "knowsAbout": [
-    "Specialty Coffee Supply Chain",
-    "Coffee Infrastructure",
-    "Ethical Coffee Sourcing",
-    "Coffee Traceability",
+  "@id": `${siteUrl}/#organization`,
+  name: "Origin Coffee Cambodia",
+  alternateName: "OCC",
+  url: siteUrl,
+  logo: siteLogoUrl,
+  description:
+    "Origin Coffee Cambodia (OCC) is an independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+  areaServed: areaServedCambodia,
+  knowsAbout: [
+    "Fine Robusta",
+    "Coffea canephora",
+    "Cambodian Coffee",
+    "Coffee Processing",
+    "Coffee Roasting",
+    "Coffee Sensory Evaluation",
+    "Coffee Quality Standards",
+    "Mondulkiri Coffee",
     "Cambodian Coffee Industry",
-    "Coffee Roasting Technology"
+    "Coffee Origin Research",
   ],
-  "foundingDate": "2020",
-  "founder": {
-    "@type": "Person",
-    "name": "OCC Founder",
-    "jobTitle": "Founder & Head Roaster"
-  }
 }
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
+  itemListElement: [
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": `${siteUrl}`
+      position: 1,
+      name: "Home",
+      item: siteUrl,
     },
     {
       "@type": "ListItem",
-      "position": 2,
-      "name": "About",
-      "item": `${siteUrl}/about`
-    }
-  ]
+      position: 2,
+      name: "About",
+      item: `${siteUrl}/about`,
+    },
+  ],
 }
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "name": "About Origin Coffee Cambodia",
-  "description": "Origin Coffee Cambodia (OCC) is building infrastructure for Cambodia's specialty coffee industry - from ethical sourcing to professional training.",
-  "url": `${siteUrl}/about`,
-  "mainEntity": {
+  name: "About Origin Coffee Cambodia",
+  description:
+    "About the scope, editorial purpose, and evidence standards of Origin Coffee Cambodia, an independent coffee information and research platform.",
+  url: `${siteUrl}/about`,
+  mainEntity: {
     "@type": "Organization",
-    "name": "Origin Coffee Cambodia (OCC)",
-    "description": "We don't just roast coffee. We reconstruct Cambodia's specialty coffee supply chain."
-  }
+    "@id": `${siteUrl}/#organization`,
+    name: "Origin Coffee Cambodia",
+    description:
+      "Independent research and technical editorial focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+  },
 }
 
 const sections = [
   {
     title: "Mission",
     href: "/about/mission",
-    desc: "Vision, Mission, and Why We Exist."
+    desc: "Research scope, editorial purpose, and why OCC exists.",
   },
   {
     title: "Founder",
     href: "/about/founder",
-    desc: "Philosophy, Credentials, and the Big Idea."
+    desc: "The editorial philosophy behind OCC's evidence-led approach.",
   },
   {
     title: "Manifesto",
     href: "/about/manifesto",
-    desc: "The Barista Army Thesis: Why We'll Never Open a Cafe."
+    desc: "Why OCC prioritizes evidence, precision, and transparent uncertainty.",
   },
   {
     title: "Sustainability",
     href: "/about/sustainability",
-    desc: "Ethical sourcing and traceability protocol."
+    desc: "How OCC treats sustainability and traceability as claims that require evidence.",
   },
 ]
 
