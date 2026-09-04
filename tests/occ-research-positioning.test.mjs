@@ -28,6 +28,7 @@ const missionPage = read('app/(site)/about/mission/page.tsx')
 const founderPage = read('app/(site)/about/founder/page.tsx')
 const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
+const aboutEditorialTemplate = read('components/templates/about-editorial-template.tsx')
 
 test('OCC keeps its current evidence-led metadata foundation', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
@@ -154,6 +155,15 @@ test('About structured data does not invent a founder identity or unverified ope
   assert.doesNotMatch(
     aboutSurfaces,
     /complete record.*coordinates|every batch.*cupping score|full traceability from farm to cup/i,
+  )
+})
+
+test('shared About shell stays research-led and avoids unsupported operating claims', () => {
+  const sharedAboutShell = `${aboutEditorialTemplate}\n${navigation}`
+  assert.match(sharedAboutShell, /research|evidence/i)
+  assert.doesNotMatch(
+    sharedAboutShell,
+    /\binfrastructure\b|2020|100%|full traceability from farm to cup|professional training|barista army|partnering with cafés|specialty coffee supply chain|supply chain optimization/i,
   )
 })
 
