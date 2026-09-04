@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     "Mondulkiri Robusta",
     "full-bodied Robusta",
     "Cambodian coffee",
-    "direct trade coffee Cambodia",
+    "Mondulkiri coffee origin",
     "dark cocoa coffee",
     "molasses coffee notes",
     "traditional Cambodian coffee",
-    "local roasting Cambodia",
+    "Robusta roast profile",
   ],
   alternates: pageAlternates("/collection/angkar"),
   openGraph: {
@@ -53,7 +53,7 @@ const breadcrumbSchema = {
 const faqItems = [
     { "@type": "Question", name: "What is ANGKAR?", acceptedAnswer: { "@type": "Answer", text: "ANGKAR is OCC's deep full-bodied Mondulkiri Robusta expression, built around dark cocoa, roasted peanut, and molasses." } },
     { "@type": "Question", name: "Is ANGKAR a dark roast?", acceptedAnswer: { "@type": "Answer", text: "It is the deepest roast expression in the collection, but it is designed to preserve sweetness and structure rather than taste burnt." } },
-    { "@type": "Question", name: "What does direct trade mean here?", acceptedAnswer: { "@type": "Answer", text: "It refers to closer sourcing relationships with growers and producers, clearer communication, and fewer unnecessary layers in the supply chain." } },
+    { "@type": "Question", name: "What does origin structure mean here?", acceptedAnswer: { "@type": "Answer", text: "It refers to how origin context, processing, roasting, and brewing together shape body, sweetness, and finish without implying a specific sourcing model." } },
     { "@type": "Question", name: "Why is ANGKAR full-bodied?", acceptedAnswer: { "@type": "Answer", text: "Robusta naturally contributes body, while processing, roasting, and brewing further shape texture and weight." } },
     { "@type": "Question", name: "Is ANGKAR suitable for milk coffee?", acceptedAnswer: { "@type": "Answer", text: "Yes. Its structure and dark sweetness allow it to remain present in milk-based drinks." } },
     { "@type": "Question", name: "How is ANGKAR different from SOVANN and PREK?", acceptedAnswer: { "@type": "Answer", text: "SOVANN emphasizes balance, PREK emphasizes brightness, and ANGKAR emphasizes depth, body, and roast structure." } },
@@ -139,7 +139,7 @@ export default function AngkarProductPage() {
               <div className="leftbar"><p className="lead">The deepest, most structural expression of Mondulkiri Robusta.</p></div>
             </div>
             <div className="md:col-span-7">
-              <p className="copy">ANGKAR is OCC's foundation-led interpretation of Mondulkiri: dark in tone, full in body, and built around the enduring structure of Cambodian Robusta. Dark cocoa, roasted peanut, and molasses form a profile connected to farmer relationships, direct sourcing, and the strength of local roasting traditions.</p>
+              <p className="copy">ANGKAR is OCC's foundation-led interpretation of Mondulkiri: dark in tone, full in body, and built around the enduring structure of Cambodian Robusta. Dark cocoa, roasted peanut, and molasses form a profile connected to origin context, roast development, and the structural character associated with Robusta.</p>
             </div>
           </section>
 
@@ -170,21 +170,21 @@ export default function AngkarProductPage() {
               <div className="md:col-span-5"><h2>Why ANGKAR exists</h2></div>
               <div className="md:col-span-7">
                 <p className="copy">ANGKAR was created to represent the structural side of Mondulkiri Robusta: the body, roast depth, and lasting finish that have long shaped the way Cambodian coffee is experienced.</p>
-                <p className="copy">The name points to foundation. ANGKAR is not simply the darkest coffee in the collection. It is the expression built around what supports the entire chain — farmers, direct relationships, local roasting, and a cup profile with weight and permanence.</p>
+                <p className="copy">The name points to foundation. ANGKAR is not simply the darkest coffee in the collection. It is the expression built around the structural side of the cup — body, roast depth, texture, and a finish designed to remain present across different brewing styles.</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-14">
-              <div className="md:col-span-5"><h2>Direct trade as structure</h2></div>
+              <div className="md:col-span-5"><h2>Origin context as structure</h2></div>
               <div className="md:col-span-7">
-                <p className="copy">ANGKAR draws attention to the importance of direct sourcing from Mondulkiri farmers and producer communities. A strong coffee business is not built only at the roasting stage. It begins with clear relationships, fair communication, lot understanding, and respect for the people producing the green coffee.</p>
-                <p className="copy">Direct trade is not used here as decoration. It is a working principle: fewer layers, clearer accountability, and a closer connection between the farm, the roaster, and the final cup.</p>
+                <p className="copy">ANGKAR uses Mondulkiri as an origin frame rather than as proof of a specific sourcing relationship. Origin, processing, drying, roasting, and brewing each need their own evidence when a lot is evaluated.</p>
+                <p className="copy">The page therefore describes cup structure and origin context without treating commercial sourcing arrangements as established facts.</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-              <div className="md:col-span-5"><h2>The role of local roasting</h2></div>
+              <div className="md:col-span-5"><h2>The role of roast development</h2></div>
               <div className="md:col-span-7">
-                <p className="copy">ANGKAR embraces roast development as part of Cambodian coffee culture. Dark cocoa provides the main structure. Roasted peanut adds familiarity and texture. Molasses gives the cup a deep, slow sweetness.</p>
-                <p className="copy">The goal is not to burn away the origin. It is to create body without harshness, depth without flatness, and a finish that remains grounded in the character of local Robusta.</p>
+                <p className="copy">ANGKAR uses roast development as part of its flavor framework. Dark cocoa provides the main structure. Roasted peanut adds familiarity and texture. Molasses gives the cup a deep, slow sweetness.</p>
+                <p className="copy">The goal is not to burn away the origin. It is to describe body without harshness, depth without flatness, and a finish grounded in the profile associated with this expression.</p>
                 <p className="quote">A foundation is not seen first. It is what allows everything else to stand.</p>
               </div>
             </div>
@@ -207,11 +207,11 @@ export default function AngkarProductPage() {
               <div className="md:col-span-5"><h2 className="section-title">What builds<br />the foundation.</h2></div>
               <div className="md:col-span-7">
                 <div className="origin-list">
-                  <div className="origin-row"><span>01</span><div><strong>Direct farmer relationships</strong><p>Closer sourcing relationships create better communication, stronger traceability, and clearer responsibility.</p></div></div>
+                  <div className="origin-row"><span>01</span><div><strong>Origin context</strong><p>Mondulkiri is the stated origin frame for the collection; lot-level provenance should be verified independently when specific coffee is evaluated.</p></div></div>
                   <div className="origin-row"><span>02</span><div><strong>Mondulkiri Robusta</strong><p>The coffee's natural body and depth provide the structural base for ANGKAR's darker expression.</p></div></div>
-                  <div className="origin-row"><span>03</span><div><strong>Local roasting knowledge</strong><p>Roast development is shaped to build body and sweetness while avoiding burnt or empty flavors.</p></div></div>
-                  <div className="origin-row"><span>04</span><div><strong>Traditional coffee preferences</strong><p>ANGKAR respects the fuller, darker profiles familiar within Cambodian coffee culture.</p></div></div>
-                  <div className="origin-row"><span>05</span><div><strong>Long-term supply relationships</strong><p>Consistency depends on repeated collaboration with growers, processors, and roasters — not one-time purchasing.</p></div></div>
+                  <div className="origin-row"><span>03</span><div><strong>Roast development</strong><p>Roast choices can build body and sweetness while avoiding burnt or empty flavors.</p></div></div>
+                  <div className="origin-row"><span>04</span><div><strong>Traditional coffee preferences</strong><p>ANGKAR references fuller, darker profiles familiar within Cambodian coffee culture without treating that preference as universal.</p></div></div>
+                  <div className="origin-row"><span>05</span><div><strong>Evidence boundaries</strong><p>Origin, processing, sourcing, and roast claims should be documented separately instead of inferred from a product name or profile.</p></div></div>
                 </div>
               </div>
             </div>
@@ -233,10 +233,10 @@ export default function AngkarProductPage() {
 
           <section className="cta">
             <span className="eyebrow block mb-4">Mondulkiri Origin Collection / 03</span>
-            <h2>TASTE THE DEEP FOUNDATION.</h2>
+            <h2>EXPLORE THE DEEP FOUNDATION.</h2>
             <p>Structured. Full-bodied. Grounded in Mondulkiri.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <Link href="/contact" className="cta-link">Shop ANGKAR</Link>
+              <Link href="/contact" className="cta-link">Ask About ANGKAR</Link>
               <Link href="/collection/sovann" className="cta-link soft">← Back: SOVANN</Link>
             </div>
           </section>
