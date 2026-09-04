@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mondulkiri Single Origin Coffee | OCC",
     description:
-      "SOVANN, PREK, ANGKAR — three Mondulkiri Robusta expressions, structured by direct trade, processing, and local roasting.",
+      "SOVANN, PREK, ANGKAR — three Mondulkiri Robusta expressions framed by origin, processing, and roast profile.",
     url: `${siteUrl}/coffee/single-origin`,
     type: "website",
   },
@@ -68,7 +68,7 @@ const collectionSchema = {
   name: "Mondulkiri Single Origin Coffee",
   url: `${siteUrl}/coffee/single-origin`,
   description:
-    "Three single-origin expressions from Mondulkiri, Cambodia, structured by direct trade, processing precision, and local roasting.",
+    "Three single-origin expressions from Mondulkiri, Cambodia, framed by origin, processing, and roast profile.",
   hasPart: collection.map((c) => ({
     "@type": "Product",
     name: c.name,
@@ -126,7 +126,7 @@ export default function CollectionPage() {
                 SOVANN, PREK, and ANGKAR — three structured interpretations of Mondulkiri Robusta.
               </p>
               <p className="mt-8 max-w-3xl text-sm leading-8 text-black/52 sm:text-base">
-                Three single-origin expressions from the same farmers, the same terroir, and the same direct-trade relationships — but developed through different processing and roast philosophies. SOVANN is balanced and origin-led. PREK is bright and fruit-led. ANGKAR is deep and full-bodied.
+                Three single-origin expressions within the same Mondulkiri origin frame, developed through different processing and roast philosophies. SOVANN is balanced and origin-led. PREK is bright and fruit-led. ANGKAR is deep and full-bodied.
               </p>
             </div>
           </section>
@@ -180,8 +180,8 @@ export default function CollectionPage() {
                 {[
                   ["Origin", "Mondulkiri, Cambodia"],
                   ["Species", "Robusta / Canephora"],
-                  ["Model", "Direct trade"],
-                  ["Roast", "Local development"],
+                  ["Collection", "Three expressions"],
+                  ["Focus", "Processing & roast profile"],
                 ].map(([label, value]) => (
                   <div key={label} className="border-b border-black/10 p-6 sm:border-r lg:border-b-0 lg:last:border-r-0">
                     <p className="text-[9px] uppercase tracking-[0.18em] text-black/35">{label}</p>
@@ -192,7 +192,7 @@ export default function CollectionPage() {
               <div className="mt-14 max-w-4xl">
                 <h2 className="font-[var(--font-display)] text-5xl font-normal leading-[0.96] tracking-[-0.045em]">Why three,<br />not one.</h2>
                 <p className="mt-8 text-sm leading-8 text-black/52 sm:text-base">Mondulkiri Robusta is a single origin with multiple personalities. The collection exists to show that personality, not to fragment the origin.</p>
-                <p className="mt-5 text-sm leading-8 text-black/52 sm:text-base">Choose by the part of the cup you want most, or build a relationship with all three and let the origin show its full range.</p>
+                <p className="mt-5 text-sm leading-8 text-black/52 sm:text-base">Choose by the part of the cup you want most, or compare all three and let the origin show its full range.</p>
                 <p className="mt-10 border-l border-black/30 pl-6 font-[var(--font-display)] text-3xl italic leading-[1.2] tracking-[-0.02em] sm:text-4xl">
                   A single origin can speak in more than one voice. The collection is the way it speaks.
                 </p>
@@ -202,13 +202,13 @@ export default function CollectionPage() {
 
           <section className="grid grid-cols-1 gap-8 py-20 md:grid-cols-12 lg:py-28">
             <div className="md:col-span-4">
-              <p className="occ-eyebrow text-black/38">04 / Sample</p>
+              <p className="occ-eyebrow text-black/38">04 / Collection enquiry</p>
             </div>
             <div className="md:col-span-8">
-              <h2 className="font-[var(--font-display)] text-6xl font-normal leading-[0.94] tracking-[-0.05em] sm:text-7xl lg:text-8xl">TASTE THE<br />COLLECTION.</h2>
+              <h2 className="font-[var(--font-display)] text-6xl font-normal leading-[0.94] tracking-[-0.05em] sm:text-7xl lg:text-8xl">EXPLORE THE<br />COLLECTION.</h2>
               <p className="mt-7 text-sm text-black/50">Balanced. Bright. Deep. One origin, three expressions.</p>
               <Link href="/contact" className="occ-pill mt-8 px-7 py-3.5 text-[10px] font-medium uppercase tracking-[0.16em]">
-                Request a Collection Sample ↗
+                Ask About the Collection ↗
               </Link>
             </div>
           </section>
