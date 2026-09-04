@@ -23,6 +23,11 @@ const fineRobustaOwner = read('app/(site)/fine-robusta-cambodia/page.tsx')
 const contactPage = read('app/(site)/contact/page.tsx')
 const contactForm = read('app/(site)/contact/ContactForm.tsx')
 const contactAction = read('app/(site)/contact/action.ts')
+const aboutPage = read('app/(site)/about/page.tsx')
+const missionPage = read('app/(site)/about/mission/page.tsx')
+const founderPage = read('app/(site)/about/founder/page.tsx')
+const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
+const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 
 test('OCC keeps its current evidence-led metadata foundation', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
@@ -123,6 +128,33 @@ test('contact surface remains general editorial contact', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
   assert.doesNotMatch(contact, /contactType\s*:\s*["']sales["']/i)
   assert.match(contact, /General Enquiry|Editorial Question/i)
+})
+
+test('About surfaces describe the same research-platform entity as the site foundation', () => {
+  const aboutSurfaces = `${aboutPage}\n${missionPage}\n${founderPage}\n${manifestoPage}\n${sustainabilityPage}`
+  assert.match(aboutPage, /independent coffee information and research platform/i)
+  assert.match(missionPage, /research|evidence|technical editorial/i)
+  assert.match(founderPage, /editorial philosophy|research philosophy|evidence/i)
+  assert.match(manifestoPage, /research|evidence|technical editorial/i)
+  assert.match(sustainabilityPage, /evidence|documentation|traceability claims/i)
+  assert.doesNotMatch(
+    aboutSurfaces,
+    /specialty coffee infrastructure company|coffee supplier Cambodia|coffee roaster Phnom Penh|we pay above market|free enrollment|placement within businesses/i,
+  )
+})
+
+test('About structured data does not invent a founder identity or unverified operating facts', () => {
+  const aboutSurfaces = `${aboutPage}\n${missionPage}\n${founderPage}\n${manifestoPage}\n${sustainabilityPage}`
+  assert.doesNotMatch(aboutPage, /foundingDate|"founder"\s*:|OCC Founder|Founder & Head Roaster/)
+  assert.doesNotMatch(founderPage, /"@type": "Person"|jobTitle|OCC Founder|Founder & Head Roaster/)
+  assert.doesNotMatch(
+    sustainabilityPage,
+    /direct trade|GPS coordinates|farm coordinates|above Fair Trade|above market rate|payment within 30 days|annual farm visits|chemical-free cultivation/i,
+  )
+  assert.doesNotMatch(
+    aboutSurfaces,
+    /complete record.*coordinates|every batch.*cupping score|full traceability from farm to cup/i,
+  )
 })
 
 // Solutions is now a real published section (see "repair: restore full repository
