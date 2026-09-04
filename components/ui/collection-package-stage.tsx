@@ -63,6 +63,7 @@ export function CollectionPackageStage({ items }: { items: readonly CollectionPa
                     name={item.name}
                     subtitle={item.subtitle}
                     tone={item.tone}
+                    context="collection"
                     className="origin-bottom"
                   />
                   <div className="mt-5 flex items-center gap-3 text-[9px] uppercase tracking-[0.18em] text-black/45 md:mt-7">

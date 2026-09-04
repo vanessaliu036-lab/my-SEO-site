@@ -4,7 +4,7 @@ type CoffeeBagVisualProps = {
   name?: string
   subtitle?: string
   tone?: "olive" | "sand" | "charcoal"
-  context?: "product" | "editorial"
+  context?: "product" | "editorial" | "collection"
   className?: string
 }
 
@@ -22,12 +22,15 @@ export function CoffeeBagVisual({
   className,
 }: CoffeeBagVisualProps) {
   const isEditorial = context === "editorial"
-  const topRight = isEditorial ? "Editorial Research" : "KH 2026"
-  const bottomLeft = isEditorial ? "Cambodia Research" : "Single Origin Cambodia"
-  const bottomRight = isEditorial ? "Evidence-Led Canephora" : "Traceable Lot Canephora"
+  const isCollection = context === "collection"
+  const topRight = isEditorial ? "Editorial Research" : isCollection ? "Origin Collection" : "KH 2026"
+  const bottomLeft = isEditorial ? "Cambodia Research" : isCollection ? "Cambodia Coffee" : "Single Origin Cambodia"
+  const bottomRight = isEditorial ? "Evidence-Led Canephora" : isCollection ? "Canephora Profile" : "Traceable Lot Canephora"
   const ariaLabel = isEditorial
     ? `${name} ${subtitle} coffee research visual`
-    : `${name} ${subtitle} coffee package`
+    : isCollection
+      ? `${name} ${subtitle} collection visual`
+      : `${name} ${subtitle} coffee package`
 
   return (
     <div className={cn("relative h-[390px] w-[245px] sm:h-[450px] sm:w-[282px] md:h-[520px] md:w-[325px]", className)} aria-label={ariaLabel}>
