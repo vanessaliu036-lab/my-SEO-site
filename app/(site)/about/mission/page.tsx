@@ -6,14 +6,14 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Mission | Origin Coffee Cambodia - OCC",
   description:
-    "OCC exists to empower Cambodia's coffee community through exceptional roasting, knowledge, and training. Learn our vision, mission, and purpose.",
+    "OCC exists to make Cambodian coffee easier to understand through research, evidence-led technical editorial, and clear documentation of quality, processing, and origin questions.",
   keywords:
-    "specialty coffee supplier Cambodia, coffee roaster Phnom Penh, Cambodia coffee culture, coffee mission, OCC mission",
+    "Origin Coffee Cambodia mission, Cambodian coffee research, Fine Robusta research, coffee quality evidence, coffee processing research, OCC editorial mission",
   alternates: pageAlternates("/about/mission"),
   openGraph: {
     title: "Mission | Origin Coffee Cambodia - OCC",
     description:
-      "Vision, Mission, and Why We Exist. OCC exists to close the gap in Cambodia's coffee market.",
+      "The research scope and editorial purpose behind OCC's work on Cambodian coffee, Fine Robusta, quality, processing, and origin evidence.",
     url: `${siteUrl}/about/mission`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -25,13 +25,15 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "OCC Mission",
-  description: "Vision, Mission, and Why We Exist",
+  description:
+    "The research scope and editorial purpose of Origin Coffee Cambodia.",
   url: `${siteUrl}/about/mission`,
   isPartOf: {
     "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
+    "@id": `${siteUrl}/#organization`,
+    name: "Origin Coffee Cambodia",
     description:
-      "Specialty coffee supplier Cambodia, coffee roaster Phnom Penh, empowering Cambodia's coffee culture.",
+      "Independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
   },
 }
 
@@ -49,20 +51,21 @@ const sections = [
   {
     title: "Vision",
     paragraphs: [
-      "To inspire and elevate Cambodia's coffee culture through knowledge, craftsmanship, and education.",
+      "To make Cambodian coffee easier to evaluate, discuss, and understand through evidence rather than repetition or unsupported category claims.",
     ],
   },
   {
     title: "Mission",
     paragraphs: [
-      "To empower Cambodia's coffee community by supplying exceptionally roasted coffee, sharing practical knowledge, and supporting partners with the tools and training they need to thrive.",
+      "OCC publishes research and technical editorial on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin systems.",
+      "The aim is not to replace primary research or official standards. It is to connect available evidence, identify what is known, separate historical frameworks from current ones, and state clearly where evidence is still incomplete.",
     ],
   },
   {
     title: "Why We Exist",
     paragraphs: [
-      "Cambodia's coffee market has a problem — not with its origins, but with what happens after. Inconsistent roasts. Undertrained baristas. Suppliers who disappear after the sale.",
-      "OCC was built to close that gap. Not just as a supplier, but as a partner in every cup that carries our name.",
+      "Cambodian coffee is often described with broad claims that are difficult to verify. Quality language, origin narratives, processing terminology, and market assumptions can move faster than the evidence behind them.",
+      "OCC exists to document those questions carefully. When evidence is strong, we cite it. When evidence is limited, we mark the boundary instead of converting uncertainty into certainty.",
     ],
   },
 ]
@@ -75,16 +78,16 @@ export default function MissionPage() {
       <AboutInstitutionalTemplate
         index="01"
         title="MISSION"
-        subtitle="VISION, MISSION, AND WHY WE EXIST."
+        subtitle="RESEARCH SCOPE, EDITORIAL PURPOSE, AND WHY OCC EXISTS."
         lead={[
-          "“Settle for nothing. Answer for everything.”",
-          "“Standards are not negotiable. Excellence is not optional.” This is not a philosophy we hang on the wall. It is the reason OCC exists.",
+          "Evidence first. Claims second.",
+          "OCC is built to make Cambodian coffee easier to understand without overstating what the available evidence can support.",
         ]}
         sections={sections}
         next={{
           href: "/about/founder",
           label: "Founder",
-          description: "Philosophy, Credentials, and the Big Idea.",
+          description: "The editorial philosophy behind OCC's evidence-led approach.",
         }}
       />
     </>
