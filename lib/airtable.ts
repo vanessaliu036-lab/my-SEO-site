@@ -46,7 +46,8 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
 const K = {
   title: ['title', 'Title', 'source_title', 'Source Title', 'Title (Blogger URL)'] as const,
   slug: ['slug', 'Slug'] as const,
-  publishDate: ['publish_date', 'scout_date', 'Publish Date', 'Last Modified'] as const,
+  publishDate: ['publish_date', 'scout_date', 'Publish Date'] as const,
+  modifiedDate: ['Last Modified', 'last_modified', 'modified_date'] as const,
   author: ['author', 'Author'] as const,
   summary: ['summary', 'Summary', 'Summary (Blogger URL)'] as const,
   content: ['content', 'Content', 'Blogger Version'] as const,
@@ -259,6 +260,7 @@ export interface BlogPostDetail extends BlogPost {
   content: string
   excerpt: string
   keywords: string
+  modified_date: string
 }
 
 async function loadAllPosts(): Promise<BlogPost[]> {
@@ -309,6 +311,7 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
     content: pickField(record.fields, K.content),
     excerpt: pickField(record.fields, K.excerpt),
     keywords: pickField(record.fields, K.keywords),
+    modified_date: pickField(record.fields, K.modifiedDate, base.publish_date),
   }
 }
 
