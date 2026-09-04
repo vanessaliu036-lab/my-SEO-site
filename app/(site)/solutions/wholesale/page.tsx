@@ -4,20 +4,22 @@ import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Wholesale Coffee Supply Cambodia | OCC - Direct Trade Coffee Supplier",
-  description: "OCC provides B2B wholesale coffee supply for cafés, hotels, and restaurants in Phnom Penh, Siem Reap, and Sihanoukville. Direct-origin beans, flexible delivery, dedicated account management. Minimum 5kg.",
-  keywords: "wholesale coffee Cambodia, coffee supplier Phnom Penh, B2B coffee supply Cambodia, café coffee wholesale, restaurant coffee supplier, direct trade coffee Cambodia, OCC wholesale, Siem Reap coffee supplier",
+  title: "Wholesale Coffee Cambodia | OCC B2B Sourcing & Supply Framework",
+  description:
+    "Evidence-led guidance for cafés, hotels, restaurants, and buyers evaluating wholesale coffee in Cambodia, including quality, origin documentation, volume planning, and supplier due diligence.",
+  keywords:
+    "wholesale coffee Cambodia, coffee supplier Phnom Penh, B2B coffee supply Cambodia, café coffee wholesale, restaurant coffee supplier, coffee sourcing Cambodia, supplier due diligence",
   openGraph: {
-    title: "Wholesale Coffee Supply | OCC Cambodia",
-    description: "Direct-origin beans. Reliable volume. B2B supply built for Cambodia's café industry.",
+    title: "Wholesale Coffee Cambodia | OCC",
+    description: "A buyer-focused framework for evaluating quality, documentation, volume, and supply readiness in Cambodia.",
     url: `${siteUrl}/solutions/wholesale`,
     type: "website",
-    images: [{ url: ogImage, width: 1200, height: 630, alt: "Wholesale Coffee Supply Cambodia — OCC" }],
+    images: [{ url: ogImage, width: 1200, height: 630, alt: "Wholesale Coffee Cambodia — OCC" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wholesale Coffee Supply | OCC Cambodia",
-    description: "Direct-origin beans. Reliable volume. B2B supply built for Cambodia's café industry.",
+    title: "Wholesale Coffee Cambodia | OCC",
+    description: "A buyer-focused framework for evaluating quality, documentation, volume, and supply readiness in Cambodia.",
   },
   alternates: pageAlternates("/solutions/wholesale"),
 }
@@ -25,133 +27,117 @@ export const metadata: Metadata = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  mainEntity: [
     {
       "@type": "Question",
-      "name": "What is your minimum order quantity?",
-      "acceptedAnswer": { "@type": "Answer", "text": "We start from 5kg per origin per order. Volume discounts apply from 25kg/month." }
+      name: "What should a wholesale coffee buyer define before contacting suppliers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Define expected monthly volume, green or roasted format, target cup profile, delivery locations, documentation requirements, and the sampling process you will use to approve a lot.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Do you deliver outside Phnom Penh?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. We service major provincial cities including Siem Reap and Sihanoukville on scheduled routes." }
+      name: "How should origin and traceability claims be evaluated?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ask for documentation that can be checked against the lot being offered, including origin, processing, harvest or production timing where available, and the chain of custody relevant to the transaction.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Can I mix origins in one order?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Multi-origin orders are welcome with no additional handling fee." }
-    }
-  ]
+      name: "What should a wholesale supply agreement clarify?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A commercial agreement should clarify specifications, approved samples, lot substitution rules, volume, pricing basis, delivery responsibilities, quality acceptance, and what happens when supply conditions change.",
+      },
+    },
+  ],
 }
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}` },
-    { "@type": "ListItem", "position": 2, "name": "Solutions", "item": `${siteUrl}/solutions` },
-    { "@type": "ListItem", "position": 3, "name": "Wholesale", "item": `${siteUrl}/solutions/wholesale` },
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Solutions", item: `${siteUrl}/solutions` },
+    { "@type": "ListItem", position: 3, name: "Wholesale", item: `${siteUrl}/solutions/wholesale` },
   ],
-}
-
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "B2B Wholesale Coffee Supply",
-  description: "Direct-origin wholesale coffee supply for cafés, hotels, restaurants, and corporate offices in Cambodia. Minimum order 5kg. Weekly and bi-weekly delivery available.",
-  provider: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    url: siteUrl,
-  },
-  serviceType: "B2B Wholesale Coffee Supply",
-  areaServed: [
-    { "@type": "City", name: "Phnom Penh" },
-    { "@type": "City", name: "Siem Reap" },
-    { "@type": "City", name: "Sihanoukville" },
-    { "@type": "Country", name: "Cambodia" },
-  ],
-  offers: {
-    "@type": "Offer",
-    eligibleCustomerType: "Business",
-    description: "Minimum order from 5kg per origin. Volume discounts from 25kg/month. Weekly or bi-weekly delivery windows.",
-  },
 }
 
 const internalLinks: Record<string, string> = {
-  "roasted beans": "/solutions/roasting-program",
-  "roasted bean": "/solutions/roasting-program",
-  "barista": "/solutions/barista-staffing",
-  "equipment": "/solutions/equipment-service",
-  "wholesale": "/solutions/wholesale",
-  "SCA": "/about/sustainability",
-  "cupping": "/coffee/single-origin",
+  "roast development": "/solutions/roasting-program",
+  staffing: "/solutions/barista-staffing",
+  equipment: "/solutions/equipment-service",
+  cupping: "/coffee/single-origin",
 }
 
 const renderWithLinks = (text: string) => {
   const patterns = Object.keys(internalLinks).sort((a, b) => b.length - a.length)
   let result = text
-  patterns.forEach(keyword => {
-    const regex = new RegExp(`\\b${keyword}\\b`, 'gi')
-    result = result.replace(regex, match => `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`)
+  patterns.forEach((keyword) => {
+    const regex = new RegExp(`\\b${keyword}\\b`, "gi")
+    result = result.replace(
+      regex,
+      (match) =>
+        `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
+    )
   })
   return <span dangerouslySetInnerHTML={{ __html: result }} />
 }
 
 export default function WholesalePage() {
   const relatedServices = [
-    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Custom roast profiles & technical training" },
-    { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Trained professionals for your team" },
-    { title: "Equipment Service", href: "/solutions/equipment-service", desc: "Installation, maintenance & repair" }
+    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness framework" },
+    { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Hiring, training, and placement due diligence" },
+    { title: "Equipment Service", href: "/solutions/equipment-service", desc: "Maintenance and service-vendor evaluation" },
   ]
 
   const sections = [
     {
-      title: "Who It's For",
-      content: <p>B2B wholesale supply for cafés, hotels, restaurants, co-working spaces, and corporate offices in Phnom Penh, Siem Reap, Sihanoukville, and across Cambodia. Whether you're running a single-outlet café or a multi-location group, OCC structures supply around your volume and schedule.</p>,
+      title: "Who This Is For",
+      content: <p>This page is for cafés, hotels, restaurants, offices, importers, and multi-location operators evaluating wholesale coffee in Cambodia. The objective is to define the evidence a buyer should require before treating any supplier, lot, price, volume, or delivery schedule as commercially ready.</p>,
     },
     {
-      title: "What You Get",
-      content: <p>Green beans sourced directly from Cambodian farms and regional origins. {renderWithLinks("roasted beans")} to order or supplied green for in-house roasting. Flexible contract terms with fixed weekly or bi-weekly delivery windows.</p>,
+      title: "What to Evaluate",
+      content: <p>Start with coffee format, target cup profile, sample approval, lot identity, documentation, expected volume, storage, and delivery feasibility. If roasted coffee is required, evaluate {renderWithLinks("roast development")} separately from green-coffee sourcing so quality and production assumptions do not get mixed together.</p>,
     },
     {
-      title: "Why OCC",
-      content: <p>Most {renderWithLinks("wholesale")} suppliers in Cambodia operate on inconsistent roast schedules and limited origin transparency. OCC operates differently - every batch is traceable, every delivery is documented, and every account has a dedicated point of contact. No middlemen. No guesswork. Our {renderWithLinks("equipment")} partners ensure your brewing setup matches your coffee quality.</p>,
+      title: "Evidence Standard",
+      content: <p>Origin, processing, quality, availability, and logistics should be supported by documentation that matches the coffee actually being evaluated. Sensory claims should be checked through a defined {renderWithLinks("cupping")} process, while operational claims should be verified with the responsible supplier or service provider before contracting.</p>,
     },
     {
-      title: "Who We Work With",
-      content: <p>Specialty cafés · Boutique hotels · Restaurant groups · Corporate offices · Coworking spaces · Event caterers</p>,
+      title: "Commercial Readiness",
+      content: <p>Before committing, confirm the approved sample, current lot, specification, substitution policy, volume basis, price basis, delivery responsibility, quality-acceptance process, and any dependencies involving {renderWithLinks("equipment")} or {renderWithLinks("staffing")}. OCC does not present unverified inventory, capacity, or logistics assumptions as current operating facts.</p>,
     },
   ]
 
   const faqs = [
-    { q: "What is your minimum order quantity?", a: <>We start from 5kg per origin per order. Volume discounts apply from 25kg/month.</> },
-    { q: "Do you deliver outside Phnom Penh?", a: <>Yes. We service major provincial cities including Siem Reap and Sihanoukville on scheduled routes.</> },
-    { q: "Can I mix origins in one order?", a: <>Yes. Multi-origin orders are welcome with no additional handling fee.</> },
-    { q: "Do you provide cupping sessions?", a: <>Yes. We offer regular {renderWithLinks("cupping")} sessions for wholesale partners to evaluate new arrivals and seasonal lots.</> },
+    { q: "What should a wholesale coffee buyer define before contacting suppliers?", a: <>Define expected volume, green or roasted format, target cup profile, delivery locations, documentation requirements, and a sample-approval process.</> },
+    { q: "How should origin and traceability claims be evaluated?", a: <>Ask for documentation that can be checked against the specific lot being offered, rather than relying on broad origin language alone.</> },
+    { q: "What should a wholesale supply agreement clarify?", a: <>Clarify specifications, approved samples, substitution rules, volume, pricing basis, delivery responsibilities, quality acceptance, and change management.</> },
   ]
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <SolutionDetailTemplate
         index="01"
         title="WHOLESALE"
-        subtitle="Direct-origin beans. Reliable volume. Built for Cambodia's growing café industry."
+        subtitle="Define the coffee, evidence, and supply conditions before treating an offer as commercially ready."
         sections={sections}
-        factsTitle="Supply Terms"
+        factsTitle="Buyer Checklist"
         facts={[
-          "Minimum order from 5kg per origin",
-          "Weekly or bi-weekly delivery",
-          "Green & roasted bean options",
-          "Dedicated account manager",
-          "Origin documentation provided",
+          "Coffee format and target cup profile",
+          "Approved sample and lot identity",
+          "Origin and processing documentation",
+          "Volume, storage, and delivery assumptions",
+          "Quality acceptance and substitution rules",
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Talk to our team"
+        ctaLabel="Discuss your requirements"
       />
     </>
   )
