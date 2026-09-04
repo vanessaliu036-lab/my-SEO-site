@@ -8,7 +8,6 @@ import { getAllPosts, getPostBySlug } from "@/lib/airtable"
 
 // Plain-text / Markdown -> readable HTML with internal links injected
 const INTERNAL_LINKS: Record<string, string> = {
-  "specialty coffee": "/solutions/wholesale",
   "wholesale coffee": "/solutions/wholesale",
   "wholesale": "/solutions/wholesale",
   "custom roasting": "/solutions/roasting-program",
@@ -404,7 +403,7 @@ export default async function BlogPostPage({
     wordCount: post.content.split(/\s+/).length,
     author: { "@type": "Person", name: post.author },
     datePublished: post.publish_date,
-    dateModified: post.publish_date,
+    dateModified: post.modified_date || post.publish_date,
     publisher: {
       "@type": "Organization",
       name: siteName,
