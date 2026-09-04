@@ -18,12 +18,21 @@ export const metadata: Metadata = {
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/images/about-og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Origin Coffee Cambodia - Origin Coffee Cambodia (OCC) About Page",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "About OCC | Origin Coffee Cambodia Research",
     description:
       "Independent research and technical editorial on Cambodian coffee, Fine Robusta, quality, processing, and origin evidence.",
+    images: [`${siteUrl}/images/about-twitter-card.jpg`],
   },
   alternates: pageAlternates("/about"),
 }
