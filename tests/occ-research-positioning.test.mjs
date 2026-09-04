@@ -29,6 +29,7 @@ const founderPage = read('app/(site)/about/founder/page.tsx')
 const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 const aboutEditorialTemplate = read('components/templates/about-editorial-template.tsx')
+const coffeeBagVisual = read('components/ui/coffee-bag-visual.tsx')
 
 test('OCC keeps its current evidence-led metadata foundation', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
@@ -165,6 +166,13 @@ test('shared About shell stays research-led and avoids unsupported operating cla
     sharedAboutShell,
     /\binfrastructure\b|2020|100%|full traceability from farm to cup|professional training|barista army|partnering with cafés|specialty coffee supply chain|supply chain optimization/i,
   )
+})
+
+test('About coffee-bag visual uses an editorial context instead of presenting unverified lot claims', () => {
+  assert.match(aboutEditorialTemplate, /<CoffeeBagVisual[^>]*context="editorial"/s)
+  assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
+  assert.match(coffeeBagVisual, /Editorial Research/i)
+  assert.match(coffeeBagVisual, /Cambodia Research/i)
 })
 
 // Solutions is now a real published section (see "repair: restore full repository

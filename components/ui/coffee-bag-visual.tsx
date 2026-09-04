@@ -4,6 +4,7 @@ type CoffeeBagVisualProps = {
   name?: string
   subtitle?: string
   tone?: "olive" | "sand" | "charcoal"
+  context?: "product" | "editorial"
   className?: string
 }
 
@@ -17,10 +18,19 @@ export function CoffeeBagVisual({
   name = "OCC",
   subtitle = "MONDULKIRI",
   tone = "olive",
+  context = "product",
   className,
 }: CoffeeBagVisualProps) {
+  const isEditorial = context === "editorial"
+  const topRight = isEditorial ? "Editorial Research" : "KH 2026"
+  const bottomLeft = isEditorial ? "Cambodia Research" : "Single Origin Cambodia"
+  const bottomRight = isEditorial ? "Evidence-Led Canephora" : "Traceable Lot Canephora"
+  const ariaLabel = isEditorial
+    ? `${name} ${subtitle} coffee research visual`
+    : `${name} ${subtitle} coffee package`
+
   return (
-    <div className={cn("relative h-[390px] w-[245px] sm:h-[450px] sm:w-[282px] md:h-[520px] md:w-[325px]", className)} aria-label={`${name} ${subtitle} coffee package`}>
+    <div className={cn("relative h-[390px] w-[245px] sm:h-[450px] sm:w-[282px] md:h-[520px] md:w-[325px]", className)} aria-label={ariaLabel}>
       <div className="absolute inset-x-[6%] top-0 h-5 rounded-t-[6px] bg-black/15 blur-[1px]" aria-hidden="true" />
       <div
         className={cn(
@@ -35,7 +45,7 @@ export function CoffeeBagVisual({
         <div className="flex h-full flex-col p-7 sm:p-8">
           <div className="flex items-start justify-between gap-4 text-[8px] uppercase tracking-[0.22em] opacity-60">
             <span>Origin Coffee<br />Cambodia</span>
-            <span>KH<br />2026</span>
+            <span className="max-w-[86px] text-right leading-4">{topRight}</span>
           </div>
 
           <div className="my-auto">
@@ -46,8 +56,8 @@ export function CoffeeBagVisual({
           </div>
 
           <div className="grid grid-cols-2 gap-4 border-t border-current/20 pt-5 text-[7px] uppercase leading-4 tracking-[0.18em] opacity-60">
-            <span>Single Origin<br />Cambodia</span>
-            <span className="text-right">Traceable Lot<br />Canephora</span>
+            <span>{bottomLeft}</span>
+            <span className="text-right">{bottomRight}</span>
           </div>
         </div>
       </div>

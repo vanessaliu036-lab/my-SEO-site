@@ -62,7 +62,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                 transition={{ duration: reducedMotion ? 0.01 : 0.72, delay: reducedMotion ? 0 : 0.08, ease }}
                 className="relative z-10"
               >
-                <CoffeeBagVisual name="OCC" subtitle="MONDULKIRI" tone="olive" />
+                <CoffeeBagVisual name="OCC" subtitle="MONDULKIRI" tone="olive" context="editorial" />
               </motion.div>
             </div>
           </div>
