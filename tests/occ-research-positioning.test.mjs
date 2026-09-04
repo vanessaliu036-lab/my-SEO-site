@@ -30,6 +30,9 @@ const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 const aboutEditorialTemplate = read('components/templates/about-editorial-template.tsx')
 const coffeeBagVisual = read('components/ui/coffee-bag-visual.tsx')
+const collectionPage = read('app/(site)/collection/page.tsx')
+const collectionPackageStage = read('components/ui/collection-package-stage.tsx')
+const angkarPage = read('app/(site)/collection/angkar/page.tsx')
 
 test('OCC keeps its current evidence-led metadata foundation', () => {
   assert.match(siteConfig, /independent coffee information and research platform/i)
@@ -173,6 +176,23 @@ test('About coffee-bag visual uses an editorial context instead of presenting un
   assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
   assert.match(coffeeBagVisual, /Editorial Research/i)
   assert.match(coffeeBagVisual, /Cambodia Research/i)
+})
+
+test('Collection keeps product entities while removing unsupported provenance and availability claims', () => {
+  const collectionClaims = `${collectionPage}\n${angkarPage}`
+  assert.match(collectionPage, /"@type": "Product"/)
+  assert.match(angkarPage, /"@type": "Product"/)
+  assert.doesNotMatch(
+    collectionClaims,
+    /direct[- ]trade|direct sourcing|same farmers|farmer relationships|producer communities|Request a Collection Sample/i,
+  )
+})
+
+test('Collection package stage uses a neutral collection context instead of lot traceability labels', () => {
+  assert.match(collectionPackageStage, /<CoffeeBagVisual[^>]*context="collection"/s)
+  assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"\s*\|\s*"collection"/)
+  assert.match(coffeeBagVisual, /Origin Collection/i)
+  assert.match(coffeeBagVisual, /Canephora Profile/i)
 })
 
 // Solutions is now a real published section (see "repair: restore full repository
