@@ -4,14 +4,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Equipment Service Cambodia | OCC",
+  title: "Coffee Equipment Service Cambodia | OCC Vendor Evaluation Framework",
   description:
-    "Commercial coffee equipment service in Phnom Penh and Cambodia: preventive maintenance, emergency repair, and installation support.",
+    "Evidence-led guidance for cafés, hotels, offices, and operators evaluating coffee equipment installation, maintenance, repair, spare-parts support, and service vendors in Cambodia.",
   keywords:
-    "espresso machine service Cambodia, grinder repair Phnom Penh, coffee equipment maintenance, cafe equipment technician",
+    "espresso machine service Cambodia, coffee equipment maintenance Cambodia, grinder repair Phnom Penh, cafe equipment technician, coffee equipment vendor due diligence",
   openGraph: {
-    title: "Equipment Service | OCC",
-    description: "Preventive care. Fast response. Zero downtime tolerance.",
+    title: "Coffee Equipment Service Cambodia | OCC",
+    description: "A practical framework for defining equipment scope, verifying technician capability, parts support, response terms, and service documentation.",
     url: `${siteUrl}/solutions/equipment-service`,
     type: "website",
   },
@@ -24,45 +24,29 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What brands do you service?",
+      name: "What should be verified before choosing a coffee equipment service provider?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We service major commercial brands including La Marzocco, Synesso, Nuova Simonelli, Mahlkonig, and Mazzer.",
+        text: "Verify the exact equipment models covered, technician experience, access to service documentation, parts sourcing, preventive-maintenance scope, response expectations, reporting, warranty implications, and escalation process.",
       },
     },
     {
       "@type": "Question",
-      name: "How fast is your emergency response?",
+      name: "How should emergency response claims be evaluated?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We target same-day response for Phnom Penh clients on active maintenance contracts.",
+        text: "Ask whether response time is a contractual service level or only a target, which locations are covered, what hours apply, whether parts availability changes the timeline, and what happens when the target cannot be met.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you supply spare parts?",
+      name: "What should buyers check about spare parts?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Common wear parts are stocked. Non-stock parts are sourced and expedited where possible.",
+        text: "Confirm which parts are actually held locally, which must be ordered, expected lead times, compatibility, authenticity, warranty conditions, and who bears the cost of expedited sourcing.",
       },
     },
   ],
-}
-
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Equipment Service",
-  provider: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    url: siteUrl,
-  },
-  areaServed: [
-    { "@type": "City", name: "Phnom Penh" },
-    { "@type": "Country", name: "Cambodia" },
-  ],
-  serviceType: "Commercial coffee equipment installation, maintenance, and repair",
 }
 
 const breadcrumbSchema = {
@@ -76,12 +60,9 @@ const breadcrumbSchema = {
 }
 
 const internalLinks: Record<string, string> = {
-  "roasted beans": "/solutions/roasting-program",
-  barista: "/solutions/barista-staffing",
-  equipment: "/solutions/equipment-service",
   wholesale: "/solutions/wholesale",
-  SCA: "/about/sustainability",
-  cupping: "/coffee/single-origin",
+  staffing: "/solutions/barista-staffing",
+  roasting: "/solutions/roasting-program",
 }
 
 const renderWithLinks = (text: string) => {
@@ -100,57 +81,56 @@ const renderWithLinks = (text: string) => {
 
 export default function EquipmentServicePage() {
   const relatedServices = [
-    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Custom roast profile development" },
-    { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Trained staffing for venues and events" },
-    { title: "Wholesale", href: "/solutions/wholesale", desc: "Direct-origin and production bean supply" },
+    { title: "Wholesale", href: "/solutions/wholesale", desc: "Coffee supply and buyer due diligence" },
+    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness framework" },
+    { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Hiring and training evaluation framework" },
   ]
 
   const sections = [
     {
-      title: "What We Cover",
-      content: <p>Commercial espresso machines, grinders, batch brewers, and water filtration systems. OCC&apos;s equipment service covers installation, scheduled maintenance, calibration, and emergency repair for cafe-grade and hotel-grade equipment.</p>,
+      title: "Scope to Define",
+      content: <p>Start with the exact espresso machines, grinders, brewers, water systems, installation conditions, usage level, and service history involved. A vendor should only be treated as suitable after confirming capability for the specific models and work required.</p>,
     },
     {
-      title: "Service Model",
-      content: <p>Two options: scheduled maintenance contracts for ongoing preventive care, or on-call repair response for urgent breakdowns. Both include documented service reports after every visit, and can be paired with {renderWithLinks("barista")} operations support.</p>,
+      title: "Service Model to Verify",
+      content: <p>Clarify whether support is preventive maintenance, installation, calibration, on-call repair, or a combination. Confirm what is included, what is excluded, response expectations, travel coverage, reporting, escalation, and how parts availability affects completion time.</p>,
     },
     {
-      title: "Why OCC",
-      content: <p>Equipment failure costs more than a service contract. OCC&apos;s technicians are trained on commercial-grade machinery and work to minimize downtime, not extend it. Every service visit is logged, and every repair comes with a follow-up check and optional {renderWithLinks("SCA")} brew calibration.</p>,
+      title: "Vendor Evidence",
+      content: <p>Ask for technician experience relevant to the equipment, access to technical documentation, diagnostic process, parts sourcing, service records, warranty implications, and references where appropriate. Brand familiarity should be verified against the actual models rather than assumed from generic commercial-equipment language.</p>,
     },
     {
-      title: "Who We Work With",
-      content: <p>Specialty cafes, hotel F&amp;B departments, office coffee setups, and multi-location operators needing consolidated service contracts linked to their {renderWithLinks("wholesale")} supply chain.</p>,
+      title: "Before Contracting",
+      content: <p>Document service scope, covered equipment, maintenance frequency, response terms, labor and travel charges, parts policy, reporting, warranty responsibility, and escalation. Dependencies involving {renderWithLinks("staffing")}, {renderWithLinks("wholesale")}, or {renderWithLinks("roasting")} should be evaluated separately rather than bundled into unsupported operating claims.</p>,
     },
   ]
 
   const faqs = [
-    { q: "What brands do you service?", a: <>We service major commercial brands including La Marzocco, Synesso, Nuova Simonelli, Mahlkonig, and Mazzer.</> },
-    { q: "How fast is your emergency response?", a: <>We target same-day response for Phnom Penh clients on active maintenance contracts.</> },
-    { q: "Do you supply spare parts?", a: <>Yes. Common wear parts are stocked. Non-stock parts are sourced and expedited where possible.</> },
+    { q: "What should be verified before choosing a coffee equipment service provider?", a: <>Verify the exact models covered, technician experience, service documentation, parts sourcing, maintenance scope, response terms, reporting, warranty implications, and escalation process.</> },
+    { q: "How should emergency response claims be evaluated?", a: <>Confirm whether the response time is contractual or only a target, the locations and hours covered, parts dependencies, and what happens when the target cannot be met.</> },
+    { q: "What should buyers check about spare parts?", a: <>Confirm which parts are held locally, which must be ordered, expected lead times, compatibility, authenticity, warranty conditions, and expedited-sourcing responsibility.</> },
   ]
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <SolutionDetailTemplate
         index="04"
         title="EQUIPMENT SERVICE"
-        subtitle="Preventive care. Fast response. Zero downtime tolerance."
+        subtitle="Verify model coverage, technician evidence, parts support, and response terms before relying on a service provider."
         sections={sections}
-        factsTitle="Service Includes"
+        factsTitle="Service Due Diligence"
         facts={[
-          "Preventive maintenance plans",
-          "Emergency repair response",
-          "Equipment installation and setup",
-          "Calibration and performance checks",
-          "Documented service reports",
+          "Exact equipment and model coverage",
+          "Technician experience and documentation",
+          "Preventive and repair scope",
+          "Parts sourcing and lead-time assumptions",
+          "Response, reporting, and escalation terms",
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Talk to our team"
+        ctaLabel="Discuss your requirements"
       />
     </>
   )

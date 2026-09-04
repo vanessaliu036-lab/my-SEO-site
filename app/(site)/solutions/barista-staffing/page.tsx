@@ -4,14 +4,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Barista Staffing Cambodia | OCC",
+  title: "Barista Staffing Cambodia | OCC Hiring & Training Framework",
   description:
-    "Trained barista staffing for cafes, hotels, offices, and events in Phnom Penh and across Cambodia.",
+    "Evidence-led guidance for cafés, hotels, offices, and event operators evaluating barista hiring, training, placement, and staffing providers in Cambodia.",
   keywords:
-    "barista staffing Cambodia, barista outsourcing Phnom Penh, event barista Cambodia, coffee staff placement",
+    "barista staffing Cambodia, barista hiring Phnom Penh, barista training Cambodia, event barista Cambodia, coffee staff placement, barista due diligence",
   openGraph: {
-    title: "Barista Staffing | OCC",
-    description: "Trained hands. Consistent service. Ready when you are.",
+    title: "Barista Staffing Cambodia | OCC",
+    description: "A practical framework for defining roles, evaluating candidates, verifying training, and documenting placement terms.",
     url: `${siteUrl}/solutions/barista-staffing`,
     type: "website",
   },
@@ -24,45 +24,29 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Do you cover events outside Phnom Penh?",
+      name: "What should a barista staffing brief include?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, for confirmed bookings with sufficient lead time. Travel and accommodation are factored into event quotes.",
+        text: "Define the venue, role, schedule, expected beverage volume, equipment used, language needs, service responsibilities, supervision model, and the technical skills required for the position.",
       },
     },
     {
       "@type": "Question",
-      name: "What happens if a placed barista does not meet our expectations?",
+      name: "How should barista candidates be evaluated?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We offer a replacement guarantee within the first 30 days of placement at no additional cost.",
+        text: "Use practical observation of workflow, beverage preparation, cleaning, grinder and espresso-machine handling, consistency under pressure, communication, and role-specific service requirements.",
       },
     },
     {
       "@type": "Question",
-      name: "Can we request baristas with specific language skills?",
+      name: "What should be documented before a placement begins?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We can match based on language requirements including English, Khmer, and Mandarin where available.",
+        text: "Document the employer or contracting party, role scope, schedule, compensation, trial or review process, replacement terms if any, training responsibility, supervision, and any travel or event-specific conditions.",
       },
     },
   ],
-}
-
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Barista Staffing",
-  provider: {
-    "@type": "Organization",
-    name: "Origin Coffee Cambodia (OCC)",
-    url: siteUrl,
-  },
-  areaServed: [
-    { "@type": "City", name: "Phnom Penh" },
-    { "@type": "Country", name: "Cambodia" },
-  ],
-  serviceType: "Barista placement and event staffing",
 }
 
 const breadcrumbSchema = {
@@ -76,12 +60,9 @@ const breadcrumbSchema = {
 }
 
 const internalLinks: Record<string, string> = {
-  "roasted beans": "/solutions/roasting-program",
-  barista: "/solutions/barista-staffing",
   equipment: "/solutions/equipment-service",
   wholesale: "/solutions/wholesale",
-  SCA: "/about/sustainability",
-  cupping: "/coffee/single-origin",
+  roasting: "/solutions/roasting-program",
 }
 
 const renderWithLinks = (text: string) => {
@@ -100,57 +81,56 @@ const renderWithLinks = (text: string) => {
 
 export default function BaristaStaffingPage() {
   const relatedServices = [
-    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Custom roast profile development" },
-    { title: "Equipment Service", href: "/solutions/equipment-service", desc: "Preventive and emergency machine support" },
-    { title: "Wholesale", href: "/solutions/wholesale", desc: "Direct-origin bean supply for operations" },
+    { title: "Wholesale", href: "/solutions/wholesale", desc: "Coffee supply and buyer due diligence" },
+    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness framework" },
+    { title: "Equipment Service", href: "/solutions/equipment-service", desc: "Equipment and service-vendor evaluation" },
   ]
 
   const sections = [
     {
-      title: "The Service",
-      content: <p>OCC places trained baristas in your venue on a full-time, part-time, or event basis. Every staff member is trained in-house to OCC&apos;s service standard, covering espresso workflow, {renderWithLinks("equipment")} handling, cleaning protocols, and guest interaction.</p>,
+      title: "Use Case",
+      content: <p>This page is for cafés, hotels, offices, event organizers, and pop-up concepts evaluating barista staffing in Cambodia. It focuses on the evidence and role definition needed before treating a candidate pool, training standard, language capability, or placement term as confirmed.</p>,
     },
     {
-      title: "Our Standard",
-      content: <p>All {renderWithLinks("barista")} candidates undergo {renderWithLinks("SCA")}-aligned training before placement. We assess technical skill, consistency under pressure, and professional conduct. Clients receive a staff profile and trial period before any long-term commitment.</p>,
+      title: "Candidate Evaluation",
+      content: <p>Assess the skills that matter for the actual role: workflow, espresso and milk preparation where relevant, grinder adjustment, cleaning, {renderWithLinks("equipment")} handling, service communication, consistency during volume, and the ability to follow the venue&apos;s operating procedures.</p>,
     },
     {
-      title: "Why OCC",
-      content: <p>Hiring baristas in Cambodia&apos;s current market often means inconsistent training backgrounds and high turnover. OCC staffing removes that variable - you get vetted, trained, and accountable personnel backed by OCC&apos;s ongoing quality oversight and regular {renderWithLinks("cupping")} calibration.</p>,
+      title: "Training Evidence",
+      content: <p>Training should be described with specific competencies, assessment methods, dates, and responsible trainers rather than broad labels alone. A provider&apos;s internal program, external course, or industry reference should not be treated as equivalent to certification unless the credential can be verified.</p>,
     },
     {
-      title: "Who We Work With",
-      content: <p>Specialty cafes, hotel F&amp;B operations, corporate offices with in-house coffee bars, event organizers, and pop-up concepts.</p>,
+      title: "Before Placement",
+      content: <p>Confirm who employs or contracts the worker, role scope, schedule, compensation, trial or review process, supervision, training responsibility, replacement terms if any, and travel conditions for events. Dependencies involving {renderWithLinks("wholesale")} coffee or {renderWithLinks("roasting")} should be documented separately from staffing.</p>,
     },
   ]
 
   const faqs = [
-    { q: "Do you cover events outside Phnom Penh?", a: <>Yes, for confirmed bookings with sufficient lead time. Travel and accommodation are factored into event quotes.</> },
-    { q: "What happens if a placed barista does not meet our expectations?", a: <>We offer a replacement guarantee within the first 30 days of placement at no additional cost.</> },
-    { q: "Can we request baristas with specific language skills?", a: <>We can match based on language requirements including English, Khmer, and Mandarin where available.</> },
+    { q: "What should a barista staffing brief include?", a: <>Define the venue, role, schedule, beverage volume, equipment used, language needs, service responsibilities, supervision model, and required technical skills.</> },
+    { q: "How should barista candidates be evaluated?", a: <>Use practical observation of workflow, beverage preparation, cleaning, equipment handling, consistency under pressure, communication, and role-specific service requirements.</> },
+    { q: "What should be documented before a placement begins?", a: <>Document the contracting party, role scope, schedule, compensation, review process, any replacement terms, training responsibility, supervision, and event or travel conditions.</> },
   ]
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <SolutionDetailTemplate
         index="03"
         title="BARISTA STAFFING"
-        subtitle="Trained hands. Consistent service. Ready when you are."
+        subtitle="Define the role, verify candidate evidence, and document placement terms before treating staffing capability as confirmed."
         sections={sections}
-        factsTitle="Staffing Options"
+        factsTitle="Evaluation Checklist"
         facts={[
-          "Full-time venue placement",
-          "Part-time and shift-based options",
-          "Event and pop-up baristas",
-          "SCA-aligned training standard",
-          "Replacement guarantee included",
+          "Role scope and operating schedule",
+          "Practical technical-skill assessment",
+          "Training evidence and assessment method",
+          "Language and service requirements",
+          "Contracting, supervision, and review terms",
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Request a quote"
+        ctaLabel="Discuss your requirements"
       />
     </>
   )
