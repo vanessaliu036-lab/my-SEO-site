@@ -38,12 +38,12 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             {...reveal(28)}
             className="order-3 border-t border-black/10 pt-7 md:order-1 md:col-span-3 md:border-t-0 md:pr-10 md:pt-0 lg:pr-14"
           >
-            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Infrastructure · Origin · Traceability</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Research · Origin · Evidence</p>
             <p className="mt-6 max-w-[310px] text-[15px] leading-7 text-black/80">
-              Unlike celebrity-driven roasters, OCC builds infrastructure. We reconstruct Cambodia&apos;s specialty coffee supply chain through sourcing, traceability, training, and long-term partnerships.
+              OCC is an independent coffee information and research platform documenting Cambodian coffee, Fine Robusta, processing, quality, sensory evaluation, and origin evidence.
             </p>
             <Link href="#about-system" className="mt-7 inline-flex items-center gap-2 border-b border-black/25 pb-1 text-[10px] font-medium uppercase tracking-[0.18em] transition-colors hover:border-black">
-              Explore the system <ArrowUpRight className="size-3" />
+              Explore the research <ArrowUpRight className="size-3" />
             </Link>
           </motion.div>
 
@@ -94,16 +94,16 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
           <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
             <p className="font-[var(--font-display)] text-[clamp(1.8rem,3vw,2.8rem)] font-normal leading-[1.08] tracking-[-0.02em]">
-              OCC builds
+              OCC documents
               <br />
-              infrastructure.
+              the evidence.
             </p>
             <div className="mt-10 grid grid-cols-1 gap-8 border-t border-black/10 pt-8 lg:grid-cols-2 lg:gap-14">
               <p className="text-lg leading-8 text-black/84">
-                我們不只是在烘焙咖啡，我們在重構柬埔寨的精品咖啡供應鏈。
+                我們用研究、來源與可驗證證據，整理柬埔寨咖啡與 Fine Robusta 的已知資訊與證據缺口。
               </p>
               <p className="text-[15px] leading-7 text-black/76">
-                Origin Coffee Cambodia (OCC) is a specialty coffee infrastructure company based in Phnom Penh, Cambodia. We focus on building the foundational systems—from ethical sourcing and traceability protocols to professional training and supply chain optimization—that enable Cambodia&apos;s coffee industry to thrive sustainably.
+                Origin Coffee Cambodia (OCC) is an independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.
               </p>
             </div>
           </div>
@@ -144,9 +144,9 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         <motion.section {...reveal()} className="border-b border-black/10 py-16 lg:py-20" aria-label="OCC facts">
           <div className="grid grid-cols-1 border-y border-black/10 sm:grid-cols-3">
             {[
-              ["2020", "Founded"],
-              ["100%", "Traceable beans"],
-              ["Cambodia", "Origin network"],
+              ["Cambodia", "Research scope"],
+              ["Fine Robusta", "Core topic"],
+              ["Evidence-led", "Editorial standard"],
             ].map(([value, label], index) => (
               <div key={label} className={`py-8 sm:px-8 ${index > 0 ? "border-t border-black/10 sm:border-l sm:border-t-0" : ""}`}>
                 <p className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.02em] lg:text-4xl">{value}</p>
@@ -158,17 +158,17 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
         <motion.section {...reveal()} className="grid grid-cols-1 border-b border-black/10 py-20 md:grid-cols-12 lg:py-28">
           <div className="md:col-span-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">04 / Why infrastructure</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">04 / Why research</p>
             <h2 className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-4xl">
-              Built beyond
-              <br />the roast.
+              Built around
+              <br />evidence.
             </h2>
           </div>
           <div className="mt-10 md:col-span-7 md:col-start-6 md:mt-0">
             {[
-              ["Supply Chain Transparency", "Full traceability from farm to cup, documenting every step of our coffee's journey from Mondulkiri, Ratanakiri, and Kampot to your espresso machine."],
-              ["Professional Training", "Building a skilled barista army through comprehensive education programs that elevate service standards across Cambodia's café industry."],
-              ["Sustainable Partnerships", "Long-term relationships with farmers, café owners, and hospitality businesses built on trust, consistency, and shared growth."],
+              ["Evidence and Sources", "Document what is known, distinguish primary evidence from commentary, and keep current standards separate from historical frameworks."],
+              ["Origin Context", "Study Cambodian coffee and Fine Robusta without treating one lot, region, or anecdote as proof for an entire category."],
+              ["Transparent Uncertainty", "State research gaps and claim boundaries clearly when public evidence is incomplete or difficult to verify."],
             ].map(([title, copy], index) => (
               <div key={title} className="grid grid-cols-[44px_1fr] gap-5 border-t border-black/10 py-7 last:border-b">
                 <span className="text-[9px] tracking-[0.2em] text-black/34">0{index + 1}</span>
@@ -183,18 +183,18 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
         <motion.section {...reveal()} className="grid grid-cols-1 border-b border-black/10 py-20 md:grid-cols-12 lg:py-24">
           <div className="md:col-span-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">05 / Cambodia network</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">05 / Cambodia research</p>
             <h2 className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-4xl">
-              Serving the
-              <br />coffee community.
+              Studying the
+              <br />origin.
             </h2>
           </div>
           <div className="mt-10 border-t border-black/10 pt-8 md:col-span-7 md:col-start-6 md:mt-0">
             <p className="text-sm uppercase leading-7 tracking-[0.14em] text-black/76">
-              Phnom Penh · Siem Reap · Sihanoukville · Battambang · Kampot
+              Cambodia · Mondulkiri · Fine Robusta · Coffea canephora
             </p>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-black/45">
-              Partnering with cafés, hotels, restaurants, and coffee enthusiasts across Cambodia
+              Research and technical editorial on origin, processing, quality standards, sensory evaluation, roasting, and evidence gaps in Cambodian coffee.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href="/solutions" className="inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-200 hover:-translate-y-0.5">
@@ -209,7 +209,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
         <footer className="flex flex-col gap-5 py-10 text-[9px] uppercase tracking-[0.19em] text-black/38 sm:flex-row sm:items-end sm:justify-between">
           <span>Origin Coffee Cambodia · OCC</span>
-          <span>Building infrastructure for Cambodian coffee</span>
+          <span>Evidence-led research on Cambodian coffee</span>
         </footer>
       </main>
     </div>
