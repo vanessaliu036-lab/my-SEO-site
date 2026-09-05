@@ -12,7 +12,15 @@ export const contactSchema = z.object({
     .min(1, "Email is required")
     .email("Please enter a valid email address"),
   service: z.enum(
-    ["General Enquiry", "Editorial Question", "Source Correction", "Media / Interview"],
+    [
+      "Wholesale / Sourcing",
+      "Sample Request",
+      "Lot List",
+      "Roasting / Solutions",
+      "Editorial / Source Correction",
+      "Media / Interview",
+      "General Enquiry",
+    ],
     { errorMap: () => ({ message: "Please select an enquiry type" }) }
   ),
   message: z
