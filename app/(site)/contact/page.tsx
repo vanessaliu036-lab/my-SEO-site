@@ -6,16 +6,16 @@ import ContactForm from "./ContactForm"
 import "./contact-editorial.css"
 
 export const metadata: Metadata = {
-  title: "Contact | Origin Coffee Cambodia - OCC",
+  title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
   description:
-    "Contact Origin Coffee Cambodia (OCC) with editorial questions, source corrections, media enquiries, or general questions about the research platform.",
+    "Contact Origin Coffee Cambodia for wholesale and sourcing enquiries, sample requests, lot-list questions, roasting and B2B coffee solutions, editorial questions, or media enquiries.",
   keywords:
-    "Origin Coffee Cambodia contact, OCC editorial contact, coffee research enquiry, Cambodia coffee information",
+    "Origin Coffee Cambodia contact, Cambodia coffee wholesale enquiry, Fine Robusta supplier Cambodia, Cambodia coffee sourcing, coffee sample request, coffee lot list, B2B coffee solutions Cambodia",
   alternates: pageAlternates("/contact"),
   openGraph: {
-    title: "Contact | Origin Coffee Cambodia - OCC",
+    title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
     description:
-      "Contact OCC about editorial questions, source corrections, media enquiries, or general research-platform questions.",
+      "Start a wholesale, sourcing, sample, lot-list, roasting, B2B coffee solution, editorial, or media enquiry with OCC.",
     url: `${siteUrl}/contact`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | Origin Coffee Cambodia - OCC",
+    title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
     description:
-      "Contact OCC about editorial questions, source corrections, media enquiries, or general research-platform questions.",
+      "Wholesale, sourcing, sample, lot-list, roasting, coffee solution, editorial, and media enquiries for OCC.",
   },
 }
 
@@ -40,13 +40,22 @@ const contactOrganizationSchema = {
   image: ogImage,
   description: siteDescription,
   areaServed: areaServedCambodia,
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "general inquiries",
-    url: `${siteUrl}/contact`,
-    availableLanguage: ["English"],
-    areaServed: areaServedCambodia,
-  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "wholesale and sourcing inquiries",
+      url: `${siteUrl}/contact`,
+      availableLanguage: ["English"],
+      areaServed: areaServedCambodia,
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "editorial and media inquiries",
+      url: `${siteUrl}/contact`,
+      availableLanguage: ["English"],
+      areaServed: areaServedCambodia,
+    },
+  ],
 }
 
 const breadcrumbSchema = {
