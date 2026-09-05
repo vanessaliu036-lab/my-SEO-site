@@ -83,3 +83,34 @@ test("solutions CTAs are inquiry-led rather than transaction-led", () => {
     assert.match(text, /ctaLabel="(?:Discuss your requirements|Ask about this area|Talk to our team)"/i)
   }
 })
+
+test("solutions hub keeps B2B commercial intent without unsupported operating promises", () => {
+  const indexPage = fs.readFileSync(path.join(root, "app/(site)/solutions/page.tsx"), "utf8")
+  const indexTemplate = fs.readFileSync(path.join(root, "components/templates/solutions-index-template.tsx"), "utf8")
+  const detailTemplate = fs.readFileSync(path.join(root, "components/templates/solution-detail-template.tsx"), "utf8")
+  const combined = `${indexPage}\n${indexTemplate}\n${detailTemplate}`
+
+  for (const pattern of [
+    /B2B Coffee Infrastructure/i,
+    /Direct-origin beans, flexible delivery, account management/i,
+    /Custom profiles, white-label, and batch consistency/i,
+    /Trained baristas for venues, offices, and events/i,
+    /Installation, maintenance, and emergency repair/i,
+    /one operating ecosystem/i,
+    /Four programs built for operators who need supply, craft, people, and uptime in one ecosystem/i,
+    /Request a quote/i,
+    /combine supply, roasting, staffing, and equipment support around your operation/i,
+  ]) {
+    assert.doesNotMatch(combined, pattern, `solutions hub still contains unsupported operating-positioning phrase ${pattern}`)
+  }
+
+  assert.match(indexPage, /B2B/i)
+  assert.match(indexPage, /sourcing/i)
+  assert.match(indexPage, /enquir/i)
+  assert.match(indexPage, /evidence-led/i)
+  assert.match(indexTemplate, /B2B coffee solution areas/i)
+  assert.match(indexTemplate, /due diligence/i)
+  assert.match(detailTemplate, /Coffee Authority &amp; B2B Solutions/)
+  assert.match(indexPage, /pageAlternates\("\/solutions"\)/)
+  assert.match(indexPage, /"@type": "CollectionPage"/)
+})

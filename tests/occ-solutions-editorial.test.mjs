@@ -33,10 +33,11 @@ test("solution detail template keeps semantic content server-rendered and delega
   assert.match(reveal, /0\.22, 1, 0\.36, 1/)
 })
 
-test("solution pages preserve Service FAQ Breadcrumb schemas and internal-link logic", () => {
+test("solution pages preserve FAQ Breadcrumb schemas and internal-link logic without unverified Service schema", () => {
   for (const slug of detailPages) {
     const source = read(`app/(site)/solutions/${slug}/page.tsx`)
-    assert.match(source, /"@type": "Service"/)
+    assert.doesNotMatch(source, /"@type"\s*:\s*"Service"/)
+    assert.doesNotMatch(source, /"@type"\s*:\s*"Offer"/)
     assert.match(source, /"@type": "FAQPage"/)
     assert.match(source, /"@type": "BreadcrumbList"/)
     assert.match(source, /renderWithLinks/)
@@ -44,4 +45,6 @@ test("solution pages preserve Service FAQ Breadcrumb schemas and internal-link l
 
   const index = read("app/(site)/solutions/page.tsx")
   assert.match(index, /"@type": "CollectionPage"/)
+  assert.match(index, /B2B/i)
+  assert.match(index, /evidence-led/i)
 })

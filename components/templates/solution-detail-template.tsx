@@ -64,7 +64,7 @@ export function SolutionDetailTemplate({
         </div>
         <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
           <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:block">B2B Coffee Infrastructure</span>
+          <span className="hidden sm:block">Coffee Authority &amp; B2B Solutions</span>
           <span>{index} / 04</span>
         </div>
       </section>

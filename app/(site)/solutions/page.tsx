@@ -4,13 +4,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Solutions | OCC — Wholesale, Roasting, Staffing, Equipment",
+  title: "Coffee Solutions Cambodia | Wholesale, Roasting & B2B Support | OCC",
   description:
-    "Coffee solutions in Cambodia: wholesale supply, custom roasting program, barista staffing, and commercial equipment service.",
+    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, roast development, barista staffing, and equipment-service enquiries, with evidence-led requirement scoping and due diligence.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
-    title: "Solutions | OCC",
-    description: "Wholesale, roasting, staffing, and equipment for Cambodia's coffee industry.",
+    title: "Coffee Solutions Cambodia | OCC",
+    description:
+      "B2B coffee solution areas for sourcing, roasting, staffing, and equipment-service enquiries in Cambodia, supported by evidence-led requirement scoping and due diligence.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
@@ -20,29 +21,29 @@ const services = [
   {
     href: "/solutions/wholesale",
     title: "Wholesale",
-    desc: "Direct-origin beans, flexible delivery, account management.",
+    desc: "Wholesale sourcing enquiries, buyer requirements, quality evidence, origin documentation, and supplier due diligence.",
   },
   {
     href: "/solutions/roasting-program",
     title: "Roasting Program",
-    desc: "Custom profiles, white-label, and batch consistency.",
+    desc: "Roast-development and white-label enquiries framed around profile, repeatability, capacity, and production-readiness checks.",
   },
   {
     href: "/solutions/barista-staffing",
     title: "Barista Staffing",
-    desc: "Trained baristas for venues, offices, and events.",
+    desc: "Barista staffing enquiries with role definition, candidate evaluation, training evidence, and placement-term checks.",
   },
   {
     href: "/solutions/equipment-service",
     title: "Equipment Service",
-    desc: "Installation, maintenance, and emergency repair.",
+    desc: "Equipment-service enquiries with model coverage, maintenance scope, parts support, response terms, and vendor due diligence.",
   },
 ] as const
 
 const hubSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "OCC Solutions",
+  name: "OCC Coffee Solutions Cambodia",
   url: `${siteUrl}/solutions`,
   hasPart: services.map((s) => ({
     "@type": "WebPage",
