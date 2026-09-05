@@ -3,6 +3,7 @@ import assert from "node:assert/strict"
 import fs from "node:fs"
 
 const source = fs.readFileSync("lib/airtable.ts", "utf8")
+const articlePage = fs.readFileSync("app/(site)/blog/[slug]/page.tsx", "utf8")
 
 test("Airtable keeps per-process request pacing", () => {
   assert.match(source, /AIRTABLE_MIN_REQUEST_INTERVAL_MS\s*=\s*260/)
@@ -32,10 +33,19 @@ test("OCC corpus remains the two-table union with stable-slug deduplication", ()
   assert.match(source, /item\.slug\.toLowerCase\(\)/)
 })
 
-test("article detail resolves through corpus identity rather than formula lookups", () => {
+test("article detail uses a direct slug lookup before the full-corpus fallback", () => {
+  assert.match(source, /fetchRecordBySlug/)
+  assert.match(source, /filterByFormula/)
+  assert.match(source, /for \(const tableName of AIRTABLE_TABLE_NAMES\)/)
   assert.match(source, /getAllPosts\(\)/)
   assert.match(source, /fetchRecordById/)
-  assert.doesNotMatch(source, /filterByFormula/)
+})
+
+test("article recommendations use a bounded recent-post query instead of scanning the full corpus", () => {
+  assert.match(source, /getRecentPosts/)
+  assert.match(source, /maxRecords/)
+  assert.match(articlePage, /getRecentPosts/)
+  assert.doesNotMatch(articlePage, /getAllPosts/)
 })
 
 test("shared corpus and detail caches use a five-minute resilience window", () => {
