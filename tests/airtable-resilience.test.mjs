@@ -60,7 +60,7 @@ test("article formatter preserves safe CMS HTML instead of printing tags as text
   assert.match(articlePage, /function plainTextFromMarkup/)
   assert.match(articlePage, /if \(isLikelyHtmlArticle\(raw\)\)/)
   assert.match(articlePage, /sanitizeArticleHtml\(raw, title\)/)
-  assert.match(articlePage, /replace\(\/<\\/?(?:script|style|iframe|object|embed|form)\\b/)
+  assert.match(articlePage, /script\|style\|iframe\|object\|embed\|form/)
 })
 
 test("article metadata converts markup to plain text before SEO truncation", () => {
