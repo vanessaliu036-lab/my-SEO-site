@@ -49,11 +49,11 @@ export default function HomeTemplate() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/blog"
+              href="/solutions/wholesale"
               className="group inline-flex items-center rounded-full text-sm font-medium text-[#172018]"
             >
               <span className="rounded-full bg-[#e7f2c9] px-6 py-3.5 transition-colors duration-300 group-hover:bg-white">
-                Explore Research
+                Wholesale & Sourcing
               </span>
               <span className="relative -ml-px flex size-[50px] items-center justify-center overflow-hidden rounded-full bg-[#e7f2c9] transition-colors duration-300 group-hover:bg-white">
                 <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-6 group-hover:-translate-y-6" />
@@ -71,7 +71,7 @@ export default function HomeTemplate() {
 
         <div className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between border-t border-white/15 px-5 py-5 text-[9px] uppercase tracking-[0.24em] text-white/55 sm:px-8 lg:px-12">
           <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:inline">Evidence · Standards · Origin</span>
+          <span className="hidden sm:inline">Sourcing · Quality · Solutions</span>
           <span>01 / Home</span>
         </div>
       </section>
@@ -79,8 +79,16 @@ export default function HomeTemplate() {
       <section className="border-t border-gray-200 bg-white px-6 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-gray-500">Origin Coffee Cambodia</p>
-          <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee and Fine Robusta, explained through evidence.</h2>
+          <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">{homeDirectAnswer}</p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-white">
+              Start an Enquiry <ArrowUpRight className="size-3.5" />
+            </Link>
+            <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-gray-800">
+              Research Journal <ArrowUpRight className="size-3.5" />
+            </Link>
+          </div>
           <div className="mt-16 border-t border-gray-200 md:mt-20">
             {homeAuthoritySections.map((section, sectionIndex) => (
               <section key={section.id} id={section.id} className="grid scroll-mt-24 grid-cols-12 gap-x-8 gap-y-5 border-b border-gray-200 py-12 md:gap-x-12 md:py-14">
