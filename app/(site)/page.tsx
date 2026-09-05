@@ -9,30 +9,29 @@ import {
 } from "@/lib/homeContent"
 import { seoDescription, seoTitle } from "@/lib/seo"
 
-const homeTitle = "Origin Coffee Cambodia | Fine Robusta & Mondulkiri Research"
+const homeTitle = "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier"
 
 export const metadata: Metadata = {
   title: seoTitle(homeTitle),
   description: seoDescription(siteDescription),
   keywords: [
     "Fine Robusta",
-    "Fine Robusta Coffee",
     "Fine Robusta Cambodia",
+    "Fine Robusta Beans",
+    "Cambodia Coffee Supplier",
+    "Specialty Coffee Supplier Cambodia",
+    "Cambodia Coffee Beans",
+    "Cambodian Coffee Beans",
+    "Cambodia Robusta Coffee Beans",
+    "Mondulkiri Coffee Beans",
+    "Coffee Sourcing Cambodia",
+    "Wholesale Coffee Cambodia",
+    "Coffee Roasting Cambodia",
+    "B2B Coffee Supply",
+    "Coffee Traceability",
     "Coffea canephora",
-    "Cambodian Coffee",
-    "Cambodia Coffee Research",
-    "Coffee Quality Institute Fine Robusta",
-    "CQI Fine Robusta Standards",
-    "Robusta Grading",
     "Coffee Processing",
-    "Coffee Fermentation",
-    "Coffee Drying",
-    "Coffee Roasting",
-    "Coffee Sensory Evaluation",
     "Coffee Quality Standards",
-    "Mondulkiri Coffee",
-    "Cambodian Coffee Industry",
-    "Coffee Origin Research",
   ],
   alternates: {
     canonical: siteUrl,
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     type: "website",
-    images: [{ url: ogImage, alt: "Origin Coffee Cambodia coffee research and origin work" }],
+    images: [{ url: ogImage, alt: "Origin Coffee Cambodia Fine Robusta and specialty coffee" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -72,7 +71,7 @@ const webPageJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": webpageId,
-  name: siteName,
+  name: homeTitle,
   url: siteUrl,
   description: homeDirectAnswer,
   dateModified: homeDateModified,
@@ -87,11 +86,13 @@ const webPageJsonLd = {
     { "@type": "Thing", name: "Coffea canephora" },
     { "@type": "Thing", name: "Cambodian coffee" },
     { "@type": "Place", name: "Mondulkiri, Cambodia" },
+    { "@type": "Thing", name: "Specialty coffee sourcing" },
+    { "@type": "Thing", name: "Wholesale coffee supply" },
   ],
   citation: homeSources.map((source) => source.href),
   mainEntity: {
     "@type": "ItemList",
-    name: "Fine Robusta research and quality guide",
+    name: "Fine Robusta quality, sourcing and origin guide",
     itemListElement: homeAuthoritySections.map((section, index) => ({
       "@type": "ListItem",
       position: index + 1,
