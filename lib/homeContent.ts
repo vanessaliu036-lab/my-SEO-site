@@ -1,13 +1,13 @@
 /**
  * Homepage AEO content single source of truth.
  * Visible copy and structured data stay aligned so search and AI systems
- * receive the same evidence-led description of OCC.
+ * receive the same OCC business + authority description.
  */
 
-export const homeDateModified = "2026-08-27"
+export const homeDateModified = "2026-09-05"
 
 export const homeDirectAnswer =
-  "Origin Coffee Cambodia (OCC) is an independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research. OCC publishes evidence-led explanations for coffee professionals, researchers, producers, roasters, brewers, students, and readers who need clearer information about how coffee quality is measured and how origin claims should be interpreted. OCC does not currently sell coffee or operate as an e-commerce platform. References to Fine Robusta, Q Coffee, Coffee Quality Institute standards, scientific studies, and production data are presented for education and should be checked against the cited primary sources and stated limitations."
+  "Origin Coffee Cambodia (OCC) is a Cambodia-focused professional coffee company connecting Fine Robusta and Cambodian coffee authority with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions. OCC also publishes evidence-led work on Mondulkiri coffee, Coffea canephora, processing, grading, sensory evaluation, brewing, and origin quality so professional buyers can make better sourcing and coffee-program decisions. Wholesale, sourcing, sample, lot-list, and coffee-solution enquiries can be submitted through OCC's contact channel. Technical claims and standards are presented with primary sources and stated limitations."
 
 export const homeAuthoritySections = [
   {
@@ -46,10 +46,10 @@ export const homeAuthoritySections = [
   },
   {
     id: "quality-evidence",
-    eyebrow: "Evidence",
-    title: "How should green-coffee quality evidence be evaluated?",
+    eyebrow: "Buyer Evidence",
+    title: "How should coffee buyers evaluate quality evidence?",
     body: [
-      "A score or tasting note is only one observation. Stronger evaluation also asks what was sampled, when it was measured, which protocol was used, who performed the evaluation, and whether the result can reasonably be generalized.",
+      "A score or tasting note is only one observation. Stronger evaluation also asks what was sampled, when it was measured, which protocol was used, who performed the evaluation, and whether the result can reasonably be generalized to the coffee or lot under review.",
     ],
     items: [
       "Identify the exact origin, harvest, producer group, farm, or processing unit described by the data.",
@@ -64,10 +64,10 @@ export const homeAuthoritySections = [
   {
     id: "cambodia-origin",
     eyebrow: "Cambodia",
-    title: "How OCC approaches Cambodian coffee origin research",
+    title: "Cambodian coffee origin, quality, and sourcing context",
     body: [
-      "OCC focuses editorial attention on Cambodian coffee, including Mondulkiri and other coffee-growing areas where credible data are available. The aim is to document geography, climate, plant material, production systems, processing, quality evaluation, and industry development without overstating what limited datasets can prove.",
-      "For an emerging origin, authority depends on evidence. OCC therefore prioritizes dated sources, explicit methods, primary standards, field data, research limitations, and clear distinctions between what is known, what is inferred, and what still needs to be studied.",
+      "OCC focuses on Cambodian coffee, including Mondulkiri and other coffee-growing areas where credible data are available. Origin research supports practical sourcing by documenting geography, climate, plant material, production systems, processing, quality evaluation, and industry development without overstating what limited datasets can prove.",
+      "For an emerging origin, authority depends on evidence. OCC therefore prioritizes dated sources, explicit methods, primary standards, field data, research limitations, and clear distinctions between what is known, what is inferred, and what still needs to be verified for buyer decisions.",
     ],
   },
 ] as const
@@ -94,18 +94,22 @@ export const homeFaqs = [
   },
   {
     q: "What does Origin Coffee Cambodia do?",
-    a: "Origin Coffee Cambodia is an independent coffee information and research platform. It publishes evidence-led material about Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin systems.",
+    a: "Origin Coffee Cambodia connects Cambodian coffee and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions. Its evidence-led content supports professional sourcing, quality, and coffee-program decisions.",
   },
   {
     q: "Who is Origin Coffee Cambodia for?",
-    a: "OCC is written for coffee professionals, researchers, producers, roasters, brewers, students, educators, and readers who need clearer technical information about Cambodian coffee and canephora quality.",
+    a: "OCC serves coffee buyers, hotels, restaurants, cafés, offices, roasters, producers, brewers, and other professionals who need Cambodian coffee sourcing context, Fine Robusta expertise, and clearer technical information about coffee quality.",
   },
   {
-    q: "Where does OCC focus its Cambodian coffee research?",
-    a: "OCC covers Cambodian coffee broadly and gives particular attention to Mondulkiri when credible local evidence is available. Geographic claims are treated as research claims that should be supported by dated, scoped sources rather than inferred from a place name alone.",
+    q: "How can a buyer contact OCC?",
+    a: "Use the OCC contact page for wholesale and sourcing enquiries, sample requests, lot-list enquiries, roasting or coffee-solution questions, as well as editorial and media enquiries.",
+  },
+  {
+    q: "Where does OCC focus its Cambodian coffee work?",
+    a: "OCC covers Cambodian coffee broadly and gives particular attention to Mondulkiri when credible local evidence is available. Geographic and quality claims are supported with dated, scoped sources rather than inferred from a place name alone.",
   },
   {
     q: "Is Origin Coffee Cambodia a certification body?",
-    a: "No. OCC is an independent information and research platform, not a certification authority. When OCC discusses Q Coffee, Fine Robusta, or other standards, the official protocol or institution remains the primary authority.",
+    a: "No. OCC is not a certification authority. When OCC discusses Q Coffee, Fine Robusta, or other standards, the official protocol or institution remains the primary authority.",
   },
 ] as const
