@@ -21,9 +21,9 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
         </div>
         <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-end gap-10 px-6 pb-14 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-16">
           <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
-            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Supply · Craft · People · Uptime</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Sourcing · Roasting · Staffing · Equipment</p>
             <p className="mt-6 max-w-xs text-[15px] leading-7 text-black/76">
-              Four programs built for operators who need supply, craft, people, and uptime in one ecosystem.
+              Four B2B coffee solution areas for buyers and operators in Cambodia, structured around clear requirements, evidence, and due diligence before commitments are made.
             </p>
           </MotionReveal>
           <MotionReveal className="md:col-span-7 md:col-start-4">
@@ -33,13 +33,13 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
           </MotionReveal>
           <MotionReveal direction="right" className="md:col-span-2 md:pb-3">
             <p className="border-t border-black/10 pt-5 text-[10px] uppercase leading-6 tracking-[0.18em] text-black/38">
-              OCC / Cambodia<br />B2B Coffee Infrastructure
+              OCC / Cambodia<br />Coffee Authority &amp; B2B Solutions
             </p>
           </MotionReveal>
         </div>
         <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
           <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:block">Four connected programs</span>
+          <span className="hidden sm:block">Four B2B solution areas</span>
           <span>02 / Solutions</span>
         </div>
       </section>
@@ -48,10 +48,10 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
         <section className="border-b border-black/10 py-16 lg:py-24" aria-labelledby="solutions-programs-title">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-3">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/35">01 / Programs</p>
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/35">01 / Solutions</p>
               <h2 id="solutions-programs-title" className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.03em] sm:text-4xl">
-                One operating
-                <br />ecosystem.
+                From requirement
+                <br />to verified scope.
               </h2>
             </div>
             <div className="md:col-span-8 md:col-start-5">
@@ -78,16 +78,16 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
             <div className="md:col-span-4">
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/35">02 / Start a conversation</p>
               <h2 className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.03em] sm:text-4xl">
-                Build the right
-                <br />service stack.
+                Define what
+                <br />you need.
               </h2>
             </div>
             <div className="mt-8 md:col-span-6 md:col-start-7 md:mt-0">
               <p className="max-w-xl text-[15px] leading-8 text-black/76">
-                Start with one service or combine supply, roasting, staffing, and equipment support around your operation.
+                Use these pages to scope sourcing, roasting, staffing, or equipment needs, verify the relevant operating facts, and then discuss the requirement with OCC through the contact channel.
               </p>
               <Link href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-200 hover:-translate-y-0.5">
-                Request a quote <ArrowUpRight className="size-3" />
+                Discuss your requirements <ArrowUpRight className="size-3" />
               </Link>
             </div>
           </section>
