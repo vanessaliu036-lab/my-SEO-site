@@ -11,10 +11,13 @@ import {
 } from "./action"
 
 const ENQUIRY_TYPES = [
-  "General Enquiry",
-  "Editorial Question",
-  "Source Correction",
+  "Wholesale / Sourcing",
+  "Sample Request",
+  "Lot List",
+  "Roasting / Solutions",
+  "Editorial / Source Correction",
   "Media / Interview",
+  "General Enquiry",
 ] as const satisfies readonly ContactFormData["service"][]
 
 const inputBase =
@@ -77,18 +80,18 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
             <h1 className="leading-[0.92] tracking-[0.02em] text-[#0f0f0f] mb-8 [font-family:var(--font-bebas)]" style={{ fontSize: "clamp(64px, 8vw, 110px)" }}>
               GET IN<br />TOUCH.
             </h1>
-            <p className="text-sm font-light italic text-[#5a5a5a] leading-relaxed max-w-[360px] mb-16 pl-4 border-l-2 border-[#0f0f0f]">
-              Use this form for editorial questions, source corrections, media enquiries, or general questions about OCC&apos;s published research and information.
+            <p className="text-sm font-light italic text-[#5a5a5a] leading-relaxed max-w-[390px] mb-16 pl-4 border-l-2 border-[#0f0f0f]">
+              Contact OCC for wholesale and sourcing enquiries, sample requests, lot-list questions, roasting or coffee solutions, as well as editorial and media enquiries.
             </p>
           </div>
 
           <div className="mt-auto">
             <div className="flex flex-col gap-1 mb-7 pb-7 border-b border-[#d0cdc8]">
-              <span className={labelBase}>Focus</span>
-              <span className="text-sm font-normal text-[#0f0f0f]">Coffee information and research</span>
+              <span className={labelBase}>Business Focus</span>
+              <span className="text-sm font-normal text-[#0f0f0f]">Sourcing · Wholesale · Roasting · B2B Coffee Solutions</span>
             </div>
             <div className="flex flex-col gap-1 mb-7 pb-7 border-b border-[#d0cdc8]">
-              <span className={labelBase}>Editorial Scope</span>
+              <span className={labelBase}>Authority Focus</span>
               <span className="text-sm font-normal text-[#0f0f0f]">Cambodia · Fine Robusta · Coffea canephora</span>
             </div>
             <div className="flex flex-col gap-1">
@@ -101,7 +104,7 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
         <div className="flex flex-col justify-center p-10 md:p-16">
           <div className="mb-12">
             <p className="text-[11px] tracking-[0.15em] text-[#9a9a9a] uppercase mb-2 [font-family:var(--font-barlow-condensed)]">01 / Contact Form</p>
-            <p className="text-[22px] font-medium tracking-[0.08em] uppercase text-[#0f0f0f] [font-family:var(--font-barlow-condensed)]">Send a Message</p>
+            <p className="text-[22px] font-medium tracking-[0.08em] uppercase text-[#0f0f0f] [font-family:var(--font-barlow-condensed)]">Start an Enquiry</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -135,7 +138,7 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
 
             <div className="mb-8">
               <label htmlFor="message" className={labelBase}>Message <span className="normal-case tracking-normal font-normal">(optional)</span></label>
-              <textarea id="message" rows={4} data-clarity-mask="true" placeholder="Tell us what you are asking about, which page or source is involved, and any relevant context." className={`${inputBase} resize-none`} {...register("message")} />
+              <textarea id="message" rows={4} data-clarity-mask="true" placeholder="Tell us what you need, the coffee or service context, expected use, timing, and any relevant quality or sourcing requirements." className={`${inputBase} resize-none`} {...register("message")} />
               {errors.message && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.message.message}</p>}
             </div>
 
@@ -143,7 +146,7 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
 
             <div className="flex items-center justify-end mt-12 pt-8 border-t border-[#d0cdc8]">
               <button type="submit" disabled={isPending} className="flex items-center gap-3.5 bg-[#0f0f0f] text-[#f4f2ef] px-7 py-4 text-[13px] tracking-[0.18em] uppercase [font-family:var(--font-barlow-condensed)] hover:bg-[#1a1a1a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[160px] justify-center">
-                {isPending ? "Sending…" : <>Send Message <span aria-hidden="true">→</span></>}
+                {isPending ? "Sending…" : <>Send Enquiry <span aria-hidden="true">→</span></>}
               </button>
             </div>
           </form>
@@ -152,9 +155,9 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
 
       {isSuccess && (
         <div role="dialog" aria-modal="true" aria-labelledby="success-title" className="fixed inset-0 bg-[#0f0f0f] text-[#f4f2ef] z-50 flex flex-col items-center justify-center text-center p-10">
-          <p className="text-[11px] tracking-[0.25em] text-[#888] uppercase mb-6 [font-family:var(--font-barlow-condensed)]">Message Received</p>
+          <p className="text-[11px] tracking-[0.25em] text-[#888] uppercase mb-6 [font-family:var(--font-barlow-condensed)]">Enquiry Received</p>
           <h2 id="success-title" className="tracking-[0.04em] mb-5 [font-family:var(--font-bebas)]" style={{ fontSize: "72px" }}>NOTED.</h2>
-          <p className="text-[15px] font-light italic text-[#aaa] max-w-xs leading-relaxed mb-10">Your message has been received.</p>
+          <p className="text-[15px] font-light italic text-[#aaa] max-w-xs leading-relaxed mb-10">Your enquiry has been received.</p>
           <button onClick={() => setIsSuccess(false)} className="text-[12px] tracking-[0.2em] uppercase text-white border-b border-[#555] pb-1 hover:border-white transition-colors [font-family:var(--font-barlow-condensed)]">← Return</button>
         </div>
       )}
