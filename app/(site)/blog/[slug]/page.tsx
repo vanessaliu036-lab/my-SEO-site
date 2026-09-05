@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical, seoDescription, seoTitle } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
-import { getAllPosts, getPostBySlug } from "@/lib/airtable"
+import { getPostBySlug, getRecentPosts } from "@/lib/airtable"
 
 // Plain-text / Markdown -> readable HTML with internal links injected
 const INTERNAL_LINKS: Record<string, string> = {
@@ -339,7 +339,7 @@ function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>)
 
 export const revalidate = 60
 
-/** 列表未預建的 slug 仍可開文（與 getAllPosts 規則一致）。 */
+/** 列表未預建的 slug 仍可開文（與 canonical corpus 規則一致）。 */
 export const dynamicParams = true
 
 export async function generateMetadata({
@@ -380,11 +380,11 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const [post, allPosts] = await Promise.all([getPostBySlug(slug), getAllPosts()])
+  const [post, recentPosts] = await Promise.all([getPostBySlug(slug), getRecentPosts()])
 
   if (!post) notFound()
 
-  const related = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
+  const related = recentPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
   const mins = readingTime(post.content)
   const keywordList = post.keywords
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
