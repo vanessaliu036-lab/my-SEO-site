@@ -7,8 +7,9 @@ const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 // Canonical frontend corpus = all OCC_Blog_Posts working records +
 // OCC_INDEXED_PROTECTED records, deduplicated only by true public article identity.
 // Draft / Published / Public are workflow metadata and MUST NOT be frontend inclusion gates.
-// There is deliberately NO maxRecords cap on corpus list fetches; pagination runs until
-// Airtable returns no offset.
+// There is deliberately NO maxRecords cap on canonical corpus list fetches; pagination runs
+// until Airtable returns no offset. Bounded reads are used only for non-corpus UI such as
+// related/recent article recommendations.
 const AIRTABLE_TABLE_NAMES = ['OCC_Blog_Posts', 'OCC_INDEXED_PROTECTED'] as const
 const AIRTABLE_CACHE_SECONDS = 300
 const AIRTABLE_MAX_ATTEMPTS = 3
@@ -57,10 +58,9 @@ const K = {
   featured: ['featured_image_url', 'Featured Image URL'] as const,
 }
 
-// Airtable enforces a per-base request ceiling. A full OCC corpus refresh requires many
-// paginated requests, so requests inside a warm server process are serialized and spaced.
-// The cross-request Next.js cache below then prevents every article view from repeating
-// the full corpus scan.
+// Airtable enforces a per-base request ceiling. Requests inside a warm server process are
+// serialized and spaced. Canonical corpus reads remain cached separately from lightweight
+// article-detail and recent-post reads.
 const AIRTABLE_MIN_REQUEST_INTERVAL_MS = 260
 let airtableRequestChain: Promise<void> = Promise.resolve()
 let nextAirtableRequestAt = 0
@@ -207,7 +207,10 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
   }
 }
 
-async function fetchTableRecords(tableName: AirtableTableName): Promise<AirtableRecord[]> {
+async function fetchTableRecords(
+  tableName: AirtableTableName,
+  maxRecords?: number
+): Promise<AirtableRecord[]> {
   requireAirtableCredentials()
 
   const all: AirtableRecord[] = []
@@ -215,10 +218,11 @@ async function fetchTableRecords(tableName: AirtableTableName): Promise<Airtable
 
   do {
     const params = new URLSearchParams()
-    params.set('pageSize', '100')
+    params.set('pageSize', String(Math.min(100, maxRecords || 100)))
     params.set('sort[0][field]', sortFieldForTable(tableName))
     params.set('sort[0][direction]', 'desc')
     for (const field of LIST_FIELDS[tableName]) params.append('fields[]', field)
+    if (maxRecords) params.set('maxRecords', String(maxRecords))
     if (offset) params.set('offset', offset)
 
     const response = await fetchAirtableWithRetry(
@@ -239,9 +243,9 @@ async function fetchTableRecords(tableName: AirtableTableName): Promise<Airtable
       }))
     )
     offset = typeof data.offset === 'string' && data.offset ? data.offset : undefined
-  } while (offset)
+  } while (offset && (!maxRecords || all.length < maxRecords))
 
-  return all
+  return maxRecords ? all.slice(0, maxRecords) : all
 }
 
 export interface BlogPost {
@@ -303,6 +307,44 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   return getAllPostsCached()
 }
 
+async function loadRecentPosts(): Promise<BlogPost[]> {
+  requireAirtableCredentials()
+
+  const groups: AirtableRecord[][] = []
+  for (const tableName of AIRTABLE_TABLE_NAMES) {
+    groups.push(await fetchTableRecords(tableName, 6))
+  }
+
+  const seenSlug = new Set<string>()
+  const posts: BlogPost[] = []
+
+  for (const record of groups.flat()) {
+    const item = recordToListItem(record)
+    if (!item) continue
+    const identity = item.slug.toLowerCase()
+    if (seenSlug.has(identity)) continue
+    seenSlug.add(identity)
+    posts.push(item)
+  }
+
+  posts.sort((a, b) => {
+    const aTime = a.publish_date ? Date.parse(a.publish_date) || 0 : 0
+    const bTime = b.publish_date ? Date.parse(b.publish_date) || 0 : 0
+    return bTime - aTime
+  })
+
+  return posts.slice(0, 6)
+}
+
+const getRecentPostsCached = unstable_cache(loadRecentPosts, ['occ-airtable-recent-v1'], {
+  revalidate: AIRTABLE_CACHE_SECONDS,
+})
+
+export async function getRecentPosts(): Promise<BlogPost[]> {
+  requireAirtableCredentials()
+  return getRecentPostsCached()
+}
+
 function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   const base = recordToListItem(record)
   if (!base) return null
@@ -334,14 +376,48 @@ async function fetchRecordById(
   return data?.fields ? { id: data.id, fields: data.fields, tableName } : null
 }
 
+async function fetchRecordBySlug(
+  slug: string,
+  tableName: AirtableTableName
+): Promise<AirtableRecord | null> {
+  requireAirtableCredentials()
+  if (!isAcceptableSlug(slug)) return null
+
+  const params = new URLSearchParams()
+  params.set('pageSize', '1')
+  params.set('maxRecords', '1')
+  params.set('filterByFormula', `LOWER({slug})="${slug.toLowerCase()}"`)
+
+  const response = await fetchAirtableWithRetry(
+    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}?${params.toString()}`
+  )
+
+  if (!response.ok) {
+    const body = await responseErrorBody(response)
+    throw new Error(`Airtable slug lookup failed for ${tableName}/${slug}: ${response.status} ${body}`)
+  }
+
+  const data = await response.json()
+  const record = Array.isArray(data.records) ? data.records[0] : undefined
+  return record?.fields ? { id: record.id, fields: record.fields, tableName } : null
+}
+
 async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   requireAirtableCredentials()
 
   const slug = canonicalSlugForUrl(urlSlug)
   if (!slug) return null
 
-  // Resolve public identity from the cached canonical corpus first. This avoids two
-  // Airtable formula lookups for every article request and preserves derived-slug support.
+  // Fast path: stable public slugs are indexed directly in Airtable. Preserve table
+  // precedence and avoid a full 1,700+ record corpus scan on cold article requests.
+  for (const tableName of AIRTABLE_TABLE_NAMES) {
+    const direct = await fetchRecordBySlug(slug, tableName)
+    if (direct) return recordToDetail(direct)
+  }
+
+  // Compatibility fallback: a small number of legacy records may rely on a title-derived
+  // public slug. Keep the canonical full-corpus identity path for those records so no
+  // protected URL disappears because of this delivery optimization.
   const hit = (await getAllPosts()).find((post) => post.slug.toLowerCase() === slug.toLowerCase())
   if (!hit) return null
 
@@ -349,7 +425,7 @@ async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   return full ? recordToDetail(full) : null
 }
 
-const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v4'], {
+const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v5'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
