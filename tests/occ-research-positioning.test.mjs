@@ -34,14 +34,19 @@ const collectionPage = read('app/(site)/collection/page.tsx')
 const collectionPackageStage = read('components/ui/collection-package-stage.tsx')
 const angkarPage = read('app/(site)/collection/angkar/page.tsx')
 
-test('OCC keeps its current evidence-led metadata foundation', () => {
-  assert.match(siteConfig, /independent coffee information and research platform/i)
+test('OCC metadata foundation combines professional coffee supply with evidence-led authority', () => {
+  assert.match(siteConfig, /Specialty coffee sourcing, roasting and B2B supply in Cambodia/i)
+  assert.match(siteConfig, /Fine Robusta|Mondulkiri|traceability/i)
+  assert.doesNotMatch(siteConfig, /independent coffee information and research platform/i)
   assert.doesNotMatch(rootLayout, /AdminFrontendSwitch/)
 })
 
-test('homepage remains research-led while the historical public shell is restored separately', () => {
+test('homepage carries the approved supplier positioning while retaining research authority', () => {
   const publicHome = `${homePage}\n${homeContent}\n${homeTemplate}`
-  assert.match(publicHome, /research/i)
+  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta Beans & Specialty Coffee Supplier"/)
+  assert.match(publicHome, /B2B supply|Wholesale & Sourcing|Start an Enquiry/i)
+  assert.match(publicHome, /research|evidence/i)
+  assert.doesNotMatch(publicHome, /does not currently sell coffee|does not sell coffee|research platform/i)
 })
 
 test('homepage metadata separates the organization logo from the social sharing image', () => {
@@ -49,7 +54,6 @@ test('homepage metadata separates the organization logo from the social sharing 
   assert.match(rootLayout, /images:\s*\[\{\s*url:\s*ogImage/)
   assert.doesNotMatch(rootLayout, /width:\s*180|height:\s*180/)
   assert.match(homePage, /images:\s*\[\{\s*url:\s*ogImage/)
-  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta & Mondulkiri Research"/)
   assert.match(homePage, /title:\s*seoTitle\(homeTitle\)/)
   assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteLogoUrl/)
 })
@@ -129,22 +133,26 @@ test('article shell does not inject commercial money-pillar supplier or exporter
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
 })
 
-test('contact surface remains general editorial contact', () => {
+test('contact surface supports B2B conversion without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
-  assert.doesNotMatch(contact, /contactType\s*:\s*["']sales["']/i)
-  assert.match(contact, /General Enquiry|Editorial Question/i)
+  for (const enquiry of ['Wholesale / Sourcing', 'Sample Request', 'Lot List', 'Roasting / Solutions']) {
+    assert.match(contact, new RegExp(enquiry.replace('/', '\\/')))
+  }
+  assert.match(contactPage, /wholesale and sourcing inquiries/i)
+  assert.match(contact, /Editorial \/ Source Correction|Media \/ Interview|General Enquiry/i)
+  assert.doesNotMatch(contact, /in stock|available now|guaranteed sample|live inventory/i)
 })
 
-test('About surfaces describe the same research-platform entity as the site foundation', () => {
+test('About surfaces keep evidence safeguards while describing OCC as a professional coffee company', () => {
   const aboutSurfaces = `${aboutPage}\n${missionPage}\n${founderPage}\n${manifestoPage}\n${sustainabilityPage}`
-  assert.match(aboutPage, /independent coffee information and research platform/i)
+  assert.match(aboutPage, /professional coffee company|sourcing|B2B supply/i)
   assert.match(missionPage, /research|evidence|technical editorial/i)
   assert.match(founderPage, /editorial philosophy|research philosophy|evidence/i)
   assert.match(manifestoPage, /research|evidence|technical editorial/i)
   assert.match(sustainabilityPage, /evidence|documentation|traceability claims/i)
   assert.doesNotMatch(
     aboutSurfaces,
-    /specialty coffee infrastructure company|coffee supplier Cambodia|coffee roaster Phnom Penh|we pay above market|free enrollment|placement within businesses/i,
+    /we pay above market|free enrollment|placement within businesses/i,
   )
 })
 
@@ -162,12 +170,13 @@ test('About structured data does not invent a founder identity or unverified ope
   )
 })
 
-test('shared About shell stays research-led and avoids unsupported operating claims', () => {
+test('shared About shell combines supply, quality and evidence without unsupported operating claims', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${navigation}`
+  assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply/i)
   assert.match(sharedAboutShell, /research|evidence/i)
   assert.doesNotMatch(
     sharedAboutShell,
-    /\binfrastructure\b|2020|100%|full traceability from farm to cup|professional training|barista army|partnering with cafés|specialty coffee supply chain|supply chain optimization/i,
+    /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
   )
 })
 
@@ -195,10 +204,7 @@ test('Collection package stage uses a neutral collection context instead of lot 
   assert.match(coffeeBagVisual, /Canephora Profile/i)
 })
 
-// Solutions is now a real published section (see "repair: restore full repository
-// tree after isolated Solutions restore"), not a redirect-to-blog stub. This test
-// asserted the earlier stub-era policy and is stale; skipped rather than rewritten
-// since the current Solutions section's intended content is out of scope here.
+// Solutions is now a real published section, not a redirect-to-blog stub.
 test.skip('legacy solution URLs retain their current safe redirects during the visual restore', () => {
   for (const path of [
     'app/(site)/solutions/page.tsx',
