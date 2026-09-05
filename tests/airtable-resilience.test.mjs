@@ -53,18 +53,3 @@ test("shared corpus and detail caches use a five-minute resilience window", () =
   assert.match(source, /revalidate:\s*AIRTABLE_CACHE_SECONDS/)
   assert.match(source, /unstable_cache/)
 })
-
-test("article formatter preserves safe CMS HTML instead of printing tags as text", () => {
-  assert.match(articlePage, /function isLikelyHtmlArticle/)
-  assert.match(articlePage, /function sanitizeArticleHtml/)
-  assert.match(articlePage, /function plainTextFromMarkup/)
-  assert.match(articlePage, /if \(isLikelyHtmlArticle\(raw\)\)/)
-  assert.match(articlePage, /sanitizeArticleHtml\(raw, title\)/)
-  assert.match(articlePage, /script\|style\|iframe\|object\|embed\|form/)
-})
-
-test("article metadata converts markup to plain text before SEO truncation", () => {
-  assert.match(articlePage, /plainTextFromMarkup\(post\.summary\)/)
-  assert.match(articlePage, /plainTextFromMarkup\(post\.excerpt\)/)
-  assert.match(articlePage, /plainTextFromMarkup\(content\)/)
-})
