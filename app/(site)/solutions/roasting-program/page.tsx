@@ -6,7 +6,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Custom Coffee Roasting Cambodia | OCC Roasting Program",
   description:
-    "Custom coffee roasting in Cambodia for cafés, hotels, and coffee brands evaluating house blends, roast profiles, private-label programs, and repeatable B2B coffee production.",
+    "Custom coffee roasting in Cambodia for cafés, hotels, and coffee brands developing house blends, roast profiles, and structured, repeatable B2B coffee programs.",
   keywords:
     "custom coffee roasting Cambodia, coffee roasting service Cambodia, contract coffee roasting Cambodia, private label coffee Cambodia, custom roast profile development, house blend development, B2B coffee roasting Cambodia",
   openGraph: {
@@ -19,59 +19,20 @@ export const metadata: Metadata = {
   alternates: pageAlternates("/solutions/roasting-program"),
 }
 
-const faqSchema = {
+const webpageSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What does a custom coffee roasting program include?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A useful program starts with the coffee, intended use, sensory target, brewing context, sample roasts, evaluation criteria, profile refinement, and a documented reference for repeat production.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can a roasting program support a house blend?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. House-blend development can be structured around espresso, milk beverages, black coffee, or another defined menu application, with the final direction evaluated against the intended use.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can Cambodian coffee or Fine Robusta be considered for roast development?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, where the coffee is appropriate for the target product. Origin, processing, sensory character, and roast development should be evaluated together rather than assuming one roast style fits every coffee.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What should be verified before private-label production?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Confirm the responsible production partner, coffee specification, approved profile, packaging and labeling responsibility, quality checks, volume, lead-time assumptions, and the process for managing future coffee or profile changes.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is the minimum order quantity?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Production minimums depend on the coffee, profile, packaging, number of SKUs, project stage, and production partner. The appropriate scope should be confirmed after the project brief is reviewed.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How long does roast-profile development take?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Development timing depends on coffee selection, the number of profiles, evaluation rounds, packaging requirements, and approval steps. A project schedule should be confirmed after the initial brief.",
-      },
-    },
-  ],
+  "@type": "WebPage",
+  "@id": `${siteUrl}/solutions/roasting-program#webpage`,
+  name: "Custom Coffee Roasting Program in Cambodia",
+  description:
+    "Custom coffee roasting in Cambodia for cafés, hotels, and coffee brands developing house blends, roast profiles, and structured, repeatable B2B coffee programs.",
+  url: `${siteUrl}/solutions/roasting-program`,
+  about: {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    name: "Origin Coffee Cambodia",
+    url: siteUrl,
+  },
 }
 
 const breadcrumbSchema = {
@@ -222,7 +183,7 @@ export default function RoastingProgramPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <SolutionDetailTemplate
         index="02"
@@ -239,7 +200,7 @@ export default function RoastingProgramPage() {
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Discuss your requirements"
+        ctaLabel="Discuss your roasting program"
       />
     </>
   )
