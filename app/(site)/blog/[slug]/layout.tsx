@@ -59,6 +59,7 @@ const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
   "specialty-robusta-brewing-methods": OWNER_ROUTES.brewing,
   "how-to-brew-fine-robusta-a-complete-guide-to-unlocking-bold-flavors": OWNER_ROUTES.brewing,
   "fine-robusta-coffee-the-art-and-science-of-brewing": OWNER_ROUTES.brewing,
+  "fine-robusta-coffee-to-water-ratio-explained": OWNER_ROUTES.brewing,
 
   // Comparison: legacy comparison pages retain myth, price, or consumer-choice sub-intents.
   "specialty-robusta-vs-arabica-honest-comparison": OWNER_ROUTES.comparison,
