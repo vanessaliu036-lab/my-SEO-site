@@ -88,7 +88,6 @@ const internalLinks: Record<string, string> = {
   "Fine Robusta": "/fine-robusta-cambodia",
   "Wholesale Coffee Supply": "/solutions/wholesale",
   cupping: "/coffee/single-origin",
-  wholesale: "/solutions/wholesale",
   staffing: "/solutions/barista-staffing",
   equipment: "/solutions/equipment-service",
 }
