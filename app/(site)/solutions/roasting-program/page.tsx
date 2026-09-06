@@ -200,7 +200,7 @@ export default function RoastingProgramPage() {
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Discuss your roasting program"
+        ctaLabel="Discuss your requirements"
       />
     </>
   )
