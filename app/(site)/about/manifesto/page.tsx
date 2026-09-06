@@ -66,44 +66,46 @@ const breadcrumbSchema = {
 
 const faqs = [
   {
-    q: "What does evidence before claims mean at OCC?",
-    a: "It means the strength of a statement should match the strength of its source. Historical records are labeled historical, current standards are dated, and country-level conclusions are not inferred from one lot or one anecdote.",
+    q: "What does the OCC manifesto stand for?",
+    a: "OCC believes coffee quality is a system. Origin, processing, sourcing, roasting, brewing, people, equipment, and service all affect whether quality can be repeated consistently.",
   },
   {
-    q: "Why does OCC separate context from conclusions?",
-    a: "Coffee quality depends on interacting variables such as genetics, environment, processing, storage, roasting, brewing, and sensory method. Context prevents one variable from being treated as a universal explanation.",
+    q: "Why does OCC not build its identity around operating a café?",
+    a: "One café can control quality in one location. OCC is built to support many coffee businesses through supply, roasting, training, and operational support, so its impact is not limited to a single venue.",
   },
   {
-    q: "How does OCC handle incomplete evidence?",
-    a: "OCC states the uncertainty, identifies what is missing, and avoids filling the gap with invented precision. A research gap is treated as a finding, not as permission to guess.",
+    q: "How does Fine Robusta fit into OCC's manifesto?",
+    a: "OCC treats Fine Robusta as a specialist quality category rather than a lower-grade substitute for Arabica. Better selection, processing, evaluation, roasting, and buyer understanding can create more useful and more valuable Cambodian Robusta coffee.",
   },
 ]
 
 const sections = [
   {
-    title: "Evidence Before Claims",
+    title: "Quality Is a System",
     paragraphs: [
-      "A confident sentence is not automatically a strong sentence. OCC gives more weight to a claim only when the underlying evidence justifies it.",
-      "That means distinguishing primary sources from commentary, current standards from historical frameworks, and repeatable evidence from isolated examples.",
+      "Origin Coffee Cambodia is a Cambodia specialty coffee supplier and Fine Robusta specialist focused on B2B coffee supply and roasting solutions. We believe good coffee is not created at one point in the chain.",
+      "Origin matters. Processing matters. Sourcing matters. Roasting matters. Brewing matters. People and equipment matter. Quality only becomes meaningful when those parts work together consistently from the first sample to the cup served to a customer.",
     ],
   },
   {
-    title: "Context Before Conclusions",
+    title: "Why We Will Not Build Our Identity Around a Café",
     paragraphs: [
-      "Coffee is a multi-variable system. Species does not determine flavor by itself. Origin does not guarantee quality. Processing terminology does not describe every operational detail. A useful explanation keeps those dependencies visible.",
+      "Opening a café would be an easy way to demonstrate our coffee in one controlled environment. But one excellent café solves quality in one location, and that is not the problem OCC is built to solve.",
+      "We would rather strengthen the coffee programs behind cafés, hotels, restaurants, offices, and hospitality businesses. Our customers build the experience. OCC helps make the coffee inside that experience more dependable through supply, roasting, training, and operational support.",
     ],
   },
   {
-    title: "Transparent Uncertainty",
+    title: "Fine Robusta Deserves Better Standards",
     paragraphs: [
-      "When the record is incomplete, OCC says so. Unknown is not a weakness in technical editorial; pretending the unknown is settled is.",
-      "This is especially important for Cambodian coffee, where public evidence can be fragmented and where emerging-origin narratives can move faster than documented production data.",
+      "Robusta should not be defined by the lowest-quality examples of the category. Cambodia's Coffea canephora sector has room to create greater value when better cherry selection, processing, drying, sorting, sensory evaluation, and roasting are applied with discipline.",
+      "For OCC, Fine Robusta is not a substitute for Arabica and not a marketing label. It is a field of specialization that connects Cambodian origin, measurable quality, roast development, and real buyer applications.",
     ],
   },
   {
-    title: "Correction Is Part of the Work",
+    title: "Supply Means Accountability",
     paragraphs: [
-      "Standards change, institutions change, and better evidence can overturn earlier assumptions. OCC treats correction as maintenance of the knowledge base rather than as a failure of authority.",
+      "Supplying coffee is not only about delivering bags. A professional supplier should be accountable for consistency, appropriate quality, clear communication, useful specifications, roasting decisions, and the support required for the coffee to perform in the buyer's operation.",
+      "That is why OCC connects Cambodian coffee supply with roasting solutions and practical B2B support. We are not trying to become everything in coffee. We are building around three clear roles: Cambodia specialty coffee supplier, Fine Robusta specialist, and B2B coffee supply plus roasting solutions.",
     ],
   },
 ]
@@ -116,15 +118,15 @@ export default function ManifestoPage() {
       <AboutInstitutionalTemplate
         index="03"
         title="MANIFESTO"
-        subtitle="EVIDENCE BEFORE CLAIMS."
+        subtitle="QUALITY IS A SYSTEM."
         lead={[
-          "The purpose of research is not to make every statement sound certain.",
-          "It is to make clear what is known, how it is known, and where the evidence stops.",
+          "We do not believe better coffee comes from one impressive bean, one roast profile, or one skilled barista.",
+          "It comes from a system that makes quality repeatable from Cambodian origin and sourcing through roasting, preparation, and service.",
         ]}
         sections={sections}
         closing={[
-          "Precision includes the boundary of the claim.",
-          "OCC would rather publish a narrower conclusion that can be defended than a stronger story that cannot.",
+          "Zero compromise does not mean pretending perfection exists. It means taking responsibility for the variables we can control and refusing to let convenience replace standards.",
+          "OCC exists to strengthen the coffee behind the business: Cambodia specialty coffee supply, Fine Robusta expertise, and B2B roasting solutions built for consistency.",
         ]}
         faqs={faqs}
         next={{
