@@ -170,8 +170,8 @@ export default function Navigation() {
       {/* 底部資訊 */}
       <div className="mt-12 pt-8 border-t border-gray-200">
         <p className="text-[10px] text-gray-400 tracking-widest">
-          EVIDENCE-LED<br />
-          COFFEE RESEARCH
+          SPECIALTY COFFEE<br />
+          SUPPLY &amp; ROASTING
         </p>
       </div>
 
