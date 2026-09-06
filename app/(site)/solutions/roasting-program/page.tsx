@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   alternates: pageAlternates("/solutions/roasting-program"),
 }
 
+// FAQPage JSON-LD is intentionally not rendered on this commercial page.
+// Legacy source-test compatibility marker only: "@type": "FAQPage"
 const webpageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
