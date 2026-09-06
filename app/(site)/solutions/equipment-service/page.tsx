@@ -4,9 +4,9 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Equipment Service Cambodia | OCC Vendor Evaluation Framework",
+  title: "Coffee Equipment Service Cambodia | OCC",
   description:
-    "Evidence-led guidance for cafés, hotels, offices, and operators evaluating coffee equipment installation, maintenance, repair, spare-parts support, and service vendors in Cambodia.",
+    "Evidence-led guidance for operators evaluating coffee equipment, maintenance, repairs, parts support, and service vendors in Cambodia.",
   keywords:
     "espresso machine service Cambodia, coffee equipment maintenance Cambodia, grinder repair Phnom Penh, cafe equipment technician, coffee equipment vendor due diligence",
   openGraph: {

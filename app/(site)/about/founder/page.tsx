@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Founder Philosophy | Origin Coffee Cambodia - OCC",
   description:
-    "The founding editorial philosophy behind OCC: research before repetition, evidence before certainty, and clear boundaries between what is documented and what is still unknown.",
+    "OCC's founding philosophy: research before repetition, evidence before certainty, and clear boundaries around what is documented and unknown.",
   keywords:
     "OCC editorial philosophy, Cambodian coffee research philosophy, evidence-led coffee research, Fine Robusta evidence, origin research methodology",
   alternates: pageAlternates("/about/founder"),
@@ -44,7 +44,7 @@ const jsonLd = {
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     description:
-      "Independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
   },
 }
 

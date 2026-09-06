@@ -8,7 +8,7 @@ import "./contact-editorial.css"
 export const metadata: Metadata = {
   title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
   description:
-    "Contact Origin Coffee Cambodia for wholesale and sourcing enquiries, sample requests, lot-list questions, roasting and B2B coffee solutions, editorial questions, or media enquiries.",
+    "Contact Origin Coffee Cambodia for wholesale, sourcing, samples, lot-list questions, roasting, B2B coffee solutions, editorial, or media enquiries.",
   keywords:
     "Origin Coffee Cambodia contact, Cambodia coffee wholesale enquiry, Fine Robusta supplier Cambodia, Cambodia coffee sourcing, coffee sample request, coffee lot list, B2B coffee solutions Cambodia",
   alternates: pageAlternates("/contact"),

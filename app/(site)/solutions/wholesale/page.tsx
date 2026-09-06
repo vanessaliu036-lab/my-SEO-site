@@ -4,9 +4,9 @@ import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Wholesale Coffee Cambodia | OCC B2B Sourcing & Supply Framework",
+  title: "Wholesale Coffee Cambodia | B2B Sourcing | OCC",
   description:
-    "Evidence-led guidance for cafés, hotels, restaurants, and buyers evaluating wholesale coffee in Cambodia, including quality, origin documentation, volume planning, and supplier due diligence.",
+    "Evidence-led guidance for buyers evaluating wholesale coffee in Cambodia: quality, origin documentation, volume, and supplier due diligence.",
   keywords:
     "wholesale coffee Cambodia, coffee supplier Phnom Penh, B2B coffee supply Cambodia, café coffee wholesale, restaurant coffee supplier, coffee sourcing Cambodia, supplier due diligence",
   openGraph: {

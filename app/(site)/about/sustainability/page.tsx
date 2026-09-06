@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Sustainability | Origin Coffee Cambodia - OCC",
   description:
-    "OCC treats sustainability and traceability as evidence questions: claims should be documented, scoped, dated when necessary, and separated from assumptions about farms, regions, or supply chains.",
+    "OCC treats sustainability and traceability as evidence questions: document claims, scope them clearly, and separate evidence from assumptions.",
   keywords:
     "coffee sustainability evidence, coffee traceability documentation, Cambodian coffee sustainability, Fine Robusta sustainability research, coffee sourcing claims, origin transparency evidence",
   alternates: pageAlternates("/about/sustainability"),
@@ -44,7 +44,7 @@ const jsonLd = {
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     description:
-      "Independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
     knowsAbout: [
       "Coffee Sustainability Evidence",
       "Coffee Traceability Documentation",

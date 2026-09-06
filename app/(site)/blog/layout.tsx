@@ -9,7 +9,7 @@ const blogSchema = {
   name: `${siteName} Journal`,
   url: `${siteUrl}/blog`,
   description:
-    "Evidence-led research and technical editorial on Fine Robusta, Coffea canephora, Cambodian coffee, processing, roasting, sensory evaluation, quality standards, and origin systems.",
+    "Evidence-led research on Fine Robusta, Coffea canephora, Cambodian coffee, processing, roasting, sensory evaluation, quality standards, and origin systems.",
   inLanguage: "en",
   isPartOf: {
     "@type": "WebSite",

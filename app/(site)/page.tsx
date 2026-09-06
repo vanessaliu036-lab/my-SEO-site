@@ -7,9 +7,9 @@ import {
   homeDirectAnswer,
   homeSources,
 } from "@/lib/homeContent"
-import { seoDescription, seoTitle } from "@/lib/seo"
+import { pageAlternates, seoDescription, seoTitle } from "@/lib/seo"
 
-const homeTitle = "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier"
+const homeTitle = "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"
 
 export const metadata: Metadata = {
   title: seoTitle(homeTitle),
@@ -33,9 +33,7 @@ export const metadata: Metadata = {
     "Coffee Processing",
     "Coffee Quality Standards",
   ],
-  alternates: {
-    canonical: siteUrl,
-  },
+  alternates: pageAlternates("/"),
   openGraph: {
     title: seoTitle(homeTitle),
     description: seoDescription(siteDescription),

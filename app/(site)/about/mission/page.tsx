@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Mission | Origin Coffee Cambodia - OCC",
   description:
-    "OCC exists to make Cambodian coffee easier to understand through research, evidence-led technical editorial, and clear documentation of quality, processing, and origin questions.",
+    "OCC makes Cambodian coffee easier to understand through research, technical editorial, and clear documentation of quality, processing, and origin.",
   keywords:
     "Origin Coffee Cambodia mission, Cambodian coffee research, Fine Robusta research, coffee quality evidence, coffee processing research, OCC editorial mission",
   alternates: pageAlternates("/about/mission"),
@@ -33,7 +33,7 @@ const jsonLd = {
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     description:
-      "Independent coffee information and research platform focused on Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
   },
 }
 

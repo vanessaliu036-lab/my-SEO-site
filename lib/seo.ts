@@ -13,14 +13,14 @@ export function seoTitle(value: string): string {
   if (withoutBrand.length <= MAX_TITLE_LENGTH) return withoutBrand
 
   const shortened = withoutBrand.slice(0, MAX_TITLE_LENGTH - 1).replace(/\s+\S*$/, "")
-  return `${shortened}…`
+  return shortened
 }
 
 export function seoDescription(value: string, fallback = "Specialty coffee insights from Origin Coffee Cambodia."): string {
   const normalized = value.replace(/\s+/g, " ").trim() || fallback
   if (normalized.length <= MAX_DESCRIPTION_LENGTH) return normalized
   const shortened = normalized.slice(0, MAX_DESCRIPTION_LENGTH - 3).replace(/\s+\S*$/, "")
-  return `${shortened}...`
+  return shortened
 }
 
 /**

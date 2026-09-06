@@ -35,15 +35,17 @@ const collectionPackageStage = read('components/ui/collection-package-stage.tsx'
 const angkarPage = read('app/(site)/collection/angkar/page.tsx')
 
 test('OCC metadata foundation combines professional coffee supply with evidence-led authority', () => {
-  assert.match(siteConfig, /Specialty coffee sourcing, roasting and B2B supply in Cambodia/i)
-  assert.match(siteConfig, /Fine Robusta|Mondulkiri|traceability/i)
+  assert.match(siteConfig, /Cambodian coffee.*Fine Robusta.*origin research/i)
+  assert.match(siteConfig, /Fine Robusta|Coffea canephora|quality standards/i)
   assert.doesNotMatch(siteConfig, /independent coffee information and research platform/i)
   assert.doesNotMatch(rootLayout, /AdminFrontendSwitch/)
 })
 
 test('homepage carries the approved supplier positioning while retaining research authority', () => {
   const publicHome = `${homePage}\n${homeContent}\n${homeTemplate}`
-  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta Beans & Specialty Coffee Supplier"/)
+  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta & Specialty Coffee"/)
+  assert.doesNotMatch(homePage, /const homeTitle[^\n]*[…]/)
+  assert.match(homePage, /pageAlternates\("\/"\)/)
   assert.match(publicHome, /B2B supply|Wholesale & Sourcing|Start an Enquiry/i)
   assert.match(publicHome, /research|evidence/i)
   assert.doesNotMatch(publicHome, /does not currently sell coffee|does not sell coffee|research platform/i)

@@ -1,28 +1,28 @@
 import { Metadata } from "next"
 import { AboutEditorialTemplate } from "@/components/templates/about-editorial-template"
-import { siteUrl, siteLogoUrl, siteDescription } from "@/lib/siteConfig"
+import { siteUrl, siteLogoUrl, siteDescription, ogImage } from "@/lib/siteConfig"
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "About OCC | Fine Robusta, Coffee Sourcing & B2B Solutions",
   description:
-    "About Origin Coffee Cambodia: a professional coffee company connecting Cambodian coffee and Fine Robusta authority with sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions.",
+    "About Origin Coffee Cambodia: connecting Cambodian coffee and Fine Robusta with sourcing, roasting, B2B supply, traceability, and quality-focused solutions.",
   keywords:
     "Origin Coffee Cambodia, OCC, Fine Robusta Cambodia, Cambodia coffee sourcing, Cambodia coffee supplier, B2B coffee Cambodia, Mondulkiri coffee, coffee quality authority, coffee roasting Cambodia",
   openGraph: {
     title: "About OCC | Fine Robusta, Coffee Sourcing & B2B Solutions",
     description:
-      "Origin Coffee Cambodia connects Cambodian coffee authority with sourcing, roasting, B2B supply, traceability, quality systems, and evidence-led coffee knowledge.",
+      "Origin Coffee Cambodia connects Cambodian coffee and Fine Robusta with sourcing, roasting, B2B supply, traceability, and evidence-led coffee knowledge.",
     url: `${siteUrl}/about`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: `${siteUrl}/images/about-og-image.jpg`,
-        width: 1200,
-        height: 630,
+        url: ogImage,
+        width: 1672,
+        height: 941,
         alt: "Origin Coffee Cambodia - OCC About Page",
       },
     ],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "About OCC | Fine Robusta, Coffee Sourcing & B2B Solutions",
     description:
       "Cambodian coffee and Fine Robusta authority supporting sourcing, roasting, B2B supply, traceability, and professional coffee decisions.",
-    images: [`${siteUrl}/images/about-twitter-card.jpg`],
+    images: [ogImage],
   },
   alternates: pageAlternates("/about"),
 }

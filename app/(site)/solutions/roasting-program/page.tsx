@@ -4,7 +4,7 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Roasting Program Cambodia | OCC Roast Development Framework",
+  title: "Coffee Roasting Program Cambodia | OCC",
   description:
     "Evidence-led guidance for businesses evaluating roast profile development, white-label production, house blends, and commercial roasting readiness in Cambodia.",
   keywords:
