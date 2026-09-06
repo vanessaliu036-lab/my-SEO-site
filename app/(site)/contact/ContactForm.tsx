@@ -50,8 +50,15 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
     setServerError(null)
     startTransition(async () => {
       const result = await submitContactForm(data)
-      if (result.success) setIsSuccess(true)
-      else setServerError(result.error)
+      if (result.success) {
+        window.gtag?.("event", "generate_lead", {
+          lead_type: data.service,
+          page_path: `${window.location.pathname}${window.location.search}`,
+        })
+        setIsSuccess(true)
+      } else {
+        setServerError(result.error)
+      }
     })
   }
 
