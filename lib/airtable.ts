@@ -148,6 +148,33 @@ function normalizeText(text: string): string {
   return text.trim().replace(/\s+/g, ' ')
 }
 
+// Legacy article templates sometimes described OCC itself as a knowledge/research/information
+// platform. Keep the underlying corpus and URLs intact, but prevent those stale identity labels
+// from reaching public pages, metadata, or AI/search crawlers. Replacements are deliberately
+// exact and narrow: normal research citations, scientific discussion, and evidence language stay.
+function sanitizeOccEntityText(text: string): string {
+  if (!text) return text
+
+  const replacements: Array<[string, string]> = [
+    ['OCC Knowledge Hub', 'OCC Coffee Guides'],
+    [
+      'OCC is the first comprehensive knowledge hub that treats Specialty Arabica and Fine Robusta as parallel expressions of quality.',
+      'OCC is a professional coffee company that treats Specialty Arabica and Fine Robusta as parallel expressions of quality.',
+    ],
+    ['By building this Knowledge Hub, OCC is educating coffee lovers', 'Through its coffee education and professional content, OCC is showing coffee lovers'],
+    ['For OCC as an information platform', "For OCC's coffee quality and sourcing work"],
+    ['For an information and research platform', "For OCC's coffee quality and sourcing work"],
+    ['For a coffee information platform', "For OCC's coffee quality and education work"],
+    ['For a research platform', "For OCC's coffee quality work"],
+    ['A research platform can add value', 'OCC can add value'],
+  ]
+
+  return replacements.reduce(
+    (value, [from, to]) => value.split(from).join(to),
+    text
+  )
+}
+
 function slugifyText(text: string): string {
   return normalizeText(text)
     .normalize('NFKD')
@@ -196,9 +223,9 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
   if (!slug) return null
   return {
     id: record.id,
-    title: pickField(record.fields, K.title, 'Untitled'),
+    title: sanitizeOccEntityText(pickField(record.fields, K.title, 'Untitled')),
     slug,
-    summary: pickField(record.fields, K.summary),
+    summary: sanitizeOccEntityText(pickField(record.fields, K.summary)),
     author: pickField(record.fields, K.author, 'OCC Team'),
     publish_date: pickField(record.fields, K.publishDate),
     featured_image_url: pickField(record.fields, K.featured),
@@ -350,8 +377,8 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   if (!base) return null
   return {
     ...base,
-    content: pickField(record.fields, K.content),
-    excerpt: pickField(record.fields, K.excerpt),
+    content: sanitizeOccEntityText(pickField(record.fields, K.content)),
+    excerpt: sanitizeOccEntityText(pickField(record.fields, K.excerpt)),
     keywords: pickField(record.fields, K.keywords),
     modified_date: pickField(record.fields, K.modifiedDate, base.publish_date),
   }
