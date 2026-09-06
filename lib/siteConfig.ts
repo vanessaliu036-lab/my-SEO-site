@@ -11,9 +11,10 @@ export const htmlLang =
 export const siteName =
   process.env.NEXT_PUBLIC_SITE_NAME || 'Origin Coffee Cambodia'
 
+// Historical migration note: Cambodian coffee + Fine Robusta + origin research wording must not re-enter public metadata.
 export const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-  'Origin Coffee Cambodia covers Cambodian coffee, Fine Robusta, Coffea canephora, sourcing, roasting, quality standards, and origin research.'
+  'Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions.'
 
 /** Default OG / social preview — must exist under `public/` (override with NEXT_PUBLIC_OG_IMAGE). */
 export const ogImage =
