@@ -6,12 +6,12 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Wholesale Coffee Cambodia | B2B Sourcing | OCC",
   description:
-    "Evidence-led guidance for buyers evaluating wholesale coffee in Cambodia: quality, origin documentation, volume, and supplier due diligence.",
+    "B2B wholesale coffee supply and sourcing in Cambodia from Origin Coffee Cambodia, with lot evaluation, documentation, sample approval, and buyer due diligence.",
   keywords:
     "wholesale coffee Cambodia, coffee supplier Phnom Penh, B2B coffee supply Cambodia, café coffee wholesale, restaurant coffee supplier, coffee sourcing Cambodia, supplier due diligence",
   openGraph: {
     title: "Wholesale Coffee Cambodia | OCC",
-    description: "A buyer-focused framework for evaluating quality, documentation, volume, and supply readiness in Cambodia.",
+    description: "Wholesale coffee supply and sourcing for professional buyers, with clear lot, quality, documentation, volume, and commercial conditions.",
     url: `${siteUrl}/solutions/wholesale`,
     type: "website",
     images: [{ url: ogImage, width: 1200, height: 630, alt: "Wholesale Coffee Cambodia — OCC" }],
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Wholesale Coffee Cambodia | OCC",
-    description: "A buyer-focused framework for evaluating quality, documentation, volume, and supply readiness in Cambodia.",
+    description: "Wholesale coffee supply and sourcing for professional buyers, with clear lot, quality, documentation, volume, and commercial conditions.",
   },
   alternates: pageAlternates("/solutions/wholesale"),
 }
@@ -96,7 +96,7 @@ export default function WholesalePage() {
   const sections = [
     {
       title: "Who This Is For",
-      content: <p>This page is for cafés, hotels, restaurants, offices, importers, and multi-location operators evaluating wholesale coffee in Cambodia. The objective is to define the evidence a buyer should require before treating any supplier, lot, price, volume, or delivery schedule as commercially ready.</p>,
+      content: <p>OCC supports cafés, hotels, restaurants, offices, importers, and multi-location operators with wholesale coffee supply and sourcing in Cambodia. Buyer requirements are defined around the coffee, approved sample, lot evidence, quality expectations, volume, and delivery conditions needed for a workable commercial relationship.</p>,
     },
     {
       title: "What to Evaluate",
@@ -125,7 +125,7 @@ export default function WholesalePage() {
       <SolutionDetailTemplate
         index="01"
         title="WHOLESALE"
-        subtitle="Define the coffee, evidence, and supply conditions before treating an offer as commercially ready."
+        subtitle="Wholesale coffee supply and sourcing for professional buyers, with clear lot, quality, and commercial conditions."
         sections={sections}
         factsTitle="Buyer Checklist"
         facts={[
