@@ -48,3 +48,18 @@ test("solution pages preserve FAQ Breadcrumb schemas and internal-link logic wit
   assert.match(index, /B2B/i)
   assert.match(index, /evidence-led/i)
 })
+
+test("commercial analytics records the wholesale-to-contact funnel and exact 404 paths", () => {
+  const analytics = read("components/GoogleAnalytics.tsx")
+  const contact = read("app/(site)/contact/ContactForm.tsx")
+  const config = read("next.config.mjs")
+
+  for (const eventName of ["occ_404", "wholesale_view", "contact_view", "contact_click", "whatsapp_click", "email_click"]) {
+    assert.match(analytics, new RegExp(eventName), `${eventName} analytics event must be present`)
+  }
+  assert.match(analytics, /page_path/)
+  assert.match(contact, /generate_lead/)
+  assert.match(contact, /lead_type/)
+  assert.match(config, /\/blog\/cambodian-coffee-origin-guide/)
+  assert.match(config, /\/blog\/cambodia-coffee/)
+})
