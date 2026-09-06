@@ -7,6 +7,7 @@ function read(path) {
 }
 
 const articlePage = read('app/(site)/blog/[slug]/page.tsx')
+const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const homeTemplate = read('components/templates/home-template.tsx')
 
 test('Cambodia broad authority still routes to the root Fine Robusta owner', () => {
@@ -16,7 +17,7 @@ test('Cambodia broad authority still routes to the root Fine Robusta owner', () 
 })
 
 test('wrong-page Fine Robusta families pass contextual authority to their formal owners', () => {
-  assert.match(articlePage, /const OWNER_ROUTE_BY_SUPPORT_SLUG/)
+  assert.match(articleLayout, /const OWNER_ROUTE_BY_SUPPORT_SLUG/)
 
   const expectedRoutes = [
     ['fine-robusta-grading-standards-cqi-certification-for-cambodia', '/blog/fine-robusta-grading-verify-before-cupping'],
@@ -27,13 +28,13 @@ test('wrong-page Fine Robusta families pass contextual authority to their formal
   ]
 
   for (const [supportSlug, ownerHref] of expectedRoutes) {
-    assert.match(articlePage, new RegExp(supportSlug.replaceAll('-', '\\-')))
-    assert.match(articlePage, new RegExp(ownerHref.replaceAll('/', '\\/').replaceAll('-', '\\-')))
+    assert.match(articleLayout, new RegExp(supportSlug.replaceAll('-', '\\-')))
+    assert.match(articleLayout, new RegExp(ownerHref.replaceAll('/', '\\/').replaceAll('-', '\\-')))
   }
 
-  assert.match(articlePage, /ownerRouteForSlug\(post\.slug\)/)
-  assert.match(articlePage, /Primary topic guide/)
-  assert.doesNotMatch(articlePage, /rel=["']nofollow["']/)
+  assert.match(articleLayout, /OWNER_ROUTE_BY_SUPPORT_SLUG\[slug\]/)
+  assert.match(articleLayout, /Primary topic guide/)
+  assert.doesNotMatch(articleLayout, /rel=["']nofollow["']/)
 })
 
 test('formal owners are not routed down to weaker support pages', () => {
@@ -45,7 +46,7 @@ test('formal owners are not routed down to weaker support pages', () => {
     'why-is-fine-robusta-coffee-becoming-popular',
   ]
 
-  const mapMatch = articlePage.match(/const OWNER_ROUTE_BY_SUPPORT_SLUG[\s\S]*?\n}\n/)
+  const mapMatch = articleLayout.match(/const OWNER_ROUTE_BY_SUPPORT_SLUG[\s\S]*?\n}\n/)
   assert.ok(mapMatch, 'owner routing map must exist')
   for (const ownerSlug of forbiddenOwnerKeys) {
     assert.doesNotMatch(mapMatch[0], new RegExp(`^[\\s]*["']?${ownerSlug}["']?\\s*:`, 'm'))
