@@ -18,6 +18,11 @@ test("roasting page owns custom roasting intent without changing the shared temp
   assert.match(source, /"Fine Robusta": "\/fine-robusta-cambodia"/)
   assert.match(source, /"Wholesale Coffee Supply": "\/solutions\/wholesale"/)
   assert.match(source, /SolutionDetailTemplate/)
+  assert.doesNotMatch(
+    source,
+    /\n\s+wholesale:\s+"\/solutions\/wholesale"/,
+    "short wholesale key must not reprocess the longer Wholesale Coffee Supply anchor",
+  )
 })
 
 test("roasting page keeps the current evidence boundary", () => {
