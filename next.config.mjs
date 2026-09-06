@@ -50,6 +50,11 @@ const nextConfig = {
       { source: '/matter', destination: '/blog', permanent: true },
       { source: '/archive', destination: '/blog', permanent: true },
       {
+        source: '/blog/cambodian-coffee-origin-guide',
+        destination: '/blog/cambodia-coffee',
+        permanent: true,
+      },
+      {
         source: '/blog/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply',
         destination: '/blog/cambodian-fine-robusta-wholesale-supply',
         statusCode: 301,
