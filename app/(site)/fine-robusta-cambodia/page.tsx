@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "Coffea canephora Cambodia",
     "Fine Robusta coffee",
   ],
-  alternates: pageAlternates(ownerPath),
+  alternates: pageAlternates("/fine-robusta-cambodia"),
   openGraph: {
     title: "Fine Robusta Cambodia: What It Is, Mondulkiri & Quality",
     description,
