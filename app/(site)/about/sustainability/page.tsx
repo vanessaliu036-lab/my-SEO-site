@@ -6,14 +6,14 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Sustainability | Origin Coffee Cambodia - OCC",
   description:
-    "OCC treats sustainability and traceability as evidence questions: document claims, scope them clearly, and separate evidence from assumptions.",
+    "How OCC approaches sustainability and traceability in Cambodian coffee sourcing and supply: document claims, verify scope, and separate evidence from assumptions.",
   keywords:
-    "coffee sustainability evidence, coffee traceability documentation, Cambodian coffee sustainability, Fine Robusta sustainability research, coffee sourcing claims, origin transparency evidence",
+    "sustainable coffee sourcing Cambodia, coffee traceability documentation, Cambodian coffee sustainability, Fine Robusta traceability, coffee sourcing claims, origin transparency evidence",
   alternates: pageAlternates("/about/sustainability"),
   openGraph: {
     title: "Sustainability | Origin Coffee Cambodia - OCC",
     description:
-      "Evidence, documentation, and claim boundaries for sustainability and traceability in Cambodian coffee research.",
+      "Evidence, documentation, and claim boundaries for sustainability and traceability in Cambodian coffee sourcing and supply.",
     url: `${siteUrl}/about/sustainability`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -23,16 +23,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sustainability | Origin Coffee Cambodia - OCC",
     description:
-      "How OCC evaluates sustainability and traceability claims without turning incomplete evidence into certainty.",
+      "How OCC evaluates sustainability and traceability claims within sourcing, quality, and coffee-supply decisions.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "OCC Sustainability — Evidence and Traceability Claims",
+  name: "OCC Sustainability — Sourcing, Evidence and Traceability",
   description:
-    "How Origin Coffee Cambodia evaluates sustainability, traceability, and origin-transparency claims through evidence and documentation.",
+    "How Origin Coffee Cambodia applies sustainability, traceability, and origin-transparency evidence to coffee sourcing, quality, and supply decisions.",
   url: `${siteUrl}/about/sustainability`,
   isPartOf: {
     "@type": "Organization",
@@ -44,7 +44,7 @@ const jsonLd = {
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     description:
-      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+      "Cambodia specialty coffee company focused on Fine Robusta, B2B coffee sourcing and supply, roasting solutions, traceability, origin transparency, and quality standards.",
     knowsAbout: [
       "Coffee Sustainability Evidence",
       "Coffee Traceability Documentation",
@@ -89,10 +89,10 @@ const sections = [
     ],
   },
   {
-    title: "What OCC Publishes",
+    title: "How OCC Applies This",
     paragraphs: [
-      "OCC's role is to document available evidence, compare definitions, date standards and institutional frameworks, identify research gaps, and give readers a clearer basis for evaluating sustainability and traceability claims.",
-      "That approach is deliberately narrower than claiming operational practices OCC cannot publicly verify. The boundary is part of the research standard.",
+      "OCC uses sustainability and traceability evidence to support sourcing, lot evaluation, quality communication, and B2B coffee-supply decisions. Documentation is attached to the claim it can actually verify rather than treated as a general marketing label.",
+      "Where a practice, certification, farm-level outcome, or supply-chain claim cannot yet be verified, OCC keeps that boundary explicit. Evidence-led content supports the coffee business; it does not define OCC as a research organization.",
     ],
   },
 ]
@@ -118,7 +118,7 @@ export default function SustainabilityPage() {
         next={{
           href: "/solutions",
           label: "Solutions",
-          description: "Explore OCC's published site sections.",
+          description: "Explore OCC's coffee supply, roasting, and B2B solution pathways.",
         }}
       />
     </>
