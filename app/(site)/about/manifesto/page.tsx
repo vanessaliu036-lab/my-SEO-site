@@ -1,20 +1,19 @@
 import { AboutInstitutionalTemplate } from "@/components/templates/about-institutional-template"
 import { siteUrl } from "@/lib/siteConfig"
-import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Manifesto | Origin Coffee Cambodia - OCC",
+  title: "OCC Manifesto | Coffee Quality Principles",
   description:
-    "OCC's editorial manifesto: evidence before claims, context before conclusions, and transparent uncertainty in Cambodian coffee and Fine Robusta research.",
+    "The OCC manifesto defines how Origin Coffee Cambodia approaches quality as a system, Fine Robusta standards, supplier accountability, and repeatable B2B coffee programs.",
   keywords:
-    "OCC manifesto, Cambodian coffee research, evidence-led coffee editorial, Fine Robusta research, coffee quality evidence, origin research methodology",
+    "OCC manifesto, Origin Coffee Cambodia manifesto, coffee quality principles, Fine Robusta standards, supplier accountability, B2B coffee principles",
   alternates: pageAlternates("/about/manifesto"),
   openGraph: {
-    title: "Manifesto | Origin Coffee Cambodia - OCC",
+    title: "OCC Manifesto | Coffee Quality Principles",
     description:
-      "Evidence before claims. Context before conclusions. Transparent uncertainty when the available record is incomplete.",
+      "Quality is a system. OCC's manifesto sets out its principles on Fine Robusta standards, supplier accountability, and repeatable coffee quality.",
     url: `${siteUrl}/about/manifesto`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -22,36 +21,30 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manifesto | Origin Coffee Cambodia - OCC",
+    title: "OCC Manifesto | Coffee Quality Principles",
     description:
-      "The principles behind OCC's evidence-led research and technical editorial on Cambodian coffee.",
+      "OCC's principles on coffee quality as a system, Fine Robusta standards, and supplier accountability.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Evidence Before Claims: The OCC Editorial Manifesto",
+  "@type": "AboutPage",
+  name: "OCC Manifesto: Quality Is a System",
   description:
-    "The principles behind OCC's evidence-led research and technical editorial on Cambodian coffee, Fine Robusta, quality, processing, and origin evidence.",
+    "Origin Coffee Cambodia's manifesto on coffee quality as a system, Fine Robusta standards, supplier accountability, and repeatable B2B coffee programs.",
   url: `${siteUrl}/about/manifesto`,
-  author: {
+  about: {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    name: "Origin Coffee Cambodia",
+    url: siteUrl,
+  },
+  mainEntity: {
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
   },
-  publisher: {
-    "@type": "Organization",
-    "@id": `${siteUrl}/#organization`,
-    name: "Origin Coffee Cambodia",
-    logo: publisherLogoImageObject(),
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": `${siteUrl}/about/manifesto`,
-  },
-  keywords:
-    "Cambodian coffee research, Fine Robusta research, coffee quality evidence, origin research, technical editorial",
 }
 
 const breadcrumbSchema = {
