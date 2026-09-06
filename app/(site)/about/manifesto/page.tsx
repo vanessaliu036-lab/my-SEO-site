@@ -110,11 +110,11 @@ export default function ManifestoPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="03"
-        title="MANIFESTO"
-        subtitle="QUALITY IS A SYSTEM."
+        title="OCC MANIFESTO"
+        subtitle="EVIDENCE BEFORE CLAIMS. QUALITY IS A SYSTEM."
         lead={[
-          "We do not believe better coffee comes from one impressive bean, one roast profile, or one skilled barista.",
-          "It comes from a system that makes quality repeatable from Cambodian origin and sourcing through roasting, preparation, and service.",
+          "The OCC Manifesto defines how Origin Coffee Cambodia approaches coffee quality: evidence before claims, stronger Fine Robusta standards, supplier accountability, and repeatable B2B coffee programs.",
+          "Our position is simple: better coffee comes from a system that connects origin, processing, sourcing, roasting, preparation, people, and operational discipline—not from one isolated claim or one impressive component.",
         ]}
         sections={sections}
         closing={[
@@ -123,9 +123,9 @@ export default function ManifestoPage() {
         ]}
         faqs={faqs}
         next={{
-          href: "/about/sustainability",
-          label: "Sustainability",
-          description: "Evidence, documentation, and the boundaries of sustainability claims.",
+          href: "/solutions/roasting-program",
+          label: "Roasting Program",
+          description: "See how OCC turns quality principles into a structured roast-development pathway for professional coffee programs.",
         }}
       />
     </>
