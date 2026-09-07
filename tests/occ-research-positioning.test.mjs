@@ -129,6 +129,8 @@ test('Fine Robusta Cambodia keeps one root owner and cluster authority points to
   assert.match(sitemap, /\/fine-robusta-cambodia/)
   assert.match(articlePage, /const ROBUSTA_PILLAR_HREF = "\/fine-robusta-cambodia"/)
   assert.match(articlePage, /ROBUSTA_CLUSTER_SLUGS\.has\(post\.slug\) \|\| post\.slug === ROBUSTA_PILLAR_SLUG/)
+  assert.match(articleLayout, /href: "\/fine-robusta-cambodia"/)
+  assert.match(articleLayout, /"cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES\.cambodia/)
   assert.doesNotMatch(articlePage, /const ROBUSTA_PILLAR_HREF = `\/blog\/\$\{ROBUSTA_PILLAR_SLUG\}`/)
 })
 
