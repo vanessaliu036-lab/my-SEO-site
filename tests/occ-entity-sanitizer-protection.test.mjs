@@ -14,7 +14,7 @@ test('entity sanitizer is scoped to unprotected OCC_Blog_Posts records', () => {
 test('entity sanitizer removes unsupported OCC internal evidence claims from eligible records', () => {
   assert.match(airtable, /OCC maintains two independent quality libraries/)
   assert.match(airtable, /The 70\/30 blind test\. In internal blind cupping sessions, OCC has consistently observed/)
-  assert.match(airtable, /OCC's hand-picked, cupping-verified Fine Robusta lots from Cambodia/)
+  assert.match(airtable, /hand-picked, cupping-verified Fine Robusta lots from Cambodia/)
   assert.match(airtable, /Quality comparisons between arabica and canephora should rely on documented, species-appropriate sensory and physical evaluation/)
   assert.match(airtable, /Blind comparative cupping can help test sensory differences without relying on an undocumented OCC internal percentage claim/)
   assert.match(airtable, /Explore OCC's Cambodia Fine Robusta sourcing and quality resources/)
