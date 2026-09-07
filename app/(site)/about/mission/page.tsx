@@ -28,16 +28,13 @@ const jsonLd = {
   description:
     "The mission behind Origin Coffee Cambodia's work connecting Cambodian coffee origins, Fine Robusta expertise, B2B supply, quality systems, and roasting solutions.",
   url: `${siteUrl}/about/mission`,
-  about: {
+  isPartOf: {
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     url: siteUrl,
-  },
-  mainEntity: {
-    "@type": "Organization",
-    "@id": `${siteUrl}/#organization`,
-    name: "Origin Coffee Cambodia",
+    description:
+      "Origin Coffee Cambodia is a Cambodia-based specialty coffee supplier and Fine Robusta specialist connecting Cambodian coffee origins with B2B coffee supply, sourcing, quality systems, and roasting solutions.",
   },
 }
 
@@ -132,11 +129,11 @@ export default function MissionPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="01"
-        title="OCC MISSION"
+        title="MISSION"
         subtitle="WHY OCC CONNECTS ORIGIN, QUALITY, SUPPLY, AND ROASTING."
         lead={[
-          "Origin Coffee Cambodia (OCC) is a Cambodia specialty coffee supplier and Fine Robusta specialist providing B2B coffee supply and roasting solutions.",
-          "Our mission is to connect origin, quality, supply, and roast development so professional buyers can make clearer Cambodian coffee decisions from first evaluation to a workable coffee program.",
+          "Better coffee decisions start with better context.",
+          "Origin Coffee Cambodia connects Cambodian coffee origins, Fine Robusta expertise, and professional capability so coffee can move from origin to buyer with greater clarity.",
         ]}
         sections={sections}
         featureGrid={featureGrid}
@@ -145,9 +142,9 @@ export default function MissionPage() {
         closing={closing}
         faqs={faqs}
         next={{
-          href: "/solutions/wholesale",
-          label: "Wholesale Coffee Supply",
-          description: "Continue from OCC's mission to the B2B sourcing and coffee-supply pathway.",
+          href: "/about/founder",
+          label: "Founder",
+          description: "The people and operating philosophy behind OCC's approach to Cambodian coffee supply, Fine Robusta, and professional coffee solutions.",
         }}
       />
     </>
