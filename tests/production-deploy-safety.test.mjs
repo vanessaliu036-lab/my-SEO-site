@@ -50,6 +50,6 @@ test("production source keeps the three corrected pages and removes the legacy s
 
   assert.doesNotMatch(navigation, /EVIDENCE-LED\s*(?:<br\s*\/?>(?:\s*)|\s+)COFFEE RESEARCH/i)
   assert.match(mission, /title="OCC MISSION"/)
-  assert.match(manifesto, /title="OCC MANIFESTO"/)
+  assert.match(manifesto, /title="MANIFESTO"/)
   assert.match(roasting, /title="CUSTOM COFFEE ROASTING PROGRAM"/)
 })
