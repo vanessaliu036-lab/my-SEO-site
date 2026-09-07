@@ -37,13 +37,11 @@ const nextConfig = {
     ]
   },
 
-  // Permanent redirects preserve legacy backlinks while the public information
-  // architecture uses ABOUT / SOLUTIONS / SINGLE ORIGIN / BLOG / CONTACT.
-  // Historical deleted-blog redirects remain intact below.
+  // Permanent redirects preserve historical backlinks that still have a valid
+  // current destination. Deleted legacy collection routes are intentionally not
+  // redirected to another content family.
   async redirects() {
     const structural = [
-      { source: '/coffee', destination: '/coffee/single-origin', permanent: true },
-      { source: '/collection', destination: '/coffee/single-origin', permanent: true },
       { source: '/vision', destination: '/about', permanent: true },
       { source: '/system', destination: '/about', permanent: true },
       { source: '/signal', destination: '/blog', permanent: true },
