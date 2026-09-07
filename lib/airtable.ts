@@ -34,6 +34,8 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'Category',
     'SEO_Keyword',
     'OCC_INDEXED_PROTECTED',
+    'Legacy Indexed',
+    'Frozen Corpus',
   ],
   OCC_INDEXED_PROTECTED: [
     'title',
@@ -188,22 +190,98 @@ function sanitizeOccEntityText(text: string): string {
   )
 }
 
+function normalizeFaqSection(section: string): string {
+  return section
+    .replace(/^##\s+(?:Frequently Asked Questions|FAQ)\s*$/im, '## FAQ')
+    .trim()
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\r\n/g, '\n')
+}
+
+function dedupeAdjacentFaqSections(text: string): string {
+  if (!text) return text
+
+  const sections = text.split(/(?=^##\s+)/gm)
+  const kept: string[] = []
+  let previousFaqNormalized = ''
+  let previousWasFaq = false
+
+  for (const section of sections) {
+    const isFaq = /^##\s+(?:Frequently Asked Questions|FAQ)\s*(?:\r?\n|$)/i.test(section)
+    const currentFaqNormalized = isFaq ? normalizeFaqSection(section) : ''
+
+    if (isFaq && previousWasFaq && previousFaqNormalized === currentFaqNormalized) {
+      continue
+    }
+
+    kept.push(section)
+    previousWasFaq = isFaq
+    previousFaqNormalized = currentFaqNormalized
+  }
+
+  return kept.join('')
+}
+
+function sanitizeOccEditorialResidue(text: string): string {
+  if (!text) return text
+
+  const cleanedLines: string[] = []
+  for (const line of text.split('\n')) {
+    const trimmed = line.trim()
+
+    // Editorial keyword notes belong to the writing workflow, not the public article.
+    if (/^[_*]*\s*Target keyword\s*:/i.test(trimmed)) continue
+
+    const shopInsert = trimmed.match(
+      /^_?\[Insert:\s*["“](.*?)["”]\s*[—–-]\s*link to shop\]\s*_?$/i
+    )
+    if (shopInsert) {
+      const publicCopy = shopInsert[1]
+        .trim()
+        .replace(/\bshop\b/gi, 'explore')
+        .replace(/\btry(?=\s+OCC(?:'s|’s))/gi, 'explore')
+      cleanedLines.push(publicCopy, '', '[Contact OCC](/contact)')
+      continue
+    }
+
+    const genericInsert = trimmed.match(/^_?\[Insert:\s*["“](.*?)["”](?:\s*[—–-]\s*[^\]]+)?\]\s*_?$/i)
+    if (genericInsert) {
+      cleanedLines.push(genericInsert[1].trim())
+      continue
+    }
+
+    cleanedLines.push(line)
+  }
+
+  return dedupeAdjacentFaqSections(cleanedLines.join('\n'))
+}
+
+function isProtectionValueEnabled(value: unknown): boolean {
+  if (typeof value === 'boolean') return value
+  if (typeof value === 'number') return value !== 0
+  if (typeof value === 'string') {
+    const normalized = value.trim()
+    return Boolean(normalized) && !/^(false|0|no)$/i.test(normalized)
+  }
+  if (Array.isArray(value)) return value.length > 0
+  return Boolean(value)
+}
+
 function shouldSanitizeOccEntityText(record: AirtableRecord): boolean {
   if (record.tableName !== 'OCC_Blog_Posts') return false
 
-  const protection = record.fields['OCC_INDEXED_PROTECTED']
-  if (typeof protection === 'boolean') return !protection
-  if (typeof protection === 'number') return protection === 0
-  if (typeof protection === 'string') {
-    const value = protection.trim()
-    return !value || /^(false|0|no)$/i.test(value)
-  }
-  if (Array.isArray(protection)) return protection.length === 0
-  return !protection
+  const protectionFields = [
+    record.fields['OCC_INDEXED_PROTECTED'],
+    record.fields['Legacy Indexed'],
+    record.fields['Frozen Corpus'],
+  ]
+  return !protectionFields.some(isProtectionValueEnabled)
 }
 
 function sanitizeOccRecordText(record: AirtableRecord, text: string): string {
-  return shouldSanitizeOccEntityText(record) ? sanitizeOccEntityText(text) : text
+  return shouldSanitizeOccEntityText(record)
+    ? sanitizeOccEntityText(sanitizeOccEditorialResidue(text))
+    : text
 }
 
 function slugifyText(text: string): string {
@@ -356,7 +434,7 @@ async function loadAllPosts(): Promise<BlogPost[]> {
   return posts
 }
 
-const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-corpus-v4'], {
+const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-corpus-v5'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
@@ -394,7 +472,7 @@ async function loadRecentPosts(): Promise<BlogPost[]> {
   return posts.slice(0, 6)
 }
 
-const getRecentPostsCached = unstable_cache(loadRecentPosts, ['occ-airtable-recent-v1'], {
+const getRecentPostsCached = unstable_cache(loadRecentPosts, ['occ-airtable-recent-v2'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
@@ -483,7 +561,7 @@ async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   return full ? recordToDetail(full) : null
 }
 
-const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v5'], {
+const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v6'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
