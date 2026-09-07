@@ -14,6 +14,11 @@ type OwnerRoute = {
 }
 
 const OWNER_ROUTES = {
+  cambodia: {
+    href: "/fine-robusta-cambodia",
+    anchor: "Fine Robusta Cambodia",
+    description: "Use the central Fine Robusta Cambodia guide for broad Cambodia origin, quality, sourcing, and buyer intent.",
+  },
   grading: {
     href: "/blog/fine-robusta-grading-verify-before-cupping",
     anchor: "Fine Robusta grading guide",
@@ -42,6 +47,9 @@ const OWNER_ROUTES = {
 } satisfies Record<string, OwnerRoute>
 
 const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
+  // Cambodia: keep the wholesale-specific page narrow while routing broad origin intent to the pillar.
+  "cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES.cambodia,
+
   // Grading: keep historical CQI, score interpretation, and transition pages as supporting intent.
   "fine-robusta-grading-standards-cqi-certification-for-cambodia": OWNER_ROUTES.grading,
   "how-the-coffee-quality-institute-grades-fine-robusta": OWNER_ROUTES.grading,
