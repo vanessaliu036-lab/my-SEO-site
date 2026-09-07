@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     "modern Robusta",
     "Fine Robusta Cambodia",
   ],
-  alternates: pageAlternates("/collection/prek"),
+  alternates: pageAlternates("/origins/prek"),
   openGraph: {
     title: "PREK — The Bright Current | OCC",
     description:
       "A brighter, more contemporary expression of Mondulkiri Robusta — bittersweet chocolate, red berries, citrus peel.",
-    url: `${siteUrl}/collection/prek`,
+    url: `${siteUrl}/origins/prek`,
     type: "website",
   },
 }
@@ -37,7 +37,7 @@ const productSchema = {
   brand: { "@type": "Brand", name: "Origin Coffee Cambodia" },
   category: "Specialty Robusta Coffee",
   origin: { "@type": "Place", name: "Mondulkiri, Cambodia" },
-  url: `${siteUrl}/collection/prek`,
+  url: `${siteUrl}/origins/prek`,
 }
 
 const breadcrumbSchema = {
@@ -45,8 +45,8 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Collection", item: `${siteUrl}/collection` },
-    { "@type": "ListItem", position: 3, name: "PREK", item: `${siteUrl}/collection/prek` },
+    { "@type": "ListItem", position: 2, name: "Origins", item: `${siteUrl}/origins` },
+    { "@type": "ListItem", position: 3, name: "PREK", item: `${siteUrl}/origins/prek` },
   ],
 }
 
@@ -126,7 +126,7 @@ export default function PrekProductPage() {
         }}
       />
       <div className="min-h-screen bg-white text-[#111] occ-prek" style={{ fontFamily: "var(--font-sans), Inter, Arial, sans-serif" }}>
-        <a className="back" href="/collection">← BACK TO MONDULKIRI ORIGIN COLLECTION</a>
+        <a className="back" href="/origins">← BACK TO ORIGINS</a>
         <main className="max-w-[1152px] mx-auto px-8 md:px-16 pt-32 md:pt-40 pb-24">
           <header className="pb-14 border-b border-[#cfcfcf]">
             <span className="eyebrow">Mondulkiri Origin Collection / 02</span>
@@ -239,7 +239,7 @@ export default function PrekProductPage() {
             <p>Vivid. Clean. A modern expression of Mondulkiri.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <Link href="/contact" className="cta-link">Shop PREK</Link>
-              <Link href="/collection/angkar" className="cta-link soft">Next: ANGKAR →</Link>
+              <Link href="/origins/farm-terroir" className="cta-link soft">Next: ANGKAR →</Link>
             </div>
           </section>
         </main>

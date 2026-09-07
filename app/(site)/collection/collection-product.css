@@ -67,45 +67,7 @@
   letter-spacing: 0.2em !important;
 }
 
-/* Shared central package silhouette. Product copy remains the accessible H1. */
-.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(220px, 21vw, 330px);
-  height: clamp(330px, 31vw, 480px);
-  transform: translate(-50%, -48%);
-  clip-path: polygon(4% 0, 96% 0, 100% 91%, 92% 100%, 8% 100%, 0 91%);
-  border: 1px solid rgba(24, 32, 25, 0.13);
-  box-shadow: 0 30px 60px rgba(24, 32, 25, 0.14);
-  z-index: 1;
-}
-
-.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::after {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -45%);
-  z-index: 2;
-  width: clamp(180px, 18vw, 280px);
-  text-align: center;
-  white-space: pre-line;
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2.3rem, 4vw, 4rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-}
-
-.occ-collection-shell .occ-sovann header::before { background: #273229; }
-.occ-collection-shell .occ-sovann header::after { content: "SOVANN\A MONDULKIRI"; color: #f6f3ea; }
-.occ-collection-shell .occ-prek header::before { background: #d8cfb7; }
-.occ-collection-shell .occ-prek header::after { content: "PREK\A MONDULKIRI"; color: #182019; }
-.occ-collection-shell .occ-angkar header::before { background: #202820; }
-.occ-collection-shell .occ-angkar header::after { content: "ANGKAR\A MONDULKIRI"; color: #f6f3ea; }
-
-/* The former giant typographic panel duplicates the new package hero. Keep it in DOM, hide visually. */
+/* Keep the legacy product panel hidden; the origin pages now use text and data only. */
 .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .panel {
   display: none !important;
 }
@@ -252,17 +214,6 @@
 
   .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header .hero-sub {
     margin-top: 1.1rem !important;
-  }
-
-  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::before {
-    top: 46%;
-    width: 230px;
-    height: 340px;
-  }
-
-  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::after {
-    top: 45%;
-    font-size: 2.4rem;
   }
 
   .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact-grid {

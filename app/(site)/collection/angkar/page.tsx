@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     "traditional Cambodian coffee",
     "local roasting Cambodia",
   ],
-  alternates: pageAlternates("/collection/angkar"),
+  alternates: pageAlternates("/origins/farm-terroir"),
   openGraph: {
     title: "ANGKAR — The Deep Foundation | OCC",
     description:
       "The deepest, most structural expression of Mondulkiri Robusta — dark cocoa, roasted peanut, molasses.",
-    url: `${siteUrl}/collection/angkar`,
+    url: `${siteUrl}/origins/farm-terroir`,
     type: "website",
   },
 }
@@ -37,7 +37,7 @@ const productSchema = {
   brand: { "@type": "Brand", name: "Origin Coffee Cambodia" },
   category: "Specialty Robusta Coffee",
   origin: { "@type": "Place", name: "Mondulkiri, Cambodia" },
-  url: `${siteUrl}/collection/angkar`,
+  url: `${siteUrl}/origins/farm-terroir`,
 }
 
 const breadcrumbSchema = {
@@ -45,8 +45,8 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Collection", item: `${siteUrl}/collection` },
-    { "@type": "ListItem", position: 3, name: "ANGKAR", item: `${siteUrl}/collection/angkar` },
+    { "@type": "ListItem", position: 2, name: "Origins", item: `${siteUrl}/origins` },
+    { "@type": "ListItem", position: 3, name: "Farm & Terroir", item: `${siteUrl}/origins/farm-terroir` },
   ],
 }
 
@@ -126,7 +126,7 @@ export default function AngkarProductPage() {
         }}
       />
       <div className="min-h-screen bg-white text-[#111] occ-angkar" style={{ fontFamily: "var(--font-sans), Inter, Arial, sans-serif" }}>
-        <a className="back" href="/collection">← BACK TO MONDULKIRI ORIGIN COLLECTION</a>
+        <a className="back" href="/origins">← BACK TO ORIGINS</a>
         <main className="max-w-[1152px] mx-auto px-8 md:px-16 pt-32 md:pt-40 pb-24">
           <header className="pb-14 border-b border-[#cfcfcf]">
             <span className="eyebrow">Mondulkiri Origin Collection / 03</span>
@@ -237,7 +237,7 @@ export default function AngkarProductPage() {
             <p>Structured. Full-bodied. Grounded in Mondulkiri.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <Link href="/contact" className="cta-link">Shop ANGKAR</Link>
-              <Link href="/collection/sovann" className="cta-link soft">← Back: SOVANN</Link>
+              <Link href="/origins/single-origin" className="cta-link soft">← Back: SOVANN</Link>
             </div>
           </section>
         </main>

@@ -26,6 +26,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/about/sustainability`, lastModified: now },
 
     { url: `${siteUrl}/fine-robusta-cambodia`, lastModified: now },
+    { url: `${siteUrl}/origins`, lastModified: now },
+    { url: `${siteUrl}/origins/single-origin`, lastModified: now },
+    { url: `${siteUrl}/origins/prek`, lastModified: now },
+    { url: `${siteUrl}/origins/farm-terroir`, lastModified: now },
 
     { url: `${siteUrl}/solutions`, lastModified: now },
     { url: `${siteUrl}/solutions/wholesale`, lastModified: now },

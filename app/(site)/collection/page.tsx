@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Mondulkiri Origin Collection | SOVANN, PREK, ANGKAR — OCC",
   description:
     "Explore OCC's Mondulkiri Origin Collection: SOVANN, PREK, and ANGKAR, three Cambodian Robusta profiles shaped by origin and craft.",
-  alternates: pageAlternates("/collection"),
+  alternates: pageAlternates("/origins"),
   openGraph: {
     title: "Mondulkiri Origin Collection | OCC",
     description:
       "SOVANN, PREK, ANGKAR — three Mondulkiri Robusta expressions, structured by direct trade, processing, and local roasting.",
-    url: `${siteUrl}/collection`,
+    url: `${siteUrl}/origins`,
     type: "website",
   },
 }
@@ -65,14 +65,14 @@ const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Mondulkiri Origin Collection",
-  url: `${siteUrl}/collection`,
+  url: `${siteUrl}/origins`,
   description:
     "Three single-origin expressions from Mondulkiri, Cambodia, structured by direct trade, processing precision, and local roasting.",
   hasPart: collection.map((c) => ({
     "@type": "Product",
     name: c.name,
     description: `${c.subtitle} — ${c.desc}`,
-    url: `${siteUrl}/collection/${c.slug}`,
+    url: `${siteUrl}${c.slug === "sovann" ? "/origins/single-origin" : c.slug === "angkar" ? "/origins/farm-terroir" : "/origins/prek"}`,
   })),
 }
 
@@ -81,7 +81,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Collection", item: `${siteUrl}/collection` },
+    { "@type": "ListItem", position: 2, name: "Origins", item: `${siteUrl}/origins` },
   ],
 }
 
@@ -132,7 +132,7 @@ export default function CollectionPage() {
                 {collection.map((c) => (
                   <Link
                     key={c.slug}
-                    href={`/collection/${c.slug}`}
+                    href={c.slug === "sovann" ? "/origins/single-origin" : c.slug === "angkar" ? "/origins/farm-terroir" : "/origins/prek"}
                     className="group grid grid-cols-1 gap-6 border-t border-black/10 py-8 last:border-b md:grid-cols-12 md:items-center"
                   >
                     <div className="md:col-span-2">

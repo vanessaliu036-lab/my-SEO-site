@@ -110,7 +110,9 @@ test('sitemap emits current strategic routes while preserving the Airtable blog 
 })
 
 test('deleted collection routes are not preserved through redirects to a removed destination', () => {
-  assert.doesNotMatch(nextConfig, /source: '\/collection'/)
+  assert.match(nextConfig, /source: '\/collection',\s*destination: '\/origins'/)
+  assert.match(nextConfig, /source: '\/collection\/sovann',\s*destination: '\/origins\/single-origin'/)
+  assert.match(nextConfig, /source: '\/collection\/angkar',\s*destination: '\/origins\/farm-terroir'/)
   assert.doesNotMatch(nextConfig, /source: '\/coffee'/)
   assert.doesNotMatch(nextConfig, /destination: '\/coffee\/single-origin'/)
 })

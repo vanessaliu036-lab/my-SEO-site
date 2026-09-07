@@ -19,12 +19,12 @@ export const metadata: Metadata = {
     "roasted almond coffee",
     "coffee terroir Cambodia",
   ],
-  alternates: pageAlternates("/collection/sovann"),
+  alternates: pageAlternates("/origins/single-origin"),
   openGraph: {
     title: "SOVANN — The Golden Highland | OCC",
     description:
       "A balanced expression of Mondulkiri Robusta — chocolate, brown sugar, and roasted almond.",
-    url: `${siteUrl}/collection/sovann`,
+    url: `${siteUrl}/origins/single-origin`,
     type: "website",
   },
 }
@@ -38,7 +38,7 @@ const productSchema = {
   brand: { "@type": "Brand", name: "Origin Coffee Cambodia" },
   category: "Specialty Robusta Coffee",
   origin: { "@type": "Place", name: "Mondulkiri, Cambodia" },
-  url: `${siteUrl}/collection/sovann`,
+  url: `${siteUrl}/origins/single-origin`,
 }
 
 const breadcrumbSchema = {
@@ -46,8 +46,8 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Collection", item: `${siteUrl}/collection` },
-    { "@type": "ListItem", position: 3, name: "SOVANN", item: `${siteUrl}/collection/sovann` },
+    { "@type": "ListItem", position: 2, name: "Origins", item: `${siteUrl}/origins` },
+    { "@type": "ListItem", position: 3, name: "Single Origin", item: `${siteUrl}/origins/single-origin` },
   ],
 }
 
@@ -150,7 +150,7 @@ export default function SovannProductPage() {
         }}
       />
       <div className="min-h-screen bg-white text-[#111] occ-sovann" style={{ fontFamily: "var(--font-sans), Inter, Arial, sans-serif" }}>
-        <a className="back" href="/collection">← BACK TO MONDULKIRI ORIGIN COLLECTION</a>
+        <a className="back" href="/origins">← BACK TO ORIGINS</a>
         <main className="max-w-[1152px] mx-auto px-8 md:px-16 pt-32 md:pt-40 pb-24">
           <header className="pb-14 border-b border-[#cfcfcf]">
             <span className="eyebrow">Mondulkiri Origin Collection / 01</span>
@@ -277,7 +277,7 @@ export default function SovannProductPage() {
             <p>Balanced. Grounded. Rooted in Mondulkiri.</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <Link href="/contact" className="cta-link">Shop SOVANN</Link>
-              <Link href="/collection/prek" className="cta-link soft">Next: PREK →</Link>
+              <Link href="/origins/prek" className="cta-link soft">Next: PREK →</Link>
             </div>
           </section>
         </main>

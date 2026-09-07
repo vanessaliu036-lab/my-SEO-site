@@ -92,6 +92,26 @@ const nextConfig = {
         destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
         permanent: true,
       },
+      {
+        source: '/collection',
+        destination: '/origins',
+        permanent: true,
+      },
+      {
+        source: '/collection/sovann',
+        destination: '/origins/single-origin',
+        permanent: true,
+      },
+      {
+        source: '/collection/angkar',
+        destination: '/origins/farm-terroir',
+        permanent: true,
+      },
+      {
+        source: '/collection/prek',
+        destination: '/origins',
+        permanent: true,
+      },
     ]
     const dead = [
       'the-coffee-industrys-robusta-reckoning-trends-shaping-the-next-decade',
