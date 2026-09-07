@@ -42,13 +42,16 @@ test("production deploy guard allows the main Vercel source", () => {
   assert.equal(result.status, 0, result.output)
 })
 
-test("production source keeps the three corrected pages and removes the legacy sidebar copy", () => {
-  const navigation = readFileSync(resolve(root, "components/Navigation.tsx"), "utf8")
+test("production source keeps approved pages and unified top navigation", () => {
+  const shell = readFileSync(resolve(root, "components/site/site-shell.tsx"), "utf8")
+  const header = readFileSync(resolve(root, "components/site/site-header.tsx"), "utf8")
+  const navigationData = readFileSync(resolve(root, "components/site/navigation-data.ts"), "utf8")
   const mission = readFileSync(resolve(root, "app/(site)/about/mission/page.tsx"), "utf8")
   const manifesto = readFileSync(resolve(root, "app/(site)/about/manifesto/page.tsx"), "utf8")
   const roasting = readFileSync(resolve(root, "app/(site)/solutions/roasting-program/page.tsx"), "utf8")
 
-  assert.doesNotMatch(navigation, /EVIDENCE-LED\s*(?:<br\s*\/?>(?:\s*)|\s+)COFFEE RESEARCH/i)
+  assert.doesNotMatch(`${shell}\n${header}\n${navigationData}`, /SiteSidebar|components\/Navigation|SINGLE ORIGIN|\/collection\//i)
+  assert.match(header, /siteNavigation/)
   assert.match(mission, /title="OCC MISSION"/)
   assert.match(manifesto, /title="MANIFESTO"/)
   assert.match(roasting, /title="CUSTOM COFFEE ROASTING PROGRAM"/)
