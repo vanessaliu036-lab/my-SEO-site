@@ -4,7 +4,7 @@ export type SiteNavChild = {
 }
 
 export type SiteNavItem = {
-  label: "ABOUT" | "SOLUTIONS" | "SINGLE ORIGIN" | "BLOG" | "CONTACT"
+  label: "ABOUT" | "SOLUTIONS" | "BLOG" | "CONTACT"
   href: string
   children?: readonly SiteNavChild[]
 }
@@ -28,16 +28,6 @@ export const siteNavigation: readonly SiteNavItem[] = [
       { label: "Roasting Program", href: "/solutions/roasting-program" },
       { label: "Barista Staffing", href: "/solutions/barista-staffing" },
       { label: "Equipment Service", href: "/solutions/equipment-service" },
-    ],
-  },
-  {
-    label: "SINGLE ORIGIN",
-    href: "/coffee/single-origin",
-    children: [
-      { label: "Mondulkiri Origin Collection", href: "/coffee/single-origin" },
-      { label: "SOVANN", href: "/collection/sovann" },
-      { label: "PREK", href: "/collection/prek" },
-      { label: "ANGKAR", href: "/collection/angkar" },
     ],
   },
   { label: "BLOG", href: "/blog" },
