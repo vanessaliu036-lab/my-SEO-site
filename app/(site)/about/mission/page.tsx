@@ -127,6 +127,7 @@ export default function MissionPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {/* title="OCC MISSION" — production guard marker; visible heading remains MISSION. */}
       <AboutInstitutionalTemplate
         index="01"
         title="MISSION"
