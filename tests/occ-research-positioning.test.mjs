@@ -11,7 +11,8 @@ const rootLayout = read('app/layout.tsx')
 const homePage = read('app/(site)/page.tsx')
 const homeContent = read('lib/homeContent.ts')
 const homeTemplate = read('components/templates/home-template.tsx')
-const navigation = read('components/Navigation.tsx')
+const siteShell = read('components/site/site-shell.tsx')
+const siteHeader = read('components/site/site-header.tsx')
 const navigationData = read('components/site/navigation-data.ts')
 const sitemap = read('app/sitemap.ts')
 const nextConfig = read('next.config.mjs')
@@ -30,9 +31,6 @@ const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 const aboutEditorialTemplate = read('components/templates/about-editorial-template.tsx')
 const coffeeBagVisual = read('components/ui/coffee-bag-visual.tsx')
-const collectionPage = read('app/(site)/collection/page.tsx')
-const collectionPackageStage = read('components/ui/collection-package-stage.tsx')
-const angkarPage = read('app/(site)/collection/angkar/page.tsx')
 
 test('OCC metadata foundation combines professional coffee supply with evidence-led authority', () => {
   assert.match(siteConfig, /Cambodian coffee.*Fine Robusta.*origin research/i)
@@ -78,39 +76,37 @@ test('homepage hero uses a semantic local image instead of a CSS-only remote bac
   assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
 })
 
-test('public navigation uses SINGLE ORIGIN without exposing admin access', () => {
-  assert.match(navigation, /SINGLE ORIGIN/)
-  assert.match(navigation, /href="\/coffee\/single-origin"/)
-  assert.match(navigationData, /label: "SINGLE ORIGIN"/)
-  assert.match(navigationData, /href: "\/coffee\/single-origin"/)
-  for (const label of ['ABOUT', 'SOLUTIONS']) assert.match(navigation, new RegExp(label))
-  for (const label of ['Blog', 'Contact']) assert.match(navigation, new RegExp(label))
-  assert.doesNotMatch(navigation, /\/admin|Staff Access/i)
+test('public navigation is unified in the top header and contains no legacy collection or sidebar', () => {
+  const publicNavigation = `${siteShell}\n${siteHeader}\n${navigationData}`
+  assert.match(siteShell, /SiteHeader/)
+  assert.doesNotMatch(siteShell, /SiteSidebar|components\/Navigation/)
+  assert.match(siteHeader, /siteNavigation/)
+  for (const label of ['ABOUT', 'SOLUTIONS', 'BLOG', 'CONTACT']) assert.match(navigationData, new RegExp(label))
+  assert.doesNotMatch(publicNavigation, /SINGLE ORIGIN|Mondulkiri Origin Collection|SOVANN|PREK|ANGKAR|\/collection\//i)
+  assert.doesNotMatch(publicNavigation, /\/admin|Staff Access/i)
 })
 
-test('sitemap emits strategic routes while preserving the Airtable blog corpus expansion', () => {
+test('sitemap emits current strategic routes while preserving the Airtable blog corpus expansion', () => {
   for (const path of [
-    '/coffee/single-origin',
-    '/collection/sovann',
-    '/collection/prek',
-    '/collection/angkar',
+    '/fine-robusta-cambodia',
     '/solutions',
     '/solutions/wholesale',
     '/solutions/roasting-program',
     '/solutions/barista-staffing',
     '/solutions/equipment-service',
+    '/distribution',
   ]) {
     assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
   }
-  assert.doesNotMatch(sitemap, /\$\{siteUrl\}\/collection`/)
+  assert.doesNotMatch(sitemap, /\/coffee\/single-origin|\/collection\/sovann|\/collection\/prek|\/collection\/angkar/)
   assert.match(sitemap, /const posts = await getAllPosts\(\)/)
   assert.match(sitemap, /\.\.\.blogEntries/)
 })
 
-test('single-origin is the canonical structural destination without a redirect chain', () => {
-  assert.match(nextConfig, /source: '\/collection', destination: '\/coffee\/single-origin'/)
-  assert.match(nextConfig, /source: '\/coffee', destination: '\/coffee\/single-origin'/)
-  assert.doesNotMatch(nextConfig, /source: '\/coffee\/single-origin', destination:/)
+test('deleted collection routes are not preserved through redirects to a removed destination', () => {
+  assert.doesNotMatch(nextConfig, /source: '\/collection'/)
+  assert.doesNotMatch(nextConfig, /source: '\/coffee'/)
+  assert.doesNotMatch(nextConfig, /destination: '\/coffee\/single-origin'/)
 })
 
 test('blog index restores the verified pre-admin presentation while retaining live Airtable pagination', () => {
@@ -176,7 +172,7 @@ test('About structured data does not invent a founder identity or unverified ope
 })
 
 test('shared About shell combines supply, quality and evidence without unsupported operating claims', () => {
-  const sharedAboutShell = `${aboutEditorialTemplate}\n${navigation}`
+  const sharedAboutShell = `${aboutEditorialTemplate}\n${siteHeader}\n${navigationData}`
   assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply/i)
   assert.match(sharedAboutShell, /research|evidence/i)
   assert.doesNotMatch(
@@ -190,23 +186,6 @@ test('About coffee-bag visual uses an editorial context instead of presenting un
   assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
   assert.match(coffeeBagVisual, /Editorial Research/i)
   assert.match(coffeeBagVisual, /Cambodia Research/i)
-})
-
-test('Collection keeps product entities while removing unsupported provenance and availability claims', () => {
-  const collectionClaims = `${collectionPage}\n${angkarPage}`
-  assert.match(collectionPage, /"@type": "Product"/)
-  assert.match(angkarPage, /"@type": "Product"/)
-  assert.doesNotMatch(
-    collectionClaims,
-    /direct[- ]trade|direct sourcing|same farmers|farmer relationships|producer communities|Request a Collection Sample/i,
-  )
-})
-
-test('Collection package stage uses a neutral collection context instead of lot traceability labels', () => {
-  assert.match(collectionPackageStage, /<CoffeeBagVisual[^>]*context="collection"/s)
-  assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"\s*\|\s*"collection"/)
-  assert.match(coffeeBagVisual, /Origin Collection/i)
-  assert.match(coffeeBagVisual, /Canephora Profile/i)
 })
 
 // Solutions is now a real published section, not a redirect-to-blog stub.
