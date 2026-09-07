@@ -34,7 +34,6 @@ export const siteNavigation: readonly SiteNavItem[] = [
     label: "ORIGINS",
     href: "/collection",
     children: [
-      { label: "Mondulkiri Origin Collection", href: "/collection" },
       { label: "Single Origin", href: "/collection/sovann" },
       { label: "Fine Robusta Cambodia", href: "/collection/prek" },
       { label: "Farm & Terroir", href: "/collection/angkar" },
