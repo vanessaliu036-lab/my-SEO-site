@@ -17,15 +17,24 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const onHome = pathname === "/"
 
-  if (!onHome) return null
+  const headerClass = onHome
+    ? "absolute inset-x-0 top-0 z-[70] w-full border-b border-white/15 bg-transparent text-white"
+    : "sticky inset-x-0 top-0 z-[70] w-full border-b border-[#182019]/12 bg-[#f6f3ea]/95 text-[#182019] backdrop-blur-md"
+
+  const secondaryBrandClass = onHome ? "text-white/65" : "text-[#182019]/55"
+  const inactiveLinkClass = onHome ? "text-white/70 hover:text-white" : "text-[#182019]/62 hover:text-[#182019]"
+  const activeLinkClass = onHome ? "text-white" : "text-[#182019]"
+  const mobileButtonClass = onHome
+    ? "border-white/30 text-white hover:bg-white hover:text-black"
+    : "border-[#182019]/20 text-[#182019] hover:bg-[#182019] hover:text-[#f6f3ea]"
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-[70] w-full border-b border-white/15 bg-transparent text-white">
+      <header className={headerClass}>
         <div className="mx-auto flex h-20 w-full max-w-[1680px] items-center gap-6 px-5 sm:px-8 lg:px-12">
           <Link href="/" className="flex shrink-0 items-end gap-3" aria-label="Origin Coffee Cambodia home">
             <span className="text-2xl font-semibold tracking-[-0.07em]">OCC</span>
-            <span className="mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] text-white/65 sm:block">
+            <span className={`mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] sm:block ${secondaryBrandClass}`}>
               Origin Coffee
               <br />
               Cambodia
@@ -38,7 +47,7 @@ export function SiteHeader() {
                 <Link
                   href={item.href}
                   className={`inline-flex items-center gap-1 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] transition-colors ${
-                    isActive(pathname, item.href) ? "text-white" : "text-white/70 hover:text-white"
+                    isActive(pathname, item.href) ? activeLinkClass : inactiveLinkClass
                   }`}
                 >
                   {item.label}
@@ -64,7 +73,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="ml-auto inline-flex size-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-black lg:hidden"
+            className={`ml-auto inline-flex size-10 items-center justify-center rounded-full border transition-colors lg:hidden ${mobileButtonClass}`}
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={mobileOpen}
