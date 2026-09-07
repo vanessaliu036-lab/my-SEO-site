@@ -4,26 +4,27 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 
-test("retained ABOUT and COLLECTION pages preserve their SEO semantics after route grouping", () => {
+test("retained ABOUT and DISTRIBUTION pages preserve public SEO semantics after route cleanup", () => {
   const about = read("app/(site)/about/page.tsx")
-  const collection = read("app/(site)/collection/page.tsx")
+  const distribution = read("app/(site)/distribution/page.tsx")
 
   assert.match(about, /AboutPage/)
   assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
-  assert.match(collection, /CollectionPage/)
-  for (const slug of ["sovann", "prek", "angkar"]) {
-    assert.match(collection, new RegExp(`slug: "${slug}"`))
-  }
+  assert.match(distribution, /Distribution Partners \| Cambodian Coffee Brand \| OCC/)
+  assert.match(distribution, /pageAlternates\("\/distribution"\)/)
 })
 
-test("shared site shell owns the restored pre-admin public chrome while blog keeps non-visual schema and pillar helpers", () => {
+test("shared site shell owns one top navigation while blog keeps non-visual schema and pillar helpers", () => {
   const siteLayout = read("app/(site)/layout.tsx")
   const siteShell = read("components/site/site-shell.tsx")
+  const siteHeader = read("components/site/site-header.tsx")
   const blogLayout = read("app/(site)/blog/layout.tsx")
   const postLayout = read("app/(site)/blog/[slug]/layout.tsx")
 
   assert.match(siteLayout, /SiteShell/)
-  assert.match(siteShell, /SiteSidebar/)
+  assert.match(siteShell, /SiteHeader/)
+  assert.doesNotMatch(siteShell, /SiteSidebar|components\/Navigation/)
+  assert.match(siteHeader, /siteNavigation/)
   assert.match(blogLayout, /"@type": "Blog"/)
   assert.doesNotMatch(blogLayout, /OccHorizontalFrame/)
   assert.doesNotMatch(siteShell, /StaffAccess|\/admin/)
@@ -43,13 +44,10 @@ test("retained service, article, and contact SEO/function logic remains in place
   assert.match(contactAction, /"use server"/)
 })
 
-test("approved reusable product and motion primitives remain available", () => {
-  const packageStage = read("components/ui/collection-package-stage.tsx")
+test("approved reusable motion and coffee visual primitives remain available", () => {
   const bag = read("components/ui/coffee-bag-visual.tsx")
   const reveal = read("components/ui/alternating-reveal-section.tsx")
 
-  assert.match(packageStage, /framer-motion/)
-  assert.match(packageStage, /CoffeeBagVisual/)
   assert.match(bag, /FINE ROBUSTA/)
   assert.match(reveal, /whileInView/)
   assert.match(reveal, /useReducedMotion/)
