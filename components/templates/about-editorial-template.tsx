@@ -38,7 +38,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             {...reveal(28)}
             className="order-3 border-t border-black/10 pt-7 md:order-1 md:col-span-3 md:border-t-0 md:pr-10 md:pt-0 lg:pr-14"
           >
-            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Supply · Quality · Evidence</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Supply · Quality · Origin</p>
             <p className="mt-6 max-w-[310px] text-[15px] leading-7 text-black/80">
               OCC is a professional coffee company connecting Cambodian coffee and Fine Robusta authority with sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions.
             </p>
@@ -96,11 +96,11 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <p className="font-[var(--font-display)] text-[clamp(1.8rem,3vw,2.8rem)] font-normal leading-[1.08] tracking-[-0.02em]">
               Supply, quality,
               <br />
-              evidence.
+              origin.
             </p>
             <div className="mt-10 grid grid-cols-1 gap-8 border-t border-black/10 pt-8 lg:grid-cols-2 lg:gap-14">
               <p className="text-lg leading-8 text-black/84">
-                我們把柬埔寨咖啡的供應、品質與專業服務，建立在可驗證的來源、標準與證據上。
+                我們把柬埔寨咖啡的供應、品質與專業服務，建立在清楚的來源、標準與品質上。
               </p>
               <p className="text-[15px] leading-7 text-black/76">
                 Origin Coffee Cambodia (OCC) connects Cambodian coffee origins and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused solutions. Clear origin and quality information supports the commercial coffee business.
@@ -161,14 +161,14 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">04 / Quality system</p>
             <h2 className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-4xl">
               Built around
-              <br />evidence.
+              <br />quality.
             </h2>
           </div>
           <div className="mt-10 md:col-span-7 md:col-start-6 md:mt-0">
             {[
-              ["Evidence and Sources", "Document what is known, distinguish primary evidence from commentary, and keep current standards separate from historical frameworks."],
+              ["Origin and Standards", "Keep origin information clear, connect it to practical quality standards, and make each coffee easier to understand and use."],
               ["Origin Context", "Evaluate Cambodian coffee and Fine Robusta without treating one lot, region, or anecdote as proof for an entire category."],
-              ["Buyer Clarity", "Separate verified quality evidence from assumptions so sourcing, roasting, and coffee-program decisions can be made with clearer boundaries."],
+              ["Buyer Clarity", "Keep quality information clear and proportional so sourcing, roasting, and coffee-program decisions can be made with confidence."],
             ].map(([title, copy], index) => (
               <div key={title} className="grid grid-cols-[44px_1fr] gap-5 border-t border-black/10 py-7 last:border-b">
                 <span className="text-[9px] tracking-[0.2em] text-black/34">0{index + 1}</span>

@@ -13,7 +13,7 @@ export const siteName =
 
 export const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-  'Origin Coffee Cambodia covers Cambodian coffee, Fine Robusta, Coffea canephora, sourcing, roasting, quality standards, and origin research.'
+  'Origin Coffee Cambodia covers Cambodian coffee, Fine Robusta, Coffea canephora, sourcing, roasting, quality standards, and professional coffee supply.'
 
 /** Default OG / social preview — must exist under `public/` (override with NEXT_PUBLIC_OG_IMAGE). */
 export const ogImage =

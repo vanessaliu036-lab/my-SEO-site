@@ -67,8 +67,8 @@ const faqs = [
     a: "OCC is building a Cambodian coffee company where origin knowledge improves real decisions: what to source, how to evaluate quality, how to develop a roast, and how to create supply that can be understood and repeated.",
   },
   {
-    q: "How does OCC use evidence?",
-    a: "Evidence is the standard behind OCC's sourcing conversations, quality judgments, roast development, and B2B relationships. When information is incomplete, we define the boundary clearly and keep the decision proportional to what can be supported.",
+    q: "How does OCC build quality?",
+    a: "Quality is built through clear origin, careful processing, professional roasting, dependable supply, and close attention to how the coffee performs in the final cup.",
   },
   {
     q: "What does OCC focus on today?",

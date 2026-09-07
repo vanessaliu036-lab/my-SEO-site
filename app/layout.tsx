@@ -25,7 +25,7 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Origin Coffee Cambodia | Fine Robusta & Mondulkiri Research",
+  title: "Origin Coffee Cambodia | Fine Robusta & Cambodian Coffee",
   description: seoDescription(siteDescription),
   keywords: [
     "Fine Robusta",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "Specialty Robusta",
     "Coffea canephora",
     "Cambodian Coffee",
-    "Cambodia Coffee Research",
+    "Cambodian Coffee Supply",
     "Coffee Quality Institute Fine Robusta",
     "CQI Fine Robusta Standards",
     "Robusta Grading",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     "Coffee Quality Standards",
     "Mondulkiri Coffee",
     "Cambodian Coffee Industry",
-    "Coffee Origin Research",
+    "Coffee Origin & Quality",
   ],
   alternates: pageAlternates("/"),
   openGraph: {
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     locale: "en_KH",
-    images: [{ url: ogImage, alt: "Origin Coffee Cambodia coffee research and origin work" }],
+    images: [{ url: ogImage, alt: "Origin Coffee Cambodia coffee origin and quality work" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -120,7 +120,7 @@ export default function RootLayout({
                 "Coffee Sensory Evaluation",
                 "Mondulkiri Coffee",
                 "Cambodian Coffee Industry",
-                "Coffee Origin Research",
+                "Coffee Origin & Quality",
               ],
               "sameAs": [
                 "https://www.linkedin.com/company/origin-coffee-cambodia",

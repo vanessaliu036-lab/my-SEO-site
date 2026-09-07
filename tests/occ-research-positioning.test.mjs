@@ -34,8 +34,8 @@ const collectionPage = read('app/(site)/collection/page.tsx')
 const collectionPackageStage = read('components/ui/collection-package-stage.tsx')
 const angkarPage = read('app/(site)/collection/angkar/page.tsx')
 
-test('OCC metadata foundation combines professional coffee supply with evidence-led authority', () => {
-  assert.match(siteConfig, /Cambodian coffee.*Fine Robusta.*origin research/i)
+test('OCC metadata foundation combines professional coffee supply with origin-led quality', () => {
+  assert.match(siteConfig, /Cambodian coffee.*Fine Robusta.*professional coffee supply/i)
   assert.match(siteConfig, /Fine Robusta|Coffea canephora|quality standards/i)
   assert.doesNotMatch(siteConfig, /independent coffee information and research platform/i)
   assert.doesNotMatch(rootLayout, /AdminFrontendSwitch/)
@@ -154,7 +154,7 @@ test('About surfaces describe OCC through origin, quality, and professional coff
   assert.match(founderPage, /Cambodian coffee|Fine Robusta|professional coffee solutions/i)
   assert.match(manifestoPage, /quality|origin|sourcing/i)
   assert.match(sustainabilityPage, /documentation|traceability|responsible supply/i)
-  assert.doesNotMatch(aboutSurfaces, /research|evidence-led coffee research|technical editorial/i)
+  assert.doesNotMatch(aboutSurfaces, /research|evidence|technical editorial/i)
   assert.doesNotMatch(
     aboutSurfaces,
     /we pay above market|free enrollment|placement within businesses/i,
@@ -177,8 +177,8 @@ test('About structured data does not invent a founder identity or unverified ope
 
 test('shared About shell combines supply, quality, and origin without unsupported operating claims', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${navigation}`
-  assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply|Cambodian Coffee/i)
-  assert.doesNotMatch(sharedAboutShell, /research|evidence-led coffee research/i)
+  assert.match(sharedAboutShell, /Supply · Quality · Origin|sourcing|B2B supply|Cambodian Coffee/i)
+  assert.doesNotMatch(sharedAboutShell, /research|evidence/i)
   assert.doesNotMatch(
     sharedAboutShell,
     /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,

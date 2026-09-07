@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "OCC Sustainability — Evidence and Traceability Claims",
+  name: "OCC Sustainability — Documentation and Traceability",
   description:
     "How Origin Coffee Cambodia approaches sustainability, traceability, and origin transparency through documentation and clear scope.",
   url: `${siteUrl}/about/sustainability`,

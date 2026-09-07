@@ -130,7 +130,7 @@ export default function ManifestoPage() {
         next={{
           href: "/about/sustainability",
           label: "Sustainability",
-          description: "Evidence, documentation, and the boundaries of sustainability claims.",
+          description: "Documentation, traceability, and responsible sustainability claims.",
         }}
       />
     </>
