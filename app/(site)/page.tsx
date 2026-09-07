@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import HomeTemplate from "@/components/templates/home-template"
-import { ogImage, siteUrl, siteName, siteDescription } from "@/lib/siteConfig"
+import { ogImage, siteUrl, siteName } from "@/lib/siteConfig"
 import {
   homeAuthoritySections,
   homeDateModified,
@@ -9,11 +9,13 @@ import {
 } from "@/lib/homeContent"
 import { pageAlternates, seoDescription, seoTitle } from "@/lib/seo"
 
-const homeTitle = "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"
+const homeTitle = "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier"
+const homeDescription =
+  "Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions."
 
 export const metadata: Metadata = {
   title: seoTitle(homeTitle),
-  description: seoDescription(siteDescription),
+  description: seoDescription(homeDescription),
   keywords: [
     "Fine Robusta",
     "Fine Robusta Cambodia",
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
   alternates: pageAlternates("/"),
   openGraph: {
     title: seoTitle(homeTitle),
-    description: seoDescription(siteDescription),
+    description: seoDescription(homeDescription),
     url: siteUrl,
     siteName,
     type: "website",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: seoTitle(homeTitle),
-    description: seoDescription(siteDescription),
+    description: seoDescription(homeDescription),
     images: [ogImage],
   },
 }
@@ -60,7 +62,7 @@ const websiteJsonLd = {
   "@id": websiteId,
   name: siteName,
   url: siteUrl,
-  description: siteDescription,
+  description: homeDescription,
   publisher: { "@id": organizationId },
   inLanguage: "en",
 }
