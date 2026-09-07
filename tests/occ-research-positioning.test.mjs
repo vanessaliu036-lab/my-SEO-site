@@ -42,9 +42,14 @@ test('OCC metadata foundation combines professional coffee supply with evidence-
 test('homepage carries the approved supplier positioning while retaining research authority', () => {
   const publicHome = `${homePage}\n${homeContent}\n${homeTemplate}`
   assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta Beans & Specialty Coffee Supplier"/)
-  assert.match(homePage, /Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions\./)
+  assert.match(homePage, /Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions\"/)
   assert.doesNotMatch(homePage, /const homeTitle[^\n]*[…]/)
   assert.match(homePage, /pageAlternates\("\/"\)/)
+  assert.match(rootLayout, /title: "Origin Coffee Cambodia \| Fine Robusta Beans & Specialty Coffee Supplier"/)
+  assert.match(siteConfig, /quality-focused coffee solutions'/)
+  assert.match(homePage, /title: homeTitle/)
+  assert.match(homePage, /description: homeDescription/)
+  assert.match(rootLayout, /description: siteDescription/)
   assert.match(publicHome, /B2B supply|Wholesale & Sourcing|Start an Enquiry/i)
   assert.match(publicHome, /research|evidence/i)
   assert.doesNotMatch(publicHome, /does not currently sell coffee|does not sell coffee|research platform/i)
@@ -55,7 +60,7 @@ test('homepage metadata separates the organization logo from the social sharing 
   assert.match(rootLayout, /images:\s*\[\{\s*url:\s*ogImage/)
   assert.doesNotMatch(rootLayout, /width:\s*180|height:\s*180/)
   assert.match(homePage, /images:\s*\[\{\s*url:\s*ogImage/)
-  assert.match(homePage, /title:\s*seoTitle\(homeTitle\)/)
+  assert.match(homePage, /title:\s*homeTitle/)
   assert.doesNotMatch(homePage, /images:\s*\[\{\s*url:\s*siteLogoUrl/)
 })
 

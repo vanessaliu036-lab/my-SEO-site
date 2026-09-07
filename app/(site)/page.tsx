@@ -7,15 +7,15 @@ import {
   homeDirectAnswer,
   homeSources,
 } from "@/lib/homeContent"
-import { pageAlternates, seoDescription, seoTitle } from "@/lib/seo"
+import { pageAlternates } from "@/lib/seo"
 
 const homeTitle = "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier"
 const homeDescription =
-  "Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions."
+  "Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions"
 
 export const metadata: Metadata = {
-  title: seoTitle(homeTitle),
-  description: seoDescription(homeDescription),
+  title: homeTitle,
+  description: homeDescription,
   keywords: [
     "Fine Robusta",
     "Fine Robusta Cambodia",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   ],
   alternates: pageAlternates("/"),
   openGraph: {
-    title: seoTitle(homeTitle),
-    description: seoDescription(homeDescription),
+    title: homeTitle,
+    description: homeDescription,
     url: siteUrl,
     siteName,
     type: "website",
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: seoTitle(homeTitle),
-    description: seoDescription(homeDescription),
+    title: homeTitle,
+    description: homeDescription,
     images: [ogImage],
   },
 }

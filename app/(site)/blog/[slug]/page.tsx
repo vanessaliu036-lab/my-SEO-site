@@ -71,6 +71,16 @@ const ROBUSTA_PILLAR_ANCHORS = [
   "Cambodia Robusta sourcing guide",
 ]
 
+const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  // Keep the mechanism article's scientific intent while passing broad fermentation
+  // authority to the formal owner in the first rendered paragraph.
+  "why-fermentation-changes-coffee-flavor": {
+    href: "/blog/fine-robusta-fermentation",
+    anchor: "Fine Robusta fermentation guide",
+    lead: "For the broader process-control and quality context, see the",
+  },
+}
+
 function robustaAnchorForSlug(slug: string): string {
   const hash = Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 0)
   return ROBUSTA_PILLAR_ANCHORS[hash % ROBUSTA_PILLAR_ANCHORS.length]
@@ -211,7 +221,7 @@ function renderList(lines: string[], ordered: boolean): string {
   return ordered ? `<ol>${items}</ol>` : `<ul>${items}</ul>`
 }
 
-function formatContent(raw: string, title: string): string {
+function formatContent(raw: string, title: string, slug?: string): string {
   if (!raw) return ""
   const lines = raw
     .split("\n")
@@ -283,7 +293,15 @@ function formatContent(raw: string, title: string): string {
       continue
     }
 
-    html.push(`<p>${renderInlineMarkdown(line)}</p>`)
+    const renderedParagraph = renderInlineMarkdown(line)
+    const contextualOwner = slug ? CONTEXTUAL_OWNER_LINKS[slug] : undefined
+    if (contextualOwner && !html.some((entry) => entry.startsWith("<p>"))) {
+      html.push(
+        `<p>${renderedParagraph} ${contextualOwner.lead} <a href="${contextualOwner.href}" class="border-b border-stone-300 text-stone-950 transition-colors hover:border-stone-950">${contextualOwner.anchor}</a>.</p>`,
+      )
+    } else {
+      html.push(`<p>${renderedParagraph}</p>`)
+    }
   }
 
   return html.join("")
@@ -389,7 +407,7 @@ export default async function BlogPostPage({
   const keywordList = post.keywords
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
-  const formattedContent = formatContent(post.content, post.title)
+  const formattedContent = formatContent(post.content, post.title, post.slug)
   const showRobustaPillarLink =
     ROBUSTA_CLUSTER_SLUGS.has(post.slug) || post.slug === ROBUSTA_PILLAR_SLUG
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)

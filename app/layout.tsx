@@ -6,7 +6,7 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
-import { pageAlternates, seoDescription } from "@/lib/seo";
+import { pageAlternates } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +26,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier",
-  description: seoDescription(siteDescription),
+  description: siteDescription,
   keywords: [
     "Fine Robusta",
     "Fine Robusta Coffee",

@@ -35,6 +35,9 @@ test('wrong-page Fine Robusta families pass contextual authority to their formal
   assert.match(articleLayout, /OWNER_ROUTE_BY_SUPPORT_SLUG\[slug\]/)
   assert.match(articleLayout, /Primary topic guide/)
   assert.doesNotMatch(articleLayout, /rel=["']nofollow["']/)
+  assert.match(articlePage, /why-fermentation-changes-coffee-flavor/)
+  assert.match(articlePage, /Fine Robusta fermentation guide/)
+  assert.match(articlePage, /const CONTEXTUAL_OWNER_LINKS/)
 })
 
 test('formal owners are not routed down to weaker support pages', () => {
