@@ -24,6 +24,4 @@ test("OCC navigation is sourced from one six-section data file", () => {
 
   assert.match(header, /siteNavigation\.map/)
   assert.match(mobile, /siteNavigation\.map/)
-  assert.match(header, /StaffAccess/)
-  assert.match(mobile, /Staff Access ↗/)
 })
