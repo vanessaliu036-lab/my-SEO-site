@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
-import { CoffeeBagVisual } from "@/components/ui/coffee-bag-visual"
 
 type AboutSection = {
   title: string
@@ -69,11 +68,14 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                   initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 42 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: reducedMotion ? 0.01 : 0.72, delay: reducedMotion ? 0 : 0.1, ease }}
-                  className="relative z-10"
+                  className="relative z-10 flex min-h-[300px] w-full max-w-[360px] items-center justify-center border-y border-[#e8e4df] bg-white/60 px-8 py-14 text-center shadow-[0_18px_44px_rgba(26,26,26,0.05)] sm:min-h-[360px] sm:max-w-[430px]"
                 >
-                  <div className="relative border border-[#e8e4df] bg-white p-3 shadow-[0_18px_44px_rgba(26,26,26,0.08)] sm:p-4">
-                    <div className="absolute left-0 top-8 h-20 w-px bg-[#b8860b]" aria-hidden="true" />
-                    <CoffeeBagVisual name="OCC" subtitle="MONDULKIRI" tone="olive" context="editorial" />
+                  <div className="absolute left-0 top-10 h-24 w-px bg-[#b8860b]" aria-hidden="true" />
+                  <div>
+                    <p className="about-label">Origin Coffee Cambodia</p>
+                    <p className="about-display mt-7 text-[clamp(5.5rem,12vw,9rem)] leading-[0.72] text-[#1a1a1a]">OCC</p>
+                    <div className="mx-auto mt-9 h-px w-14 bg-[#b8860b]" aria-hidden="true" />
+                    <p className="about-label mt-6">Fine Robusta · Cambodia</p>
                   </div>
                 </motion.div>
               </div>

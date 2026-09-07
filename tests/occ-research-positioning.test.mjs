@@ -190,11 +190,11 @@ test('shared About shell combines supply, quality, and origin without unsupporte
   )
 })
 
-test('About coffee-bag visual uses an editorial context instead of presenting unverified lot claims', () => {
-  assert.match(aboutEditorialTemplate, /<CoffeeBagVisual[^>]*context="editorial"/s)
-  assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
-  assert.match(coffeeBagVisual, /Quality Standards/i)
-  assert.match(coffeeBagVisual, /Cambodian Coffee/i)
+test('About page uses a typographic editorial hero without product imagery', () => {
+  assert.match(aboutEditorialTemplate, /about-serif-page/)
+  assert.match(aboutEditorialTemplate, /about-display/)
+  assert.match(aboutEditorialTemplate, /Origin Coffee Cambodia/)
+  assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual|next\/image|<img\b/i)
 })
 
 test('Single Origin keeps collection product entities without legacy collection URLs', () => {

@@ -16,16 +16,31 @@ export function SiteHeader() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const onHome = pathname === "/"
-
-  if (!onHome) return null
+  const headerTheme = onHome
+    ? {
+        shell: "absolute inset-x-0 top-0 border-white/15 bg-transparent text-white",
+        logo: "text-white",
+        wordmark: "text-white/65",
+        nav: "text-white/70 hover:text-white",
+        activeNav: "text-white",
+        menu: "border-white/30 text-white hover:bg-white hover:text-black",
+      }
+    : {
+        shell: "relative border-b border-black/10 bg-[#f6f3ea] text-[#182019]",
+        logo: "text-[#182019]",
+        wordmark: "text-black/50",
+        nav: "text-black/55 hover:text-[#182019]",
+        activeNav: "text-[#182019]",
+        menu: "border-black/20 text-[#182019] hover:bg-[#182019] hover:text-[#f6f3ea]",
+      }
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-[70] w-full border-b border-white/15 bg-transparent text-white">
+      <header className={`z-[70] w-full ${headerTheme.shell}`}>
         <div className="mx-auto flex h-20 w-full max-w-[1680px] items-center gap-6 px-5 sm:px-8 lg:px-12">
-          <Link href="/" className="flex shrink-0 items-end gap-3" aria-label="Origin Coffee Cambodia home">
+          <Link href="/" className={`flex shrink-0 items-end gap-3 ${headerTheme.logo}`} aria-label="Origin Coffee Cambodia home">
             <span className="text-2xl font-semibold tracking-[-0.07em]">OCC</span>
-            <span className="mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] text-white/65 sm:block">
+            <span className={`mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] sm:block ${headerTheme.wordmark}`}>
               Origin Coffee
               <br />
               Cambodia
@@ -37,9 +52,7 @@ export function SiteHeader() {
               <div key={item.label} className="group relative flex h-20 items-center">
                 <Link
                   href={item.href}
-                  className={`inline-flex items-center gap-1 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] transition-colors ${
-                    isActive(pathname, item.href) ? "text-white" : "text-white/70 hover:text-white"
-                  }`}
+                  className={`inline-flex items-center gap-1 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] transition-colors ${isActive(pathname, item.href) ? headerTheme.activeNav : headerTheme.nav}`}
                 >
                   {item.label}
                   {item.children?.length ? <ChevronDown className="size-3 opacity-50" aria-hidden="true" /> : null}
@@ -64,7 +77,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="ml-auto inline-flex size-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-black lg:hidden"
+            className={`ml-auto inline-flex size-10 items-center justify-center rounded-full border transition-colors lg:hidden ${headerTheme.menu}`}
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={mobileOpen}
