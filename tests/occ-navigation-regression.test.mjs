@@ -4,22 +4,26 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 
-test("OCC public shell uses one unified top navigation with no legacy sidebar or collection entries", () => {
-  const shell = read("components/site/site-shell.tsx")
+test("OCC navigation is sourced from one six-section data file", () => {
+  const nav = read("components/site/navigation-data.ts")
   const header = read("components/site/site-header.tsx")
-  const navigationData = read("components/site/navigation-data.ts")
+  const mobile = read("components/site/mobile-menu.tsx")
 
-  assert.match(shell, /SiteHeader/)
-  assert.doesNotMatch(shell, /SiteSidebar|components\/Navigation/)
-  assert.match(header, /siteNavigation/)
-  assert.match(header, /sticky|absolute/)
-
-  for (const label of ["ABOUT", "SOLUTIONS", "BLOG", "CONTACT"]) {
-    assert.match(navigationData, new RegExp(label))
+  let cursor = -1
+  for (const label of ["ABOUT", "SOLUTIONS", "ORIGINS", "BLOG", "CONTACT", "DISTRIBUTION"]) {
+    const next = nav.indexOf(`label: \"${label}\"`)
+    assert.ok(next > cursor, `${label} missing or out of order`)
+    cursor = next
   }
 
-  assert.doesNotMatch(
-    `${shell}\n${header}\n${navigationData}`,
-    /SINGLE ORIGIN|Mondulkiri Origin Collection|SOVANN|PREK|ANGKAR|\/collection\/|\/admin|Staff Access/i,
-  )
+  for (const forbidden of ["HOME", "COFFEE", "INSIGHTS", "CULTURE & ETHICS"]) {
+    assert.doesNotMatch(nav, new RegExp(`label:\\s*[\"']${forbidden}`))
+  }
+
+  assert.match(nav, /label: "DISTRIBUTION", href: "\/distribution"/)
+
+  assert.match(header, /siteNavigation\.map/)
+  assert.match(mobile, /siteNavigation\.map/)
+  assert.match(header, /StaffAccess/)
+  assert.match(mobile, /Staff Access ↗/)
 })
