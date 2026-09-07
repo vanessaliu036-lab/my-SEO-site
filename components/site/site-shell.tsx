@@ -1,15 +1,11 @@
 import type { ReactNode } from "react"
-import SiteSidebar from "@/components/SiteSidebar"
 import { SiteHeader } from "@/components/site/site-header"
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <div className="flex min-h-screen flex-col md:flex-row">
-        <SiteSidebar />
-        <main className="relative flex-1 bg-white">{children}</main>
-      </div>
+      <main className="relative min-h-screen bg-white">{children}</main>
 
       <div
         className="fixed right-8 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-4 md:flex"
