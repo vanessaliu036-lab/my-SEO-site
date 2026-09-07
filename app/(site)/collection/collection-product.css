@@ -1,0 +1,275 @@
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) {
+  background: #f6f3ea !important;
+  color: #182019 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) > .back {
+  position: relative !important;
+  inset: auto !important;
+  display: block;
+  width: min(100%, 1680px);
+  margin: 0 auto;
+  padding: 24px clamp(1.5rem, 4vw, 4rem) 0;
+  color: rgba(24, 32, 25, 0.46) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.2em !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) > main {
+  max-width: 1680px !important;
+  padding: 0 clamp(1.5rem, 4vw, 4rem) 5rem !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header {
+  position: relative;
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  column-gap: clamp(1rem, 2vw, 2rem);
+  padding: 4rem 0 !important;
+  border-bottom: 1px solid rgba(24, 32, 25, 0.12) !important;
+  overflow: hidden;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header > * {
+  position: relative;
+  z-index: 3;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header .eyebrow {
+  grid-column: 1 / 4;
+  align-self: start;
+  padding-top: 0.75rem;
+  color: rgba(24, 32, 25, 0.38) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.22em !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header h1 {
+  grid-column: 9 / 13;
+  align-self: center;
+  margin: 0 !important;
+  font-family: var(--font-display), Georgia, serif !important;
+  font-size: clamp(4.6rem, 8vw, 8.8rem) !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: -0.06em !important;
+  color: #182019 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header .hero-sub {
+  grid-column: 9 / 13;
+  align-self: end;
+  margin: 0 0 1rem !important;
+  color: rgba(24, 32, 25, 0.48) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.2em !important;
+}
+
+/* Shared central package silhouette. Product copy remains the accessible H1. */
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(220px, 21vw, 330px);
+  height: clamp(330px, 31vw, 480px);
+  transform: translate(-50%, -48%);
+  clip-path: polygon(4% 0, 96% 0, 100% 91%, 92% 100%, 8% 100%, 0 91%);
+  border: 1px solid rgba(24, 32, 25, 0.13);
+  box-shadow: 0 30px 60px rgba(24, 32, 25, 0.14);
+  z-index: 1;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -45%);
+  z-index: 2;
+  width: clamp(180px, 18vw, 280px);
+  text-align: center;
+  white-space: pre-line;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.occ-collection-shell .occ-sovann header::before { background: #273229; }
+.occ-collection-shell .occ-sovann header::after { content: "SOVANN\A MONDULKIRI"; color: #f6f3ea; }
+.occ-collection-shell .occ-prek header::before { background: #d8cfb7; }
+.occ-collection-shell .occ-prek header::after { content: "PREK\A MONDULKIRI"; color: #182019; }
+.occ-collection-shell .occ-angkar header::before { background: #202820; }
+.occ-collection-shell .occ-angkar header::after { content: "ANGKAR\A MONDULKIRI"; color: #f6f3ea; }
+
+/* The former giant typographic panel duplicates the new package hero. Keep it in DOM, hide visually. */
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .panel {
+  display: none !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) h2,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) h3,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .display {
+  font-family: var(--font-display), Georgia, serif !important;
+  color: #182019 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) h2 {
+  font-size: clamp(2.3rem, 4vw, 4.2rem) !important;
+  line-height: 0.98 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) h3 {
+  font-size: clamp(1.7rem, 2.4vw, 2.5rem) !important;
+  line-height: 1.05 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .lead {
+  font-family: var(--font-display), Georgia, serif !important;
+  font-size: clamp(2rem, 3.2vw, 3.4rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.035em !important;
+  color: #182019 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .copy {
+  font-family: var(--font-sans), Inter, Arial, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.85 !important;
+  color: rgba(24, 32, 25, 0.58) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .leftbar,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .section-title {
+  border-color: #182019 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  border-top-color: rgba(24, 32, 25, 0.14) !important;
+  border-bottom: 1px solid rgba(24, 32, 25, 0.14);
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact {
+  padding: 22px 18px !important;
+  border: 0 !important;
+  border-right: 1px solid rgba(24, 32, 25, 0.12) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact:last-child {
+  border-right: 0 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact span,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .origin-row span,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .flavor-card span {
+  color: rgba(24, 32, 25, 0.36) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact strong,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .origin-row strong {
+  color: #182019 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) section {
+  border-color: rgba(24, 32, 25, 0.12) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .flavor-grid {
+  border-color: rgba(24, 32, 25, 0.14) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .flavor-card {
+  border-color: rgba(24, 32, 25, 0.12) !important;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .flavor-card p,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .origin-row p,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .faq-item p {
+  color: rgba(24, 32, 25, 0.56) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .quote {
+  border-color: rgba(24, 32, 25, 0.35) !important;
+  color: #182019 !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .faq-item {
+  border-color: rgba(24, 32, 25, 0.12) !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta {
+  margin-top: 4rem;
+  padding: 5rem clamp(1.5rem, 5vw, 5rem) !important;
+  background: #202820;
+  color: #f6f3ea;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta h2,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta p {
+  color: #f6f3ea !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta p {
+  opacity: 0.65;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta a,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta-link {
+  border-color: rgba(246, 243, 234, 0.55) !important;
+  color: #f6f3ea !important;
+}
+
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta a:hover,
+.occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .cta-link:hover {
+  background: #f6f3ea !important;
+  color: #182019 !important;
+}
+
+@media (max-width: 980px) {
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header {
+    min-height: 720px;
+    display: block;
+    padding-top: 390px !important;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header .eyebrow {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header h1 {
+    font-size: clamp(4rem, 14vw, 6.8rem) !important;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header .hero-sub {
+    margin-top: 1.1rem !important;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::before {
+    top: 46%;
+    width: 230px;
+    height: 340px;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) header::after {
+    top: 45%;
+    font-size: 2.4rem;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .occ-collection-shell :is(.occ-sovann, .occ-prek, .occ-angkar) .fact {
+    border-bottom: 1px solid rgba(24, 32, 25, 0.12) !important;
+  }
+}
