@@ -1,1 +1,1 @@
-export { default, metadata } from "../../collection/sovann/page"
+export { default, metadata } from "../../fine-robusta-cambodia/page"
