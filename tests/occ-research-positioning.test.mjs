@@ -43,7 +43,8 @@ test('OCC metadata foundation combines professional coffee supply with evidence-
 
 test('homepage carries the approved supplier positioning while retaining research authority', () => {
   const publicHome = `${homePage}\n${homeContent}\n${homeTemplate}`
-  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta & Specialty Coffee"/)
+  assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta Beans & Specialty Coffee Supplier"/)
+  assert.match(homePage, /Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions\./)
   assert.doesNotMatch(homePage, /const homeTitle[^\n]*[…]/)
   assert.match(homePage, /pageAlternates\("\/"\)/)
   assert.match(publicHome, /B2B supply|Wholesale & Sourcing|Start an Enquiry/i)
