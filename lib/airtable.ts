@@ -33,6 +33,7 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'featured_image_url',
     'Category',
     'SEO_Keyword',
+    'OCC_INDEXED_PROTECTED',
   ],
   OCC_INDEXED_PROTECTED: [
     'title',
@@ -148,10 +149,10 @@ function normalizeText(text: string): string {
   return text.trim().replace(/\s+/g, ' ')
 }
 
-// Legacy article templates sometimes described OCC itself as a knowledge/research/information
-// platform. Keep the underlying corpus and URLs intact, but prevent those stale identity labels
-// from reaching public pages, metadata, or AI/search crawlers. Replacements are deliberately
-// exact and narrow: normal research citations, scientific discussion, and evidence language stay.
+// Legacy working-copy templates sometimes described OCC itself as a knowledge/research/
+// information platform or asserted undocumented internal evidence. Indexed protected assets are
+// immutable and bypass this function entirely. Replacements are deliberately exact and narrow so
+// normal research citations, scientific discussion, and evidence language remain unchanged.
 function sanitizeOccEntityText(text: string): string {
   if (!text) return text
 
@@ -167,12 +168,42 @@ function sanitizeOccEntityText(text: string): string {
     ['For a coffee information platform', "For OCC's coffee quality and education work"],
     ['For a research platform', "For OCC's coffee quality work"],
     ['A research platform can add value', 'OCC can add value'],
+    [
+      'OCC maintains two independent quality libraries—one for arabica, one for robusta—each curated to the same 80+ standard.',
+      'Quality comparisons between arabica and canephora should rely on documented, species-appropriate sensory and physical evaluation rather than an undocumented internal OCC reference-library claim.',
+    ],
+    [
+      'The 70/30 blind test. In internal blind cupping sessions, OCC has consistently observed that 70% of participants cannot reliably distinguish between high-scoring Fine Robusta (80+ points) and specialty arabica when both are prepared to optimal roast profiles. The remaining 30% who can identify the species often cite differences in body and crema—not quality—as their differentiator. This finding points toward a species-agnostic future where cup score, not botanical classification, determines value.',
+      'Blind comparative cupping can help test sensory differences without relying on an undocumented OCC internal percentage claim. Species comparisons should be interpreted from documented samples, protocols, and sensory results rather than an unsupported internal statistic.',
+    ],
+    [
+      'See the difference for yourself — try OCC\'s hand-picked, cupping-verified Fine Robusta lots from Cambodia.',
+      "Explore OCC's Cambodia Fine Robusta sourcing and quality resources.",
+    ],
   ]
 
   return replacements.reduce(
     (value, [from, to]) => value.split(from).join(to),
     text
   )
+}
+
+function shouldSanitizeOccEntityText(record: AirtableRecord): boolean {
+  if (record.tableName !== 'OCC_Blog_Posts') return false
+
+  const protection = record.fields['OCC_INDEXED_PROTECTED']
+  if (typeof protection === 'boolean') return !protection
+  if (typeof protection === 'number') return protection === 0
+  if (typeof protection === 'string') {
+    const value = protection.trim()
+    return !value || /^(false|0|no)$/i.test(value)
+  }
+  if (Array.isArray(protection)) return protection.length === 0
+  return !protection
+}
+
+function sanitizeOccRecordText(record: AirtableRecord, text: string): string {
+  return shouldSanitizeOccEntityText(record) ? sanitizeOccEntityText(text) : text
 }
 
 function slugifyText(text: string): string {
@@ -223,9 +254,9 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
   if (!slug) return null
   return {
     id: record.id,
-    title: sanitizeOccEntityText(pickField(record.fields, K.title, 'Untitled')),
+    title: sanitizeOccRecordText(record, pickField(record.fields, K.title, 'Untitled')),
     slug,
-    summary: sanitizeOccEntityText(pickField(record.fields, K.summary)),
+    summary: sanitizeOccRecordText(record, pickField(record.fields, K.summary)),
     author: pickField(record.fields, K.author, 'OCC Team'),
     publish_date: pickField(record.fields, K.publishDate),
     featured_image_url: pickField(record.fields, K.featured),
@@ -377,8 +408,8 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
   if (!base) return null
   return {
     ...base,
-    content: sanitizeOccEntityText(pickField(record.fields, K.content)),
-    excerpt: sanitizeOccEntityText(pickField(record.fields, K.excerpt)),
+    content: sanitizeOccRecordText(record, pickField(record.fields, K.content)),
+    excerpt: sanitizeOccRecordText(record, pickField(record.fields, K.excerpt)),
     keywords: pickField(record.fields, K.keywords),
     modified_date: pickField(record.fields, K.modifiedDate, base.publish_date),
   }
