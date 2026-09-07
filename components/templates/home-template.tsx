@@ -76,7 +76,7 @@ export default function HomeTemplate() {
         </div>
       </section>
 
-      <section className="border-t border-gray-200 bg-white px-6 py-20 sm:px-8 md:py-24">
+      <section className="border-t border-gray-200 bg-[#f6f3ea] px-6 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-gray-500">Origin Coffee Cambodia</p>
           <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>

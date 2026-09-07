@@ -75,7 +75,9 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <h1 className="font-[var(--font-display)] text-[clamp(2.4rem,4.4vw,4rem)] font-normal leading-[0.98] tracking-[-0.02em]">
               About
               <br />
-              Origin.
+              Origin Coffee
+              <br />
+              Cambodia.
             </h1>
           </motion.div>
         </div>
@@ -100,7 +102,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </p>
             <div className="mt-10 grid grid-cols-1 gap-8 border-t border-black/10 pt-8 lg:grid-cols-2 lg:gap-14">
               <p className="text-lg leading-8 text-black/84">
-                我們把柬埔寨咖啡的供應、品質與專業服務，建立在清楚的來源、標準與品質上。
+                OCC connects Cambodian coffee supply, quality standards, and professional service through clear origin information, practical evaluation, and accountable coffee systems.
               </p>
               <p className="text-[15px] leading-7 text-black/76">
                 Origin Coffee Cambodia (OCC) connects Cambodian coffee origins and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused solutions. Clear origin and quality information supports the commercial coffee business.
