@@ -1,6 +1,5 @@
 import Link from "next/link"
 import type { Metadata } from "next"
-import { CollectionPackageStage } from "@/components/ui/collection-package-stage"
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
@@ -86,12 +85,6 @@ const breadcrumbSchema = {
   ],
 }
 
-const stageItems = [
-  { slug: "prek", name: "PREK", subtitle: "BRIGHT CURRENT", tone: "sand" as const },
-  { slug: "sovann", name: "SOVANN", subtitle: "GOLDEN HIGHLAND", tone: "olive" as const },
-  { slug: "angkar", name: "ANGKAR", subtitle: "DEEP FOUNDATION", tone: "charcoal" as const },
-]
-
 export default function CollectionPage() {
   return (
     <>
@@ -109,7 +102,6 @@ export default function CollectionPage() {
               A balanced core, a bright current, a deep foundation — all from Mondulkiri.
             </p>
 
-            <CollectionPackageStage items={stageItems} />
           </div>
         </section>
 
