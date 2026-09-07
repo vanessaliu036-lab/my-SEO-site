@@ -4,9 +4,9 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 
-test("retained ABOUT and COLLECTION pages preserve their SEO semantics after route grouping", () => {
+test("retained ABOUT and SINGLE ORIGIN pages preserve their SEO semantics after route grouping", () => {
   const about = read("app/(site)/about/page.tsx")
-  const collection = read("app/(site)/collection/page.tsx")
+  const collection = read("app/(site)/coffee/single-origin/page.tsx")
 
   assert.match(about, /AboutPage/)
   assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)

@@ -13,7 +13,7 @@ test("OCC keeps the grouped public routes and has no admin route", () => {
     "app/(site)/page.tsx",
     "app/(site)/about/page.tsx",
     "app/(site)/solutions/page.tsx",
-    "app/(site)/collection/page.tsx",
+    "app/(site)/coffee/single-origin/page.tsx",
     "app/(site)/blog/page.tsx",
     "app/(site)/blog/[slug]/page.tsx",
     "app/(site)/contact/page.tsx",
@@ -27,7 +27,7 @@ test("OCC keeps the grouped public routes and has no admin route", () => {
   for (const forbidden of [
     "app/about",
     "app/solutions",
-    "app/collection",
+    "app/(site)/collection",
     "app/blog",
     "app/contact",
     "app/admin",
@@ -39,12 +39,12 @@ test("OCC keeps the grouped public routes and has no admin route", () => {
 
 test("restored public navigation contains the original five sections with no admin access", () => {
   const nav = read("components/Navigation.tsx")
-  for (const label of ["ABOUT", "SOLUTIONS", "COLLECTION", "Blog", "Contact"]) {
+  for (const label of ["ABOUT", "SOLUTIONS", "SINGLE ORIGIN", "Blog", "Contact"]) {
     assert.match(nav, new RegExp(label))
   }
   for (const child of [
     "Mission", "Founder", "Manifesto", "Sustainability", "Wholesale", "Roasting Program",
-    "Barista Staffing", "Equipment Service", "Mondulkiri Origin Collection", "SOVANN", "PREK", "ANGKAR",
+    "Barista Staffing", "Equipment Service", "SINGLE ORIGIN",
   ]) {
     assert.match(nav, new RegExp(child))
   }

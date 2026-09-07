@@ -185,6 +185,62 @@
     background: #fff;
   }
 
+  .about-serif-page {
+    --about-bg: #fafaf8;
+    --about-ink: #1a1a1a;
+    --about-muted: #6b6b6b;
+    --about-gold: #b8860b;
+    --about-gold-light: #d4a84b;
+    --about-surface: #f5f3f0;
+    --about-card: #ffffff;
+    --about-border: #e8e4df;
+    background: var(--about-bg);
+    color: var(--about-ink);
+  }
+
+  .about-serif-page .about-display {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+
+  .about-serif-page .about-label {
+    color: var(--about-muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .about-serif-page .about-copy {
+    color: color-mix(in srgb, var(--about-ink) 76%, transparent);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1.78;
+  }
+
+  .about-serif-page .about-grid-lines {
+    background-image: linear-gradient(
+      to right,
+      transparent calc(100% - 1px),
+      var(--about-border) calc(100% - 1px)
+    );
+    background-size: calc(100% / 12) 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-serif-page *,
+    .about-serif-page *::before,
+    .about-serif-page *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
   .occ-horizontal-frame {
     min-height: 100%;
     overflow-x: hidden;

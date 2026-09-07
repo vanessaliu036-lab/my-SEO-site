@@ -33,12 +33,6 @@ export const siteNavigation: readonly SiteNavItem[] = [
   {
     label: "SINGLE ORIGIN",
     href: "/coffee/single-origin",
-    children: [
-      { label: "Mondulkiri Origin Collection", href: "/coffee/single-origin" },
-      { label: "SOVANN", href: "/collection/sovann" },
-      { label: "PREK", href: "/collection/prek" },
-      { label: "ANGKAR", href: "/collection/angkar" },
-    ],
   },
   { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },

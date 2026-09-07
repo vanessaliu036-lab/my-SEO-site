@@ -44,6 +44,9 @@ const nextConfig = {
     const structural = [
       { source: '/coffee', destination: '/coffee/single-origin', permanent: true },
       { source: '/collection', destination: '/coffee/single-origin', permanent: true },
+      { source: '/collection/sovann', destination: '/coffee/single-origin', permanent: true },
+      { source: '/collection/prek', destination: '/coffee/single-origin', permanent: true },
+      { source: '/collection/angkar', destination: '/coffee/single-origin', permanent: true },
       { source: '/vision', destination: '/about', permanent: true },
       { source: '/system', destination: '/about', permanent: true },
       { source: '/signal', destination: '/blog', permanent: true },

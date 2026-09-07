@@ -49,7 +49,7 @@ export function CollectionPackageStage({ items }: { items: readonly CollectionPa
               onBlur={() => setActiveSlug(null)}
             >
               <Link
-                href={`/collection/${item.slug}`}
+                href={`/coffee/single-origin#${item.slug}`}
                 className="group block outline-none"
                 aria-label={`Explore ${item.name}`}
               >

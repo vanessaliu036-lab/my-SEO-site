@@ -30,9 +30,8 @@ const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 const aboutEditorialTemplate = read('components/templates/about-editorial-template.tsx')
 const coffeeBagVisual = read('components/ui/coffee-bag-visual.tsx')
-const collectionPage = read('app/(site)/collection/page.tsx')
+const collectionPage = read('app/(site)/coffee/single-origin/page.tsx')
 const collectionPackageStage = read('components/ui/collection-package-stage.tsx')
-const angkarPage = read('app/(site)/collection/angkar/page.tsx')
 
 test('OCC metadata foundation combines professional coffee supply with origin-led quality', () => {
   assert.match(siteConfig, /Cambodian coffee.*Fine Robusta.*professional coffee supply/i)
@@ -72,8 +71,8 @@ test('homepage hero uses a semantic local image instead of a CSS-only remote bac
   assert.match(homeTemplate, /import Image from "next\/image"/)
   assert.match(homeTemplate, /src="\/hero-home\.webp"/)
   assert.match(homeTemplate, /alt="Origin Coffee Cambodia hero image"/)
-  assert.match(homeTemplate, /width=\{1672\}/)
-  assert.match(homeTemplate, /height=\{941\}/)
+  assert.match(homeTemplate, /fill/)
+  assert.match(homeTemplate, /sizes="100vw"/)
   assert.doesNotMatch(homeTemplate, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
   assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
 })
@@ -93,9 +92,6 @@ test('public navigation uses SINGLE ORIGIN without exposing admin access', () =>
 test('sitemap emits strategic routes while preserving the Airtable blog corpus expansion', () => {
   for (const path of [
     '/coffee/single-origin',
-    '/collection/sovann',
-    '/collection/prek',
-    '/collection/angkar',
     '/solutions',
     '/solutions/wholesale',
     '/solutions/roasting-program',
@@ -104,6 +100,7 @@ test('sitemap emits strategic routes while preserving the Airtable blog corpus e
   ]) {
     assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
   }
+  assert.doesNotMatch(sitemap, /\/collection\/(sovann|prek|angkar)/)
   assert.doesNotMatch(sitemap, /\$\{siteUrl\}\/collection`/)
   assert.match(sitemap, /const posts = await getAllPosts\(\)/)
   assert.match(sitemap, /\.\.\.blogEntries/)
@@ -140,10 +137,18 @@ test('article shell does not inject commercial money-pillar supplier or exporter
 
 test('contact surface supports scoped procurement and brand enquiries without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
-  for (const enquiry of ['Procurement', 'Brand Representation', 'Other Questions']) {
+  for (const enquiry of [
+    'Wholesale / Sourcing',
+    'Sample Request',
+    'Lot List',
+    'Roasting / Solutions',
+    'Editorial / Source Correction',
+    'Media / Interview',
+    'General Enquiry',
+  ]) {
     assert.match(contact, new RegExp(enquiry.replace('/', '\\/')))
   }
-  assert.match(contactPage, /procurement and brand representation inquiries/i)
+  assert.match(contactPage, /wholesale, sourcing, samples, lot-list questions, roasting, B2B coffee solutions, editorial, or media enquiries/i)
   assert.doesNotMatch(contact, /in stock|available now|guaranteed sample|live inventory/i)
 })
 
@@ -192,10 +197,11 @@ test('About coffee-bag visual uses an editorial context instead of presenting un
   assert.match(coffeeBagVisual, /Cambodian Coffee/i)
 })
 
-test('Collection keeps product entities while removing unsupported provenance and availability claims', () => {
-  const collectionClaims = `${collectionPage}\n${angkarPage}`
-  assert.match(collectionPage, /"@type": "Article"/)
-  assert.match(angkarPage, /"@type": "Product"/)
+test('Single Origin keeps collection product entities without legacy collection URLs', () => {
+  const collectionClaims = collectionPage
+  assert.match(collectionPage, /"@type": "CollectionPage"/)
+  assert.match(collectionPage, /"@type": "Product"/)
+  assert.doesNotMatch(collectionPage, /\/collection\/(sovann|prek|angkar)/)
   assert.doesNotMatch(
     collectionClaims,
     /direct[- ]trade|direct sourcing|same farmers|farmer relationships|producer communities|Request a Collection Sample/i,
