@@ -4,16 +4,16 @@ import { pageAlternates } from "@/lib/seo"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Founder Philosophy | Origin Coffee Cambodia - OCC",
+  title: "The Story Behind Origin Coffee Cambodia | OCC",
   description:
-    "OCC's founding philosophy: research before repetition, evidence before certainty, and clear boundaries around what is documented and unknown.",
+    "The story behind Origin Coffee Cambodia: building a stronger identity, higher standard, and clearer path for Cambodian coffee from origin to market.",
   keywords:
-    "OCC editorial philosophy, Cambodian coffee research philosophy, evidence-led coffee research, Fine Robusta evidence, origin research methodology",
+    "Origin Coffee Cambodia story, Cambodian coffee origin, Fine Robusta Cambodia, Cambodian coffee sourcing, specialty coffee Cambodia, B2B coffee supply",
   alternates: pageAlternates("/about/founder"),
   openGraph: {
-    title: "Founder Philosophy | Origin Coffee Cambodia - OCC",
+    title: "The Story Behind Origin Coffee Cambodia | OCC",
     description:
-      "The editorial philosophy behind OCC's evidence-led approach to Cambodian coffee, Fine Robusta, processing, quality, and origin research.",
+      "Cambodian coffee with quality, origin, and ambition behind every cup.",
     url: `${siteUrl}/about/founder`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -21,18 +21,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Founder Philosophy | Origin Coffee Cambodia - OCC",
-    description:
-      "Research before repetition. Evidence before certainty. Clear boundaries around what the evidence can support.",
+    title: "The Story Behind Origin Coffee Cambodia | OCC",
+    description: "The story behind a stronger identity and clearer path for Cambodian coffee.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "Founding Editorial Philosophy — Origin Coffee Cambodia",
+  name: "The Story Behind Origin Coffee Cambodia",
   description:
-    "The editorial philosophy behind OCC's evidence-led approach to Cambodian coffee research.",
+    "The story behind Origin Coffee Cambodia's work with Cambodian coffee, Fine Robusta, specialty coffee, and professional coffee solutions.",
   url: `${siteUrl}/about/founder`,
   isPartOf: {
     "@type": "Organization",
@@ -44,7 +43,7 @@ const jsonLd = {
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     description:
-      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin knowledge.",
   },
 }
 
@@ -60,38 +59,70 @@ const breadcrumbSchema = {
 
 const faqs = [
   {
-    q: "What is the editorial philosophy behind OCC?",
-    a: "OCC starts with evidence rather than a preferred conclusion. Research pages distinguish documented facts, historical frameworks, current standards, interpretation, and unresolved questions so readers can see where each statement comes from.",
+    q: "Why does OCC begin with Robusta?",
+    a: "OCC begins with Cambodian Fine Robusta because it is one of the clearest expressions of Cambodia's coffee identity. The aim is not to make Robusta resemble something else, but to understand what it can become when origin and processing are treated with care.",
   },
   {
-    q: "Why does OCC state uncertainty explicitly?",
-    a: "Coffee origin and quality discussions often contain incomplete or uneven evidence. Marking uncertainty prevents a narrow example, historical record, or market narrative from being presented as a universal fact.",
+    q: "What is OCC building?",
+    a: "OCC is building a Cambodian coffee company where origin knowledge improves real decisions: what to source, how to evaluate quality, how to develop a roast, and how to create supply that can be understood and repeated.",
+  },
+  {
+    q: "How does OCC use evidence?",
+    a: "Evidence is the standard behind OCC's sourcing conversations, quality judgments, roast development, and B2B relationships. When information is incomplete, we define the boundary clearly and keep the decision proportional to what can be supported.",
   },
   {
     q: "What does OCC focus on today?",
-    a: "OCC focuses on research and technical editorial about Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin evidence.",
+    a: "OCC focuses on Cambodian specialty coffee supply, Fine Robusta, B2B sourcing, roasting solutions, and the origin and quality knowledge needed to support professional coffee decisions.",
   },
 ]
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: a,
+    },
+  })),
+}
+
 const sections = [
   {
-    title: "The Question",
+    title: "Where It Began",
     paragraphs: [
-      "OCC began from a simple editorial problem: many statements about Cambodian coffee sounded precise even when the evidence underneath them was thin, historical, or difficult to verify.",
-      "The response was to build a research platform that separates observation from inference and current evidence from inherited industry language.",
+      "Origin Coffee Cambodia began with a simple belief: Cambodian coffee deserves to be understood for where it comes from, how it is produced, and what it can become.",
+      "Cambodia already has a growing coffee culture, but its local coffee origin has often remained less visible than those of neighboring producing countries.",
+      "For OCC, that gap represented an opportunity.",
+      "The idea was not simply to create another coffee brand. It was to build a Cambodian coffee company rooted in origin — one that could connect local coffee, professional roasting, quality standards, and better access to the market.",
+      "Mondulkiri and the development of Cambodian Robusta became an important part of that journey.",
     ],
   },
   {
-    title: "Evidence Before Certainty",
+    title: "Why Fine Robusta",
     paragraphs: [
-      "A strong claim should be traceable to strong evidence. A useful research page should also show what would change the conclusion, where the source is limited, and whether a framework is historical or current.",
-      "That discipline matters especially in emerging-origin coverage, where one lot, one producer, or one dated protocol can otherwise become shorthand for an entire country or category.",
+      "Robusta has long been part of Southeast Asia's coffee landscape, but quality Robusta is not a contradiction.",
+      "When coffee is carefully grown, harvested, processed, evaluated, and roasted, Coffea canephora can express far more quality and complexity than the commodity category usually suggests.",
+      "That is why Fine Robusta became one of OCC's central areas of specialization.",
+      "For an emerging coffee origin such as Cambodia, this matters.",
+      "OCC believes Cambodia should not compete by simply producing more coffee. It has the opportunity to build value through better quality, clearer origin identity, stronger traceability, and coffees that can stand on their own merit.",
+      "Our role is to help turn that potential into something buyers, roasters, cafés, distributors, and coffee drinkers can experience and trust.",
     ],
   },
   {
-    title: "Editorial Discipline",
+    title: "Building From Cambodia",
     paragraphs: [
-      "OCC's editorial standard is to be specific without pretending to know more than the evidence allows. That means correcting outdated language, distinguishing Fine Robusta from generic Robusta claims, and keeping Cambodia-specific conclusions proportional to Cambodia-specific evidence.",
+      "OCC is being built from Cambodia outward.",
+      "Our focus is Cambodian coffee — from origin and processing to roasting, supply, and the final cup.",
+      "That means developing deeper relationships with producers and processors, understanding individual lots and harvests, improving the information available around Cambodian coffee, and building coffee programs that can serve both local and international partners.",
+      "As the Cambodian coffee sector develops, OCC intends to grow with it.",
+      "Not by making Cambodia look larger than it is, but by helping the coffee become better, more traceable, more recognizable, and more valuable.",
+      {
+        text: "The long-term ambition is clear: to build Origin Coffee Cambodia into a premium Cambodia-origin coffee brand known for Fine Robusta, specialty coffee, and professional coffee solutions — in Cambodia and beyond.",
+        strong: true,
+      },
     ],
   },
 ]
@@ -101,21 +132,22 @@ export default function FounderPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AboutInstitutionalTemplate
         index="02"
-        title="FOUNDER"
-        subtitle="THE EDITORIAL PHILOSOPHY BEHIND OCC."
+        title="THE STORY BEHIND ORIGIN COFFEE CAMBODIA."
         lead={[
-          "Research before repetition. Evidence before certainty.",
-          "The point is not to make every claim sound stronger. It is to make each claim easier to verify.",
+          "Cambodia has a coffee story worth building — with quality, origin, and ambition behind every cup.",
+          "OCC was created to give Cambodian coffee a stronger identity, a higher standard, and a clearer path from origin to market.",
         ]}
+        leadFirstStrong
+        chaptersLabel="A closer look at the story"
         sections={sections}
         faqs={faqs}
         next={{
           href: "/about/manifesto",
           label: "Manifesto",
-          description: "Why OCC prioritizes evidence, precision, and transparent uncertainty.",
-          note: "The philosophy becomes useful only when it changes how the work is published.",
+          description: "The principles behind how OCC approaches quality, origin, sourcing, and coffee.",
         }}
       />
     </>

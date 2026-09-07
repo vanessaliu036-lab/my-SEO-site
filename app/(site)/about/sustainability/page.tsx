@@ -6,14 +6,14 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Sustainability | Origin Coffee Cambodia - OCC",
   description:
-    "OCC treats sustainability and traceability as evidence questions: document claims, scope them clearly, and separate evidence from assumptions.",
+    "OCC approaches sustainability and traceability through clear documentation, practical scope, and responsible Cambodian coffee supply.",
   keywords:
-    "coffee sustainability evidence, coffee traceability documentation, Cambodian coffee sustainability, Fine Robusta sustainability research, coffee sourcing claims, origin transparency evidence",
+    "coffee sustainability, coffee traceability documentation, Cambodian coffee sustainability, Fine Robusta Cambodia, coffee sourcing, origin transparency",
   alternates: pageAlternates("/about/sustainability"),
   openGraph: {
     title: "Sustainability | Origin Coffee Cambodia - OCC",
     description:
-      "Evidence, documentation, and claim boundaries for sustainability and traceability in Cambodian coffee research.",
+      "Documentation, practical scope, and clear standards for sustainability and traceability in Cambodian coffee.",
     url: `${siteUrl}/about/sustainability`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sustainability | Origin Coffee Cambodia - OCC",
     description:
-      "How OCC evaluates sustainability and traceability claims without turning incomplete evidence into certainty.",
+      "How OCC approaches sustainability and traceability without overstating what a coffee origin or label can prove.",
   },
 }
 
@@ -32,7 +32,7 @@ const jsonLd = {
   "@type": "AboutPage",
   name: "OCC Sustainability — Evidence and Traceability Claims",
   description:
-    "How Origin Coffee Cambodia evaluates sustainability, traceability, and origin-transparency claims through evidence and documentation.",
+    "How Origin Coffee Cambodia approaches sustainability, traceability, and origin transparency through documentation and clear scope.",
   url: `${siteUrl}/about/sustainability`,
   isPartOf: {
     "@type": "Organization",
@@ -44,9 +44,9 @@ const jsonLd = {
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     description:
-      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin research.",
+      "Cambodian coffee, Fine Robusta, Coffea canephora, processing, roasting, sensory evaluation, quality standards, and origin knowledge.",
     knowsAbout: [
-      "Coffee Sustainability Evidence",
+      "Coffee Sustainability Standards",
       "Coffee Traceability Documentation",
       "Origin Transparency",
       "Cambodian Coffee",
@@ -68,10 +68,10 @@ const breadcrumbSchema = {
 
 const sections = [
   {
-    title: "Evidence Before Labels",
+    title: "Clarity Before Labels",
     paragraphs: [
-      "Terms such as sustainable, ethical, direct, regenerative, organic, shade-grown, and traceable can describe very different systems. OCC does not treat a label as proof by itself.",
-      "A sustainability claim is stronger when the underlying evidence is specific: who recorded it, what was measured or documented, which lot or farm it applies to, and when the observation was made.",
+      "Terms such as sustainable, ethical, direct, regenerative, organic, shade-grown, and traceable can describe very different systems. OCC does not treat a label as a complete description by itself.",
+      "A sustainability statement is more useful when its scope is specific: which practice it describes, which lot or partner it applies to, and when the information was recorded.",
     ],
   },
   {
@@ -85,14 +85,14 @@ const sections = [
     title: "Environmental Claims Need Context",
     paragraphs: [
       "Environmental performance depends on local conditions and management practices. Water use, shade, soil management, agrochemical use, energy, waste, and land-use pressure cannot be inferred reliably from a coffee species or origin name alone.",
-      "Where public evidence is limited, OCC reports the limitation instead of assigning an environmental benefit that has not been demonstrated.",
+      "Where information is limited, OCC keeps the statement narrow instead of assigning an environmental benefit that has not been demonstrated.",
     ],
   },
   {
     title: "What OCC Publishes",
     paragraphs: [
-      "OCC's role is to document available evidence, compare definitions, date standards and institutional frameworks, identify research gaps, and give readers a clearer basis for evaluating sustainability and traceability claims.",
-      "That approach is deliberately narrower than claiming operational practices OCC cannot publicly verify. The boundary is part of the research standard.",
+      "OCC's role is to document available information, compare definitions, keep standards current, and give partners a clearer basis for evaluating sustainability and traceability practices.",
+      "That approach is deliberately narrower than claiming operational practices OCC cannot verify. Clear scope is part of responsible coffee supply.",
     ],
   },
 ]
@@ -105,15 +105,15 @@ export default function SustainabilityPage() {
       <AboutInstitutionalTemplate
         index="04"
         title="SUSTAINABILITY"
-        subtitle="EVIDENCE, TRACEABILITY, AND CLAIM BOUNDARIES."
+        subtitle="DOCUMENTATION, TRACEABILITY, AND RESPONSIBLE SUPPLY."
         lead={[
-          "A sustainability claim is only as useful as the evidence behind it.",
-          "OCC separates documented practice from assumption and treats missing evidence as a boundary, not a blank to fill.",
+          "Responsible supply begins with clear documentation.",
+          "OCC connects sustainability, traceability, and origin information to the practical work of building better Cambodian coffee supply.",
         ]}
         sections={sections}
         closing={[
           "Documentation before declaration.",
-          "For emerging origins and Fine Robusta in particular, careful claim boundaries are more useful than generic sustainability language.",
+          "For Cambodian coffee and Fine Robusta in particular, clear scope is more useful than generic sustainability language.",
         ]}
         next={{
           href: "/solutions",

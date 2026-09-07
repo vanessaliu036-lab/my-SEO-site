@@ -23,11 +23,11 @@ export function CoffeeBagVisual({
 }: CoffeeBagVisualProps) {
   const isEditorial = context === "editorial"
   const isCollection = context === "collection"
-  const topRight = isEditorial ? "Editorial Research" : isCollection ? "Origin Collection" : "KH 2026"
-  const bottomLeft = isEditorial ? "Cambodia Research" : isCollection ? "Cambodia Coffee" : "Single Origin Cambodia"
-  const bottomRight = isEditorial ? "Evidence-Led Canephora" : isCollection ? "Canephora Profile" : "Traceable Lot Canephora"
+  const topRight = isEditorial ? "Quality Standards" : isCollection ? "Origin Collection" : "KH 2026"
+  const bottomLeft = isEditorial ? "Cambodian Coffee" : isCollection ? "Cambodia Coffee" : "Single Origin Cambodia"
+  const bottomRight = isEditorial ? "Fine Robusta Quality" : isCollection ? "Canephora Profile" : "Traceable Lot Canephora"
   const ariaLabel = isEditorial
-    ? `${name} ${subtitle} coffee research visual`
+    ? `${name} ${subtitle} coffee quality visual`
     : isCollection
       ? `${name} ${subtitle} collection visual`
       : `${name} ${subtitle} coffee package`

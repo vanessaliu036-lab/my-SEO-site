@@ -103,7 +103,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                 我們把柬埔寨咖啡的供應、品質與專業服務，建立在可驗證的來源、標準與證據上。
               </p>
               <p className="text-[15px] leading-7 text-black/76">
-                Origin Coffee Cambodia (OCC) connects Cambodian coffee origins and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused solutions. Evidence-led research supports the quality system rather than replacing the commercial business.
+                Origin Coffee Cambodia (OCC) connects Cambodian coffee origins and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused solutions. Clear origin and quality information supports the commercial coffee business.
               </p>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion"
 
 type InstitutionalSection = {
   title: string
-  paragraphs: string[]
+  paragraphs: Array<string | { text: string; strong?: boolean }>
 }
 
 type FaqItem = {
@@ -23,7 +23,7 @@ type FeatureItem = {
 type AboutInstitutionalTemplateProps = {
   index: string
   title: string
-  subtitle: string
+  subtitle?: string
   lead: string[]
   sections: InstitutionalSection[]
   closing?: string[]
@@ -31,6 +31,8 @@ type AboutInstitutionalTemplateProps = {
   featureGrid?: FeatureItem[]
   practiceLabel?: string
   practiceTitle?: string
+  leadFirstStrong?: boolean
+  chaptersLabel?: string
   next?: {
     href: string
     label: string
@@ -52,10 +54,13 @@ export function AboutInstitutionalTemplate({
   featureGrid = [],
   practiceLabel = "In practice",
   practiceTitle = "How the work moves.",
+  leadFirstStrong = false,
+  chaptersLabel = "A closer look at the work",
   next,
 }: AboutInstitutionalTemplateProps) {
   const reducedMotion = useReducedMotion()
   const titleScale = title.length > 11 ? "text-[clamp(2rem,3.4vw,3.2rem)]" : "text-[clamp(2.2rem,3.8vw,3.6rem)]"
+  const titleWidth = title.length > 28 ? "max-w-[17ch]" : "max-w-[11ch]"
   const reveal = (x = 0, y = 34) => ({
     initial: reducedMotion ? { opacity: 1 } : { opacity: 0, x, y },
     whileInView: { opacity: 1, x: 0, y: 0 },
@@ -78,14 +83,14 @@ export function AboutInstitutionalTemplate({
           </motion.div>
           <motion.div {...reveal(0, 22)} className="min-w-0 md:col-span-6 md:col-start-3">
             <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Origin Coffee Cambodia</p>
-            <h1 id={`${title.toLowerCase()}-title`} className={`max-w-[11ch] break-words font-[var(--font-display)] ${titleScale} font-normal leading-[0.94] tracking-[-0.02em]`}>{title}</h1>
-            <p className="mt-7 max-w-xl text-[10px] font-medium uppercase leading-6 tracking-[0.18em] text-black/48">{subtitle}</p>
+            <h1 id={`${title.toLowerCase()}-title`} className={`${titleWidth} break-words font-[var(--font-display)] ${titleScale} font-normal leading-[0.94] tracking-[-0.02em]`}>{title}</h1>
+            {subtitle ? <p className="mt-7 max-w-xl text-[10px] font-medium uppercase leading-6 tracking-[0.18em] text-black/48">{subtitle}</p> : null}
           </motion.div>
           <motion.div {...reveal(26, 0)} className="min-w-0 md:col-span-4 md:col-start-9">
             <p className="border-t border-black/15 pt-5 text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">The point of view</p>
             <div className="mt-7 max-w-md">
               {lead.map((paragraph, leadIndex) => (
-                <p key={paragraph} className={leadIndex === 0 ? "text-[clamp(1.15rem,1.6vw,1.55rem)] leading-7 text-black/86" : "mt-6 border-l border-black/25 pl-5 text-sm italic leading-6 text-black/78"}>
+                <p key={paragraph} className={leadIndex === 0 ? `text-[clamp(1.15rem,1.6vw,1.55rem)] leading-7 text-black/86 ${leadFirstStrong ? "font-semibold" : ""}` : "mt-6 border-l border-black/25 pl-5 text-sm italic leading-6 text-black/78"}>
                   {paragraph}
                 </p>
               ))}
@@ -122,7 +127,7 @@ export function AboutInstitutionalTemplate({
       <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
         <section className="border-b border-black/10 py-16 lg:py-20" aria-labelledby={`${title.toLowerCase()}-chapters-title`}>
           <div className="mb-8 flex items-end justify-between gap-6 border-b border-black/10 pb-5">
-            <h2 id={`${title.toLowerCase()}-chapters-title`} className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">A closer look at the work</h2>
+            <h2 id={`${title.toLowerCase()}-chapters-title`} className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">{chaptersLabel}</h2>
             <span className="text-[10px] uppercase tracking-[0.18em] text-black/32">{sections.length} chapters</span>
           </div>
           {sections.map((section, sectionIndex) => {
@@ -141,9 +146,14 @@ export function AboutInstitutionalTemplate({
                   <h2 className="mt-6 max-w-sm font-[var(--font-display)] text-2xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-3xl">{section.title}</h2>
                 </div>
                 <div className="mt-8 md:col-span-7 md:col-start-6 md:mt-0">
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph} className="mb-5 max-w-3xl text-base leading-8 text-black/82 last:mb-0">{paragraph}</p>
-                  ))}
+                  {section.paragraphs.map((paragraph) => {
+                    const text = typeof paragraph === "string" ? paragraph : paragraph.text
+                    return (
+                      <p key={text} className={`mb-5 max-w-3xl text-base leading-8 text-black/82 last:mb-0 ${typeof paragraph !== "string" && paragraph.strong ? "font-semibold" : ""}`}>
+                        {text}
+                      </p>
+                    )
+                  })}
                 </div>
               </motion.article>
             )

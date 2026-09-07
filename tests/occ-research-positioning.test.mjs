@@ -72,7 +72,8 @@ test('homepage hero uses a semantic local image instead of a CSS-only remote bac
   assert.match(homeTemplate, /import Image from "next\/image"/)
   assert.match(homeTemplate, /src="\/hero-home\.webp"/)
   assert.match(homeTemplate, /alt="Origin Coffee Cambodia hero image"/)
-  assert.match(homeTemplate, /\bfill\b/)
+  assert.match(homeTemplate, /width=\{1672\}/)
+  assert.match(homeTemplate, /height=\{941\}/)
   assert.doesNotMatch(homeTemplate, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
   assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
 })
@@ -82,6 +83,8 @@ test('public navigation uses SINGLE ORIGIN without exposing admin access', () =>
   assert.match(navigation, /href="\/coffee\/single-origin"/)
   assert.match(navigationData, /label: "SINGLE ORIGIN"/)
   assert.match(navigationData, /href: "\/coffee\/single-origin"/)
+  assert.doesNotMatch(navigation, /\/collection\/(sovann|prek|angkar)/)
+  assert.doesNotMatch(navigationData, /\/collection\/(sovann|prek|angkar)/)
   for (const label of ['ABOUT', 'SOLUTIONS']) assert.match(navigation, new RegExp(label))
   for (const label of ['Blog', 'Contact']) assert.match(navigation, new RegExp(label))
   assert.doesNotMatch(navigation, /\/admin|Staff Access/i)
@@ -135,23 +138,23 @@ test('article shell does not inject commercial money-pillar supplier or exporter
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
 })
 
-test('contact surface supports B2B conversion without inventing inventory availability', () => {
+test('contact surface supports scoped procurement and brand enquiries without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
-  for (const enquiry of ['Wholesale / Sourcing', 'Sample Request', 'Lot List', 'Roasting / Solutions']) {
+  for (const enquiry of ['Procurement', 'Brand Representation', 'Other Questions']) {
     assert.match(contact, new RegExp(enquiry.replace('/', '\\/')))
   }
-  assert.match(contactPage, /wholesale and sourcing inquiries/i)
-  assert.match(contact, /Editorial \/ Source Correction|Media \/ Interview|General Enquiry/i)
+  assert.match(contactPage, /procurement and brand representation inquiries/i)
   assert.doesNotMatch(contact, /in stock|available now|guaranteed sample|live inventory/i)
 })
 
-test('About surfaces keep evidence safeguards while describing OCC as a professional coffee company', () => {
+test('About surfaces describe OCC through origin, quality, and professional coffee supply', () => {
   const aboutSurfaces = `${aboutPage}\n${missionPage}\n${founderPage}\n${manifestoPage}\n${sustainabilityPage}`
   assert.match(aboutPage, /professional coffee company|sourcing|B2B supply/i)
-  assert.match(missionPage, /research|evidence|technical editorial/i)
-  assert.match(founderPage, /editorial philosophy|research philosophy|evidence/i)
-  assert.match(manifestoPage, /research|evidence|technical editorial/i)
-  assert.match(sustainabilityPage, /evidence|documentation|traceability claims/i)
+  assert.match(missionPage, /origin|quality|professional supply/i)
+  assert.match(founderPage, /Cambodian coffee|Fine Robusta|professional coffee solutions/i)
+  assert.match(manifestoPage, /quality|origin|sourcing/i)
+  assert.match(sustainabilityPage, /documentation|traceability|responsible supply/i)
+  assert.doesNotMatch(aboutSurfaces, /research|evidence-led coffee research|technical editorial/i)
   assert.doesNotMatch(
     aboutSurfaces,
     /we pay above market|free enrollment|placement within businesses/i,
@@ -172,10 +175,10 @@ test('About structured data does not invent a founder identity or unverified ope
   )
 })
 
-test('shared About shell combines supply, quality and evidence without unsupported operating claims', () => {
+test('shared About shell combines supply, quality, and origin without unsupported operating claims', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${navigation}`
-  assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply/i)
-  assert.match(sharedAboutShell, /research|evidence/i)
+  assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply|Cambodian Coffee/i)
+  assert.doesNotMatch(sharedAboutShell, /research|evidence-led coffee research/i)
   assert.doesNotMatch(
     sharedAboutShell,
     /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
@@ -185,13 +188,13 @@ test('shared About shell combines supply, quality and evidence without unsupport
 test('About coffee-bag visual uses an editorial context instead of presenting unverified lot claims', () => {
   assert.match(aboutEditorialTemplate, /<CoffeeBagVisual[^>]*context="editorial"/s)
   assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
-  assert.match(coffeeBagVisual, /Editorial Research/i)
-  assert.match(coffeeBagVisual, /Cambodia Research/i)
+  assert.match(coffeeBagVisual, /Quality Standards/i)
+  assert.match(coffeeBagVisual, /Cambodian Coffee/i)
 })
 
 test('Collection keeps product entities while removing unsupported provenance and availability claims', () => {
   const collectionClaims = `${collectionPage}\n${angkarPage}`
-  assert.match(collectionPage, /"@type": "Product"/)
+  assert.match(collectionPage, /"@type": "Article"/)
   assert.match(angkarPage, /"@type": "Product"/)
   assert.doesNotMatch(
     collectionClaims,

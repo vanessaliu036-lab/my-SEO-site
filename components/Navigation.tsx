@@ -104,46 +104,12 @@ export default function Navigation() {
 
         {/* Single Origin 區塊 */}
         <li className="pt-4">
-          <div className="text-gray-400 text-xs tracking-widest mb-3">
-            SINGLE ORIGIN
-          </div>
-          <ul className="space-y-3">
-            <li>
-              <Link
-                href="/coffee/single-origin"
-                className="text-gray-700 hover:text-black transition-colors text-sm block group"
-              >
-                <span className="group-hover:pl-2 transition-all duration-200">Mondulkiri Origin Collection</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/collection/sovann"
-                className="text-gray-700 hover:text-black transition-colors text-sm block group"
-              >
-                <span className="group-hover:pl-2 transition-all duration-200">SOVANN</span>
-                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/collection/prek"
-                className="text-gray-700 hover:text-black transition-colors text-sm block group"
-              >
-                <span className="group-hover:pl-2 transition-all duration-200">PREK</span>
-                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/collection/angkar"
-                className="text-gray-700 hover:text-black transition-colors text-sm block group"
-              >
-                <span className="group-hover:pl-2 transition-all duration-200">ANGKAR</span>
-                <span className="ml-1.5 text-[9px] text-gray-400 tracking-wider">↗</span>
-              </Link>
-            </li>
-          </ul>
+          <Link
+            href="/coffee/single-origin"
+            className="text-gray-700 hover:text-black transition-colors text-sm block group"
+          >
+            <span className="group-hover:pl-2 transition-all duration-200">SINGLE ORIGIN</span>
+          </Link>
         </li>
 
         {/* Blog 區塊 */}
@@ -170,8 +136,8 @@ export default function Navigation() {
       {/* 底部資訊 */}
       <div className="mt-12 pt-8 border-t border-gray-200">
         <p className="text-[10px] text-gray-400 tracking-widest">
-          EVIDENCE-LED<br />
-          COFFEE RESEARCH
+          CAMBODIAN COFFEE<br />
+          FINE ROBUSTA &amp; SUPPLY
         </p>
       </div>
 

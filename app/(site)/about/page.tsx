@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About OCC | Fine Robusta, Coffee Sourcing & B2B Solutions",
     description:
-      "Origin Coffee Cambodia connects Cambodian coffee and Fine Robusta with sourcing, roasting, B2B supply, traceability, and evidence-led coffee knowledge.",
+      "Origin Coffee Cambodia connects Cambodian coffee and Fine Robusta with sourcing, roasting, B2B supply, traceability, and origin-led coffee knowledge.",
     url: `${siteUrl}/about`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -86,7 +86,7 @@ const aboutPageSchema = {
   "@type": "AboutPage",
   name: "About Origin Coffee Cambodia",
   description:
-    "About OCC's Cambodia coffee and Fine Robusta authority, sourcing and B2B coffee focus, quality systems, roasting, traceability, and evidence standards.",
+    "About OCC's Cambodia coffee and Fine Robusta authority, sourcing and B2B coffee focus, quality systems, roasting, traceability, and clear operating standards.",
   url: `${siteUrl}/about`,
   mainEntity: {
     "@type": "Organization",
@@ -105,17 +105,17 @@ const sections = [
   {
     title: "Founder",
     href: "/about/founder",
-    desc: "The operating and evidence philosophy behind OCC's approach to Cambodian coffee.",
+    desc: "The story behind OCC's Cambodia-first approach to coffee, quality, and supply.",
   },
   {
     title: "Manifesto",
     href: "/about/manifesto",
-    desc: "The principles behind quality, evidence, sourcing clarity, and professional coffee decisions.",
+    desc: "The principles behind quality, origin, sourcing clarity, and professional coffee decisions.",
   },
   {
     title: "Sustainability",
     href: "/about/sustainability",
-    desc: "How OCC treats sustainability and traceability as claims that require evidence and scope.",
+    desc: "How OCC approaches sustainability and traceability with clear documentation and scope.",
   },
 ]
 
