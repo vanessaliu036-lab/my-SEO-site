@@ -50,7 +50,7 @@ test("production source keeps approved pages and unified top navigation", () => 
   const manifesto = readFileSync(resolve(root, "app/(site)/about/manifesto/page.tsx"), "utf8")
   const roasting = readFileSync(resolve(root, "app/(site)/solutions/roasting-program/page.tsx"), "utf8")
 
-  assert.doesNotMatch(`${shell}\n${header}\n${navigationData}`, /SiteSidebar|components\/Navigation|SINGLE ORIGIN|\/collection\//i)
+  assert.doesNotMatch(`${shell}\n${header}\n${navigationData}`, /SiteSidebar|components\/Navigation|\/admin|Staff Access/i)
   assert.match(header, /siteNavigation/)
   assert.match(mission, /title="OCC MISSION"/)
   assert.match(manifesto, /title="MANIFESTO"/)

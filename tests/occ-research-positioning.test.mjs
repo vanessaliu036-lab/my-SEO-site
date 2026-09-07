@@ -81,13 +81,14 @@ test('homepage hero uses a semantic local image instead of a CSS-only remote bac
   assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
 })
 
-test('public navigation is unified in the top header and contains no legacy collection or sidebar', () => {
+test('public navigation is unified in the top header and contains no legacy sidebar', () => {
   const publicNavigation = `${siteShell}\n${siteHeader}\n${navigationData}`
   assert.match(siteShell, /SiteHeader/)
   assert.doesNotMatch(siteShell, /SiteSidebar|components\/Navigation/)
   assert.match(siteHeader, /siteNavigation/)
-  for (const label of ['ABOUT', 'SOLUTIONS', 'BLOG', 'CONTACT']) assert.match(navigationData, new RegExp(label))
-  assert.doesNotMatch(publicNavigation, /SINGLE ORIGIN|Mondulkiri Origin Collection|SOVANN|PREK|ANGKAR|\/collection\//i)
+  for (const label of ['ABOUT', 'SOLUTIONS', 'ORIGINS', 'BLOG', 'CONTACT', 'DISTRIBUTION']) {
+    assert.match(navigationData, new RegExp(label))
+  }
   assert.doesNotMatch(publicNavigation, /\/admin|Staff Access/i)
 })
 
