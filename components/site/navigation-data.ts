@@ -35,7 +35,7 @@ export const siteNavigation: readonly SiteNavItem[] = [
     href: "/collection",
     children: [
       { label: "Single Origin", href: "/collection/sovann" },
-      { label: "Fine Robusta Cambodia", href: "/collection/prek" },
+      { label: "Fine Robusta Cambodia", href: "/fine-robusta-cambodia" },
       { label: "Farm & Terroir", href: "/collection/angkar" },
     ],
   },

@@ -21,6 +21,8 @@ test("OCC navigation is sourced from one six-section data file", () => {
   }
 
   assert.match(nav, /label: "DISTRIBUTION", href: "\/distribution"/)
+  assert.match(nav, /label: "Fine Robusta Cambodia", href: "\/fine-robusta-cambodia"/)
+  assert.doesNotMatch(nav, /Mondulkiri Origin Collection/)
 
   assert.match(header, /siteNavigation\.map/)
   assert.match(mobile, /siteNavigation\.map/)
