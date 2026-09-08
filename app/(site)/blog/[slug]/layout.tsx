@@ -49,6 +49,13 @@ const OWNER_ROUTES = {
 const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
   // Cambodia: keep the wholesale-specific page narrow while routing broad origin intent to the pillar.
   "cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES.cambodia,
+  "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": OWNER_ROUTES.cambodia,
+  "what-makes-coffee-origin-feel-premium": OWNER_ROUTES.cambodia,
+  "fine-robusta-premium-espresso-milk-single-origin": OWNER_ROUTES.cambodia,
+  "what-is-specialty-robusta-coffee-complete-guide": OWNER_ROUTES.cambodia,
+  "coffea-canephora-cambodia": OWNER_ROUTES.cambodia,
+  "uganda-fine-robusta-an-emerging-origin": OWNER_ROUTES.cambodia,
+  "is-cambodian-coffee-grown-in-cambodia": OWNER_ROUTES.cambodia,
 
   // Grading: keep historical CQI, score interpretation, and transition pages as supporting intent.
   "fine-robusta-grading-standards-cqi-certification-for-cambodia": OWNER_ROUTES.grading,

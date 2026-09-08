@@ -64,7 +64,7 @@ export default function HomeTemplate() {
               href="/fine-robusta-cambodia"
               className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white"
             >
-              Fine Robusta Guide
+              Fine Robusta Guide · Coffea canephora Cambodia
             </Link>
           </div>
         </div>

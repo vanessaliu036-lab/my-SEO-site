@@ -66,6 +66,7 @@ const breadcrumbSchema = {
 }
 
 const internalLinks: Record<string, string> = {
+  "Fine Robusta Cambodia": "/fine-robusta-cambodia",
   "roast development": "/solutions/roasting-program",
   staffing: "/solutions/barista-staffing",
   equipment: "/solutions/equipment-service",
@@ -96,7 +97,7 @@ export default function WholesalePage() {
   const sections = [
     {
       title: "Who This Is For",
-      content: <p>OCC supports cafés, hotels, restaurants, offices, importers, and multi-location operators with wholesale coffee supply and sourcing in Cambodia. Buyer requirements are defined around the coffee, approved sample, lot evidence, quality expectations, volume, and delivery conditions needed for a workable commercial relationship.</p>,
+      content: <p>OCC supports cafés, hotels, restaurants, offices, importers, and multi-location operators with wholesale coffee supply and sourcing in Cambodia. Buyer requirements are defined around the coffee, approved sample, lot evidence, quality expectations, volume, and delivery conditions needed for a workable commercial relationship. {renderWithLinks("For the central origin and quality reference, see Fine Robusta Cambodia.")}</p>,
     },
     {
       title: "What to Evaluate",

@@ -71,13 +71,119 @@ const ROBUSTA_PILLAR_ANCHORS = [
   "Cambodia Robusta sourcing guide",
 ]
 
+// Keep legacy URLs live, but narrow their visible search target so broad intent
+// remains concentrated on the formal owner pages.
+const ARTICLE_TITLE_OVERRIDES: Record<string, string> = {
+  "cambodian-fine-robusta-wholesale-supply": "Cambodian Fine Robusta Wholesale Supply for Buyers",
+  "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": "Sensory Evaluation of Fine Robusta: Flavor, Aroma & Body",
+  "what-makes-coffee-origin-feel-premium": "What Makes a Coffee Origin Feel Premium? Evidence Beyond Processing",
+  "how-to-brew-fine-robusta-a-complete-guide-to-unlocking-bold-flavors": "Fine Robusta Brew Variables: Ratio, Temperature & Extraction",
+  "fine-robusta-premium-espresso-milk-single-origin": "Espresso & Milk: Matching Coffee Use to Roast and Extraction",
+  "what-is-specialty-robusta-coffee-complete-guide": "Specialty Robusta: Category Definitions and Evaluation Context",
+  "coffea-canephora-cambodia": "Coffea canephora in Cambodia: Species and Origin Context",
+  "uganda-fine-robusta-an-emerging-origin": "Uganda Fine Robusta: An Emerging Origin Case Study",
+  "is-cambodian-coffee-grown-in-cambodia": "Is Cambodian Coffee Grown in Cambodia? Evidence and Limits",
+  "fine-robusta-grading-standards-cqi-certification-for-cambodia": "CQI Robusta Certification in Cambodia: Reading a Historical Record",
+  "how-the-coffee-quality-institute-grades-fine-robusta": "How to Read a Q Robusta Evaluation Record",
+  "how-fine-robusta-coffee-is-graded-cup-score-explained": "How to Read a Fine Robusta Cup Score",
+  "why-fermentation-changes-coffee-flavor": "Why Fermentation Changes Coffee Flavor: A Mechanism Guide",
+  "how-fermentation-affects-coffee-quality": "How Fermentation Affects Coffee Quality: Mechanisms and Controls",
+  "specialty-robusta-vs-arabica-honest-comparison": "Robusta vs Arabica Myths: What the Comparison Leaves Out",
+  "arabica-vs-fine-robusta-quality-flavor-and-price": "Arabica vs Fine Robusta: Quality Factors Beyond a Score",
+  "arabica-vs-fine-robusta-which-coffee-is-better-for-you": "Choosing Coffee by Use: When Arabica or Fine Robusta Fits",
+}
+
+function displayTitleForPost(slug: string, title: string): string {
+  return ARTICLE_TITLE_OVERRIDES[slug] || title
+}
+
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  "cambodian-fine-robusta-wholesale-supply": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the broad origin and quality context, start with the",
+  },
+  "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the central origin and quality context, see the",
+  },
+  "what-makes-coffee-origin-feel-premium": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the Cambodia-specific quality context, see the",
+  },
+  "fine-robusta-premium-espresso-milk-single-origin": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the broader origin and quality context, see the",
+  },
+  "what-is-specialty-robusta-coffee-complete-guide": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the Cambodia-specific Fine Robusta context, see the",
+  },
+  "coffea-canephora-cambodia": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the Cambodia origin and quality context, see the",
+  },
+  "uganda-fine-robusta-an-emerging-origin": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the Cambodia-specific comparison point, see the",
+  },
+  "is-cambodian-coffee-grown-in-cambodia": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the broader Fine Robusta origin guide, see the",
+  },
+  "fine-robusta-grading-standards-cqi-certification-for-cambodia": {
+    href: "/blog/fine-robusta-grading-verify-before-cupping",
+    anchor: "Fine Robusta grading guide",
+    lead: "For the broad grading and verification framework, see the",
+  },
+  "how-the-coffee-quality-institute-grades-fine-robusta": {
+    href: "/blog/fine-robusta-grading-verify-before-cupping",
+    anchor: "Fine Robusta grading guide",
+    lead: "For the broad grading and verification framework, see the",
+  },
+  "how-fine-robusta-coffee-is-graded-cup-score-explained": {
+    href: "/blog/fine-robusta-grading-verify-before-cupping",
+    anchor: "Fine Robusta grading guide",
+    lead: "For the broad grading and verification framework, see the",
+  },
   // Keep the mechanism article's scientific intent while passing broad fermentation
   // authority to the formal owner in the first rendered paragraph.
   "why-fermentation-changes-coffee-flavor": {
     href: "/blog/fine-robusta-fermentation",
     anchor: "Fine Robusta fermentation guide",
     lead: "For the broader process-control and quality context, see the",
+  },
+  "how-fermentation-affects-coffee-quality": {
+    href: "/blog/fine-robusta-fermentation",
+    anchor: "Fine Robusta fermentation guide",
+    lead: "For the broader process-control and quality context, see the",
+  },
+  "how-to-brew-fine-robusta-a-complete-guide-to-unlocking-bold-flavors": {
+    href: "/blog/how-to-brew-cambodian-fine-robusta",
+    anchor: "How to brew Fine Robusta",
+    lead: "For the canonical brewing method guide, see",
+  },
+  "specialty-robusta-vs-arabica-honest-comparison": {
+    href: "/blog/fine-robusta-vs-arabica-buyer-guide",
+    anchor: "Fine Robusta vs Arabica buyer guide",
+    lead: "For the broad buyer comparison, see the",
+  },
+  "arabica-vs-fine-robusta-quality-flavor-and-price": {
+    href: "/blog/fine-robusta-vs-arabica-buyer-guide",
+    anchor: "Fine Robusta vs Arabica buyer guide",
+    lead: "For the broad buyer comparison, see the",
+  },
+  "arabica-vs-fine-robusta-which-coffee-is-better-for-you": {
+    href: "/blog/fine-robusta-vs-arabica-buyer-guide",
+    anchor: "Fine Robusta vs Arabica buyer guide",
+    lead: "For the broad buyer comparison, see the",
   },
 }
 
@@ -369,14 +475,15 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug)
   if (!post) return { title: "Post not found" }
   const description = metaDescriptionForPost(post)
+  const displayTitle = displayTitleForPost(post.slug, post.title)
 
   return {
-    title: seoTitle(post.title),
+    title: seoTitle(displayTitle),
     description,
     keywords: post.keywords,
     alternates: alternatesFromCanonical(`${siteUrl}/blog/${post.slug}`),
     openGraph: {
-      title: post.title,
+      title: displayTitle,
       description,
       url: `${siteUrl}/blog/${post.slug}`,
       siteName,
@@ -402,6 +509,7 @@ export default async function BlogPostPage({
 
   if (!post) notFound()
 
+  const displayTitle = displayTitleForPost(post.slug, post.title)
   const related = recentPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
   const mins = readingTime(post.content)
   const keywordList = post.keywords
@@ -415,7 +523,7 @@ export default async function BlogPostPage({
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: post.title,
+    headline: displayTitle,
     description: metaDescriptionForPost(post),
     keywords: post.keywords,
     wordCount: post.content.split(/\s+/).length,
@@ -443,7 +551,7 @@ export default async function BlogPostPage({
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `${siteUrl}/blog/${post.slug}` },
+      { "@type": "ListItem", position: 3, name: displayTitle, item: `${siteUrl}/blog/${post.slug}` },
     ],
   }
 
@@ -465,7 +573,7 @@ export default async function BlogPostPage({
             <span className="shrink-0">/</span>
             <Link href="/blog" className="hover:text-stone-950 transition-colors shrink-0">Blog</Link>
             <span className="shrink-0">/</span>
-            <span className="text-stone-700 truncate min-w-0">{post.title}</span>
+            <span className="text-stone-700 truncate min-w-0">{displayTitle}</span>
           </div>
         </nav>
 
@@ -482,7 +590,7 @@ export default async function BlogPostPage({
             </div>
 
             <h1 className="font-sans text-[18.5px] font-semibold text-stone-950 tracking-tight leading-[1.35] mb-5 [text-wrap:balance]">
-              {post.title}
+              {displayTitle}
             </h1>
 
             {(post.summary || post.excerpt) && (
