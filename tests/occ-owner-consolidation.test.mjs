@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 
+// Regression coverage for the five priority ownership conflicts tracked in the OCC ranking report.
 function read(path) {
   return readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
 }
