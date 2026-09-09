@@ -190,8 +190,10 @@ test('shared About shell combines supply, quality and evidence without unsupport
   )
 })
 
-test('About coffee-bag visual uses an editorial context instead of presenting unverified lot claims', () => {
-  assert.match(aboutEditorialTemplate, /<CoffeeBagVisual[^>]*context="editorial"/s)
+test('About hero removes the coffee-bag visual and keeps its evidence-led copy in English', () => {
+  assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual/)
+  assert.doesNotMatch(aboutEditorialTemplate, /[\u3400-\u9fff]/)
+  assert.match(aboutEditorialTemplate, /OCC builds Cambodian coffee supply, quality, and professional services on verifiable origin information, clear standards, and evidence\./)
   assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
   assert.match(coffeeBagVisual, /Editorial Research/i)
   assert.match(coffeeBagVisual, /Cambodia Research/i)

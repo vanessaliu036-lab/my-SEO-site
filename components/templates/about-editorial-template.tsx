@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
-import { CoffeeBagVisual } from "@/components/ui/coffee-bag-visual"
 
 type AboutSection = {
   title: string
@@ -36,7 +35,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         <div className="relative mx-auto grid min-h-[calc(100svh-80px)] w-full max-w-[1680px] grid-cols-1 items-center px-6 pb-14 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16">
           <motion.div
             {...reveal(28)}
-            className="order-3 border-t border-black/10 pt-7 md:order-1 md:col-span-3 md:border-t-0 md:pr-10 md:pt-0 lg:pr-14"
+            className="order-2 border-t border-black/10 pt-7 md:order-1 md:col-span-5 md:border-t-0 md:pr-12 md:pt-0 lg:pr-20"
           >
             <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Supply · Quality · Evidence</p>
             <p className="mt-6 max-w-[310px] text-[15px] leading-7 text-black/80">
@@ -47,29 +46,9 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </Link>
           </motion.div>
 
-          <div className="order-1 flex min-h-[470px] items-center justify-center py-8 md:order-2 md:col-span-5 md:min-h-[650px] md:py-0">
-            <div className="relative flex items-center justify-center">
-              <motion.div
-                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.82 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: reducedMotion ? 0.01 : 0.78, ease }}
-                className="absolute h-[300px] w-[300px] rounded-full bg-[#d8cfb7] sm:h-[360px] sm:w-[360px] md:h-[470px] md:w-[470px]"
-                aria-hidden="true"
-              />
-              <motion.div
-                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 48 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reducedMotion ? 0.01 : 0.72, delay: reducedMotion ? 0 : 0.08, ease }}
-                className="relative z-10"
-              >
-                <CoffeeBagVisual name="OCC" subtitle="MONDULKIRI" tone="olive" context="editorial" />
-              </motion.div>
-            </div>
-          </div>
-
           <motion.div
             {...reveal(32)}
-            className="order-2 pb-10 text-center md:order-3 md:col-span-4 md:pb-0 md:text-left"
+            className="order-1 pb-12 text-left md:order-2 md:col-span-7 md:pb-0 md:pl-12 lg:pl-20"
           >
             <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">Origin Coffee Cambodia</p>
             <h1 className="font-[var(--font-display)] text-[clamp(2.4rem,4.4vw,4rem)] font-normal leading-[0.98] tracking-[-0.02em]">
@@ -100,7 +79,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </p>
             <div className="mt-10 grid grid-cols-1 gap-8 border-t border-black/10 pt-8 lg:grid-cols-2 lg:gap-14">
               <p className="text-lg leading-8 text-black/84">
-                我們把柬埔寨咖啡的供應、品質與專業服務，建立在可驗證的來源、標準與證據上。
+                OCC builds Cambodian coffee supply, quality, and professional services on verifiable origin information, clear standards, and evidence.
               </p>
               <p className="text-[15px] leading-7 text-black/76">
                 Origin Coffee Cambodia (OCC) connects Cambodian coffee origins and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused solutions. Evidence-led research supports the quality system rather than replacing the commercial business.
