@@ -127,12 +127,13 @@ test('blog index restores the verified pre-admin presentation while retaining li
   assert.match(blogLayout, /"@type": "Blog"/)
 })
 
-test('Fine Robusta Cambodia keeps one root owner and cluster authority points to it', () => {
+test('Fine Robusta Cambodia keeps one root owner and only supporting cluster pages point to it', () => {
   assert.match(fineRobustaOwner, /const ownerPath = "\/fine-robusta-cambodia"/)
   assert.match(fineRobustaOwner, /pageAlternates\("\/fine-robusta-cambodia"\)/)
   assert.match(sitemap, /\/fine-robusta-cambodia/)
   assert.match(articlePage, /const ROBUSTA_PILLAR_HREF = "\/fine-robusta-cambodia"/)
-  assert.match(articlePage, /ROBUSTA_CLUSTER_SLUGS\.has\(post\.slug\) \|\| post\.slug === ROBUSTA_PILLAR_SLUG/)
+  assert.match(articlePage, /const showRobustaPillarLink = ROBUSTA_CLUSTER_SLUGS\.has\(post\.slug\)/)
+  assert.doesNotMatch(articlePage, /post\.slug === ROBUSTA_PILLAR_SLUG/)
   assert.match(articleLayout, /href: "\/fine-robusta-cambodia"/)
   assert.match(articleLayout, /"cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES\.cambodia/)
   assert.doesNotMatch(articlePage, /const ROBUSTA_PILLAR_HREF = `\/blog\/\$\{ROBUSTA_PILLAR_SLUG\}`/)
@@ -145,7 +146,7 @@ test('article shell does not inject commercial money-pillar supplier or exporter
 test('contact surface supports B2B conversion without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
   for (const enquiry of ['Wholesale / Sourcing', 'Sample Request', 'Lot List', 'Roasting / Solutions']) {
-    assert.match(contact, new RegExp(enquiry.replace('/', '\\/')))
+    assert.match(contact, new RegExp(enquiry))
   }
   assert.match(contactPage, /wholesale and sourcing inquiries/i)
   assert.match(contact, /Editorial \/ Source Correction|Media \/ Interview|General Enquiry/i)

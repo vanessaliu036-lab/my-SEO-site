@@ -10,10 +10,39 @@ const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const homeTemplate = read('components/templates/home-template.tsx')
 
-test('Cambodia broad authority still routes to the root Fine Robusta owner', () => {
+test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owner', () => {
   assert.match(homeTemplate, /href="\/fine-robusta-cambodia"/)
   assert.match(articlePage, /const ROBUSTA_PILLAR_HREF = "\/fine-robusta-cambodia"/)
   assert.match(articlePage, /navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers/)
+})
+
+test('Robusta Cambodia formal owner is excluded from Fine Robusta pillar backlink logic', () => {
+  const condition = articlePage.match(/const showRobustaPillarLink =\s*([\s\S]*?)\n\s*const robustaPillarAnchor/)
+  assert.ok(condition, 'pillar backlink condition must exist')
+  assert.match(condition[1], /ROBUSTA_CLUSTER_SLUGS\.has\(post\.slug\)/)
+  assert.doesNotMatch(condition[1], /post\.slug === ROBUSTA_PILLAR_SLUG/)
+
+  const anchorPool = articlePage.match(/const ROBUSTA_PILLAR_ANCHORS = \[([\s\S]*?)\n\]/)
+  assert.ok(anchorPool, 'Fine Robusta anchor pool must exist')
+
+  for (const forbidden of [
+    'Robusta Cambodia',
+    'Cambodia Robusta guide',
+    'Cambodian Robusta',
+    'Cambodia Robusta sourcing guide',
+  ]) {
+    assert.doesNotMatch(anchorPool[1], new RegExp(`"${forbidden}"`))
+  }
+
+  for (const approved of [
+    'Fine Robusta Cambodia guide',
+    'Fine Robusta from Cambodia',
+    'Cambodia Fine Robusta quality guide',
+    'Fine Robusta sourcing in Cambodia',
+    'Cambodia Fine Robusta buyer guide',
+  ]) {
+    assert.match(anchorPool[1], new RegExp(`"${approved}"`))
+  }
 })
 
 test('wrong-page Fine Robusta families pass contextual authority to their formal owners', () => {
@@ -40,13 +69,30 @@ test('wrong-page Fine Robusta families pass contextual authority to their formal
   assert.match(articlePage, /const CONTEXTUAL_OWNER_LINKS/)
 })
 
+test('2026-09-09 declining owner families receive targeted contextual support routes', () => {
+  const expectedRoutes = [
+    ['fine-robusta-own-specialty-category', '/blog/is-coffee-industry-undervaluing-canephora-quality'],
+    ['what-creates-fine-robusta-price-premium', '/blog/the-economic-advantages-of-fine-robusta-cost-benefit-analysis-for-cambodian-coffee-businesses'],
+    ['fine-robusta-recipe-card-standard', '/blog/fine-robusta-consistency-vs-extra-cup-point'],
+  ]
+
+  for (const [supportSlug, ownerHref] of expectedRoutes) {
+    assert.match(articleLayout, new RegExp(supportSlug.replaceAll('-', '\\-')))
+    assert.match(articleLayout, new RegExp(ownerHref.replaceAll('/', '\\/').replaceAll('-', '\\-')))
+  }
+})
+
 test('formal owners are not routed down to weaker support pages', () => {
   const forbiddenOwnerKeys = [
+    'cambodia-specialty-robusta-coffee-guide',
     'fine-robusta-grading-verify-before-cupping',
     'fine-robusta-fermentation',
     'how-to-brew-cambodian-fine-robusta',
     'fine-robusta-vs-arabica-buyer-guide',
     'why-is-fine-robusta-coffee-becoming-popular',
+    'is-coffee-industry-undervaluing-canephora-quality',
+    'the-economic-advantages-of-fine-robusta-cost-benefit-analysis-for-cambodian-coffee-businesses',
+    'fine-robusta-consistency-vs-extra-cup-point',
   ]
 
   const mapMatch = articleLayout.match(/const OWNER_ROUTE_BY_SUPPORT_SLUG[\s\S]*?\n}\n/)

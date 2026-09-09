@@ -44,10 +44,25 @@ const OWNER_ROUTES = {
     anchor: "Why Fine Robusta is becoming popular",
     description: "Use the canonical adoption guide for broad Fine Robusta popularity, professional attention, and market-visibility intent.",
   },
+  canephoraQuality: {
+    href: "/blog/is-coffee-industry-undervaluing-canephora-quality",
+    anchor: "Canephora quality undervalued",
+    description: "Use the formal Canephora quality owner for the broad undervaluation and specialty-quality argument.",
+  },
+  economics: {
+    href: "/blog/the-economic-advantages-of-fine-robusta-cost-benefit-analysis-for-cambodian-coffee-businesses",
+    anchor: "Fine Robusta economics in Cambodia",
+    description: "Use the formal economics owner for broad Cambodia Fine Robusta cost, value, and business-economics intent.",
+  },
+  consistency: {
+    href: "/blog/fine-robusta-consistency-vs-extra-cup-point",
+    anchor: "Fine Robusta consistency",
+    description: "Use the formal consistency owner for broad repeatability, lot consistency, and buyer-control intent.",
+  },
 } satisfies Record<string, OwnerRoute>
 
 const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
-  // Cambodia: keep the wholesale-specific page narrow while routing broad origin intent to the pillar.
+  // Cambodia: keep the wholesale-specific page narrow while routing broad Fine Robusta Cambodia intent to the pillar.
   "cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES.cambodia,
   "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": OWNER_ROUTES.cambodia,
   "what-makes-coffee-origin-feel-premium": OWNER_ROUTES.cambodia,
@@ -85,6 +100,11 @@ const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
   "why-specialty-roasters-reconsider-robusta": OWNER_ROUTES.popularity,
   "why-specialty-roasters-are-starting-to-sell-fine-robusta-as-single-origin-espresso": OWNER_ROUTES.popularity,
   "how-hotels-and-foodservice-are-adopting-fine-robusta": OWNER_ROUTES.popularity,
+
+  // 2026-09-09 owner recovery: use one highly relevant contextual support route per declining family.
+  "fine-robusta-own-specialty-category": OWNER_ROUTES.canephoraQuality,
+  "what-creates-fine-robusta-price-premium": OWNER_ROUTES.economics,
+  "fine-robusta-recipe-card-standard": OWNER_ROUTES.consistency,
 }
 
 export default async function BlogPostLayout({

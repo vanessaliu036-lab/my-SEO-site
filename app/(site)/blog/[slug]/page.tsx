@@ -19,7 +19,6 @@ const INTERNAL_LINKS: Record<string, string> = {
   "equipment": "/solutions/equipment-service",
 }
 
-const ROBUSTA_PILLAR_SLUG = "cambodia-specialty-robusta-coffee-guide"
 const ROBUSTA_PILLAR_HREF = "/fine-robusta-cambodia"
 const ROBUSTA_CLUSTER_SLUGS = new Set([
   "what-is-specialty-robusta-coffee-complete-guide",
@@ -64,11 +63,11 @@ const ROBUSTA_CLUSTER_SLUGS = new Set([
   "cambodia-specialty-coffee-wholesale-buyer-checklist",
 ])
 const ROBUSTA_PILLAR_ANCHORS = [
-  "Robusta Cambodia",
-  "Cambodia Robusta guide",
-  "Cambodian Robusta",
+  "Fine Robusta Cambodia guide",
   "Fine Robusta from Cambodia",
-  "Cambodia Robusta sourcing guide",
+  "Cambodia Fine Robusta quality guide",
+  "Fine Robusta sourcing in Cambodia",
+  "Cambodia Fine Robusta buyer guide",
 ]
 
 // Keep legacy URLs live, but narrow their visible search target so broad intent
@@ -516,8 +515,7 @@ export default async function BlogPostPage({
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title, post.slug)
-  const showRobustaPillarLink =
-    ROBUSTA_CLUSTER_SLUGS.has(post.slug) || post.slug === ROBUSTA_PILLAR_SLUG
+  const showRobustaPillarLink = ROBUSTA_CLUSTER_SLUGS.has(post.slug)
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
 
   const articleSchema = {
@@ -643,7 +641,7 @@ export default async function BlogPostPage({
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
           )}
 
-          {/* Robusta Cambodia pillar backlink: curated 40-post cluster */}
+          {/* Fine Robusta Cambodia pillar backlink: supporting cluster only */}
           {showRobustaPillarLink && (
             <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
               <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Core guide</p>
@@ -654,7 +652,7 @@ export default async function BlogPostPage({
                 {robustaPillarAnchor} →
               </Link>
               <p className="mt-2 text-xs leading-relaxed text-stone-500">
-                Use the central guide for origin, quality, sourcing and buyer context before comparing individual Cambodia Robusta topics.
+                Use the central Fine Robusta Cambodia guide for origin, quality, sourcing and buyer context before comparing supporting topics.
               </p>
             </aside>
           )}
