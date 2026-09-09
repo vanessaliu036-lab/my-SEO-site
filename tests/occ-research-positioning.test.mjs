@@ -146,7 +146,7 @@ test('article shell does not inject commercial money-pillar supplier or exporter
 test('contact surface supports B2B conversion without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
   for (const enquiry of ['Wholesale / Sourcing', 'Sample Request', 'Lot List', 'Roasting / Solutions']) {
-    assert.match(contact, new RegExp(enquiry.replace('/', '\\/'))
+    assert.match(contact, new RegExp(enquiry))
   }
   assert.match(contactPage, /wholesale and sourcing inquiries/i)
   assert.match(contact, /Editorial \/ Source Correction|Media \/ Interview|General Enquiry/i)
