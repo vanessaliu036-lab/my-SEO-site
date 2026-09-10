@@ -82,8 +82,9 @@ async function fetchTable(tableName, baseId, apiKey) {
   do {
     const params = new URLSearchParams()
     params.set("pageSize", "100")
+    // Only request fields guaranteed to exist in both canonical tables. Corpus
+    // identity needs title + slug; table-specific editorial fields are unnecessary.
     params.append("fields[]", "title")
-    params.append("fields[]", "source_title")
     params.append("fields[]", "slug")
     if (offset) params.set("offset", offset)
 
