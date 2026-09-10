@@ -6,10 +6,11 @@ import { resolve } from "node:path"
 
 const root = resolve(import.meta.dirname, "..")
 const guard = resolve(root, "scripts/verify-production-deploy.mjs")
+const corpusGuard = resolve(root, "scripts/verify-production-corpus.mjs")
 
-function runGuard(environment) {
+function runScript(script, environment) {
   try {
-    execFileSync(process.execPath, [guard], {
+    execFileSync(process.execPath, [script], {
       cwd: root,
       env: { ...process.env, ...environment },
       encoding: "utf8",
@@ -22,6 +23,19 @@ function runGuard(environment) {
       output: `${error.stdout ?? ""}${error.stderr ?? ""}`,
     }
   }
+}
+
+function runGuard(environment) {
+  return runScript(guard, environment)
+}
+
+function runCorpusGuard(count) {
+  return runScript(corpusGuard, {
+    NODE_ENV: "test",
+    VERCEL: "1",
+    VERCEL_ENV: "production",
+    OCC_TEST_CANONICAL_CORPUS_COUNT: String(count),
+  })
 }
 
 const validProductionGitEnv = {
@@ -80,6 +94,25 @@ test("production deploy guard rejects an invalid Git commit SHA", () => {
 test("production deploy guard allows only the canonical GitHub main source", () => {
   const result = runGuard(validProductionGitEnv)
   assert.equal(result.status, 0, result.output)
+})
+
+test("production corpus guard blocks a Research Journal regression below the verified baseline", () => {
+  assert.equal(existsSync(corpusGuard), true)
+  const result = runCorpusGuard(1689)
+  assert.notEqual(result.status, 0)
+  assert.match(result.output, /corpus|1841|baseline/i)
+})
+
+test("production corpus guard allows the verified Research Journal baseline", () => {
+  const result = runCorpusGuard(1841)
+  assert.equal(result.status, 0, result.output)
+})
+
+test("prebuild runs source identity and corpus safety gates before publishing tests", () => {
+  const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8"))
+  assert.match(pkg.scripts.prebuild, /verify-production-deploy\.mjs/)
+  assert.match(pkg.scripts.prebuild, /verify-production-corpus\.mjs/)
+  assert.ok(pkg.scripts.prebuild.indexOf("verify-production-deploy.mjs") < pkg.scripts.prebuild.indexOf("verify-production-corpus.mjs"))
 })
 
 test("production source keeps approved pages and unified top navigation", () => {
