@@ -1,18 +1,14 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
-const routeUrl = new URL('../app/mondulkiri-coffee/page.tsx', import.meta.url)
+const proxySource = readFileSync(new URL('../proxy.ts', import.meta.url), 'utf8')
 
-test('Mondulkiri legacy alias has an explicit App Router redirect artifact', () => {
-  assert.equal(
-    existsSync(routeUrl),
-    true,
-    'Critical legacy alias must have a concrete route artifact so a stale cached 404 cannot remain the only path representation.'
+test('Mondulkiri legacy alias is intercepted by the edge proxy before stale 404 cache', () => {
+  assert.match(
+    proxySource,
+    /["']\/mondulkiri-coffee["']\s*:\s*["']\/blog\/mondulkiri-next-specialty-coffee-origin["']/,
+    'Critical Mondulkiri alias must be represented in proxy routing, not only next.config redirects.'
   )
-
-  const source = readFileSync(routeUrl, 'utf8')
-  assert.match(source, /permanentRedirect\(['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"]\)/)
-  assert.match(source, /dynamic\s*=\s*['"]force-dynamic['"]/)
-  assert.match(source, /revalidate\s*=\s*0/)
+  assert.match(proxySource, /NextResponse\.redirect\(url, 301\)/)
 })
