@@ -10,6 +10,7 @@ const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const homeTemplate = read('components/templates/home-template.tsx')
 const nextConfig = read('next.config.mjs')
+const proxySource = read('proxy.ts')
 const sitemap = read('app/sitemap.ts')
 
 test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owner', () => {
@@ -108,6 +109,14 @@ test('legacy Mondulkiri owner alias permanently routes into the formal owner', (
   const aliasRoute = /source:\s*['"]\/mondulkiri-coffee['"][\s\S]{0,180}?destination:\s*['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
   assert.match(nextConfig, aliasRoute)
   assert.doesNotMatch(nextConfig, /source:\s*['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"][\s\S]{0,180}?destination:\s*['"]\/mondulkiri-coffee\/?['"]/)
+})
+
+test('legacy Mondulkiri alias is also intercepted by edge proxy before stale cached 404s', () => {
+  assert.match(
+    proxySource,
+    /["']\/mondulkiri-coffee["']\s*:\s*["']\/blog\/mondulkiri-next-specialty-coffee-origin["']/,
+  )
+  assert.match(proxySource, /NextResponse\.redirect\(url, 301\)/)
 })
 
 test('legacy Fine Robusta Buyer Guide alias permanently routes directly to the root owner', () => {
