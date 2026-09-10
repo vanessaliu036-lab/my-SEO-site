@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
+  "/mondulkiri-coffee":
+    "/blog/mondulkiri-next-specialty-coffee-origin",
   "/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia":
     "/blog/specialty-robusta-market-2025-boom",
   "/blog/phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs":
