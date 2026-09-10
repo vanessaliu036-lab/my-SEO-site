@@ -9,6 +9,7 @@ function read(path) {
 const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const homeTemplate = read('components/templates/home-template.tsx')
+const nextConfig = read('next.config.mjs')
 
 test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owner', () => {
   assert.match(homeTemplate, /href="\/fine-robusta-cambodia"/)
@@ -100,4 +101,10 @@ test('formal owners are not routed down to weaker support pages', () => {
   for (const ownerSlug of forbiddenOwnerKeys) {
     assert.doesNotMatch(mapMatch[0], new RegExp(`^[\\s]*["']?${ownerSlug}["']?\\s*:`, 'm'))
   }
+})
+
+test('legacy Mondulkiri owner alias permanently routes into the formal owner', () => {
+  const aliasRoute = /source:\s*['"]\/mondulkiri-coffee['"][\s\S]{0,180}?destination:\s*['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
+  assert.match(nextConfig, aliasRoute)
+  assert.doesNotMatch(nextConfig, /source:\s*['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"][\s\S]{0,180}?destination:\s*['"]\/mondulkiri-coffee\/?['"]/)
 })
