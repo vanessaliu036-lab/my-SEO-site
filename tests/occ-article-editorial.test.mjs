@@ -16,7 +16,8 @@ test("blog articles use one editorial shell without changing the Airtable render
   assert.match(page, /formatContent/)
   assert.match(page, /generateMetadata/)
   assert.match(page, /generateStaticParams/)
-  assert.match(page, /ROBUSTA_PILLAR_SLUG/)
+  assert.match(page, /ROBUSTA_PILLAR_HREF/)
+  assert.match(layout, /OWNER_ROUTE_BY_SUPPORT_SLUG/)
 })
 
 test("article editorial CSS removes duplicate nav and establishes readable wide hierarchy", () => {

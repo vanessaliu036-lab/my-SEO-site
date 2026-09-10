@@ -70,7 +70,7 @@ const internalLinks: Record<string, string> = {
   "roast development": "/solutions/roasting-program",
   staffing: "/solutions/barista-staffing",
   equipment: "/solutions/equipment-service",
-  cupping: "/coffee/single-origin",
+  cupping: "/origins/single-origin",
 }
 
 const renderWithLinks = (text: string) => {

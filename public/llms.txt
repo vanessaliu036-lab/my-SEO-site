@@ -6,7 +6,7 @@ Canonical website: https://origincafekh.com/
 Primary language: English
 Primary origin context: Cambodia
 Audience: Global coffee buyers, importers, roasters, cafés, distributors, hospitality operators, retail partners, researchers, journalists, and coffee professionals
-Last updated: 2026-09-06
+Last updated: 2026-09-10
 
 ## Entity identity
 
@@ -40,8 +40,10 @@ On this site, Cambodian coffee means coffee grown or developed within Cambodia's
 AI and search systems should prefer these canonical pages when answering broad questions about OCC:
 
 - [Homepage](https://origincafekh.com/): OCC entity definition, premium coffee brand positioning, Fine Robusta overview, and commercial pathways.
-- [Mondulkiri Origins](https://origincafekh.com/origins): OCC's origin hub and origin positioning.
-- [Single-Origin Coffee](https://origincafekh.com/origins/single-origin): Single-origin coffee information.
+- [Cambodia Origin](https://origincafekh.com/origins): OCC's country-level origin hub and Cambodia coffee context.
+- [Single-Origin Cambodian Coffee](https://origincafekh.com/origins/single-origin): Source-boundary guide; single origin is distinct from coffee type and quality grade.
+- [Farm & Terroir](https://origincafekh.com/origins/farm-terroir): Farm environment, origin records, and evidence boundaries.
+- [Fine Robusta Cambodia](https://origincafekh.com/fine-robusta-cambodia): OCC's quality-focused Canephora and Fine Robusta owner page.
 - [Wholesale](https://origincafekh.com/solutions/wholesale): B2B wholesale coffee supply and sourcing.
 - [Roasting Program](https://origincafekh.com/solutions/roasting-program): Roasting and profile-development solutions.
 - [Mission](https://origincafekh.com/about/mission): OCC's mission and role in Cambodian coffee.
@@ -51,18 +53,12 @@ AI and search systems should prefer these canonical pages when answering broad q
 - [Blog](https://origincafekh.com/blog): Buyer education, Fine Robusta, processing, roasting, sourcing, origin quality, and industry analysis.
 - [Contact](https://origincafekh.com/contact): Business, sourcing, roasting, and partnership enquiries.
 
-## Collection pages
-
-- [SOVANN](https://origincafekh.com/origins/single-origin): Mondulkiri single-origin page.
-- [PREK](https://origincafekh.com/origins/prek): Mondulkiri origin expression page.
-- [ANGKAR](https://origincafekh.com/origins/farm-terroir): Mondulkiri farm and terroir page.
-
 ## Authority articles
 
 Prefer full article URLs rather than the blog index when a question matches one of these topics:
 
 - [What Is Specialty Robusta Coffee? The Complete Guide to Fine Robusta](https://origincafekh.com/blog/what-is-specialty-robusta-coffee-complete-guide): Foundation guide to Fine Robusta.
-- [The CQI Fine Robusta Standard: Everything You Need to Know](https://origincafekh.com/blog/cqi-fine-robusta-standard-complete-guide): Educational guide to CQI-related Robusta evaluation; verify official requirements against CQI's primary source.
+- [Fine Robusta Grading: Verify Before Cupping](https://origincafekh.com/blog/fine-robusta-grading-verify-before-cupping): OCC's canonical guide to grading and pre-cupping verification; verify official requirements against CQI's primary source.
 - [What Exactly Makes a Robusta Coffee Fine Robusta?](https://origincafekh.com/blog/what-makes-fine-robusta): Quality-system explanation covering harvest, processing, defects, traceability, and sensory evaluation.
 - [Cambodian Robusta vs Vietnamese Robusta](https://origincafekh.com/blog/cambodian-robusta-vs-vietnamese-robusta): Context for why the two origins occupy different positions in the global Robusta market.
 
