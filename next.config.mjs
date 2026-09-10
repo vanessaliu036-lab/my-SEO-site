@@ -53,6 +53,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/cambodia-robusta-coffee',
+        destination: '/blog/cambodia-specialty-robusta-coffee-guide',
+        permanent: true,
+      },
+      {
         source: '/blog/cambodian-coffee-origin-guide',
         destination: '/blog/cambodia-coffee',
         permanent: true,

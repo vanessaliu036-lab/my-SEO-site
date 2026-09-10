@@ -119,6 +119,20 @@ test('legacy Mondulkiri alias is also intercepted by edge proxy before stale cac
   assert.match(proxySource, /NextResponse\.redirect\(url, 301\)/)
 })
 
+test('legacy Cambodia Robusta owner alias permanently routes into the formal Robusta Cambodia owner', () => {
+  const aliasRoute = /source:\s*['"]\/cambodia-robusta-coffee['"][\s\S]{0,180}?destination:\s*['"]\/blog\/cambodia-specialty-robusta-coffee-guide['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
+  assert.match(nextConfig, aliasRoute)
+  assert.doesNotMatch(nextConfig, /source:\s*['"]\/blog\/cambodia-specialty-robusta-coffee-guide['"][\s\S]{0,180}?destination:\s*['"]\/cambodia-robusta-coffee\/?['"]/)
+})
+
+test('legacy Cambodia Robusta alias is also intercepted by edge proxy before stale cached 404s', () => {
+  assert.match(
+    proxySource,
+    /["']\/cambodia-robusta-coffee["']\s*:\s*["']\/blog\/cambodia-specialty-robusta-coffee-guide["']/,
+  )
+  assert.match(proxySource, /NextResponse\.redirect\(url, 301\)/)
+})
+
 test('legacy Fine Robusta Buyer Guide alias permanently routes directly to the root owner', () => {
   const aliasRoute = /source:\s*['"]\/blog\/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply['"][\s\S]{0,220}?destination:\s*['"]\/fine-robusta-cambodia['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
   assert.match(nextConfig, aliasRoute)
