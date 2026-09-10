@@ -59,7 +59,7 @@ const nextConfig = {
       },
       {
         source: '/blog/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply',
-        destination: '/blog/cambodian-fine-robusta-wholesale-supply',
+        destination: '/fine-robusta-cambodia',
         statusCode: 301,
       },
       {
@@ -79,22 +79,27 @@ const nextConfig = {
       },
       {
         source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-procurement',
-        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        destination: '/blog/fine-robusta-grading-verify-before-cupping',
         permanent: true,
       },
       {
         source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-buyers',
-        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        destination: '/blog/fine-robusta-grading-verify-before-cupping',
         permanent: true,
       },
       {
         source: '/blog/the-complete-guide-to-fine-robusta-standards-cqi-quality-protocols-explained',
-        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        destination: '/blog/fine-robusta-grading-verify-before-cupping',
         permanent: true,
       },
       {
         source: '/blog/cqi-fine-robusta-standard-complete-guide',
-        destination: '/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia',
+        destination: '/blog/fine-robusta-grading-verify-before-cupping',
+        permanent: true,
+      },
+      {
+        source: '/origins/single-origin',
+        destination: '/fine-robusta-cambodia',
         permanent: true,
       },
       {
