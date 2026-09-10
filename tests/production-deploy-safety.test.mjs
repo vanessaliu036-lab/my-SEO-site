@@ -108,6 +108,13 @@ test("production corpus guard allows the verified Research Journal baseline", ()
   assert.equal(result.status, 0, result.output)
 })
 
+test("production corpus guard requests only fields shared by both canonical tables", () => {
+  const source = readFileSync(corpusGuard, "utf8")
+  assert.match(source, /params\.append\("fields\[\]", "title"\)/)
+  assert.match(source, /params\.append\("fields\[\]", "slug"\)/)
+  assert.doesNotMatch(source, /params\.append\("fields\[\]", "source_title"\)/)
+})
+
 test("prebuild runs source identity and corpus safety gates before publishing tests", () => {
   const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8"))
   assert.match(pkg.scripts.prebuild, /verify-production-deploy\.mjs/)
