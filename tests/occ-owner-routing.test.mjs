@@ -10,6 +10,7 @@ const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const homeTemplate = read('components/templates/home-template.tsx')
 const nextConfig = read('next.config.mjs')
+const sitemap = read('app/sitemap.ts')
 
 test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owner', () => {
   assert.match(homeTemplate, /href="\/fine-robusta-cambodia"/)
@@ -107,4 +108,31 @@ test('legacy Mondulkiri owner alias permanently routes into the formal owner', (
   const aliasRoute = /source:\s*['"]\/mondulkiri-coffee['"][\s\S]{0,180}?destination:\s*['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
   assert.match(nextConfig, aliasRoute)
   assert.doesNotMatch(nextConfig, /source:\s*['"]\/blog\/mondulkiri-next-specialty-coffee-origin['"][\s\S]{0,180}?destination:\s*['"]\/mondulkiri-coffee\/?['"]/)
+})
+
+test('legacy Fine Robusta Buyer Guide alias permanently routes directly to the root owner', () => {
+  const aliasRoute = /source:\s*['"]\/blog\/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply['"][\s\S]{0,220}?destination:\s*['"]\/fine-robusta-cambodia['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
+  assert.match(nextConfig, aliasRoute)
+  assert.doesNotMatch(nextConfig, /source:\s*['"]\/blog\/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply['"][\s\S]{0,220}?destination:\s*['"]\/blog\/cambodian-fine-robusta-wholesale-supply['"]/)
+})
+
+test('duplicate single-origin alias redirects to the root owner and is excluded from sitemap', () => {
+  const aliasRoute = /source:\s*['"]\/origins\/single-origin['"][\s\S]{0,180}?destination:\s*['"]\/fine-robusta-cambodia['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
+  assert.match(nextConfig, aliasRoute)
+  assert.doesNotMatch(sitemap, /`\$\{siteUrl\}\/origins\/single-origin`/)
+  assert.match(sitemap, /`\$\{siteUrl\}\/fine-robusta-cambodia`/)
+})
+
+test('legacy CQI aliases route directly to the formal grading owner', () => {
+  const aliases = [
+    'fine-robusta-coffee-beans-quality-standards-for-b2b-procurement',
+    'fine-robusta-coffee-beans-quality-standards-for-b2b-buyers',
+    'the-complete-guide-to-fine-robusta-standards-cqi-quality-protocols-explained',
+    'cqi-fine-robusta-standard-complete-guide',
+  ]
+
+  for (const alias of aliases) {
+    const route = new RegExp(`source:\\s*['"]\\/blog\\/${alias}['"][\\s\\S]{0,220}?destination:\\s*['"]\\/blog\\/fine-robusta-grading-verify-before-cupping['"][\\s\\S]{0,100}?(?:permanent:\\s*true|statusCode:\\s*301)`)
+    assert.match(nextConfig, route)
+  }
 })
