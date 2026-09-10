@@ -50,7 +50,7 @@ const breadcrumbSchema = {
 const internalLinks: Record<string, string> = {
   "Fine Robusta": "/fine-robusta-cambodia",
   "Wholesale Coffee Supply": "/solutions/wholesale",
-  cupping: "/coffee/single-origin",
+  cupping: "/origins/single-origin",
   staffing: "/solutions/barista-staffing",
   equipment: "/solutions/equipment-service",
 }

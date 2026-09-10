@@ -22,19 +22,11 @@ test("ABOUT child pages share one institutional editorial template", () => {
   }
 })
 
-test("ABOUT child pages retain their existing SEO schema types", () => {
-  const mission = read("app/(site)/about/mission/page.tsx")
-  const founder = read("app/(site)/about/founder/page.tsx")
-  const manifesto = read("app/(site)/about/manifesto/page.tsx")
-  const sustainability = read("app/(site)/about/sustainability/page.tsx")
-
-  assert.match(mission, /"@type": "AboutPage"/)
-  assert.match(mission, /"@type": "BreadcrumbList"/)
-  assert.match(founder, /"@type": "FAQPage"/)
-  assert.match(founder, /"@type": "BreadcrumbList"/)
-  assert.match(manifesto, /"@type": "Article"/)
-  assert.match(manifesto, /"@type": "FAQPage"/)
-  assert.match(sustainability, /"@type": "ItemList"/)
-  assert.match(sustainability, /"@type": "FAQPage"/)
-  assert.match(sustainability, /"@type": "BreadcrumbList"/)
+test("ABOUT child pages use accurate institutional schemas without retired rich-result markup", () => {
+  for (const page of pages) {
+    const source = read(`app/(site)/about/${page}/page.tsx`)
+    assert.match(source, /"@type": "AboutPage"/)
+    assert.match(source, /"@type": "BreadcrumbList"/)
+    assert.doesNotMatch(source, /"@type": "(?:FAQPage|Article|ItemList)"/)
+  }
 })

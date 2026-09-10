@@ -30,7 +30,6 @@ const founderPage = read('app/(site)/about/founder/page.tsx')
 const manifestoPage = read('app/(site)/about/manifesto/page.tsx')
 const sustainabilityPage = read('app/(site)/about/sustainability/page.tsx')
 const aboutEditorialTemplate = read('components/templates/about-editorial-template.tsx')
-const coffeeBagVisual = read('components/ui/coffee-bag-visual.tsx')
 
 test('OCC metadata foundation combines professional coffee supply with evidence-led authority', () => {
   assert.match(siteConfig, /Cambodian coffee.*Fine Robusta.*origin research/i)
@@ -194,21 +193,4 @@ test('About hero removes the coffee-bag visual and keeps its evidence-led copy i
   assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual/)
   assert.doesNotMatch(aboutEditorialTemplate, /[\u3400-\u9fff]/)
   assert.match(aboutEditorialTemplate, /OCC builds Cambodian coffee supply, quality, and professional services on verifiable origin information, clear standards, and evidence\./)
-  assert.match(coffeeBagVisual, /context\?:\s*"product"\s*\|\s*"editorial"/)
-  assert.match(coffeeBagVisual, /Editorial Research/i)
-  assert.match(coffeeBagVisual, /Cambodia Research/i)
-})
-
-// Solutions is now a real published section, not a redirect-to-blog stub.
-test.skip('legacy solution URLs retain their current safe redirects during the visual restore', () => {
-  for (const path of [
-    'app/(site)/solutions/page.tsx',
-    'app/(site)/solutions/wholesale/page.tsx',
-    'app/(site)/solutions/roasting-program/page.tsx',
-    'app/(site)/solutions/barista-staffing/page.tsx',
-    'app/(site)/solutions/equipment-service/page.tsx',
-  ]) {
-    const source = read(path)
-    assert.match(source, /permanentRedirect\(["']\/blog["']\)/)
-  }
 })

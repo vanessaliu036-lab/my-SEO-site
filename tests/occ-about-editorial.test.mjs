@@ -14,24 +14,24 @@ test("ABOUT uses the approved editorial template instead of the old demo hero", 
   assert.doesNotMatch(about, /MinimalistHero/)
   assert.doesNotMatch(about, /const aboutNav/)
   assert.match(template, /<h1/)
-  assert.match(template, /ABOUT/)
-  assert.match(template, /ORIGIN\./)
-  assert.match(template, /OCC BUILDS INFRASTRUCTURE\./)
+  assert.match(template, /About/)
+  assert.match(template, /Origin\./)
+  assert.match(template, /Supply · Quality · Evidence/)
 })
 
-test("ABOUT preserves its existing visible brand copy while changing presentation", () => {
+test("ABOUT uses the current evidence-led brand copy without retired operating claims", () => {
   const template = read(templatePath)
 
-  assert.match(template, /Full traceability from farm to cup, documenting every step of our coffee's journey from Mondulkiri, Ratanakiri, and Kampot to your espresso machine\./)
-  assert.match(template, /Building a skilled barista army through comprehensive education programs that elevate service standards across Cambodia's café industry\./)
-  assert.match(template, /Long-term relationships with farmers, café owners, and hospitality businesses built on trust, consistency, and shared growth\./)
-  assert.match(template, /Partnering with cafés, hotels, restaurants, and coffee enthusiasts across Cambodia/)
+  assert.match(template, /professional coffee company connecting Cambodian coffee and Fine Robusta authority/)
+  assert.match(template, /verifiable origin information, clear standards, and evidence/)
+  assert.doesNotMatch(template, /Full traceability from farm to cup|skilled barista army/)
+  assert.doesNotMatch(template, /Mondulkiri, Ratanakiri, and Kampot to your espresso machine/)
 })
 
 test("ABOUT preserves SEO semantics and only links into the five-section architecture", () => {
   const about = read("app/(site)/about/page.tsx")
 
-  assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
+  assert.match(about, /About OCC \| Fine Robusta, Coffee Sourcing & B2B Solutions/)
   assert.match(about, /"@type": "AboutPage"/)
   assert.match(about, /"@type": "BreadcrumbList"/)
   assert.match(about, /\/about\/mission/)

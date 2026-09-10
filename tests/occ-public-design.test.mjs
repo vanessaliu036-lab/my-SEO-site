@@ -9,7 +9,7 @@ test("retained ABOUT and DISTRIBUTION pages preserve public SEO semantics after 
   const distribution = read("app/(site)/distribution/page.tsx")
 
   assert.match(about, /AboutPage/)
-  assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
+  assert.match(about, /About OCC \| Fine Robusta, Coffee Sourcing & B2B Solutions/)
   assert.match(distribution, /Distribution Partners \| Cambodian Coffee Brand \| OCC/)
   assert.match(distribution, /pageAlternates\("\/distribution"\)/)
 })
@@ -37,18 +37,19 @@ test("retained service, article, and contact SEO/function logic remains in place
   const contact = read("app/(site)/contact/page.tsx")
   const contactAction = read("app/(site)/contact/action.ts")
 
-  assert.match(wholesale, /permanentRedirect/)
+  assert.match(wholesale, /pageAlternates\("\/solutions\/wholesale"\)/)
+  assert.match(wholesale, /"@type": "FAQPage"/)
+  assert.match(wholesale, /"@type": "BreadcrumbList"/)
+  assert.match(wholesale, /SolutionDetailTemplate/)
   assert.match(article, /Article/)
   assert.match(article, /BreadcrumbList/)
   assert.match(contact, /ContactForm/)
   assert.match(contactAction, /"use server"/)
 })
 
-test("approved reusable motion and coffee visual primitives remain available", () => {
-  const bag = read("components/ui/coffee-bag-visual.tsx")
+test("approved reusable motion primitive remains available", () => {
   const reveal = read("components/ui/alternating-reveal-section.tsx")
 
-  assert.match(bag, /FINE ROBUSTA/)
   assert.match(reveal, /whileInView/)
   assert.match(reveal, /useReducedMotion/)
 })

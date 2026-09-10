@@ -37,9 +37,8 @@ const nextConfig = {
     ]
   },
 
-  // Permanent redirects preserve historical backlinks that still have a valid
-  // current destination. Deleted legacy collection routes are intentionally not
-  // redirected to another content family.
+  // Permanent redirects preserve historical backlinks and consolidate retired
+  // routes into the closest current owner.
   async redirects() {
     const structural = [
       { source: '/vision', destination: '/about', permanent: true },
@@ -103,11 +102,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/origins/single-origin',
-        destination: '/fine-robusta-cambodia',
-        permanent: true,
-      },
-      {
         source: '/collection',
         destination: '/origins',
         permanent: true,
@@ -124,6 +118,11 @@ const nextConfig = {
       },
       {
         source: '/collection/prek',
+        destination: '/origins',
+        permanent: true,
+      },
+      {
+        source: '/origins/prek',
         destination: '/origins',
         permanent: true,
       },
