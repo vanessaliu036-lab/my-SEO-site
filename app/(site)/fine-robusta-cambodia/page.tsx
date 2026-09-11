@@ -169,7 +169,7 @@ export default function FineRobustaCambodiaPage() {
                   Historical Q Robusta results should also be interpreted within the protocol and program in force when the coffee was evaluated. Quality-evaluation systems evolve. The historical result remains evidence for that sample; it should not be converted into a permanent grade for later harvests, unrelated lots, or all coffee from Mondulkiri.
                 </p>
                 <p>
-                  The <Link href="/blog/fine-robusta-grading-standards-cqi-certification-for-cambodia" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Fine Robusta grading guide</Link> covers that standards context in more detail.
+                  The <Link href="/blog/fine-robusta-grading-verify-before-cupping" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Fine Robusta grading guide</Link> covers that standards context in more detail.
                 </p>
               </div>
             </section>
