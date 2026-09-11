@@ -12,6 +12,7 @@ const homeTemplate = read('components/templates/home-template.tsx')
 const nextConfig = read('next.config.mjs')
 const proxySource = read('proxy.ts')
 const sitemap = read('app/sitemap.ts')
+const fineRobustaPillar = read('app/(site)/fine-robusta-cambodia/page.tsx')
 
 test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owner', () => {
   assert.match(homeTemplate, /href="\/fine-robusta-cambodia"/)
@@ -70,6 +71,15 @@ test('wrong-page Fine Robusta families pass contextual authority to their formal
   assert.match(articlePage, /why-fermentation-changes-coffee-flavor/)
   assert.match(articlePage, /Fine Robusta fermentation guide/)
   assert.match(articlePage, /const CONTEXTUAL_OWNER_LINKS/)
+})
+
+test('Fine Robusta pillar broad grading anchor targets the formal grading owner', () => {
+  const broadAnchor = fineRobustaPillar.match(
+    /<Link href="([^"]+)"[^>]*>Fine Robusta grading guide<\/Link>/,
+  )
+
+  assert.ok(broadAnchor, 'broad grading anchor must exist on the Fine Robusta pillar')
+  assert.equal(broadAnchor[1], '/blog/fine-robusta-grading-verify-before-cupping')
 })
 
 test('2026-09-09 declining owner families receive targeted contextual support routes', () => {
