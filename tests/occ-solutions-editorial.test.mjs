@@ -14,6 +14,8 @@ test("SOLUTIONS index and detail pages share the OCC editorial template system",
   const index = read("app/(site)/solutions/page.tsx")
   assert.match(index, /SolutionsIndexTemplate/)
   assert.doesNotMatch(index, /border-dashed/)
+  assert.doesNotMatch(index, /Equipment Service/)
+  assert.doesNotMatch(index, /\/solutions\/equipment-service/)
 
   for (const slug of detailPages) {
     const source = read(`app/(site)/solutions/${slug}/page.tsx`)
@@ -21,6 +23,14 @@ test("SOLUTIONS index and detail pages share the OCC editorial template system",
     assert.doesNotMatch(source, /<nav className=/)
     assert.doesNotMatch(source, /sticky top-0/)
   }
+})
+
+test("equipment service route is preserved for SEO but removed from public solution entry points", () => {
+  assert.equal(fs.existsSync("app/(site)/solutions/equipment-service/page.tsx"), true)
+  const index = read("app/(site)/solutions/page.tsx")
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  assert.doesNotMatch(index, /\/solutions\/equipment-service/)
+  assert.doesNotMatch(wholesale, /\/solutions\/equipment-service/)
 })
 
 test("solution detail template keeps semantic content server-rendered and delegates only reveal motion", () => {
