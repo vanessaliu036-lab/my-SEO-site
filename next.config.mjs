@@ -102,6 +102,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/coffee/single-origin',
+        destination: '/origins/single-origin',
+        permanent: true,
+      },
+      {
         source: '/collection',
         destination: '/origins',
         permanent: true,
