@@ -6,12 +6,12 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Coffee Solutions Cambodia | B2B Support | OCC",
   description:
-    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, roast development, barista staffing, and equipment-service enquiries.",
+    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, roast development, and barista staffing enquiries.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",
     description:
-      "B2B coffee solution areas for sourcing, roasting, staffing, and equipment-service enquiries in Cambodia, with evidence-led due diligence.",
+      "B2B coffee solution areas for sourcing, roasting, and staffing enquiries in Cambodia, with evidence-led due diligence.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
@@ -32,11 +32,6 @@ const services = [
     href: "/solutions/barista-staffing",
     title: "Barista Staffing",
     desc: "Barista staffing enquiries with role definition, candidate evaluation, training evidence, and placement-term checks.",
-  },
-  {
-    href: "/solutions/equipment-service",
-    title: "Equipment Service",
-    desc: "Equipment-service enquiries with model coverage, maintenance scope, parts support, response terms, and vendor due diligence.",
   },
 ] as const
 
