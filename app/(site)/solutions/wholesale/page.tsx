@@ -69,7 +69,6 @@ const internalLinks: Record<string, string> = {
   "Fine Robusta Cambodia": "/fine-robusta-cambodia",
   "roast development": "/solutions/roasting-program",
   staffing: "/solutions/barista-staffing",
-  equipment: "/solutions/equipment-service",
   cupping: "/origins/single-origin",
 }
 
@@ -91,7 +90,6 @@ export default function WholesalePage() {
   const relatedServices = [
     { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness framework" },
     { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Hiring, training, and placement due diligence" },
-    { title: "Equipment Service", href: "/solutions/equipment-service", desc: "Maintenance and service-vendor evaluation" },
   ]
 
   const sections = [
@@ -109,7 +107,7 @@ export default function WholesalePage() {
     },
     {
       title: "Commercial Readiness",
-      content: <p>Before committing, confirm the approved sample, current lot, specification, substitution policy, volume basis, price basis, delivery responsibility, quality-acceptance process, and any dependencies involving {renderWithLinks("equipment")} or {renderWithLinks("staffing")}. OCC does not present unverified inventory, capacity, or logistics assumptions as current operating facts.</p>,
+      content: <p>Before committing, confirm the approved sample, current lot, specification, substitution policy, volume basis, price basis, delivery responsibility, quality-acceptance process, and any dependencies involving equipment or {renderWithLinks("staffing")}. OCC does not present unverified inventory, capacity, or logistics assumptions as current operating facts.</p>,
     },
   ]
 
