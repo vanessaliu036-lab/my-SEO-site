@@ -38,6 +38,12 @@ test("equipment service route is preserved for SEO but removed from public solut
   assert.doesNotMatch(wholesale, /\/solutions\/equipment-service/)
 })
 
+test("blog body auto-linking does not expose the hidden equipment service route", () => {
+  const blogDetail = read("app/(site)/blog/[slug]/page.tsx")
+  assert.doesNotMatch(blogDetail, /["']equipment service["']\s*:\s*["']\/solutions\/equipment-service["']/i)
+  assert.doesNotMatch(blogDetail, /["']equipment["']\s*:\s*["']\/solutions\/equipment-service["']/i)
+})
+
 test("solution detail template keeps semantic content server-rendered and delegates only reveal motion", () => {
   const template = read(detailTemplate)
   const reveal = read("components/ui/motion-reveal.tsx")
