@@ -27,7 +27,6 @@ export const siteNavigation: readonly SiteNavItem[] = [
       { label: "Wholesale", href: "/solutions/wholesale" },
       { label: "Roasting Program", href: "/solutions/roasting-program" },
       { label: "Barista Staffing", href: "/solutions/barista-staffing" },
-      { label: "Equipment Service", href: "/solutions/equipment-service" },
     ],
   },
   {
