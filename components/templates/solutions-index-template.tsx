@@ -21,9 +21,9 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
         </div>
         <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-end gap-10 px-6 pb-14 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-16">
           <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
-            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Sourcing · Roasting · Staffing · Equipment</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/36">Sourcing · Roasting · Staffing</p>
             <p className="mt-6 max-w-xs text-[15px] leading-7 text-black/76">
-              Four B2B coffee solution areas for buyers and operators in Cambodia, structured around clear requirements, evidence, and due diligence before commitments are made.
+              B2B coffee solution areas for buyers and operators in Cambodia, structured around clear requirements, evidence, and due diligence before commitments are made.
             </p>
           </MotionReveal>
           <MotionReveal className="md:col-span-7 md:col-start-4">
@@ -39,7 +39,7 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
         </div>
         <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
           <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:block">Four B2B solution areas</span>
+          <span className="hidden sm:block">Active B2B solution areas</span>
           <span>02 / Solutions</span>
         </div>
       </section>
@@ -84,7 +84,7 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
             </div>
             <div className="mt-8 md:col-span-6 md:col-start-7 md:mt-0">
               <p className="max-w-xl text-[15px] leading-8 text-black/76">
-                Use these pages to scope sourcing, roasting, staffing, or equipment needs, verify the relevant operating facts, and then discuss the requirement with OCC through the contact channel.
+                Use these pages to scope sourcing, roasting, or staffing needs, verify the relevant operating facts, and then discuss the requirement with OCC through the contact channel.
               </p>
               <Link href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-200 hover:-translate-y-0.5">
                 Discuss your requirements <ArrowUpRight className="size-3" />
