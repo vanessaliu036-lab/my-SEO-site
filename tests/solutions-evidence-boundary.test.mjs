@@ -20,7 +20,7 @@ const source = Object.fromEntries(Object.entries(files).map(([key, rel]) => [key
 
 const forbiddenByPage = {
   wholesale: [/volume discounts/i, /weekly or bi-weekly delivery/i, /sourced directly from cambodian farms/i, /every batch is traceable/i, /dedicated account manager/i, /service major provincial cities/i, /no middlemen/i],
-  roasted: [/always available/i, /guaranteed capacity/i, /fixed minimum order/i, /guaranteed delivery/i],
+  roasted: [/inventory is always available/i, /guaranteed capacity/i, /fixed minimum order/i, /guaranteed delivery/i],
   roasting: [/minimum production batch/i, /2-3 weeks/i, /every batch is cupped before release/i, /batch consistency guarantee/i, /white-label packaging available/i, /we develop, test, and lock roast profiles/i],
   staffing: [/occ places trained baristas/i, /trained in-house/i, /sca-aligned training before placement/i, /replacement guarantee/i, /first 30 days/i, /we can match based on language requirements/i],
   equipment: [/occ's equipment service covers/i, /maintenance contracts/i, /occ's technicians/i, /same-day response/i, /common wear parts are stocked/i, /la marzocco|synesso|nuova simonelli|mahlkonig|mazzer/i],
