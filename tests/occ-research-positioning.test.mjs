@@ -64,10 +64,7 @@ test('homepage metadata separates the organization logo from the social sharing 
 })
 
 test('blog social metadata uses the actual hero image dimensions', () => {
-  assert.match(
-    blogPage,
-    /images:\s*\[\{\s*url:\s*ogImage,\s*width:\s*1672,\s*height:\s*941,\s*alt:\s*siteName\s*\}\]/,
-  )
+  assert.match(blogPage, /images:\s*\[\{\s*url:\s*ogImage,\s*width:\s*1672,\s*height:\s*941,\s*alt:\s*siteName\s*\}\]/)
   assert.doesNotMatch(blogPage, /width:\s*180|height:\s*180/)
 })
 
@@ -80,18 +77,20 @@ test('homepage hero uses a semantic local image instead of a CSS-only remote bac
   assert.doesNotMatch(homePage, /images\.unsplash\.com\/photo-1447933601403-0c6688de566e/)
 })
 
-test('public navigation is unified in the top header and contains no legacy sidebar', () => {
+test('public navigation is unified around the approved commercial sequence with evidence depth preserved beneath Original', () => {
   const publicNavigation = `${siteShell}\n${siteHeader}\n${navigationData}`
   assert.match(siteShell, /SiteHeader/)
   assert.doesNotMatch(siteShell, /SiteSidebar|components\/Navigation/)
   assert.match(siteHeader, /siteNavigation/)
-  for (const label of ['ABOUT', 'SOLUTIONS', 'ORIGINS', 'BLOG', 'CONTACT', 'DISTRIBUTION']) {
-    assert.match(navigationData, new RegExp(label))
+  for (const label of ['ABOUT', 'SOLUTIONS', 'ORIGINAL', 'BLOG', 'CONTACT']) assert.match(navigationData, new RegExp(label))
+  for (const child of ['Origin Evidence', 'Fine Robusta Cambodia', 'Wholesale & Sourcing', 'Roasted Coffee Supply', 'Roasting Program', 'Distribution Partnership']) {
+    assert.match(navigationData, new RegExp(child.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
   }
+  assert.doesNotMatch(navigationData, /label: "ORIGINS"|label: "DISTRIBUTION"|Barista Staffing|Equipment Service/)
   assert.doesNotMatch(publicNavigation, /\/admin|Staff Access/i)
 })
 
-test('sitemap emits current strategic routes while preserving the Airtable blog corpus expansion', () => {
+test('sitemap emits current strategic routes while preserving legacy indexed solution routes and Airtable blog expansion', () => {
   for (const path of [
     '/fine-robusta-cambodia',
     '/solutions',
@@ -100,9 +99,8 @@ test('sitemap emits current strategic routes while preserving the Airtable blog 
     '/solutions/barista-staffing',
     '/solutions/equipment-service',
     '/distribution',
-  ]) {
-    assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
-  }
+    '/origins',
+  ]) assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
   assert.doesNotMatch(sitemap, /\/coffee\/single-origin|\/collection\/sovann|\/collection\/prek|\/collection\/angkar/)
   assert.match(sitemap, /const posts = await getAllPosts\(\)/)
   assert.match(sitemap, /\.\.\.blogEntries/)
@@ -142,13 +140,14 @@ test('article shell does not inject commercial money-pillar supplier or exporter
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
 })
 
-test('contact surface supports B2B conversion without inventing inventory availability', () => {
+test('contact surface supports the four approved B2B pathways without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
-  for (const enquiry of ['Wholesale / Sourcing', 'Sample Request', 'Lot List', 'Roasting / Solutions']) {
-    assert.match(contact, new RegExp(enquiry))
+  for (const enquiry of ['Wholesale & Sourcing', 'Roasted Coffee Supply', 'Roasting Program', 'Distribution Partnership', 'Other']) {
+    assert.match(contact, new RegExp(enquiry.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
   }
-  assert.match(contactPage, /wholesale and sourcing inquiries/i)
-  assert.match(contact, /Editorial \/ Source Correction|Media \/ Interview|General Enquiry/i)
+  assert.match(contactPage, /commercial and B2B enquiries/i)
+  assert.match(contact, /Company|Work Email|Country \/ Market|Project \/ Requirement/)
+  assert.doesNotMatch(contact, /Editorial \/ Source Correction|Media \/ Interview|Sample Request|Lot List/)
   assert.doesNotMatch(contact, /in stock|available now|guaranteed sample|live inventory/i)
 })
 
@@ -159,34 +158,22 @@ test('About surfaces keep evidence safeguards while describing OCC as a professi
   assert.match(founderPage, /editorial philosophy|research philosophy|evidence/i)
   assert.match(manifestoPage, /research|evidence|technical editorial/i)
   assert.match(sustainabilityPage, /evidence|documentation|traceability claims/i)
-  assert.doesNotMatch(
-    aboutSurfaces,
-    /we pay above market|free enrollment|placement within businesses/i,
-  )
+  assert.doesNotMatch(aboutSurfaces, /we pay above market|free enrollment|placement within businesses/i)
 })
 
 test('About structured data does not invent a founder identity or unverified operating facts', () => {
   const aboutSurfaces = `${aboutPage}\n${missionPage}\n${founderPage}\n${manifestoPage}\n${sustainabilityPage}`
   assert.doesNotMatch(aboutPage, /foundingDate|"founder"\s*:|OCC Founder|Founder & Head Roaster/)
   assert.doesNotMatch(founderPage, /"@type": "Person"|jobTitle|OCC Founder|Founder & Head Roaster/)
-  assert.doesNotMatch(
-    sustainabilityPage,
-    /direct trade|GPS coordinates|farm coordinates|above Fair Trade|above market rate|payment within 30 days|annual farm visits|chemical-free cultivation/i,
-  )
-  assert.doesNotMatch(
-    aboutSurfaces,
-    /complete record.*coordinates|every batch.*cupping score|full traceability from farm to cup/i,
-  )
+  assert.doesNotMatch(sustainabilityPage, /direct trade|GPS coordinates|farm coordinates|above Fair Trade|above market rate|payment within 30 days|annual farm visits|chemical-free cultivation/i)
+  assert.doesNotMatch(aboutSurfaces, /complete record.*coordinates|every batch.*cupping score|full traceability from farm to cup/i)
 })
 
 test('shared About shell combines supply, quality and evidence without unsupported operating claims', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${siteHeader}\n${navigationData}`
   assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply/i)
   assert.match(sharedAboutShell, /research|evidence/i)
-  assert.doesNotMatch(
-    sharedAboutShell,
-    /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
-  )
+  assert.doesNotMatch(sharedAboutShell, /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i)
 })
 
 test('About hero removes the coffee-bag visual and keeps its evidence-led copy in English', () => {
