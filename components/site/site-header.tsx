@@ -37,10 +37,10 @@ export function SiteHeader() {
             aria-label="Origin Coffee Cambodia home"
           >
             <img
-              src="/occ-logo-primary.jpg"
+              src="/occ-logo-primary-local.svg"
               alt=""
               width={600}
-              height={266}
+              height={272}
               className="h-[46px] w-auto sm:h-[50px]"
             />
           </Link>
