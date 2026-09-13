@@ -227,7 +227,7 @@ const sections = [
           This is where Farm & Terroir deliberately stops. Once the cherry leaves the farm stage, the central questions change from <strong className="font-semibold text-[#182019]">how did it grow?</strong> to <strong className="font-semibold text-[#182019]">can this coffee remain identifiable through producer, process, and lot?</strong>
         </p>
         <p>
-          That next evidence layer belongs to <Link href="/origins/single-origin" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Single Origin</Link>.
+          The next evidence layer returns to the <Link href="/origins" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Origins hub</Link>, where source boundary, producer or processor, lot identity, sample, shipment, and traceability stay connected.
         </p>
       </div>
     ),
@@ -277,8 +277,8 @@ export default function FarmTerroirPage() {
               </p>
             </div>
             <div className="md:col-span-2 md:col-start-11">
-              <Link href="/origins/single-origin" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
-                Explore Single Origin <ArrowUpRight className="size-3" />
+              <Link href="/origins" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
+                Explore Origin Evidence <ArrowUpRight className="size-3" />
               </Link>
             </div>
           </MotionReveal>
@@ -293,7 +293,7 @@ export default function FarmTerroirPage() {
               <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
               <h2 className={sectionTitleClass}>What Shapes the Growing Environment?</h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
-                This page owns micro growing conditions and agricultural decisions. Regional geography stays on Cambodia & Regions; lot identity stays on Single Origin.
+                This page focuses on micro growing conditions and agricultural decisions. Regional geography stays on Cambodia & Regions; source boundary, lot identity, and traceability return to the Origins hub.
               </p>
             </MotionReveal>
 
@@ -337,7 +337,7 @@ export default function FarmTerroirPage() {
 
             <MotionReveal direction="right" className="md:col-span-3 md:col-start-10">
               <aside className="sticky top-28 border-t border-black/10 bg-[#202820] px-6 py-7 text-[#f6f3ea] lg:px-7 lg:py-8">
-                <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/45">Growing Conditions Owner</p>
+                <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/45">Growing Conditions</p>
                 <p className="mt-5 font-[var(--font-display)] text-2xl leading-[1.08] tracking-[-0.025em]">How did this coffee grow?</p>
                 <div className="mt-7">
                   {farmFacts.map((fact, index) => (
@@ -356,17 +356,17 @@ export default function FarmTerroirPage() {
           <section className="py-12 lg:py-16">
             <div className="grid grid-cols-1 gap-8 bg-[#202820] p-7 text-[#f6f3ea] sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
               <div className="md:col-span-7">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Next Origin Layer</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Next Evidence Layer</p>
                 <h2 className="mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2rem,7vw,3rem)] font-normal leading-[0.98] tracking-[-0.035em]">
-                  The Farm Ends Where Lot Identity Begins.
+                  The Farm Ends Where Traceability Begins.
                 </h2>
                 <p className="mt-6 max-w-[34rem] text-sm leading-7 text-white/66">
-                  Continue from growing conditions into producer, process, lot, sample, and traceability evidence without asking this page to own those search terms.
+                  Continue from growing conditions into producer, process, lot, sample, shipment, and traceability evidence in the main Origin Hub.
                 </p>
               </div>
               <div className="md:col-span-4 md:col-start-9 md:text-right">
-                <Link href="/origins/single-origin" className="group inline-flex items-center gap-2 border-b border-white/35 pb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
-                  Explore Single Origin <ArrowUpRight className="size-3" />
+                <Link href="/origins" className="group inline-flex items-center gap-2 border-b border-white/35 pb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
+                  Explore Origin Evidence <ArrowUpRight className="size-3" />
                 </Link>
               </div>
             </div>
