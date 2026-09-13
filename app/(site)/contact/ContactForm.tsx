@@ -4,20 +4,14 @@ import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import {
-  submitContactForm,
-  contactSchema,
-  type ContactFormData,
-} from "./action"
+import { submitContactForm, contactSchema, type ContactFormData } from "./action"
 
 const ENQUIRY_TYPES = [
-  "Wholesale / Sourcing",
-  "Sample Request",
-  "Lot List",
-  "Roasting / Solutions",
-  "Editorial / Source Correction",
-  "Media / Interview",
-  "General Enquiry",
+  "Wholesale & Sourcing",
+  "Roasted Coffee Supply",
+  "Roasting Program",
+  "Distribution Partnership",
+  "Other",
 ] as const satisfies readonly ContactFormData["service"][]
 
 const inputBase =
@@ -42,6 +36,7 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues: { projectStage: "", sourcePage: "/contact" },
   })
 
   const selectedType = watch("service")
@@ -49,7 +44,10 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
   const onSubmit = (data: ContactFormData) => {
     setServerError(null)
     startTransition(async () => {
-      const result = await submitContactForm(data)
+      const result = await submitContactForm({
+        ...data,
+        sourcePage: `${window.location.pathname}${window.location.search}`,
+      })
       if (result.success) {
         window.gtag?.("event", "generate_lead", {
           lead_type: data.service,
@@ -65,11 +63,7 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
   return (
     <div className={`${fontVars} min-h-screen bg-[#f4f2ef] [font-family:var(--font-barlow)] relative`}>
       <nav aria-label="Breadcrumb" className="absolute top-8 left-8 z-20 flex items-center gap-4">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-[#5a5a5a] hover:text-[#0f0f0f] transition-colors [font-family:var(--font-barlow-condensed)]"
-          aria-label="Return to homepage"
-        >
+        <Link href="/" className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-[#5a5a5a] hover:text-[#0f0f0f] transition-colors [font-family:var(--font-barlow-condensed)]" aria-label="Return to homepage">
           <span className="inline-block w-5 h-px bg-current" aria-hidden="true" />
           Home
         </Link>
@@ -80,56 +74,72 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
         <div className="relative flex flex-col justify-between p-10 md:p-16 border-b md:border-b-0 md:border-r border-[#d0cdc8]">
           <div className="flex items-center gap-3 mb-10 text-[11px] tracking-[0.2em] text-[#9a9a9a] uppercase [font-family:var(--font-barlow-condensed)]">
             <span className="inline-block w-8 h-px bg-[#9a9a9a]" />
-            Contact
+            Commercial Enquiries
           </div>
 
           <div>
             <h1 className="leading-[0.92] tracking-[0.02em] text-[#0f0f0f] mb-8 [font-family:var(--font-bebas)]" style={{ fontSize: "clamp(64px, 8vw, 110px)" }}>
               GET IN<br />TOUCH.
             </h1>
-            <p className="text-sm font-light italic text-[#5a5a5a] leading-relaxed max-w-[390px] mb-16 pl-4 border-l-2 border-[#0f0f0f]">
-              Contact OCC for wholesale and sourcing enquiries, sample requests, lot-list questions, roasting or coffee solutions, as well as editorial and media enquiries.
+            <p className="text-sm font-light italic text-[#5a5a5a] leading-relaxed max-w-[410px] mb-5 pl-4 border-l-2 border-[#0f0f0f]">
+              Sourcing. Roasting. Supply. Distribution.
+            </p>
+            <p className="max-w-[410px] text-[15px] font-light leading-7 text-[#5a5a5a]">
+              Tell us what you are building. You do not need a final purchase order or a complete specification to start a conversation.
             </p>
           </div>
 
-          <div className="mt-auto">
+          <div className="mt-14 md:mt-auto">
             <div className="flex flex-col gap-1 mb-7 pb-7 border-b border-[#d0cdc8]">
-              <span className={labelBase}>Business Focus</span>
-              <span className="text-sm font-normal text-[#0f0f0f]">Sourcing · Wholesale · Roasting · B2B Coffee Solutions</span>
+              <span className={labelBase}>Commercial Pathways</span>
+              <span className="text-sm font-normal text-[#0f0f0f]">Sourcing · Roasted Supply · Roasting · Distribution</span>
             </div>
             <div className="flex flex-col gap-1 mb-7 pb-7 border-b border-[#d0cdc8]">
-              <span className={labelBase}>Authority Focus</span>
-              <span className="text-sm font-normal text-[#0f0f0f]">Cambodia · Fine Robusta · Coffea canephora</span>
+              <span className={labelBase}>Origin Focus</span>
+              <span className="text-sm font-normal text-[#0f0f0f]">100% Cambodia Origin · Fine Robusta</span>
             </div>
             <div className="flex flex-col gap-1">
-              <span className={labelBase}>Platform</span>
-              <span className="text-sm font-normal text-[#0f0f0f]">OCC — Origin Coffee Cambodia</span>
+              <span className={labelBase}>Starting Point</span>
+              <span className="text-sm font-normal text-[#0f0f0f]">Requirement → Evaluation → Sample / Development → Commercial Discussion</span>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col justify-center p-10 md:p-16">
-          <div className="mb-12">
-            <p className="text-[11px] tracking-[0.15em] text-[#9a9a9a] uppercase mb-2 [font-family:var(--font-barlow-condensed)]">01 / Contact Form</p>
-            <p className="text-[22px] font-medium tracking-[0.08em] uppercase text-[#0f0f0f] [font-family:var(--font-barlow-condensed)]">Start an Enquiry</p>
+          <div className="mb-10">
+            <p className="text-[11px] tracking-[0.15em] text-[#9a9a9a] uppercase mb-2 [font-family:var(--font-barlow-condensed)]">01 / Commercial Entry Point</p>
+            <p className="text-[22px] font-medium tracking-[0.08em] uppercase text-[#0f0f0f] [font-family:var(--font-barlow-condensed)]">Start a Conversation</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="mb-8">
-              <label htmlFor="name" className={labelBase}>Full Name</label>
-              <input id="name" type="text" autoComplete="name" data-clarity-mask="true" placeholder="Your name" className={inputBase} aria-invalid={!!errors.name} {...register("name")} />
-              {errors.name && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.name.message}</p>}
+            <input type="hidden" {...register("sourcePage")} />
+
+            <div className="grid gap-8 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className={labelBase}>Name</label>
+                <input id="name" type="text" autoComplete="name" data-clarity-mask="true" placeholder="Your name" className={inputBase} aria-invalid={!!errors.name} {...register("name")} />
+                {errors.name && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.name.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="company" className={labelBase}>Company</label>
+                <input id="company" type="text" autoComplete="organization" data-clarity-mask="true" placeholder="Company or brand" className={inputBase} aria-invalid={!!errors.company} {...register("company")} />
+                {errors.company && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.company.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="email" className={labelBase}>Work Email</label>
+                <input id="email" type="email" autoComplete="email" data-clarity-mask="true" placeholder="name@company.com" className={inputBase} aria-invalid={!!errors.email} {...register("email")} />
+                {errors.email && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.email.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="countryMarket" className={labelBase}>Country / Market</label>
+                <input id="countryMarket" type="text" autoComplete="country-name" placeholder="e.g. Singapore, USA, Cambodia" className={inputBase} aria-invalid={!!errors.countryMarket} {...register("countryMarket")} />
+                {errors.countryMarket && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.countryMarket.message}</p>}
+              </div>
             </div>
 
-            <div className="mb-8">
-              <label htmlFor="email" className={labelBase}>Email Address</label>
-              <input id="email" type="email" autoComplete="email" data-clarity-mask="true" placeholder="your@email.com" className={inputBase} aria-invalid={!!errors.email} {...register("email")} />
-              {errors.email && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.email.message}</p>}
-            </div>
-
-            <fieldset className="mb-8">
-              <legend className={labelBase}>Enquiry Type</legend>
-              <div className="grid grid-cols-2 gap-2.5 mt-1">
+            <fieldset className="mt-8 mb-8">
+              <legend className={labelBase}>What are you exploring?</legend>
+              <div className="grid grid-cols-1 gap-2.5 mt-1 sm:grid-cols-2">
                 {ENQUIRY_TYPES.map((type) => {
                   const isSelected = selectedType === type
                   return (
@@ -144,16 +154,22 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
             </fieldset>
 
             <div className="mb-8">
-              <label htmlFor="message" className={labelBase}>Message <span className="normal-case tracking-normal font-normal">(optional)</span></label>
-              <textarea id="message" rows={4} data-clarity-mask="true" placeholder="Tell us what you need, the coffee or service context, expected use, timing, and any relevant quality or sourcing requirements." className={`${inputBase} resize-none`} {...register("message")} />
-              {errors.message && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.message.message}</p>}
+              <label htmlFor="projectRequirement" className={labelBase}>Project / Requirement</label>
+              <textarea id="projectRequirement" rows={4} data-clarity-mask="true" placeholder="What are you sourcing, developing, roasting, supplying, or bringing to market?" className={`${inputBase} resize-none`} aria-invalid={!!errors.projectRequirement} {...register("projectRequirement")} />
+              {errors.projectRequirement && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.projectRequirement.message}</p>}
+            </div>
+
+            <div className="mb-8">
+              <label htmlFor="projectStage" className={labelBase}>Estimated Requirement / Project Stage <span className="normal-case tracking-normal font-normal">(optional)</span></label>
+              <textarea id="projectStage" rows={2} data-clarity-mask="true" placeholder="Approximate volume, timing, current stage, or any context that helps us respond." className={`${inputBase} resize-none`} {...register("projectStage")} />
+              {errors.projectStage && <p role="alert" className="mt-1.5 text-xs text-red-600">{errors.projectStage.message}</p>}
             </div>
 
             {serverError && <p role="alert" className="mb-6 text-sm text-red-700 border border-red-200 bg-red-50 px-4 py-3">{serverError}</p>}
 
-            <div className="flex items-center justify-end mt-12 pt-8 border-t border-[#d0cdc8]">
-              <button type="submit" disabled={isPending} className="flex items-center gap-3.5 bg-[#0f0f0f] text-[#f4f2ef] px-7 py-4 text-[13px] tracking-[0.18em] uppercase [font-family:var(--font-barlow-condensed)] hover:bg-[#1a1a1a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[160px] justify-center">
-                {isPending ? "Sending…" : <>Send Enquiry <span aria-hidden="true">→</span></>}
+            <div className="flex items-center justify-end mt-10 pt-8 border-t border-[#d0cdc8]">
+              <button type="submit" disabled={isPending} className="flex items-center gap-3.5 bg-[#0f0f0f] text-[#f4f2ef] px-7 py-4 text-[13px] tracking-[0.18em] uppercase [font-family:var(--font-barlow-condensed)] hover:bg-[#1a1a1a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[210px] justify-center">
+                {isPending ? "Sending…" : <>Start a Conversation <span aria-hidden="true">→</span></>}
               </button>
             </div>
           </form>
@@ -162,9 +178,9 @@ export default function ContactForm({ fontVars }: ContactFormProps) {
 
       {isSuccess && (
         <div role="dialog" aria-modal="true" aria-labelledby="success-title" className="fixed inset-0 bg-[#0f0f0f] text-[#f4f2ef] z-50 flex flex-col items-center justify-center text-center p-10">
-          <p className="text-[11px] tracking-[0.25em] text-[#888] uppercase mb-6 [font-family:var(--font-barlow-condensed)]">Enquiry Received</p>
-          <h2 id="success-title" className="tracking-[0.04em] mb-5 [font-family:var(--font-bebas)]" style={{ fontSize: "72px" }}>NOTED.</h2>
-          <p className="text-[15px] font-light italic text-[#aaa] max-w-xs leading-relaxed mb-10">Your enquiry has been received.</p>
+          <p className="text-[11px] tracking-[0.25em] text-[#888] uppercase mb-6 [font-family:var(--font-barlow-condensed)]">Enquiry Saved</p>
+          <h2 id="success-title" className="tracking-[0.04em] mb-5 [font-family:var(--font-bebas)]" style={{ fontSize: "72px" }}>RECEIVED.</h2>
+          <p className="text-[15px] font-light italic text-[#aaa] max-w-sm leading-relaxed mb-10">Your commercial enquiry has been saved. OCC can now review the requirement and continue the conversation.</p>
           <button onClick={() => setIsSuccess(false)} className="text-[12px] tracking-[0.2em] uppercase text-white border-b border-[#555] pb-1 hover:border-white transition-colors [font-family:var(--font-barlow-condensed)]">← Return</button>
         </div>
       )}
