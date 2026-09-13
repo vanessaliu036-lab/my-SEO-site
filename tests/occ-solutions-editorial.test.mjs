@@ -7,7 +7,7 @@ const indexTemplate = "components/templates/solutions-index-template.tsx"
 const detailTemplate = "components/templates/solution-detail-template.tsx"
 const commercialTemplate = "components/templates/commercial-solution-template.tsx"
 const localMarketTemplate = "components/templates/local-market-solution-template.tsx"
-const detailPages = ["wholesale", "roasting-program", "barista-staffing", "equipment-service"]
+const detailPages = ["wholesale", "roasting-program", "coffee-marketing", "equipment-service"]
 
 test("SOLUTIONS index and detail pages keep the OCC editorial system", () => {
   assert.equal(fs.existsSync(indexTemplate), true, "solutions index template must exist")
@@ -35,7 +35,7 @@ test("commercial and local-market solution pages use dedicated editorial templat
   assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
   const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
-  const staffing = read("app/(site)/solutions/barista-staffing/page.tsx")
+  const marketing = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
   const commercial = read(commercialTemplate)
   const local = read(localMarketTemplate)
@@ -44,8 +44,8 @@ test("commercial and local-market solution pages use dedicated editorial templat
   assert.match(roasting, /CommercialSolutionTemplate/)
   assert.doesNotMatch(wholesale, /SolutionDetailTemplate/)
   assert.doesNotMatch(roasting, /SolutionDetailTemplate/)
-  assert.match(staffing, /LocalMarketSolutionTemplate/)
-  assert.doesNotMatch(staffing, /SolutionDetailTemplate/)
+  assert.match(marketing, /LocalMarketSolutionTemplate/)
+  assert.doesNotMatch(marketing, /SolutionDetailTemplate/)
   assert.match(equipment, /SolutionDetailTemplate/)
 
   assert.match(commercial, /highlightCards/)
@@ -114,7 +114,7 @@ test("commercial mobile hierarchy and internal links are explicit", () => {
 })
 
 test("coffee marketing page matches OCC editorial hierarchy and keeps explicit internal paths", () => {
-  const page = read("app/(site)/solutions/barista-staffing/page.tsx")
+  const page = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const template = read(localMarketTemplate)
 
   assert.match(page, /COFFEE MARKETING/)
@@ -123,6 +123,7 @@ test("coffee marketing page matches OCC editorial hierarchy and keeps explicit i
   assert.match(page, /A Signature Drink Creates a Reason to Return/)
   assert.match(page, /From Menu Review to Signature Launch/)
   assert.match(page, /Design Your Signature Drink/)
+  assert.match(page, /pageAlternates\("\/solutions\/coffee-marketing"\)/)
   assert.match(page, /\/solutions\/wholesale/)
   assert.match(page, /\/solutions\/roasting-program/)
   assert.match(page, /\/fine-robusta-cambodia/)
@@ -131,6 +132,19 @@ test("coffee marketing page matches OCC editorial hierarchy and keeps explicit i
   assert.match(template, /text-\[clamp\(2\.1rem,7\.5vw,3\.2rem\)\]/)
   assert.match(template, /max-w-\[13ch\]/)
   assert.match(template, /max-w-\[34rem\]/)
+})
+
+test("legacy barista staffing URL 301s to the Coffee Marketing owner", () => {
+  const proxy = read("proxy.ts")
+  const navigation = read("components/site/navigation-data.ts")
+  const sitemap = read("app/sitemap.ts")
+
+  assert.match(proxy, /"\/solutions\/barista-staffing"\s*:\s*\n?\s*"\/solutions\/coffee-marketing"/)
+  assert.match(proxy, /NextResponse\.redirect\(url, 301\)/)
+  assert.doesNotMatch(navigation, /\/solutions\/barista-staffing/)
+  assert.match(navigation, /\/solutions\/coffee-marketing/)
+  assert.doesNotMatch(sitemap, /\/solutions\/barista-staffing/)
+  assert.match(sitemap, /\/solutions\/coffee-marketing/)
 })
 
 test("equipment service route is preserved for SEO but removed from public solution entry points", () => {
@@ -174,11 +188,11 @@ test("solution pages preserve schemas and explicit internal-link logic without u
     assert.match(source, /"@type": "BreadcrumbList"/)
   }
 
-  const staffing = read("app/(site)/solutions/barista-staffing/page.tsx")
+  const marketing = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
-  assert.match(staffing, /relatedLinks=/)
-  assert.match(staffing, /\/solutions\/wholesale/)
-  assert.match(staffing, /\/solutions\/roasting-program/)
+  assert.match(marketing, /relatedLinks=/)
+  assert.match(marketing, /\/solutions\/wholesale/)
+  assert.match(marketing, /\/solutions\/roasting-program/)
   assert.match(equipment, /renderWithLinks/)
 
   const index = read("app/(site)/solutions/page.tsx")
