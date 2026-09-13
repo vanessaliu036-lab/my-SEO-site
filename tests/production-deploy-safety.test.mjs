@@ -18,17 +18,11 @@ function runScript(script, environment) {
     })
     return { status: 0, output: "" }
   } catch (error) {
-    return {
-      status: error.status ?? 1,
-      output: `${error.stdout ?? ""}${error.stderr ?? ""}`,
-    }
+    return { status: error.status ?? 1, output: `${error.stdout ?? ""}${error.stderr ?? ""}` }
   }
 }
 
-function runGuard(environment) {
-  return runScript(guard, environment)
-}
-
+function runGuard(environment) { return runScript(guard, environment) }
 function runCorpusGuard(count) {
   return runScript(corpusGuard, {
     NODE_ENV: "test",
@@ -129,10 +123,12 @@ test("production source keeps approved pages and unified top navigation", () => 
   const mission = readFileSync(resolve(root, "app/(site)/about/mission/page.tsx"), "utf8")
   const manifesto = readFileSync(resolve(root, "app/(site)/about/manifesto/page.tsx"), "utf8")
   const roasting = readFileSync(resolve(root, "app/(site)/solutions/roasting-program/page.tsx"), "utf8")
+  const original = readFileSync(resolve(root, "app/(site)/original/page.tsx"), "utf8")
 
   assert.doesNotMatch(`${shell}\n${header}\n${navigationData}`, /SiteSidebar|components\/Navigation|\/admin|Staff Access/i)
   assert.match(header, /siteNavigation/)
   assert.match(mission, /title="OCC MISSION"/)
   assert.match(manifesto, /title="MANIFESTO"/)
-  assert.match(roasting, /title="CUSTOM COFFEE ROASTING PROGRAM"/)
+  assert.match(roasting, /title="ROASTING PROGRAM"/)
+  assert.match(original, /Proof before promise\./)
 })
