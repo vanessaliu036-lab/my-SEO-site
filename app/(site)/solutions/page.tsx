@@ -6,12 +6,12 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Coffee Solutions Cambodia | B2B Support | OCC",
   description:
-    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, roast development, and barista staffing enquiries.",
+    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, custom roasting, and coffee marketing built around signature drink development.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",
     description:
-      "B2B coffee solution areas for sourcing, roasting, and staffing enquiries in Cambodia, with evidence-led due diligence.",
+      "B2B coffee solution areas for sourcing, custom roasting, and coffee marketing in Cambodia, with evidence-led due diligence and product development.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
@@ -26,12 +26,12 @@ const services = [
   {
     href: "/solutions/roasting-program",
     title: "Roasting Program",
-    desc: "Roast-development and white-label enquiries framed around profile, repeatability, capacity, and production-readiness checks.",
+    desc: "Roast-development enquiries framed around profile, repeatability, application, and production-readiness checks.",
   },
   {
-    href: "/solutions/barista-staffing",
-    title: "Barista Staffing",
-    desc: "Barista staffing enquiries with role definition, candidate evaluation, training evidence, and placement-term checks.",
+    href: "/solutions/coffee-marketing",
+    title: "Coffee Marketing",
+    desc: "Cambodian-market coffee marketing built around menu review, signature drink development, product memory, and stronger reasons for customers to return.",
   },
 ] as const
 
