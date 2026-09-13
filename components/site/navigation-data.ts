@@ -4,7 +4,7 @@ export type SiteNavChild = {
 }
 
 export type SiteNavItem = {
-  label: "ABOUT" | "SOLUTIONS" | "ORIGINS" | "BLOG" | "CONTACT" | "DISTRIBUTION"
+  label: "ABOUT" | "SOLUTIONS" | "ORIGINAL" | "BLOG" | "CONTACT"
   href: string
   children?: readonly SiteNavChild[]
 }
@@ -24,21 +24,21 @@ export const siteNavigation: readonly SiteNavItem[] = [
     label: "SOLUTIONS",
     href: "/solutions",
     children: [
-      { label: "Wholesale", href: "/solutions/wholesale" },
+      { label: "Wholesale & Sourcing", href: "/solutions/wholesale" },
+      { label: "Roasted Coffee Supply", href: "/solutions/roasted-coffee-supply" },
       { label: "Roasting Program", href: "/solutions/roasting-program" },
-      { label: "Barista Staffing", href: "/solutions/barista-staffing" },
+      { label: "Distribution Partnership", href: "/distribution" },
     ],
   },
   {
-    label: "ORIGINS",
-    href: "/origins",
+    label: "ORIGINAL",
+    href: "/original",
     children: [
-      { label: "Single Origin", href: "/origins/single-origin" },
+      { label: "Origin Evidence", href: "/origins" },
       { label: "Fine Robusta Cambodia", href: "/fine-robusta-cambodia" },
       { label: "Farm & Terroir", href: "/origins/farm-terroir" },
     ],
   },
   { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },
-  { label: "DISTRIBUTION", href: "/distribution" },
 ] as const
