@@ -81,6 +81,7 @@ export default async function BlogPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {/* Keep the Blog surface aligned with the global OCC warm-ivory shell. */}
       <main className="min-h-screen bg-[#f6f3ea] font-sans overflow-x-hidden">
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16">
 
