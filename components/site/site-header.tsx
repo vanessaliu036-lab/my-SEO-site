@@ -21,7 +21,6 @@ export function SiteHeader() {
     ? "absolute inset-x-0 top-0 z-[70] w-full border-b border-white/15 bg-transparent text-white"
     : "sticky inset-x-0 top-0 z-[70] w-full border-b border-[#182019]/12 bg-[#f6f3ea]/95 text-[#182019] backdrop-blur-md"
 
-  const secondaryBrandClass = onHome ? "text-white/65" : "text-[#182019]/55"
   const inactiveLinkClass = onHome ? "text-white/70 hover:text-white" : "text-[#182019]/62 hover:text-[#182019]"
   const activeLinkClass = onHome ? "text-white" : "text-[#182019]"
   const mobileButtonClass = onHome
@@ -32,13 +31,18 @@ export function SiteHeader() {
     <>
       <header className={headerClass}>
         <div className="mx-auto flex h-20 w-full max-w-[1680px] items-center gap-6 px-5 sm:px-8 lg:px-12">
-          <Link href="/" className="flex shrink-0 items-end gap-3" aria-label="Origin Coffee Cambodia home">
-            <span className="text-2xl font-semibold tracking-[-0.07em]">OCC</span>
-            <span className={`mb-0.5 hidden text-[9px] font-medium uppercase leading-tight tracking-[0.24em] sm:block ${secondaryBrandClass}`}>
-              Origin Coffee
-              <br />
-              Cambodia
-            </span>
+          <Link
+            href="/"
+            className="flex shrink-0 items-center bg-[#FAF8F3] px-2 py-1.5"
+            aria-label="Origin Coffee Cambodia home"
+          >
+            <img
+              src="/occ-logo-primary.jpg"
+              alt=""
+              width={600}
+              height={266}
+              className="h-[46px] w-auto sm:h-[50px]"
+            />
           </Link>
 
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-7 lg:flex" aria-label="Primary navigation">
