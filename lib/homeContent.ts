@@ -4,10 +4,10 @@
  * receive the same OCC business + authority description.
  */
 
-export const homeDateModified = "2026-09-05"
+export const homeDateModified = "2026-09-13"
 
 export const homeDirectAnswer =
-  "Origin Coffee Cambodia (OCC) is a Cambodia-focused professional coffee company connecting Fine Robusta and Cambodian coffee authority with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions. OCC also publishes evidence-led work on Mondulkiri coffee, Coffea canephora, processing, grading, sensory evaluation, brewing, and origin quality so professional buyers can make better sourcing and coffee-program decisions. Wholesale, sourcing, sample, lot-list, and coffee-solution enquiries can be submitted through OCC's contact channel. Technical claims and standards are presented with primary sources and stated limitations."
+  "Origin Coffee Cambodia (OCC) is a Cambodia-focused professional coffee company connecting Fine Robusta and Cambodian coffee authority with specialty coffee sourcing, roasted coffee supply, roast development, B2B supply, traceability, and market partnership discussions. OCC also publishes evidence-led work on Mondulkiri coffee, Coffea canephora, processing, grading, sensory evaluation, brewing, and origin quality so professional buyers can make better sourcing and coffee-program decisions. Commercial conversations can begin with a sourcing requirement, roasted-coffee need, roasting brief, or distribution market even before a final purchase order exists. Technical claims and standards are presented with primary sources and stated limitations."
 
 export const homeAuthoritySections = [
   {
@@ -94,15 +94,15 @@ export const homeFaqs = [
   },
   {
     q: "What does Origin Coffee Cambodia do?",
-    a: "Origin Coffee Cambodia connects Cambodian coffee and Fine Robusta expertise with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions. Its evidence-led content supports professional sourcing, quality, and coffee-program decisions.",
+    a: "Origin Coffee Cambodia connects Cambodian coffee and Fine Robusta expertise with specialty coffee sourcing, roasted coffee supply, roast development, B2B supply, traceability, and market partnership discussions. Its evidence-led content supports professional sourcing, quality, and coffee-program decisions.",
   },
   {
     q: "Who is Origin Coffee Cambodia for?",
-    a: "OCC serves coffee buyers, hotels, restaurants, cafés, offices, roasters, producers, brewers, and other professionals who need Cambodian coffee sourcing context, Fine Robusta expertise, and clearer technical information about coffee quality.",
+    a: "OCC serves coffee buyers, hotels, restaurants, cafés, offices, roasters, importers, distributors, and other professionals who need Cambodian coffee sourcing context, Fine Robusta expertise, and clearer technical information about coffee quality.",
   },
   {
     q: "How can a buyer contact OCC?",
-    a: "Use the OCC contact page for wholesale and sourcing enquiries, sample requests, lot-list enquiries, roasting or coffee-solution questions, as well as editorial and media enquiries.",
+    a: "Use the OCC contact page to start a conversation about Wholesale & Sourcing, Roasted Coffee Supply, a Roasting Program, a Distribution Partnership, or another commercial requirement. A final purchase order is not required to begin.",
   },
   {
     q: "Where does OCC focus its Cambodian coffee work?",
