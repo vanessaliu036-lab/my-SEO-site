@@ -36,7 +36,7 @@ export async function submitContactForm(data: ContactFormData): Promise<ContactA
     }
   }
 
-  const token = process.env.AIRTABLE_TOKEN ?? process.env.AIRTABLE_API_KEY
+  const token = process.env.AIRTABLE_API_KEY ?? process.env.AIRTABLE_PAT ?? process.env.AIRTABLE_TOKEN
   const baseId = process.env.AIRTABLE_BASE_ID
 
   if (!token || !baseId) {
