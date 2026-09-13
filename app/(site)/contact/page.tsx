@@ -6,16 +6,16 @@ import ContactForm from "./ContactForm"
 import "./contact-editorial.css"
 
 export const metadata: Metadata = {
-  title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
+  title: "Contact OCC | Wholesale, Custom Roasting & Coffee Marketing",
   description:
-    "Contact Origin Coffee Cambodia for wholesale, sourcing, samples, lot-list questions, roasting, B2B coffee solutions, editorial, or media enquiries.",
+    "Contact Origin Coffee Cambodia for wholesale coffee supply, custom roast profile development, and coffee marketing for the Cambodian market.",
   keywords:
-    "Origin Coffee Cambodia contact, Cambodia coffee wholesale enquiry, Fine Robusta supplier Cambodia, Cambodia coffee sourcing, coffee sample request, coffee lot list, B2B coffee solutions Cambodia",
+    "Origin Coffee Cambodia contact, Cambodia coffee wholesale enquiry, Fine Robusta supplier Cambodia, custom coffee roasting Cambodia, roast profile development Cambodia, coffee marketing Cambodia, signature drink development",
   alternates: pageAlternates("/contact"),
   openGraph: {
-    title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
+    title: "Contact OCC | Wholesale, Custom Roasting & Coffee Marketing",
     description:
-      "Start a wholesale, sourcing, sample, lot-list, roasting, B2B coffee solution, editorial, or media enquiry with OCC.",
+      "Start a commercial conversation with OCC for ready-to-sell wholesale coffee, made-for-you custom roasting, or Cambodian-market coffee marketing.",
     url: `${siteUrl}/contact`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
+    title: "Contact OCC | Wholesale, Custom Roasting & Coffee Marketing",
     description:
-      "Wholesale, sourcing, sample, lot-list, roasting, coffee solution, editorial, and media enquiries for OCC.",
+      "Wholesale coffee supply, custom roast profile development, and Cambodian-market coffee marketing enquiries for OCC.",
   },
 }
 
@@ -43,14 +43,21 @@ const contactOrganizationSchema = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      contactType: "wholesale and sourcing inquiries",
+      contactType: "wholesale coffee supply inquiries",
       url: `${siteUrl}/contact`,
       availableLanguage: ["English"],
       areaServed: areaServedCambodia,
     },
     {
       "@type": "ContactPoint",
-      contactType: "editorial and media inquiries",
+      contactType: "custom roasting inquiries",
+      url: `${siteUrl}/contact`,
+      availableLanguage: ["English"],
+      areaServed: areaServedCambodia,
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "coffee marketing inquiries",
       url: `${siteUrl}/contact`,
       availableLanguage: ["English"],
       areaServed: areaServedCambodia,
