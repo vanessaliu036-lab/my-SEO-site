@@ -1,11 +1,13 @@
 import type { ReactNode } from "react"
 import { SiteHeader } from "@/components/site/site-header"
+import { MobileConversionCta } from "@/components/site/mobile-conversion-cta"
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
       <main className="relative min-h-screen bg-white">{children}</main>
+      <MobileConversionCta />
 
       <div
         className="fixed right-8 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-4 md:flex"
