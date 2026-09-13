@@ -6,12 +6,12 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Coffee Solutions Cambodia | B2B Sourcing & Roasting | OCC",
   description:
-    "Explore OCC commercial pathways for Cambodia coffee sourcing, roasted coffee supply, roast development, and distribution partnerships.",
+    "Explore OCC evidence-led commercial pathways for Cambodia coffee sourcing, roasted coffee supply, roast development, and distribution partnerships.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",
     description:
-      "B2B coffee pathways built around requirements, available evidence, sourcing availability, development, and commercial discussion.",
+      "Evidence-led B2B coffee pathways built around requirements, available evidence, sourcing availability, development, and commercial discussion.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
