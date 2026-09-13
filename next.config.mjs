@@ -47,6 +47,16 @@ const nextConfig = {
       { source: '/matter', destination: '/blog', permanent: true },
       { source: '/archive', destination: '/blog', permanent: true },
       {
+        source: '/solutions/barista-staffing',
+        destination: '/solutions',
+        permanent: true,
+      },
+      {
+        source: '/solutions/equipment-service',
+        destination: '/solutions',
+        permanent: true,
+      },
+      {
         source: '/mondulkiri-coffee',
         destination: '/blog/mondulkiri-next-specialty-coffee-origin',
         permanent: true,
