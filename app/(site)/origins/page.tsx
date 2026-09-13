@@ -68,7 +68,7 @@ export default function OriginsPage() {
         <div className="relative mx-auto w-full max-w-[1680px] px-6 pb-14 pt-6 sm:px-8 md:px-12 lg:px-16 lg:pb-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end">
             <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
-              <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-[#a8542a]">ORIGIN AUTHORITY</p>
+              <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-[#a8542a]">CAMBODIA ORIGIN SYSTEM</p>
               <p className="mt-3 text-[9px] uppercase tracking-[0.2em] text-black/34">Cambodia / OCC</p>
             </MotionReveal>
 
@@ -105,7 +105,7 @@ export default function OriginsPage() {
                 Three Layers, One Origin System
               </h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
-                Each page owns a different search intent so geography, growing conditions, and Fine Robusta quality do not compete with one another.
+                Each layer answers a different origin question: where the coffee grows, how the growing environment works, and how Fine Robusta quality is evaluated.
               </p>
             </MotionReveal>
 
@@ -169,7 +169,7 @@ export default function OriginsPage() {
                 Keep the Coffee Identifiable
               </h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
-                The former Single Origin role now lives here: source boundary, lot identity, and traceability are part of the main Origin system rather than a separate page.
+                Traceability, source boundary, and lot identity belong inside the main Origin Hub so the coffee stays connected to the place and evidence that define it.
               </p>
             </MotionReveal>
 
