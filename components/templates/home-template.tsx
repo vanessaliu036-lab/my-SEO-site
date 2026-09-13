@@ -52,6 +52,9 @@ export default function HomeTemplate() {
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-gray-500">Origin Coffee Cambodia</p>
           <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">{homeDirectAnswer}</p>
+          <p className="mt-5 text-sm leading-6 text-gray-500">
+            Technical owner: <Link href="/fine-robusta-cambodia" className="border-b border-gray-300 text-gray-800 hover:border-gray-800">Fine Robusta Cambodia guide</Link>.
+          </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-white">Start a Conversation <ArrowUpRight className="size-3.5" /></Link>
             <Link href="/solutions" className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-gray-800">Explore Solutions <ArrowUpRight className="size-3.5" /></Link>
