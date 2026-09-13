@@ -25,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/about/manifesto`, lastModified: now },
     { url: `${siteUrl}/about/sustainability`, lastModified: now },
 
+    { url: `${siteUrl}/original`, lastModified: now },
     { url: `${siteUrl}/fine-robusta-cambodia`, lastModified: now },
     { url: `${siteUrl}/origins`, lastModified: now },
     { url: `${siteUrl}/origins/single-origin`, lastModified: now },
@@ -32,9 +33,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     { url: `${siteUrl}/solutions`, lastModified: now },
     { url: `${siteUrl}/solutions/wholesale`, lastModified: now },
+    { url: `${siteUrl}/solutions/roasted-coffee-supply`, lastModified: now },
     { url: `${siteUrl}/solutions/roasting-program`, lastModified: now },
-    { url: `${siteUrl}/solutions/barista-staffing`, lastModified: now },
-    { url: `${siteUrl}/solutions/equipment-service`, lastModified: now },
     { url: `${siteUrl}/distribution`, lastModified: now },
 
     { url: `${siteUrl}/blog`, lastModified: now },
