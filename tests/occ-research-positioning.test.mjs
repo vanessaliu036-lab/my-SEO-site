@@ -97,7 +97,7 @@ test('sitemap emits current strategic routes while preserving the Airtable blog 
     '/solutions',
     '/solutions/wholesale',
     '/solutions/roasting-program',
-    '/solutions/barista-staffing',
+    '/solutions/coffee-marketing',
     '/solutions/equipment-service',
     '/distribution',
   ]) {
