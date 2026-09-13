@@ -5,14 +5,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Distribution Partners | Cambodian Coffee Brand | OCC",
+  title: "Distribution Partnership | Cambodian Coffee Brand | OCC",
   description:
-    "Partner with Origin Coffee Cambodia to bring 100% Cambodia-origin coffee, Fine Robusta, and premium roasted coffee into international retail, hospitality, and specialty coffee markets.",
+    "Discuss a market with Origin Coffee Cambodia if you are evaluating Cambodia-origin coffee, Fine Robusta, roasted coffee, retail, hospitality, agency, or distribution opportunities.",
   alternates: pageAlternates("/distribution"),
   openGraph: {
-    title: "Bring Cambodian Coffee to Your Market | OCC Distribution",
+    title: "Discuss Your Market | OCC Distribution Partnership",
     description:
-      "Distribution, agency, retail, and hospitality partnerships for Origin Coffee Cambodia — a premium coffee brand built around Cambodia origin.",
+      "A commercial pathway for distributors, importers, agents, retailers, and hospitality partners evaluating Cambodian coffee for their market.",
     url: `${siteUrl}/distribution`,
     type: "website",
   },
@@ -30,19 +30,19 @@ const proofPoints = [
 const partnershipTypes = [
   {
     title: "Distributors & Importers",
-    desc: "For established coffee, retail, and hospitality networks bringing OCC into a new market.",
+    desc: "For established coffee, retail, and hospitality networks evaluating OCC for a new market.",
   },
   {
     title: "Regional Agents",
-    desc: "For local partners developing OCC within a defined territory and long-term market plan.",
+    desc: "For local partners exploring how OCC could be developed within a defined territory and long-term market plan.",
   },
   {
     title: "Specialty Retailers & Cafés",
-    desc: "For businesses seeking a distinctive origin-led coffee brand with a clear Cambodia story.",
+    desc: "For businesses evaluating a distinctive origin-led coffee brand with a clear Cambodia story.",
   },
   {
     title: "Hotels & Hospitality",
-    desc: "For rooms, restaurants, guest experiences, and premium gifting built around Cambodian coffee.",
+    desc: "For hospitality groups exploring Cambodian coffee across restaurants, guest experiences, rooms, or gifting.",
   },
   {
     title: "Premium Gift & Lifestyle",
@@ -74,10 +74,10 @@ const partnerSupport = [
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Origin Coffee Cambodia Distribution Partnerships",
+  name: "Origin Coffee Cambodia Distribution Partnership",
   url: `${siteUrl}/distribution`,
   description:
-    "Distribution, agency, retail, and hospitality partnership opportunities for Origin Coffee Cambodia.",
+    "A commercial entry point for distribution, agency, retail, and hospitality partnership discussions with Origin Coffee Cambodia.",
   about: {
     "@type": "Organization",
     name: "Origin Coffee Cambodia",
@@ -113,20 +113,20 @@ export default function DistributionPage() {
                 Bring Cambodian Coffee to Your Market
               </h1>
               <p className="mt-9 max-w-xl text-[15px] font-light leading-7 text-[#182019]/72 sm:text-base">
-                OCC is a premium coffee brand built around one origin: Cambodia. We work with selected distributors,
-                agents, retailers, and hospitality partners to introduce Cambodia-grown coffee to new markets.
+                OCC is built around one origin: Cambodia. If you are evaluating Cambodian coffee for distribution,
+                import, retail, hospitality, or market representation, start with the market and the opportunity you are building.
               </p>
             </div>
 
             <div className="flex flex-col gap-5 border-t border-[#182019]/15 pt-7 sm:flex-row sm:items-end sm:justify-between">
               <p className="max-w-md text-sm leading-6 text-[#182019]/58">
-                Fine Robusta, premium roasted coffee, and origin-led collections developed for long-term market building.
+                Fine Robusta, roasted-coffee requirements, and origin-led product directions can be discussed according to the actual market and sourcing availability.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex w-fit items-center gap-4 border-b border-[#182019] pb-1 text-[11px] uppercase tracking-[0.22em] transition-opacity hover:opacity-55"
               >
-                Become a Distribution Partner <span aria-hidden="true">↗</span>
+                Discuss Your Market <span aria-hidden="true">↗</span>
               </Link>
             </div>
           </div>
@@ -174,10 +174,10 @@ export default function DistributionPage() {
             <p className="max-w-2xl text-lg font-light leading-8 text-[#182019]/70">
               Cambodia remains one of Southeast Asia&apos;s lesser-known coffee origins. For international partners, that
               creates a genuine point of difference — not another generic coffee label, but a product connected to place,
-              emerging quality, and a story consumers have not heard hundreds of times before.
+              emerging quality, and a story many consumers have not encountered before.
             </p>
             <p className="mt-8 max-w-xl text-sm leading-7 text-[#182019]/56">
-              OCC&apos;s role is to make Cambodian coffee easier to discover, understand, and bring to market while keeping
+              OCC&apos;s role is to make Cambodian coffee easier to discover, understand, evaluate, and discuss commercially while keeping
               Cambodia clearly at the center of the brand.
             </p>
           </div>
@@ -192,7 +192,7 @@ export default function DistributionPage() {
               <h2 className="text-4xl font-normal sm:text-5xl">Cambodian Coffee, Built for Premium Markets</h2>
             </div>
             <p className="max-w-sm text-sm leading-6 text-[#182019]/54">
-              Three complementary product directions. One clear origin identity.
+              Three directions that can be evaluated against one clear origin identity.
             </p>
           </div>
 
@@ -208,18 +208,18 @@ export default function DistributionPage() {
 
             <article className="border-b border-[#182019]/15 py-9 lg:border-b-0 lg:border-r lg:px-10">
               <p className="mb-14 text-[10px] uppercase tracking-[0.24em] text-[#182019]/42">02 / Roasted Coffee</p>
-              <h3 className="text-3xl font-normal">Premium Roasted Coffee</h3>
+              <h3 className="text-3xl font-normal">Roasted Coffee Supply</h3>
               <p className="mt-5 max-w-md text-sm leading-7 text-[#182019]/62">
-                Roasted coffee for retail, gifting, hospitality, and specialty coffee environments, developed to express
-                Cambodian origin with consistency and accessibility.
+                For retail, gifting, hospitality, and specialty coffee environments where the roasted-coffee requirement,
+                coffee, profile, production assumptions, and supply terms need to be defined for the actual project.
               </p>
             </article>
 
             <article className="py-9 lg:pl-10">
-              <p className="mb-14 text-[10px] uppercase tracking-[0.24em] text-[#182019]/42">03 / Collections</p>
-              <h3 className="text-3xl font-normal">Origin-Led Collections</h3>
+              <p className="mb-14 text-[10px] uppercase tracking-[0.24em] text-[#182019]/42">03 / Product Direction</p>
+              <h3 className="text-3xl font-normal">Origin-Led Concepts</h3>
               <p className="mt-5 max-w-md text-sm leading-7 text-[#182019]/62">
-                Collections shaped by place, coffee character, and Cambodian identity. Cambodia is not decorative context;
+                Product directions shaped by place, coffee character, and Cambodian identity. Cambodia is not decorative context;
                 it is the origin and the story.
               </p>
             </article>
@@ -231,10 +231,9 @@ export default function DistributionPage() {
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="mb-5 text-[10px] uppercase tracking-[0.28em] text-[#182019]/48">03 · Partnerships</p>
-            <h2 className="text-5xl font-normal leading-none sm:text-6xl">Who We Work With</h2>
+            <h2 className="text-5xl font-normal leading-none sm:text-6xl">Who This Path Is For</h2>
             <p className="mt-7 max-w-sm text-sm leading-7 text-[#182019]/56">
-              Focused regional partnerships are preferred over uncontrolled distribution. The aim is to build OCC properly
-              in each market.
+              The first conversation is about fit: the market, network, intended channel, product direction, and what still needs to be validated.
             </p>
           </div>
 
@@ -257,7 +256,7 @@ export default function DistributionPage() {
         <div className="grid lg:grid-cols-2">
           <div className="border-b border-[#182019]/15 px-6 py-16 sm:px-10 lg:border-b-0 lg:border-r lg:px-14 lg:py-20 xl:px-20">
             <p className="mb-5 text-[10px] uppercase tracking-[0.28em] text-[#182019]/48">04 · Distribution Formats</p>
-            <h2 className="max-w-xl text-4xl font-normal sm:text-5xl">Flexible structures for different markets.</h2>
+            <h2 className="max-w-xl text-4xl font-normal sm:text-5xl">Different structures for different markets.</h2>
             <div className="mt-12 grid gap-x-8 sm:grid-cols-2">
               {distributionFormats.map((item) => (
                 <div key={item} className="border-t border-[#182019]/12 py-4 text-sm text-[#182019]/66">
@@ -266,7 +265,7 @@ export default function DistributionPage() {
               ))}
             </div>
             <p className="mt-8 text-xs leading-6 text-[#182019]/46">
-              Product range, MOQ, territory, pricing, and commercial terms are discussed according to market requirements.
+              Product range, MOQ, territory, pricing, availability, and commercial terms are confirmed according to the actual market and project before they become commitments.
             </p>
           </div>
 
@@ -274,8 +273,7 @@ export default function DistributionPage() {
             <p className="mb-5 text-[10px] uppercase tracking-[0.28em] text-[#f6f3ea]/50">05 · Partner Support</p>
             <h2 className="max-w-xl text-4xl font-normal sm:text-5xl">Building the Market Together</h2>
             <p className="mt-7 max-w-xl text-sm leading-7 text-[#f6f3ea]/68">
-              Introducing a lesser-known coffee origin takes more than supplying products. Selected partners may receive the
-              tools needed to explain and represent Cambodian coffee with clarity and consistency.
+              Introducing a lesser-known coffee origin takes more than supplying products. The useful support mix should be defined with the partner and the market rather than treated as a universal package.
             </p>
             <div className="mt-12 grid sm:grid-cols-2">
               {partnerSupport.map((item) => (
@@ -289,19 +287,18 @@ export default function DistributionPage() {
       </section>
 
       <section className="bg-[#182019] px-6 py-24 text-center text-[#f6f3ea] sm:px-10 lg:px-14 lg:py-32 xl:px-20">
-        <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-[#f6f3ea]/46">Represent OCC in Your Market</p>
+        <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-[#f6f3ea]/46">Distribution Partnership</p>
         <h2 className="mx-auto max-w-5xl text-[clamp(3.5rem,7vw,7.6rem)] font-normal leading-[0.9] tracking-[-0.045em]">
-          Bring Cambodian Coffee to Your Market.
+          Tell Us About Your Market.
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-sm leading-7 text-[#f6f3ea]/62">
-          We are exploring selected distribution, agency, retail, and hospitality partnerships. Tell us about your company,
-          market, network, product interest, expected volume, and preferred partnership model.
+          Share your company, country or market, network, intended channel, coffee or product interest, timing, and project stage. A final order is not required to begin the discussion.
         </p>
         <Link
           href="/contact"
           className="mt-10 inline-flex items-center gap-5 border-b border-[#f6f3ea]/70 pb-2 text-[11px] uppercase tracking-[0.24em] transition-opacity hover:opacity-55"
         >
-          Discuss Distribution <span aria-hidden="true">↗</span>
+          Discuss Your Market <span aria-hidden="true">↗</span>
         </Link>
         <p className="mt-20 text-[10px] uppercase tracking-[0.28em] text-[#f6f3ea]/36">
           Origin Coffee Cambodia · Cambodia-origin coffee. Built for the world.
