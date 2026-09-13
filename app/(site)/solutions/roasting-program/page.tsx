@@ -60,7 +60,7 @@ const renderWithLinks = (text: string) => {
     const regex = new RegExp(`\\b${keyword}\\b`, "gi")
     result = result.replace(
       regex,
-      (match) => `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
+      (match) => `<a href="${internalLinks[keyword]}" class="border-b border-[#182019]/45 font-medium text-[#182019] hover:border-[#a8542a] transition-colors">${match}</a>`,
     )
   })
   return <span dangerouslySetInnerHTML={{ __html: result }} />
@@ -95,7 +95,7 @@ export default function RoastingProgramPage() {
       label: "01 / Market Logic",
       title: "The Roast Starts With the Market",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>OCC begins with the product the market needs to experience — not with a generic light, medium, or dark label. Customer expectation, brewing method, service environment, equipment context, menu role, and commercial positioning shape the direction before the roast profile is refined.</p>
           <p><strong>Your market. Your customer. Your roast profile.</strong> The work moves from commercial purpose into coffee selection, sensory evaluation, roast development, and a clearer production reference.</p>
         </div>
@@ -105,7 +105,7 @@ export default function RoastingProgramPage() {
       label: "02 / Product Development",
       title: "Developed Around Commercial Use",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>A roast profile only matters when it performs in the product where it will be sold. Espresso, milk beverages, black coffee, hospitality service, a retail bag, or a branded house coffee can require different balances of sweetness, body, acidity, bitterness, texture, finish, and brewing performance.</p>
           <p>The target is not simply a technically successful roast. It is a coffee direction that makes sense for the intended customer and application.</p>
         </div>
@@ -115,7 +115,7 @@ export default function RoastingProgramPage() {
       label: "03 / Evaluation",
       title: "Sensory Evaluation Stays Connected to the Application",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>Structured {renderWithLinks("cupping")} can establish the sensory baseline, but development continues into the brewing environment where the coffee will actually be served. The useful standard is not only whether the coffee tastes good in isolation, but whether it performs as the intended commercial product.</p>
           <p>Feedback from that evaluation becomes the basis for profile refinement rather than subjective adjustment without a product target.</p>
         </div>
@@ -125,7 +125,7 @@ export default function RoastingProgramPage() {
       label: "04 / Repeatability",
       title: "Built for Repeatable Supply",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>An approved roast direction becomes more valuable when it functions as a reference for future production. Depending on the project, the reference can include the coffee or lot, intended application, sensory target, approved direction, evaluation notes, and relevant production observations.</p>
           <p>Repeatability does not mean pretending agricultural coffee never changes. It means identifying meaningful change and comparing future production against a defined product target.</p>
         </div>
@@ -135,11 +135,29 @@ export default function RoastingProgramPage() {
       label: "05 / Origin Expertise",
       title: "Cambodia and Fine Robusta Stay at the Center",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>OCC is focused on Cambodia-origin coffee and {renderWithLinks("Fine Robusta")}. When Cambodian coffee is part of a custom roasting project, the profile is developed around the actual coffee, process, sensory result, and intended use rather than assumptions about what Robusta or Cambodian coffee is supposed to taste like.</p>
           <p>The objective is to connect what the coffee already has with what the market needs the finished product to become.</p>
         </div>
       ),
+    },
+  ]
+
+  const relatedLinks = [
+    {
+      title: "Wholesale Coffee Supply",
+      description: "Choose an OCC-developed coffee profile when the product direction is already defined.",
+      href: "/solutions/wholesale",
+    },
+    {
+      title: "Fine Robusta Cambodia",
+      description: "Explore the origin, quality, and Cambodian Canephora direction behind OCC's core expertise.",
+      href: "/fine-robusta-cambodia",
+    },
+    {
+      title: "Start a Roast Profile Project",
+      description: "Bring the commercial goal, intended application, and market context into the development discussion.",
+      href: "/contact",
     },
   ]
 
@@ -193,6 +211,8 @@ export default function RoastingProgramPage() {
         highlightIntro="Custom roasting is a product-development discipline. The page shows what OCC develops, how the profile is evaluated, and how the work moves toward a repeatable commercial reference."
         highlightCards={highlightCards}
         sections={sections}
+        relatedLinksTitle="Related Paths"
+        relatedLinks={relatedLinks}
         processTitle="From Market to Production Profile"
         processIntro="A structured sequence keeps market logic, sensory work, profile refinement, and repeatability connected."
         processSteps={processSteps}
@@ -205,6 +225,13 @@ export default function RoastingProgramPage() {
           "Cambodia and Fine Robusta expertise",
           "Built toward repeatable B2B supply",
         ]}
+        nextPath={{
+          eyebrow: "Ready-to-Sell Path",
+          title: "Wholesale Moves Ready-Developed Coffee to Market",
+          description: "When customization is not required, OCC Wholesale keeps the product direction already defined and moves the conversation toward sample evaluation, commercial terms, and supply.",
+          href: "/solutions/wholesale",
+          cta: "Discuss Wholesale Supply",
+        }}
         comparisonTitle="Choose Our Profile. Or Build Yours."
         comparison={comparison}
         faqs={faqs}
