@@ -75,6 +75,33 @@ test("commercial headings are declarative and route supplier vs roasting intent 
   }
 })
 
+test("commercial mobile hierarchy and internal links are explicit", () => {
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
+  const template = read(commercialTemplate)
+
+  assert.match(template, /text-\[11px\].*font-semibold.*tracking-\[0\.22em\]/)
+  assert.match(template, /w-10 h-px bg-\[#a8542a\]/)
+  assert.match(template, /text-\[clamp\(2\.1rem,7\.5vw,3\.2rem\)\]/)
+  assert.match(template, /max-w-\[13ch\]/)
+  assert.match(template, /max-w-\[34rem\]/)
+  assert.match(template, /relatedLinksTitle/)
+  assert.match(template, /relatedLinks/)
+  assert.match(template, /nextPath/)
+
+  assert.match(wholesale, /relatedLinksTitle="Related References"/)
+  assert.match(wholesale, /Fine Robusta Cambodia/)
+  assert.match(wholesale, /Custom Roasting Program/)
+  assert.match(wholesale, /nextPath=/)
+  assert.match(wholesale, /Develop Your Roast Profile/)
+
+  assert.match(roasting, /relatedLinksTitle="Related Paths"/)
+  assert.match(roasting, /Wholesale Coffee Supply/)
+  assert.match(roasting, /Fine Robusta Cambodia/)
+  assert.match(roasting, /nextPath=/)
+  assert.match(roasting, /Discuss Wholesale Supply/)
+})
+
 test("equipment service route is preserved for SEO but removed from public solution entry points", () => {
   assert.equal(fs.existsSync("app/(site)/solutions/equipment-service/page.tsx"), true)
   const index = read("app/(site)/solutions/page.tsx")
