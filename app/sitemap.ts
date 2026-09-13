@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/solutions`, lastModified: now },
     { url: `${siteUrl}/solutions/wholesale`, lastModified: now },
     { url: `${siteUrl}/solutions/roasting-program`, lastModified: now },
-    { url: `${siteUrl}/solutions/barista-staffing`, lastModified: now },
+    { url: `${siteUrl}/solutions/coffee-marketing`, lastModified: now },
     { url: `${siteUrl}/solutions/equipment-service`, lastModified: now },
     { url: `${siteUrl}/distribution`, lastModified: now },
 
