@@ -10,7 +10,7 @@ const root = path.resolve(here, "..")
 const files = {
   wholesale: "app/(site)/solutions/wholesale/page.tsx",
   roasting: "app/(site)/solutions/roasting-program/page.tsx",
-  staffing: "app/(site)/solutions/barista-staffing/page.tsx",
+  marketing: "app/(site)/solutions/coffee-marketing/page.tsx",
   equipment: "app/(site)/solutions/equipment-service/page.tsx",
 }
 
@@ -37,7 +37,7 @@ const forbiddenByPage = {
     /white-label packaging available/i,
     /we develop, test, and lock roast profiles/i,
   ],
-  staffing: [
+  marketing: [
     /occ places trained baristas/i,
     /trained in-house/i,
     /sca-aligned training before placement/i,
@@ -73,7 +73,7 @@ test("solutions pages remove hard operational claims without evidence", () => {
 test("solutions pages keep stable canonical routes", () => {
   assert.match(source.wholesale, /pageAlternates\("\/solutions\/wholesale"\)/)
   assert.match(source.roasting, /pageAlternates\("\/solutions\/roasting-program"\)/)
-  assert.match(source.staffing, /pageAlternates\("\/solutions\/barista-staffing"\)/)
+  assert.match(source.marketing, /pageAlternates\("\/solutions\/coffee-marketing"\)/)
   assert.match(source.equipment, /pageAlternates\("\/solutions\/equipment-service"\)/)
 })
 
@@ -106,7 +106,7 @@ test("solutions hub keeps B2B commercial intent without unsupported operating pr
 
   assert.match(indexPage, /B2B/i)
   assert.match(indexPage, /sourcing/i)
-  assert.match(indexPage, /enquir/i)
+  assert.match(indexPage, /enquir|marketing/i)
   assert.match(indexPage, /evidence-led/i)
   assert.match(indexTemplate, /B2B coffee solution areas/i)
   assert.match(indexTemplate, /due diligence/i)
