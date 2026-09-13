@@ -5,9 +5,9 @@ import fs from "node:fs"
 const read = (path) => fs.readFileSync(path, "utf8")
 const contactCss = "app/(site)/contact/contact-editorial.css"
 
-test("BLOG index restores the verified pre-admin journal UI while preserving pagination and Airtable data", () => {
+test("BLOG index uses the OCC warm ivory background while preserving pagination and Airtable data", () => {
   const page = read("app/(site)/blog/page.tsx")
-  assert.match(page, /bg-white/)
+  assert.match(page, /bg-\[#f6f3ea\]/)
   assert.match(page, /max-w-5xl/)
   assert.match(page, /Field Notes &amp; Craft/)
   assert.match(page, /The Signal\./)
