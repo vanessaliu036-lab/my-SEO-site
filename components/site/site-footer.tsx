@@ -16,10 +16,10 @@ export function SiteFooter() {
               aria-label="Origin Coffee Cambodia home"
             >
               <img
-                src="/occ-logo-primary.jpg"
+                src="/occ-logo-primary-local.svg"
                 alt=""
                 width={600}
-                height={266}
+                height={272}
                 className="h-auto w-[210px]"
               />
             </Link>
