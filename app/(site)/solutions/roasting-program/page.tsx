@@ -1,18 +1,18 @@
 import { Metadata } from "next"
-import { SolutionDetailTemplate } from "@/components/templates/solution-detail-template"
+import { CommercialSolutionTemplate } from "@/components/templates/commercial-solution-template"
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Custom Coffee Roasting Cambodia | OCC Roasting Program",
+  title: "Coffee Roasting Supplier Cambodia | Custom Roast Profiles | OCC",
   description:
-    "Custom coffee roasting in Cambodia for cafés, hotels, and coffee brands developing house blends, roast profiles, and structured, repeatable B2B coffee programs.",
+    "Custom coffee roasting and roast profile development from Cambodia for cafés, hotels, coffee brands, and B2B partners. Develop a repeatable coffee profile around your market, customers, and brewing application.",
   keywords:
-    "custom coffee roasting Cambodia, coffee roasting service Cambodia, contract coffee roasting Cambodia, private label coffee Cambodia, custom roast profile development, house blend development, B2B coffee roasting Cambodia",
+    "Roasting Supplier Cambodia, coffee roasting supplier Cambodia, Custom Roasting Cambodia, Roast Profile development, custom coffee roasting Cambodia, Cambodia roasting supplier, custom roast profile development, coffee roasting service Cambodia, B2B coffee roasting Cambodia, Fine Robusta custom roasting",
   openGraph: {
-    title: "Custom Coffee Roasting Program in Cambodia | OCC",
+    title: "Custom Coffee Roasting Program | OCC",
     description:
-      "Build a defined coffee profile for your café, hotel, or coffee brand with a structured B2B roast-development program focused on sensory targets and repeatability.",
+      "Build a roast profile around your market, customer, brewing application, and commercial target with OCC's structured custom roasting program.",
     url: `${siteUrl}/solutions/roasting-program`,
     type: "website",
   },
@@ -25,9 +25,9 @@ const webpageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": `${siteUrl}/solutions/roasting-program#webpage`,
-  name: "Custom Coffee Roasting Program in Cambodia",
+  name: "Custom Coffee Roasting Program | OCC",
   description:
-    "Custom coffee roasting in Cambodia for cafés, hotels, and coffee brands developing house blends, roast profiles, and structured, repeatable B2B coffee programs.",
+    "Custom coffee roasting and roast profile development from Cambodia for cafés, hotels, coffee brands, and B2B partners building a defined coffee product around their market.",
   url: `${siteUrl}/solutions/roasting-program`,
   about: {
     "@type": "Organization",
@@ -51,8 +51,6 @@ const internalLinks: Record<string, string> = {
   "Fine Robusta": "/fine-robusta-cambodia",
   "Wholesale Coffee Supply": "/solutions/wholesale",
   cupping: "/origins/single-origin",
-  staffing: "/solutions/barista-staffing",
-  equipment: "/solutions/equipment-service",
 }
 
 const renderWithLinks = (text: string) => {
@@ -62,147 +60,156 @@ const renderWithLinks = (text: string) => {
     const regex = new RegExp(`\\b${keyword}\\b`, "gi")
     result = result.replace(
       regex,
-      (match) =>
-        `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
+      (match) => `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
     )
   })
   return <span dangerouslySetInnerHTML={{ __html: result }} />
 }
 
 export default function RoastingProgramPage() {
-  const relatedServices = [
-    { title: "Wholesale", href: "/solutions/wholesale", desc: "Coffee sourcing and supply for B2B programs" },
-    { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Training and staffing considerations for service execution" },
-    { title: "Equipment Service", href: "/solutions/equipment-service", desc: "Equipment readiness and service planning" },
+  const highlightCards = [
+    {
+      title: "Espresso & Milk",
+      meta: "Application",
+      text: "Develop body, sweetness, structure, finish, and enough presence for the intended espresso or milk-beverage experience.",
+    },
+    {
+      title: "House Blend",
+      meta: "Signature Direction",
+      text: "Build a defined coffee expression around a menu role, customer expectation, brewing environment, and commercial product target.",
+    },
+    {
+      title: "Single-Origin Profile",
+      meta: "Coffee-Led",
+      text: "Develop the roast around the actual coffee, processing, sensory character, and intended application rather than a generic roast label.",
+    },
+    {
+      title: "Hospitality & Branded Coffee",
+      meta: "Commercial Use",
+      text: "Translate a guest experience or branded product direction into a coffee profile that can be evaluated and referenced for production.",
+    },
   ]
 
   const sections = [
     {
-      title: "Build a Coffee Profile Around Your Business",
+      label: "01 / Market Logic",
+      title: "The Roast Starts With the Market",
       content: (
         <div className="space-y-5">
-          <p>Your coffee should taste like your business, not like everyone else&apos;s. OCC&apos;s Custom Coffee Roasting Program is designed for cafés, hotels, restaurants, hospitality groups, and coffee brands in Cambodia that want a defined coffee profile rather than an off-the-shelf roast direction.</p>
-          <p>Roast development begins with the intended product: the coffee or blend, target sensory direction, brewing application, and the role of sweetness, body, acidity, bitterness, and finish. The objective is to create a profile that can be evaluated, approved, and used as a repeatable reference.</p>
+          <p>OCC begins with the product the market needs to experience — not with a generic light, medium, or dark label. Customer expectation, brewing method, service environment, equipment context, menu role, and commercial positioning shape the direction before the roast profile is refined.</p>
+          <p><strong>Your market. Your customer. Your roast profile.</strong> The work moves from commercial purpose into coffee selection, sensory evaluation, roast development, and a clearer production reference.</p>
         </div>
       ),
     },
     {
-      title: "How the Roasting Program Works",
+      label: "02 / Product Development",
+      title: "Developed Around Commercial Use",
       content: (
         <div className="space-y-5">
-          <p><strong>Brief.</strong> Define the business, current coffee, brewing equipment, customer context, desired flavor direction, and the problem the new coffee program needs to solve.</p>
-          <p><strong>Coffee selection.</strong> Where sourcing is part of the project, evaluate the coffee or blend against the intended application rather than choosing only by origin name or roast color.</p>
-          <p><strong>Sample roasting and evaluation.</strong> Test roast directions, compare them through structured sensory evaluation and the intended brewing method, then refine the profile against the agreed product target.</p>
-          <p><strong>Reference approval.</strong> Once a direction is accepted, document the coffee, intended application, sensory target, and production assumptions so future batches can be evaluated against a defined reference.</p>
+          <p>A roast profile only matters when it performs in the product where it will be sold. Espresso, milk beverages, black coffee, hospitality service, a retail bag, or a branded house coffee can require different balances of sweetness, body, acidity, bitterness, texture, finish, and brewing performance.</p>
+          <p>The target is not simply a technically successful roast. It is a coffee direction that makes sense for the intended customer and application.</p>
         </div>
       ),
     },
     {
-      title: "What We Can Develop",
+      label: "03 / Evaluation",
+      title: "Sensory Evaluation Stays Connected to the Application",
       content: (
         <div className="space-y-5">
-          <p><strong>House blends.</strong> Build a signature direction for espresso, milk beverages, black coffee, or another defined menu application.</p>
-          <p><strong>Single-origin roast profiles.</strong> Develop an application-specific roast around the qualities of a particular coffee instead of forcing every lot into the same roast style.</p>
-          <p><strong>Private-label concepts.</strong> Use roast-profile development as the technical foundation for a branded coffee program, with packaging, labeling, volume, and production responsibilities confirmed separately before launch.</p>
-          <p><strong>Hospitality coffee programs.</strong> Evaluate the coffee together with brewing equipment, recipes, service conditions, staff capability, and repeat-order needs so the product works in the operating environment where it will actually be served.</p>
+          <p>Structured {renderWithLinks("cupping")} can establish the sensory baseline, but development continues into the brewing environment where the coffee will actually be served. The useful standard is not only whether the coffee tastes good in isolation, but whether it performs as the intended commercial product.</p>
+          <p>Feedback from that evaluation becomes the basis for profile refinement rather than subjective adjustment without a product target.</p>
         </div>
       ),
     },
     {
-      title: "Designed for Cafés, Hotels and Coffee Brands",
+      label: "04 / Repeatability",
+      title: "Built for Repeatable Supply",
       content: (
         <div className="space-y-5">
-          <p>The program is relevant to cafés developing a house blend, hotels building a more defined F&amp;B coffee identity, restaurants improving coffee quality, hospitality groups coordinating multiple outlets, retailers preparing branded coffee, and coffee brands evaluating outsourced roast development.</p>
-          <p>Some businesses arrive with a precise target. Others only know that their current coffee is not performing well enough. Both are valid starting points when the brief, evaluation method, and approval criteria are made explicit.</p>
+          <p>An approved roast direction becomes more valuable when it functions as a reference for future production. Depending on the project, the reference can include the coffee or lot, intended application, sensory target, approved direction, evaluation notes, and relevant production observations.</p>
+          <p>Repeatability does not mean pretending agricultural coffee never changes. It means identifying meaningful change and comparing future production against a defined product target.</p>
         </div>
       ),
     },
     {
-      title: "Why Roast Development Matters",
+      label: "05 / Origin Expertise",
+      title: "Cambodia and Fine Robusta Stay at the Center",
       content: (
         <div className="space-y-5">
-          <p>Coffee consistency does not come from repeating one roast time or choosing a generic light, medium, or dark label. Green coffee changes between lots and harvests, while moisture, density, processing, storage, and physical characteristics can influence how the coffee behaves during roasting.</p>
-          <p>The useful chain is origin → green coffee → processing → roasting → sensory result → commercial application. Treating those decisions as connected makes roast development part of a quality system rather than an isolated production step.</p>
-        </div>
-      ),
-    },
-    {
-      title: "From Roast Profile to Repeatable Coffee Program",
-      content: (
-        <div className="space-y-5">
-          <p>A useful roast profile becomes a reference asset for the business. Depending on the project, the record can include the coffee or lot reference, blend composition, intended brewing application, roast target, sensory target, evaluation notes, approved reference, and relevant production observations.</p>
-          <p>Repeatability does not mean pretending agricultural coffee never changes. It means identifying change, recording what matters, and comparing future production against a defined product target rather than relying on vague descriptions.</p>
-        </div>
-      ),
-    },
-    {
-      title: "Cambodia Coffee and Fine Robusta Expertise",
-      content: (
-        <div className="space-y-5">
-          <p>OCC is positioned around Cambodia specialty coffee supply, {renderWithLinks("Fine Robusta")}, and B2B coffee solutions. Roast development sits inside that wider context because origin, processing, sensory evaluation, and roasting decisions affect one another.</p>
-          <p>Where Cambodian coffee or Fine Robusta is being evaluated for a client program, the roast should be developed around the actual coffee and intended product rather than assumptions about what Robusta or Cambodian coffee is supposed to taste like.</p>
-          <p>Businesses that also need sourcing and supply can continue to {renderWithLinks("Wholesale Coffee Supply")} for the commercial coffee-supply pathway.</p>
-        </div>
-      ),
-    },
-    {
-      title: "Packaging, Volume and Production",
-      content: (
-        <div className="space-y-5">
-          <p>Private-label packaging, production volume, recurring orders, and launch timing should be confirmed according to the actual project rather than published as universal promises.</p>
-          <p>Key variables include coffee selection, profile-development requirements, packaging format, number of SKUs, project stage, production capacity, quality-release responsibilities, and change-control rules. These details belong in the commercial brief before production is treated as approved.</p>
-        </div>
-      ),
-    },
-    {
-      title: "What to Prepare Before You Contact OCC",
-      content: (
-        <div className="space-y-5">
-          <p>A stronger brief makes the roasting discussion faster and more useful. Share your business type, current coffee or supplier, approximate volume, main brewing methods, milk-drink requirements, desired flavor direction, whether you are considering a house blend or single origin, packaging needs, target timing, and the main problem you want the coffee program to solve.</p>
-          <p>You do not need to arrive with a complete roast specification. The purpose of profile development is to turn a commercial product goal into an evaluable coffee direction and a clearer production reference.</p>
-        </div>
-      ),
-    },
-    {
-      title: "Roasting Research",
-      content: (
-        <div className="space-y-5">
-          <p>Use OCC&apos;s Research Journal to go deeper into sensory evaluation, Cambodian coffee, and roast-development decisions. Start with <a href="/blog/how-to-cup-fine-robusta">How to Cup Fine Robusta</a>, <a href="/blog/fine-robusta-flavor-notes">Fine Robusta Flavor Notes</a>, and <a href="/blog/roasting-fine-robusta-for-moka-pot-without-flattening-sweetness">Roasting Fine Robusta for Moka Pot Without Flattening Sweetness</a>.</p>
-          <p>These research pages support this Roasting Program; they do not replace the commercial pathway. For project-specific requirements, the next step remains a direct B2B discussion.</p>
+          <p>OCC is focused on Cambodia-origin coffee and {renderWithLinks("Fine Robusta")}. When Cambodian coffee is part of a custom roasting project, the profile is developed around the actual coffee, process, sensory result, and intended use rather than assumptions about what Robusta or Cambodian coffee is supposed to taste like.</p>
+          <p>The objective is to connect what the coffee already has with what the market needs the finished product to become.</p>
         </div>
       ),
     },
   ]
 
+  const processSteps = [
+    { title: "Market & Application", text: "Define the customer, market, menu or product format, brewing method, equipment context, and the role the coffee needs to play." },
+    { title: "Coffee Selection", text: "Evaluate the coffee or blend against the intended application instead of selecting only by origin name or roast color." },
+    { title: "Sample Roast", text: "Develop roast directions that can be compared against the agreed commercial product target." },
+    { title: "Cup Evaluation", text: "Evaluate sweetness, body, acidity, bitterness, structure, finish, and performance in the intended brewing context." },
+    { title: "Profile Refinement", text: "Use evaluation feedback to move the roast direction closer to the target without losing sight of the coffee itself." },
+    { title: "Reference Approval", text: "Document the approved direction, intended application, sensory target, and relevant production assumptions." },
+    { title: "Repeatable Supply", text: "Use the approved reference to evaluate future production and manage meaningful change over time." },
+  ]
+
+  const comparison = [
+    {
+      eyebrow: "Ready-to-Sell",
+      title: "OCC Wholesale",
+      description: "Choose an OCC-developed coffee profile when the product direction is already defined and the next priority is commercial supply.",
+      href: "/solutions/wholesale",
+      cta: "Explore Wholesale Supply",
+    },
+    {
+      eyebrow: "Made-for-You",
+      title: "Custom Roasting",
+      description: "Build a roast profile around your own market, customer, brewing application, and commercial product target.",
+      href: "/solutions/roasting-program",
+      cta: "Develop Your Roast Profile",
+      active: true,
+    },
+  ] as const
+
   const faqs = [
-    { q: "What does a custom coffee roasting program include?", a: <>A useful program starts with the coffee, intended use, sensory target, brewing context, sample roasts, evaluation criteria, profile refinement, and a documented reference for repeat production.</> },
-    { q: "Can a roasting program support a house blend?", a: <>Yes. House-blend development can be structured around espresso, milk beverages, black coffee, or another defined menu application, with the final direction evaluated against the intended use.</> },
-    { q: "Can Cambodian coffee or Fine Robusta be considered for roast development?", a: <>Yes, where the coffee is appropriate for the target product. Origin, processing, sensory character, and roast development should be evaluated together.</> },
-    { q: "What should be verified before private-label production?", a: <>Confirm the production partner, coffee specification, approved profile, packaging and labeling responsibility, quality checks, volume, lead-time assumptions, and change-control process.</> },
-    { q: "What is the minimum order quantity?", a: <>Production minimums depend on the coffee, profile, packaging, number of SKUs, project stage, and production partner. The appropriate scope should be confirmed after the brief is reviewed.</> },
-    { q: "How long does roast-profile development take?", a: <>Timing depends on coffee selection, the number of profiles, evaluation rounds, packaging requirements, and approval steps. A project schedule should be confirmed after the initial brief.</> },
+    { q: "What does a custom coffee roasting program include?", a: <>The program connects market and application, coffee selection, sample roasting, sensory evaluation, profile refinement, reference approval, and a clearer path toward repeatable production.</> },
+    { q: "Do I need to know the roast profile before starting?", a: <>No. A commercial product goal, customer context, and intended application are enough to begin. Roast development translates those requirements into an evaluable coffee direction.</> },
+    { q: "How is Custom Roasting different from Wholesale?", a: <>Wholesale is the Ready-to-Sell path for OCC-developed coffee. Custom Roasting is the Made-for-You path when the market needs its own roast profile or product direction.</> },
+    { q: "Can Fine Robusta be used in a custom program?", a: <>Yes, where the coffee is appropriate for the target product. Origin, processing, sensory character, application, and roast direction should be evaluated together.</> },
   ]
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <SolutionDetailTemplate
+      <CommercialSolutionTemplate
         index="02"
-        title="CUSTOM COFFEE ROASTING PROGRAM"
-        subtitle="Roast profile development for cafés, hotels, and coffee brands in Cambodia, built around product targets, sensory evaluation, repeatability, and production readiness."
+        pathLabel="MADE-FOR-YOU"
+        title="CUSTOM ROASTING PROGRAM"
+        subtitle="Roasting Supplier, Custom Roasting, and Roast Profile development built around your market, customer, brewing application, and commercial product target."
+        heroStatement="Your Market. Your Customer. Your Roast Profile."
+        heroCtaLabel="Develop Your Roast Profile"
+        highlightTitle="Built Around the Product You Want to Serve"
+        highlightIntro="Custom roasting is a product-development discipline. The page shows what OCC develops, how the profile is evaluated, and how the work moves toward a repeatable commercial reference."
+        highlightCards={highlightCards}
         sections={sections}
-        factsTitle="Program Focus"
-        facts={[
-          "House blend and single-origin development",
-          "Sensory targets and brewing context",
-          "Profile documentation and repeatability",
-          "Private-label and hospitality planning",
-          "Cambodia coffee and Fine Robusta relevance",
+        processTitle="From Market to Production Profile"
+        processIntro="A structured sequence keeps market logic, sensory work, profile refinement, and repeatability connected."
+        processSteps={processSteps}
+        sidebarLabel="Made-for-You Reference"
+        sidebarFacts={[
+          "Market-led roast development",
+          "Application-specific coffee profiles",
+          "Sample roast and cup evaluation",
+          "Documented approval reference",
+          "Cambodia and Fine Robusta expertise",
+          "Built toward repeatable B2B supply",
         ]}
+        comparisonTitle="Choose Our Profile. Or Build Yours."
+        comparison={comparison}
         faqs={faqs}
-        relatedServices={relatedServices}
-        ctaLabel="Discuss your requirements"
+        ctaLabel="Develop Your Roast Profile"
+        ctaDescription="Bring the commercial goal, intended application, market context, current coffee if relevant, and the experience the finished product needs to create. The roast profile can be developed from there."
       />
     </>
   )

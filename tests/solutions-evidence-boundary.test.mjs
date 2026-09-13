@@ -80,7 +80,7 @@ test("solutions pages keep stable canonical routes", () => {
 test("solutions CTAs are inquiry-led rather than transaction-led", () => {
   for (const [key, text] of Object.entries(source)) {
     assert.doesNotMatch(text, /ctaLabel="Request a quote"/i, `${key} still uses transaction-led CTA`)
-    assert.match(text, /ctaLabel="(?:Discuss your requirements|Ask about this area|Talk to our team)"/i)
+    assert.match(text, /ctaLabel="(?:Discuss your requirements|Ask about this area|Talk to our team|Develop Your Roast Profile|Discuss Wholesale Supply)"/i)
   }
 })
 

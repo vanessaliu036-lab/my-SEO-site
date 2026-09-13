@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SolutionDetailTemplate } from "@/components/templates/solution-detail-template"
+import { CommercialSolutionTemplate } from "@/components/templates/commercial-solution-template"
 import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Wholesale coffee supply in Cambodia for cafés, hotels, roasters, importers, and distributors, with Cambodian Fine Robusta, green and roasted coffee, samples, traceability, and B2B sourcing support.",
   keywords:
-    "wholesale coffee Cambodia, Cambodian coffee supplier, B2B coffee supplier Cambodia, Fine Robusta wholesale, specialty coffee wholesale Cambodia, Cambodia green coffee, roasted coffee wholesale Cambodia, coffee supplier for cafes, hotel coffee supplier Cambodia, restaurant coffee supplier, coffee sourcing Cambodia, wholesale coffee samples, coffee MOQ Cambodia, coffee lead time Cambodia, coffee traceability Cambodia",
+    "wholesale coffee Cambodia, Cambodian coffee supplier, coffee supplier Cambodia, Fine Robusta supplier, wholesale supplier Cambodia, B2B coffee supplier Cambodia, Fine Robusta wholesale, specialty coffee wholesale Cambodia, Cambodia green coffee, roasted coffee wholesale Cambodia, coffee sourcing Cambodia, Cambodian coffee distributor",
   openGraph: {
     title: "Wholesale Coffee Cambodia | OCC",
     description: "Cambodian-origin wholesale coffee for professional buyers, with Fine Robusta, green and roasted formats, sample evaluation, traceability, and clear commercial terms.",
@@ -33,7 +33,7 @@ const faqSchema = {
       name: "What can OCC supply to wholesale coffee buyers?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "OCC develops wholesale coffee programs around Cambodian-origin coffee, including Fine Robusta, green coffee for professional roasters, roasted coffee for hospitality and café use, and custom B2B programs based on the buyer's application and approved coffee.",
+        text: "OCC develops wholesale coffee programs around Cambodian-origin coffee, including Fine Robusta, green coffee for professional roasters, and roasted coffee for hospitality, retail, distribution, and B2B use.",
       },
     },
     {
@@ -41,7 +41,7 @@ const faqSchema = {
       name: "Can wholesale buyers request a coffee sample before ordering?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Sample evaluation should come before a larger commitment. The sample, lot identity, cup profile, roast requirements where relevant, and approval criteria should be clear before recurring supply is discussed.",
+        text: "Yes. Sample evaluation should come before a larger commitment so the coffee, lot or specification, cup profile, and approval criteria can be understood before recurring supply is discussed.",
       },
     },
     {
@@ -49,23 +49,7 @@ const faqSchema = {
       name: "How are MOQ, wholesale pricing, and lead time handled?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "MOQ, pricing, and lead time depend on coffee format, current lot availability, volume, roast requirements, packaging or delivery scope, and destination. OCC confirms these commercial terms against the specific requirement rather than presenting a single assumption as universal.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How should origin and traceability claims be evaluated?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Buyers should ask for evidence that matches the coffee being evaluated, including origin, producer or lot information where available, processing, harvest or production timing, quality evaluation, and the chain of custody relevant to the transaction.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What should a wholesale supply agreement clarify?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A commercial agreement should clarify the approved coffee or sample, specification, lot substitution rules, volume, pricing basis, delivery responsibilities, quality acceptance, lead time, and what happens when supply conditions change.",
+        text: "MOQ, pricing, and lead time depend on coffee format, current availability, volume, roast requirements, packaging or delivery scope, and destination. Commercial terms are confirmed against the actual requirement.",
       },
     },
   ],
@@ -83,8 +67,8 @@ const breadcrumbSchema = {
 
 const internalLinks: Record<string, string> = {
   "Fine Robusta Cambodia": "/fine-robusta-cambodia",
-  "roasting program": "/solutions/roasting-program",
-  "roast development": "/solutions/roasting-program",
+  "Custom Roasting": "/solutions/roasting-program",
+  "Roasting Program": "/solutions/roasting-program",
   "single-origin coffee": "/origins/single-origin",
   cupping: "/origins/single-origin",
 }
@@ -96,136 +80,155 @@ const renderWithLinks = (text: string) => {
     const regex = new RegExp(`\\b${keyword}\\b`, "gi")
     result = result.replace(
       regex,
-      (match) =>
-        `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
+      (match) => `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
     )
   })
   return <span dangerouslySetInnerHTML={{ __html: result }} />
 }
 
 export default function WholesalePage() {
-  const relatedServices = [
-    { title: "Fine Robusta Cambodia", href: "/fine-robusta-cambodia", desc: "Cambodian Fine Robusta origin, quality, and buyer reference" },
-    { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness for commercial coffee programs" },
+  const highlightCards = [
     {
-      title: "Wholesale Buying Guide",
-      href: "/blog/b2b-coffee-sourcing-in-cambodia-minimum-order-pricing-lead-times-explained",
-      desc: "MOQ, pricing, lead time, and B2B coffee sourcing considerations in Cambodia",
+      title: "Fine Robusta",
+      meta: "Cambodia Origin",
+      text: "A differentiated Cambodian Canephora direction for buyers evaluating quality, origin, cup character, and commercial fit.",
+    },
+    {
+      title: "Roasted Coffee",
+      meta: "Ready-to-Sell",
+      text: "OCC-developed roasted coffee directions for wholesale, distribution, retail, hospitality, and professional B2B use.",
+    },
+    {
+      title: "Green Coffee",
+      meta: "Professional Supply",
+      text: "A sourcing and evaluation path for roasters, importers, and professional buyers where the available coffee fits the requirement.",
+    },
+    {
+      title: "Distribution Supply",
+      meta: "Market Entry",
+      text: "A commercial path for partners introducing Cambodian coffee into a market through a defined product, sample, and supply discussion.",
     },
   ]
 
   const sections = [
     {
-      title: "What OCC Can Supply",
+      label: "01 / Market Path",
+      title: "From Origin to Market",
       content: (
         <div className="space-y-5">
-          <p>OCC is a Cambodian coffee supplier built around origin-led B2B supply rather than anonymous volume. Wholesale programs can be structured around Cambodian Fine Robusta, green coffee for professional roasting, roasted coffee for cafés and hospitality, or a custom coffee program developed around the buyer&apos;s application.</p>
-          <p><strong>Fine Robusta.</strong> For buyers looking for a differentiated Cambodian origin and a quality-focused Canephora proposition. {renderWithLinks("See Fine Robusta Cambodia for the central origin and quality reference.")}</p>
-          <p><strong>Green coffee.</strong> For roasters, importers, and professional buyers that need to evaluate the coffee before defining a roast or commercial program.</p>
-          <p><strong>Roasted coffee.</strong> For cafés, hotels, restaurants, offices, and operators that need a ready-to-use coffee format with the roast profile aligned to the application.</p>
-          <p><strong>Custom B2B program.</strong> For buyers that need sample evaluation, roast development, recurring supply planning, and a clearer path from Cambodian origin to commercial use.</p>
+          <p>OCC connects Cambodia origin, coffee selection, quality evaluation, product direction, and commercial supply into one clearer route to market. The purpose is not to present coffee as anonymous volume. It is to make the product, evidence, and supply decision easier to evaluate before scale.</p>
+          <p>For buyers focused on Cambodian Canephora, {renderWithLinks("Fine Robusta Cambodia")} remains the central quality and origin reference.</p>
         </div>
       ),
     },
     {
-      title: "Built Around Your Business",
+      label: "02 / Ready-to-Sell",
+      title: "The Product Direction Is Already Defined",
       content: (
         <div className="space-y-5">
-          <p>Wholesale coffee requirements change by use case. A café may be evaluating a house coffee or signature drink base; a hotel may need consistency across breakfast, restaurant, café, and in-room coffee; a roaster may need green coffee with enough lot and processing information for roast development; an importer or distributor may need origin evidence, commercial terms, repeatability, and a clear supply pathway.</p>
-          <p>OCC therefore starts with the buyer&apos;s format, use case, expected volume, quality target, and approval process. The objective is not to force every buyer into one wholesale package, but to define what a workable Cambodian coffee supply program needs to prove before scale.</p>
+          <p>Wholesale is the Ready-to-Sell path. OCC has already made the core product decisions required to move from origin toward a commercial coffee offer: the coffee direction, intended cup character, roast direction where applicable, and the supply format being evaluated.</p>
+          <p>This reduces the number of product-development decisions a distributor, retailer, hotel, café group, or B2B partner needs to solve before bringing Cambodian coffee into market.</p>
         </div>
       ),
     },
     {
-      title: "From Sample to Supply",
+      label: "03 / Verification",
+      title: "Origin, Quality and Traceability Stay Connected",
       content: (
         <div className="space-y-5">
-          <p><strong>01 — Requirement.</strong> Define green or roasted coffee, target cup profile, application, expected volume, destination, and documentation needs.</p>
-          <p><strong>02 — Sample.</strong> Evaluate the actual coffee or the closest available commercial reference before discussing a larger commitment.</p>
-          <p><strong>03 — Cupping &amp; roast evaluation.</strong> Use {renderWithLinks("cupping")} to establish the sensory baseline. When roasted coffee is required, the {renderWithLinks("roasting program")} can align roast development with the intended beverage, equipment, and customer experience.</p>
-          <p><strong>04 — Approval.</strong> Confirm the coffee, lot or specification, roast requirement where relevant, quality acceptance criteria, and substitution rules.</p>
-          <p><strong>05 — Commercial terms.</strong> Confirm MOQ, wholesale pricing basis, lead time, volume, delivery responsibility, storage, and any recurring-supply assumptions.</p>
-          <p><strong>06 — Ongoing supply.</strong> Scale only after the approved reference and commercial conditions are clear enough to repeat.</p>
+          <p>A professional coffee supplier should connect commercial claims to the coffee being evaluated. Origin, processing, quality, sample approval, lot or specification information, and traceability evidence should stay attached to the relevant product rather than becoming separate marketing claims.</p>
+          <p>Where sensory evaluation is required, {renderWithLinks("cupping")} establishes a clearer baseline before recurring supply or substitution rules are discussed.</p>
         </div>
       ),
     },
     {
-      title: "Origin, Quality & Traceability",
+      label: "04 / Commercial Control",
+      title: "Commercial Terms Stay Explicit",
       content: (
         <div className="space-y-5">
-          <p>A wholesale coffee supplier should be able to connect commercial claims to the coffee a buyer is actually evaluating. OCC&apos;s evidence framework centers on four questions: where the coffee comes from, how it was processed, how quality was evaluated, and what traceability or lot documentation can support the transaction.</p>
-          <p><strong>Origin.</strong> Cambodian origin should be specific enough to evaluate rather than used only as branding language. Where producer, farm, lot, subregion, or harvest information is available for the offered coffee, it should remain connected to that coffee.</p>
-          <p><strong>Processing.</strong> Processing information matters because it changes cup profile, roasting behavior, consistency, and buyer expectations.</p>
-          <p><strong>Quality.</strong> Sensory quality should be evaluated through an agreed sample and {renderWithLinks("cupping")} process, not inferred from origin language alone.</p>
-          <p><strong>Traceability.</strong> Documentation should match the relevant lot or supply program. OCC does not treat broad claims as a substitute for evidence that a professional buyer can review.</p>
+          <p>MOQ, pricing basis, lead time, packaging scope, delivery responsibility, current availability, and substitution rules depend on the actual coffee and project. OCC keeps those variables explicit rather than turning one commercial assumption into a universal promise.</p>
+          <p>The result is a cleaner path from approved reference to repeat orders, with fewer gaps between what was sampled, what was agreed, and what is supplied.</p>
         </div>
       ),
     },
     {
-      title: "Commercial Terms to Confirm",
+      label: "05 / Product Choice",
+      title: "Ready-to-Sell Remains Distinct From Custom Development",
       content: (
         <div className="space-y-5">
-          <p>MOQ, wholesale coffee pricing, lead time, and delivery conditions should be confirmed against the actual requirement. They can change with green versus roasted format, current lot availability, monthly volume, roast development, packaging scope, destination, and logistics responsibility.</p>
-          <p>Before contracting, buyers should confirm the approved sample, coffee specification, current lot or substitution policy, MOQ, price basis, expected lead time, delivery point, storage assumptions, quality-acceptance process, and what happens if supply conditions change.</p>
-          <p>This is especially important for cafés, hotels, restaurant groups, roasters, importers, and distributors comparing Cambodian coffee suppliers for recurring B2B supply rather than a one-time purchase.</p>
-        </div>
-      ),
-    },
-    {
-      title: "What a Buyer Should Compare",
-      content: (
-        <div className="space-y-5">
-          <p>When comparing wholesale coffee suppliers in Cambodia, price is only one part of the decision. Compare the coffee itself, origin evidence, sample-to-order consistency, processing information, roast suitability, traceability, MOQ, lead time, delivery scope, communication, and the supplier&apos;s ability to explain what changes from one lot or production cycle to the next.</p>
-          <p>For buyers specifically evaluating Cambodian Fine Robusta or {renderWithLinks("single-origin coffee")}, the strongest comparison is the one that keeps quality, origin, commercial fit, and repeatability in the same decision—not four separate conversations.</p>
+          <p>Wholesale is for buyers choosing an OCC-developed coffee direction. When the market requires its own roast profile, application-specific cup target, or a coffee built around a separate product brief, {renderWithLinks("Custom Roasting")} becomes the Made-for-You path.</p>
+          <p>The two services work together without competing for the same search intent: supplier and wholesale intent stays here; explicit roast-development intent moves to the {renderWithLinks("Roasting Program")}.</p>
         </div>
       ),
     },
   ]
 
+  const processSteps = [
+    { title: "Coffee Selection", text: "Identify the OCC-developed coffee or available supply direction that fits the intended market and application." },
+    { title: "Sample Evaluation", text: "Evaluate the coffee or closest commercial reference before a larger commitment is discussed." },
+    { title: "Buyer Verification", text: "Review the relevant origin, processing, quality, specification, and traceability information available for the coffee." },
+    { title: "Commercial Terms", text: "Confirm MOQ, pricing basis, lead time, packaging or delivery scope, volume assumptions, and substitution rules." },
+    { title: "Supply", text: "Move from an approved reference into the agreed commercial supply format and delivery responsibility." },
+    { title: "Repeat Orders", text: "Use the approved reference and defined commercial terms as the basis for ongoing supply discussions." },
+  ]
+
+  const comparison = [
+    {
+      eyebrow: "Ready-to-Sell",
+      title: "OCC Wholesale",
+      description: "Choose an OCC-developed coffee profile and move from Cambodia origin toward commercial supply with the product direction already defined.",
+      href: "/solutions/wholesale",
+      cta: "Wholesale Coffee Supply",
+      active: true,
+    },
+    {
+      eyebrow: "Made-for-You",
+      title: "Custom Roasting",
+      description: "Build a roast profile around your market, customer, brewing application, and commercial product target.",
+      href: "/solutions/roasting-program",
+      cta: "Develop Your Roast Profile",
+    },
+  ] as const
+
   const faqs = [
-    {
-      q: "What can OCC supply to wholesale coffee buyers?",
-      a: <>OCC develops B2B supply programs around Cambodian Fine Robusta, green coffee, roasted coffee, and custom commercial requirements for cafés, hotels, restaurants, roasters, importers, and distributors.</>,
-    },
-    {
-      q: "Can wholesale buyers request a coffee sample before ordering?",
-      a: <>Yes. Sample evaluation should come before a larger commitment so the buyer can approve the coffee, cup profile, lot or specification, and roast requirements where relevant.</>,
-    },
-    {
-      q: "How are MOQ, wholesale pricing, and lead time handled?",
-      a: <>MOQ, pricing, and lead time depend on coffee format, current availability, volume, roast requirements, delivery scope, and destination. They are confirmed against the specific buyer requirement rather than treated as one universal number.</>,
-    },
-    {
-      q: "How should origin and traceability claims be evaluated?",
-      a: <>Ask for evidence that can be checked against the coffee being offered, including origin, processing, lot or producer information where available, quality evaluation, and the chain of custody relevant to the transaction.</>,
-    },
-    {
-      q: "What should a wholesale supply agreement clarify?",
-      a: <>Clarify the approved coffee or sample, specification, substitution rules, volume, MOQ, pricing basis, lead time, delivery responsibilities, quality acceptance, and how changes in supply conditions are handled.</>,
-    },
+    { q: "What can OCC supply to wholesale coffee buyers?", a: <>OCC develops B2B supply pathways around Cambodian Fine Robusta, green coffee, roasted coffee, and OCC-developed commercial coffee directions for professional buyers.</> },
+    { q: "Can wholesale buyers evaluate a sample before ordering?", a: <>Yes. The coffee or closest commercial reference should be evaluated before larger-volume or recurring-supply terms are treated as final.</> },
+    { q: "How are MOQ, pricing, and lead time handled?", a: <>They are confirmed against the actual coffee, format, current availability, volume, packaging or delivery scope, and destination rather than published as one universal number.</> },
+    { q: "When should a buyer use the Roasting Program instead?", a: <>Use the Roasting Program when the market needs a custom roast profile or product direction developed around a specific customer, application, or commercial target.</> },
   ]
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <SolutionDetailTemplate
+      <CommercialSolutionTemplate
         index="01"
-        title="WHOLESALE"
-        subtitle="Cambodian-origin wholesale coffee for cafés, hotels, roasters, importers, and distributors — from Fine Robusta and green coffee to roasted and custom B2B supply programs."
+        pathLabel="READY-TO-SELL"
+        title="WHOLESALE COFFEE SUPPLY"
+        subtitle="Cambodia-origin coffee supply for distributors, importers, retailers, hospitality, cafés, and B2B partners — with Fine Robusta and OCC-developed coffee directions."
+        heroStatement="Cambodian coffee, developed for a clearer path to market."
+        heroCtaLabel="Discuss Wholesale Supply"
+        highlightTitle="Built for Commercial Supply"
+        highlightIntro="Supplier and wholesale intent stay in one commercial family: Coffee Supplier, Fine Robusta Supplier, and Wholesale Supplier all route to this page."
+        highlightCards={highlightCards}
         sections={sections}
-        factsTitle="Wholesale Buyer Checklist"
-        facts={[
-          "Fine Robusta, green, roasted, or custom program",
-          "Buyer use case and target cup profile",
-          "Sample approval and coffee specification",
-          "Origin, processing, quality, and traceability evidence",
-          "MOQ, pricing basis, lead time, and delivery scope",
-          "Recurring supply and substitution rules",
+        processTitle="From Sample to Supply"
+        processIntro="A defined sequence keeps product evaluation, evidence, commercial terms, and repeat orders connected."
+        processSteps={processSteps}
+        sidebarLabel="Ready-to-Sell Reference"
+        sidebarFacts={[
+          "Cambodia-origin supply",
+          "Fine Robusta expertise",
+          "OCC-developed coffee direction",
+          "Sample-led buyer evaluation",
+          "Origin and quality evidence",
+          "Commercial terms kept explicit",
         ]}
+        comparisonTitle="Choose Our Profile. Or Build Yours."
+        comparison={comparison}
         faqs={faqs}
-        relatedServices={relatedServices}
-        ctaLabel="Discuss your requirements"
+        ctaLabel="Discuss Wholesale Supply"
+        ctaDescription="Start with the coffee, market, expected format, volume direction, and destination. OCC will use that context to frame the next commercial step."
       />
     </>
   )
