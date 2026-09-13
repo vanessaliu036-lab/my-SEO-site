@@ -51,7 +51,7 @@ type CommercialSolutionTemplateProps = {
   sidebarLabel: string
   sidebarFacts: string[]
   comparisonTitle: string
-  comparison: [ComparisonPath, ComparisonPath]
+  comparison: readonly [ComparisonPath, ComparisonPath]
   faqs: FaqItem[]
   ctaLabel: string
   ctaDescription: string
