@@ -4,7 +4,7 @@ export type SiteNavChild = {
 }
 
 export type SiteNavItem = {
-  label: "ABOUT" | "ORIGINS" | "SOLUTIONS" | "BLOG" | "CONTACT" | "DISTRIBUTION"
+  label: "ABOUT" | "ORIGINS" | "SOLUTIONS" | "PARTNERSHIPS" | "BLOG" | "CONTACT" | "DISTRIBUTION"
   href: string
   children?: readonly SiteNavChild[]
 }
@@ -38,6 +38,7 @@ export const siteNavigation: readonly SiteNavItem[] = [
       { label: "Coffee Marketing", href: "/solutions/coffee-marketing" },
     ],
   },
+  { label: "PARTNERSHIPS", href: "/partnerships" },
   { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },
   { label: "DISTRIBUTION", href: "/distribution" },
