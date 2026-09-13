@@ -70,6 +70,30 @@ test("solution pages preserve FAQ Breadcrumb schemas and internal-link logic wit
   assert.match(index, /evidence-led/i)
 })
 
+test("roasting program is a made-for-you commercial path with wholesale as the only service cross-sell", () => {
+  const source = read("app/(site)/solutions/roasting-program/page.tsx")
+
+  assert.match(source, /coffee roasting supplier Cambodia/i)
+  assert.match(source, /Build a Roast Profile Around Your Market/)
+  assert.match(source, /Choose Our Profile\. Or Build Yours\./)
+  assert.match(source, /Ready-to-Sell/)
+  assert.match(source, /Made-for-You/)
+  assert.match(source, /Develop Your Roast Profile/)
+  assert.match(source, /Wholesale Coffee Supply/)
+  assert.doesNotMatch(source, /Barista Staffing/)
+  assert.doesNotMatch(source, /Equipment Service/)
+  assert.doesNotMatch(source, /\/solutions\/barista-staffing/)
+  assert.doesNotMatch(source, /\/solutions\/equipment-service/)
+
+  const purpose = source.indexOf("Build a Roast Profile Around Your Market")
+  const process = source.indexOf("How Custom Roast Development Works")
+  const choice = source.indexOf("Choose Our Profile. Or Build Yours.")
+  const brief = source.indexOf("What to Prepare Before You Contact OCC")
+  assert.ok(purpose >= 0 && purpose < process, "commercial purpose must appear before process detail")
+  assert.ok(process < choice, "process must appear before the wholesale/custom decision recap")
+  assert.ok(choice < brief, "decision recap must appear before the final project brief")
+})
+
 test("commercial analytics records the wholesale-to-contact funnel and exact 404 paths", () => {
   const analytics = read("components/GoogleAnalytics.tsx")
   const contact = read("app/(site)/contact/ContactForm.tsx")
