@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
+  "/solutions/barista-staffing":
+    "/solutions/coffee-marketing",
   "/mondulkiri-coffee":
     "/blog/mondulkiri-next-specialty-coffee-origin",
   "/cambodia-robusta-coffee":
