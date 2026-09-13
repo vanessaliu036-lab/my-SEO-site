@@ -11,7 +11,7 @@ import { pageAlternates } from "@/lib/seo"
 
 const homeTitle = "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier"
 const homeDescription =
-  "Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions"
+  "100% Cambodia-origin specialty coffee from OCC, a Fine Robusta specialist supplying small-batch Cambodian coffee for wholesale, distribution and custom roasting."
 
 export const metadata: Metadata = {
   title: homeTitle,
