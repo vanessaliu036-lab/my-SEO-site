@@ -8,7 +8,8 @@ const action = fs.readFileSync("app/(site)/contact/action.ts", "utf8")
 const combined = `${page}\n${form}\n${action}`
 
 test("Contact aligns with the three OCC commercial paths", () => {
-  assert.match(combined, /START A PROJECT\s*WITH OCC|Start a Project with OCC/i)
+  assert.match(form, /START A PROJECT/)
+  assert.match(form, /WITH OCC\./)
   assert.match(combined, /READY-TO-SELL|Ready-to-Sell/)
   assert.match(combined, /MADE-FOR-YOU|Made-for-You/)
   assert.match(combined, /CAMBODIAN MARKET|Cambodian Market/)
