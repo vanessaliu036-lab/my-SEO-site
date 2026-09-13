@@ -80,7 +80,7 @@ const renderWithLinks = (text: string) => {
     const regex = new RegExp(`\\b${keyword}\\b`, "gi")
     result = result.replace(
       regex,
-      (match) => `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
+      (match) => `<a href="${internalLinks[keyword]}" class="border-b border-[#182019]/45 font-medium text-[#182019] hover:border-[#a8542a] transition-colors">${match}</a>`,
     )
   })
   return <span dangerouslySetInnerHTML={{ __html: result }} />
@@ -115,7 +115,7 @@ export default function WholesalePage() {
       label: "01 / Market Path",
       title: "From Origin to Market",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>OCC connects Cambodia origin, coffee selection, quality evaluation, product direction, and commercial supply into one clearer route to market. The purpose is not to present coffee as anonymous volume. It is to make the product, evidence, and supply decision easier to evaluate before scale.</p>
           <p>For buyers focused on Cambodian Canephora, {renderWithLinks("Fine Robusta Cambodia")} remains the central quality and origin reference.</p>
         </div>
@@ -125,7 +125,7 @@ export default function WholesalePage() {
       label: "02 / Ready-to-Sell",
       title: "The Product Direction Is Already Defined",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>Wholesale is the Ready-to-Sell path. OCC has already made the core product decisions required to move from origin toward a commercial coffee offer: the coffee direction, intended cup character, roast direction where applicable, and the supply format being evaluated.</p>
           <p>This reduces the number of product-development decisions a distributor, retailer, hotel, café group, or B2B partner needs to solve before bringing Cambodian coffee into market.</p>
         </div>
@@ -135,7 +135,7 @@ export default function WholesalePage() {
       label: "03 / Verification",
       title: "Origin, Quality and Traceability Stay Connected",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>A professional coffee supplier should connect commercial claims to the coffee being evaluated. Origin, processing, quality, sample approval, lot or specification information, and traceability evidence should stay attached to the relevant product rather than becoming separate marketing claims.</p>
           <p>Where sensory evaluation is required, {renderWithLinks("cupping")} establishes a clearer baseline before recurring supply or substitution rules are discussed.</p>
         </div>
@@ -145,7 +145,7 @@ export default function WholesalePage() {
       label: "04 / Commercial Control",
       title: "Commercial Terms Stay Explicit",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>MOQ, pricing basis, lead time, packaging scope, delivery responsibility, current availability, and substitution rules depend on the actual coffee and project. OCC keeps those variables explicit rather than turning one commercial assumption into a universal promise.</p>
           <p>The result is a cleaner path from approved reference to repeat orders, with fewer gaps between what was sampled, what was agreed, and what is supplied.</p>
         </div>
@@ -155,11 +155,29 @@ export default function WholesalePage() {
       label: "05 / Product Choice",
       title: "Ready-to-Sell Remains Distinct From Custom Development",
       content: (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <p>Wholesale is for buyers choosing an OCC-developed coffee direction. When the market requires its own roast profile, application-specific cup target, or a coffee built around a separate product brief, {renderWithLinks("Custom Roasting")} becomes the Made-for-You path.</p>
           <p>The two services work together without competing for the same search intent: supplier and wholesale intent stays here; explicit roast-development intent moves to the {renderWithLinks("Roasting Program")}.</p>
         </div>
       ),
+    },
+  ]
+
+  const relatedLinks = [
+    {
+      title: "Fine Robusta Cambodia",
+      description: "Origin, quality, and Cambodian Canephora reference.",
+      href: "/fine-robusta-cambodia",
+    },
+    {
+      title: "Custom Roasting Program",
+      description: "Build a roast profile around your market, customer, and commercial application.",
+      href: "/solutions/roasting-program",
+    },
+    {
+      title: "Start a Wholesale Discussion",
+      description: "Share the market, coffee format, volume direction, and destination with OCC.",
+      href: "/contact",
     },
   ]
 
@@ -212,6 +230,8 @@ export default function WholesalePage() {
         highlightIntro="Supplier and wholesale intent stay in one commercial family: Coffee Supplier, Fine Robusta Supplier, and Wholesale Supplier all route to this page."
         highlightCards={highlightCards}
         sections={sections}
+        relatedLinksTitle="Related References"
+        relatedLinks={relatedLinks}
         processTitle="From Sample to Supply"
         processIntro="A defined sequence keeps product evaluation, evidence, commercial terms, and repeat orders connected."
         processSteps={processSteps}
@@ -224,6 +244,13 @@ export default function WholesalePage() {
           "Origin and quality evidence",
           "Commercial terms kept explicit",
         ]}
+        nextPath={{
+          eyebrow: "Made-for-You Path",
+          title: "Custom Roasting Builds the Market-Specific Profile",
+          description: "When an OCC-developed coffee is not the exact fit, the Roasting Program develops the profile around the market, customer, brewing application, and commercial product target.",
+          href: "/solutions/roasting-program",
+          cta: "Develop Your Roast Profile",
+        }}
         comparisonTitle="Choose Our Profile. Or Build Yours."
         comparison={comparison}
         faqs={faqs}
