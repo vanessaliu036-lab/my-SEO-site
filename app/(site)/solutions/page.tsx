@@ -4,14 +4,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Solutions Cambodia | B2B Support | OCC",
+  title: "Coffee Solutions Cambodia | Wholesale, Custom Roasting & Coffee Marketing | OCC",
   description:
-    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, custom roasting, and coffee marketing built around signature drink development.",
+    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, custom roasting, and coffee marketing, with evidence-led B2B supply, product development, and signature drink direction.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",
     description:
-      "B2B coffee solution areas for sourcing, custom roasting, and coffee marketing in Cambodia, with evidence-led due diligence and product development.",
+      "Three clear commercial paths from OCC: ready-to-sell wholesale coffee, made-for-you custom roasting, and Cambodian-market coffee marketing built around signature drink development.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
@@ -20,18 +20,21 @@ export const metadata: Metadata = {
 const services = [
   {
     href: "/solutions/wholesale",
+    tag: "Ready-to-Sell",
     title: "Wholesale",
-    desc: "Wholesale sourcing enquiries, buyer requirements, quality evidence, origin documentation, and supplier due diligence.",
+    desc: "Choose an OCC-developed coffee direction for distributors, retailers, hotels, cafés, and B2B partners bringing Cambodian coffee to market.",
   },
   {
     href: "/solutions/roasting-program",
-    title: "Roasting Program",
-    desc: "Roast-development enquiries framed around profile, repeatability, application, and production-readiness checks.",
+    tag: "Made-for-You",
+    title: "Custom Roasting",
+    desc: "Build a roast profile around your market, application, customer, and commercial product direction.",
   },
   {
     href: "/solutions/coffee-marketing",
+    tag: "Cambodian Market",
     title: "Coffee Marketing",
-    desc: "Cambodian-market coffee marketing built around menu review, signature drink development, product memory, and stronger reasons for customers to return.",
+    desc: "Turn the menu you already have into a signature drink customers remember, talk about, and return for.",
   },
 ] as const
 
