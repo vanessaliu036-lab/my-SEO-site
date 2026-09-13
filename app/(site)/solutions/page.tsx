@@ -4,14 +4,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Solutions Cambodia | B2B Support | OCC",
+  title: "Coffee Solutions Cambodia | B2B Sourcing & Roasting | OCC",
   description:
-    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, roast development, and barista staffing enquiries.",
+    "Explore OCC commercial pathways for Cambodia coffee sourcing, roasted coffee supply, roast development, and distribution partnerships.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",
     description:
-      "B2B coffee solution areas for sourcing, roasting, and staffing enquiries in Cambodia, with evidence-led due diligence.",
+      "B2B coffee pathways built around requirements, available evidence, sourcing availability, development, and commercial discussion.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
@@ -20,18 +20,23 @@ export const metadata: Metadata = {
 const services = [
   {
     href: "/solutions/wholesale",
-    title: "Wholesale",
-    desc: "Wholesale sourcing enquiries, buyer requirements, quality evidence, origin documentation, and supplier due diligence.",
+    title: "Wholesale & Sourcing",
+    desc: "For buyers evaluating Cambodia-origin green coffee, Fine Robusta, lot evidence, samples, and supply planning.",
+  },
+  {
+    href: "/solutions/roasted-coffee-supply",
+    title: "Roasted Coffee Supply",
+    desc: "For cafés, hotels, retailers, and operators defining a roasted coffee requirement before supply terms are confirmed.",
   },
   {
     href: "/solutions/roasting-program",
     title: "Roasting Program",
-    desc: "Roast-development and white-label enquiries framed around profile, repeatability, capacity, and production-readiness checks.",
+    desc: "For businesses developing a house profile, branded coffee, or application-specific roast through a structured brief and evaluation process.",
   },
   {
-    href: "/solutions/barista-staffing",
-    title: "Barista Staffing",
-    desc: "Barista staffing enquiries with role definition, candidate evaluation, training evidence, and placement-term checks.",
+    href: "/distribution",
+    title: "Distribution Partnership",
+    desc: "For importers, distributors, agents, retailers, and hospitality partners evaluating Cambodian coffee for their market.",
   },
 ] as const
 
