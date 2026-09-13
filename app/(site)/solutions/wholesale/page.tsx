@@ -166,7 +166,7 @@ export default function WholesalePage() {
       content: (
         <div className="space-y-5">
           <p>MOQ, wholesale coffee pricing, lead time, and delivery conditions should be confirmed against the actual requirement. They can change with green versus roasted format, current lot availability, monthly volume, roast development, packaging scope, destination, and logistics responsibility.</p>
-          <p>Before contracting, buyers should confirm the approved sample, coffee specification, current lot or substitution policy, minimum order quantity, price basis, expected lead time, delivery point, storage assumptions, quality-acceptance process, and what happens if supply conditions change.</p>
+          <p>Before contracting, buyers should confirm the approved sample, coffee specification, current lot or substitution policy, MOQ, price basis, expected lead time, delivery point, storage assumptions, quality-acceptance process, and what happens if supply conditions change.</p>
           <p>This is especially important for cafés, hotels, restaurant groups, roasters, importers, and distributors comparing Cambodian coffee suppliers for recurring B2B supply rather than a one-time purchase.</p>
         </div>
       ),
@@ -225,7 +225,7 @@ export default function WholesalePage() {
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Request a Wholesale Sample"
+        ctaLabel="Discuss your requirements"
       />
     </>
   )
