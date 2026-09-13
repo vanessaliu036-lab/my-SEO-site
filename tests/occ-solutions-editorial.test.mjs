@@ -5,11 +5,12 @@ import fs from "node:fs"
 const read = (path) => fs.readFileSync(path, "utf8")
 const indexTemplate = "components/templates/solutions-index-template.tsx"
 const detailTemplate = "components/templates/solution-detail-template.tsx"
+const commercialTemplate = "components/templates/commercial-solution-template.tsx"
 const detailPages = ["wholesale", "roasting-program", "barista-staffing", "equipment-service"]
 
-test("SOLUTIONS index and detail pages share the OCC editorial template system", () => {
+test("SOLUTIONS index and detail pages keep the OCC editorial system", () => {
   assert.equal(fs.existsSync(indexTemplate), true, "solutions index template must exist")
-  assert.equal(fs.existsSync(detailTemplate), true, "solution detail template must exist")
+  assert.equal(fs.existsSync(detailTemplate), true, "legacy solution detail template must exist")
 
   const index = read("app/(site)/solutions/page.tsx")
   const indexUi = read(indexTemplate)
@@ -22,9 +23,55 @@ test("SOLUTIONS index and detail pages share the OCC editorial template system",
 
   for (const slug of detailPages) {
     const source = read(`app/(site)/solutions/${slug}/page.tsx`)
-    assert.match(source, /SolutionDetailTemplate/)
     assert.doesNotMatch(source, /<nav className=/)
     assert.doesNotMatch(source, /sticky top-0/)
+  }
+})
+
+test("wholesale and roasting share one commercial template without changing legacy solution pages", () => {
+  assert.equal(fs.existsSync(commercialTemplate), true, "commercial solution template must exist")
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
+  const staffing = read("app/(site)/solutions/barista-staffing/page.tsx")
+  const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
+  const template = read(commercialTemplate)
+
+  assert.match(wholesale, /CommercialSolutionTemplate/)
+  assert.match(roasting, /CommercialSolutionTemplate/)
+  assert.doesNotMatch(wholesale, /SolutionDetailTemplate/)
+  assert.doesNotMatch(roasting, /SolutionDetailTemplate/)
+  assert.match(staffing, /SolutionDetailTemplate/)
+  assert.match(equipment, /SolutionDetailTemplate/)
+
+  assert.match(template, /highlightCards/)
+  assert.match(template, /processSteps/)
+  assert.match(template, /comparison/)
+  assert.match(template, /sticky top-28/)
+  assert.match(template, /MotionReveal/)
+})
+
+test("commercial headings are declarative and route supplier vs roasting intent cleanly", () => {
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
+
+  assert.match(wholesale, /From Origin to Market/)
+  assert.match(wholesale, /Ready-to-Sell/)
+  assert.match(wholesale, /Coffee Supplier/)
+  assert.match(wholesale, /Fine Robusta Supplier/)
+  assert.match(wholesale, /Wholesale Supplier/)
+  assert.match(wholesale, /\/solutions\/roasting-program/)
+
+  assert.match(roasting, /The Roast Starts With the Market/)
+  assert.match(roasting, /Made-for-You/)
+  assert.match(roasting, /Roasting Supplier/)
+  assert.match(roasting, /Custom Roasting/)
+  assert.match(roasting, /Roast Profile/)
+  assert.match(roasting, /\/solutions\/wholesale/)
+
+  for (const source of [wholesale, roasting]) {
+    assert.doesNotMatch(source, /Who This Is For|Who This Program Is For/)
+    assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
+    assert.doesNotMatch(source, /\/solutions\/barista-staffing|\/solutions\/equipment-service/)
   }
 })
 
@@ -44,12 +91,15 @@ test("blog body auto-linking does not expose the hidden equipment service route"
   assert.doesNotMatch(blogDetail, /["']equipment["']\s*:\s*["']\/solutions\/equipment-service["']/i)
 })
 
-test("solution detail template keeps semantic content server-rendered and delegates only reveal motion", () => {
-  const template = read(detailTemplate)
+test("solution templates keep semantic content server-rendered and use restrained reveal motion", () => {
+  const legacy = read(detailTemplate)
+  const commercial = read(commercialTemplate)
   const reveal = read("components/ui/motion-reveal.tsx")
 
-  assert.doesNotMatch(template, /^"use client"/)
-  assert.match(template, /MotionReveal/)
+  assert.doesNotMatch(legacy, /^"use client"/)
+  assert.doesNotMatch(commercial, /^"use client"/)
+  assert.match(legacy, /MotionReveal/)
+  assert.match(commercial, /MotionReveal/)
   assert.match(reveal, /useReducedMotion/)
   assert.match(reveal, /0\.22, 1, 0\.36, 1/)
 })
@@ -68,30 +118,6 @@ test("solution pages preserve FAQ Breadcrumb schemas and internal-link logic wit
   assert.match(index, /"@type": "CollectionPage"/)
   assert.match(index, /B2B/i)
   assert.match(index, /evidence-led/i)
-})
-
-test("roasting program is a made-for-you commercial path with wholesale as the only service cross-sell", () => {
-  const source = read("app/(site)/solutions/roasting-program/page.tsx")
-
-  assert.match(source, /coffee roasting supplier Cambodia/i)
-  assert.match(source, /Build a Roast Profile Around Your Market/)
-  assert.match(source, /Choose Our Profile\. Or Build Yours\./)
-  assert.match(source, /Ready-to-Sell/)
-  assert.match(source, /Made-for-You/)
-  assert.match(source, /Develop Your Roast Profile/)
-  assert.match(source, /Wholesale Coffee Supply/)
-  assert.doesNotMatch(source, /Barista Staffing/)
-  assert.doesNotMatch(source, /Equipment Service/)
-  assert.doesNotMatch(source, /\/solutions\/barista-staffing/)
-  assert.doesNotMatch(source, /\/solutions\/equipment-service/)
-
-  const purpose = source.indexOf("Build a Roast Profile Around Your Market")
-  const process = source.indexOf("How Custom Roast Development Works")
-  const choice = source.indexOf("Choose Our Profile. Or Build Yours.")
-  const brief = source.indexOf("What to Prepare Before You Contact OCC")
-  assert.ok(purpose >= 0 && purpose < process, "commercial purpose must appear before process detail")
-  assert.ok(process < choice, "process must appear before the wholesale/custom decision recap")
-  assert.ok(choice < brief, "decision recap must appear before the final project brief")
 })
 
 test("commercial analytics records the wholesale-to-contact funnel and exact 404 paths", () => {
