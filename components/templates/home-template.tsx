@@ -12,67 +12,38 @@ export default function HomeTemplate() {
   return (
     <>
       <section className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-[#1c211b] text-white">
-        <Image
-          src="/hero-home.webp"
-          alt="Origin Coffee Cambodia hero image"
-          fill
-          preload
-          sizes="100vw"
-          className="absolute inset-0 object-cover object-center"
-        />
+        <Image src="/hero-home.webp" alt="Origin Coffee Cambodia hero image" fill preload sizes="100vw" className="absolute inset-0 object-cover object-center" />
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
-        <div
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,10,7,0.18)_0%,rgba(6,10,7,0.08)_42%,rgba(6,10,7,0.58)_100%)]"
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,10,7,0.18)_0%,rgba(6,10,7,0.08)_42%,rgba(6,10,7,0.58)_100%)]" aria-hidden="true" />
 
         <div className="pointer-events-none absolute inset-0 z-10 hidden md:block" aria-hidden="true">
           <div className="grid h-full w-full grid-cols-12 divide-x divide-white/15">
-            <div className="col-span-1" />
-            <div className="col-span-3" />
-            <div className="col-span-4" />
-            <div className="col-span-3" />
-            <div className="col-span-1" />
+            <div className="col-span-1" /><div className="col-span-3" /><div className="col-span-4" /><div className="col-span-3" /><div className="col-span-1" />
           </div>
         </div>
 
         <div className="relative z-20 mx-auto w-full max-w-6xl px-6 pb-24 pt-32 text-center sm:px-8 md:pb-20">
-          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 sm:text-xs">
-            Cambodia · Coffea canephora · Fine Robusta
-          </p>
-          <h1 className="mx-auto max-w-5xl text-balance text-5xl font-normal leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]">
-            Fine Robusta & Specialty Coffee from Cambodia
-          </h1>
+          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 sm:text-xs">Cambodia · Coffea canephora · Fine Robusta</p>
+          <h1 className="mx-auto max-w-5xl text-balance text-5xl font-normal leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]">Fine Robusta & Specialty Coffee from Cambodia</h1>
           <p className="mx-auto mt-7 max-w-2xl text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
-            Origin Coffee Cambodia connects Cambodian coffee origins with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused knowledge.
+            Origin Coffee Cambodia connects Cambodian coffee origins with specialty coffee sourcing, roasted supply, roast development, B2B solutions, traceability, and market partnerships.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/solutions/wholesale"
-              className="group inline-flex items-center rounded-full text-sm font-medium text-[#172018]"
-            >
-              <span className="rounded-full bg-[#e7f2c9] px-6 py-3.5 transition-colors duration-300 group-hover:bg-white">
-                Wholesale & Sourcing
-              </span>
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+            <Link href="/contact" className="group inline-flex items-center rounded-full text-sm font-medium text-[#172018]">
+              <span className="rounded-full bg-[#e7f2c9] px-6 py-3.5 transition-colors duration-300 group-hover:bg-white">Start a Conversation</span>
               <span className="relative -ml-px flex size-[50px] items-center justify-center overflow-hidden rounded-full bg-[#e7f2c9] transition-colors duration-300 group-hover:bg-white">
                 <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-6 group-hover:-translate-y-6" />
                 <ArrowUpRight className="absolute size-5 -translate-x-6 translate-y-6 transition-transform duration-300 group-hover:translate-x-0 group-hover:translate-y-0" />
               </span>
             </Link>
-            <Link
-              href="/fine-robusta-cambodia"
-              className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white"
-            >
-              Fine Robusta Guide · Coffea canephora Cambodia
-            </Link>
+            <Link href="/solutions" className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white">Explore Solutions</Link>
+            <Link href="/original" className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white">See Origin Proof</Link>
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between border-t border-white/15 px-5 py-5 text-[9px] uppercase tracking-[0.24em] text-white/55 sm:px-8 lg:px-12">
-          <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:inline">Sourcing · Quality · Solutions</span>
-          <span>01 / Home</span>
+          <span>Origin Coffee Cambodia</span><span className="hidden sm:inline">Sourcing · Quality · Solutions</span><span>01 / Home</span>
         </div>
       </section>
 
@@ -82,12 +53,9 @@ export default function HomeTemplate() {
           <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">{homeDirectAnswer}</p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-white">
-              Start an Enquiry <ArrowUpRight className="size-3.5" />
-            </Link>
-            <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-gray-800">
-              Research Journal <ArrowUpRight className="size-3.5" />
-            </Link>
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-white">Start a Conversation <ArrowUpRight className="size-3.5" /></Link>
+            <Link href="/solutions" className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-gray-800">Explore Solutions <ArrowUpRight className="size-3.5" /></Link>
+            <Link href="/original" className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-gray-800">See Origin Proof <ArrowUpRight className="size-3.5" /></Link>
           </div>
           <div className="mt-16 border-t border-gray-200 md:mt-20">
             {homeAuthoritySections.map((section, sectionIndex) => (
