@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SolutionDetailTemplate } from "@/components/templates/solution-detail-template"
+import { LocalMarketSolutionTemplate } from "@/components/templates/local-market-solution-template"
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
@@ -61,26 +61,9 @@ const breadcrumbSchema = {
 }
 
 export default function CoffeeMarketingPage() {
-  const relatedServices = [
-    {
-      title: "Wholesale Coffee Supply",
-      href: "/solutions/wholesale",
-      desc: "Ready-to-sell Cambodian coffee supply for cafés and B2B partners",
-    },
-    {
-      title: "Custom Roasting Program",
-      href: "/solutions/roasting-program",
-      desc: "Develop a roast profile around a specific market or product direction",
-    },
-    {
-      title: "Fine Robusta Cambodia",
-      href: "/fine-robusta-cambodia",
-      desc: "Explore OCC's core Cambodia-origin coffee expertise",
-    },
-  ]
-
   const sections = [
     {
+      label: "01 / Market Reality",
       title: "The Market Is Already Visually Strong",
       content: (
         <div className="space-y-6">
@@ -97,7 +80,8 @@ export default function CoffeeMarketingPage() {
       ),
     },
     {
-      title: "A Signature Drink Creates Product Memory",
+      label: "02 / Product Memory",
+      title: "A Signature Drink Creates a Reason to Return",
       content: (
         <div className="space-y-6">
           <p>
@@ -113,11 +97,12 @@ export default function CoffeeMarketingPage() {
       ),
     },
     {
-      title: "We Build From the Menu You Already Have",
+      label: "03 / Development",
+      title: "Built From the Menu You Already Have",
       content: (
         <div className="space-y-6">
           <p>
-            OCC starts with the café&apos;s current menu rather than forcing a generic trend onto the business. We look at what is already being served, where the menu feels interchangeable, which products carry the strongest commercial role, and where a signature opportunity can make the brand easier to remember.
+            OCC starts with the café&apos;s current menu rather than forcing a generic trend onto the business. We review what is already being served, where the menu feels interchangeable, which products carry the strongest commercial role, and where a signature opportunity can make the brand easier to remember.
           </p>
           <p>
             From there, the work can move into drink concept development, coffee-base direction, flavor structure, sweetness, texture, visual presentation, naming, menu wording, staff explanation points, and launch communication.
@@ -129,6 +114,7 @@ export default function CoffeeMarketingPage() {
       ),
     },
     {
+      label: "04 / Brand Memory",
       title: "The Drink Becomes Part of the Brand",
       content: (
         <div className="space-y-6">
@@ -145,17 +131,18 @@ export default function CoffeeMarketingPage() {
       ),
     },
     {
-      title: "From Menu Review to Signature Launch",
+      label: "05 / Commercial Role",
+      title: "Designed to Be Remembered and Reordered",
       content: (
         <div className="space-y-6">
           <p>
-            The process begins with the current menu and commercial context, then moves through opportunity definition, signature concept development, trial and refinement, naming and positioning, and launch communication.
+            The signature should have a commercial role beyond launch-week attention. OCC develops the concept around menu fit, customer appeal, operational practicality, repeatability, and the way the café needs staff to explain and recommend the drink.
           </p>
           <p>
-            OCC can help connect the product decision to how the drink is explained by staff and introduced to customers, so the signature is not only technically workable but also easier to understand and remember at the point of sale.
+            This gives the business a stronger product asset for repeat visits, future seasonal variations, membership campaigns, tasting events, short-form content, and customer recommendations.
           </p>
           <p>
-            The objective is a drink with a clear role: something the café can own, repeat, communicate, and build future customer memory around.
+            The goal is a product customers can connect back to the café itself — not a drink that disappears into the wider market once the initial novelty fades.
           </p>
         </div>
       ),
@@ -166,7 +153,7 @@ export default function CoffeeMarketingPage() {
     {
       q: "What does OCC Coffee Marketing include?",
       a: <>
-        It can include current-menu review, signature drink direction, coffee-base and flavor development, menu wording, staff explanation points, launch positioning, and product refinement based on the commercial goal.
+        It can include current-menu review, signature drink direction, coffee-base and flavor development, menu wording, staff explanation points, launch positioning, and product refinement around the commercial goal.
       </>,
     },
     {
@@ -187,23 +174,116 @@ export default function CoffeeMarketingPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <SolutionDetailTemplate
+
+      <LocalMarketSolutionTemplate
         index="03"
         title="COFFEE MARKETING"
-        subtitle="Make customers remember who you are — and come back. OCC helps Cambodian cafés turn an existing menu into a signature coffee experience customers can associate with the brand."
+        subtitle="Coffee marketing for Cambodian cafés built around a signature drink, stronger product memory, and a clearer reason for customers to return."
+        heroStatement="Make customers remember who you are — and come back."
+        heroCtaLabel="Design Your Signature Drink"
+        highlightTitle="A Beautiful Café Needs a Memorable Product"
+        highlightIntro="Cambodia's cafés already compete strongly on space, design, and social presentation. OCC adds the product layer that turns attention into something customers can remember and reorder."
+        highlightCards={[
+          {
+            title: "Strong First Impression",
+            meta: "Cambodian Market",
+            text: "Beautiful interiors and polished social content already create strong reasons for customers to visit and share the space.",
+          },
+          {
+            title: "Product Memory",
+            meta: "Brand Recall",
+            text: "A recognizable coffee product gives customers something specific to associate with the café after the first visit ends.",
+          },
+          {
+            title: "Signature Drink",
+            meta: "Ownable Product",
+            text: "A drink developed around the menu, coffee base, customer, service workflow, and brand can become a flavor language the café owns.",
+          },
+          {
+            title: "Repeat Visit",
+            meta: "Commercial Value",
+            text: "The strongest signature does more than generate launch attention. It gives customers a concrete reason to come back and order again.",
+          },
+        ]}
         sections={sections}
-        factsTitle="Signature Drink Development"
-        facts={[
+        relatedLinks={[
+          {
+            title: "Wholesale Coffee Supply",
+            description: "Choose an OCC-developed coffee direction when the café needs a ready-to-sell coffee foundation.",
+            href: "/solutions/wholesale",
+          },
+          {
+            title: "Custom Roasting Program",
+            description: "Develop a roast profile around the café's own market, application, and product direction.",
+            href: "/solutions/roasting-program",
+          },
+          {
+            title: "Fine Robusta Cambodia",
+            description: "Explore the Cambodia-origin coffee expertise behind OCC's product development work.",
+            href: "/fine-robusta-cambodia",
+          },
+        ]}
+        sidebarFacts={[
           "Current menu and product-gap review",
           "Signature drink concept development",
           "Coffee base and flavor direction",
           "Naming, menu language, and product story",
           "Staff explanation and launch communication",
-          "Refinement around customer response and commercial use",
+          "Refinement around customer response",
+        ]}
+        processTitle="From Menu Review to Signature Launch"
+        processIntro="The process turns an existing menu into a clearer product opportunity, then develops that opportunity into something the café can serve, explain, and repeat."
+        processSteps={[
+          {
+            title: "Current Menu Review",
+            text: "Review the existing drinks, pricing structure, menu balance, customer context, and the products already carrying the strongest commercial role.",
+          },
+          {
+            title: "Opportunity Definition",
+            text: "Identify the missing signature opportunity and define what role the new drink should play in the menu and customer experience.",
+          },
+          {
+            title: "Signature Concept",
+            text: "Develop the coffee base, flavor structure, ingredients, sweetness, texture, visual direction, and the product story around the brand.",
+          },
+          {
+            title: "Trial & Refinement",
+            text: "Refine balance, presentation, operational practicality, repeatability, and the way the drink performs in the real service environment.",
+          },
+          {
+            title: "Naming & Positioning",
+            text: "Create a name, menu description, and clearer language that helps the customer understand what makes the drink specific to the café.",
+          },
+          {
+            title: "Launch & Communication",
+            text: "Prepare staff explanation points, menu placement, launch direction, and the communication needed to turn the signature into a repeatable brand asset.",
+          },
+        ]}
+        darkEyebrow="Signature Drink Development"
+        darkTitle="The Product Gives Customers a Reason to Return"
+        darkDescription="OCC connects menu strategy, coffee direction, drink development, naming, staff communication, and launch logic so the signature is built as a product the café can own — not just a temporary promotion."
+        darkCta="Start With Your Menu"
+        supportTitle="The Signature Extends Beyond the Recipe"
+        supportCards={[
+          {
+            eyebrow: "Product Direction",
+            title: "Signature Drink",
+            description: "Build the drink around the café's menu, coffee, customer, flavor direction, pricing context, and service reality.",
+            href: "/contact",
+            cta: "Design Your Signature Drink",
+            active: true,
+          },
+          {
+            eyebrow: "Launch Direction",
+            title: "Brand Memory",
+            description: "Turn the product into clearer menu language, staff explanation, social storytelling, and a stronger reason for customers to remember the café.",
+            href: "/contact",
+            cta: "Build the Launch Direction",
+          },
         ]}
         faqs={faqs}
-        relatedServices={relatedServices}
         ctaLabel="Design Your Signature Drink"
+        ctaDescription="Start with the menu you already have. OCC will identify the missing signature opportunity and develop a clearer product direction around your café, customer, and commercial goal."
       />
     </>
   )
