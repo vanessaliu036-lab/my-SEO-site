@@ -12,13 +12,7 @@ test("contact form captures a qualified B2B conversation and persists it before 
     assert.match(action, new RegExp(`\\b${field}\\b`), `${field} must be part of the server schema`)
   }
 
-  for (const intent of [
-    "Wholesale & Sourcing",
-    "Roasted Coffee Supply",
-    "Roasting Program",
-    "Distribution Partnership",
-    "Other",
-  ]) {
+  for (const intent of ["Wholesale & Sourcing", "Roasted Coffee Supply", "Roasting Program", "Distribution Partnership", "Other"]) {
     assert.match(action, new RegExp(intent.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")), `${intent} must be accepted server-side`)
     assert.match(form, new RegExp(intent.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")), `${intent} must be offered in the form`)
   }
@@ -34,11 +28,23 @@ test("contact form captures a qualified B2B conversation and persists it before 
   assert.match(form, /generate_lead/)
 })
 
+test("homepage uses the approved three-intent conversion vocabulary while retaining the Fine Robusta owner backlink", () => {
+  const home = read("components/templates/home-template.tsx")
+  for (const cta of ["Start a Conversation", "Explore Solutions", "See Origin Proof"]) assert.match(home, new RegExp(cta))
+  assert.match(home, /href="\/contact"/)
+  assert.match(home, /href="\/solutions"/)
+  assert.match(home, /href="\/original"/)
+  assert.match(home, /href="\/fine-robusta-cambodia"/)
+  assert.doesNotMatch(home, />Start an Enquiry</)
+})
+
 test("public conversion architecture exposes only the four approved commercial pathways", () => {
   const nav = read("components/site/navigation-data.ts")
   const solutions = read("app/(site)/solutions/page.tsx")
   const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const roasted = read("app/(site)/solutions/roasted-coffee-supply/page.tsx")
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
+  const distribution = read("app/(site)/distribution/page.tsx")
 
   for (const service of ["Wholesale & Sourcing", "Roasted Coffee Supply", "Roasting Program", "Distribution Partnership"]) {
     assert.match(nav, new RegExp(service.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")), `${service} must be in navigation`)
@@ -54,11 +60,27 @@ test("public conversion architecture exposes only the four approved commercial p
 
   assert.equal(fs.existsSync("app/(site)/solutions/roasted-coffee-supply/page.tsx"), true, "roasted coffee supply page must exist")
   assert.match(wholesale, /Start a Sourcing Conversation/)
+  assert.match(roasted, /Discuss Your Coffee Requirements/)
   assert.match(roasting, /Start a Roasting Brief/)
+  assert.match(distribution, /Discuss Your Market/)
+})
+
+test("legacy Staffing and Equipment routes cannot re-enter the public conversion funnel", () => {
+  const sitemap = read("app/sitemap.ts")
+  const config = read("next.config.mjs")
+  const staffingLayout = read("app/(site)/solutions/barista-staffing/layout.tsx")
+  const equipmentLayout = read("app/(site)/solutions/equipment-service/layout.tsx")
+
+  assert.doesNotMatch(sitemap, /\/solutions\/barista-staffing|\/solutions\/equipment-service/)
+  assert.match(staffingLayout, /index: false/)
+  assert.match(equipmentLayout, /index: false/)
+  assert.match(config, /source: '\/solutions\/barista-staffing',[\s\S]{0,100}?destination: '\/solutions'/)
+  assert.match(config, /source: '\/solutions\/equipment-service',[\s\S]{0,100}?destination: '\/solutions'/)
 })
 
 test("ORIGINAL is a commercial trust gateway while ORIGINS remains the evidence depth layer", () => {
   const nav = read("components/site/navigation-data.ts")
+  const sitemap = read("app/sitemap.ts")
   assert.equal(fs.existsSync("app/(site)/original/page.tsx"), true, "Original gateway route must exist")
   const original = read("app/(site)/original/page.tsx")
 
@@ -73,6 +95,8 @@ test("ORIGINAL is a commercial trust gateway while ORIGINS remains the evidence 
   assert.match(original, /\/origins/)
   assert.match(original, /\/fine-robusta-cambodia/)
   assert.match(original, /\/contact/)
+  assert.match(sitemap, /\/original/)
+  assert.match(sitemap, /\/origins/)
 })
 
 test("high-intent mobile pages have a restrained shared Start a Conversation entry", () => {
