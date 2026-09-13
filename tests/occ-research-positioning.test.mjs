@@ -38,7 +38,7 @@ test('OCC metadata foundation combines professional coffee supply with evidence-
   assert.doesNotMatch(rootLayout, /AdminFrontendSwitch/)
 })
 
-test('homepage carries the approved supplier positioning while retaining research authority', () => {
+test('homepage carries the approved supplier positioning and three-action conversion language', () => {
   const publicHome = `${homePage}\n${homeContent}\n${homeTemplate}`
   assert.match(homePage, /const homeTitle = "Origin Coffee Cambodia \| Fine Robusta Beans & Specialty Coffee Supplier"/)
   assert.match(homePage, /Specialty coffee sourcing, roasting and B2B supply in Cambodia, with Fine Robusta, Mondulkiri coffee, Cambodian coffee origins, traceability and quality-focused coffee solutions\"/)
@@ -49,9 +49,10 @@ test('homepage carries the approved supplier positioning while retaining researc
   assert.match(homePage, /title: homeTitle/)
   assert.match(homePage, /description: homeDescription/)
   assert.match(rootLayout, /description: siteDescription/)
-  assert.match(publicHome, /B2B supply|Wholesale & Sourcing|Start an Enquiry/i)
+  assert.match(publicHome, /B2B supply/i)
+  for (const cta of ['Start a Conversation', 'Explore Solutions', 'See Origin Proof']) assert.match(homeTemplate, new RegExp(cta))
   assert.match(publicHome, /research|evidence/i)
-  assert.doesNotMatch(publicHome, /does not currently sell coffee|does not sell coffee|research platform/i)
+  assert.doesNotMatch(publicHome, /Sample Request|Lot List|Editorial \/ Source Correction|Media \/ Interview|does not currently sell coffee|does not sell coffee|research platform/i)
 })
 
 test('homepage metadata separates the organization logo from the social sharing image', () => {
@@ -90,17 +91,18 @@ test('public navigation is unified around the approved commercial sequence with 
   assert.doesNotMatch(publicNavigation, /\/admin|Staff Access/i)
 })
 
-test('sitemap emits current strategic routes while preserving legacy indexed solution routes and Airtable blog expansion', () => {
+test('sitemap emits current strategic routes and excludes hidden legacy service pages', () => {
   for (const path of [
+    '/original',
     '/fine-robusta-cambodia',
+    '/origins',
     '/solutions',
     '/solutions/wholesale',
+    '/solutions/roasted-coffee-supply',
     '/solutions/roasting-program',
-    '/solutions/barista-staffing',
-    '/solutions/equipment-service',
     '/distribution',
-    '/origins',
   ]) assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
+  assert.doesNotMatch(sitemap, /\/solutions\/barista-staffing|\/solutions\/equipment-service/)
   assert.doesNotMatch(sitemap, /\/coffee\/single-origin|\/collection\/sovann|\/collection\/prek|\/collection\/angkar/)
   assert.match(sitemap, /const posts = await getAllPosts\(\)/)
   assert.match(sitemap, /\.\.\.blogEntries/)
