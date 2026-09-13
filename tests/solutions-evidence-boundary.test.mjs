@@ -84,7 +84,7 @@ test("solutions CTAs are inquiry-led rather than transaction-led", () => {
   }
 })
 
-test("solutions hub keeps B2B commercial intent without unsupported operating promises", () => {
+test("solutions hub aligns with the three current commercial paths without unsupported operating promises", () => {
   const indexPage = fs.readFileSync(path.join(root, "app/(site)/solutions/page.tsx"), "utf8")
   const indexTemplate = fs.readFileSync(path.join(root, "components/templates/solutions-index-template.tsx"), "utf8")
   const detailTemplate = fs.readFileSync(path.join(root, "components/templates/solution-detail-template.tsx"), "utf8")
@@ -108,8 +108,12 @@ test("solutions hub keeps B2B commercial intent without unsupported operating pr
   assert.match(indexPage, /sourcing/i)
   assert.match(indexPage, /enquir|marketing/i)
   assert.match(indexPage, /evidence-led/i)
-  assert.match(indexTemplate, /B2B coffee solution areas/i)
-  assert.match(indexTemplate, /due diligence/i)
+  assert.match(indexPage, /Ready-to-Sell/)
+  assert.match(indexPage, /Made-for-You/)
+  assert.match(indexPage, /Cambodian Market/)
+  assert.match(indexTemplate, /Three Clear Commercial Paths/)
+  assert.match(indexTemplate, /Wholesale · Custom Roasting · Coffee Marketing/)
+  assert.doesNotMatch(indexTemplate, /Staffing/i)
   assert.match(detailTemplate, /Coffee Authority &amp; B2B Solutions/)
   assert.match(indexPage, /pageAlternates\("\/solutions"\)/)
   assert.match(indexPage, /"@type": "CollectionPage"/)
