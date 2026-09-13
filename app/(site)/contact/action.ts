@@ -11,21 +11,17 @@ export const contactSchema = z.object({
     .string()
     .min(1, "Email is required")
     .email("Please enter a valid email address"),
+  company: z
+    .string()
+    .min(1, "Company or brand is required")
+    .max(150, "Company or brand must be 150 characters or fewer"),
   service: z.enum(
-    [
-      "Wholesale / Sourcing",
-      "Sample Request",
-      "Lot List",
-      "Roasting / Solutions",
-      "Editorial / Source Correction",
-      "Media / Interview",
-      "General Enquiry",
-    ],
-    { errorMap: () => ({ message: "Please select an enquiry type" }) }
+    ["Wholesale", "Custom Roasting", "Coffee Marketing", "Other Enquiry"],
+    { errorMap: () => ({ message: "Please select a commercial path" }) }
   ),
   message: z
     .string()
-    .max(2000, "Message must be 2000 characters or fewer")
+    .max(2000, "Project context must be 2000 characters or fewer")
     .optional(),
 })
 
@@ -46,13 +42,14 @@ export async function submitContactForm(
     }
   }
 
-  const { name, email, service, message } = parsed.data
+  const { name, email, company, service, message } = parsed.data
 
-  console.log("[ContactForm] New message received:", {
+  console.log("[ContactForm] New commercial enquiry received:", {
     name,
     email,
-    enquiryType: service,
-    message: message ?? "(no message)",
+    company,
+    commercialPath: service,
+    projectContext: message ?? "(no project context)",
     timestamp: new Date().toISOString(),
   })
 
