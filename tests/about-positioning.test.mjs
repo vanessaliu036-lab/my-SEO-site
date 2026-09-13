@@ -60,3 +60,21 @@ test("About closes with international market direction without service sprawl", 
   assert.match(source, /hospitality partners/i)
   assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
 })
+
+test("About uses the approved sage photo-led visual system without replacing shared site chrome", () => {
+  const source = read(templatePath)
+
+  assert.match(source, /#5c6f58/i)
+  assert.match(source, /#2f3b2d/i)
+  assert.match(source, /#f3f1ea/i)
+  assert.match(source, /\/about\/occ-about-atlas\.avif/)
+  assert.match(source, /data-about-ghost="origin"/)
+  assert.match(source, /data-about-ghost="coffee"/)
+
+  for (const label of ["ONE ORIGIN", "FINE ROBUSTA", "READY-TO-SELL", "MADE-FOR-YOU"]) {
+    assert.match(source, new RegExp(label, "i"), `${label} gallery label must be present`)
+  }
+
+  assert.doesNotMatch(source, /<nav\b/)
+  assert.doesNotMatch(source, /occ-logo-primary-local\.svg/)
+})
