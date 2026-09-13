@@ -142,13 +142,16 @@ test('article shell does not inject commercial money-pillar supplier or exporter
   assert.doesNotMatch(articleLayout, /MONEY_PILLARS|Related buyer guide|supplier buyer guide|exporter buyer guide/i)
 })
 
-test('contact surface supports B2B conversion without inventing inventory availability', () => {
+test('contact surface supports current commercial conversion without inventing inventory availability', () => {
   const contact = `${contactPage}\n${contactForm}\n${contactAction}`
-  for (const enquiry of ['Wholesale / Sourcing', 'Sample Request', 'Lot List', 'Roasting / Solutions']) {
+  for (const enquiry of ['Wholesale', 'Custom Roasting', 'Coffee Marketing', 'Other Enquiry']) {
     assert.match(contact, new RegExp(enquiry))
   }
-  assert.match(contactPage, /wholesale and sourcing inquiries/i)
-  assert.match(contact, /Editorial \/ Source Correction|Media \/ Interview|General Enquiry/i)
+  assert.match(contactPage, /wholesale coffee supply inquiries/i)
+  assert.match(contact, /Company \/ Brand|company/i)
+  assert.match(contact, /Start the Conversation/i)
+  assert.match(contact, /generate_lead/)
+  assert.doesNotMatch(contactForm, /Sample Request|Lot List|Roasting \/ Solutions|Editorial \/ Source Correction|Media \/ Interview/)
   assert.doesNotMatch(contact, /in stock|available now|guaranteed sample|live inventory/i)
 })
 
