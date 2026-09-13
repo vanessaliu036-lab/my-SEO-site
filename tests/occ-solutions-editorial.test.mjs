@@ -6,11 +6,13 @@ const read = (path) => fs.readFileSync(path, "utf8")
 const indexTemplate = "components/templates/solutions-index-template.tsx"
 const detailTemplate = "components/templates/solution-detail-template.tsx"
 const commercialTemplate = "components/templates/commercial-solution-template.tsx"
+const localMarketTemplate = "components/templates/local-market-solution-template.tsx"
 const detailPages = ["wholesale", "roasting-program", "barista-staffing", "equipment-service"]
 
 test("SOLUTIONS index and detail pages keep the OCC editorial system", () => {
   assert.equal(fs.existsSync(indexTemplate), true, "solutions index template must exist")
   assert.equal(fs.existsSync(detailTemplate), true, "legacy solution detail template must exist")
+  assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
 
   const index = read("app/(site)/solutions/page.tsx")
   const indexUi = read(indexTemplate)
@@ -28,26 +30,35 @@ test("SOLUTIONS index and detail pages keep the OCC editorial system", () => {
   }
 })
 
-test("wholesale and roasting share one commercial template without changing legacy solution pages", () => {
+test("commercial and local-market solution pages use dedicated editorial templates", () => {
   assert.equal(fs.existsSync(commercialTemplate), true, "commercial solution template must exist")
+  assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
   const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
   const staffing = read("app/(site)/solutions/barista-staffing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
-  const template = read(commercialTemplate)
+  const commercial = read(commercialTemplate)
+  const local = read(localMarketTemplate)
 
   assert.match(wholesale, /CommercialSolutionTemplate/)
   assert.match(roasting, /CommercialSolutionTemplate/)
   assert.doesNotMatch(wholesale, /SolutionDetailTemplate/)
   assert.doesNotMatch(roasting, /SolutionDetailTemplate/)
-  assert.match(staffing, /SolutionDetailTemplate/)
+  assert.match(staffing, /LocalMarketSolutionTemplate/)
+  assert.doesNotMatch(staffing, /SolutionDetailTemplate/)
   assert.match(equipment, /SolutionDetailTemplate/)
 
-  assert.match(template, /highlightCards/)
-  assert.match(template, /processSteps/)
-  assert.match(template, /comparison/)
-  assert.match(template, /sticky top-28/)
-  assert.match(template, /MotionReveal/)
+  assert.match(commercial, /highlightCards/)
+  assert.match(commercial, /processSteps/)
+  assert.match(commercial, /comparison/)
+  assert.match(commercial, /sticky top-28/)
+  assert.match(commercial, /MotionReveal/)
+
+  assert.match(local, /highlightCards/)
+  assert.match(local, /processSteps/)
+  assert.match(local, /supportCards/)
+  assert.match(local, /sticky top-28/)
+  assert.match(local, /MotionReveal/)
 })
 
 test("commercial headings are declarative and route supplier vs roasting intent cleanly", () => {
@@ -102,6 +113,26 @@ test("commercial mobile hierarchy and internal links are explicit", () => {
   assert.match(roasting, /Discuss Wholesale Supply/)
 })
 
+test("coffee marketing page matches OCC editorial hierarchy and keeps explicit internal paths", () => {
+  const page = read("app/(site)/solutions/barista-staffing/page.tsx")
+  const template = read(localMarketTemplate)
+
+  assert.match(page, /COFFEE MARKETING/)
+  assert.match(page, /CAMBODIAN MARKET|LocalMarketSolutionTemplate/)
+  assert.match(page, /A Beautiful Café Needs a Memorable Product/)
+  assert.match(page, /A Signature Drink Creates a Reason to Return/)
+  assert.match(page, /From Menu Review to Signature Launch/)
+  assert.match(page, /Design Your Signature Drink/)
+  assert.match(page, /\/solutions\/wholesale/)
+  assert.match(page, /\/solutions\/roasting-program/)
+  assert.match(page, /\/fine-robusta-cambodia/)
+
+  assert.match(template, /text-\[11px\].*font-semibold.*tracking-\[0\.22em\]/)
+  assert.match(template, /text-\[clamp\(2\.1rem,7\.5vw,3\.2rem\)\]/)
+  assert.match(template, /max-w-\[13ch\]/)
+  assert.match(template, /max-w-\[34rem\]/)
+})
+
 test("equipment service route is preserved for SEO but removed from public solution entry points", () => {
   assert.equal(fs.existsSync("app/(site)/solutions/equipment-service/page.tsx"), true)
   const index = read("app/(site)/solutions/page.tsx")
@@ -121,25 +152,34 @@ test("blog body auto-linking does not expose the hidden equipment service route"
 test("solution templates keep semantic content server-rendered and use restrained reveal motion", () => {
   const legacy = read(detailTemplate)
   const commercial = read(commercialTemplate)
+  const local = read(localMarketTemplate)
   const reveal = read("components/ui/motion-reveal.tsx")
 
   assert.doesNotMatch(legacy, /^"use client"/)
   assert.doesNotMatch(commercial, /^"use client"/)
+  assert.doesNotMatch(local, /^"use client"/)
   assert.match(legacy, /MotionReveal/)
   assert.match(commercial, /MotionReveal/)
+  assert.match(local, /MotionReveal/)
   assert.match(reveal, /useReducedMotion/)
   assert.match(reveal, /0\.22, 1, 0\.36, 1/)
 })
 
-test("solution pages preserve FAQ Breadcrumb schemas and internal-link logic without unverified Service schema", () => {
+test("solution pages preserve schemas and explicit internal-link logic without unverified Service schema", () => {
   for (const slug of detailPages) {
     const source = read(`app/(site)/solutions/${slug}/page.tsx`)
     assert.doesNotMatch(source, /"@type"\s*:\s*"Service"/)
     assert.doesNotMatch(source, /"@type"\s*:\s*"Offer"/)
     assert.match(source, /"@type": "FAQPage"/)
     assert.match(source, /"@type": "BreadcrumbList"/)
-    assert.match(source, /renderWithLinks/)
   }
+
+  const staffing = read("app/(site)/solutions/barista-staffing/page.tsx")
+  const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
+  assert.match(staffing, /relatedLinks=/)
+  assert.match(staffing, /\/solutions\/wholesale/)
+  assert.match(staffing, /\/solutions\/roasting-program/)
+  assert.match(equipment, /renderWithLinks/)
 
   const index = read("app/(site)/solutions/page.tsx")
   assert.match(index, /"@type": "CollectionPage"/)
