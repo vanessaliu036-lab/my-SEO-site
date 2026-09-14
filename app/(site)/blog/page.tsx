@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { siteUrl, siteName, ogImage } from "@/lib/siteConfig"
 import { alternatesFromCanonical } from "@/lib/seo"
-import { getAllPosts } from "@/lib/airtable"
+import { getAllPosts, getRecentPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
 
@@ -70,7 +70,7 @@ export async function generateMetadata({
   }
 }
 
-export const revalidate = 30
+export const revalidate = 300
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -89,18 +89,20 @@ export default async function BlogPage({
   const { page: pageStr } = await searchParams
   const pageRaw = parseInt(pageStr || "1", 10)
   const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1
+  const isLandingPage = page === 1
 
-  const posts = await getAllPosts()
-  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
+  // Emergency performance guard: the landing page only needs the newest cards.
+  // Do not read the full 1,800+ record corpus just to render five articles.
+  const posts = isLandingPage ? await getRecentPosts() : await getAllPosts()
+  const totalPages = isLandingPage
+    ? null
+    : Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
 
-  if (posts.length > 0 && page > totalPages) {
+  if (!isLandingPage && totalPages && posts.length > 0 && page > totalPages) {
     redirect(`/blog?page=${totalPages}`)
   }
-  if (page < 1) {
-    redirect("/blog")
-  }
 
-  const start = (page - 1) * POSTS_PER_PAGE
+  const start = isLandingPage ? 0 : (page - 1) * POSTS_PER_PAGE
   const pagePosts = posts.slice(start, start + POSTS_PER_PAGE)
 
   return (
@@ -214,23 +216,41 @@ export default async function BlogPage({
               ))}
             </ul>
 
-            {totalPages > 1 && (
+            {isLandingPage ? (
               <nav
                 className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
                 aria-label="Blog pagination"
               >
-                {page > 1 ? (
+                <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
+                  ← Previous
+                </span>
+                <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
+                  Page 1
+                </span>
+                {posts.length > POSTS_PER_PAGE ? (
                   <Link
-                    href={page === 2 ? "/blog" : `/blog?page=${page - 1}`}
+                    href="/blog?page=2"
                     className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
                   >
-                    ← Previous
+                    Next →
                   </Link>
                 ) : (
                   <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
-                    ← Previous
+                    Next →
                   </span>
                 )}
+              </nav>
+            ) : totalPages && totalPages > 1 ? (
+              <nav
+                className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
+                aria-label="Blog pagination"
+              >
+                <Link
+                  href={page === 2 ? "/blog" : `/blog?page=${page - 1}`}
+                  className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
+                >
+                  ← Previous
+                </Link>
                 <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
                   Page {page} / {totalPages}
                 </span>
@@ -247,7 +267,7 @@ export default async function BlogPage({
                   </span>
                 )}
               </nav>
-            )}
+            ) : null}
             </>
           )}
 
