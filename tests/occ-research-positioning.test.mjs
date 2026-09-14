@@ -179,18 +179,21 @@ test('About structured data does not invent a founder identity or unverified ope
   )
 })
 
-test('shared About shell combines supply, quality and evidence without unsupported operating claims', () => {
+test('shared About shell keeps approved origin identity while preserving evidence safeguards', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${siteHeader}\n${navigationData}`
-  assert.match(sharedAboutShell, /Supply · Quality · Evidence|sourcing|B2B supply/i)
-  assert.match(sharedAboutShell, /research|evidence/i)
+  assert.match(sharedAboutShell, /100% Cambodia-origin specialty coffee supplier/i)
+  assert.match(sharedAboutShell, /Fine Robusta specialist/i)
+  assert.match(sharedAboutShell, /Wholesale coffee supply|custom roasting/i)
+  assert.match(sharedAboutShell, /origin|evidence|quality/i)
   assert.doesNotMatch(
     sharedAboutShell,
-    /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
+    /2020|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
   )
 })
 
-test('About hero removes the coffee-bag visual and keeps its evidence-led copy in English', () => {
+test('About hero removes the coffee-bag visual and keeps the approved identity copy in English', () => {
   assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual/)
   assert.doesNotMatch(aboutEditorialTemplate, /[\u3400-\u9fff]/)
-  assert.match(aboutEditorialTemplate, /OCC builds Cambodian coffee supply, quality, and professional services on verifiable origin information, clear standards, and evidence\./)
+  assert.match(aboutEditorialTemplate, /One origin\. Cambodia\./)
+  assert.match(aboutEditorialTemplate, /OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist\./)
 })
