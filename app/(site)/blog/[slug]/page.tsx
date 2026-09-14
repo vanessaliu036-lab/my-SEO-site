@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical, seoDescription, seoTitle } from "@/lib/seo"
@@ -496,18 +497,56 @@ export async function generateStaticParams() {
   return []
 }
 
+async function RelatedArticles({ currentSlug }: { currentSlug: string }) {
+  const recentPosts = await getRecentPosts()
+  const related = recentPosts.filter((post) => post.slug !== currentSlug).slice(0, 3)
+
+  if (!related.length) return null
+
+  return (
+    <section className="max-w-5xl mx-auto px-5 sm:px-8 pb-16 md:pb-20">
+      <div className="mx-auto max-w-[720px] border-t border-stone-200 pt-12">
+        <p className="text-[10px] tracking-[0.24em] text-stone-400 uppercase mb-8">More Articles</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {related.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group block border-t border-stone-200 pt-5 transition-all hover:-translate-y-0.5"
+            >
+              {post.category && (
+                <span className="text-[9px] tracking-[0.22em] text-stone-400 uppercase block mb-2">
+                  {post.category}
+                </span>
+              )}
+              <h3 className="text-sm font-semibold text-stone-950 leading-snug mb-2 group-hover:underline underline-offset-2">
+                {post.title}
+              </h3>
+              {post.summary && (
+                <p className="text-xs text-stone-500 leading-relaxed line-clamp-2">{post.summary}</p>
+              )}
+              <span className="inline-block mt-3 text-[10px] tracking-[0.14em] text-stone-400 group-hover:text-stone-950 group-hover:translate-x-1 transition-all">
+                Read →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default async function BlogPostPage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const [post, recentPosts] = await Promise.all([getPostBySlug(slug), getRecentPosts()])
+  const post = await getPostBySlug(slug)
 
   if (!post) notFound()
 
   const displayTitle = displayTitleForPost(post.slug, post.title)
-  const related = recentPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
   const mins = readingTime(post.content)
   const keywordList = post.keywords
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
@@ -684,38 +723,9 @@ export default async function BlogPostPage({
           </div>
         </article>
 
-        {/* Related articles */}
-        {related.length > 0 && (
-          <section className="max-w-5xl mx-auto px-5 sm:px-8 pb-16 md:pb-20">
-            <div className="mx-auto max-w-[720px] border-t border-stone-200 pt-12">
-              <p className="text-[10px] tracking-[0.24em] text-stone-400 uppercase mb-8">More Articles</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {related.map((r) => (
-                  <Link
-                    key={r.slug}
-                    href={`/blog/${r.slug}`}
-                    className="group block border-t border-stone-200 pt-5 transition-all hover:-translate-y-0.5"
-                  >
-                    {r.category && (
-                      <span className="text-[9px] tracking-[0.22em] text-stone-400 uppercase block mb-2">
-                        {r.category}
-                      </span>
-                    )}
-                    <h3 className="text-sm font-semibold text-stone-950 leading-snug mb-2 group-hover:underline underline-offset-2">
-                      {r.title}
-                    </h3>
-                    {r.summary && (
-                      <p className="text-xs text-stone-500 leading-relaxed line-clamp-2">{r.summary}</p>
-                    )}
-                    <span className="inline-block mt-3 text-[10px] tracking-[0.14em] text-stone-400 group-hover:text-stone-950 group-hover:translate-x-1 transition-all">
-                      Read →
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        <Suspense fallback={null}>
+          <RelatedArticles currentSlug={post.slug} />
+        </Suspense>
 
         {/* Back link */}
         <div className="max-w-5xl mx-auto px-5 sm:px-8 pb-12">
