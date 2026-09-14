@@ -58,12 +58,16 @@ test('true public identity is deduplicated only by stable slug', () => {
   assert.match(source, /seenSlug\.has\(identity\)/)
 })
 
-test('Research Journal pagination derives from the complete canonical getAllPosts result', () => {
-  assert.match(blogPage, /import \{ getAllPosts \} from "@\/lib\/airtable"/)
-  assert.match(blogPage, /const posts = await getAllPosts\(\)/)
+test('Research Journal keeps canonical archive pagination while the landing page uses a bounded read', () => {
+  assert.match(blogPage, /import \{ getAllPosts, getRecentPosts \} from "@\/lib\/airtable"/)
+  assert.match(blogPage, /const isLandingPage = page === 1/)
   assert.match(
     blogPage,
-    /const totalPages = Math\.max\(1, Math\.ceil\(posts\.length \/ POSTS_PER_PAGE\)\)/
+    /const posts = isLandingPage \? await getRecentPosts\(\) : await getAllPosts\(\)/
+  )
+  assert.match(
+    blogPage,
+    /Math\.max\(1, Math\.ceil\(posts\.length \/ POSTS_PER_PAGE\)\)/
   )
   assert.doesNotMatch(blogPage, /const posts = \(await getAllPosts\(\)\)\.(slice|filter)/)
 })
