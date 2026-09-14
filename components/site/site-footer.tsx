@@ -12,7 +12,7 @@ export function SiteFooter() {
           <div className="max-w-md">
             <Link
               href="/"
-              className="inline-flex bg-[#FAF8F3] px-3 py-2"
+              className="inline-flex"
               aria-label="Origin Coffee Cambodia home"
             >
               <img

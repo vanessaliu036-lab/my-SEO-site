@@ -67,6 +67,53 @@ export const metadata: Metadata = {
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const organizationId = `${siteUrl}/#organization`;
 
+const typographyCss = `
+  :root {
+    --occ-font-title: var(--font-display);
+    --occ-font-subtitle: var(--font-sans);
+    --occ-font-body: var(--font-sans);
+  }
+
+  html,
+  body {
+    font-family: var(--occ-font-body), system-ui, sans-serif !important;
+  }
+
+  body,
+  p,
+  li,
+  dd,
+  dt,
+  input,
+  textarea,
+  select {
+    font-family: var(--occ-font-body), system-ui, sans-serif !important;
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  [data-occ-type="title"] {
+    font-family: var(--occ-font-title), Georgia, serif !important;
+    font-weight: 400 !important;
+  }
+
+  nav,
+  label,
+  button,
+  [role="button"],
+  .occ-eyebrow,
+  [data-occ-type="subtitle"],
+  [class*="uppercase"][class*="tracking-"] {
+    font-family: var(--occ-font-subtitle), system-ui, sans-serif !important;
+    font-weight: 500 !important;
+  }
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -74,6 +121,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
+      <head>
+        <style id="occ-typography-system">{typographyCss}</style>
+      </head>
       <body className="font-sans bg-white text-gray-900 antialiased">
         {children}
 

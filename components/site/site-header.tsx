@@ -33,7 +33,7 @@ export function SiteHeader() {
         <div className="mx-auto flex h-20 w-full max-w-[1680px] items-center gap-6 px-5 sm:px-8 lg:px-12">
           <Link
             href="/"
-            className="flex shrink-0 items-center bg-[#FAF8F3] px-2 py-1.5"
+            className="flex shrink-0 items-center"
             aria-label="Origin Coffee Cambodia home"
           >
             <img
