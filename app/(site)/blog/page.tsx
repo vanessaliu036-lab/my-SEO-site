@@ -7,6 +7,34 @@ import { getAllPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
 
+const CORE_FINE_ROBUSTA_OWNERS = [
+  {
+    href: "/fine-robusta-cambodia",
+    label: "Fine Robusta Cambodia",
+    note: "Origin, quality, sourcing and Cambodia-specific context.",
+  },
+  {
+    href: "/blog/fine-robusta-grading-verify-before-cupping",
+    label: "Fine Robusta Grading",
+    note: "Buyer verification, grading and pre-cupping evidence.",
+  },
+  {
+    href: "/blog/fine-robusta-fermentation",
+    label: "Fine Robusta Fermentation",
+    note: "Process control, sensory risk and fermentation decisions.",
+  },
+  {
+    href: "/blog/how-to-brew-cambodian-fine-robusta",
+    label: "How to Brew Fine Robusta",
+    note: "Brewing methods, extraction and evaluation.",
+  },
+  {
+    href: "/blog/fine-robusta-vs-arabica-buyer-guide",
+    label: "Fine Robusta vs Arabica",
+    note: "Buyer-focused species comparison and use cases.",
+  },
+] as const
+
 export async function generateMetadata({
   searchParams,
 }: {
@@ -96,6 +124,36 @@ export default async function BlogPage({
               Origin intelligence from the OCC team.
             </p>
           </header>
+
+          {page === 1 && (
+            <section className="mb-10 md:mb-14 border-b border-stone-200 pb-9 md:pb-11" aria-labelledby="core-fine-robusta-guides">
+              <div className="flex flex-col gap-2 mb-6">
+                <span className="text-[10px] tracking-[0.24em] text-stone-400 uppercase">Core Fine Robusta Guides</span>
+                <h2 id="core-fine-robusta-guides" className="text-lg sm:text-xl font-semibold tracking-tight text-stone-950">
+                  Start with the primary topic owners.
+                </h2>
+                <p className="max-w-2xl text-[13px] sm:text-sm leading-relaxed text-stone-500">
+                  These pages carry OCC&apos;s broad Fine Robusta topic ownership. Supporting articles narrow into specific mechanisms, evidence and applications.
+                </p>
+              </div>
+              <div className="grid gap-px bg-stone-200 border border-stone-200 sm:grid-cols-2 lg:grid-cols-5">
+                {CORE_FINE_ROBUSTA_OWNERS.map((guide) => (
+                  <Link
+                    key={guide.href}
+                    href={guide.href}
+                    className="group bg-[#f6f3ea] p-4 min-h-[132px] flex flex-col justify-between hover:bg-white transition-colors"
+                  >
+                    <span className="text-[13px] font-semibold leading-snug text-stone-950 group-hover:underline underline-offset-4">
+                      {guide.label}
+                    </span>
+                    <span className="mt-5 text-[11px] leading-relaxed text-stone-500">
+                      {guide.note}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           {posts.length === 0 ? (
             <div className="py-24 text-center">
