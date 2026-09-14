@@ -28,7 +28,10 @@ test('Blog hub exposes direct crawl paths to the Fine Robusta formal owners', ()
     '/blog/fine-robusta-vs-arabica-buyer-guide',
   ]
 
+  assert.match(blogPage, /const CORE_FINE_ROBUSTA_OWNERS = \[/)
+  assert.match(blogPage, /href=\{guide\.href\}/)
+
   for (const href of ownerHrefs) {
-    assert.match(blogPage, new RegExp(`href=["']${href.replaceAll('/', '\\/')}["']`))
+    assert.match(blogPage, new RegExp(`href:\\s*["']${href.replaceAll('/', '\\/')}["']`))
   }
 })
