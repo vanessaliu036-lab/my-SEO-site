@@ -195,7 +195,7 @@ export default function OriginsPage() {
         </section>
 
         <section className="py-16 lg:py-24">
-          <div className="grid grid-cols-1 gap-8 bg-[#202820] p-7 text-[#f6f3ea] sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
+          <div className="grid grid-cols-1 gap-8 bg-[#2f3b2d] p-7 text-[#f6f3ea] sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
             <div className="md:col-span-7">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Explore the Origin</p>
               <h2 className="mt-5 max-w-[14ch] font-[var(--font-display)] text-[clamp(2rem,7vw,3rem)] font-normal leading-[0.98] tracking-[-0.035em]">
