@@ -2,13 +2,13 @@ import Link from "next/link"
 import { siteNavigation } from "@/components/site/navigation-data"
 
 const groupedItems = siteNavigation.filter((item) => item.children?.length)
-const utilityItems = siteNavigation.filter((item) => !item.children?.length)
+const standaloneItems = siteNavigation.filter((item) => !item.children?.length)
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-[#182019]/10 bg-[#efe9dc] text-[#182019]">
       <div className="mx-auto w-full max-w-[1680px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_1.85fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_1.95fr] lg:gap-20">
           <div className="max-w-md">
             <Link
               href="/"
@@ -36,7 +36,7 @@ export function SiteFooter() {
             </Link>
           </div>
 
-          <nav className="grid grid-cols-1 gap-10 sm:grid-cols-3" aria-label="Footer navigation">
+          <nav className="grid grid-cols-1 gap-10 sm:grid-cols-3" aria-label="Footer navigation groups">
             {groupedItems.map((item) => (
               <div key={item.label}>
                 <Link
@@ -61,21 +61,32 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-6 border-t border-[#182019]/12 pt-6 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            {utilityItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#182019]/62 transition-colors hover:text-[#182019]"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
+        <nav
+          className="mt-14 grid grid-cols-1 border-y border-[#182019]/12 sm:grid-cols-2 lg:grid-cols-4"
+          aria-label="Primary footer navigation"
+        >
+          {standaloneItems.map((item, index) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`group flex min-h-16 items-center justify-between gap-5 py-5 text-sm font-medium uppercase tracking-[0.13em] transition-colors hover:text-[#5c6f58] sm:px-6 lg:min-h-20 lg:px-7 ${
+                index > 0 ? "border-t border-[#182019]/12 sm:border-t-0" : ""
+              } ${index % 2 === 1 ? "sm:border-l sm:border-[#182019]/12" : ""} ${index > 1 ? "sm:border-t sm:border-[#182019]/12 lg:border-t-0" : ""} ${index > 0 ? "lg:border-l lg:border-[#182019]/12" : ""}`}
+            >
+              <span>{item.label}</span>
+              <span className="text-base font-normal tracking-normal text-[#182019]/34 transition-transform duration-200 group-hover:translate-x-1">
+                ↗
+              </span>
+            </Link>
+          ))}
+        </nav>
 
+        <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[10px] uppercase tracking-[0.14em] text-[#182019]/45">
             © 2026 Origin Coffee Cambodia
+          </p>
+          <p className="text-[10px] uppercase tracking-[0.14em] text-[#182019]/36">
+            Cambodia · Fine Robusta · B2B Coffee
           </p>
         </div>
       </div>

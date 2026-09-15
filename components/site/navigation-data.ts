@@ -39,7 +39,7 @@ export const siteNavigation: readonly SiteNavItem[] = [
     ],
   },
   { label: "PARTNERSHIPS", href: "/partnerships" },
+  { label: "DISTRIBUTION", href: "/distribution" },
   { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },
-  { label: "DISTRIBUTION", href: "/distribution" },
 ] as const
