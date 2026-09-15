@@ -11,8 +11,19 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-[#f6f3ea] text-[#182019] lg:hidden">
       <div className="mx-auto min-h-full max-w-3xl px-6 py-6 sm:px-10">
         <div className="flex items-center justify-between border-b border-black/10 pb-5">
-          <Link href="/" onClick={onClose} className="text-2xl font-semibold tracking-[-0.07em]">
-            OCC
+          <Link
+            href="/"
+            onClick={onClose}
+            className="flex shrink-0 items-center"
+            aria-label="Origin Coffee Cambodia home"
+          >
+            <img
+              src="/occ-logo-primary-local.svg"
+              alt=""
+              width={600}
+              height={272}
+              className="h-[52px] w-auto sm:h-[58px]"
+            />
           </Link>
           <button
             type="button"
