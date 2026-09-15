@@ -149,11 +149,9 @@ test('legacy Fine Robusta Buyer Guide alias permanently routes directly to the r
   assert.doesNotMatch(nextConfig, /source:\s*['"]\/blog\/fine-robusta-cambodia-buyers-guide-to-quality-sourcing-and-wholesale-supply['"][\s\S]{0,220}?destination:\s*['"]\/blog\/cambodian-fine-robusta-wholesale-supply['"]/)
 })
 
-test('Single Origin remains independent from the Fine Robusta owner and is indexed', () => {
-  const aliasRoute = /source:\s*['"]\/origins\/single-origin['"][\s\S]{0,180}?destination:\s*['"]\/fine-robusta-cambodia['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
-  assert.doesNotMatch(`${nextConfig}\n${proxySource}`, aliasRoute)
-  assert.doesNotMatch(proxySource, /["']\/origins\/single-origin["']\s*:\s*["']\/fine-robusta-cambodia["']/)
-  assert.match(sitemap, /`\$\{siteUrl\}\/origins\/single-origin`/)
+test('retired Single Origin is excluded from sitemap while current Origins and Fine Robusta owners remain submitted', () => {
+  assert.doesNotMatch(sitemap, /`\$\{siteUrl\}\/origins\/single-origin`/)
+  assert.match(sitemap, /`\$\{siteUrl\}\/origins\/cambodia-regions`/)
   assert.match(sitemap, /`\$\{siteUrl\}\/fine-robusta-cambodia`/)
 })
 
