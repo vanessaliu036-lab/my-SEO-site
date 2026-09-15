@@ -94,3 +94,13 @@ test("ABOUT Why OCC uses a directly decodable JPEG safety net on mobile Safari",
   assert.match(fallback, /\}, \[pathname\]\)/)
   assert.match(fallback, /createPortal\(/)
 })
+
+test("ABOUT Ready-to-Sell keeps the full product composition visible on mobile", () => {
+  const css = fs.readFileSync(cssPath, "utf8")
+
+  assert.match(
+    css,
+    /@media \(max-width: 1023px\)[\s\S]*?OCC origin and commercial paths"\] > a:nth-child\(3\) > div:first-child[\s\S]*?background-size:\s*contain\s*!important[\s\S]*?background-position:\s*center\s*!important/,
+    "Ready-to-Sell must use contain on mobile so the complete product image is not cropped away",
+  )
+})
