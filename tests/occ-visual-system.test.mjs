@@ -29,6 +29,13 @@ test("global header keeps one approved OCC logo size across public pages", () =>
   assert.match(header, /h-\[88px\][^\n]*sm:h-24/)
 })
 
+test("global footer uses the same approved OCC logo size as the header", () => {
+  const footer = read("components/site/site-footer.tsx")
+
+  assert.match(footer, /src="\/occ-logo-primary-local\.svg"/)
+  assert.match(footer, /h-\[52px\][^\n]*sm:h-\[58px\][^\n]*lg:h-\[64px\]/)
+})
+
 test("responsive chrome keeps desktop navigation distinct from the mobile drawer", () => {
   const header = read("components/site/site-header.tsx")
   const mobileMenu = read("components/site/mobile-menu.tsx")
@@ -39,7 +46,7 @@ test("responsive chrome keeps desktop navigation distinct from the mobile drawer
   assert.match(mobileMenu, /text-3xl/)
 })
 
-test("standalone primary navigation keeps approved order and is not demoted to footer utilities", () => {
+test("primary footer navigation keeps approved order and one shared menu treatment", () => {
   const navigation = read("components/site/navigation-data.ts")
   const footer = read("components/site/site-footer.tsx")
 
@@ -50,8 +57,9 @@ test("standalone primary navigation keeps approved order and is not demoted to f
 
   assert.ok(partnerships >= 0 && distribution > partnerships && blog > distribution && contact > blog)
   assert.doesNotMatch(footer, /const utilityItems/)
-  assert.match(footer, /const standaloneItems/)
-  assert.match(footer, /standaloneItems\.map/)
+  assert.doesNotMatch(footer, /const standaloneItems/)
+  assert.match(footer, /siteNavigation\.map/)
+  assert.match(footer, /aria-label="Footer navigation"/)
 })
 
 test("homepage and About use local photo-led assets", () => {
