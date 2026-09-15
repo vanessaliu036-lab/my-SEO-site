@@ -6,6 +6,8 @@ import path from "node:path"
 
 const cssPath = "app/about-image-overrides.css"
 const layoutPath = "app/layout.tsx"
+const publicSiteLayoutPath = "app/(site)/layout.tsx"
+const mobileFallbackPath = "components/site/about-image-fallback.tsx"
 
 const sha256 = (filePath) =>
   crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex")
@@ -59,4 +61,19 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
     sourceHashes.length,
     "ABOUT repeats identical source bytes under different image paths; a different crop or filename does not count as a new source image",
   )
+})
+
+test("ABOUT Why OCC has a real-image rendering fallback for mobile Safari", () => {
+  const publicSiteLayout = fs.readFileSync(publicSiteLayoutPath, "utf8")
+  const fallback = fs.readFileSync(mobileFallbackPath, "utf8")
+
+  assert.match(publicSiteLayout, /import \{ AboutImageFallback \}/)
+  assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
+  assert.match(fallback, /usePathname/)
+  assert.match(fallback, /Cambodian coffee origin and production/)
+  assert.match(fallback, /const WHY_OCC_SOURCE = "\/distribution-hero\.webp"/)
+  assert.match(fallback, /element\.style\.position = "relative"/)
+  assert.match(fallback, /\}, \[pathname\]\)/)
+  assert.match(fallback, /createPortal\(/)
+  assert.match(fallback, /<img[\s\S]*?src=\{WHY_OCC_SOURCE\}[\s\S]*?object-cover/)
 })
