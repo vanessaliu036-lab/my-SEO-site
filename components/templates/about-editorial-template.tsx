@@ -15,7 +15,8 @@ type AboutEditorialTemplateProps = {
 }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const atlas = "/about/occ-about-atlas.avif"
+const heroImage = "/about/about-origin.svg"
+const whyOccImage = "/about/about-fine-robusta.svg"
 
 const differences = [
   {
@@ -41,10 +42,30 @@ const differences = [
 ]
 
 const galleryPanels = [
-  { label: "ONE ORIGIN", href: "/origins", position: 0, note: "Cambodia first. Always." },
-  { label: "FINE ROBUSTA", href: "/fine-robusta-cambodia", position: 33.333, note: "Our specialist coffee category." },
-  { label: "READY-TO-SELL", href: "/solutions/wholesale", position: 66.667, note: "Wholesale and supplier evaluation." },
-  { label: "MADE-FOR-YOU", href: "/solutions/roasting-program", position: 100, note: "Custom roasting and profile development." },
+  {
+    label: "ONE ORIGIN",
+    href: "/origins",
+    image: "/about/about-origin.svg",
+    note: "Cambodia first. Always.",
+  },
+  {
+    label: "FINE ROBUSTA",
+    href: "/fine-robusta-cambodia",
+    image: "/about/about-fine-robusta.svg",
+    note: "Our specialist coffee category.",
+  },
+  {
+    label: "READY-TO-SELL",
+    href: "/solutions/wholesale",
+    image: "/about/about-ready-to-sell.svg",
+    note: "Wholesale and supplier evaluation.",
+  },
+  {
+    label: "MADE-FOR-YOU",
+    href: "/solutions/roasting-program",
+    image: "/about/about-made-for-you.svg",
+    note: "Custom roasting and profile development.",
+  },
 ]
 
 const readyToSellPath = [
@@ -108,7 +129,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
           <div
             className="relative min-h-[480px] overflow-hidden bg-[#5c6f58] bg-no-repeat lg:min-h-full"
-            style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: "0% 50%" }}
+            style={{ backgroundImage: `url(${heroImage})`, backgroundSize: "cover", backgroundPosition: "50% 50%" }}
             role="img"
             aria-label="Cambodian coffee at origin"
           >
@@ -149,7 +170,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           <motion.div {...reveal(34)} className="lg:col-span-6 lg:col-start-7">
             <div
               className="aspect-[5/4] overflow-hidden border border-white/15 bg-[#2f3b2d] bg-no-repeat shadow-[0_24px_60px_rgba(22,31,20,0.18)] lg:aspect-[6/5] xl:aspect-[4/3]"
-              style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: "33.333% 50%" }}
+              style={{ backgroundImage: `url(${whyOccImage})`, backgroundSize: "cover", backgroundPosition: "50% 50%" }}
               role="img"
               aria-label="Cambodian coffee origin and production"
             />
@@ -173,26 +194,26 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         </div>
       </section>
 
-      <section className="grid grid-cols-1 bg-[#2f3b2d] sm:grid-cols-2 lg:grid-cols-4" aria-label="OCC origin and commercial paths">
+      <section className="grid grid-cols-2 bg-[#2f3b2d] lg:grid-cols-4" aria-label="OCC origin and commercial paths">
         {galleryPanels.map((panel, index) => (
           <Link
             key={panel.label}
             href={panel.href}
-            className="group relative aspect-[4/5] overflow-hidden border-b border-r border-white/20 lg:aspect-square lg:border-b-0 xl:aspect-[5/4]"
+            className="group relative aspect-[3/4] overflow-hidden border-b border-r border-white/20 lg:aspect-square lg:border-b-0 xl:aspect-[5/4]"
             aria-label={`${panel.label}: ${panel.note}`}
           >
             <div
               className="absolute inset-0 bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-              style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: `${panel.position}% 50%` }}
+              style={{ backgroundImage: `url(${panel.image})`, backgroundSize: "cover", backgroundPosition: "50% 50%" }}
               aria-hidden="true"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#1f291f]/80 transition-colors duration-500 group-hover:bg-[#2f3b2d]/14" />
-            <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7 lg:p-8">
+            <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-7 lg:p-8">
               <p className="text-[9px] uppercase tracking-[0.2em] text-white/58">0{index + 1}</p>
-              <div className="mt-3 flex items-end justify-between gap-4">
+              <div className="mt-3 flex items-end justify-between gap-3 sm:gap-4">
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white">{panel.label}</h3>
-                  <p className="mt-2 max-w-[230px] text-[12px] leading-5 text-white/62">{panel.note}</p>
+                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white sm:text-sm sm:tracking-[0.2em]">{panel.label}</h3>
+                  <p className="mt-2 hidden max-w-[230px] text-[12px] leading-5 text-white/62 sm:block">{panel.note}</p>
                 </div>
                 <ArrowUpRight className="size-4 shrink-0 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>

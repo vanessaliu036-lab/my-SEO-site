@@ -54,19 +54,41 @@ test("standalone primary navigation keeps approved order and is not demoted to f
   assert.match(footer, /standaloneItems\.map/)
 })
 
-test("homepage and About keep photo-led assets with no baked-in text dependency", () => {
+test("homepage and About use local photo-led assets", () => {
   const home = read("components/templates/home-template.tsx")
-  const about = read("components/templates/about-editorial-template.tsx")
+  const css = read("app/globals.css")
+
   assert.match(home, /\/hero-home\.webp/)
-  assert.match(about, /\/about\/occ-about-atlas\.avif/)
+  for (const image of [
+    "about-origin.svg",
+    "about-fine-robusta.svg",
+    "about-ready-to-sell.svg",
+    "about-made-for-you.svg",
+  ]) {
+    assert.match(css, new RegExp(`\\/about\\/${image.replace(".", "\\.")}`))
+  }
 })
 
-test("About desktop hero uses a split readable composition instead of centered copy over the full atlas", () => {
+test("About semantic photo surfaces override the legacy low-resolution atlas with cover images", () => {
+  const css = read("app/globals.css")
+
+  assert.match(css, /aria-label="Cambodian coffee at origin"/)
+  assert.match(css, /aria-label="Cambodian coffee origin and production"/)
+  assert.match(css, /background-size:\s*cover\s*!important/)
+  assert.match(css, /section\[aria-label="OCC origin and commercial paths"\]/)
+})
+
+test("About mobile gallery uses a compact two-column card grid", () => {
+  const css = read("app/globals.css")
+
+  assert.match(css, /@media \(max-width: 1023px\)[\s\S]*?grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)\s*!important/)
+  assert.match(css, /@media \(max-width: 1023px\)[\s\S]*?aspect-ratio:\s*3\s*\/\s*4\s*!important/)
+})
+
+test("About desktop hero keeps split readable composition", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
   assert.match(about, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
-  assert.match(about, /backgroundSize: "400% auto"/)
-  assert.match(about, /backgroundPosition: "0% 50%"/)
   assert.match(about, /One origin\./)
   assert.match(about, /Cambodia\./)
 })
