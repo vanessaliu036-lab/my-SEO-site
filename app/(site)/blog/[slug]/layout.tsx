@@ -62,7 +62,8 @@ const OWNER_ROUTES = {
 } satisfies Record<string, OwnerRoute>
 
 const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
-  // Cambodia: keep the wholesale-specific page narrow while routing broad Fine Robusta Cambodia intent to the pillar.
+  // Cambodia: keep broad and wholesale-specific support pages narrow while routing Fine Robusta Cambodia intent to the pillar.
+  "what-is-fine-robusta-coffee-a-complete-beginners-guide": OWNER_ROUTES.cambodia,
   "cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES.cambodia,
   "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": OWNER_ROUTES.cambodia,
   "what-makes-coffee-origin-feel-premium": OWNER_ROUTES.cambodia,
