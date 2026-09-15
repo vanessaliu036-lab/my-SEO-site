@@ -170,3 +170,78 @@ test('legacy CQI aliases route directly to the formal grading owner', () => {
     assert.match(nextConfig, route)
   }
 })
+
+const AIRTABLE_OWNER_CHECK_KEY =
+  process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
+const AIRTABLE_OWNER_CHECK_BASE_ID = process.env.AIRTABLE_BASE_ID
+const SUPPLIER_OWNER_SLUG =
+  'evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability'
+
+async function fetchAirtableOwnerCheckRecords(tableName, formula) {
+  const url = new URL(
+    `https://api.airtable.com/v0/${AIRTABLE_OWNER_CHECK_BASE_ID}/${encodeURIComponent(tableName)}`,
+  )
+  url.searchParams.set('filterByFormula', formula)
+
+  const response = await fetch(url, {
+    headers: { Authorization: `Bearer ${AIRTABLE_OWNER_CHECK_KEY}` },
+    cache: 'no-store',
+  })
+
+  assert.equal(
+    response.ok,
+    true,
+    `Airtable owner regression read failed for ${tableName}: ${response.status} ${response.statusText}`,
+  )
+
+  const payload = await response.json()
+  return Array.isArray(payload.records) ? payload.records : []
+}
+
+function ownerPathFromUrl(ownerUrl) {
+  assert.equal(typeof ownerUrl, 'string')
+  const pathname = new URL(ownerUrl).pathname.replace(/\/+$/, '')
+  return pathname || '/'
+}
+
+test(
+  'Supplier Owner broad anchors match the canonical Airtable Owner map',
+  { skip: !AIRTABLE_OWNER_CHECK_KEY || !AIRTABLE_OWNER_CHECK_BASE_ID },
+  async () => {
+    const ownerRecords = await fetchAirtableOwnerCheckRecords(
+      'SEO Keyword Owners',
+      'OR({Keyword}="fine robusta cambodia",{Keyword}="fine robusta standards")',
+    )
+    const ownerByKeyword = new Map(
+      ownerRecords.map((record) => [record.fields?.Keyword, record.fields?.['Owner URL']]),
+    )
+
+    const fineRobustaOwner = ownerPathFromUrl(ownerByKeyword.get('fine robusta cambodia'))
+    const standardsOwner = ownerPathFromUrl(ownerByKeyword.get('fine robusta standards'))
+
+    assert.equal(fineRobustaOwner, '/fine-robusta-cambodia')
+    assert.equal(standardsOwner, '/blog/fine-robusta-standards-350g-defects')
+
+    const supplierRecords = await fetchAirtableOwnerCheckRecords(
+      'OCC_Blog_Posts',
+      `{slug}="${SUPPLIER_OWNER_SLUG}"`,
+    )
+    assert.equal(supplierRecords.length, 1, 'Supplier Owner record must be unique')
+
+    const content = supplierRecords[0]?.fields?.Content
+    assert.equal(typeof content, 'string')
+    assert.ok(
+      content.includes(`[Fine Robusta Cambodia buyer guide](${fineRobustaOwner})`),
+      'Supplier Owner must route the Fine Robusta Cambodia broad anchor to its formal Owner',
+    )
+    assert.ok(
+      content.includes(`[Fine Robusta standards guide](${standardsOwner})`),
+      'Supplier Owner must route the Fine Robusta standards broad anchor to its formal Owner',
+    )
+    assert.doesNotMatch(
+      content,
+      /\/blog\/what-is-fine-robusta-coffee-a-complete-beginners-guide/,
+    )
+    assert.doesNotMatch(content, /\]\(\/fine-robusta-standards\)/)
+  },
+)
