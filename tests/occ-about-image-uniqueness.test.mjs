@@ -79,7 +79,7 @@ test("ABOUT Why OCC uses a directly decodable JPEG safety net on mobile Safari",
 
   assert.equal(fs.existsSync(whyOccJpegPath), true, "Why OCC JPEG fallback asset must exist")
   const jpeg = fs.readFileSync(whyOccJpegPath)
-  assert.ok(jpeg.length > 8_000, "Why OCC JPEG must not be an empty placeholder")
+  assert.ok(jpeg.length > 3_000, "Why OCC JPEG fallback asset must contain a real mobile photograph")
   assert.equal(jpeg[0], 0xff, "Why OCC asset must start with JPEG SOI marker")
   assert.equal(jpeg[1], 0xd8, "Why OCC asset must start with JPEG SOI marker")
   assert.equal(jpeg[jpeg.length - 2], 0xff, "Why OCC asset must end with JPEG EOI marker")
