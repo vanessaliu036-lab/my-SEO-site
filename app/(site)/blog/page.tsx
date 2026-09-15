@@ -6,6 +6,10 @@ import { alternatesFromCanonical } from "@/lib/seo"
 import { getAllPosts, getRecentPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
+// Canonical frontend corpus snapshot verified against the live archive on 2026-09-15.
+// Keep the fast landing-page read; update this snapshot with the corpus publishing workflow.
+const BLOG_CORPUS_POSTS = 1884
+const BLOG_TOTAL_PAGES = Math.max(1, Math.ceil(BLOG_CORPUS_POSTS / POSTS_PER_PAGE))
 
 const CORE_FINE_ROBUSTA_OWNERS = [
   {
@@ -95,10 +99,10 @@ export default async function BlogPage({
   // Do not read the full 1,800+ record corpus just to render five articles.
   const posts = isLandingPage ? await getRecentPosts() : await getAllPosts()
   const totalPages = isLandingPage
-    ? null
+    ? BLOG_TOTAL_PAGES
     : Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
 
-  if (!isLandingPage && totalPages && posts.length > 0 && page > totalPages) {
+  if (!isLandingPage && posts.length > 0 && page > totalPages) {
     redirect(`/blog?page=${totalPages}`)
   }
 
@@ -130,25 +134,35 @@ export default async function BlogPage({
           {page === 1 && (
             <section className="mb-10 md:mb-14 border-b border-stone-200 pb-9 md:pb-11" aria-labelledby="core-fine-robusta-guides">
               <div className="flex flex-col gap-2 mb-6">
-                <span className="text-[10px] tracking-[0.24em] text-stone-400 uppercase">Core Fine Robusta Guides</span>
-                <h2 id="core-fine-robusta-guides" className="text-lg sm:text-xl font-semibold tracking-tight text-stone-950">
-                  Start with the primary topic owners.
+                <span className="text-[10px] font-semibold tracking-[0.24em] text-[#7a1118] uppercase">
+                  Topic Map · Start Here
+                </span>
+                <h2 id="core-fine-robusta-guides" className="text-xl sm:text-2xl font-semibold tracking-tight text-stone-950">
+                  Explore Fine Robusta by topic.
                 </h2>
                 <p className="max-w-2xl text-[13px] sm:text-sm leading-relaxed text-stone-500">
-                  These pages carry OCC&apos;s broad Fine Robusta topic ownership. Supporting articles narrow into specific mechanisms, evidence and applications.
+                  These are OCC&apos;s primary Fine Robusta topic owners. Choose the subject you need, then move into supporting evidence and applications.
                 </p>
               </div>
-              <div className="grid gap-px bg-stone-200 border border-stone-200 sm:grid-cols-2 lg:grid-cols-5">
-                {CORE_FINE_ROBUSTA_OWNERS.map((guide) => (
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+                {CORE_FINE_ROBUSTA_OWNERS.map((guide, index) => (
                   <Link
                     key={guide.href}
                     href={guide.href}
-                    className="group bg-[#f6f3ea] p-4 min-h-[132px] flex flex-col justify-between hover:bg-white transition-colors"
+                    className="group flex min-h-0 flex-col border border-stone-300 border-l-2 border-l-[#7a1118] bg-white/55 px-4 py-4 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_30px_rgba(28,25,23,0.06)] lg:min-h-[150px] lg:p-5"
                   >
-                    <span className="text-[13px] font-semibold leading-snug text-stone-950 group-hover:underline underline-offset-4">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-[9px] font-semibold tracking-[0.2em] text-[#7a1118]">
+                        0{index + 1}
+                      </span>
+                      <span className="text-lg leading-none text-stone-400 transition-transform group-hover:translate-x-1 group-hover:text-stone-950" aria-hidden="true">
+                        →
+                      </span>
+                    </div>
+                    <span className="mt-3 text-[15px] font-semibold leading-snug text-stone-950 group-hover:underline underline-offset-4">
                       {guide.label}
                     </span>
-                    <span className="mt-5 text-[11px] leading-relaxed text-stone-500">
+                    <span className="mt-2 text-[12px] leading-5 text-stone-500 lg:mt-auto lg:pt-5">
                       {guide.note}
                     </span>
                   </Link>
@@ -224,10 +238,10 @@ export default async function BlogPage({
                 <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
                   ← Previous
                 </span>
-                <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
-                  Page 1
+                <span className="text-[11px] tracking-[0.16em] text-stone-500 px-2">
+                  Page 1 / {totalPages}
                 </span>
-                {posts.length > POSTS_PER_PAGE ? (
+                {totalPages > 1 ? (
                   <Link
                     href="/blog?page=2"
                     className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
@@ -240,7 +254,7 @@ export default async function BlogPage({
                   </span>
                 )}
               </nav>
-            ) : totalPages && totalPages > 1 ? (
+            ) : totalPages > 1 ? (
               <nav
                 className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
                 aria-label="Blog pagination"

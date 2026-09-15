@@ -133,8 +133,8 @@ export default function DistributionPage() {
 
           <div className="relative min-h-[440px] overflow-hidden bg-[#273229] lg:col-span-5 lg:min-h-full">
             <Image
-              src="/hero-home.webp"
-              alt="Origin Coffee Cambodia"
+              src="/distribution-hero.webp"
+              alt="Coffee collaboration for OCC international distribution partners"
               fill
               priority
               sizes="(min-width: 1024px) 42vw, 100vw"
