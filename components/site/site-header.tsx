@@ -30,7 +30,7 @@ export function SiteHeader() {
   return (
     <>
       <header className={headerClass}>
-        <div className="mx-auto flex h-20 w-full max-w-[1680px] items-center gap-6 px-5 sm:px-8 lg:px-12">
+        <div className="mx-auto flex h-[88px] w-full max-w-[1680px] items-center gap-6 px-5 sm:h-24 sm:px-8 lg:px-12">
           <Link
             href="/"
             className="flex shrink-0 items-center"
@@ -41,13 +41,13 @@ export function SiteHeader() {
               alt=""
               width={600}
               height={272}
-              className="h-[46px] w-auto sm:h-[50px]"
+              className="h-[52px] w-auto sm:h-[58px] lg:h-[64px]"
             />
           </Link>
 
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-7 lg:flex" aria-label="Primary navigation">
             {siteNavigation.map((item) => (
-              <div key={item.label} className="group relative flex h-20 items-center">
+              <div key={item.label} className="group relative flex h-24 items-center">
                 <Link
                   href={item.href}
                   className={`inline-flex items-center gap-1 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] transition-colors ${
@@ -59,7 +59,7 @@ export function SiteHeader() {
                 </Link>
 
                 {item.children?.length ? (
-                  <div className="pointer-events-none absolute left-1/2 top-20 min-w-[230px] -translate-x-1/2 translate-y-2 border border-black/10 bg-[#f6f3ea] p-2 text-[#182019] opacity-0 shadow-[0_18px_45px_rgba(20,24,18,0.10)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  <div className="pointer-events-none absolute left-1/2 top-24 min-w-[230px] -translate-x-1/2 translate-y-2 border border-black/10 bg-[#f6f3ea] p-2 text-[#182019] opacity-0 shadow-[0_18px_45px_rgba(20,24,18,0.10)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
@@ -77,12 +77,12 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className={`ml-auto inline-flex size-10 items-center justify-center rounded-full border transition-colors lg:hidden ${mobileButtonClass}`}
+            className={`ml-auto inline-flex size-11 items-center justify-center rounded-full border transition-colors lg:hidden ${mobileButtonClass}`}
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={mobileOpen}
           >
-            <Menu className="size-4" />
+            <Menu className="size-[18px]" />
           </button>
         </div>
       </header>
