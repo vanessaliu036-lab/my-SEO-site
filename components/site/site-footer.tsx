@@ -1,18 +1,15 @@
 import Link from "next/link"
 import { siteNavigation } from "@/components/site/navigation-data"
 
-const groupedItems = siteNavigation.filter((item) => item.children?.length)
-const standaloneItems = siteNavigation.filter((item) => !item.children?.length)
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-[#182019]/10 bg-[#efe9dc] text-[#182019]">
       <div className="mx-auto w-full max-w-[1680px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_1.95fr] lg:gap-20">
+        <div className="grid gap-12 border-b border-[#182019]/12 pb-12 lg:grid-cols-[0.9fr_2.1fr] lg:gap-16 lg:pb-16">
           <div className="max-w-md">
             <Link
               href="/"
-              className="inline-flex"
+              className="inline-flex items-center"
               aria-label="Origin Coffee Cambodia home"
             >
               <img
@@ -20,7 +17,7 @@ export function SiteFooter() {
                 alt=""
                 width={600}
                 height={272}
-                className="h-auto w-[210px]"
+                className="h-[52px] w-auto sm:h-[58px] lg:h-[64px]"
               />
             </Link>
 
@@ -36,50 +33,41 @@ export function SiteFooter() {
             </Link>
           </div>
 
-          <nav className="grid grid-cols-1 gap-10 sm:grid-cols-3" aria-label="Footer navigation groups">
-            {groupedItems.map((item) => (
-              <div key={item.label}>
+          <nav
+            className="grid grid-cols-1 border-t border-[#182019]/12 sm:grid-cols-2 lg:grid-cols-4"
+            aria-label="Footer navigation"
+          >
+            {siteNavigation.map((item, index) => (
+              <div
+                key={item.label}
+                className={`min-h-[150px] border-b border-[#182019]/12 px-0 py-6 sm:px-6 lg:min-h-[180px] lg:px-7 lg:py-7 ${
+                  index % 2 === 1 ? "sm:border-l sm:border-[#182019]/12" : ""
+                } ${index % 4 !== 0 ? "lg:border-l lg:border-[#182019]/12" : "lg:border-l-0"}`}
+              >
                 <Link
                   href={item.href}
-                  className="text-[11px] font-semibold uppercase tracking-[0.2em]"
+                  className="inline-flex text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors hover:text-[#5c6f58]"
                 >
                   {item.label}
                 </Link>
-                <div className="mt-5 flex flex-col gap-3.5">
-                  {item.children?.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="text-sm leading-6 text-[#182019]/62 transition-colors hover:text-[#182019]"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
+
+                {item.children?.length ? (
+                  <div className="mt-5 flex flex-col gap-3.5">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="text-sm leading-6 text-[#182019]/62 transition-colors hover:text-[#182019]"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             ))}
           </nav>
         </div>
-
-        <nav
-          className="mt-14 grid grid-cols-1 border-y border-[#182019]/12 sm:grid-cols-2 lg:grid-cols-4"
-          aria-label="Primary footer navigation"
-        >
-          {standaloneItems.map((item, index) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`group flex min-h-16 items-center justify-between gap-5 py-5 text-sm font-medium uppercase tracking-[0.13em] transition-colors hover:text-[#5c6f58] sm:px-6 lg:min-h-20 lg:px-7 ${
-                index > 0 ? "border-t border-[#182019]/12 sm:border-t-0" : ""
-              } ${index % 2 === 1 ? "sm:border-l sm:border-[#182019]/12" : ""} ${index > 1 ? "sm:border-t sm:border-[#182019]/12 lg:border-t-0" : ""} ${index > 0 ? "lg:border-l lg:border-[#182019]/12" : ""}`}
-            >
-              <span>{item.label}</span>
-              <span className="text-base font-normal tracking-normal text-[#182019]/34 transition-transform duration-200 group-hover:translate-x-1">
-                ↗
-              </span>
-            </Link>
-          ))}
-        </nav>
 
         <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[10px] uppercase tracking-[0.14em] text-[#182019]/45">
