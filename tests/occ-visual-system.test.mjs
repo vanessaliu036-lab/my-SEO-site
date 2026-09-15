@@ -58,15 +58,37 @@ test("homepage and About keep photo-led assets with no baked-in text dependency"
   const home = read("components/templates/home-template.tsx")
   const about = read("components/templates/about-editorial-template.tsx")
   assert.match(home, /\/hero-home\.webp/)
-  assert.match(about, /\/about\/occ-about-atlas\.avif/)
+  assert.match(about, /\/about\/about-origin\.svg/)
+  assert.match(about, /\/about\/about-fine-robusta\.svg/)
+  assert.match(about, /\/about\/about-ready-to-sell\.svg/)
+  assert.match(about, /\/about\/about-made-for-you\.svg/)
+  assert.doesNotMatch(about, /occ-about-atlas\.avif/)
 })
 
-test("About desktop hero uses a split readable composition instead of centered copy over the full atlas", () => {
+test("About image panels use individual local high-resolution sources instead of sprite slicing", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
+  assert.doesNotMatch(about, /backgroundSize: "400% auto"/)
+  assert.match(about, /backgroundSize: "cover"/)
+  assert.match(about, /image: "\/about\/about-origin\.svg"/)
+  assert.match(about, /image: "\/about\/about-fine-robusta\.svg"/)
+  assert.match(about, /image: "\/about\/about-ready-to-sell\.svg"/)
+  assert.match(about, /image: "\/about\/about-made-for-you\.svg"/)
+})
+
+test("About mobile gallery stays compact instead of stretching each image to a full-width portrait", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
+  assert.match(about, /grid grid-cols-2[^\n]*lg:grid-cols-4/)
+  assert.match(about, /aspect-\[3\/4\][^\n]*lg:aspect-square[^\n]*xl:aspect-\[5\/4\]/)
+})
+
+test("About desktop hero uses a split readable composition with a real local photograph", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
   assert.match(about, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
-  assert.match(about, /backgroundSize: "400% auto"/)
-  assert.match(about, /backgroundPosition: "0% 50%"/)
+  assert.match(about, /backgroundImage: `url\(\$\{heroImage\}\)`/)
+  assert.match(about, /backgroundSize: "cover"/)
   assert.match(about, /One origin\./)
   assert.match(about, /Cambodia\./)
 })
