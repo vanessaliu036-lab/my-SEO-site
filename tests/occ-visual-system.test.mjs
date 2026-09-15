@@ -44,6 +44,8 @@ test("responsive chrome keeps desktop navigation distinct from the mobile drawer
   assert.match(header, /lg:hidden/)
   assert.match(mobileMenu, /siteNavigation\.map/)
   assert.match(mobileMenu, /text-3xl/)
+  assert.match(mobileMenu, /src="\/occ-logo-primary-local\.svg"/)
+  assert.doesNotMatch(mobileMenu, />\s*OCC\s*</)
 })
 
 test("primary footer navigation keeps approved order and one shared menu treatment", () => {
