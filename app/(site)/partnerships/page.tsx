@@ -158,6 +158,21 @@ export default function PartnershipsPage() {
                 For coffee gifting, ARUNERA works with OCC to connect Cambodian coffee with product concept, packaging direction, gifting format, retail presentation and traveler discovery. OCC remains responsible for the coffee proposition; ARUNERA develops the gifting experience around it.
               </p>
 
+              <figure className="mt-12 overflow-hidden border border-white/15 bg-black/10">
+                <img
+                  src="/images/occ-arunera-cambodian-coffee-gift-partnership.avif"
+                  alt="OCC and ARUNERA premium Cambodian coffee gift collection"
+                  width={1448}
+                  height={1086}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/3] h-auto w-full object-cover"
+                />
+                <figcaption className="border-t border-white/15 px-5 py-4 text-[10px] uppercase tracking-[0.18em] text-white/50">
+                  ARUNERA Boutique · Cambodia specialty coffee gift collection
+                </figcaption>
+              </figure>
+
               <div className="mt-12 grid grid-cols-1 gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
                 {partnershipFlow.map(([title, copy]) => (
                   <div key={title} className="bg-[#071a32] p-7">
