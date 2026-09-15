@@ -46,6 +46,15 @@ test("About desktop hero uses a split readable composition instead of centered c
   assert.match(about, /Cambodia\./)
 })
 
+test("About desktop polish keeps bounded hero height and compact four-card entry rhythm", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
+  assert.match(about, /lg:min-h-\[680px\][^\n]*xl:min-h-\[700px\]/)
+  assert.match(about, /lg:aspect-square[^\n]*xl:aspect-\[5\/4\]/)
+  assert.match(about, /group-hover:scale-\[1\.025\]/)
+  assert.match(about, /lg:py-28/)
+})
+
 test("About four visual entrances are real links to approved owner pages", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
