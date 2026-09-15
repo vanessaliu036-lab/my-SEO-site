@@ -69,8 +69,8 @@ const internalLinks: Record<string, string> = {
   "Fine Robusta Cambodia": "/fine-robusta-cambodia",
   "Custom Roasting": "/solutions/roasting-program",
   "Roasting Program": "/solutions/roasting-program",
-  "single-origin coffee": "/origins/single-origin",
-  cupping: "/origins/single-origin",
+  "single-origin coffee": "/origins",
+  cupping: "/blog/how-to-cup-fine-robusta",
 }
 
 const renderWithLinks = (text: string) => {
