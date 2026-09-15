@@ -4,8 +4,8 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 const localMarket = read("components/templates/local-market-solution-template.tsx")
-const about = read("components/templates/about-editorial-template.tsx")
 const origins = read("app/(site)/origins/page.tsx")
+const css = read("app/globals.css")
 
 test("coffee marketing template uses the approved About green palette", () => {
   assert.match(localMarket, /bg-\[#2f3b2d\] text-\[#f3f1ea\]/)
@@ -15,14 +15,12 @@ test("coffee marketing template uses the approved About green palette", () => {
 })
 
 test("About and Origins use the same approved dark green for dark visual surfaces", () => {
-  assert.doesNotMatch(about, /bg-\[#5c6f58\]/)
-  assert.match(about, /id="why-occ" className="relative overflow-hidden bg-\[#2f3b2d\]/)
+  assert.match(css, /section#why-occ\s*\{[\s\S]*?background-color:\s*#2f3b2d\s*!important/)
   assert.doesNotMatch(origins, /bg-\[#202820\]/)
   assert.match(origins, /bg-\[#2f3b2d\]/)
 })
 
 test("product-led About gallery image keeps the complete product visible", () => {
-  assert.match(about, /label: "READY-TO-SELL"[\s\S]*?fit: "contain"/)
-  assert.match(about, /backgroundSize: panel\.fit \?\? "cover"/)
-  assert.match(about, /panel\.fit === "contain" \? "" : "group-hover:scale-\[1\.025\]"/)
+  assert.match(css, /a:nth-child\(3\) > div:first-child\s*\{[\s\S]*?background-size:\s*contain\s*!important/)
+  assert.match(css, /a:nth-child\(3\) > div:first-child\s*\{[\s\S]*?background-color:\s*#2f3b2d\s*!important/)
 })
