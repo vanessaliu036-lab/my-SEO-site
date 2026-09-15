@@ -71,6 +71,7 @@ test("ABOUT Why OCC has a real-image rendering fallback for mobile Safari", () =
   assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
   assert.match(fallback, /Cambodian coffee origin and production/)
   assert.match(fallback, /const WHY_OCC_SOURCE = "\/distribution-hero\.webp"/)
+  assert.match(fallback, /element\.style\.position = "relative"/)
   assert.match(fallback, /createPortal\(/)
   assert.match(fallback, /<img[\s\S]*?src=\{WHY_OCC_SOURCE\}[\s\S]*?object-cover/)
 })
