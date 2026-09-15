@@ -67,7 +67,11 @@ test("About uses the approved sage photo-led visual system without replacing sha
   assert.match(source, /#5c6f58/i)
   assert.match(source, /#2f3b2d/i)
   assert.match(source, /#f3f1ea/i)
-  assert.match(source, /\/about\/occ-about-atlas\.avif/)
+  assert.match(source, /\/about\/about-origin\.svg/)
+  assert.match(source, /\/about\/about-fine-robusta\.svg/)
+  assert.match(source, /\/about\/about-ready-to-sell\.svg/)
+  assert.match(source, /\/about\/about-made-for-you\.svg/)
+  assert.doesNotMatch(source, /occ-about-atlas\.avif/)
   assert.match(source, /data-about-ghost="origin"/)
   assert.match(source, /data-about-ghost="coffee"/)
 
