@@ -8,8 +8,9 @@ function read(path) {
 
 const nextConfig = read('next.config.mjs')
 const proxySource = read('proxy.ts')
+const singleOriginPage = read('app/(site)/origins/single-origin/page.tsx')
 
-test('legacy /coffee/single-origin permanently consolidates into the Single Origin owner', () => {
+test('legacy /coffee/single-origin remains consolidated and exits into the Fine Robusta funnel', () => {
   const frameworkRoute = /source:\s*['"]\/coffee\/single-origin['"][\s\S]{0,180}?destination:\s*['"]\/origins\/single-origin['"][\s\S]{0,100}?(?:permanent:\s*true|statusCode:\s*301)/
 
   assert.match(nextConfig, frameworkRoute)
@@ -18,4 +19,6 @@ test('legacy /coffee/single-origin permanently consolidates into the Single Orig
     /["']\/coffee\/single-origin["']\s*:\s*["']\/origins\/single-origin["']/,
   )
   assert.match(proxySource, /NextResponse\.redirect\(url, 301\)/)
+  assert.match(singleOriginPage, /permanentRedirect\(["']\/fine-robusta-cambodia["']\)/)
+  assert.doesNotMatch(singleOriginPage, /permanentRedirect\(["']\/origins["']\)/)
 })
