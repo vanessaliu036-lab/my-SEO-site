@@ -8,10 +8,17 @@ const cssPath = "app/about-image-overrides.css"
 const layoutPath = "app/layout.tsx"
 const publicSiteLayoutPath = "app/(site)/layout.tsx"
 const mobileFallbackPath = "components/site/about-image-fallback.tsx"
-const whyOccJpegPath = "public/about/about-why-occ.jpg"
+const whyOccRoutePath = "app/images/about-why-occ.jpg/route.ts"
+const whyOccChunkPaths = [1, 2, 3, 4, 5].map((index) => `lib/assets/about-why-occ-jpeg-chunk-${index}.ts`)
 
 const sha256 = (filePath) =>
   crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex")
+
+const extractChunk = (source) => {
+  const match = source.match(/=\s*"([A-Za-z0-9+/=]+)"\s*$/m)
+  assert.ok(match, "JPEG asset chunk must export one base64 string")
+  return match[1]
+}
 
 test("ABOUT major visual slots use six independent image sources and hashes", () => {
   assert.equal(
@@ -64,7 +71,7 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
   )
 })
 
-test("ABOUT Why OCC mobile fallback uses a directly decodable JPEG asset", () => {
+test("ABOUT Why OCC mobile fallback serves a real JPEG route for iOS Safari", () => {
   const publicSiteLayout = fs.readFileSync(publicSiteLayoutPath, "utf8")
   const fallback = fs.readFileSync(mobileFallbackPath, "utf8")
 
@@ -72,9 +79,24 @@ test("ABOUT Why OCC mobile fallback uses a directly decodable JPEG asset", () =>
   assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
   assert.match(fallback, /usePathname/)
   assert.match(fallback, /Cambodian coffee origin and production/)
-  assert.match(fallback, /const WHY_OCC_SOURCE = "\/about\/about-why-occ\.jpg"/)
-  assert.equal(fs.existsSync(whyOccJpegPath), true, "Why OCC JPEG fallback asset must exist in public/about")
-  assert.ok(fs.statSync(whyOccJpegPath).size > 10_000, "Why OCC JPEG fallback asset must not be an empty placeholder")
+  assert.match(fallback, /const WHY_OCC_SOURCE = "\/images\/about-why-occ\.jpg"/)
+
+  assert.equal(fs.existsSync(whyOccRoutePath), true, "Why OCC JPEG route must exist")
+  const route = fs.readFileSync(whyOccRoutePath, "utf8")
+  assert.match(route, /"Content-Type": "image\/jpeg"/)
+  assert.match(route, /Buffer\.from\(/)
+
+  for (const chunkPath of whyOccChunkPaths) {
+    assert.equal(fs.existsSync(chunkPath), true, `Why OCC JPEG chunk is missing: ${chunkPath}`)
+  }
+  const base64 = whyOccChunkPaths.map((chunkPath) => extractChunk(fs.readFileSync(chunkPath, "utf8"))).join("")
+  const jpeg = Buffer.from(base64, "base64")
+  assert.ok(jpeg.length > 10_000, "Why OCC JPEG must not be an empty placeholder")
+  assert.equal(jpeg[0], 0xff, "Why OCC asset must start with JPEG SOI marker")
+  assert.equal(jpeg[1], 0xd8, "Why OCC asset must start with JPEG SOI marker")
+  assert.equal(jpeg[jpeg.length - 2], 0xff, "Why OCC asset must end with JPEG EOI marker")
+  assert.equal(jpeg[jpeg.length - 1], 0xd9, "Why OCC asset must end with JPEG EOI marker")
+
   assert.match(fallback, /element\.style\.position = "relative"/)
   assert.match(fallback, /\}, \[pathname\]\)/)
   assert.match(fallback, /createPortal\(/)
