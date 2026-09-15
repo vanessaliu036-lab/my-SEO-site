@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { createPortal } from "react-dom"
 
 const WHY_OCC_SELECTOR = 'div[role="img"][aria-label="Cambodian coffee origin and production"]'
-const WHY_OCC_SOURCE = "/distribution-hero.webp"
+const WHY_OCC_SOURCE = "/about/about-why-occ.jpg"
 
 export function AboutImageFallback() {
   const pathname = usePathname()
@@ -33,7 +33,7 @@ export function AboutImageFallback() {
       alt=""
       aria-hidden="true"
       data-about-why-occ-fallback="true"
-      className="pointer-events-none absolute inset-0 z-[1] h-full w-full object-cover object-center"
+      className="pointer-events-none absolute inset-0 z-[1] h-full w-full object-cover object-center lg:hidden"
       decoding="async"
       loading="eager"
     />,
