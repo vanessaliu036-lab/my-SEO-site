@@ -21,9 +21,42 @@ test("shared OCC chrome uses the transparent official logo without background ti
   assert.doesNotMatch(logo, /<rect\b/)
 })
 
+test("global header keeps one approved OCC logo size across public pages", () => {
+  const header = read("components/site/site-header.tsx")
+
+  assert.match(header, /src="\/occ-logo-primary-local\.svg"/)
+  assert.match(header, /h-\[52px\][^\n]*sm:h-\[58px\][^\n]*lg:h-\[64px\]/)
+  assert.match(header, /h-\[88px\][^\n]*sm:h-24/)
+})
+
 test("homepage and About keep photo-led assets with no baked-in text dependency", () => {
   const home = read("components/templates/home-template.tsx")
   const about = read("components/templates/about-editorial-template.tsx")
   assert.match(home, /\/hero-home\.webp/)
   assert.match(about, /\/about\/occ-about-atlas\.avif/)
+})
+
+test("About desktop hero uses a split readable composition instead of centered copy over the full atlas", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
+  assert.match(about, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
+  assert.match(about, /backgroundSize: "400% auto"/)
+  assert.match(about, /backgroundPosition: "0% 50%"/)
+  assert.match(about, /One origin\./)
+  assert.match(about, /Cambodia\./)
+})
+
+test("About four visual entrances are real links to approved owner pages", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
+  for (const [label, href] of [
+    ["ONE ORIGIN", "/origins"],
+    ["FINE ROBUSTA", "/fine-robusta-cambodia"],
+    ["READY-TO-SELL", "/solutions/wholesale"],
+    ["MADE-FOR-YOU", "/solutions/roasting-program"],
+  ]) {
+    assert.match(about, new RegExp(`label: "${label}"[\\s\\S]*?href: "${href.replaceAll("/", "\\/")}"`))
+  }
+
+  assert.match(about, /galleryPanels\.map\([\s\S]*?<Link/)
 })
