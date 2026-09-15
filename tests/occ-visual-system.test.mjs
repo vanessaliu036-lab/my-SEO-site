@@ -29,6 +29,31 @@ test("global header keeps one approved OCC logo size across public pages", () =>
   assert.match(header, /h-\[88px\][^\n]*sm:h-24/)
 })
 
+test("responsive chrome keeps desktop navigation distinct from the mobile drawer", () => {
+  const header = read("components/site/site-header.tsx")
+  const mobileMenu = read("components/site/mobile-menu.tsx")
+
+  assert.match(header, /lg:flex/)
+  assert.match(header, /lg:hidden/)
+  assert.match(mobileMenu, /siteNavigation\.map/)
+  assert.match(mobileMenu, /text-3xl/)
+})
+
+test("standalone primary navigation keeps approved order and is not demoted to footer utilities", () => {
+  const navigation = read("components/site/navigation-data.ts")
+  const footer = read("components/site/site-footer.tsx")
+
+  const partnerships = navigation.indexOf('{ label: "PARTNERSHIPS", href: "/partnerships" }')
+  const distribution = navigation.indexOf('{ label: "DISTRIBUTION", href: "/distribution" }')
+  const blog = navigation.indexOf('{ label: "BLOG", href: "/blog" }')
+  const contact = navigation.indexOf('{ label: "CONTACT", href: "/contact" }')
+
+  assert.ok(partnerships >= 0 && distribution > partnerships && blog > distribution && contact > blog)
+  assert.doesNotMatch(footer, /const utilityItems/)
+  assert.match(footer, /const standaloneItems/)
+  assert.match(footer, /standaloneItems\.map/)
+})
+
 test("homepage and About keep photo-led assets with no baked-in text dependency", () => {
   const home = read("components/templates/home-template.tsx")
   const about = read("components/templates/about-editorial-template.tsx")
