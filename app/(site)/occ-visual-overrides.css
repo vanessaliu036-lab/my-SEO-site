@@ -1,0 +1,14 @@
+/* Narrow visual corrections for OCC public pages. Keep these selectors page-specific. */
+section#why-occ {
+  background-color: #2f3b2d !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
+  background-size: contain !important;
+  background-color: #2f3b2d !important;
+  background-position: 50% 50% !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a:nth-child(3):hover > div:first-child {
+  transform: none !important;
+}
