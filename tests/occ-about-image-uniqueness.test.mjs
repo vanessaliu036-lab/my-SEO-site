@@ -6,7 +6,8 @@ import path from "node:path"
 
 const cssPath = "app/about-image-overrides.css"
 const layoutPath = "app/layout.tsx"
-const templatePath = "components/templates/about-editorial-template.tsx"
+const publicSiteLayoutPath = "app/(site)/layout.tsx"
+const mobileFallbackPath = "components/site/about-image-fallback.tsx"
 
 const sha256 = (filePath) =>
   crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex")
@@ -62,14 +63,14 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
   )
 })
 
-test("ABOUT Why OCC renders its audited source through Next Image on mobile", () => {
-  const template = fs.readFileSync(templatePath, "utf8")
+test("ABOUT Why OCC has a real-image rendering fallback for mobile Safari", () => {
+  const publicSiteLayout = fs.readFileSync(publicSiteLayoutPath, "utf8")
+  const fallback = fs.readFileSync(mobileFallbackPath, "utf8")
 
-  assert.match(template, /import Image from "next\/image"/)
-  assert.match(template, /const whyOccImage = "\/distribution-hero\.webp"/)
-  assert.match(
-    template,
-    /aria-label="Cambodian coffee origin and production"[\s\S]*?<Image[\s\S]*?src=\{whyOccImage\}[\s\S]*?fill/,
-    "Why OCC must use a real Next Image element instead of relying only on a CSS background on mobile Safari",
-  )
+  assert.match(publicSiteLayout, /import \{ AboutImageFallback \}/)
+  assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
+  assert.match(fallback, /Cambodian coffee origin and production/)
+  assert.match(fallback, /const WHY_OCC_SOURCE = "\/distribution-hero\.webp"/)
+  assert.match(fallback, /createPortal\(/)
+  assert.match(fallback, /<img[\s\S]*?src=\{WHY_OCC_SOURCE\}[\s\S]*?object-cover/)
 })
