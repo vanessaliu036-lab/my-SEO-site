@@ -73,7 +73,7 @@ const nextConfig = {
       },
       {
         source: '/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia',
-        destination: '/blog/what-is-fine-robusta-coffee-a-complete-beginners-guide',
+        destination: '/fine-robusta-cambodia',
         permanent: true,
       },
       {
