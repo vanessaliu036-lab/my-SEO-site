@@ -43,7 +43,7 @@ test(
   async () => {
     const ownerRecords = await fetchRecords(
       'SEO Keyword Owners',
-      'OR({Keyword}="coffee processing quality cherry",{Keyword}="mondulkiri coffee")',
+      'OR({Keyword}="coffee processing quality cherry",{Keyword}="mondulkiri coffee",{Keyword}="robusta cambodia")',
     )
     const ownerByKeyword = new Map(
       ownerRecords.map((record) => [record.fields?.Keyword, record.fields?.['Owner URL']]),
@@ -51,9 +51,11 @@ test(
 
     const processingOwner = ownerPath(ownerByKeyword.get('coffee processing quality cherry'))
     const mondulkiriOwner = ownerPath(ownerByKeyword.get('mondulkiri coffee'))
+    const robustaCambodiaOwner = ownerPath(ownerByKeyword.get('robusta cambodia'))
 
     assert.equal(processingOwner, '/blog/good-coffee-cherries-need-processing')
     assert.equal(mondulkiriOwner, '/blog/mondulkiri-next-specialty-coffee-origin')
+    assert.equal(robustaCambodiaOwner, '/blog/cambodia-specialty-robusta-coffee-guide')
 
     const supplierRecords = await fetchRecords(
       'OCC_Blog_Posts',
@@ -76,11 +78,17 @@ test(
       content.includes(`[farmer impact and sourcing guide](${ETHICAL_SOURCING_SUPPORT_PATH})`),
       'Supplier Owner must route farmer-impact intent to the approved ethical-sourcing support page',
     )
+    assert.ok(
+      content.includes(`[Cambodia origin and coffee discovery](${robustaCambodiaOwner})`),
+      'Supplier Owner must route general Robusta Cambodia discovery directly to its formal Owner',
+    )
 
     for (const forbiddenTarget of [
       '/mondulkiri-coffee',
       '/coffee-processing-quality',
       '/farmer-impact-sourcing',
+      '/cambodia-robusta-coffee',
+      '/cambodia-robusta-coffee/',
     ]) {
       assert.equal(
         content.includes(`](${forbiddenTarget})`),
