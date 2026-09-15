@@ -20,23 +20,23 @@ const atlas = "/about/occ-about-atlas.avif"
 const differences = [
   {
     title: "One origin",
-    copy: "Every OCC coffee starts in Cambodia. We do not use neighboring origins to fill volume or blur the story. Cambodia is the product foundation, not a marketing label added later.",
+    copy: "Every OCC coffee starts in Cambodia. Origin is the product foundation, not a label added later.",
   },
   {
     title: "Small batches",
-    copy: "We would rather work with smaller, clearer batches than chase volume at the expense of origin identity, quality decisions, or buyer confidence.",
+    copy: "We prefer smaller, clearer batches over volume that weakens quality or origin identity.",
   },
   {
     title: "Origin clarity",
-    copy: "Country, region, producer, processing, lot, and shipment claims become more specific only when the supporting evidence becomes more specific. Clear scope matters.",
+    copy: "Country, region, producer, process, and lot claims become more specific only when the evidence does.",
   },
   {
     title: "Quality focus",
-    copy: "Quality is evaluated through the coffee itself: processing, physical condition, sensory performance, roast application, consistency, and the requirements of the buyer.",
+    copy: "We evaluate processing, physical condition, sensory performance, roast application, and consistency.",
   },
   {
     title: "Cambodian Fine Robusta expertise",
-    copy: "Fine Robusta is OCC’s specialist wedge. We treat Coffea canephora as a quality category with its own origin, processing, sensory, and roasting potential — not as a commodity stereotype.",
+    copy: "Fine Robusta is our specialist wedge: canephora evaluated as a quality category, not a commodity stereotype.",
   },
 ]
 
@@ -75,23 +75,23 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
   return (
     <div className="bg-[#f3f1ea] text-[#182019]">
       <section className="relative overflow-hidden bg-[#2f3b2d] text-[#f3f1ea]">
-        <div className="mx-auto grid min-h-[640px] w-full max-w-[1680px] grid-cols-1 lg:min-h-[720px] lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="relative z-10 flex items-center px-6 py-16 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-            <motion.div {...reveal(24)} className="w-full max-w-[670px]">
+        <div className="mx-auto grid min-h-[600px] w-full max-w-[1680px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[0.92fr_1.08fr] xl:min-h-[700px]">
+          <div className="relative z-10 flex items-center px-6 py-14 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+            <motion.div {...reveal(24)} className="w-full max-w-[640px]">
               <p className="text-[10px] font-semibold uppercase tracking-[0.38em] text-white/66">
                 Who We Are · Origin Coffee Cambodia
               </p>
               <h1
                 aria-label="One origin. Cambodia."
-                className="mt-7 font-[var(--font-display)] text-[clamp(3.8rem,7vw,7.25rem)] font-normal leading-[0.87] tracking-[-0.045em] text-white"
+                className="mt-7 font-[var(--font-display)] text-[clamp(3.6rem,6.2vw,6.75rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white"
               >
                 One origin.
                 <br />Cambodia.
               </h1>
-              <p className="mt-8 max-w-[610px] text-[clamp(1.15rem,1.65vw,1.55rem)] font-medium leading-[1.32] tracking-[-0.02em] text-white">
+              <p className="mt-8 max-w-[580px] text-[clamp(1.12rem,1.5vw,1.45rem)] font-medium leading-[1.34] tracking-[-0.02em] text-white">
                 OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist.
               </p>
-              <p className="mt-6 max-w-[590px] text-sm leading-7 text-white/70 sm:text-[15px]">
+              <p className="mt-6 max-w-[560px] text-sm leading-7 text-white/70 sm:text-[15px]">
                 We work with Cambodian coffee in small batches, connecting origin, quality and roasting with the people and businesses bringing Cambodian coffee to new markets.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-5">
@@ -107,13 +107,13 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
 
           <div
-            className="relative min-h-[520px] overflow-hidden bg-[#5c6f58] bg-no-repeat lg:min-h-full"
+            className="relative min-h-[480px] overflow-hidden bg-[#5c6f58] bg-no-repeat lg:min-h-full"
             style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: "0% 50%" }}
             role="img"
             aria-label="Cambodian coffee at origin"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2f3b2d]/45 via-[#2f3b2d]/8 to-transparent lg:from-[#2f3b2d]/35" />
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/20 bg-[#2f3b2d]/20 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-white/68 backdrop-blur-[2px] sm:px-8 lg:px-10">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2f3b2d]/38 via-[#2f3b2d]/5 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/20 bg-[#2f3b2d]/18 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-white/68 backdrop-blur-[2px] sm:px-8 lg:px-10">
               <span>Fine Robusta Specialist</span>
               <span>01 / About</span>
             </div>
@@ -129,14 +129,14 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           coffee
         </div>
 
-        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-1 gap-12 px-6 py-20 sm:px-8 md:px-12 lg:grid-cols-12 lg:items-center lg:px-16 lg:py-24">
+        <div className="relative mx-auto grid w-full max-w-[1480px] grid-cols-1 gap-12 px-6 py-20 sm:px-8 md:px-12 lg:grid-cols-12 lg:items-center lg:px-16 lg:py-28">
           <motion.div {...reveal(26)} className="lg:col-span-5">
             <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">02 / Why OCC</p>
-            <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,4.9rem)] font-normal leading-[0.95] tracking-[-0.035em] text-white">
+            <h2 className="mt-6 max-w-[570px] font-[var(--font-display)] text-[clamp(2.8rem,4.5vw,4.65rem)] font-normal leading-[0.96] tracking-[-0.035em] text-white">
               A Cambodian coffee supplier
               <br />with one origin to protect.
             </h2>
-            <div className="mt-8 max-w-xl border-t border-white/20 pt-7">
+            <div className="mt-8 max-w-[560px] border-t border-white/20 pt-7">
               <p className="text-[17px] leading-8 text-white/88">
                 OCC is built around one commercial idea: help Cambodian coffee travel further without losing the identity, evidence, and quality decisions that make the coffee worth choosing.
               </p>
@@ -148,7 +148,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
           <motion.div {...reveal(34)} className="lg:col-span-6 lg:col-start-7">
             <div
-              className="aspect-[5/4] overflow-hidden border border-white/15 bg-[#2f3b2d] bg-no-repeat shadow-[0_24px_60px_rgba(22,31,20,0.18)]"
+              className="aspect-[5/4] overflow-hidden border border-white/15 bg-[#2f3b2d] bg-no-repeat shadow-[0_24px_60px_rgba(22,31,20,0.18)] lg:aspect-[6/5] xl:aspect-[4/3]"
               style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: "33.333% 50%" }}
               role="img"
               aria-label="Cambodian coffee origin and production"
@@ -156,7 +156,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </motion.div>
 
           <div className="lg:col-span-12">
-            <div className="grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 xl:grid-cols-5">
+            <div className="grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 xl:grid-cols-[0.9fr_0.9fr_1fr_1fr_1.35fr]">
               {differences.map((item, index) => (
                 <motion.div
                   key={item.title}
@@ -165,7 +165,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                 >
                   <p className="text-[9px] tracking-[0.2em] text-white/34">0{index + 1}</p>
                   <h3 className="mt-4 text-sm font-semibold leading-5 text-white">{item.title}</h3>
-                  <p className="mt-3 text-[12px] leading-6 text-white/58">{item.copy}</p>
+                  <p className="mt-3 max-w-[260px] text-[12px] leading-[1.65] text-white/58">{item.copy}</p>
                 </motion.div>
               ))}
             </div>
@@ -174,17 +174,21 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
       </section>
 
       <section className="grid grid-cols-1 bg-[#2f3b2d] sm:grid-cols-2 lg:grid-cols-4" aria-label="OCC origin and commercial paths">
-        {galleryPanels.map((panel) => (
+        {galleryPanels.map((panel, index) => (
           <Link
             key={panel.label}
             href={panel.href}
-            className="group relative aspect-[4/5] overflow-hidden border-b border-r border-white/20 bg-no-repeat lg:border-b-0"
-            style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: `${panel.position}% 50%` }}
+            className="group relative aspect-[4/5] overflow-hidden border-b border-r border-white/20 lg:aspect-square lg:border-b-0 xl:aspect-[5/4]"
             aria-label={`${panel.label}: ${panel.note}`}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#1f291f]/78 transition-colors duration-500 group-hover:bg-[#2f3b2d]/18" />
-            <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-white/58">0{galleryPanels.indexOf(panel) + 1}</p>
+            <div
+              className="absolute inset-0 bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+              style={{ backgroundImage: `url(${atlas})`, backgroundSize: "400% auto", backgroundPosition: `${panel.position}% 50%` }}
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#1f291f]/80 transition-colors duration-500 group-hover:bg-[#2f3b2d]/14" />
+            <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7 lg:p-8">
+              <p className="text-[9px] uppercase tracking-[0.2em] text-white/58">0{index + 1}</p>
               <div className="mt-3 flex items-end justify-between gap-4">
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white">{panel.label}</h3>
@@ -198,20 +202,20 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
       </section>
 
       <main className="bg-[#f3f1ea]">
-        <motion.section {...reveal()} className="mx-auto grid w-full max-w-[1480px] grid-cols-1 border-b border-black/10 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-24">
+        <motion.section {...reveal()} className="mx-auto grid w-full max-w-[1480px] grid-cols-1 border-b border-black/10 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
           <div className="md:col-span-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5c6f58]">03 / What We Are Building</p>
           </div>
           <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
-            <h2 aria-label="A Premium Cambodian Coffee Brand" className="font-[var(--font-display)] text-[clamp(2.8rem,5vw,5.2rem)] font-normal leading-[0.92] tracking-[-0.04em] text-[#2f3b2d]">
+            <h2 aria-label="A Premium Cambodian Coffee Brand" className="max-w-[780px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-[#2f3b2d]">
               A Premium
               <br />Cambodian Coffee Brand
             </h2>
             <div className="mt-10 grid grid-cols-1 gap-8 border-t border-black/10 pt-8 lg:grid-cols-2 lg:gap-14">
-              <p className="text-lg leading-8 text-black/82">
+              <p className="max-w-[540px] text-lg leading-8 text-black/82">
                 Cambodia is still a young coffee origin in the minds of many international buyers. OCC is building toward a future in which Cambodian coffee can be recognized for its own origin identity.
               </p>
-              <div className="space-y-5 text-[15px] leading-7 text-black/64">
+              <div className="max-w-[520px] space-y-5 text-[15px] leading-7 text-black/64">
                 <p>
                   Cambodian Fine Robusta should be evaluated for quality rather than reduced to old assumptions about Robusta.
                 </p>
@@ -228,7 +232,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                 ["Commercially usable", "Profiles must work in real cafés, retail programs, hospitality, and distribution."],
                 ["Built for recognition", "Each buyer relationship should increase familiarity with Cambodian coffee, not hide it."],
               ].map(([title, copy]) => (
-                <div key={title} className="bg-[#f3f1ea] p-7 sm:p-8">
+                <div key={title} className="bg-[#f3f1ea] p-7 sm:p-8 lg:min-h-[150px]">
                   <h3 className="text-sm font-semibold text-[#2f3b2d]">{title}</h3>
                   <p className="mt-3 max-w-md text-[13px] leading-6 text-black/56">{copy}</p>
                 </div>
@@ -237,14 +241,14 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
         </motion.section>
 
-        <section className="mx-auto w-full max-w-[1480px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-24" aria-labelledby="work-with-occ-title">
+        <section className="mx-auto w-full max-w-[1480px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28" aria-labelledby="work-with-occ-title">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5c6f58]">04 / Work With OCC</p>
             </div>
             <div className="md:col-span-8 md:col-start-5">
               <motion.div {...reveal(30)}>
-                <h2 id="work-with-occ-title" aria-label="How would you like to work with OCC?" className="font-[var(--font-display)] text-[clamp(2.7rem,4.6vw,4.8rem)] font-normal leading-[0.94] tracking-[-0.035em] text-[#2f3b2d]">
+                <h2 id="work-with-occ-title" aria-label="How would you like to work with OCC?" className="max-w-[780px] font-[var(--font-display)] text-[clamp(2.7rem,4.4vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.035em] text-[#2f3b2d]">
                   How would you like
                   <br />to work with OCC?
                 </h2>
@@ -254,7 +258,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               </motion.div>
 
               <div className="mt-12 grid grid-cols-1 gap-6 xl:grid-cols-2">
-                <motion.article {...reveal(28)} className="flex h-full flex-col border border-[#5c6f58]/30 bg-white/28 p-7 sm:p-9">
+                <motion.article {...reveal(28)} className="flex h-full flex-col border border-[#5c6f58]/30 bg-white/28 p-7 sm:p-9 xl:min-h-[500px]">
                   <div className="flex items-center justify-between gap-4">
                     <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#5c6f58]">01 / Ready-to-Sell</p>
                     <span className="text-[9px] uppercase tracking-[0.18em] text-black/34">Choose our profile.</span>
@@ -276,7 +280,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                   </Link>
                 </motion.article>
 
-                <motion.article {...reveal(34)} className="flex h-full flex-col bg-[#2f3b2d] p-7 text-[#f3f1ea] sm:p-9">
+                <motion.article {...reveal(34)} className="flex h-full flex-col bg-[#2f3b2d] p-7 text-[#f3f1ea] sm:p-9 xl:min-h-[500px]">
                   <div className="flex items-center justify-between gap-4">
                     <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/70">02 / Made-for-You</p>
                     <span className="text-[9px] uppercase tracking-[0.18em] text-white/38">Build yours.</span>
@@ -302,21 +306,21 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
         </section>
 
-        <motion.section {...reveal()} className="bg-[#2f3b2d] px-6 py-20 text-[#f3f1ea] sm:px-8 md:px-12 lg:px-16 lg:py-24">
+        <motion.section {...reveal()} className="bg-[#2f3b2d] px-6 py-20 text-[#f3f1ea] sm:px-8 md:px-12 lg:px-16 lg:py-28">
           <div className="mx-auto grid w-full max-w-[1352px] grid-cols-1 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/46">05 / Where We Are Going</p>
             </div>
             <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
-              <h2 className="font-[var(--font-display)] text-[clamp(2.8rem,5vw,5.2rem)] font-normal leading-[0.92] tracking-[-0.04em] text-white">
+              <h2 className="max-w-[820px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-white">
                 Cambodian coffee
                 <br />for international markets.
               </h2>
               <div className="mt-9 grid grid-cols-1 gap-8 border-t border-white/18 pt-8 lg:grid-cols-2 lg:gap-14">
-                <p className="text-lg leading-8 text-white/84">
+                <p className="max-w-[520px] text-lg leading-8 text-white/84">
                   OCC is building toward long-term relationships with international distributors, importers, retailers, and hospitality partners that want a clearer Cambodian coffee proposition.
                 </p>
-                <div className="space-y-5 text-[15px] leading-7 text-white/64">
+                <div className="max-w-[520px] space-y-5 text-[15px] leading-7 text-white/64">
                   <p>
                     The goal is repeat business built on fit: the right coffee, the right roast, the right channel, and a supply relationship that can become more precise as origin evidence and commercial requirements become more precise.
                   </p>
@@ -340,7 +344,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
         </motion.section>
 
-        <section className="mx-auto w-full max-w-[1480px] px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-24" aria-labelledby="about-explore-title">
+        <section className="mx-auto w-full max-w-[1480px] px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28" aria-labelledby="about-explore-title">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5c6f58]">06 / Explore OCC</p>
@@ -353,7 +357,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <div className="md:col-span-8 md:col-start-5">
               {sections.map((section, index) => (
                 <motion.div key={section.href} {...reveal(34)}>
-                  <Link href={section.href} className="group grid grid-cols-[38px_1fr_auto] items-end gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr_auto] sm:py-9">
+                  <Link href={section.href} className="group grid grid-cols-[38px_1fr_auto] items-end gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr_auto] sm:py-9 lg:py-10">
                     <span className="pb-1 text-[9px] font-medium tracking-[0.2em] text-black/34">{String(index + 1).padStart(2, "0")}</span>
                     <div>
                       <h3 className="font-[var(--font-display)] text-2xl font-normal leading-none tracking-[-0.02em] text-[#2f3b2d] transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
