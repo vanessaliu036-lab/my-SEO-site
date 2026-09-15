@@ -25,6 +25,22 @@ test("Partnerships page exists and owns gift intent without stealing supplier in
   assert.doesNotMatch(source, /title:\s*["'`][^"'`]*wholesale/i)
 })
 
+test("Partnerships uses a dedicated high-resolution ARUNERA image with SEO alt text", () => {
+  const pagePath = "app/(site)/partnerships/page.tsx"
+  const source = read(pagePath)
+  const imageRoute = "app/images/occ-arunera-cambodian-coffee-gift-partnership.avif/route.ts"
+
+  assert.match(source, /src="\/images\/occ-arunera-cambodian-coffee-gift-partnership\.avif"/)
+  assert.match(source, /width=\{1448\}/)
+  assert.match(source, /height=\{1086\}/)
+  assert.match(source, /alt="OCC and ARUNERA premium Cambodian coffee gift collection"/)
+  assert.equal(fs.existsSync(imageRoute), true, "optimized partnership image route must exist")
+
+  const route = read(imageRoute)
+  assert.match(route, /image\/avif/)
+  assert.match(route, /max-age=31536000/)
+})
+
 test("Partnerships is discoverable from navigation and sitemap", () => {
   const navigation = read("components/site/navigation-data.ts")
   const sitemap = read("app/sitemap.ts")
