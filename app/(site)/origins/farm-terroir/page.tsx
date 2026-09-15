@@ -224,10 +224,10 @@ const sections = [
           Selective harvesting of mature cherries can provide a more consistent starting point for processing. Mixed maturity can increase variability before fermentation, drying, sorting, roasting, or brewing even begins.
         </p>
         <p>
-          This is where Farm & Terroir deliberately stops. Once the cherry leaves the farm stage, the central questions change from <strong className="font-semibold text-[#182019]">how did it grow?</strong> to <strong className="font-semibold text-[#182019]">can this coffee remain identifiable through producer, process, and lot?</strong>
+          This is where Farm & Terroir deliberately stops. Once the cherry leaves the farm stage, the central questions change from <strong className="font-semibold text-[#182019]">how did it grow?</strong> to <strong className="font-semibold text-[#182019]">how is quality evaluated through processing, physical condition, sensory evidence, traceability, and repeatability?</strong>
         </p>
         <p>
-          That next evidence layer belongs to <Link href="/origins/single-origin" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Single Origin</Link>.
+          That next quality layer belongs to <Link href="/fine-robusta-cambodia" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Fine Robusta Cambodia</Link>.
         </p>
       </div>
     ),
@@ -273,12 +273,12 @@ export default function FarmTerroirPage() {
           <MotionReveal className="mt-16 grid grid-cols-1 gap-8 border-t border-black/10 pt-10 md:mt-20 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7 md:col-start-4">
               <p className="font-[var(--font-display)] text-[clamp(2.25rem,8vw,3.7rem)] font-normal leading-[0.98] tracking-[-0.04em]">
-                The region tells us where the coffee comes from. The farm tells us how it grew there.
+                The region tells us where the coffee comes from. The farm tells us how it grew there. Fine Robusta asks how that potential is evaluated after harvest.
               </p>
             </div>
             <div className="md:col-span-2 md:col-start-11">
-              <Link href="/origins/single-origin" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
-                Explore Single Origin <ArrowUpRight className="size-3" />
+              <Link href="/fine-robusta-cambodia" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
+                Explore Fine Robusta <ArrowUpRight className="size-3" />
               </Link>
             </div>
           </MotionReveal>
@@ -293,7 +293,7 @@ export default function FarmTerroirPage() {
               <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
               <h2 className={sectionTitleClass}>What Shapes the Growing Environment?</h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
-                This page owns micro growing conditions and agricultural decisions. Regional geography stays on Cambodia & Regions; lot identity stays on Single Origin.
+                This page owns micro growing conditions and agricultural decisions. Regional geography stays on Cambodia & Regions; post-harvest quality evaluation continues on Fine Robusta Cambodia.
               </p>
             </MotionReveal>
 
@@ -356,17 +356,17 @@ export default function FarmTerroirPage() {
           <section className="py-12 lg:py-16">
             <div className="grid grid-cols-1 gap-8 bg-[#202820] p-7 text-[#f6f3ea] sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
               <div className="md:col-span-7">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Next Origin Layer</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Next Quality Layer</p>
                 <h2 className="mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2rem,7vw,3rem)] font-normal leading-[0.98] tracking-[-0.035em]">
-                  The Farm Ends Where Lot Identity Begins.
+                  The Farm Ends Where Quality Evaluation Begins.
                 </h2>
                 <p className="mt-6 max-w-[34rem] text-sm leading-7 text-white/66">
-                  Continue from growing conditions into producer, process, lot, sample, and traceability evidence without asking this page to own those search terms.
+                  Continue from growing conditions into processing, physical condition, sensory evidence, traceability, and repeatability without asking this page to own those quality terms.
                 </p>
               </div>
               <div className="md:col-span-4 md:col-start-9 md:text-right">
-                <Link href="/origins/single-origin" className="group inline-flex items-center gap-2 border-b border-white/35 pb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
-                  Explore Single Origin <ArrowUpRight className="size-3" />
+                <Link href="/fine-robusta-cambodia" className="group inline-flex items-center gap-2 border-b border-white/35 pb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
+                  Explore Fine Robusta <ArrowUpRight className="size-3" />
                 </Link>
               </div>
             </div>
