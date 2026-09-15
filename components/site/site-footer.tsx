@@ -4,8 +4,8 @@ import { siteNavigation } from "@/components/site/navigation-data"
 export function SiteFooter() {
   return (
     <footer className="border-t border-[#182019]/10 bg-[#efe9dc] text-[#182019]">
-      <div className="mx-auto w-full max-w-[1680px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
-        <div className="grid gap-12 border-b border-[#182019]/12 pb-12 lg:grid-cols-[0.9fr_2.1fr] lg:gap-16 lg:pb-16">
+      <div className="mx-auto w-full max-w-[1680px] px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-20">
+        <div className="grid gap-10 border-b border-[#182019]/12 pb-10 lg:grid-cols-[0.9fr_2.1fr] lg:gap-16 lg:pb-16">
           <div className="max-w-md">
             <Link
               href="/"
@@ -21,13 +21,13 @@ export function SiteFooter() {
               />
             </Link>
 
-            <p className="mt-7 max-w-sm text-sm leading-7 text-[#182019]/66">
+            <p className="mt-6 max-w-sm text-sm leading-7 text-[#182019]/66">
               Cambodia-origin specialty coffee, Fine Robusta expertise, sourcing, roasting, and B2B coffee solutions.
             </p>
 
             <Link
               href="/contact"
-              className="mt-7 inline-flex border-b border-[#182019] pb-1 text-[11px] font-medium uppercase tracking-[0.18em] transition-opacity hover:opacity-60"
+              className="mt-6 inline-flex border-b border-[#182019] pb-1 text-[11px] font-medium uppercase tracking-[0.18em] transition-opacity hover:opacity-60"
             >
               Start an enquiry
             </Link>
@@ -40,7 +40,7 @@ export function SiteFooter() {
             {siteNavigation.map((item, index) => (
               <div
                 key={item.label}
-                className={`min-h-[150px] border-b border-[#182019]/12 px-0 py-6 sm:px-6 lg:min-h-[180px] lg:px-7 lg:py-7 ${
+                className={`border-b border-[#182019]/12 px-0 py-5 sm:px-6 sm:py-6 lg:min-h-[180px] lg:px-7 lg:py-7 ${
                   index % 2 === 1 ? "sm:border-l sm:border-[#182019]/12" : ""
                 } ${index % 4 !== 0 ? "lg:border-l lg:border-[#182019]/12" : "lg:border-l-0"}`}
               >
@@ -52,7 +52,7 @@ export function SiteFooter() {
                 </Link>
 
                 {item.children?.length ? (
-                  <div className="mt-5 flex flex-col gap-3.5">
+                  <div className="mt-4 flex flex-col gap-3">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
