@@ -2,7 +2,8 @@
  * ABOUT image-source lock.
  * Every major visual slot must use an independent source image.
  * Different crops of the same source do not count as different images.
- * Keep this file source-only: the regression test audits both path uniqueness and file hashes.
+ * Keep the six primary source declarations above the mobile safety-net marker:
+ * the regression test audits both path uniqueness and file hashes.
  */
 
 div[role="img"][aria-label="Cambodian coffee at origin"] {
@@ -27,4 +28,20 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:fir
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:first-child {
   background-image: url("/about/about-made-for-you.svg") !important;
+}
+
+/* Mobile Safari JPEG safety net. */
+@media (max-width: 1023px) {
+  div[role="img"][aria-label="Cambodian coffee origin and production"] {
+    background-image: url("/about/about-why-occ.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #2f3b2d !important;
+  }
 }
