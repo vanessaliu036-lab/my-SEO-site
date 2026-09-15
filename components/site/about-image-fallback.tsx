@@ -11,7 +11,15 @@ export function AboutImageFallback() {
 
   useEffect(() => {
     const element = document.querySelector<HTMLElement>(WHY_OCC_SELECTOR)
+    if (!element) return
+
+    const previousPosition = element.style.position
+    element.style.position = "relative"
     setTarget(element)
+
+    return () => {
+      element.style.position = previousPosition
+    }
   }, [])
 
   if (!target) return null
