@@ -8,6 +8,7 @@ const cssPath = "app/about-image-overrides.css"
 const layoutPath = "app/layout.tsx"
 const publicSiteLayoutPath = "app/(site)/layout.tsx"
 const mobileFallbackPath = "components/site/about-image-fallback.tsx"
+const whyOccJpegPath = "public/about/about-why-occ.jpg"
 
 const sha256 = (filePath) =>
   crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex")
@@ -63,7 +64,7 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
   )
 })
 
-test("ABOUT Why OCC has a real-image rendering fallback for mobile Safari", () => {
+test("ABOUT Why OCC mobile fallback uses a directly decodable JPEG asset", () => {
   const publicSiteLayout = fs.readFileSync(publicSiteLayoutPath, "utf8")
   const fallback = fs.readFileSync(mobileFallbackPath, "utf8")
 
@@ -71,7 +72,9 @@ test("ABOUT Why OCC has a real-image rendering fallback for mobile Safari", () =
   assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
   assert.match(fallback, /usePathname/)
   assert.match(fallback, /Cambodian coffee origin and production/)
-  assert.match(fallback, /const WHY_OCC_SOURCE = "\/distribution-hero\.webp"/)
+  assert.match(fallback, /const WHY_OCC_SOURCE = "\/about\/about-why-occ\.jpg"/)
+  assert.equal(fs.existsSync(whyOccJpegPath), true, "Why OCC JPEG fallback asset must exist in public/about")
+  assert.ok(fs.statSync(whyOccJpegPath).size > 10_000, "Why OCC JPEG fallback asset must not be an empty placeholder")
   assert.match(fallback, /element\.style\.position = "relative"/)
   assert.match(fallback, /\}, \[pathname\]\)/)
   assert.match(fallback, /createPortal\(/)
