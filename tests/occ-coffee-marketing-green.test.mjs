@@ -5,7 +5,7 @@ import fs from "node:fs"
 const read = (path) => fs.readFileSync(path, "utf8")
 const localMarket = read("components/templates/local-market-solution-template.tsx")
 const origins = read("app/(site)/origins/page.tsx")
-const css = read("app/globals.css")
+const css = read("app/(site)/occ-visual-overrides.css")
 
 test("coffee marketing template uses the approved About green palette", () => {
   assert.match(localMarket, /bg-\[#2f3b2d\] text-\[#f3f1ea\]/)
@@ -23,4 +23,5 @@ test("About and Origins use the same approved dark green for dark visual surface
 test("product-led About gallery image keeps the complete product visible", () => {
   assert.match(css, /a:nth-child\(3\) > div:first-child\s*\{[\s\S]*?background-size:\s*contain\s*!important/)
   assert.match(css, /a:nth-child\(3\) > div:first-child\s*\{[\s\S]*?background-color:\s*#2f3b2d\s*!important/)
+  assert.match(css, /a:nth-child\(3\):hover > div:first-child\s*\{[\s\S]*?transform:\s*none\s*!important/)
 })
