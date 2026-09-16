@@ -1,6 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Inter, Cormorant_Garamond, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "./about-image-overrides.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -21,6 +21,14 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-display",
   display: "swap",
   weight: ["300", "400", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-authority",
+  display: "swap",
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
 });
 
@@ -71,6 +79,7 @@ const organizationId = `${siteUrl}/#organization`;
 const typographyCss = `
   :root {
     --occ-font-title: var(--font-display);
+    --occ-font-authority: var(--font-authority);
     --occ-font-subtitle: var(--font-sans);
     --occ-font-body: var(--font-sans);
   }
@@ -149,7 +158,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable} ${playfair.variable}`}>
       <head>
         <style id="occ-typography-system">{typographyCss}</style>
       </head>
