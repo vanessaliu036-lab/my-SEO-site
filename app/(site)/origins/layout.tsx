@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 
+// Typography inherits the global OCC two-font contract: Cormorant Garamond + Inter only.
 export default function OriginsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="occ-origins-scope">
