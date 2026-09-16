@@ -134,19 +134,27 @@ test("About mobile gallery uses a compact two-column card grid", () => {
   assert.match(css, /@media \(max-width: 1023px\)[\s\S]*?aspect-ratio:\s*3\s*\/\s*4\s*!important/)
 })
 
-test("About desktop hero keeps split readable composition", () => {
+test("About desktop hero follows the approved full-bleed centered reference", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  assert.match(about, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
-  assert.match(about, /One origin\./)
-  assert.match(about, /Cambodia\./)
+  assert.match(about, /aria-label="Cambodian coffee at origin"/)
+  assert.match(about, /min-h-\[620px\]/)
+  assert.match(about, /text-center/)
+  assert.match(about, /One origin\. Cambodia\./)
+  assert.doesNotMatch(about, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
 })
 
-test("About desktop polish keeps bounded hero height and compact four-card entry rhythm", () => {
+test("About removes the empty left rail from its editorial sections", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  assert.match(about, /lg:min-h-\[680px\][^\n]*xl:min-h-\[700px\]/)
-  assert.match(about, /lg:aspect-square[^\n]*xl:aspect-\[5\/4\]/)
+  assert.doesNotMatch(about, /md:col-span-3/)
+  assert.doesNotMatch(about, /md:col-start-5/)
+  assert.match(about, /max-w-\[1180px\]/)
+})
+
+test("About desktop polish keeps compact four-card entry rhythm", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
   assert.match(about, /group-hover:scale-\[1\.025\]/)
   assert.match(about, /lg:py-28/)
 })
