@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { CommercialSolutionTemplate } from "@/components/templates/commercial-solution-template"
+import { WholesaleEditorialTemplate } from "@/components/templates/wholesale-editorial-template"
 import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
@@ -219,7 +219,7 @@ export default function WholesalePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <CommercialSolutionTemplate
+      <WholesaleEditorialTemplate
         index="01"
         pathLabel="READY-TO-SELL"
         title="WHOLESALE COFFEE SUPPLY"
