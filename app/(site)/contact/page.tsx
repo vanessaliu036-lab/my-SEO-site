@@ -70,17 +70,10 @@ const breadcrumbSchema = {
 export default function ContactPage() {
   return (
     <>
-      <style>{`
-        .contact-font-vars {
-          --font-bebas: var(--font-display), Georgia, serif;
-          --font-barlow: var(--font-sans), Inter, Arial, sans-serif;
-          --font-barlow-condensed: var(--font-sans), Inter, Arial, sans-serif;
-        }
-      `}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactOrganizationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="occ-contact-shell">
-        <ContactForm fontVars="contact-font-vars" />
+        <ContactForm />
       </div>
     </>
   )
