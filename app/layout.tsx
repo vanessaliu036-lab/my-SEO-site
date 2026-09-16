@@ -100,6 +100,21 @@ const typographyCss = `
   h6,
   [data-occ-type="title"] {
     font-family: var(--occ-font-title), Georgia, serif !important;
+    font-style: normal !important;
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  [data-occ-type="title"] {
+    font-weight: 300 !important;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 400 !important;
   }
 
