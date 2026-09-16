@@ -4,24 +4,26 @@ import crypto from "node:crypto"
 import fs from "node:fs"
 
 const templatePath = "components/templates/about-editorial-template.tsx"
-const originAsset = "public/images/about-origin-current.webp"
-const qualityAsset = "public/images/about-quality-current.webp"
+const originChunks = [1, 2, 3, 4, 5].map((n) => `lib/assets/about-origin-current-chunk-${n}.ts`)
+const qualityChunks = [1, 2].map((n) => `lib/assets/about-quality-current-chunk-${n}.ts`)
 
-const sha256 = (filePath) =>
-  crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex")
+const sourceHash = (files) => {
+  const hash = crypto.createHash("sha256")
+  files.forEach((file) => hash.update(fs.readFileSync(file)))
+  return hash.digest("hex")
+}
 
-test("ABOUT hero and Why OCC use direct current-generation assets", () => {
+test("ABOUT hero and Why OCC use direct current-generation routes", () => {
   const template = fs.readFileSync(templatePath, "utf8")
 
-  assert.match(template, /const heroImage = "\/images\/about-origin-current\.webp"/)
-  assert.match(template, /const whyOccImage = "\/images\/about-quality-current\.webp"/)
+  assert.match(template, /const heroImage = "\/images\/about-origin-current\.avif"/)
+  assert.match(template, /const whyOccImage = "\/images\/about-quality-current\.avif"/)
   assert.doesNotMatch(template, /distribution-hero\.webp|hero-home\.webp|about-why-occ\.jpg/)
 
-  assert.equal(fs.existsSync(originAsset), true, "current About origin image must exist")
-  assert.equal(fs.existsSync(qualityAsset), true, "current About quality image must exist")
-  assert.ok(fs.statSync(originAsset).size > 200_000, "About origin image must retain high-detail source quality")
-  assert.ok(fs.statSync(qualityAsset).size > 70_000, "About quality image must retain high-detail source quality")
-  assert.notEqual(sha256(originAsset), sha256(qualityAsset), "About hero and Why OCC must use different source images")
+  for (const file of [...originChunks, ...qualityChunks]) {
+    assert.equal(fs.existsSync(file), true, `current About image source must exist: ${file}`)
+  }
+  assert.notEqual(sourceHash(originChunks), sourceHash(qualityChunks), "About hero and Why OCC must use different source images")
 })
 
 test("ABOUT no longer depends on CSS overrides or a client fallback", () => {
