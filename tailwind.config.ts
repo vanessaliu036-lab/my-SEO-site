@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 
+// OCC public typography contract: all utility font families resolve to Inter or Cormorant Garamond.
 // all in fixtures is set to tailwind v3 as interims solutions
 
 const config: Config = {
@@ -14,7 +15,9 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-display)', 'Georgia', 'serif'],
         display: ['var(--font-display)', 'Georgia', 'serif'],
+        mono: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
