@@ -82,14 +82,26 @@ const typographyCss = `
 
   body,
   p,
+  span,
+  a,
   li,
   dd,
   dt,
+  small,
+  strong,
+  em,
+  blockquote,
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td,
   input,
   textarea,
-  select {
+  select,
+  option {
     font-family: var(--occ-font-body), system-ui, sans-serif !important;
-    font-weight: 400;
   }
 
   h1,
@@ -120,6 +132,7 @@ const typographyCss = `
 
   nav,
   label,
+  legend,
   button,
   [role="button"],
   .occ-eyebrow,
