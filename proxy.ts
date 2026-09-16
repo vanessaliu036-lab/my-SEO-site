@@ -15,7 +15,7 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   "/cambodia-robusta-coffee":
     "/blog/cambodia-specialty-robusta-coffee-guide",
   "/coffee/single-origin":
-    "/fine-robusta-cambodia",
+    "/origins/single-origin",
   "/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia":
     "/blog/specialty-robusta-market-2025-boom",
   "/blog/phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs":
