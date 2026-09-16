@@ -1,1 +1,1 @@
-Production baseline restored from approved commit 6e36a6b364228cd78608d18b77a4734a355988a8 on 2026-09-16. Runtime application code is unchanged from that baseline.
+Production source remains derived from approved commit 6e36a6b364228cd78608d18b77a4734a355988a8. Approved subsequent presentation-only changes include the OCC two-font typography system, the roasting background asset, and the About reference-layout update. The About change does not alter SEO architecture, metadata, schema, URLs, internal links, or approved copy.
