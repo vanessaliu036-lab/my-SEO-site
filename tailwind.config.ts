@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 
+// OCC public typography contract: all utility font families resolve to Inter or Cormorant Garamond.
 // all in fixtures is set to tailwind v3 as interims solutions
 
 const config: Config = {
