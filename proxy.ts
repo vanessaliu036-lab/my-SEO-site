@@ -4,6 +4,10 @@ import type { NextRequest } from "next/server";
 const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   "/solutions/barista-staffing":
     "/solutions/coffee-marketing",
+  "/fine-robusta-standards":
+    "/blog/fine-robusta-grading-verify-before-cupping",
+  "/farmer-impact-sourcing":
+    "/about/sustainability",
   "/mondulkiri-coffee":
     "/blog/mondulkiri-next-specialty-coffee-origin",
   "/cambodia-robusta-coffee":
