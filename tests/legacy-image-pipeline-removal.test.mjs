@@ -23,4 +23,5 @@ test("About and Distribution use direct current-generation image assets", () => 
   assert.doesNotMatch(distributionPage, /distribution-hero\.webp/)
   assert.match(distributionPage, /\/images\/distribution-partnership\.webp/)
   assert.equal(fs.existsSync("public/images/distribution-partnership.webp"), true)
+  assert.ok(fs.statSync("public/images/distribution-partnership.webp").size > 150_000)
 })
