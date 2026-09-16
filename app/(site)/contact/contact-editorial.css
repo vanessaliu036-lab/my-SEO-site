@@ -4,9 +4,6 @@
 }
 
 .occ-contact-shell .contact-font-vars {
-  --font-bebas: var(--font-display), Georgia, serif !important;
-  --font-barlow: var(--font-sans), Inter, Arial, sans-serif !important;
-  --font-barlow-condensed: var(--font-sans), Inter, Arial, sans-serif !important;
   background: #f6f3ea !important;
   color: #182019 !important;
 }
@@ -27,7 +24,7 @@
 }
 
 .occ-contact-shell .contact-font-vars h1 {
-  font-family: var(--font-display), Georgia, serif !important;
+  font-family: var(--occ-font-title), Georgia, serif !important;
   font-weight: 400 !important;
   letter-spacing: -0.055em !important;
   line-height: 0.84 !important;
@@ -66,7 +63,7 @@
 }
 
 .occ-contact-shell .contact-font-vars [role="dialog"] h2 {
-  font-family: var(--font-display), Georgia, serif !important;
+  font-family: var(--occ-font-title), Georgia, serif !important;
   font-weight: 400 !important;
   letter-spacing: -0.04em !important;
 }
