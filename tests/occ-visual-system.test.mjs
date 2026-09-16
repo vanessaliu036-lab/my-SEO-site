@@ -136,12 +136,13 @@ test("About mobile gallery uses a compact two-column card grid", () => {
 
 test("About desktop hero follows the approved full-bleed centered reference", () => {
   const about = read("components/templates/about-editorial-template.tsx")
+  const hero = about.split('<section id="why-occ"')[0]
 
-  assert.match(about, /aria-label="Cambodian coffee at origin"/)
-  assert.match(about, /min-h-\[620px\]/)
-  assert.match(about, /text-center/)
-  assert.match(about, /One origin\. Cambodia\./)
-  assert.doesNotMatch(about, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
+  assert.match(hero, /aria-label="Cambodian coffee at origin"/)
+  assert.match(hero, /min-h-\[620px\]/)
+  assert.match(hero, /text-center/)
+  assert.match(hero, /One origin\. Cambodia\./)
+  assert.doesNotMatch(hero, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
 })
 
 test("About removes the empty left rail from its editorial sections", () => {
