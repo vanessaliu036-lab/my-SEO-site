@@ -1,8 +1,20 @@
 import test from "node:test"
 import assert from "node:assert/strict"
 import fs from "node:fs"
+import path from "node:path"
 
 const read = (path) => fs.readFileSync(path, "utf8")
+
+const walkTextFiles = (root) => {
+  const stat = fs.statSync(root)
+  if (stat.isFile()) return [root]
+
+  return fs.readdirSync(root, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(root, entry.name)
+    if (entry.isDirectory()) return walkTextFiles(fullPath)
+    return /\.(?:css|tsx?|jsx?|mjs)$/.test(entry.name) ? [fullPath] : []
+  })
+}
 
 test("OCC global visual system keeps only title, subtitle and body font roles", () => {
   const layout = read("app/layout.tsx")
@@ -10,6 +22,33 @@ test("OCC global visual system keeps only title, subtitle and body font roles", 
   assert.match(layout, /--occ-font-subtitle:/)
   assert.match(layout, /--occ-font-body:/)
   assert.match(layout, /occ-typography-system/)
+})
+
+test("OCC public site loads only Cormorant Garamond and Inter", () => {
+  const sourceFiles = [
+    ...walkTextFiles("app"),
+    ...walkTextFiles("components"),
+    ...walkTextFiles("styles"),
+    "tailwind.config.ts",
+  ]
+  const source = sourceFiles.map((file) => `\n/* ${file} */\n${read(file)}`).join("\n")
+  const fontImports = [...source.matchAll(/import\s*\{([^}]+)\}\s*from\s*["']next\/font\/(?:google|local)["']/g)]
+
+  assert.equal(fontImports.length, 1, "public site should have exactly one next/font import")
+  assert.match(fontImports[0][1], /\bInter\b/)
+  assert.match(fontImports[0][1], /\bCormorant_Garamond\b/)
+  assert.doesNotMatch(source, /\b(?:Geist|Bebas|Barlow)\b/i)
+})
+
+test("OCC typography maps every public text role to the two approved fonts", () => {
+  const layout = read("app/layout.tsx")
+  const css = read("app/globals.css")
+
+  assert.match(layout, /--occ-font-title:\s*var\(--font-display\)/)
+  assert.match(layout, /--occ-font-subtitle:\s*var\(--font-sans\)/)
+  assert.match(layout, /--occ-font-body:\s*var\(--font-sans\)/)
+  assert.match(css, /body[\s\S]*font-family:\s*var\(--font-sans\)/)
+  assert.match(css, /h1[\s\S]*font-family:\s*var\(--font-display\)/)
 })
 
 test("shared OCC chrome uses the transparent official logo without background tiles", () => {
