@@ -6,6 +6,7 @@ const read = (path) => fs.readFileSync(path, "utf8")
 const indexTemplate = "components/templates/solutions-index-template.tsx"
 const detailTemplate = "components/templates/solution-detail-template.tsx"
 const commercialTemplate = "components/templates/commercial-solution-template.tsx"
+const wholesaleTemplate = "components/templates/wholesale-editorial-template.tsx"
 const localMarketTemplate = "components/templates/local-market-solution-template.tsx"
 const detailPages = ["wholesale", "roasting-program", "coffee-marketing", "equipment-service"]
 
@@ -32,15 +33,17 @@ test("SOLUTIONS index and detail pages keep the OCC editorial system", () => {
 
 test("commercial and local-market solution pages use dedicated editorial templates", () => {
   assert.equal(fs.existsSync(commercialTemplate), true, "commercial solution template must exist")
+  assert.equal(fs.existsSync(wholesaleTemplate), true, "wholesale editorial template must exist")
   assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
   const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
   const marketing = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
   const commercial = read(commercialTemplate)
+  const wholesaleUi = read(wholesaleTemplate)
   const local = read(localMarketTemplate)
 
-  assert.match(wholesale, /CommercialSolutionTemplate/)
+  assert.match(wholesale, /WholesaleEditorialTemplate/)
   assert.match(roasting, /CommercialSolutionTemplate/)
   assert.doesNotMatch(wholesale, /SolutionDetailTemplate/)
   assert.doesNotMatch(roasting, /SolutionDetailTemplate/)
@@ -48,6 +51,10 @@ test("commercial and local-market solution pages use dedicated editorial templat
   assert.doesNotMatch(marketing, /SolutionDetailTemplate/)
   assert.match(equipment, /SolutionDetailTemplate/)
 
+  assert.match(wholesaleUi, /highlightCards/)
+  assert.match(wholesaleUi, /processSteps/)
+  assert.match(wholesaleUi, /comparison/)
+  assert.match(wholesaleUi, /MotionReveal/)
   assert.match(commercial, /highlightCards/)
   assert.match(commercial, /processSteps/)
   assert.match(commercial, /comparison/)
@@ -166,14 +173,17 @@ test("blog body auto-linking does not expose the hidden equipment service route"
 test("solution templates keep semantic content server-rendered and use restrained reveal motion", () => {
   const legacy = read(detailTemplate)
   const commercial = read(commercialTemplate)
+  const wholesale = read(wholesaleTemplate)
   const local = read(localMarketTemplate)
   const reveal = read("components/ui/motion-reveal.tsx")
 
   assert.doesNotMatch(legacy, /^"use client"/)
   assert.doesNotMatch(commercial, /^"use client"/)
+  assert.doesNotMatch(wholesale, /^"use client"/)
   assert.doesNotMatch(local, /^"use client"/)
   assert.match(legacy, /MotionReveal/)
   assert.match(commercial, /MotionReveal/)
+  assert.match(wholesale, /MotionReveal/)
   assert.match(local, /MotionReveal/)
   assert.match(reveal, /useReducedMotion/)
   assert.match(reveal, /0\.22, 1, 0\.36, 1/)
