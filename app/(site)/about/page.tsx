@@ -4,7 +4,7 @@ import { siteUrl, siteLogoUrl, siteDescription, ogImage } from "@/lib/siteConfig
 import { areaServedCambodia } from "@/lib/organizationSchema"
 import { pageAlternates } from "@/lib/seo"
 
-// Presentation is owned by AboutEditorialTemplate; keep this route's SEO and content contract unchanged.
+// About presentation is template-owned; this route keeps the approved SEO, schema, links, and copy contract unchanged.
 export const metadata: Metadata = {
   title: "About OCC | Cambodia-Origin Coffee & Fine Robusta",
   description:
