@@ -8,12 +8,14 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
     "/blog/fine-robusta-grading-verify-before-cupping",
   "/farmer-impact-sourcing":
     "/about/sustainability",
+  "/coffee":
+    "/fine-robusta-cambodia",
   "/mondulkiri-coffee":
     "/blog/mondulkiri-next-specialty-coffee-origin",
   "/cambodia-robusta-coffee":
     "/blog/cambodia-specialty-robusta-coffee-guide",
   "/coffee/single-origin":
-    "/origins/single-origin",
+    "/fine-robusta-cambodia",
   "/blog/the-rise-of-fine-robusta-a-game-changer-for-wholesale-coffee-buyers-in-cambodia":
     "/blog/specialty-robusta-market-2025-boom",
   "/blog/phnom-penhs-best-coffee-shops-and-where-to-buy-coffee-souvenirs":
