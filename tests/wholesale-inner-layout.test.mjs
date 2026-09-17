@@ -73,3 +73,16 @@ test("buyer specification resource appears in sitemap and links from wholesale w
   assert.match(page, /href: "\/resources\/coffee-buyer-specification-template"/)
   assert.match(page, /WholesaleEditorialTemplate/)
 })
+
+test("sample-to-supply section presents a direct buyer specification CTA without changing global navigation", () => {
+  const template = fs.readFileSync(templatePath, "utf8")
+  const start = template.indexOf('aria-labelledby="wholesale-process-title"')
+  const end = template.indexOf('aria-labelledby="commercial-requirements-title"')
+  assert.ok(start >= 0 && end > start, "expected existing sample-to-supply section")
+  const processSection = template.slice(start, end)
+  assert.match(processSection, /Preparing a sourcing inquiry\?/)
+  assert.match(processSection, /href="\/resources\/coffee-buyer-specification-template"/)
+  assert.match(processSection, /Use the Coffee Buyer Specification Template/)
+  assert.ok(processSection.indexOf("Preparing a sourcing inquiry?") < processSection.indexOf("processSteps.map"), "buyer CTA must be visible before the process grid")
+  assert.doesNotMatch(shell, /coffee-buyer-specification-template/, "do not add this tool to global navigation")
+})
