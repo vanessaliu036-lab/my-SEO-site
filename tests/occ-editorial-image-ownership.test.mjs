@@ -61,3 +61,12 @@ test('does not flag brand logos reused in two routes', () => {
   assert.equal(results.crossRouteDuplicates.length, 0)
   assert.equal(results.duplicateBytes.length, 0)
 })
+
+test('treats an app route handler that serves an image URL as an existing asset', () => {
+  const root = fixture({
+    'app/(site)/brand/page.tsx': '<img src="/images/gift.avif" />',
+    'app/images/gift.avif/route.ts': 'export function GET() { return new Response() }',
+  })
+  const results = auditEditorialImages(root)
+  assert.deepEqual(results.missingImages, [])
+})
