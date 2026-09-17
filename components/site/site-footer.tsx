@@ -4,8 +4,8 @@ import { siteNavigation } from "@/components/site/navigation-data"
 export function SiteFooter() {
   return (
     <footer className="border-t border-[#182019]/10 bg-[#efe9dc] text-[#182019]">
-      <div className="mx-auto w-full max-w-[1680px] px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-20">
-        <div className="grid gap-10 border-b border-[#182019]/12 pb-10 lg:grid-cols-[0.9fr_2.1fr] lg:gap-16 lg:pb-16">
+      <div className="mx-auto w-full max-w-[1680px] px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-12">
+        <div className="grid gap-10 border-b border-[#182019]/12 pb-10 lg:grid-cols-[0.9fr_2.1fr] lg:gap-12 lg:pb-8">
           <div className="max-w-md">
             <Link
               href="/"
@@ -40,7 +40,7 @@ export function SiteFooter() {
             {siteNavigation.map((item, index) => (
               <div
                 key={item.label}
-                className={`border-b border-[#182019]/12 px-0 py-5 sm:px-6 sm:py-6 lg:min-h-[180px] lg:px-7 lg:py-7 ${
+                className={`border-b border-[#182019]/12 px-0 py-5 sm:px-6 sm:py-6 lg:px-6 ${index >= 4 ? "lg:col-span-2 lg:py-4" : "lg:py-5"} ${
                   index % 2 === 1 ? "sm:border-l sm:border-[#182019]/12" : ""
                 } ${index % 4 !== 0 ? "lg:border-l lg:border-[#182019]/12" : "lg:border-l-0"}`}
               >
@@ -75,7 +75,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 pt-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[10px] uppercase tracking-[0.14em] text-[#182019]/45">
             © 2026 Origin Coffee Cambodia
           </p>
