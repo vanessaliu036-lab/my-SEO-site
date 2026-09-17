@@ -4,8 +4,8 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 
-test("Partnerships page exists and owns gift intent without stealing supplier intent", () => {
-  const pagePath = "app/(site)/partnerships/page.tsx"
+test("Brand & Gifting page owns gift intent without stealing supplier intent", () => {
+  const pagePath = "app/(site)/brand-gifting/page.tsx"
   assert.equal(fs.existsSync(pagePath), true, "partnerships page must exist")
   const source = read(pagePath)
 
@@ -25,8 +25,8 @@ test("Partnerships page exists and owns gift intent without stealing supplier in
   assert.doesNotMatch(source, /title:\s*["'`][^"'`]*wholesale/i)
 })
 
-test("Partnerships uses a dedicated high-resolution ARUNERA image with SEO alt text", () => {
-  const pagePath = "app/(site)/partnerships/page.tsx"
+test("Brand & Gifting uses a dedicated high-resolution ARUNERA image with SEO alt text", () => {
+  const pagePath = "app/(site)/brand-gifting/page.tsx"
   const source = read(pagePath)
   const imageRoute = "app/images/occ-arunera-cambodian-coffee-gift-partnership.avif/route.ts"
 
@@ -44,8 +44,13 @@ test("Partnerships uses a dedicated high-resolution ARUNERA image with SEO alt t
 test("Partnerships is discoverable from navigation and sitemap", () => {
   const navigation = read("components/site/navigation-data.ts")
   const sitemap = read("app/sitemap.ts")
+  const hub = read("app/(site)/partnerships/page.tsx")
 
   assert.match(navigation, /PARTNERSHIPS/)
   assert.match(navigation, /\/partnerships/)
+  assert.match(navigation, /Brand & Gifting", href: "\/brand-gifting"/)
+  assert.match(hub, /Brand & Gifting/)
+  assert.match(hub, /href: "\/brand-gifting"/)
   assert.match(sitemap, /\/partnerships/)
+  assert.match(sitemap, /\/brand-gifting/)
 })
