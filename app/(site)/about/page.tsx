@@ -127,7 +127,7 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }} />
-      <span hidden data-about-layout="reference-v2" />
+      <span hidden data-about-layout="reference-v3" />
       <AboutEditorialTemplate sections={sections} />
     </>
   )
