@@ -97,16 +97,16 @@ export function SiteFinalCta() {
 
   return (
     <section className="border-t border-white/10 bg-[#182019] text-[#f6f3ea]" aria-label="Work with Origin Coffee Cambodia">
-      <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
-        <div className="md:col-span-3">
+      <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-6 px-6 py-14 sm:px-8 md:px-12 lg:px-16 lg:py-16">
+        <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/46">{cta.eyebrow}</p>
           <span className="mt-4 block h-px w-10 bg-white/28" aria-hidden="true" />
         </div>
-        <div className="md:col-span-8 md:col-start-5">
-          <h2 className="max-w-[980px] font-[var(--font-display)] text-[clamp(3rem,6vw,6.4rem)] font-light leading-[0.9] tracking-[-0.04em] text-white">
+        <div className="w-full">
+          <h2 className="max-w-[980px] font-[var(--font-display)] text-[clamp(2.8rem,5vw,5.4rem)] font-light leading-[0.9] tracking-[-0.04em] text-white">
             {cta.title}
           </h2>
-          <div className="mt-9 grid grid-cols-1 gap-8 border-t border-white/16 pt-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
+          <div className="mt-7 grid grid-cols-1 gap-8 border-t border-white/16 pt-7 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-14">
             <p className="max-w-2xl text-[15px] leading-7 text-white/62">{cta.copy}</p>
             <div className="flex flex-wrap gap-3">
               <Link
