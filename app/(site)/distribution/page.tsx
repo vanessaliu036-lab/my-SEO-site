@@ -182,7 +182,7 @@ export default function DistributionPage() {
 
           <div className="relative min-h-[440px] overflow-hidden bg-[#273229] lg:col-span-5 lg:min-h-full">
             <Image
-              src="/hero-home.webp"
+              src="/about/occ-about-atlas.avif"
               alt="Cambodian coffee origin for OCC international distribution partners"
               fill
               priority
