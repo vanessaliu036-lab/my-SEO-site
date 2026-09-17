@@ -14,9 +14,10 @@ const commercialPages = [
 test("commercial cupping links route directly to the canonical cupping guide", () => {
   for (const page of commercialPages) {
     const source = read(page)
+    const canonical = CUPPING_PATH.replaceAll("/", "\\/")
     assert.match(
       source,
-      new RegExp(`cupping:\\s*[\"']${CUPPING_PATH.replaceAll("/", "\\/")}[\"']`),
+      new RegExp(`(?:cupping:\\s*[\"']|<Link\\s+href=[\"'])${canonical}[\"']`),
       `${page} must route cupping directly to the canonical Fine Robusta cupping guide`,
     )
     assert.doesNotMatch(

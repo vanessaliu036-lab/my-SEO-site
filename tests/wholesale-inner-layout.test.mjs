@@ -53,3 +53,24 @@ test("editorial template follows the supplied inner-page composition without rec
   assert.match(template, /relatedLinks\.map/)
   assert.doesNotMatch(template, /SiteHeader|SiteFooter/)
 })
+
+test("wholesale metadata and buyer checklist distinguish sourcing from distribution and gifting", () => {
+  assert.match(page, /Wholesale Coffee Cambodia \| B2B Coffee Supply \| OCC/)
+  assert.match(page, /Evaluate wholesale coffee supply in Cambodia with guidance on samples, quality, origin documentation, MOQ, volume and delivery requirements\./)
+  for (const text of [
+    "Who This Is For",
+    "Define the Coffee Requirement First",
+    "Coffee Format and Intended Use",
+    "Sample Approval and Lot Identity",
+    "Origin and Processing Documentation",
+    "MOQ, Volume and Delivery",
+    "Quality Acceptance and Substitution Rules",
+    "What a Wholesale Agreement Should Clarify",
+    "Discuss Your Wholesale Requirements",
+  ]) {
+    assert.ok(page.includes(text), `missing wholesale buyer signal: ${text}`)
+  }
+  assert.match(page, /pageAlternates\("\/solutions\/wholesale"\)/)
+  assert.doesNotMatch(page, /href:\s*"\/distribution"/)
+  assert.doesNotMatch(page, /href:\s*"\/brand-gifting"/)
+})
