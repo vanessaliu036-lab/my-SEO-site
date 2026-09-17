@@ -1,12 +1,14 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-// 2026-09-15: canonical Airtable targets repaired; keep this guard blocking future regressions.
+// 2026-09-17: Wholesale is the formal supplier / commercial owner. The procurement
+// article remains a supporting page and must hand commercial intent upward.
 const AIRTABLE_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
-const SUPPLIER_OWNER_SLUG =
+const SUPPLIER_SUPPORT_SLUG =
   'evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability'
+const WHOLESALE_OWNER = '/solutions/wholesale'
 const ETHICAL_SOURCING_SUPPORT_PATH =
   '/blog/the-definitive-guide-to-evaluating-cambodian-coffee-suppliers-quality-ethics-and-technical-standards-for-b2b-buyers'
 
@@ -38,12 +40,12 @@ function ownerPath(ownerUrl) {
 }
 
 test(
-  'Supplier Owner internal guides route directly to canonical owners or approved support pages',
+  'Supplier support routes commercial intent to Wholesale and technical sub-intents to registered owners',
   { skip: !AIRTABLE_KEY || !AIRTABLE_BASE_ID },
   async () => {
     const ownerRecords = await fetchRecords(
       'SEO Keyword Owners',
-      'OR({Keyword}="coffee processing quality cherry",{Keyword}="mondulkiri coffee",{Keyword}="robusta cambodia")',
+      'OR({Keyword}="coffee processing quality cherry",{Keyword}="mondulkiri coffee",{Keyword}="robusta cambodia",{Keyword}="cambodia fine robusta supplier")',
     )
     const ownerByKeyword = new Map(
       ownerRecords.map((record) => [record.fields?.Keyword, record.fields?.['Owner URL']]),
@@ -52,35 +54,41 @@ test(
     const processingOwner = ownerPath(ownerByKeyword.get('coffee processing quality cherry'))
     const mondulkiriOwner = ownerPath(ownerByKeyword.get('mondulkiri coffee'))
     const robustaCambodiaOwner = ownerPath(ownerByKeyword.get('robusta cambodia'))
+    const supplierOwner = ownerPath(ownerByKeyword.get('cambodia fine robusta supplier'))
 
     assert.equal(processingOwner, '/blog/good-coffee-cherries-need-processing')
     assert.equal(mondulkiriOwner, '/blog/mondulkiri-next-specialty-coffee-origin')
     assert.equal(robustaCambodiaOwner, '/blog/cambodia-specialty-robusta-coffee-guide')
+    assert.equal(supplierOwner, WHOLESALE_OWNER)
 
     const supplierRecords = await fetchRecords(
       'OCC_Blog_Posts',
-      `{slug}="${SUPPLIER_OWNER_SLUG}"`,
+      `{slug}="${SUPPLIER_SUPPORT_SLUG}"`,
     )
-    assert.equal(supplierRecords.length, 1, 'Supplier Owner record must be unique')
+    assert.equal(supplierRecords.length, 1, 'Supplier procurement support record must be unique')
 
     const content = supplierRecords[0]?.fields?.Content
     assert.equal(typeof content, 'string')
 
     assert.ok(
       content.includes(`[Mondulkiri origin profile](${mondulkiriOwner})`),
-      'Supplier Owner must link directly to the canonical Mondulkiri Owner, not its legacy alias',
+      'Supplier support must link directly to the canonical Mondulkiri Owner, not its legacy alias',
     )
     assert.ok(
       content.includes(`[coffee processing and quality-control guide](${processingOwner})`),
-      'Supplier Owner must route processing intent to the formal processing Owner',
+      'Supplier support must route processing intent to the formal processing Owner',
     )
     assert.ok(
       content.includes(`[farmer impact and sourcing guide](${ETHICAL_SOURCING_SUPPORT_PATH})`),
-      'Supplier Owner must route farmer-impact intent to the approved ethical-sourcing support page',
+      'Supplier support must route farmer-impact intent to the approved ethical-sourcing support page',
     )
     assert.ok(
       content.includes(`[Cambodia origin and coffee discovery](${robustaCambodiaOwner})`),
-      'Supplier Owner must route general Robusta Cambodia discovery directly to its formal Owner',
+      'Supplier support must route general Robusta Cambodia discovery directly to its formal Owner',
+    )
+    assert.ok(
+      content.includes(`](${supplierOwner})`),
+      'Supplier support must hand generic supplier / commercial intent to the Wholesale Owner',
     )
 
     for (const forbiddenTarget of [
@@ -93,7 +101,7 @@ test(
       assert.equal(
         content.includes(`](${forbiddenTarget})`),
         false,
-        `Supplier Owner must not link to legacy or broken target ${forbiddenTarget}`,
+        `Supplier support must not link to legacy or broken target ${forbiddenTarget}`,
       )
     }
   },
