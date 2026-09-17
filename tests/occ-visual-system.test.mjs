@@ -60,19 +60,19 @@ test("shared OCC chrome uses the transparent official logo without background ti
   assert.doesNotMatch(logo, /<rect\b/)
 })
 
-test("global header keeps one approved OCC logo size across public pages", () => {
+test("global header keeps one compact approved OCC logo size across public pages", () => {
   const header = read("components/site/site-header.tsx")
 
   assert.match(header, /src="\/occ-logo-primary-local\.svg"/)
-  assert.match(header, /h-\[52px\][^\n]*sm:h-\[58px\][^\n]*lg:h-\[64px\]/)
-  assert.match(header, /h-\[88px\][^\n]*sm:h-24/)
+  assert.match(header, /h-\[42px\][^\n]*sm:h-\[48px\][^\n]*lg:h-\[52px\]/)
+  assert.match(header, /h-\[72px\][^\n]*sm:h-20/)
 })
 
-test("global footer uses the same approved OCC logo size as the header", () => {
+test("global footer uses the same compact approved OCC logo size as the header", () => {
   const footer = read("components/site/site-footer.tsx")
 
   assert.match(footer, /src="\/occ-logo-primary-local\.svg"/)
-  assert.match(footer, /h-\[52px\][^\n]*sm:h-\[58px\][^\n]*lg:h-\[64px\]/)
+  assert.match(footer, /h-\[42px\][^\n]*sm:h-\[48px\][^\n]*lg:h-\[52px\]/)
 })
 
 test("responsive chrome keeps desktop navigation distinct from the mobile drawer", () => {
@@ -92,6 +92,7 @@ test("primary footer navigation keeps approved order and one shared menu treatme
   const footer = read("components/site/site-footer.tsx")
 
   const partnerships = navigation.indexOf('label: "PARTNERSHIPS"')
+  const partnershipsHref = navigation.indexOf('label: "PARTNERSHIPS",\n    href:')
   const brandGifting = navigation.indexOf('{ label: "Brand & Gifting", href: "/partnerships" }')
   const distribution = navigation.indexOf('{ label: "Distribution Partners", href: "/distribution" }')
   const blog = navigation.indexOf('{ label: "BLOG", href: "/blog" }')
@@ -99,6 +100,7 @@ test("primary footer navigation keeps approved order and one shared menu treatme
 
   assert.ok(
     partnerships >= 0 &&
+      partnershipsHref === -1 &&
       brandGifting > partnerships &&
       distribution > brandGifting &&
       blog > distribution &&
