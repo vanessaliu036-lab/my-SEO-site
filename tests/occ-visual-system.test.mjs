@@ -100,7 +100,7 @@ test("primary footer navigation keeps approved order and one shared menu treatme
 
   assert.ok(
     partnerships >= 0 &&
-      partnershipsHref > partnerships &&
+      partnershipsHref === partnerships &&
       brandGifting > partnershipsHref &&
       distribution > brandGifting &&
       blog > distribution &&
