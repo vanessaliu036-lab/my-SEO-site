@@ -34,7 +34,7 @@ const partnershipPaths = [
     label: "Brand & Gifting",
     description:
       "Work with OCC on Cambodian coffee gifts, hotel gifting, travel retail, corporate gifting and retail-ready product experiences.",
-    href: "/partnerships/brand-gifting",
+    href: "/brand-gifting",
     action: "Explore Brand & Gifting",
   },
   {
