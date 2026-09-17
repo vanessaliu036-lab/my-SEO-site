@@ -22,13 +22,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               alt=""
               width={600}
               height={272}
-              className="h-[52px] w-auto sm:h-[58px]"
+              className="h-[42px] w-auto sm:h-[48px]"
             />
           </Link>
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex size-11 items-center justify-center rounded-full border border-black/15"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-black/15"
             aria-label="Close navigation menu"
           >
             <X className="size-4" />
@@ -39,13 +39,19 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           {siteNavigation.map((item, index) => (
             <div key={item.label} className="border-b border-black/10 py-5">
               <div className="flex items-baseline justify-between gap-4">
-                <Link
-                  href={item.href}
-                  onClick={onClose}
-                  className="font-[var(--font-display)] text-3xl leading-none tracking-[-0.035em]"
-                >
-                  {item.label}
-                </Link>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className="font-[var(--font-display)] text-3xl leading-none tracking-[-0.035em]"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="font-[var(--font-display)] text-3xl leading-none tracking-[-0.035em]">
+                    {item.label}
+                  </span>
+                )}
                 <span className="text-[9px] tracking-[0.22em] text-black/35">
                   {String(index + 1).padStart(2, "0")}
                 </span>
