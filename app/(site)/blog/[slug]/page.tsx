@@ -14,24 +14,22 @@ const INTERNAL_LINKS: Record<string, string> = {
   "custom roasting": "/solutions/roasting-program",
   "roast profile": "/solutions/roasting-program",
   "roasting program": "/solutions/roasting-program",
-  "barista staffing": "/solutions/barista-staffing",
-  "barista": "/solutions/barista-staffing",
+  "barista staffing": "/solutions/coffee-marketing",
+  "barista": "/solutions/coffee-marketing",
 }
 
 const ROBUSTA_PILLAR_HREF = "/fine-robusta-cambodia"
+// Generic pillar backlinks are reserved for true supporting pages. Formal Owner
+// slugs are excluded so this reusable template cannot leak broad authority away
+// from the Airtable Owner Map.
 const ROBUSTA_CLUSTER_SLUGS = new Set([
   "what-is-specialty-robusta-coffee-complete-guide",
-  "what-makes-fine-robusta",
   "fine-robusta-grading-standards-cqi-certification-for-cambodia",
   "evaluating-fine-robusta-suppliers-key-technical-standards-for-quality-assurance",
-  "fine-robusta-vs-arabica-buyer-guide",
   "fine-robusta-post-harvest-quality",
-  "robusta-vs-arabica-processing",
-  "is-coffee-industry-undervaluing-canephora-quality",
   "cambodian-robusta-vs-vietnamese-robusta",
   "what-makes-mondulkiri-robusta-different",
   "could-mondulkiri-reference-origin-fine-robusta-asia",
-  "mondulkiri-coffee-processing-facility",
   "how-to-verify-mondulkiri-coffee-origin",
   "cambodia-coffee-selective-harvesting",
   "farmer-payment-structure-coffee-quality",
@@ -42,7 +40,6 @@ const ROBUSTA_CLUSTER_SLUGS = new Set([
   "could-cambodia-replace-10-percent-coffee-imports",
   "cambodia-coffee-industry-2030-fine-robusta-scenario",
   "sample-cambodian-coffee-before-buying-lot",
-  "roaster-checklist-buying-cambodian-green-coffee",
   "coffee-contract-quality-tolerances-fine-robusta",
   "green-coffee-purchase-contract-checklist-roasters",
   "offer-vs-pre-shipment-vs-arrival-coffee-sample",
@@ -52,10 +49,7 @@ const ROBUSTA_CLUSTER_SLUGS = new Set([
   "why-great-coffee-sample-fails-commercial-scale",
   "why-green-coffee-moisture-consistency-matters",
   "why-coffee-origins-need-lot-codes-before-blockchain",
-  "what-creates-fine-robusta-price-premium",
   "fine-robusta-price-score-traceability-consistency",
-  "fine-robusta-consistency-vs-extra-cup-point",
-  "fine-robusta-premium-espresso-milk-single-origin",
   "risk-growing-cambodia-fine-robusta-too-fast",
   "navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers",
   "understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee",
@@ -76,7 +70,7 @@ const ARTICLE_TITLE_OVERRIDES: Record<string, string> = {
   "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": "Sensory Evaluation of Fine Robusta: Flavor, Aroma & Body",
   "what-makes-coffee-origin-feel-premium": "What Makes a Coffee Origin Feel Premium? Evidence Beyond Processing",
   "how-to-brew-fine-robusta-a-complete-guide-to-unlocking-bold-flavors": "Fine Robusta Brew Variables: Ratio, Temperature & Extraction",
-  "fine-robusta-premium-espresso-milk-single-origin": "Espresso & Milk: Matching Coffee Use to Roast and Extraction",
+  "fine-robusta-premium-espresso-milk-single-origin": "Fine Robusta Premium by Use: Espresso, Milk & Single-Origin",
   "what-is-specialty-robusta-coffee-complete-guide": "Specialty Robusta: Category Definitions and Evaluation Context",
   "coffea-canephora-cambodia": "Coffea canephora in Cambodia: Species and Origin Context",
   "uganda-fine-robusta-an-emerging-origin": "Uganda Fine Robusta: An Emerging Origin Case Study",
@@ -97,9 +91,9 @@ function displayTitleForPost(slug: string, title: string): string {
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
   "cambodian-fine-robusta-wholesale-supply": {
-    href: ROBUSTA_PILLAR_HREF,
-    anchor: "Fine Robusta Cambodia guide",
-    lead: "For the broad origin and quality context, start with the",
+    href: "/solutions/wholesale",
+    anchor: "Cambodia coffee wholesale supply",
+    lead: "For the commercial supplier and wholesale path, see",
   },
   "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": {
     href: ROBUSTA_PILLAR_HREF,
@@ -111,20 +105,10 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     anchor: "Fine Robusta Cambodia guide",
     lead: "For the Cambodia-specific quality context, see the",
   },
-  "fine-robusta-premium-espresso-milk-single-origin": {
-    href: ROBUSTA_PILLAR_HREF,
-    anchor: "Fine Robusta Cambodia guide",
-    lead: "For the broader origin and quality context, see the",
-  },
   "what-is-specialty-robusta-coffee-complete-guide": {
     href: ROBUSTA_PILLAR_HREF,
     anchor: "Fine Robusta Cambodia guide",
     lead: "For the Cambodia-specific Fine Robusta context, see the",
-  },
-  "coffea-canephora-cambodia": {
-    href: ROBUSTA_PILLAR_HREF,
-    anchor: "Fine Robusta Cambodia guide",
-    lead: "For the Cambodia origin and quality context, see the",
   },
   "uganda-fine-robusta-an-emerging-origin": {
     href: ROBUSTA_PILLAR_HREF,
@@ -151,13 +135,6 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     anchor: "Fine Robusta grading guide",
     lead: "For the broad grading and verification framework, see the",
   },
-  // Keep the mechanism article's scientific intent while passing broad fermentation
-  // authority to the formal owner in the first rendered paragraph.
-  "why-fermentation-changes-coffee-flavor": {
-    href: "/blog/fine-robusta-fermentation",
-    anchor: "Fine Robusta fermentation guide",
-    lead: "For the broader process-control and quality context, see the",
-  },
   "how-fermentation-affects-coffee-quality": {
     href: "/blog/fine-robusta-fermentation",
     anchor: "Fine Robusta fermentation guide",
@@ -167,11 +144,6 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     href: "/blog/how-to-brew-cambodian-fine-robusta",
     anchor: "How to brew Fine Robusta",
     lead: "For the canonical brewing method guide, see",
-  },
-  "specialty-robusta-vs-arabica-honest-comparison": {
-    href: "/blog/fine-robusta-vs-arabica-buyer-guide",
-    anchor: "Fine Robusta vs Arabica buyer guide",
-    lead: "For the broad buyer comparison, see the",
   },
   "arabica-vs-fine-robusta-quality-flavor-and-price": {
     href: "/blog/fine-robusta-vs-arabica-buyer-guide",
@@ -282,8 +254,12 @@ function isPromptNote(line: string): boolean {
 
 function placeholderHref(label: string): string {
   const lower = label.toLowerCase()
-  if (lower.includes("wholesale")) return "/solutions/wholesale"
-  if (lower.includes("processing") || lower.includes("roast")) return "/solutions/roasting-program"
+  if (lower.includes("wholesale") || lower.includes("supplier")) return "/solutions/wholesale"
+  if (lower.includes("roast")) return "/solutions/roasting-program"
+  if (lower.includes("fermentation")) return "/blog/fine-robusta-fermentation"
+  if (lower.includes("processing transparency") || lower.includes("process disclosure")) {
+    return "/blog/fine-robusta-processing-transparency"
+  }
   if (lower.includes("checklist") || lower.includes("sourcing")) return "/contact"
   return "/blog"
 }
@@ -678,7 +654,7 @@ export default async function BlogPostPage({
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
           )}
 
-          {/* Fine Robusta Cambodia pillar backlink: supporting cluster only */}
+          {/* Fine Robusta Cambodia pillar backlink: true supporting cluster only */}
           {showRobustaPillarLink && (
             <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
               <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Core guide</p>
