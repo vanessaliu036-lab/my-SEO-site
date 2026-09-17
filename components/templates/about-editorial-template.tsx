@@ -15,7 +15,7 @@ type AboutEditorialTemplateProps = {
 }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const heroImage = "/hero-home.webp"
+const heroImage = "/about/about-why-occ.jpg"
 const whyOccImage = "/distribution-hero.webp"
 
 const differences = [
@@ -45,13 +45,13 @@ const galleryPanels = [
   {
     label: "ONE ORIGIN",
     href: "/origins",
-    image: "/about/about-origin.svg",
+    image: "/about/about-why-occ.jpg",
     note: "Cambodia first. Always.",
   },
   {
     label: "FINE ROBUSTA",
     href: "/fine-robusta-cambodia",
-    image: "/about/about-fine-robusta.svg",
+    image: "/distribution-hero.webp",
     note: "Our specialist coffee category.",
   },
   {
@@ -63,7 +63,7 @@ const galleryPanels = [
   {
     label: "MADE-FOR-YOU",
     href: "/solutions/roasting-program",
-    image: "/about/about-made-for-you.svg",
+    image: "/about/about-ready-to-sell.svg",
     note: "Custom roasting and profile development.",
   },
 ]

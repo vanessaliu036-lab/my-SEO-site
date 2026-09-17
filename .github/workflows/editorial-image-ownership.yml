@@ -1,0 +1,24 @@
+name: OCC editorial image ownership
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  image-ownership:
+    name: Cross-page image uniqueness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Unit tests for the ownership detector
+        run: node --test tests/occ-editorial-image-ownership.test.mjs
+      - name: Audit all static route-owned editorial photos
+        run: node scripts/audit-editorial-images.mjs

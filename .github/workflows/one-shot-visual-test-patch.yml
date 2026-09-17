@@ -1,0 +1,40 @@
+name: One-shot OCC visual image test patch
+
+on:
+  push:
+    branches:
+      - fix/cross-page-image-ownership-20260917
+    paths:
+      - .github/workflows/one-shot-visual-test-patch.yml
+      - scripts/patch-occ-visual-image-tests.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/cross-page-image-ownership-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Patch only obsolete About image-source assertions
+        run: node scripts/patch-occ-visual-image-tests.mjs
+      - name: Remove one-shot machinery
+        run: rm scripts/patch-occ-visual-image-tests.mjs .github/workflows/one-shot-visual-test-patch.yml
+      - name: Verify full test suite
+        run: npm test
+      - name: Verify static editorial image ownership
+        run: node scripts/audit-editorial-images.mjs
+      - name: Commit verified test update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "test: align visual regression with route-owned imagery"
+          git push origin HEAD:fix/cross-page-image-ownership-20260917

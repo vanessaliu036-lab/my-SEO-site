@@ -89,7 +89,7 @@ export default function BrandGiftingPage() {
         <section className="relative overflow-hidden bg-[#182019] text-[#f6f3ea]">
           <div className="absolute inset-0 opacity-45">
             <img
-              src="/about/occ-about-atlas.avif"
+              src="/about/about-made-for-you.svg"
               alt=""
               aria-hidden="true"
               className="h-full w-full object-cover object-top saturate-[0.8]"
