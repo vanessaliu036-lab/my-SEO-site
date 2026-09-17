@@ -175,6 +175,11 @@ export default function WholesalePage() {
       href: "/solutions/roasting-program",
     },
     {
+      title: "Coffee Buyer Specification Template",
+      description: "A seven-field checklist for format, lot evidence, sample approval, and commercial requirements.",
+      href: "/resources/coffee-buyer-specification-template",
+    },
+    {
       title: "Start a Wholesale Discussion",
       description: "Share the market, coffee format, volume direction, and destination with OCC.",
       href: "/contact",
