@@ -17,7 +17,7 @@ export function SiteFooter() {
                 alt=""
                 width={600}
                 height={272}
-                className="h-[52px] w-auto sm:h-[58px] lg:h-[64px]"
+                className="h-[42px] w-auto sm:h-[48px] lg:h-[52px]"
               />
             </Link>
 
@@ -44,12 +44,18 @@ export function SiteFooter() {
                   index % 2 === 1 ? "sm:border-l sm:border-[#182019]/12" : ""
                 } ${index % 4 !== 0 ? "lg:border-l lg:border-[#182019]/12" : "lg:border-l-0"}`}
               >
-                <Link
-                  href={item.href}
-                  className="inline-flex text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors hover:text-[#5c6f58]"
-                >
-                  {item.label}
-                </Link>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="inline-flex text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors hover:text-[#5c6f58]"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="inline-flex text-[11px] font-semibold uppercase tracking-[0.2em]">
+                    {item.label}
+                  </span>
+                )}
 
                 {item.children?.length ? (
                   <div className="mt-4 flex flex-col gap-3">
