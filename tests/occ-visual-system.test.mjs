@@ -116,10 +116,10 @@ test("distribution hero uses a valid public asset and the global header keeps a 
   const distribution = read("app/(site)/distribution/page.tsx")
   const header = read("components/site/site-header.tsx")
 
-  assert.match(distribution, /src="\\/hero-home\\.webp"/)
-  assert.doesNotMatch(distribution, /src="\\/distribution-hero\\.webp"/)
-  assert.match(header, /h-\\[72px\\][^\\n]*sm:h-20/)
-  assert.match(header, /h-\\[42px\\][^\\n]*sm:h-\\[48px\\][^\\n]*lg:h-\\[52px\\]/)
+  assert.match(distribution, /src="\/hero-home\.webp"/)
+  assert.doesNotMatch(distribution, /src="\/distribution-hero\.webp"/)
+  assert.match(header, /h-\[72px\][^\n]*sm:h-20/)
+  assert.match(header, /h-\[42px\][^\n]*sm:h-\[48px\][^\n]*lg:h-\[52px\]/)
 })
 
 test("homepage and About use local photo-led assets", () => {
