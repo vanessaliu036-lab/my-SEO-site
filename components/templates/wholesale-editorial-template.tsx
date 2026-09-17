@@ -133,7 +133,7 @@ export function WholesaleEditorialTemplate({
           </MotionReveal>
 
           <MotionReveal direction="right" className="relative min-h-[430px] overflow-hidden bg-[#e8e3d9] sm:min-h-[520px] lg:min-h-[650px]">
-            <img src="/hero-home.webp" alt="Cambodia-origin coffee prepared for professional wholesale supply" className="h-full w-full object-cover" />
+            <img src="/images/occ-wholesale-hero.webp" alt="Cambodia-origin coffee prepared for professional wholesale supply" className="h-full w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/25 bg-[#182019]/58 px-5 py-4 text-[9px] uppercase tracking-[0.2em] text-white/72 backdrop-blur-[2px] sm:px-7">
               <span>Origin Coffee Cambodia</span>
               <span>Wholesale / {index}</span>

@@ -73,7 +73,12 @@ export function auditEditorialImages(projectRoot = process.cwd()) {
       if (!imagesToRoutes.has(image)) imagesToRoutes.set(image, new Set())
       imagesToRoutes.get(image).add(route)
       const file = path.join(root, 'public', image.replace(/^\//, ''))
+      const routeAssetBase = path.join(root, 'app', image.replace(/^\//, ''))
+      const routeServesAsset = ['route.ts', 'route.tsx', 'route.js', 'route.jsx'].some((name) =>
+        fs.existsSync(path.join(routeAssetBase, name)),
+      )
       if (!fs.existsSync(file)) {
+        if (routeServesAsset) continue
         missingImages.push({ route, image })
         continue
       }
