@@ -5,6 +5,8 @@ import fs from "node:fs"
 const pagePath = "app/(site)/solutions/wholesale/page.tsx"
 const templatePath = "components/templates/wholesale-editorial-template.tsx"
 const shellPath = "components/site/site-shell.tsx"
+const resourcePath = "app/(site)/resources/coffee-buyer-specification-template/page.tsx"
+const sitemapPath = "app/sitemap.ts"
 
 const page = fs.readFileSync(pagePath, "utf8")
 const shell = fs.readFileSync(shellPath, "utf8")
@@ -52,4 +54,22 @@ test("editorial template follows the supplied inner-page composition without rec
   assert.match(template, /faqs\.map/)
   assert.match(template, /relatedLinks\.map/)
   assert.doesNotMatch(template, /SiteHeader|SiteFooter/)
+})
+
+test("coffee buyer specification template has its own Next.js route and SEO metadata", () => {
+  assert.equal(fs.existsSync(resourcePath), true, "missing buyer specification route causes production 404")
+  const resource = fs.readFileSync(resourcePath, "utf8")
+  assert.match(resource, /Coffee Buyer Specification Template/)
+  assert.match(resource, /pageAlternates\("\/resources\/coffee-buyer-specification-template"\)/)
+  assert.match(resource, /Coffee format/)
+  assert.match(resource, /Lot identity/)
+  assert.match(resource, /Approval process/)
+  assert.match(resource, /\/contact/)
+})
+
+test("buyer specification resource appears in sitemap and links from wholesale without changing layout", () => {
+  const sitemap = fs.readFileSync(sitemapPath, "utf8")
+  assert.match(sitemap, /\/resources\/coffee-buyer-specification-template/)
+  assert.match(page, /href: "\/resources\/coffee-buyer-specification-template"/)
+  assert.match(page, /WholesaleEditorialTemplate/)
 })
