@@ -19,6 +19,11 @@ const OWNER_ROUTES = {
     anchor: "Fine Robusta Cambodia",
     description: "Use the central Fine Robusta Cambodia guide for broad Cambodia origin, quality, sourcing, and buyer intent.",
   },
+  wholesale: {
+    href: "/solutions/wholesale",
+    anchor: "Cambodia coffee wholesale supply",
+    description: "Use the canonical Wholesale Owner for generic Cambodia coffee supplier, Fine Robusta supplier, wholesale, and B2B supply intent.",
+  },
   grading: {
     href: "/blog/fine-robusta-grading-verify-before-cupping",
     anchor: "Fine Robusta grading guide",
@@ -61,25 +66,26 @@ const OWNER_ROUTES = {
   },
 } satisfies Record<string, OwnerRoute>
 
+// Only true supporting pages belong here. Formal Owner slugs are intentionally
+// excluded so the reusable template cannot create cross-owner authority leakage.
 const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
-  // Cambodia: keep broad and wholesale-specific support pages narrow while routing Fine Robusta Cambodia intent to the pillar.
+  // Cambodia: keep broad support pages narrow while routing Fine Robusta Cambodia intent to the pillar.
   "what-is-fine-robusta-coffee-a-complete-beginners-guide": OWNER_ROUTES.cambodia,
-  "cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES.cambodia,
   "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": OWNER_ROUTES.cambodia,
   "what-makes-coffee-origin-feel-premium": OWNER_ROUTES.cambodia,
-  "fine-robusta-premium-espresso-milk-single-origin": OWNER_ROUTES.cambodia,
   "what-is-specialty-robusta-coffee-complete-guide": OWNER_ROUTES.cambodia,
-  "coffea-canephora-cambodia": OWNER_ROUTES.cambodia,
   "uganda-fine-robusta-an-emerging-origin": OWNER_ROUTES.cambodia,
   "is-cambodian-coffee-grown-in-cambodia": OWNER_ROUTES.cambodia,
+
+  // Supplier / wholesale support: commercial supplier intent must converge on Wholesale.
+  "cambodian-fine-robusta-wholesale-supply": OWNER_ROUTES.wholesale,
 
   // Grading: keep historical CQI, score interpretation, and transition pages as supporting intent.
   "fine-robusta-grading-standards-cqi-certification-for-cambodia": OWNER_ROUTES.grading,
   "how-the-coffee-quality-institute-grades-fine-robusta": OWNER_ROUTES.grading,
   "how-fine-robusta-coffee-is-graded-cup-score-explained": OWNER_ROUTES.grading,
 
-  // Fermentation: mechanism and process-control pages support the broad fermentation owner.
-  "why-fermentation-changes-coffee-flavor": OWNER_ROUTES.fermentation,
+  // Fermentation: process-control pages support the broad fermentation owner.
   "how-fermentation-affects-coffee-quality": OWNER_ROUTES.fermentation,
   "fermentation-control-cambodian-robusta": OWNER_ROUTES.fermentation,
   "cambodia-robusta-fermentation-control": OWNER_ROUTES.fermentation,
@@ -92,19 +98,15 @@ const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
   "fine-robusta-coffee-the-art-and-science-of-brewing": OWNER_ROUTES.brewing,
   "fine-robusta-coffee-to-water-ratio-explained": OWNER_ROUTES.brewing,
 
-  // Comparison: legacy comparison pages retain myth, price, or consumer-choice sub-intents.
-  "specialty-robusta-vs-arabica-honest-comparison": OWNER_ROUTES.comparison,
+  // Comparison: non-owner legacy pages retain price or consumer-choice sub-intents.
   "arabica-vs-fine-robusta-quality-flavor-and-price": OWNER_ROUTES.comparison,
   "arabica-vs-fine-robusta-which-coffee-is-better-for-you": OWNER_ROUTES.comparison,
 
-  // Adoption: roaster and foodservice spokes reinforce the formal popularity owner.
-  "why-specialty-roasters-reconsider-robusta": OWNER_ROUTES.popularity,
+  // Adoption: non-owner spokes reinforce the formal popularity owner.
   "why-specialty-roasters-are-starting-to-sell-fine-robusta-as-single-origin-espresso": OWNER_ROUTES.popularity,
   "how-hotels-and-foodservice-are-adopting-fine-robusta": OWNER_ROUTES.popularity,
 
-  // 2026-09-09 owner recovery: use one highly relevant contextual support route per declining family.
-  "fine-robusta-own-specialty-category": OWNER_ROUTES.canephoraQuality,
-  "what-creates-fine-robusta-price-premium": OWNER_ROUTES.economics,
+  // Targeted support route for the formal consistency family.
   "fine-robusta-recipe-card-standard": OWNER_ROUTES.consistency,
 }
 
