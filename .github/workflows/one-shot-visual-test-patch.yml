@@ -6,6 +6,7 @@ on:
       - fix/cross-page-image-ownership-20260917
     paths:
       - .github/workflows/one-shot-visual-test-patch.yml
+      - scripts/patch-occ-visual-image-tests.mjs
 
 permissions:
   contents: write
