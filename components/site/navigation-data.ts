@@ -42,7 +42,7 @@ export const siteNavigation: readonly SiteNavItem[] = [
     label: "PARTNERSHIPS",
     href: "/partnerships",
     children: [
-      { label: "Brand & Gifting", href: "/partnerships/brand-gifting" },
+      { label: "Brand & Gifting", href: "/brand-gifting" },
       { label: "Distribution Partners", href: "/distribution" },
     ],
   },
