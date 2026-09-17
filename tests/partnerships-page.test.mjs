@@ -54,3 +54,18 @@ test("Partnerships is discoverable from navigation and sitemap", () => {
   assert.match(sitemap, /\/partnerships/)
   assert.match(sitemap, /\/brand-gifting/)
 })
+
+test("Brand & Gift metadata, differentiation and enquiry intent stay on dedicated route", () => {
+  const source = read("app/(site)/brand-gifting/page.tsx")
+  assert.match(source, /Cambodian Coffee Gifts & Brand Partnerships \| OCC/)
+  assert.match(source, /OCC partners with hotels, travel brands, retailers and companies to create premium Cambodian coffee gifts and origin-led experiences\./)
+  assert.match(source, /pageAlternates\("\/brand-gifting"\)/)
+  assert.match(source, /A Brand & Gift partnership turns Cambodia-origin coffee into/)
+  assert.match(source, /What OCC Brings to the Partnership/)
+  assert.match(source, /What Brand Partners Build/)
+  assert.match(source, /Discuss a Brand & Gift Partnership/)
+  assert.match(source, /\/fine-robusta-cambodia/)
+  assert.match(source, /\/about\/mission/)
+  assert.match(source, /\/distribution/)
+  assert.match(source, /\/contact/)
+})
