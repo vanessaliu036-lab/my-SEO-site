@@ -10,6 +10,7 @@ const proxy = read('proxy.ts')
 const nextConfig = read('next.config.mjs')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const articlePage = read('app/(site)/blog/[slug]/page.tsx')
+const homeTemplate = read('components/templates/home-template.tsx')
 
 const STANDARDS_OWNER = '/blog/fine-robusta-standards-350g-defects'
 const GRADING_OWNER = '/blog/fine-robusta-grading-verify-before-cupping'
@@ -42,6 +43,13 @@ test('legacy Fine Robusta standards aliases converge on the formal Standards Own
   for (const alias of standardsLegacyAliases) {
     assertRoute(nextConfig, alias, STANDARDS_OWNER)
   }
+})
+
+test('homepage is entity-led and hands broad commercial / Fine Robusta intent to the registered owners', () => {
+  assert.match(homeTemplate, /<h1[^>]*>\s*Origin Coffee Cambodia\s*<\/h1>/)
+  assert.doesNotMatch(homeTemplate, /<h1[^>]*>[\s\S]{0,240}Fine Robusta & Specialty Coffee from Cambodia[\s\S]{0,80}<\/h1>/)
+  assert.match(homeTemplate, /href="\/fine-robusta-cambodia"/)
+  assert.match(homeTemplate, /href="\/solutions\/wholesale"/)
 })
 
 test('generic template routing never treats a formal Owner as supporting content', () => {
@@ -84,4 +92,8 @@ test('Fine Robusta wholesale support intent converges on Wholesale Owner', () =>
     /"cambodian-fine-robusta-wholesale-supply"\s*:\s*OWNER_ROUTES\.wholesale/,
   )
   assert.match(articleLayout, new RegExp(`href:\\s*["']${WHOLESALE_OWNER.replaceAll('/', '\\/')}["']`))
+  assert.match(
+    articlePage,
+    /"cambodian-fine-robusta-wholesale-supply"[\s\S]{0,220}href:\s*"\/solutions\/wholesale"/,
+  )
 })
