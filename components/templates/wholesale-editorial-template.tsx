@@ -205,6 +205,12 @@ export function WholesaleEditorialTemplate({
               <p className={eyebrowClass}>Evidence Standard</p>
               <h2 id="wholesale-process-title" className={`${displayTitleClass} mt-5 max-w-[760px] text-[clamp(2.9rem,5.7vw,5.1rem)] leading-[0.94]`}>{processTitle}</h2>
               <p className="mt-6 max-w-[720px] text-[15px] leading-8 text-black/60 sm:text-base">{processIntro}</p>
+              <div className="mt-8 max-w-[720px] border-l-2 border-[#9d6b32] pl-5">
+                <p className="text-[13px] leading-6 text-black/55">Preparing a sourcing inquiry?</p>
+                <Link href="/resources/coffee-buyer-specification-template" className="group mt-2 inline-flex items-center gap-2 border-b border-[#182019]/35 pb-1 text-[13px] font-semibold leading-6 text-[#182019] transition-colors hover:border-[#182019] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#182019]">
+                  Use the Coffee Buyer Specification Template<ArrowUpRight className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
             </MotionReveal>
             <MotionReveal direction="right" className="min-h-[320px] overflow-hidden bg-[#e8e3d9] sm:min-h-[390px]">
               <img src="/about/about-fine-robusta.svg" alt="Coffee evaluation supporting OCC wholesale qualification" className="h-full w-full object-cover" />
