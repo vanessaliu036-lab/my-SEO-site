@@ -92,16 +92,16 @@ test("primary footer navigation keeps approved order and one shared menu treatme
   const footer = read("components/site/site-footer.tsx")
 
   const partnerships = navigation.indexOf('label: "PARTNERSHIPS"')
-  const partnershipsHref = navigation.indexOf('label: "PARTNERSHIPS",\n    href:')
-  const brandGifting = navigation.indexOf('{ label: "Brand & Gifting", href: "/partnerships" }')
+  const partnershipsHref = navigation.indexOf('label: "PARTNERSHIPS",\n    href: "/partnerships"')
+  const brandGifting = navigation.indexOf('{ label: "Brand & Gifting", href: "/partnerships/brand-gifting" }')
   const distribution = navigation.indexOf('{ label: "Distribution Partners", href: "/distribution" }')
   const blog = navigation.indexOf('{ label: "BLOG", href: "/blog" }')
   const contact = navigation.indexOf('{ label: "CONTACT", href: "/contact" }')
 
   assert.ok(
     partnerships >= 0 &&
-      partnershipsHref === -1 &&
-      brandGifting > partnerships &&
+      partnershipsHref > partnerships &&
+      brandGifting > partnershipsHref &&
       distribution > brandGifting &&
       blog > distribution &&
       contact > blog,
@@ -112,6 +112,15 @@ test("primary footer navigation keeps approved order and one shared menu treatme
   assert.match(footer, /aria-label="Footer navigation"/)
 })
 
+
+test("partnerships menu keeps parent and Brand & Gifting URLs distinct", () => {
+  const navigation = read("components/site/navigation-data.ts")
+  const brandGiftingPage = read("app/(site)/partnerships/brand-gifting/page.tsx")
+
+  assert.match(navigation, /label: "PARTNERSHIPS",\s*href: "\/partnerships"/)
+  assert.match(navigation, /Brand & Gifting", href: "\/partnerships\/brand-gifting"/)
+  assert.match(brandGiftingPage, /pageAlternates\("\/partnerships\/brand-gifting"\)/)
+})
 test("distribution hero uses a valid public asset and the global header keeps a compact scale", () => {
   const distribution = read("app/(site)/distribution/page.tsx")
   const header = read("components/site/site-header.tsx")
