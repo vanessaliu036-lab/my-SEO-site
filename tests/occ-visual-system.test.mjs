@@ -118,8 +118,8 @@ test("partnerships menu keeps parent and Brand & Gifting URLs distinct", () => {
   const brandGiftingPage = read("app/(site)/brand-gifting/page.tsx")
 
   assert.match(navigation, /label: "PARTNERSHIPS",\s*href: "\/partnerships"/)
-  assert.match(navigation, /Brand & Gifting", href: "\/partnerships\/brand-gifting"/)
-  assert.match(brandGiftingPage, /pageAlternates\("\/partnerships\/brand-gifting"\)/)
+  assert.match(navigation, /Brand & Gifting", href: "\/brand-gifting"/)
+  assert.match(brandGiftingPage, /pageAlternates\("\/brand-gifting"\)/)
 })
 test("distribution hero uses a valid public asset and the global header keeps a compact scale", () => {
   const distribution = read("app/(site)/distribution/page.tsx")
