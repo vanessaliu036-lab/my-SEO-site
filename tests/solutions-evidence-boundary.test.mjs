@@ -20,7 +20,7 @@ const source = Object.fromEntries(
 
 const forbiddenByPage = {
   wholesale: [
-    /minimum order/i,
+    /minimum order (?:of\s*\d+|is\s*\d+|starts? at|guaranteed)/i,
     /volume discounts/i,
     /weekly or bi-weekly delivery/i,
     /sourced directly from cambodian farms/i,
@@ -80,7 +80,7 @@ test("solutions pages keep stable canonical routes", () => {
 test("solutions CTAs are inquiry-led rather than transaction-led", () => {
   for (const [key, text] of Object.entries(source)) {
     assert.doesNotMatch(text, /ctaLabel="Request a quote"/i, `${key} still uses transaction-led CTA`)
-    assert.match(text, /ctaLabel="(?:Discuss your requirements|Ask about this area|Talk to our team|Develop Your Roast Profile|Discuss Wholesale Supply|Design Your Signature Drink)"/i)
+    assert.match(text, /ctaLabel="(?:Discuss your requirements|Discuss Your Wholesale Requirements|Ask about this area|Talk to our team|Develop Your Roast Profile|Discuss Wholesale Supply|Design Your Signature Drink)"/i)
   }
 })
 

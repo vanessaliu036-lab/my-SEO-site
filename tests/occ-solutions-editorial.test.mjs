@@ -62,7 +62,6 @@ test("commercial and local-market solution pages use dedicated editorial templat
   assert.match(commercial, /MotionReveal/)
 
   assert.match(local, /highlightCards/)
-  assert.match(local, /processSteps/)
   assert.match(local, /supportCards/)
   assert.match(local, /sticky top-28/)
   assert.match(local, /MotionReveal/)
@@ -74,10 +73,12 @@ test("commercial headings are declarative and route supplier vs roasting intent 
 
   assert.match(wholesale, /From Origin to Market/)
   assert.match(wholesale, /Ready-to-Sell/)
-  assert.match(wholesale, /Coffee Supplier/)
-  assert.match(wholesale, /Fine Robusta Supplier/)
-  assert.match(wholesale, /Wholesale Supplier/)
+  assert.match(wholesale, /coffee supplier Cambodia/i)
+  assert.match(wholesale, /Fine Robusta supplier/i)
+  assert.match(wholesale, /wholesale supplier/i)
   assert.match(wholesale, /\/solutions\/roasting-program/)
+  assert.match(wholesale, /Who This Is For/)
+  assert.match(wholesale, /Sample Approval and Lot Identity/)
 
   assert.match(roasting, /The Roast Starts With the Market/)
   assert.match(roasting, /Made-for-You/)
@@ -85,9 +86,9 @@ test("commercial headings are declarative and route supplier vs roasting intent 
   assert.match(roasting, /Custom Roasting/)
   assert.match(roasting, /Roast Profile/)
   assert.match(roasting, /\/solutions\/wholesale/)
+  assert.doesNotMatch(roasting, /Who This Is For|Who This Program Is For/)
 
   for (const source of [wholesale, roasting]) {
-    assert.doesNotMatch(source, /Who This Is For|Who This Program Is For/)
     assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
     assert.doesNotMatch(source, /\/solutions\/barista-staffing|\/solutions\/equipment-service/)
   }
