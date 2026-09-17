@@ -85,9 +85,10 @@ test('public navigation is unified in the top header and contains no legacy side
   assert.match(siteShell, /SiteHeader/)
   assert.doesNotMatch(siteShell, /SiteSidebar|components\/Navigation/)
   assert.match(siteHeader, /siteNavigation/)
-  for (const label of ['ABOUT', 'SOLUTIONS', 'ORIGINS', 'BLOG', 'CONTACT', 'DISTRIBUTION']) {
+  for (const label of ['ABOUT', 'SOLUTIONS', 'ORIGINS', 'PARTNERSHIPS', 'BLOG', 'CONTACT', 'Brand & Gifting', 'Distribution Partners']) {
     assert.match(navigationData, new RegExp(label))
   }
+  assert.match(navigationData, /href: "\/distribution"/)
   assert.doesNotMatch(publicNavigation, /\/admin|Staff Access/i)
 })
 
