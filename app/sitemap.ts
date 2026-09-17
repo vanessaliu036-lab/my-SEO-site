@@ -38,6 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/partnerships`, lastModified: now },
     { url: `${siteUrl}/brand-gifting`, lastModified: now },
     { url: `${siteUrl}/distribution`, lastModified: now },
+    { url: `${siteUrl}/resources/coffee-buyer-specification-template`, lastModified: now },
 
     { url: `${siteUrl}/blog`, lastModified: now },
     ...blogEntries,
