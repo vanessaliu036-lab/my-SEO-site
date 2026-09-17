@@ -91,12 +91,19 @@ test("primary footer navigation keeps approved order and one shared menu treatme
   const navigation = read("components/site/navigation-data.ts")
   const footer = read("components/site/site-footer.tsx")
 
-  const partnerships = navigation.indexOf('{ label: "PARTNERSHIPS", href: "/partnerships" }')
-  const distribution = navigation.indexOf('{ label: "DISTRIBUTION", href: "/distribution" }')
+  const partnerships = navigation.indexOf('label: "PARTNERSHIPS"')
+  const brandGifting = navigation.indexOf('{ label: "Brand & Gifting", href: "/partnerships" }')
+  const distribution = navigation.indexOf('{ label: "Distribution Partners", href: "/distribution" }')
   const blog = navigation.indexOf('{ label: "BLOG", href: "/blog" }')
   const contact = navigation.indexOf('{ label: "CONTACT", href: "/contact" }')
 
-  assert.ok(partnerships >= 0 && distribution > partnerships && blog > distribution && contact > blog)
+  assert.ok(
+    partnerships >= 0 &&
+      brandGifting > partnerships &&
+      distribution > brandGifting &&
+      blog > distribution &&
+      contact > blog,
+  )
   assert.doesNotMatch(footer, /const utilityItems/)
   assert.doesNotMatch(footer, /const standaloneItems/)
   assert.match(footer, /siteNavigation\.map/)
