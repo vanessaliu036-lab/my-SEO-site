@@ -83,22 +83,22 @@ const nextConfig = {
       },
       {
         source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-procurement',
-        destination: '/blog/fine-robusta-grading-verify-before-cupping',
+        destination: '/blog/fine-robusta-standards-350g-defects',
         permanent: true,
       },
       {
         source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-buyers',
-        destination: '/blog/fine-robusta-grading-verify-before-cupping',
+        destination: '/blog/fine-robusta-standards-350g-defects',
         permanent: true,
       },
       {
         source: '/blog/the-complete-guide-to-fine-robusta-standards-cqi-quality-protocols-explained',
-        destination: '/blog/fine-robusta-grading-verify-before-cupping',
+        destination: '/blog/fine-robusta-standards-350g-defects',
         permanent: true,
       },
       {
         source: '/blog/cqi-fine-robusta-standard-complete-guide',
-        destination: '/blog/fine-robusta-grading-verify-before-cupping',
+        destination: '/blog/fine-robusta-standards-350g-defects',
         permanent: true,
       },
       {
