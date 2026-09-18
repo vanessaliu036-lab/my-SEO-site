@@ -75,7 +75,7 @@ export function WholesaleApprovedLayout() {
       <div className="evidence-intro">
       <span className="eyebrow">Evidence Standard</span>
       <h3>From sample to supply.</h3>
-      <p>Evaluate the coffee first. OCC discusses the available reference, quality evidence and practical buying requirements before larger-volume commitments or recurring orders are agreed.</p>
+      <p>Evaluate the coffee first. OCC discusses the available reference, quality evidence and practical buying requirements before larger-volume commitments or recurring orders are agreed. For sensory review, see our <a href="/blog/how-to-cup-fine-robusta">Fine Robusta cupping guide</a>.</p>
       </div>
       <div className="evidence-image">
       <img alt="Coffee cupping used for sample and quality evaluation" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" />
