@@ -54,3 +54,30 @@ test("Partnerships is discoverable from navigation and sitemap", () => {
   assert.match(sitemap, /\/partnerships/)
   assert.match(sitemap, /\/brand-gifting/)
 })
+
+test("Partnerships publishes approved long copy and full cooperation flow", () => {
+  const hub = read("app/(site)/partnerships/page.tsx")
+  assert.match(hub, /Cambodian Coffee Partnerships Built to Be Remembered/)
+  assert.match(hub, /Why Cambodian Coffee Partnerships\?/)
+  assert.match(hub, /A coffee origin can become more than a product\./)
+  for (const heading of [
+    "Who We Work With", "What We Can Build Together", "OCC × ARUNERA",
+    "How a Partnership Works", "What to Include in Your Enquiry",
+  ]) assert.ok(hub.includes(heading), `Missing ${heading}`)
+  for (const stage of [
+    "Understand the opportunity", "Define the coffee direction", "Shape the product experience",
+    "Review commercial requirements", "Prepare the partnership",
+  ]) assert.ok(hub.includes(stage), `Missing stage: ${stage}`)
+  assert.ok(hub.length > 11000, "Long-form page should contain substantial substantive copy")
+})
+
+test("Partnerships preserves both hub destinations, correct canonical and an enquiry CTA", () => {
+  const hub = read("app/(site)/partnerships/page.tsx")
+  assert.match(hub, /href: "\/brand-gifting"/)
+  assert.match(hub, /href: "\/distribution"/)
+  assert.match(hub, /href="\/contact"/)
+  assert.match(hub, /Discuss a Partnership/)
+  assert.match(hub, /Explore Distribution/)
+  assert.match(hub, /pageAlternates\("\/partnerships"\)/)
+  assert.doesNotMatch(hub, /guaranteed MOQ|guaranteed delivery|exclusive territory|fixed inventory/i)
+})
