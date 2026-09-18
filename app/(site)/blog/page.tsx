@@ -6,9 +6,8 @@ import { alternatesFromCanonical } from "@/lib/seo"
 import { getAllPosts, getRecentPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
-// Canonical frontend corpus snapshot verified against the live archive on 2026-09-15.
-// Keep the fast landing-page read; update this snapshot with the corpus publishing workflow.
-const BLOG_CORPUS_POSTS = 1884
+// Canonical frontend corpus count verified from live Airtable on 2026-09-18.
+const BLOG_CORPUS_POSTS = 1905
 const BLOG_TOTAL_PAGES = Math.max(1, Math.ceil(BLOG_CORPUS_POSTS / POSTS_PER_PAGE))
 
 const CORE_FINE_ROBUSTA_OWNERS = [
