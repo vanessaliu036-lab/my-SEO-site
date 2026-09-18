@@ -15,7 +15,7 @@ type AboutEditorialTemplateProps = {
 }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const heroImage = "/hero-home.webp"
+const heroImage = "/about-hero-web.jpg"
 const whyOccImage = "/distribution-hero.webp"
 
 const differences = [
@@ -94,8 +94,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
   })
 
   return (
-    <div className="bg-[#f3f1ea] text-[#182019]">
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#2f3b2d] text-[#f3f1ea] lg:min-h-[700px]">
+    <div className="occ-about-page bg-[#f3f1ea] text-[#182019]">
+      <section className="occ-about-hero relative isolate min-h-[620px] overflow-hidden bg-[#2f3b2d] text-[#f3f1ea] lg:min-h-[700px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}

@@ -7,7 +7,7 @@
  */
 
 div[role="img"][aria-label="Cambodian coffee at origin"] {
-  background-image: url("/hero-home.webp") !important;
+  background-image: url("/about-hero-web.jpg") !important;
 }
 
 div[role="img"][aria-label="Cambodian coffee origin and production"] {
@@ -30,10 +30,10 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:fir
   background-image: url("/about/about-made-for-you.svg") !important;
 }
 
-/* Mobile Safari JPEG safety net. */
+/* Mobile safety net keeps the Why OCC photo source unique to that visual slot. */
 @media (max-width: 1023px) {
   div[role="img"][aria-label="Cambodian coffee origin and production"] {
-    background-image: url("/about/about-why-occ.jpg") !important;
+    background-image: url("/distribution-hero.webp") !important;
     background-size: cover !important;
     background-position: center !important;
   }

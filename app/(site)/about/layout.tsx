@@ -5,7 +5,7 @@ export default function AboutLayout({ children }: { children: ReactNode }) {
     <>
       <style>{`
         [role="img"][aria-label="Cambodian coffee at origin"] {
-          background-image: url("/about/hero-image") !important;
+          background-image: url("/about-hero-web.jpg") !important;
           background-position: center center !important;
         }
       `}</style>

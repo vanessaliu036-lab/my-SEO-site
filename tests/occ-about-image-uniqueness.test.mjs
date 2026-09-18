@@ -8,7 +8,6 @@ const cssPath = "app/about-image-overrides.css"
 const layoutPath = "app/layout.tsx"
 const publicSiteLayoutPath = "app/(site)/layout.tsx"
 const mobileFallbackPath = "components/site/about-image-fallback.tsx"
-const whyOccJpegPath = "public/about/about-why-occ.jpg"
 
 const sha256 = (filePath) =>
   crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex")
@@ -39,7 +38,7 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
     )
   }
 
-  const sourceOnlyCss = css.split("/* Mobile Safari JPEG safety net. */")[0]
+  const sourceOnlyCss = css.split("/* Mobile safety net keeps the Why OCC photo source unique to that visual slot. */")[0]
   const imageSources = [...sourceOnlyCss.matchAll(/background-image:\s*url\(["']?([^"')]+)["']?\)\s*!important;/g)].map(
     (match) => match[1],
   )
@@ -65,7 +64,7 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
   )
 })
 
-test("ABOUT Why OCC uses a directly decodable JPEG safety net on mobile Safari", () => {
+test("ABOUT Why OCC keeps one unique photo source across responsive layouts", () => {
   const css = fs.readFileSync(cssPath, "utf8")
   const publicSiteLayout = fs.readFileSync(publicSiteLayoutPath, "utf8")
   const fallback = fs.readFileSync(mobileFallbackPath, "utf8")
@@ -74,21 +73,13 @@ test("ABOUT Why OCC uses a directly decodable JPEG safety net on mobile Safari",
   assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
   assert.match(fallback, /usePathname/)
   assert.match(fallback, /Cambodian coffee origin and production/)
-  assert.match(fallback, /const WHY_OCC_SOURCE = "\/about\/about-why-occ\.jpg"/)
+  assert.match(fallback, /const WHY_OCC_SOURCE = "\/distribution-hero\.webp"/)
   assert.match(fallback, /lg:hidden/)
-
-  assert.equal(fs.existsSync(whyOccJpegPath), true, "Why OCC JPEG fallback asset must exist")
-  const jpeg = fs.readFileSync(whyOccJpegPath)
-  assert.ok(jpeg.length > 3_000, "Why OCC JPEG fallback asset must contain a real mobile photograph")
-  assert.equal(jpeg[0], 0xff, "Why OCC asset must start with JPEG SOI marker")
-  assert.equal(jpeg[1], 0xd8, "Why OCC asset must start with JPEG SOI marker")
-  assert.equal(jpeg[jpeg.length - 2], 0xff, "Why OCC asset must end with JPEG EOI marker")
-  assert.equal(jpeg[jpeg.length - 1], 0xd9, "Why OCC asset must end with JPEG EOI marker")
 
   assert.match(
     css,
-    /\/\* Mobile Safari JPEG safety net\. \*\/[\s\S]*?@media \(max-width: 1023px\)[\s\S]*?Cambodian coffee origin and production[\s\S]*?about-why-occ\.jpg/,
-    "Why OCC must switch its CSS background to the JPEG source on mobile as a no-JS safety net",
+    /\/\* Mobile safety net keeps the Why OCC photo source unique to that visual slot\. \*\/[\s\S]*?@media \(max-width: 1023px\)[\s\S]*?Cambodian coffee origin and production[\s\S]*?distribution-hero\.webp/,
+    "Why OCC must keep the same unique photo source on mobile as a no-JS safety net",
   )
   assert.match(fallback, /element\.style\.position = "relative"/)
   assert.match(fallback, /\}, \[pathname\]\)/)

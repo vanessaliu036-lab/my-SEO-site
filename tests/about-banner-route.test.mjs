@@ -13,9 +13,10 @@ function chunkValue(n) {
   return match[1]
 }
 
-test('About route uses a dedicated Mondulkiri banner and not the homepage hero', () => {
+test('About layout uses the dedicated local About hero and not the homepage hero', () => {
   const layout = readFileSync(path.join(root, 'app/(site)/about/layout.tsx'), 'utf8')
-  assert.match(layout, /\/about\/hero-image/)
+  assert.match(layout, /\/about-hero-web\.jpg/)
+  assert.doesNotMatch(layout, /\/about\/hero-image/)
   assert.doesNotMatch(layout, /hero-home\.webp/)
 })
 
