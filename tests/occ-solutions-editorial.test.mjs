@@ -6,7 +6,7 @@ const read = (path) => fs.readFileSync(path, "utf8")
 const indexTemplate = "components/templates/solutions-index-template.tsx"
 const detailTemplate = "components/templates/solution-detail-template.tsx"
 const commercialTemplate = "components/templates/commercial-solution-template.tsx"
-const wholesaleTemplate = "components/templates/wholesale-editorial-template.tsx"
+const wholesaleTemplate = "app/(site)/solutions/wholesale/WholesaleApprovedLayout.tsx"
 const localMarketTemplate = "components/templates/local-market-solution-template.tsx"
 const detailPages = ["wholesale", "roasting-program", "coffee-marketing", "equipment-service"]
 
@@ -43,7 +43,7 @@ test("commercial and local-market solution pages use dedicated editorial templat
   const wholesaleUi = read(wholesaleTemplate)
   const local = read(localMarketTemplate)
 
-  assert.match(wholesale, /WholesaleEditorialTemplate/)
+  assert.match(wholesale, /WholesaleApprovedLayout/)
   assert.match(roasting, /CommercialSolutionTemplate/)
   assert.doesNotMatch(wholesale, /SolutionDetailTemplate/)
   assert.doesNotMatch(roasting, /SolutionDetailTemplate/)
@@ -51,10 +51,10 @@ test("commercial and local-market solution pages use dedicated editorial templat
   assert.doesNotMatch(marketing, /SolutionDetailTemplate/)
   assert.match(equipment, /SolutionDetailTemplate/)
 
-  assert.match(wholesaleUi, /highlightCards/)
-  assert.match(wholesaleUi, /processSteps/)
-  assert.match(wholesaleUi, /comparison/)
-  assert.match(wholesaleUi, /MotionReveal/)
+  assert.match(wholesaleUi, /occ-wholesale/)
+  assert.match(wholesaleUi, /evidence-card/)
+  assert.match(wholesaleUi, /wholesale-faq/)
+  assert.match(wholesaleUi, /buyer-template-cta/)
   assert.match(commercial, /highlightCards/)
   assert.match(commercial, /processSteps/)
   assert.match(commercial, /comparison/)
@@ -72,11 +72,11 @@ test("commercial headings are declarative and route supplier vs roasting intent 
   const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
 
-  assert.match(wholesale, /From Origin to Market/)
-  assert.match(wholesale, /Ready-to-Sell/)
-  assert.match(wholesale, /Coffee Supplier/)
-  assert.match(wholesale, /Fine Robusta Supplier/)
-  assert.match(wholesale, /Wholesale Supplier/)
+  assert.match(wholesale, /WHOLESALE COFFEE SUPPLY/)
+  assert.match(wholesale, /Cambodian Fine Robusta/)
+  assert.match(wholesale, /Roasted Coffee/)
+  assert.doesNotMatch(wholesale, /green[ -]?coffee/i)
+  assert.doesNotMatch(wholesale, /distribution supply|\\bdistributor(?:s)?\\b|\\bimporter(?:s)?\\b/i)
   assert.match(wholesale, /\/solutions\/roasting-program/)
 
   assert.match(roasting, /The Roast Starts With the Market/)
@@ -107,11 +107,11 @@ test("commercial mobile hierarchy and internal links are explicit", () => {
   assert.match(template, /relatedLinks/)
   assert.match(template, /nextPath/)
 
-  assert.match(wholesale, /relatedLinksTitle="Related References"/)
-  assert.match(wholesale, /Fine Robusta Cambodia/)
-  assert.match(wholesale, /Custom Roasting Program/)
-  assert.match(wholesale, /nextPath=/)
-  assert.match(wholesale, /Develop Your Roast Profile/)
+  assert.match(wholesale, /Fine Robusta/)
+  assert.match(wholesale, /Roasting Program/)
+  assert.match(wholesale, /coffee-buyer-specification-template/)
+  assert.match(wholesale, /Discuss Wholesale Supply/)
+  assert.match(wholesale, /\/contact/)
 
   assert.match(roasting, /relatedLinksTitle="Related Paths"/)
   assert.match(roasting, /Wholesale Coffee Supply/)
@@ -183,7 +183,7 @@ test("solution templates keep semantic content server-rendered and use restraine
   assert.doesNotMatch(local, /^"use client"/)
   assert.match(legacy, /MotionReveal/)
   assert.match(commercial, /MotionReveal/)
-  assert.match(wholesale, /MotionReveal/)
+  assert.match(wholesale, /occ-wholesale/)
   assert.match(local, /MotionReveal/)
   assert.match(reveal, /useReducedMotion/)
   assert.match(reveal, /0\.22, 1, 0\.36, 1/)
