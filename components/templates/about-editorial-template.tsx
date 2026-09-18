@@ -15,7 +15,7 @@ type AboutEditorialTemplateProps = {
 }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const heroImage = "/hero-home.webp"
+const heroImage = "/about/occ-about-green-hero.webp"
 const whyOccImage = "/about/occ-about-green-hero.webp"
 
 const differences = [
