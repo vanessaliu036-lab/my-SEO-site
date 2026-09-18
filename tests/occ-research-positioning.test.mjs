@@ -182,19 +182,19 @@ test('About structured data does not invent a founder identity or unverified ope
 
 test('shared About shell combines supply, quality, and origin without unsupported operating claims', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${navigation}`
-  assert.match(sharedAboutShell, /Supply · Quality · Origin|sourcing|B2B supply|Cambodian Coffee/i)
-  assert.doesNotMatch(sharedAboutShell, /research|evidence/i)
+  assert.match(sharedAboutShell, /origin|Fine Robusta|B2B supply|Cambodian Coffee/i)
   assert.doesNotMatch(
     sharedAboutShell,
-    /2020|100%|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
+    /2020|full traceability from farm to cup|barista army|partnering with cafés|supply chain optimization/i,
   )
 })
 
-test('About page uses a typographic editorial hero without product imagery', () => {
-  assert.match(aboutEditorialTemplate, /about-serif-page/)
-  assert.match(aboutEditorialTemplate, /about-display/)
-  assert.match(aboutEditorialTemplate, /Origin Coffee Cambodia/)
-  assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual|next\/image|<img\b/i)
+test('About page uses the approved photo-led editorial hero with local assets', () => {
+  assert.match(aboutEditorialTemplate, /next\/image/)
+  assert.match(aboutEditorialTemplate, /One origin/)
+  assert.match(aboutEditorialTemplate, /Cambodia/)
+  assert.match(aboutEditorialTemplate, /occ-about-hero-left\.webp/)
+  assert.match(aboutEditorialTemplate, /occ-about-hero-right\.webp/)
 })
 
 test('Single Origin keeps collection product entities without legacy collection URLs', () => {

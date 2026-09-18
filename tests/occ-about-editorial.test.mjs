@@ -14,24 +14,28 @@ test("ABOUT uses the approved editorial template instead of the old demo hero", 
   assert.doesNotMatch(about, /MinimalistHero/)
   assert.doesNotMatch(about, /const aboutNav/)
   assert.match(template, /<h1/)
-  assert.match(template, /ABOUT/)
-  assert.match(template, /ORIGIN\./)
-  assert.match(template, /OCC BUILDS INFRASTRUCTURE\./)
+  assert.match(template, /One origin/)
+  assert.match(template, /Cambodia/)
+  assert.match(template, /How would you like to work with OCC/)
+  assert.match(template, /next\/image/)
+  assert.match(template, /occ-about-hero-left\.webp/)
 })
 
 test("ABOUT preserves its existing visible brand copy while changing presentation", () => {
   const template = read(templatePath)
 
-  assert.match(template, /Full traceability from farm to cup, documenting every step of our coffee's journey from Mondulkiri, Ratanakiri, and Kampot to your espresso machine\./)
-  assert.match(template, /Building a skilled barista army through comprehensive education programs that elevate service standards across Cambodia's café industry\./)
-  assert.match(template, /Long-term relationships with farmers, café owners, and hospitality businesses built on trust, consistency, and shared growth\./)
-  assert.match(template, /Partnering with cafés, hotels, restaurants, and coffee enthusiasts across Cambodia/)
+  assert.match(template, /A Cambodian coffee supplier with one origin to protect/)
+  assert.match(template, /A Premium Cambodian Coffee Brand/)
+  assert.match(template, /One origin\. Clear principles/)
+  assert.match(template, /Cambodian coffee for international markets/)
+  assert.match(template, /Ready-to-Sell/)
+  assert.match(template, /Made-for-You/)
 })
 
 test("ABOUT preserves SEO semantics and only links into the five-section architecture", () => {
   const about = read("app/(site)/about/page.tsx")
 
-  assert.match(about, /About Origin \| Origin Coffee Cambodia - OCC Coffee Roaster/)
+  assert.match(about, /About Origin Coffee Cambodia \| Fine Robusta & B2B Coffee/)
   assert.match(about, /"@type": "AboutPage"/)
   assert.match(about, /"@type": "BreadcrumbList"/)
   assert.match(about, /\/about\/mission/)
@@ -42,12 +46,13 @@ test("ABOUT preserves SEO semantics and only links into the five-section archite
   assert.doesNotMatch(about, /href="\/system"/)
 })
 
-test("ABOUT editorial motion is restrained and reduced-motion aware", () => {
+test("ABOUT editorial layout is responsive and reduced-motion aware", () => {
   assert.equal(fs.existsSync(templatePath), true, "editorial ABOUT template must exist")
   const template = read(templatePath)
+  const styles = read("components/templates/about-editorial-template.module.css")
 
-  assert.match(template, /framer-motion/)
-  assert.match(template, /useReducedMotion/)
-  assert.match(template, /0\.22, 1, 0\.36, 1/)
-  assert.match(template, /whileInView/)
+  assert.match(styles, /@media \(max-width: 680px\)/)
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/)
+  assert.match(styles, /grid-template-columns/)
+  assert.match(template, /aria-labelledby/)
 })
