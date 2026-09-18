@@ -38,7 +38,7 @@ export function SiteHeader() {
           >
             <img
               src="/occ-logo-primary-local.svg"
-              alt=""
+              alt="Origin Coffee Cambodia"
               width={600}
               height={272}
               className="h-[42px] w-auto sm:h-[48px] lg:h-[52px]"
