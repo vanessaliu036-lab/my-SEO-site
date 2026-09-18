@@ -165,6 +165,9 @@ export default function PartnershipsPage() {
             <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(4rem,10vw,7.2rem)] font-normal leading-[0.86] tracking-[-0.055em]">
               PARTNERSHIPS
             </h1>
+            <p className="mx-auto mt-7 max-w-2xl text-center font-[var(--font-display)] text-[clamp(1.6rem,3vw,2.6rem)] leading-[0.98] tracking-[-0.025em] text-white/82">
+              Cambodian Coffee Partnerships Built to Be Remembered
+            </p>
             <div className="mt-12 grid gap-8 md:grid-cols-[.95fr_1.22fr_.9fr] md:gap-7">
               <div className="flex flex-col justify-center md:pt-20">
                 <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.36em] text-white/58"><span>Entry</span><span className="h-px w-10 bg-white/35" /></p>

@@ -153,7 +153,7 @@ export default function BrandGiftingPage() {
 
               <figure className="mt-12 overflow-hidden border border-white/15 bg-black/10">
                 <img
-                  src="/about-hero-web.jpg"
+                  src="/images/occ-arunera-cambodian-coffee-gift-partnership.avif"
                   alt="OCC and ARUNERA premium Cambodian coffee gift collection"
                   width={1448}
                   height={1086}
