@@ -86,7 +86,7 @@ test("solutions CTAs are inquiry-led rather than transaction-led", () => {
       assert.match(wholesaleUi, /Discuss Wholesale Supply/i)
       continue
     }
-    assert.match(text, /ctaLabel="(?:Discuss your requirements|Ask about this area|Talk to our team|Develop Your Roast Profile|Discuss Wholesale Supply|Design Your Signature Drink)"/i)
+    assert.match(text, /ctaLabel="(?:Discuss your requirements|Ask about this area|Talk to our team|Develop Your Roast Profile|Discuss Wholesale Supply|Design Your Signature Drink|Tell Us What You Need)"/i)
   }
 })
 

@@ -79,7 +79,7 @@ test("commercial headings are declarative and route supplier vs roasting intent 
   assert.doesNotMatch(wholesale, /distribution supply|\\bdistributor(?:s)?\\b|\\bimporter(?:s)?\\b/i)
   assert.match(wholesale, /\/solutions\/roasting-program/)
 
-  assert.match(roasting, /The Roast Starts With the Market/)
+  assert.match(roasting, /Coffee for Your Business|The Roast Starts With the Market/)
   assert.match(roasting, /Made-for-You/)
   assert.match(roasting, /Roasting Supplier/)
   assert.match(roasting, /Custom Roasting/)

@@ -7,7 +7,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <main className="relative min-h-screen bg-white">{children}</main>
+      <main className="occ-site-main relative min-h-screen bg-[var(--occ-ivory)]">{children}</main>
       <SiteFinalCta />
       <SiteFooter />
     </>

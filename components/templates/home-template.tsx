@@ -11,7 +11,7 @@ import {
 export default function HomeTemplate() {
   return (
     <>
-      <section className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-[#1c211b] text-white">
+      <section className="occ-home-hero relative isolate flex min-h-[620px] w-full items-center justify-center overflow-hidden bg-[#1c211b] text-white lg:min-h-[700px]">
         <Image
           src="/hero-home.webp"
           alt="Origin Coffee Cambodia hero image"
@@ -76,40 +76,40 @@ export default function HomeTemplate() {
         </div>
       </section>
 
-      <section className="border-t border-gray-200 bg-white px-6 py-20 sm:px-8 md:py-24">
+      <section className="border-t border-[#182019]/12 bg-[#f6f3ea] px-6 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-gray-500">Origin Coffee Cambodia</p>
-          <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
-          <p className="max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">{homeDirectAnswer}</p>
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-[#182019]/52">Origin Coffee Cambodia</p>
+          <h2 className="mb-6 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-[#182019] md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
+          <p className="max-w-3xl text-base leading-relaxed text-[#182019]/72 md:text-lg">{homeDirectAnswer}</p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-white">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#f6f3ea] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#273229]">
               Start an Enquiry <ArrowUpRight className="size-3.5" />
             </Link>
-            <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-gray-800">
+            <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-[#182019]/20 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-[#182019] transition-colors duration-200 hover:border-[#182019] hover:bg-white/60">
               Research Journal <ArrowUpRight className="size-3.5" />
             </Link>
           </div>
-          <div className="mt-16 border-t border-gray-200 md:mt-20">
+          <div className="mt-16 border-t border-[#182019]/14 md:mt-20">
             {homeAuthoritySections.map((section, sectionIndex) => (
-              <section key={section.id} id={section.id} className="grid scroll-mt-24 grid-cols-12 gap-x-8 gap-y-5 border-b border-gray-200 py-12 md:gap-x-12 md:py-14">
+              <section key={section.id} id={section.id} className="grid scroll-mt-24 grid-cols-12 gap-x-8 gap-y-5 border-b border-[#182019]/14 py-12 md:gap-x-12 md:py-14">
                 <div className="col-span-12 md:col-span-4">
-                  <p className="mb-3 text-[10px] uppercase tracking-[0.28em] text-gray-400">{String(sectionIndex + 1).padStart(2, "0")} / {section.eyebrow}</p>
-                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-gray-900 md:text-2xl">{section.title}</h2>
+                  <p className="mb-3 text-[10px] uppercase tracking-[0.28em] text-[#a8542a]">{String(sectionIndex + 1).padStart(2, "0")} / {section.eyebrow}</p>
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight text-[#182019] md:text-2xl">{section.title}</h2>
                 </div>
                 <div className="col-span-12 md:col-span-8">
-                  <div className="space-y-5 text-[15px] leading-[1.8] text-gray-700 md:text-base">{section.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-                  {"items" in section && section.items ? <ol className="mt-8 list-decimal space-y-4 pl-6 marker:font-semibold marker:text-gray-900">{section.items.map((item) => <li key={item} className="pl-2 text-[15px] leading-[1.75] text-gray-700 md:text-base">{item}</li>)}</ol> : null}
+                  <div className="space-y-5 text-[15px] leading-[1.8] text-[#182019]/72 md:text-base">{section.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+                  {"items" in section && section.items ? <ol className="mt-8 list-decimal space-y-4 pl-6 marker:font-semibold marker:text-[#182019]">{section.items.map((item) => <li key={item} className="pl-2 text-[15px] leading-[1.75] text-[#182019]/72 md:text-base">{item}</li>)}</ol> : null}
                 </div>
               </section>
             ))}
           </div>
           <section className="mt-14 md:mt-16" aria-labelledby="primary-sources-heading">
-            <h2 id="primary-sources-heading" className="mb-7 text-sm font-light uppercase tracking-[0.3em] text-gray-400">Primary Sources</h2>
-            <ol className="list-decimal space-y-3 pl-5">{homeSources.map((source) => <li key={source.href} className="pl-2 text-sm leading-relaxed text-gray-600 md:text-[15px]"><a href={source.href} target="_blank" rel="noopener noreferrer" className="underline decoration-gray-300 underline-offset-4 transition-colors hover:text-gray-900 hover:decoration-gray-900">{source.label}</a></li>)}</ol>
+            <h2 id="primary-sources-heading" className="mb-7 text-sm font-light uppercase tracking-[0.3em] text-[#182019]/48">Primary Sources</h2>
+            <ol className="list-decimal space-y-3 pl-5">{homeSources.map((source) => <li key={source.href} className="pl-2 text-sm leading-relaxed text-[#182019]/62 md:text-[15px]"><a href={source.href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#182019]/20 underline-offset-4 transition-colors hover:text-[#182019] hover:decoration-[#182019]">{source.label}</a></li>)}</ol>
           </section>
           <div className="mt-20 border-t border-gray-200 pt-12">
-            <h2 className="mb-12 text-sm font-light uppercase tracking-[0.3em] text-gray-400">Frequently Asked Questions</h2>
-            <div className="space-y-10">{homeFaqs.map(({ q, a }) => <div key={q} className="grid grid-cols-12 gap-x-12 gap-y-3"><h3 className="col-span-12 border-l-4 border-gray-900 pl-4 text-lg font-bold tracking-tight text-gray-900 md:col-span-5">{q}</h3><p className="col-span-12 text-base leading-relaxed text-gray-600 md:col-span-7">{a}</p></div>)}</div>
+            <h2 className="mb-12 text-sm font-light uppercase tracking-[0.3em] text-[#182019]/48">Frequently Asked Questions</h2>
+            <div className="space-y-10">{homeFaqs.map(({ q, a }) => <div key={q} className="grid grid-cols-12 gap-x-12 gap-y-3"><h3 className="col-span-12 border-l-4 border-[#a8542a] pl-4 text-lg font-semibold tracking-tight text-[#182019] md:col-span-5">{q}</h3><p className="col-span-12 text-base leading-relaxed text-[#182019]/62 md:col-span-7">{a}</p></div>)}</div>
           </div>
         </div>
       </section>

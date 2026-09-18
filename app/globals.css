@@ -50,6 +50,9 @@
     --occ-ivory: #f6f3ea;
     --occ-stone: #d8d3c8;
     --occ-lime: #e7f2c9;
+    --occ-accent: #a8542a;
+    --occ-surface: #efe9dc;
+    --occ-surface-soft: #fbfaf6;
     --occ-line: rgba(24, 32, 25, 0.14);
     --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --occ-wide: 1680px;
@@ -98,7 +101,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: var(--font-sans), system-ui, sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -106,6 +109,27 @@
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: var(--occ-ivory);
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--occ-lime);
+    color: var(--occ-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--occ-accent);
+    outline-offset: 4px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   h1 {
@@ -183,6 +207,19 @@
   .occ-pill:hover {
     transform: translateY(-2px);
     background: #fff;
+  }
+
+  .occ-image-frame {
+    overflow: hidden;
+    background: var(--occ-surface);
+  }
+
+  .occ-image-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: auto;
   }
 
   .occ-horizontal-frame {
@@ -364,7 +401,7 @@
 
 /* About uses independent local source photographs instead of magnifying the old 4-up sprite. */
 div[role="img"][aria-label="Cambodian coffee at origin"] {
-  background-image: url("/about/about-origin.svg") !important;
+  background-image: url("/about-hero-web.jpg") !important;
   background-size: cover !important;
   background-position: 50% 48% !important;
 }
@@ -435,5 +472,66 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:fir
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Cross-page visual normalization: one OCC canvas, one accent, controlled media. */
+.occ-site-main {
+  background: var(--occ-ivory);
+  color: var(--occ-ink);
+}
+
+.occ-site-main p {
+  text-wrap: pretty;
+}
+
+.occ-site-main [class*="bg-[#071a32]"],
+.occ-site-main [class*="bg-[#182019]"],
+.occ-site-main [class*="bg-[#2f3b2d]"],
+.occ-site-main [class*="bg-[#273229]"] {
+  background-color: var(--occ-forest) !important;
+}
+
+.occ-site-main [class*="bg-[#7a1118]"],
+.occ-site-main [class*="bg-[#a8542a]"] {
+  background-color: var(--occ-accent) !important;
+}
+
+.occ-site-main [class*="bg-[#e9e2d5]"],
+.occ-site-main [class*="bg-[#f6f3ea]"],
+.occ-site-main [class*="bg-[#f3f1ea]"] {
+  background-color: var(--occ-ivory) !important;
+}
+
+.occ-site-main [class*="text-[#f3d28a]"],
+.occ-site-main [class*="text-[#f6e7c4]"],
+.occ-site-main [class*="text-[#f8e7bc]"],
+.occ-site-main [class*="text-[#f3f1ea]"] {
+  color: var(--occ-ivory) !important;
+}
+
+.occ-site-main [class*="text-[#071a32]"],
+.occ-site-main [class*="text-[#182019]"],
+.occ-site-main [class*="text-[#2f3b2d]"],
+.occ-site-main [class*="text-[#273229]"] {
+  color: var(--occ-ink) !important;
+}
+
+.occ-home-hero {
+  min-height: clamp(620px, 78vh, 760px) !important;
+}
+
+.occ-about-hero {
+  min-height: clamp(540px, 72vh, 660px) !important;
+}
+
+.occ-about-hero > div.relative {
+  min-height: inherit !important;
+}
+
+@media (max-width: 767px) {
+  .occ-home-hero,
+  .occ-about-hero {
+    min-height: 580px !important;
   }
 }

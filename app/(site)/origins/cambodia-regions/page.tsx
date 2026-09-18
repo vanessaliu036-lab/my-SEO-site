@@ -204,7 +204,7 @@ export default function CambodiaRegionsPage() {
   const sectionTitleClass = "mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#182019]"
 
   return (
-    <div className="bg-[#f6f3ea] text-[#182019]">
+    <div className="origins-text-only bg-[#f6f3ea] text-[#182019]" data-image-free="true">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section className="relative overflow-hidden border-b border-black/10 pt-28 lg:pt-32">
@@ -212,7 +212,7 @@ export default function CambodiaRegionsPage() {
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
         </div>
 
-        <div className="relative mx-auto w-full max-w-[1680px] px-6 pb-14 pt-6 sm:px-8 md:px-12 lg:px-16 lg:pb-20">
+        <div className="relative w-full px-6 pb-14 pt-6 sm:px-8 md:px-12 lg:px-12 lg:pb-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end">
             <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
               <Link href="/origins" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/42 transition-colors hover:text-black">
@@ -250,7 +250,7 @@ export default function CambodiaRegionsPage() {
         </div>
       </section>
 
-      <main className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
+      <main className="w-full px-6 sm:px-8 md:px-12 lg:px-12">
         <section className="border-b border-black/10 py-16 lg:py-24">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
@@ -317,26 +317,6 @@ export default function CambodiaRegionsPage() {
           </div>
         </section>
 
-        <MotionReveal>
-          <section className="py-12 lg:py-16">
-            <div className="grid grid-cols-1 gap-8 bg-[#202820] p-7 text-[#f6f3ea] sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
-              <div className="md:col-span-7">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">Next Origin Layer</p>
-                <h2 className="mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2rem,7vw,3rem)] font-normal leading-[0.98] tracking-[-0.035em]">
-                  The Map Ends Where the Farm Begins.
-                </h2>
-                <p className="mt-6 max-w-[34rem] text-sm leading-7 text-white/66">
-                  Continue from regional geography into elevation, soil, climate, shade, water, plant material, farm management, and cherry maturity.
-                </p>
-              </div>
-              <div className="md:col-span-4 md:col-start-9 md:text-right">
-                <Link href="/origins/farm-terroir" className="group inline-flex items-center gap-2 border-b border-white/35 pb-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
-                  Explore Farm & Terroir <ArrowUpRight className="size-3" />
-                </Link>
-              </div>
-            </div>
-          </section>
-        </MotionReveal>
       </main>
     </div>
   )

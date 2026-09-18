@@ -15,7 +15,7 @@ test("roasting retains all approved content and the global SiteShell", () => {
   const page = fs.readFileSync(pagePath, "utf8")
   const layout = fs.readFileSync(layoutPath, "utf8")
   const siteLayout = fs.readFileSync(sharedLayoutPath, "utf8")
-  for (const heading of ["CUSTOM ROASTING PROGRAM", "Your Market. Your Customer. Your Roast Profile.", "From Market to Production Profile", "Choose Our Profile. Or Build Yours."]) {
+  for (const heading of ["CUSTOM ROASTING PROGRAM", "Coffee for Your Business. Choose the Path That Fits.", "Three Steps to a Working Coffee Direction", "Ready-Developed or Made-for-You?"]) {
     assert.ok(page.includes(heading), `approved copy missing: ${heading}`)
   }
   assert.match(page, /CommercialSolutionTemplate/)

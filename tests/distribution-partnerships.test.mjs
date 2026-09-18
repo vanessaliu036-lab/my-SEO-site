@@ -39,7 +39,7 @@ test("distribution page has a qualified international importer and distributor f
 
 test("distribution retains approved URL and hero visual while avoiding unsupported schema", () => {
   assert.match(source, /pageAlternates\("\/distribution"\)/)
-  assert.match(source, /src="\/about\/occ-about-atlas\.avif"/)
+  assert.match(source, /src="\/distribution-hero\.webp"/)
   assert.match(source, /"@type": "WebPage"/)
   assert.match(source, /"@type": "BreadcrumbList"/)
   assert.match(source, /href="\/partnerships"/)

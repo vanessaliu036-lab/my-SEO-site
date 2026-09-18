@@ -23,8 +23,8 @@ export function MotionReveal({
   return (
     <motion.div
       className={cn(className)}
-      initial={reducedMotion ? { opacity: 0 } : direction === "up" ? { opacity: 0, y: desktopOffset } : { opacity: 0, x: desktopOffset }}
-      whileInView={reducedMotion ? { opacity: 1 } : direction === "up" ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+      initial={reducedMotion ? { opacity: 1 } : direction === "up" ? { opacity: 0, y: desktopOffset, filter: "blur(4px)" } : { opacity: 0, x: desktopOffset, filter: "blur(4px)" }}
+      whileInView={reducedMotion ? { opacity: 1 } : direction === "up" ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 1, x: 0, filter: "blur(0px)" }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.62, delay, ease: [0.22, 1, 0.36, 1] }}
     >

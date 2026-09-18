@@ -1,24 +1,24 @@
-.occ-wholesale{--bg:#f6f4ef;
-      --paper:#fbfaf7;
-      --line:#dbd5cd;
-      --text:#1e1a16;
-      --muted:#6f675f;
-      --soft:#f0ece5;
-      --soft-2:#eee8df;
+.occ-wholesale{--bg:var(--occ-ivory);
+      --paper:rgba(255,255,255,.38);
+      --line:var(--occ-line);
+      --text:var(--occ-ink);
+      --muted:rgba(24,32,25,.62);
+      --soft:var(--occ-lime);
+      --soft-2:var(--occ-stone);
       --max:1450px;}
 .occ-wholesale,.occ-wholesale *{box-sizing:border-box}
 .occ-wholesale{margin:0;background:var(--bg);color:var(--text);
-      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-family:var(--font-sans),system-ui,sans-serif;
       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 .occ-wholesale img{display:block;width:100%;height:100%;object-fit:cover}
 .occ-wholesale a{text-decoration:none;color:inherit}
 .occ-wholesale button,.occ-wholesale input,.occ-wholesale select,.occ-wholesale textarea{font:inherit}
 .occ-wholesale .page{width:min(calc(100% - 40px), var(--max));
-      margin:20px auto;background:var(--paper);
-      padding:26px 56px 28px;}
+      margin:0 auto;background:transparent;
+      padding:34px 0 28px;}
 .occ-wholesale .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:24px}
 .occ-wholesale .brand{display:flex;flex-direction:column;gap:8px}
-.occ-wholesale .brand .logo{font-family:"Cormorant Garamond",serif;font-size:90px;line-height:.82;font-weight:600;letter-spacing:.02em}
+.occ-wholesale .brand .logo{font-family:var(--font-display),Georgia,serif;font-size:90px;line-height:.82;font-weight:600;letter-spacing:.02em}
 .occ-wholesale .brand .sub{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-left:4px}
 .occ-wholesale .top-right{display:flex;flex-direction:column;align-items:flex-end;gap:46px;padding-top:12px;flex:1}
 .occ-wholesale nav{display:flex;gap:38px;align-items:center;justify-content:center;width:100%;font-size:14px;color:#4b4540}
@@ -26,15 +26,15 @@
 .occ-wholesale .tagline:after{content:"";position:absolute;right:0;bottom:0;width:52px;height:1px;background:var(--line)}
 .occ-wholesale .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:start;padding:6px 0 54px}
 .occ-wholesale .eyebrow{display:block;font-size:18px;letter-spacing:.30em;text-transform:uppercase;color:#6f665e;margin-bottom:18px}
-.occ-wholesale h1,.occ-wholesale h2,.occ-wholesale h3,.occ-wholesale h4{margin:0;font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.92;letter-spacing:-.02em}
+.occ-wholesale h1,.occ-wholesale h2,.occ-wholesale h3,.occ-wholesale h4{margin:0;font-family:var(--font-display),Georgia,serif;font-weight:500;line-height:.92;letter-spacing:-.02em}
 .occ-wholesale h1{font-size:92px;margin-bottom:26px;max-width:600px}
-.occ-wholesale .lead{font-family:"Cormorant Garamond",serif;font-size:32px;line-height:1.18;max-width:560px;margin:0 0 24px}
+.occ-wholesale .lead{font-family:var(--font-display),Georgia,serif;font-size:32px;line-height:1.18;max-width:560px;margin:0 0 24px}
 .occ-wholesale .desc{max-width:560px;font-size:17px;line-height:1.72;color:var(--muted);margin:0 0 34px}
 .occ-wholesale .button-row{display:flex;gap:12px;flex-wrap:wrap}
 .occ-wholesale .pill-btn{display:inline-flex;align-items:center;gap:14px;background:var(--soft);border-radius:999px;padding:16px 28px;min-width:170px;font-size:14px;font-weight:500;color:#29231f;transition:.25s ease;border:1px solid transparent}
 .occ-wholesale .pill-btn:hover{transform:translateY(-1px);background:#e8e2d8}
 .occ-wholesale .pill-btn.outline{background:transparent;border-color:#d6cec4}
-.occ-wholesale .hero-visual{aspect-ratio:.92/1;overflow:hidden;background:#eee8df}
+.occ-wholesale .hero-visual{aspect-ratio:1.2/1;max-height:520px;overflow:hidden;background:#eee8df}
 .occ-wholesale .section{padding:8px 0 58px}
 .occ-wholesale .section-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:end;margin-bottom:28px}
 .occ-wholesale .section-head h2{font-size:72px;max-width:560px}
@@ -49,7 +49,7 @@
 .occ-wholesale .text-link{font-size:14px;font-weight:500;display:inline-flex;gap:10px;align-items:center}
 .occ-wholesale .split-section{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:stretch;padding:24px 0 72px}
 .occ-wholesale .media-grid{align-self:stretch;min-height:0}
-.occ-wholesale .media-card{position:relative;background:#eee8df;overflow:hidden;width:100%;height:100%;min-height:620px}
+.occ-wholesale .media-card{position:relative;background:#eee8df;overflow:hidden;width:100%;height:auto;min-height:0;aspect-ratio:4/3}
 .occ-wholesale .info-panel{padding:0}
 .occ-wholesale h2{font-size:72px;line-height:.95;margin-bottom:18px;max-width:520px}
 .occ-wholesale .section-copy{font-size:16px;line-height:1.8;color:var(--muted);max-width:650px;margin:0 0 28px}
@@ -86,7 +86,7 @@
 .occ-wholesale .supply-highlights{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .occ-wholesale .supply-highlight{padding:18px 18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent;min-height:96px}
 .occ-wholesale .supply-highlight .label{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8f867d;margin-bottom:9px}
-.occ-wholesale .supply-highlight strong{display:block;font-size:19px;line-height:1.15;margin-bottom:0;font-family:"Cormorant Garamond",serif;font-weight:500}
+.occ-wholesale .supply-highlight strong{display:block;font-size:19px;line-height:1.15;margin-bottom:0;font-family:var(--font-display),Georgia,serif;font-weight:500}
 .occ-wholesale .supply-highlight span{display:none}
 .occ-wholesale .supply-table{border-top:1px solid var(--line);background:transparent}
 .occ-wholesale .supply-row{display:grid;grid-template-columns:.62fr 1.38fr;gap:30px;padding:22px 0;border-bottom:1px solid var(--line)}
@@ -122,12 +122,14 @@
 .occ-wholesale .footer{border-top:1px solid var(--line);padding-top:34px;display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:36px;align-items:start}
 .occ-wholesale .footer-title{font-size:16px;font-weight:600;margin-bottom:14px;color:#221d19}
 .occ-wholesale .footer-list{display:grid;gap:10px;color:#696158;font-size:15px}
-.occ-wholesale .contact-box h4{font-family:"Inter",sans-serif;margin:0 0 10px;font-size:16px;font-weight:600;letter-spacing:0;line-height:1.2}
+.occ-wholesale .contact-box h4{font-family:var(--font-sans),system-ui,sans-serif;margin:0 0 10px;font-size:16px;font-weight:600;letter-spacing:0;line-height:1.2}
 .occ-wholesale .contact-box p{margin:0 0 18px;color:var(--muted);font-size:15px}
 .occ-wholesale .bottomline{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-top:24px;padding-top:22px}
 .occ-wholesale .copyright{font-size:13px;color:#8b8279}
 .occ-wholesale .ending{text-align:right;font-size:12px;letter-spacing:.30em;text-transform:uppercase;color:#8d8478}
 @media (max-width:1100px){.occ-wholesale .page{padding:22px 28px 28px}
+.occ-wholesale h1{font-size:clamp(62px,8.2vw,82px);max-width:760px}
+.occ-wholesale .lead{font-size:clamp(26px,3.2vw,31px)}
 .occ-wholesale .hero,.occ-wholesale .split-section,.occ-wholesale .footer,.occ-wholesale .section-head,.occ-wholesale .supply-grid,.occ-wholesale .inquiry,.occ-wholesale .evidence-top{grid-template-columns:1fr}
 .occ-wholesale .topbar{flex-direction:column;align-items:flex-start}
 .occ-wholesale .top-right{width:100%;align-items:flex-start;gap:22px}
@@ -135,7 +137,7 @@
 .occ-wholesale .tagline{text-align:left}
 .occ-wholesale .tagline:after{left:0;right:auto}
 .occ-wholesale .media-grid{min-height:0}
-.occ-wholesale .media-card{min-height:560px;height:100%}
+.occ-wholesale .media-card{min-height:0;height:auto;aspect-ratio:4/3}
 .occ-wholesale .info-panel{padding:0}
 .occ-wholesale .supply-copy{position:static}
 .occ-wholesale .ending{text-align:left}
@@ -154,7 +156,7 @@
 .occ-wholesale h2,.occ-wholesale .section-head h2,.occ-wholesale .inquiry h2,.occ-wholesale .supply-copy h2{font-size:48px}
 .occ-wholesale .evidence-intro h3{font-size:46px}
 .occ-wholesale .media-grid{min-height:0}
-.occ-wholesale .media-card{min-height:420px;height:100%}
+.occ-wholesale .media-card{min-height:0;height:auto;aspect-ratio:4/3}
 .occ-wholesale .b2b-cta{grid-template-columns:1fr;padding:30px 24px;gap:24px}
 .occ-wholesale .b2b-cta h3{font-size:40px}
 .occ-wholesale .b2b-cta .cta-btn{justify-self:start}

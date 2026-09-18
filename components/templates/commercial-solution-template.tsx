@@ -34,6 +34,11 @@ type NextPath = {
   cta: string
 }
 
+type HeroSecondaryCta = {
+  label: string
+  href: string
+}
+
 type ComparisonPath = {
   eyebrow: string
   title: string
@@ -55,6 +60,7 @@ type CommercialSolutionTemplateProps = {
   subtitle: string
   heroStatement: string
   heroCtaLabel: string
+  heroSecondaryCta?: HeroSecondaryCta
   highlightTitle: string
   highlightIntro: string
   highlightCards: HighlightCard[]
@@ -81,6 +87,7 @@ export function CommercialSolutionTemplate({
   subtitle,
   heroStatement,
   heroCtaLabel,
+  heroSecondaryCta,
   highlightTitle,
   highlightIntro,
   highlightCards,
@@ -132,10 +139,15 @@ export function CommercialSolutionTemplate({
             <div className="md:col-span-7 md:col-start-4">
               <p className="font-[var(--font-display)] text-[clamp(2.25rem,8vw,3.7rem)] font-normal leading-[0.98] tracking-[-0.04em]">{heroStatement}</p>
             </div>
-            <div className="md:col-span-2 md:col-start-11">
+            <div className="flex flex-wrap items-center gap-3 md:col-span-5 md:col-start-9 md:justify-end">
               <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
                 {heroCtaLabel}<ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
+              {heroSecondaryCta ? (
+                <Link href={heroSecondaryCta.href} className="group inline-flex items-center gap-2 rounded-full border border-[#182019]/20 px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#182019] transition-colors hover:border-[#182019] hover:bg-[#eee8dc]">
+                  {heroSecondaryCta.label}<ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              ) : null}
             </div>
           </MotionReveal>
         </div>

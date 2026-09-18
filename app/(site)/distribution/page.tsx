@@ -182,12 +182,12 @@ export default function DistributionPage() {
 
           <div className="relative min-h-[440px] overflow-hidden bg-[#273229] lg:col-span-5 lg:min-h-full">
             <Image
-              src="/about/occ-about-atlas.avif"
-              alt="Cambodian coffee origin for OCC international distribution partners"
+              src="/distribution-hero.webp"
+              alt="Coffee being prepared for OCC international distribution partners"
               fill
               priority
               sizes="(min-width: 1024px) 42vw, 100vw"
-              className="object-cover opacity-90"
+              className="object-contain p-8 opacity-95 sm:p-12"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#182019]/45 via-transparent to-transparent" />
             <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between border-t border-white/45 pt-5 text-white sm:bottom-10 sm:left-10 sm:right-10">

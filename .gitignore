@@ -27,6 +27,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local SEO analysis cache
+.seo-cache/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

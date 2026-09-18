@@ -149,11 +149,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={htmlLang} className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang={htmlLang} data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
         <style id="occ-typography-system">{typographyCss}</style>
       </head>
-      <body className="font-sans bg-white text-gray-900 antialiased">
+      <body className="font-sans antialiased">
         {children}
 
         <Analytics />

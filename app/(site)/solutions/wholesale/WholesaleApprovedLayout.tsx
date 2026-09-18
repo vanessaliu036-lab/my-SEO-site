@@ -22,7 +22,7 @@ export function WholesaleApprovedLayout() {
       </div>
       </div>
       <div className="hero-visual">
-      <img alt="Cambodia-origin coffee for wholesale and B2B sourcing" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" />
+      <img alt="Cambodia-origin coffee for wholesale and B2B sourcing" src="/hero-home.webp" fetchPriority="high" decoding="async" />
       </div>
       </section>
       <section className="section" id="needs">
@@ -54,7 +54,7 @@ export function WholesaleApprovedLayout() {
       </section>
       <section className="split-section" id="why-occ">
       <div className="media-grid">
-      <div className="media-card"><img alt="Coffee business environment for OCC wholesale coffee sourcing" src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" /></div>
+      <div className="media-card"><img alt="Coffee business environment for OCC wholesale coffee sourcing" src="/images/roasting/roaster-evaluation.png" loading="lazy" decoding="async" /></div>
       </div>
       <div className="info-panel">
       <span className="eyebrow">Why OCC</span>
@@ -78,7 +78,7 @@ export function WholesaleApprovedLayout() {
       <p>Evaluate the coffee first. OCC discusses the available reference, quality evidence and practical buying requirements before larger-volume commitments or recurring orders are agreed. For sensory review, see our <a href="/blog/how-to-cup-fine-robusta">Fine Robusta cupping guide</a>.</p>
       </div>
       <div className="evidence-image">
-      <img alt="Coffee cupping used for sample and quality evaluation" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" />
+      <img alt="Coffee cupping used for sample and quality evaluation" src="/images/roasting/coffee-beans-reference.png" loading="lazy" decoding="async" />
       </div>
       </div>
       <p className="buyer-template-cta">Preparing a sourcing inquiry? <a href="/resources/coffee-buyer-specification-template">Use the Coffee Buyer Specification Template →</a></p>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { ogImage, siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
@@ -36,6 +37,8 @@ const partnershipPaths = [
       "Work with OCC on Cambodian coffee gifts, hotel gifting, travel retail, corporate gifting and retail-ready product experiences.",
     href: "/brand-gifting",
     action: "Explore Brand & Gifting",
+    image: "/about/about-made-for-you.svg",
+    imageAlt: "A considered Cambodian coffee gifting experience",
   },
   {
     number: "02",
@@ -44,6 +47,8 @@ const partnershipPaths = [
       "Bring Cambodia-origin coffee to your market as a distributor, importer, regional agent, retailer or hospitality partner.",
     href: "/distribution",
     action: "Explore Distribution",
+    image: "/about/about-ready-to-sell.svg",
+    imageAlt: "Cambodian coffee prepared for selected market partners",
   },
 ]
 
@@ -152,46 +157,57 @@ export default function PartnershipsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(partnershipSchema) }} />
 
-      <main className="bg-[#f6f3ea] text-[#182019]">
+      <main className="bg-[#f7f5ef] text-[#171412]">
         <section className="relative overflow-hidden bg-[#182019] text-[#f6f3ea]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(151,45,35,0.42),transparent_32%),linear-gradient(135deg,#182019_0%,#273229_68%,#7a1118_150%)]" />
-          <div className="relative mx-auto w-full max-w-[1680px] px-6 pb-20 pt-28 sm:px-8 md:px-12 lg:px-16 lg:pb-28 lg:pt-36">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/58">OCC · Partnerships</p>
-            <h1 className="mt-7 max-w-5xl font-[var(--font-display)] text-[clamp(3.1rem,7vw,7.1rem)] font-normal leading-[0.9] tracking-[-0.05em]">
-              Cambodian Coffee Partnerships Built to Be Remembered
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#182019_0%,#273229_68%,#7a1118_150%)]" />
+          <div className="relative mx-auto w-full max-w-[1120px] px-6 pb-20 pt-28 sm:px-10 md:px-14 lg:pb-28 lg:pt-36">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">OCC · Partnerships</p>
+            <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(4rem,10vw,7.2rem)] font-normal leading-[0.86] tracking-[-0.055em]">
+              PARTNERSHIPS
             </h1>
-            <p className="mt-9 max-w-3xl text-lg leading-8 text-white/82">
-              Origin Coffee Cambodia works with selected partners to bring Cambodian coffee into new formats, markets and experiences.
-            </p>
-            <p className="mt-5 max-w-3xl text-[15px] leading-7 text-white/70">
-              Together with ARUNERA, we turn Cambodia-origin coffee into premium gifts and product experiences for hotels, retailers, travel businesses, corporate occasions and people looking for something meaningful to take home.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-[#f6f3ea] px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#182019]">
-                Discuss a Partnership <ArrowUpRight className="size-4" />
-              </Link>
-              <Link href="/distribution" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
-                Explore Distribution <ArrowUpRight className="size-4" />
-              </Link>
+            <div className="mt-12 grid gap-8 md:grid-cols-[.95fr_1.22fr_.9fr] md:gap-7">
+              <div className="flex flex-col justify-center md:pt-20">
+                <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.36em] text-white/58"><span>Entry</span><span className="h-px w-10 bg-white/35" /></p>
+                <h2 className="mt-7 font-[var(--font-display)] text-[clamp(3rem,5.8vw,5.5rem)] font-normal leading-[0.86] tracking-[-0.05em]">CAMBODIA<br />IN GOOD<br />COMPANY</h2>
+                <p className="mt-7 max-w-[270px] text-[15px] leading-7 text-white/72">
+                  OCC works with selected partners to bring Cambodia-origin coffee into experiences, products and markets with a clear reason to exist.
+                </p>
+                <Link href="#why-partnership" className="mt-7 inline-flex w-fit items-center gap-4 border-b border-white/45 pb-2 text-[10px] uppercase tracking-[0.28em] text-white/78">
+                  Our approach <span aria-hidden="true">↓</span>
+                </Link>
+              </div>
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#202820]">
+                <Image src="/about/about-fine-robusta.svg" alt="Fine Robusta coffee visual for an OCC partnership experience" fill priority sizes="(min-width: 768px) 38vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
+              </div>
+              <div className="flex flex-col">
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#202820]">
+                  <Image src="/about/about-origin.svg" alt="Cambodian coffee origin visual for OCC partnerships" fill sizes="(min-width: 768px) 28vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
+                </div>
+                <p className="mt-6 text-[10px] uppercase tracking-[0.34em] leading-[1.7] text-white/48">BOLDER ROOTS<br />BRIGHTER TOMORROWS</p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section aria-label="Partnership pathways" className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-px px-6 py-16 sm:px-8 md:grid-cols-2 md:px-12 lg:px-16 lg:py-24">
+        <section aria-label="Partnership pathways" className="mx-auto w-full max-w-[1120px] px-6 pb-20 pt-12 sm:px-10 md:px-14 lg:pb-28 lg:pt-16">
+          <div className="relative z-[1] -mb-2 font-[var(--font-display)] text-[clamp(3.2rem,7.5vw,6.6rem)] font-normal leading-[0.88] tracking-[-0.055em] md:whitespace-nowrap">
+            <span>BRAND &amp; GIFTING</span><span className="mx-3 text-[#c46d33]">\</span><span>DISTRIBUTION</span>
+          </div>
+          <div className="grid grid-cols-1 gap-px border-t border-[#ddd8cf] md:grid-cols-2">
           {partnershipPaths.map((path) => (
-            <article key={path.href} className="flex min-h-[360px] flex-col justify-between border border-black/10 bg-[#efe9dc] p-7 sm:p-10 lg:p-14">
-              <div>
-                <p className="text-[10px] tracking-[0.22em] text-black/36">{path.number}</p>
-                <h2 className="mt-7 max-w-md font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.4rem)] font-normal leading-[0.9] tracking-[-0.04em]">
-                  {path.label}
-                </h2>
-                <p className="mt-7 max-w-md text-[15px] leading-7 text-black/66">{path.description}</p>
+            <article key={path.href} className="bg-[#f7f5ef] md:border-r md:border-[#ddd8cf] md:last:border-r-0">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#ede9df]">
+                <Image src={path.image} alt={path.imageAlt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
-              <Link href={path.href} className="mt-10 inline-flex w-fit items-center gap-2 border-b border-[#182019] pb-2 text-[10px] font-semibold uppercase tracking-[0.18em]">
-                {path.action} <ArrowUpRight className="size-3" />
-              </Link>
+              <div className="min-h-[250px] border-b border-[#ddd8cf] bg-[#faf8f3] p-7 sm:p-9 lg:p-11">
+                <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-[#736d66]"><span>{path.number}</span><span className="h-px w-8 bg-[#b8b2a8]" /></p>
+                <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.4rem,4.5vw,4.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">{path.label}</h2>
+                <p className="mt-6 max-w-md text-[15px] leading-7 text-[#37322d]">{path.description}</p>
+                <Link href={path.href} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-[#171412] pb-2 text-[10px] font-semibold uppercase tracking-[0.2em]">{path.action} <ArrowUpRight className="size-3" /></Link>
+              </div>
             </article>
           ))}
+          </div>
         </section>
 
         <section id="why-partnership" className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 pb-20 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-28">
