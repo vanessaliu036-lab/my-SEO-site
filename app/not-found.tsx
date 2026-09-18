@@ -17,7 +17,7 @@ const recoveryLinks = [
 
 export default function NotFound() {
   return (
-    <main className="min-h-[75svh] bg-[#f6f3ea] px-6 py-24 text-stone-950 sm:px-8" aria-labelledby="not-found-heading">
+    <main data-occ-not-found="true" className="min-h-[75svh] bg-[#f6f3ea] px-6 py-24 text-stone-950 sm:px-8" aria-labelledby="not-found-heading">
       <div className="mx-auto max-w-5xl">
         <p className="mb-5 text-xs font-medium uppercase tracking-[0.3em] text-[#7a1118]">Origin Coffee Cambodia / 404</p>
         <h1 id="not-found-heading" className="max-w-3xl text-4xl leading-tight sm:text-6xl">This page could not be found.</h1>
