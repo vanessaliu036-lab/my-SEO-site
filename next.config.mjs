@@ -8,18 +8,19 @@ const nextConfig = {
   // HTML route receives the same policy on Vercel. The CSP allows only the
   // analytics providers currently used by the site (Google Analytics + Clarity).
   async headers() {
+    const isDevelopment = process.env.NODE_ENV === 'development'
     const contentSecurityPolicy = [
       "default-src 'self'",
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'none'",
       "object-src 'none'",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms",
+      `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms`,
       "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://vitals.vercel-insights.com",
       "img-src 'self' data: blob: https:",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
-      "upgrade-insecure-requests",
+      ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
     ].join('; ')
 
     return [
