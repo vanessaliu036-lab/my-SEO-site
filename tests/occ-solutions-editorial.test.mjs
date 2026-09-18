@@ -35,7 +35,7 @@ test("commercial and local-market solution pages use dedicated editorial templat
   assert.equal(fs.existsSync(commercialTemplate), true, "commercial solution template must exist")
   assert.equal(fs.existsSync(wholesaleTemplate), true, "wholesale editorial template must exist")
   assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
   const marketing = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
@@ -69,7 +69,7 @@ test("commercial and local-market solution pages use dedicated editorial templat
 })
 
 test("commercial headings are declarative and route supplier vs roasting intent cleanly", () => {
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
 
   assert.match(wholesale, /WHOLESALE COFFEE SUPPLY/)
@@ -94,7 +94,7 @@ test("commercial headings are declarative and route supplier vs roasting intent 
 })
 
 test("commercial mobile hierarchy and internal links are explicit", () => {
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
   const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
   const template = read(commercialTemplate)
 
@@ -158,7 +158,7 @@ test("equipment service route is preserved for SEO but removed from public solut
   assert.equal(fs.existsSync("app/(site)/solutions/equipment-service/page.tsx"), true)
   const index = read("app/(site)/solutions/page.tsx")
   const indexUi = read(indexTemplate)
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx")
+  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
   assert.doesNotMatch(index, /\/solutions\/equipment-service/)
   assert.doesNotMatch(indexUi, /\/solutions\/equipment-service/)
   assert.doesNotMatch(wholesale, /\/solutions\/equipment-service/)
