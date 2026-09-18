@@ -59,7 +59,7 @@ export function WholesaleApprovedLayout() {
       <div className="info-panel">
       <span className="eyebrow">Why OCC</span>
       <h2>From Cambodian origin to your market.</h2>
-      <p className="section-copy">OCC focuses entirely on coffee grown in Cambodia, with Fine Robusta as a specialist starting point. We help buyers connect coffee selection with the evidence and commercial decisions needed to assess a real supply opportunity. Wholesale is for OCC-developed products; buyers seeking a made-to-order roast profile can explore our Roasting Program.</p>
+      <p className="section-copy">OCC focuses entirely on coffee grown in Cambodia, with Fine Robusta as a specialist starting point. We help buyers connect coffee selection with the evidence and commercial decisions needed to assess a real supply opportunity. Wholesale is for OCC-developed products; buyers seeking a made-to-order roast profile can explore our <a href="/solutions/roasting-program">Roasting Program</a>.</p>
       <div className="reason-list">
       <div className="reason"><strong>100% Cambodia Origin</strong><span>Our Cambodia-origin commitment does not rely on blending imported coffee to fill an order.</span></div>
       <div className="reason"><strong>Fine Robusta Focus</strong><span>Ask about the coffee’s origin, processing, cup character and suitability for your use.</span></div>
