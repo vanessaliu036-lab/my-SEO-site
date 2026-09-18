@@ -1,6 +1,7 @@
 "use server"
 
 import { z } from "zod"
+import { persistContactLead } from "@/lib/contact-lead-delivery.mjs"
 
 export const contactSchema = z.object({
   name: z
@@ -46,15 +47,13 @@ export async function submitContactForm(
     }
   }
 
-  const { name, email, service, message } = parsed.data
-
-  console.log("[ContactForm] New message received:", {
-    name,
-    email,
-    enquiryType: service,
-    message: message ?? "(no message)",
-    timestamp: new Date().toISOString(),
-  })
+  const persisted = await persistContactLead(parsed.data)
+  if (!persisted) {
+    return {
+      success: false,
+      error: "Your enquiry could not be saved. Please try again.",
+    }
+  }
 
   return { success: true }
 }
