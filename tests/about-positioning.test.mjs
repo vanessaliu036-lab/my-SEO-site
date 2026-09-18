@@ -4,17 +4,16 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 const templatePath = "components/templates/about-editorial-template.tsx"
-const stylePath = "components/templates/about-editorial-template.module.css"
 
 test("About opens with OCC identity before services", () => {
   const source = read(templatePath)
 
-  assert.match(source, /One origin\.<br \/>Cambodia\./)
-  assert.match(source, /100% Cambodia origin/i)
+  assert.match(source, /One origin\. Cambodia\./)
+  assert.match(source, /100% Cambodia-origin specialty coffee supplier/i)
   assert.match(source, /Fine Robusta specialist/i)
-  assert.match(source, /Small batches/i)
-  assert.match(source, /Origin clarity/i)
-  assert.match(source, /Quality focus/i)
+  assert.match(source, /small batches/i)
+  assert.match(source, /origin, quality and roasting/i)
+  assert.match(source, /new markets/i)
 })
 
 test("About explains OCC differentiation in buyer-readable language", () => {
@@ -40,40 +39,46 @@ test("About routes overseas buyers into the two approved commercial paths", () =
   assert.match(source, /Choose our profile/i)
   assert.match(source, /Made-for-You/i)
   assert.match(source, /Build yours/i)
-  assert.match(source, /href="\/solutions"/)
+  assert.match(source, /\/solutions\/wholesale/)
   assert.match(source, /\/solutions\/roasting-program/)
-  assert.match(source, /distributors/i)
-  assert.match(source, /importers/i)
-  assert.match(source, /retailers/i)
-  assert.match(source, /hospitality/i)
-  assert.match(source, /custom roasting/i)
-  assert.match(source, /repeatable production profile/i)
+  assert.match(source, /Distributor/i)
+  assert.match(source, /Importer/i)
+  assert.match(source, /Retailer/i)
+  assert.match(source, /Hospitality/i)
+  assert.match(source, /Custom roasting/i)
+  assert.match(source, /Target cup/i)
+  assert.match(source, /Roast profile development/i)
+  assert.match(source, /Repeatable production profile/i)
 })
 
 test("About closes with international market direction without service sprawl", () => {
   const source = read(templatePath)
 
-  assert.match(source, /international distributors/i)
+  assert.match(source, /International distributors/i)
   assert.match(source, /importers/i)
   assert.match(source, /retailers/i)
   assert.match(source, /hospitality partners/i)
   assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
 })
 
-test("About uses the approved editorial photo-led visual system without replacing shared site chrome", () => {
+test("About uses the approved sage photo-led visual system without replacing shared site chrome", () => {
   const source = read(templatePath)
-  const css = read(stylePath)
 
-  assert.match(css, /#fcfaf8/i)
-  assert.match(css, /#282724/i)
-  assert.match(css, /#f3f0ec/i)
-  assert.match(source, /\/about\/occ-about-hero-left\.webp/)
-  assert.match(source, /\/about\/occ-about-hero-right\.webp/)
-  assert.match(source, /\/about\/occ-about-origin\.webp/)
-  assert.match(source, /\/about\/occ-about-fine-robusta\.webp/)
-  assert.match(source, /\/about\/occ-about-solutions\.webp/)
-  assert.match(source, /\/about\/occ-about-intro\.webp/)
+  assert.match(source, /#5c6f58/i)
+  assert.match(source, /#2f3b2d/i)
+  assert.match(source, /#f3f1ea/i)
+  assert.match(source, /\/about\/about-origin\.svg/)
+  assert.match(source, /\/about\/about-fine-robusta\.svg/)
+  assert.match(source, /\/about\/about-ready-to-sell\.svg/)
+  assert.match(source, /\/about\/about-made-for-you\.svg/)
   assert.doesNotMatch(source, /occ-about-atlas\.avif/)
-  assert.doesNotMatch(source, /about-origin\.svg|about-fine-robusta\.svg|about-ready-to-sell\.svg|about-made-for-you\.svg/)
+  assert.match(source, /data-about-ghost="origin"/)
+  assert.match(source, /data-about-ghost="coffee"/)
+
+  for (const label of ["ONE ORIGIN", "FINE ROBUSTA", "READY-TO-SELL", "MADE-FOR-YOU"]) {
+    assert.match(source, new RegExp(label, "i"), `${label} gallery label must be present`)
+  }
+
+  assert.doesNotMatch(source, /<nav\b/)
   assert.doesNotMatch(source, /occ-logo-primary-local\.svg/)
 })
