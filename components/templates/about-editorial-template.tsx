@@ -15,8 +15,8 @@ type AboutEditorialTemplateProps = {
 }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const heroImage = "/about-hero-web.jpg"
-const whyOccImage = "/distribution-hero.webp"
+const heroImage = "/about/occ-about-green-hero.webp"
+const whyOccImage = "/about/occ-about-green-hero.webp"
 
 const differences = [
   {
@@ -94,8 +94,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
   })
 
   return (
-    <div className="occ-about-page bg-[#f3f1ea] text-[#182019]">
-      <section className="occ-about-hero relative isolate min-h-[620px] overflow-hidden bg-[#2f3b2d] text-[#f3f1ea] lg:min-h-[700px]">
+    <div className="bg-[#f3f1ea] text-[#182019]">
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#2f3b2d] text-[#f3f1ea] lg:min-h-[700px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
@@ -166,12 +166,13 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </motion.div>
 
             <motion.div {...reveal(34)} className="flex justify-center lg:justify-end">
-              <div
-                className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-[#2f3b2d] bg-cover bg-center shadow-[0_24px_60px_rgba(22,31,20,0.18)]"
-                style={{ backgroundImage: `url(${whyOccImage})` }}
-                role="img"
-                aria-label="Cambodian coffee origin and production"
-              />
+              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-[#2f3b2d] shadow-[0_24px_60px_rgba(22,31,20,0.18)]">
+                <img
+                  src={whyOccImage}
+                  alt="Cambodian coffee origin and production"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
             </motion.div>
           </div>
 

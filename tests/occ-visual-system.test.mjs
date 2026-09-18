@@ -112,7 +112,6 @@ test("primary footer navigation keeps approved order and one shared menu treatme
   assert.match(footer, /aria-label="Footer navigation"/)
 })
 
-
 test("partnerships menu keeps parent and Brand & Gifting URLs distinct", () => {
   const navigation = read("components/site/navigation-data.ts")
   const brandGiftingPage = read("app/(site)/brand-gifting/page.tsx")
@@ -121,6 +120,7 @@ test("partnerships menu keeps parent and Brand & Gifting URLs distinct", () => {
   assert.match(navigation, /Brand & Gifting", href: "\/brand-gifting"/)
   assert.match(brandGiftingPage, /pageAlternates\("\/brand-gifting"\)/)
 })
+
 test("distribution hero uses a valid public asset and the global header keeps a compact scale", () => {
   const distribution = read("app/(site)/distribution/page.tsx")
   const header = read("components/site/site-header.tsx")
@@ -146,7 +146,7 @@ test("homepage and About use local photo-led assets", () => {
   }
 })
 
-test("About semantic photo surfaces override the legacy low-resolution atlas with cover images", () => {
+test("About semantic photo surfaces retain scoped cover-image fallbacks", () => {
   const css = read("app/globals.css")
 
   assert.match(css, /aria-label="Cambodian coffee at origin"/)
@@ -155,50 +155,35 @@ test("About semantic photo surfaces override the legacy low-resolution atlas wit
   assert.match(css, /section\[aria-label="OCC origin and commercial paths"\]/)
 })
 
-test("About mobile gallery uses a compact two-column card grid", () => {
-  const css = read("app/globals.css")
-
-  assert.match(css, /@media \(max-width: 1023px\)[\s\S]*?grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)\s*!important/)
-  assert.match(css, /@media \(max-width: 1023px\)[\s\S]*?aspect-ratio:\s*3\s*\/\s*4\s*!important/)
-})
-
-test("About desktop hero follows the approved full-bleed centered reference", () => {
-  const about = read("components/templates/about-editorial-template.tsx")
-  const hero = about.split('<section id="why-occ"')[0]
-
-  assert.match(hero, /aria-label="Cambodian coffee at origin"/)
-  assert.match(hero, /min-h-\[620px\]/)
-  assert.match(hero, /text-center/)
-  assert.match(hero, /One origin\. Cambodia\./)
-  assert.doesNotMatch(hero, /lg:grid-cols-\[0\.92fr_1\.08fr\]/)
-})
-
-test("About removes the empty left rail from its editorial sections", () => {
+test("approved About hero uses dedicated high-resolution route assets", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
+  assert.match(about, /className=\{styles\.hero\}/)
+  assert.match(about, /aria-labelledby="about-hero-title"/)
+  assert.match(about, /\/about\/occ-about-hero-left\.webp/)
+  assert.match(about, /\/about\/occ-about-hero-right\.webp/)
+  assert.match(about, /One origin\.<br \/>Cambodia\./)
+  assert.match(about, /100% Cambodia origin \/ Fine Robusta specialist/)
+})
+
+test("approved About content keeps explicit editorial sections without the legacy empty rail", () => {
+  const about = read("components/templates/about-editorial-template.tsx")
+
+  assert.match(about, /id="about-pillars"/)
+  assert.match(about, /id="about-intro"/)
+  assert.match(about, /id="about-story"/)
+  assert.match(about, /id="about-work"/)
   assert.doesNotMatch(about, /md:col-span-3/)
   assert.doesNotMatch(about, /md:col-start-5/)
-  assert.match(about, /max-w-\[1180px\]/)
 })
 
-test("About desktop polish keeps compact four-card entry rhythm", () => {
+test("approved About visual entrances point to the intended origin and commercial paths", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  assert.match(about, /group-hover:scale-\[1\.025\]/)
-  assert.match(about, /lg:py-28/)
-})
-
-test("About four visual entrances are real links to approved owner pages", () => {
-  const about = read("components/templates/about-editorial-template.tsx")
-
-  for (const [label, href] of [
-    ["ONE ORIGIN", "/origins"],
-    ["FINE ROBUSTA", "/fine-robusta-cambodia"],
-    ["READY-TO-SELL", "/solutions/wholesale"],
-    ["MADE-FOR-YOU", "/solutions/roasting-program"],
-  ]) {
-    assert.match(about, new RegExp(`label: "${label}"[\\s\\S]*?href: "${href.replaceAll("/", "\\/")}"`))
+  for (const href of ["/coffee/single-origin", "/fine-robusta-cambodia", "/solutions"]) {
+    assert.match(about, new RegExp(`href: "${href.replaceAll("/", "\\/")}"`))
   }
-
-  assert.match(about, /galleryPanels\.map\([\s\S]*?<Link/)
+  assert.match(about, /pillars\.map\([\s\S]*?<Link/)
+  assert.match(about, /href="\/solutions" className=\{styles\.more\}>Ready-to-Sell/)
+  assert.match(about, /href="\/solutions\/roasting-program" className=\{styles\.more\}>Made-for-You/)
 })

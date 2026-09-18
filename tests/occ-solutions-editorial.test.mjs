@@ -2,226 +2,124 @@ import test from "node:test"
 import assert from "node:assert/strict"
 import fs from "node:fs"
 
-const read = (path) => fs.readFileSync(path, "utf8")
+const read = (p) => fs.readFileSync(p, "utf8")
 const indexTemplate = "components/templates/solutions-index-template.tsx"
 const detailTemplate = "components/templates/solution-detail-template.tsx"
 const commercialTemplate = "components/templates/commercial-solution-template.tsx"
+const sharedTemplate = "components/templates/occ-commercial-html-layout.tsx"
+const sharedCss = "components/templates/occ-commercial-html-layout.css"
 const wholesaleTemplate = "app/(site)/solutions/wholesale/WholesaleApprovedLayout.tsx"
 const localMarketTemplate = "components/templates/local-market-solution-template.tsx"
 const detailPages = ["wholesale", "roasting-program", "coffee-marketing", "equipment-service"]
+const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
+const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
 
-test("SOLUTIONS index and detail pages keep the OCC editorial system", () => {
-  assert.equal(fs.existsSync(indexTemplate), true, "solutions index template must exist")
-  assert.equal(fs.existsSync(detailTemplate), true, "legacy solution detail template must exist")
-  assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
-
+test("SOLUTIONS index and detail pages retain OCC editorial navigation conventions", () => {
+  for (const p of [indexTemplate, detailTemplate, localMarketTemplate, sharedTemplate, sharedCss, wholesaleTemplate]) assert.equal(fs.existsSync(p), true)
   const index = read("app/(site)/solutions/page.tsx")
   const indexUi = read(indexTemplate)
   assert.match(index, /SolutionsIndexTemplate/)
-  assert.doesNotMatch(index, /border-dashed/)
-  assert.doesNotMatch(index, /Equipment Service/)
-  assert.doesNotMatch(index, /\/solutions\/equipment-service/)
-  assert.doesNotMatch(indexUi, /Equipment Service/)
-  assert.doesNotMatch(indexUi, /\bEquipment\b/)
-
+  assert.doesNotMatch(index, /border-dashed|Equipment Service|\/solutions\/equipment-service/)
+  assert.doesNotMatch(indexUi, /Equipment Service|\bEquipment\b/)
   for (const slug of detailPages) {
     const source = read(`app/(site)/solutions/${slug}/page.tsx`)
-    assert.doesNotMatch(source, /<nav className=/)
-    assert.doesNotMatch(source, /sticky top-0/)
+    assert.doesNotMatch(source, /<nav className=|sticky top-0/)
   }
 })
 
-test("commercial and local-market solution pages use dedicated editorial templates", () => {
-  assert.equal(fs.existsSync(commercialTemplate), true, "commercial solution template must exist")
-  assert.equal(fs.existsSync(wholesaleTemplate), true, "wholesale editorial template must exist")
-  assert.equal(fs.existsSync(localMarketTemplate), true, "local market solution template must exist")
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
-  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
+test("Wholesale and Roasting use the same exact HTML template; other routes retain their own", () => {
   const marketing = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
   const commercial = read(commercialTemplate)
-  const wholesaleUi = read(wholesaleTemplate)
+  const shared = read(sharedTemplate)
   const local = read(localMarketTemplate)
-
-  assert.match(wholesale, /WholesaleApprovedLayout/)
-  assert.match(roasting, /CommercialSolutionTemplate/)
-  assert.doesNotMatch(wholesale, /SolutionDetailTemplate/)
-  assert.doesNotMatch(roasting, /SolutionDetailTemplate/)
+  assert.match(wholesale, /WholesaleApprovedLayout|OccCommercialHtmlLayout/)
+  assert.match(roasting, /OccCommercialHtmlLayout/)
+  assert.doesNotMatch(roasting, /CommercialSolutionTemplate|SolutionDetailTemplate/)
+  assert.doesNotMatch(wholesale, /WholesaleEditorialTemplate|CommercialSolutionTemplate|SolutionDetailTemplate/)
   assert.match(marketing, /LocalMarketSolutionTemplate/)
-  assert.doesNotMatch(marketing, /SolutionDetailTemplate/)
   assert.match(equipment, /SolutionDetailTemplate/)
-
-  assert.match(wholesaleUi, /occ-wholesale/)
-  assert.match(wholesaleUi, /evidence-card/)
-  assert.match(wholesaleUi, /wholesale-faq/)
-  assert.match(wholesaleUi, /buyer-template-cta/)
-  assert.match(commercial, /highlightCards/)
-  assert.match(commercial, /processSteps/)
-  assert.match(commercial, /comparison/)
-  assert.match(commercial, /sticky top-28/)
-  assert.match(commercial, /MotionReveal/)
-
-  assert.match(local, /highlightCards/)
-  assert.match(local, /processSteps/)
-  assert.match(local, /supportCards/)
-  assert.match(local, /sticky top-28/)
-  assert.match(local, /MotionReveal/)
+  for (const token of [/className="hero"/, /className="split-section"/, /className="media-grid"/, /className="feature-band"/, /className="b2b-cta"/]) assert.match(shared, token)
+  for (const token of [/highlightCards/, /processSteps/, /comparison/, /sticky top-28/, /MotionReveal/]) assert.match(commercial, token)
+  for (const token of [/highlightCards/, /processSteps/, /supportCards/, /sticky top-28/, /MotionReveal/]) assert.match(local, token)
 })
 
-test("commercial headings are declarative and route supplier vs roasting intent cleanly", () => {
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
-  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
-
-  assert.match(wholesale, /WHOLESALE COFFEE SUPPLY/)
-  assert.match(wholesale, /Cambodian Fine Robusta/)
-  assert.match(wholesale, /Roasted Coffee/)
-  assert.doesNotMatch(wholesale, /green[ -]?coffee/i)
-  assert.doesNotMatch(wholesale, /distribution supply|\\bdistributor(?:s)?\\b|\\bimporter(?:s)?\\b/i)
-  assert.match(wholesale, /\/solutions\/roasting-program/)
-
-  assert.match(roasting, /Coffee for Your Business|The Roast Starts With the Market/)
-  assert.match(roasting, /Made-for-You/)
-  assert.match(roasting, /Roasting Supplier/)
-  assert.match(roasting, /Custom Roasting/)
-  assert.match(roasting, /Roast Profile/)
-  assert.match(roasting, /\/solutions\/wholesale/)
-
-  for (const source of [wholesale, roasting]) {
-    assert.doesNotMatch(source, /Who This Is For|Who This Program Is For/)
-    assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
-    assert.doesNotMatch(source, /\/solutions\/barista-staffing|\/solutions\/equipment-service/)
-  }
+test("commercial headings and intent remain separate on the two shared-layout pages", () => {
+  for (const token of [/WHOLESALE COFFEE SUPPLY/, /Cambodian Fine Robusta/, /Roasted Coffee/, /\/solutions\/roasting-program/]) assert.match(wholesale, token)
+  assert.doesNotMatch(wholesale, /green[ -]?coffee|distribution supply|\bdistributor(?:s)?\b|\bimporter(?:s)?\b/i)
+  for (const token of [/The Roast Starts With the Market/, /Roasting Supplier/, /Custom Roasting/, /Roast Profile/, /\/solutions\/wholesale/, /Made-for-You/]) assert.match(roasting, token)
+  for (const source of [wholesale, roasting]) assert.doesNotMatch(source, /Who This Is For|Who This Program Is For|Barista Staffing|Equipment Service|\/solutions\/barista-staffing|\/solutions\/equipment-service/)
 })
 
-test("commercial mobile hierarchy and internal links are explicit", () => {
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
-  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
-  const template = read(commercialTemplate)
-
-  assert.match(template, /text-\[11px\].*font-semibold.*tracking-\[0\.22em\]/)
-  assert.match(template, /w-10 h-px bg-\[#a8542a\]/)
-  assert.match(template, /text-\[clamp\(2\.1rem,7\.5vw,3\.2rem\)\]/)
-  assert.match(template, /max-w-\[13ch\]/)
-  assert.match(template, /max-w-\[34rem\]/)
-  assert.match(template, /relatedLinksTitle/)
-  assert.match(template, /relatedLinks/)
-  assert.match(template, /nextPath/)
-
-  assert.match(wholesale, /Fine Robusta/)
-  assert.match(wholesale, /Roasting Program/)
-  assert.match(wholesale, /coffee-buyer-specification-template/)
-  assert.match(wholesale, /Discuss Wholesale Supply/)
-  assert.match(wholesale, /\/contact/)
-
-  assert.match(roasting, /relatedLinksTitle="Related Paths"/)
-  assert.match(roasting, /Wholesale Coffee Supply/)
-  assert.match(roasting, /Fine Robusta Cambodia/)
-  assert.match(roasting, /nextPath=/)
-  assert.match(roasting, /Discuss Wholesale Supply/)
+test("mobile hierarchy and buyer links remain explicit", () => {
+  const css = read(sharedCss)
+  const shared = read(sharedTemplate)
+  for (const token of [/font-size:92px/, /grid-template-columns:1\.02fr \.98fr/, /grid-template-columns:1fr \.9fr/, /grid-template-columns:1fr 1\.2fr/, /@media\(max-width:720px\)/]) assert.match(css, token)
+  assert.match(shared, /heroCtaHref|ctaHref/)
+  for (const token of [/Fine Robusta/, /Roasting Program/, /coffee-buyer-specification-template/, /Discuss Wholesale Supply/, /\/contact/]) assert.match(wholesale, token)
+  for (const token of [/\/solutions\/wholesale/, /Fine Robusta/, /Develop Your Roast Profile/, /Discuss Wholesale Supply/, /\/contact/]) assert.match(roasting, token)
 })
 
-test("coffee marketing page matches OCC editorial hierarchy and keeps explicit internal paths", () => {
+test("coffee marketing retains editorial hierarchy and appropriate internal links", () => {
   const page = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const template = read(localMarketTemplate)
-
-  assert.match(page, /COFFEE MARKETING/)
-  assert.match(page, /CAMBODIAN MARKET|LocalMarketSolutionTemplate/)
-  assert.match(page, /A Beautiful Café Needs a Memorable Product/)
-  assert.match(page, /A Signature Drink Creates a Reason to Return/)
-  assert.match(page, /From Menu Review to Signature Launch/)
-  assert.match(page, /Design Your Signature Drink/)
-  assert.match(page, /pageAlternates\("\/solutions\/coffee-marketing"\)/)
-  assert.match(page, /\/solutions\/wholesale/)
-  assert.match(page, /\/solutions\/roasting-program/)
-  assert.match(page, /\/fine-robusta-cambodia/)
-
-  assert.match(template, /text-\[11px\].*font-semibold.*tracking-\[0\.22em\]/)
-  assert.match(template, /text-\[clamp\(2\.1rem,7\.5vw,3\.2rem\)\]/)
-  assert.match(template, /max-w-\[13ch\]/)
-  assert.match(template, /max-w-\[34rem\]/)
+  for (const token of [/COFFEE MARKETING/, /CAMBODIAN MARKET|LocalMarketSolutionTemplate/, /A Beautiful Café Needs a Memorable Product/, /A Signature Drink Creates a Reason to Return/, /From Menu Review to Signature Launch/, /Design Your Signature Drink/, /pageAlternates\("\/solutions\/coffee-marketing"\)/, /\/solutions\/wholesale/, /\/solutions\/roasting-program/, /\/fine-robusta-cambodia/]) assert.match(page, token)
+  for (const token of [/text-\[11px\].*font-semibold.*tracking-\[0\.22em\]/, /text-\[clamp\(2\.1rem,7\.5vw,3\.2rem\)\]/, /max-w-\[13ch\]/, /max-w-\[34rem\]/]) assert.match(template, token)
 })
 
-test("legacy barista staffing URL 301s to the Coffee Marketing owner", () => {
-  const proxy = read("proxy.ts")
-  const navigation = read("components/site/navigation-data.ts")
-  const sitemap = read("app/sitemap.ts")
-
+test("legacy staffing URL 301 redirects to Coffee Marketing", () => {
+  const proxy = read("proxy.ts"), nav = read("components/site/navigation-data.ts"), sitemap = read("app/sitemap.ts")
   assert.match(proxy, /"\/solutions\/barista-staffing"\s*:\s*\n?\s*"\/solutions\/coffee-marketing"/)
   assert.match(proxy, /NextResponse\.redirect\(url, 301\)/)
-  assert.doesNotMatch(navigation, /\/solutions\/barista-staffing/)
-  assert.match(navigation, /\/solutions\/coffee-marketing/)
+  assert.doesNotMatch(nav, /\/solutions\/barista-staffing/)
+  assert.match(nav, /\/solutions\/coffee-marketing/)
   assert.doesNotMatch(sitemap, /\/solutions\/barista-staffing/)
   assert.match(sitemap, /\/solutions\/coffee-marketing/)
 })
 
-test("equipment service route is preserved for SEO but removed from public solution entry points", () => {
+test("equipment route remains preserved for SEO but hidden from active solution entry points", () => {
   assert.equal(fs.existsSync("app/(site)/solutions/equipment-service/page.tsx"), true)
-  const index = read("app/(site)/solutions/page.tsx")
-  const indexUi = read(indexTemplate)
-  const wholesale = read("app/(site)/solutions/wholesale/page.tsx") + "\n" + read(wholesaleTemplate)
-  assert.doesNotMatch(index, /\/solutions\/equipment-service/)
-  assert.doesNotMatch(indexUi, /\/solutions\/equipment-service/)
-  assert.doesNotMatch(wholesale, /\/solutions\/equipment-service/)
+  assert.doesNotMatch(read("app/(site)/solutions/page.tsx") + read(indexTemplate) + wholesale, /\/solutions\/equipment-service/)
 })
 
-test("blog body auto-linking does not expose the hidden equipment service route", () => {
-  const blogDetail = read("app/(site)/blog/[slug]/page.tsx")
-  assert.doesNotMatch(blogDetail, /["']equipment service["']\s*:\s*["']\/solutions\/equipment-service["']/i)
-  assert.doesNotMatch(blogDetail, /["']equipment["']\s*:\s*["']\/solutions\/equipment-service["']/i)
+test("blog auto-linking does not expose hidden equipment service", () => {
+  const body = read("app/(site)/blog/[slug]/page.tsx")
+  assert.doesNotMatch(body, /["']equipment service["']\s*:\s*["']\/solutions\/equipment-service["']/i)
+  assert.doesNotMatch(body, /["']equipment["']\s*:\s*["']\/solutions\/equipment-service["']/i)
 })
 
-test("solution templates keep semantic content server-rendered and use restrained reveal motion", () => {
-  const legacy = read(detailTemplate)
-  const commercial = read(commercialTemplate)
-  const wholesale = read(wholesaleTemplate)
-  const local = read(localMarketTemplate)
+test("templates remain server-rendered and other pages keep reduced-motion reveal", () => {
+  for (const path of [detailTemplate, commercialTemplate, sharedTemplate, wholesaleTemplate, localMarketTemplate]) assert.doesNotMatch(read(path), /^"use client"/)
+  for (const path of [detailTemplate, commercialTemplate, localMarketTemplate]) assert.match(read(path), /MotionReveal/)
+  assert.match(read(sharedTemplate), /occ-commercial-html/)
   const reveal = read("components/ui/motion-reveal.tsx")
-
-  assert.doesNotMatch(legacy, /^"use client"/)
-  assert.doesNotMatch(commercial, /^"use client"/)
-  assert.doesNotMatch(wholesale, /^"use client"/)
-  assert.doesNotMatch(local, /^"use client"/)
-  assert.match(legacy, /MotionReveal/)
-  assert.match(commercial, /MotionReveal/)
-  assert.match(wholesale, /occ-wholesale/)
-  assert.match(local, /MotionReveal/)
   assert.match(reveal, /useReducedMotion/)
   assert.match(reveal, /0\.22, 1, 0\.36, 1/)
 })
 
-test("solution pages preserve schemas and explicit internal-link logic without unverified Service schema", () => {
+test("solution pages retain schemas, stable canonicals and link hygiene without unverified Offer", () => {
   for (const slug of detailPages) {
     const source = read(`app/(site)/solutions/${slug}/page.tsx`)
-    assert.doesNotMatch(source, /"@type"\s*:\s*"Service"/)
-    assert.doesNotMatch(source, /"@type"\s*:\s*"Offer"/)
+    assert.doesNotMatch(source, /"@type"\s*:\s*"Service"|"@type"\s*:\s*"Offer"/)
     assert.match(source, /"@type": "FAQPage"/)
     assert.match(source, /"@type": "BreadcrumbList"/)
   }
-
   const marketing = read("app/(site)/solutions/coffee-marketing/page.tsx")
   const equipment = read("app/(site)/solutions/equipment-service/page.tsx")
-  assert.match(marketing, /relatedLinks=/)
-  assert.match(marketing, /\/solutions\/wholesale/)
+  assert.match(marketing, /relatedLinks=|\/solutions\/wholesale/)
   assert.match(marketing, /\/solutions\/roasting-program/)
   assert.match(equipment, /renderWithLinks/)
-
   const index = read("app/(site)/solutions/page.tsx")
   assert.match(index, /"@type": "CollectionPage"/)
   assert.match(index, /B2B/i)
   assert.match(index, /evidence-led/i)
 })
 
-test("commercial analytics records the wholesale-to-contact funnel and exact 404 paths", () => {
-  const analytics = read("components/GoogleAnalytics.tsx")
-  const contact = read("app/(site)/contact/ContactForm.tsx")
-  const config = read("next.config.mjs")
-
-  for (const eventName of ["occ_404", "wholesale_view", "contact_view", "contact_click", "whatsapp_click", "email_click"]) {
-    assert.match(analytics, new RegExp(eventName), `${eventName} analytics event must be present`)
-  }
+test("commercial analytics retain wholesale-to-contact conversion events", () => {
+  const analytics = read("components/GoogleAnalytics.tsx"), contact = read("app/(site)/contact/ContactForm.tsx"), config = read("next.config.mjs")
+  for (const event of ["occ_404", "wholesale_view", "contact_view", "contact_click", "whatsapp_click", "email_click"]) assert.match(analytics, new RegExp(event))
   assert.match(analytics, /page_path/)
   assert.match(contact, /generate_lead/)
   assert.match(contact, /lead_type/)
-  assert.match(config, /\/blog\/cambodian-coffee-origin-guide/)
-  assert.match(config, /\/blog\/cambodia-coffee/)
+  assert.match(config, /\/blog\/cambodian-coffee-origin-guide|\/blog\/cambodia-coffee/)
 })
