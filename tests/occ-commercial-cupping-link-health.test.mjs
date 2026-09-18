@@ -6,23 +6,29 @@ const read = (path) => fs.readFileSync(path, "utf8")
 const CUPPING_PATH = "/blog/how-to-cup-fine-robusta"
 const LEGACY_ALIAS = "/origins/single-origin"
 
-const commercialPages = [
-  "app/(site)/solutions/wholesale/page.tsx",
-  "app/(site)/solutions/roasting-program/page.tsx",
-]
-
 test("commercial cupping links route directly to the canonical cupping guide", () => {
-  for (const page of commercialPages) {
-    const source = read(page)
-    assert.match(
-      source,
-      new RegExp(`cupping:\\s*[\"']${CUPPING_PATH.replaceAll("/", "\\/")}[\"']`),
-      `${page} must route cupping directly to the canonical Fine Robusta cupping guide`,
-    )
+  const wholesale =
+    read("app/(site)/solutions/wholesale/page.tsx") +
+    "\n" +
+    read("app/(site)/solutions/wholesale/WholesaleApprovedLayout.tsx")
+  const roasting = read("app/(site)/solutions/roasting-program/page.tsx")
+
+  assert.match(
+    wholesale,
+    new RegExp(`href=[\\"']${CUPPING_PATH.replaceAll("/", "\\/")}[\\"']`),
+    "wholesale must link directly to the canonical Fine Robusta cupping guide",
+  )
+  assert.match(
+    roasting,
+    new RegExp(`cupping:\\s*[\\"']${CUPPING_PATH.replaceAll("/", "\\/")}[\\"']`),
+    "roasting program must route cupping directly to the canonical Fine Robusta cupping guide",
+  )
+
+  for (const [name, source] of [["wholesale", wholesale], ["roasting", roasting]]) {
     assert.doesNotMatch(
       source,
       new RegExp(LEGACY_ALIAS.replaceAll("/", "\\/")),
-      `${page} must not route commercial-page links through the legacy single-origin alias`,
+      `${name} must not route commercial-page links through the legacy single-origin alias`,
     )
   }
 })
