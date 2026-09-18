@@ -7,40 +7,39 @@
  */
 
 div[role="img"][aria-label="Cambodian coffee at origin"] {
-  background-image: url("/about/about-hero.avif") !important;
+  background-image: url("/hero-home.webp") !important;
 }
 
 div[role="img"][aria-label="Cambodian coffee origin and production"] {
-  background-image: url("/about/about-why.avif") !important;
+  background-image: url("/distribution-hero.webp") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(1) > div:first-child {
-  background-image: url("/about/about-origin-owned.avif") !important;
+  background-image: url("/about/about-origin.svg") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(2) > div:first-child {
-  background-image: url("/about/about-fine-owned.avif") !important;
+  background-image: url("/about/about-fine-robusta.svg") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
-  background-image: url("/about/about-ready-owned.avif") !important;
+  background-image: url("/about/occ-about-atlas.avif") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:first-child {
-  background-image: url("/about/about-made-owned.avif") !important;
+  background-image: url("/about/about-made-for-you.svg") !important;
 }
 
-/* Mobile safety net: keep the same route-owned assets; never fall back to the old low-resolution files. */
+/* Mobile Safari JPEG safety net. */
 @media (max-width: 1023px) {
   div[role="img"][aria-label="Cambodian coffee origin and production"] {
-    background-image: url("/about/about-why.avif") !important;
+    background-image: url("/about/about-why-occ.jpg") !important;
     background-size: cover !important;
     background-position: center !important;
   }
 
   section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
-    background-image: url("/about/about-ready-owned.avif") !important;
-    background-size: cover !important;
+    background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-color: #2f3b2d !important;
