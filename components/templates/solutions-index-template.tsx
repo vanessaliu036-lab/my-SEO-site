@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
-import { MotionReveal } from "@/components/ui/motion-reveal"
+import styles from "./solutions-index-template.module.css"
 
 type SolutionItem = {
   href: string
@@ -14,94 +13,117 @@ type SolutionsIndexTemplateProps = {
 }
 
 export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps) {
+  const wholesale = services[0]
+  const roasting = services[1]
+  const marketing = services[2]
+
   return (
-    <div className="bg-[#f6f3ea] text-[#182019]">
-      <section className="relative overflow-hidden border-b border-black/10 pt-28 lg:pt-32">
-        <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.06] md:grid" aria-hidden="true">
-          {Array.from({ length: 12 }).map((_, index) => <div key={index} />)}
+    <div className={styles.page}>
+      <section className={styles.hero} id="solutions">
+        <div className={styles.eyebrow}>Coffee Solutions</div>
+        <h1>From Origin to <em>Opportunity.</em></h1>
+        <p>
+          OCC delivers origin-led coffee solutions from Cambodia — combining Fine Robusta expertise,
+          roasting alignment, and commercial direction to help your coffee business grow with purpose.
+        </p>
+        <div className={styles.sub}>Cambodian Coffee for a Brighter Tomorrow</div>
+      </section>
+
+      <section className={styles.dual} aria-label="Primary OCC solutions">
+        <article className={styles.feature}>
+          <img src="/images/solutions/occ-solutions-wholesale.webp" alt="Coffee prepared for OCC wholesale supply" />
+          <div className={styles.featureContent}>
+            <div className={styles.tag}>{wholesale.tag}</div>
+            <h2>Origin-led<br />Supply.</h2>
+            <p>{wholesale.desc}</p>
+            <Link href={wholesale.href} className={styles.whiteBtn}>Explore Our Supply <span>→</span></Link>
+          </div>
+        </article>
+
+        <article className={styles.feature}>
+          <img src="/images/solutions/occ-solutions-custom-roasting.webp" alt="Green coffee entering a roasting machine" />
+          <div className={styles.featureContent}>
+            <div className={styles.tag}>{roasting.tag}</div>
+            <h2>Roasting-aligned<br />Support.</h2>
+            <p>{roasting.desc}</p>
+            <Link href={roasting.href} className={styles.whiteBtn}>Discover Our Support <span>→</span></Link>
+          </div>
+        </article>
+      </section>
+
+      <section className={styles.guide}>
+        <div className={styles.bookWrap} aria-label="Wholesale coffee guide mockup">
+          <div className={`${styles.book} ${styles.bookAlt}`}>
+            <img src="/images/solutions/occ-solutions-wholesale-guide.webp" alt="Coffee beans for wholesale evaluation" />
+          </div>
+          <div className={styles.book}>
+            <div className={styles.miniBrand}>OCC</div>
+            <h3>The Wholesale<br />Coffee Guide</h3>
+            <p>Sourcing Cambodian Coffee for a Brighter Tomorrow</p>
+          </div>
         </div>
-        <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-end gap-10 px-6 pb-14 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-16">
-          <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#a8542a]">Wholesale · Custom Roasting · Coffee Marketing</p>
-            <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
-            <p className="mt-6 max-w-xs text-[15px] leading-7 text-black/76">
-              OCC brings Cambodian coffee to market through three clear commercial paths: ready-developed supply, custom roast profile development, and local product marketing built around a signature drink.
-            </p>
-          </MotionReveal>
-          <MotionReveal className="md:col-span-7 md:col-start-4">
-            <h1 className="font-[var(--font-display)] text-[clamp(3.4rem,6vw,5.6rem)] font-normal leading-[0.92] tracking-[-0.04em]">
-              Solutions
-            </h1>
-          </MotionReveal>
-          <MotionReveal direction="right" className="md:col-span-2 md:pb-3">
-            <p className="border-t border-black/10 pt-5 text-[10px] uppercase leading-6 tracking-[0.18em] text-black/38">
-              OCC / Cambodia<br />Supply · Development · Market
-            </p>
-          </MotionReveal>
-        </div>
-        <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
-          <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:block">Three commercial paths</span>
-          <span>02 / Solutions</span>
+
+        <div className={styles.guideCopy}>
+          <div className={styles.eyebrow}>Free Resource</div>
+          <h2>The Wholesale Coffee Guide</h2>
+          <div className={styles.subtitle}>A Strategic Sourcing Guide for Buyers</div>
+          <p>
+            Get practical insights on Cambodian coffee, quality, logistics, and how to build a sustainable,
+            successful coffee program with OCC.
+          </p>
+          <div className={styles.leadForm} aria-label="Wholesale guide request">
+            <span>Your name</span>
+            <span>Your email address</span>
+            <Link href="/contact" className={styles.cta}>Get the guide →</Link>
+          </div>
         </div>
       </section>
 
-      <main className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
-        <section className="border-b border-black/10 py-16 lg:py-24" aria-labelledby="solutions-programs-title">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-            <div className="md:col-span-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a8542a]">01 / Commercial Paths</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
-              <h2 id="solutions-programs-title" className="mt-5 max-w-[13ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em]">
-                Three Clear Commercial Paths
-              </h2>
-            </div>
-            <div className="md:col-span-8 md:col-start-5">
-              {services.map((service, index) => (
-                <MotionReveal key={service.href} direction={index % 2 === 0 ? "left" : "right"}>
-                  <Link href={service.href} className="group grid grid-cols-[42px_1fr_auto] items-end gap-4 border-t border-black/10 py-8 last:border-b sm:grid-cols-[56px_1fr_auto] lg:py-10">
-                    <span className="pb-1 text-[9px] tracking-[0.2em] text-[#a8542a]">{String(index + 1).padStart(2, "0")}</span>
-                    <div>
-                      <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#a8542a]">{service.tag}</p>
-                      <h3 className="font-[var(--font-display)] text-2xl font-normal leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
-                        {service.title}
-                      </h3>
-                      <p className="mt-4 max-w-xl text-sm leading-7 text-black/58">{service.desc}</p>
-                    </div>
-                    <ArrowUpRight className="mb-1 size-5 text-[#a8542a] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </Link>
-                </MotionReveal>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section className={styles.approach} aria-label="Coffee marketing solution">
+        <div className={styles.approachPhoto}>
+          <img src="/images/solutions/occ-solutions-coffee-marketing.webp" alt="Barista preparing espresso for a signature drink program" />
+        </div>
+        <div className={styles.approachCopy}>
+          <div className={styles.eyebrow}>{marketing.tag}</div>
+          <h2>Turn a menu into a product customers remember.</h2>
+          <p>{marketing.desc}</p>
+          <Link href={marketing.href} className={styles.textLink}>Explore Coffee Marketing <span>→</span></Link>
+        </div>
+      </section>
 
-        <MotionReveal>
-          <section className="grid grid-cols-1 border-b border-black/10 py-16 md:grid-cols-12 md:items-end lg:py-20">
-            <div className="md:col-span-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a8542a]">02 / Commercial Role</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
-              <h2 className="mt-5 max-w-[13ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em]">
-                Each Path Has a Clear Role
-              </h2>
-            </div>
-            <div className="mt-8 md:col-span-6 md:col-start-7 md:mt-0">
-              <p className="max-w-[34rem] text-[15px] leading-8 text-black/76">
-                Wholesale brings an OCC-developed coffee to market. Custom Roasting builds the coffee around a target market and application. Coffee Marketing turns an existing café menu into a signature product customers can remember and reorder.
-              </p>
-              <Link href="/contact" className="group mt-8 inline-flex items-end gap-4 border-b border-black/20 pb-2 transition-colors hover:border-[#a8542a]">
-                <span className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">Start a Conversation</span>
-                <ArrowUpRight className="mb-1 size-5 text-[#a8542a] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-            </div>
-          </section>
-        </MotionReveal>
+      <section className={styles.approach} id="about">
+        <div className={styles.approachPhoto}>
+          <img src="/images/solutions/occ-solutions-origin-approach.webp" alt="Coffee cherries being sorted at origin" />
+        </div>
+        <div className={styles.approachCopy}>
+          <div className={styles.eyebrow}>Our Approach</div>
+          <h2>Fine Robusta expertise,<br />origin-led thinking, and<br />commercial clarity.</h2>
+          <p>
+            We connect global buyers with the unique potential of Cambodian coffee — combining deep origin
+            knowledge with practical support, from quality development to long-term partnership.
+          </p>
+          <Link href="/about" className={styles.textLink}>Our story <span>→</span></Link>
+        </div>
+      </section>
 
-        <footer className="flex flex-col gap-4 py-9 text-[9px] uppercase tracking-[0.19em] text-black/34 sm:flex-row sm:justify-between">
-          <span>Origin Coffee Cambodia · OCC</span>
-          <span>Solutions / Cambodia</span>
-        </footer>
-      </main>
+      <section className={styles.pillars} aria-label="Why OCC">
+        <div className={styles.pillar}><div className={styles.icon}>⌁</div><h3>Origin-led</h3><small>Cambodia at Heart</small></div>
+        <div className={styles.pillar}><div className={styles.icon}>◐</div><h3>Fine Robusta</h3><small>Quality &amp; Character</small></div>
+        <div className={styles.pillar}><div className={styles.icon}>☕</div><h3>Roasting-aligned</h3><small>From Farm to Cup</small></div>
+        <div className={styles.pillar}><div className={styles.icon}>▥</div><h3>Commercial Direction</h3><small>Built for Growth</small></div>
+        <div className={styles.pillar}><div className={styles.icon}>♙</div><h3>Sample-ready</h3><small>Let&apos;s Explore Together</small></div>
+      </section>
+
+      <section className={styles.bottom} id="contact">
+        <div className={styles.eyebrow}>Work With OCC</div>
+        <h2>We help you build coffee programs <em>with purpose.</em></h2>
+        <p>
+          Whether you&apos;re launching a new blend, expanding your sourcing, or looking for a trusted partner in
+          Cambodian coffee, OCC brings origin, expertise, and long-term thinking to help your business go further.
+        </p>
+        <Link href="/contact" className={styles.bottomLink}>Start a Conversation <span>→</span></Link>
+        <div className={styles.final}>Better Coffee &nbsp; — &nbsp; A Brighter Cambodia</div>
+      </section>
     </div>
   )
 }
