@@ -25,7 +25,7 @@ export function SiteHeader() {
   const activeLinkClass = onHome ? "text-white" : "text-[#182019]"
   const mobileButtonClass = onHome
     ? "border-white/30 text-white hover:bg-white hover:text-black"
-    : "border-[#182019]/20 text-[#182019] hover:bg-[#182019] hover:text-[#f6f3ea]"
+    : "border-[#182019]/20 text-[#182019] hover:bg-[#6b1323] hover:text-[#f6f3ea]"
 
   return (
     <>

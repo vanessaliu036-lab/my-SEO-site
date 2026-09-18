@@ -159,7 +159,7 @@ export default function PartnershipsPage() {
 
       <main className="bg-[#f7f5ef] text-[#171412]">
         <section className="relative overflow-hidden bg-[#182019] text-[#f6f3ea]">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#182019_0%,#273229_68%,#7a1118_150%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#6b1323_0%,#6b1323_68%,#7a1118_150%)]" />
           <div className="relative mx-auto w-full max-w-[1120px] px-6 pb-20 pt-28 sm:px-10 md:px-14 lg:pb-28 lg:pt-36">
             <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">OCC · Partnerships</p>
             <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(4rem,10vw,7.2rem)] font-normal leading-[0.86] tracking-[-0.055em]">

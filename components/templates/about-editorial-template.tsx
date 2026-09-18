@@ -102,8 +102,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           role="img"
           aria-label="Cambodian coffee at origin"
         />
-        <div className="absolute inset-0 bg-[#203022]/45" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#203022]/20 via-[#203022]/18 to-[#203022]/68" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[#6b1323]/45" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#6b1323]/20 via-[#6b1323]/18 to-[#6b1323]/68" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1180px] items-center justify-center px-6 pb-16 pt-28 text-center sm:px-8 lg:min-h-[700px] lg:px-12">
           <motion.div {...reveal(24)} className="mx-auto w-full max-w-[860px]">
@@ -126,7 +126,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
               <Link
                 href="#why-occ"
-                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-[#31432f]/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-[#2f3b2d]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-[#6b1323]/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-[#2f3b2d]"
               >
                 Why OCC <ArrowUpRight className="size-3" />
               </Link>
@@ -205,7 +205,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               style={{ backgroundImage: `url(${panel.image})` }}
               aria-hidden="true"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#1f291f]/82 transition-colors duration-500 group-hover:bg-[#2f3b2d]/14" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#6b1323]/82 transition-colors duration-500 group-hover:bg-[#2f3b2d]/14" />
             <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-7 lg:p-8">
               <p className="text-[9px] uppercase tracking-[0.2em] text-white/58">0{index + 1}</p>
               <div className="mt-3 flex items-end justify-between gap-3 sm:gap-4">

@@ -87,7 +87,7 @@ export default function BrandGiftingPage() {
 
       <div className="bg-[#f6f3ea] text-[#182019]">
         <section className="relative overflow-hidden bg-[#182019] text-[#f6f3ea]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(196,109,51,0.28),transparent_30%),linear-gradient(125deg,#182019_0%,#273229_64%,#071a32_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(196,109,51,0.28),transparent_30%),linear-gradient(125deg,#6b1323_0%,#6b1323_64%,#6b1323_100%)]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#182019] via-[#182019]/92 to-[#182019]/62" />
 
           <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1680px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">

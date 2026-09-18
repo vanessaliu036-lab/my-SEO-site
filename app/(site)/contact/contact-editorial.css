@@ -41,16 +41,16 @@
 }
 
 .occ-contact-shell button[type="submit"] {
-  background: #182019 !important;
+  background: var(--occ-logo-burgundy) !important;
   color: #f6f3ea !important;
 }
 
 .occ-contact-shell button[type="submit"]:hover {
-  background: #273229 !important;
+  background: var(--occ-logo-burgundy) !important;
 }
 
 .occ-contact-shell [class*="bg-[#0f0f0f]"] {
-  background: #182019 !important;
+  background: var(--occ-logo-burgundy) !important;
 }
 
 .occ-contact-shell > div > div.border-t {
@@ -59,7 +59,7 @@
 }
 
 .occ-contact-shell [role="dialog"] {
-  background: #182019 !important;
+  background: var(--occ-logo-burgundy) !important;
   color: #f6f3ea !important;
 }
 

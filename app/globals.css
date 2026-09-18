@@ -46,7 +46,8 @@
 
     --occ-ink: #182019;
     --occ-olive: #1c211b;
-    --occ-forest: #273229;
+    --occ-logo-burgundy: #6b1323;
+    --occ-forest: var(--occ-logo-burgundy);
     --occ-ivory: #f6f3ea;
     --occ-stone: #d8d3c8;
     --occ-lime: #e7f2c9;
@@ -487,8 +488,12 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:fir
 
 .occ-site-main [class*="bg-[#071a32]"],
 .occ-site-main [class*="bg-[#182019]"],
+.occ-site-main [class*="bg-[#1c211b]"],
+.occ-site-main [class*="bg-[#202820]"],
+.occ-site-main [class*="bg-[#203022]"],
 .occ-site-main [class*="bg-[#2f3b2d]"],
-.occ-site-main [class*="bg-[#273229]"] {
+.occ-site-main [class*="bg-[#273229]"],
+.occ-site-main [class*="bg-[#31432f]"] {
   background-color: var(--occ-forest) !important;
 }
 

@@ -21,7 +21,7 @@
 }
 
 .occ-article-shell > div > div.fixed > div {
-  background: #182019 !important;
+  background: var(--occ-logo-burgundy) !important;
 }
 
 .occ-article-shell article {
@@ -132,7 +132,7 @@
 
 /* Topic band and CTA stay within the reading measure but use OCC surfaces. */
 .occ-article-shell article > div.bg-stone-950 {
-  background: #202820 !important;
+  background: var(--occ-logo-burgundy) !important;
   color: #f6f3ea !important;
   border-radius: 0 !important;
 }

@@ -42,6 +42,6 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:fir
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
-    background-color: #2f3b2d !important;
+    background-color: var(--occ-logo-burgundy) !important;
   }
 }
