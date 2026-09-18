@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+while read -r local_ref _local_sha remote_ref _remote_sha; do
+  if [[ "$local_ref" == "refs/heads/main" && "$remote_ref" == "refs/heads/main" && "${OCC_RELEASE:-}" != "1" ]]; then
+    cat >&2 <<'EOF'
+Blocked: direct pushes to origin/main are disabled for Codex task safety.
+Only the designated release task may push main, with OCC_RELEASE=1.
+EOF
+    exit 1
+  fi
+done

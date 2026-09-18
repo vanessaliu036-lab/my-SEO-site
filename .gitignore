@@ -30,6 +30,9 @@ yarn-error.log*
 # local SEO analysis cache
 .seo-cache/
 
+# isolated working directories created for Codex tasks
+.worktrees/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

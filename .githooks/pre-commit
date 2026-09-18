@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
+
+if [[ "$branch" == "main" && "${OCC_RELEASE:-}" != "1" ]]; then
+  cat >&2 <<'EOF'
+Blocked: direct commits on main are disabled for Codex task safety.
+Create an isolated task worktree with:
+  scripts/new-codex-worktree.sh <task-slug>
+
+Only the designated release task may commit main, with OCC_RELEASE=1.
+EOF
+  exit 1
+fi
