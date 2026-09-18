@@ -21,24 +21,24 @@ const story = [
     number: "01 · PLACE",
     title: "Cambodia is where the story begins.",
     body: "Country, region, climate, agriculture and growing conditions give a coffee its first context. Explore Cambodia and Mondulkiri to understand the places behind OCC coffee.",
-    img: "/origins/cherries.webp",
-    alt: "Ripe coffee cherries on a Cambodian coffee plant",
+    img: "/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg",
+    alt: "Coffee harvest in Mondulkiri, Cambodia",
     cta: { text: "Explore Cambodia & Regions", href: "/origins/cambodia-regions" },
   },
   {
     number: "02 · PEOPLE & PROCESS",
     title: "Origin is built by decisions.",
     body: "Farmers, processors, evaluators and roasters shape what happens after harvest. The work of selecting, handling, drying and evaluating a lot turns place into coffee that can be understood and used.",
-    img: "/origins/green-coffee.webp",
-    alt: "Green coffee beans being handled during coffee preparation",
+    img: "/media/raised-bed-drying-honey-process-mondulkiri.jpg",
+    alt: "Coffee drying and processing in Mondulkiri",
     cta: null,
   },
   {
     number: "03 · THE CUP",
     title: "Fine Robusta deserves a closer look.",
     body: "Quality is not guaranteed by a place name alone. Fine Robusta is understood through lot-specific evaluation, clean cup quality, processing records and the way the coffee performs after roasting.",
-    img: "/origins/cherries.webp",
-    alt: "Coffee cherries representing the start of Fine Robusta quality",
+    img: "/media/cupping-bowls-fine-robusta-grading-cambodia.jpg",
+    alt: "Fine Robusta cupping and quality evaluation in Cambodia",
     cta: { text: "Explore Fine Robusta Cambodia", href: "/fine-robusta-cambodia" },
   },
 ]
@@ -54,7 +54,7 @@ export default function OriginsPage() {
   return (
     <div className="occ-origins-v2">
       <section className="originHero" aria-labelledby="origin-title">
-        <img src="/origins/hero.webp" alt="Cambodian highland landscape and coffee origin" className="originHeroImage" />
+        <img src="/media/mondulkiri-terroir-red-earth-elevation.jpg" alt="Mondulkiri terrain and Cambodian coffee origin" className="originHeroImage" />
         <div className="originWrap originHeroCopy">
           <div className="originEyebrow originEyebrowLight">ORIGINS · CAMBODIA</div>
           <h1 id="origin-title">Coffee with<br />a place behind it.</h1>
@@ -95,7 +95,7 @@ export default function OriginsPage() {
               {originFramework.map((item) => <div className="originTrustItem" key={item.title}><strong>{item.title}</strong>{item.description}</div>)}
             </div>
           </div>
-          <div className="originTrustVisual"><img src="/origins/brewing.webp" alt="Coffee being brewed and poured into a cup" loading="lazy" /></div>
+          <div className="originTrustVisual"><img src="/media/cambodian-coffee-origin-field-notes.jpg" alt="Cambodian coffee origin field notes and lot documentation" loading="lazy" /></div>
         </div>
       </section>
 
@@ -111,7 +111,7 @@ export default function OriginsPage() {
               <Link href="/solutions/wholesale" className="originButton originButtonDark">Discuss wholesale supply</Link>
             </div>
           </div>
-          <div className="originFinalVisual"><img src="/origins/brewing.webp" alt="Freshly brewed coffee completing the journey from origin to cup" loading="lazy" /></div>
+          <div className="originFinalVisual"><img src="/media/coffee-dispatch-sealed-bags-phnom-penh.jpg" alt="Prepared Cambodian coffee moving from origin toward buyers" loading="lazy" /></div>
         </div>
       </section>
     </div>
