@@ -182,7 +182,7 @@ test('About structured data does not invent a founder identity or unverified ope
 
 test('shared About shell keeps approved origin identity while preserving evidence safeguards', () => {
   const sharedAboutShell = `${aboutEditorialTemplate}\n${siteHeader}\n${navigationData}`
-  assert.match(sharedAboutShell, /100% Cambodia-origin specialty coffee supplier/i)
+  assert.match(sharedAboutShell, /100% Cambodia origin/i)
   assert.match(sharedAboutShell, /Fine Robusta specialist/i)
   assert.match(sharedAboutShell, /Wholesale coffee supply|custom roasting/i)
   assert.match(sharedAboutShell, /origin|evidence|quality/i)
@@ -195,6 +195,6 @@ test('shared About shell keeps approved origin identity while preserving evidenc
 test('About hero removes the coffee-bag visual and keeps the approved identity copy in English', () => {
   assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual/)
   assert.doesNotMatch(aboutEditorialTemplate, /[\u3400-\u9fff]/)
-  assert.match(aboutEditorialTemplate, /One origin\. Cambodia\./)
-  assert.match(aboutEditorialTemplate, /OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist\./)
+  assert.match(aboutEditorialTemplate, /One origin\.<br \/>Cambodia\./)
+  assert.match(aboutEditorialTemplate, /100% Cambodia origin \/ Fine Robusta specialist/)
 })
