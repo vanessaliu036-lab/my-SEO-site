@@ -1,44 +1,43 @@
 /*
  * ABOUT image-source lock.
- * Every major visual slot must use an independent source image.
- * Different crops of the same source do not count as different images.
- * Keep the six primary source declarations above the mobile safety-net marker:
- * the regression test audits both path uniqueness and file hashes.
+ * Each major visual slot owns one independent photograph.
+ * Crops, renamed duplicates, and cross-route reuse do not count as independent imagery.
  */
 
 div[role="img"][aria-label="Cambodian coffee at origin"] {
-  background-image: url("/hero-home.webp") !important;
+  background-image: url("/about/hero-image") !important;
 }
 
 div[role="img"][aria-label="Cambodian coffee origin and production"] {
-  background-image: url("/distribution-hero.webp") !important;
+  background-image: url("/about/about-why.webp") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(1) > div:first-child {
-  background-image: url("/about/about-origin.svg") !important;
+  background-image: url("/about/about-origin.webp") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(2) > div:first-child {
-  background-image: url("/about/about-fine-robusta.svg") !important;
+  background-image: url("/about/about-fine.webp") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
-  background-image: url("/about/occ-about-atlas.avif") !important;
+  background-image: url("/about/about-ready.webp") !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:first-child {
-  background-image: url("/about/about-made-for-you.svg") !important;
+  background-image: url("/about/about-made.webp") !important;
 }
 
-/* Mobile Safari JPEG safety net. */
+/* Mobile route-owned safety net. */
 @media (max-width: 1023px) {
   div[role="img"][aria-label="Cambodian coffee origin and production"] {
-    background-image: url("/about/about-why-occ.jpg") !important;
+    background-image: url("/about/about-why.webp") !important;
     background-size: cover !important;
     background-position: center !important;
   }
 
   section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
+    background-image: url("/about/about-ready.webp") !important;
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
