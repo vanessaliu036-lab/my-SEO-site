@@ -16,30 +16,23 @@ if (isVercelProduction) {
     sha: process.env.VERCEL_GIT_COMMIT_SHA?.trim(),
   }
 
+  const approvedSha = process.env.APPROVED_RELEASE_SHA?.trim()
   const failures = []
 
-  if (actual.provider !== expected.provider) {
-    failures.push(`provider=${actual.provider || "missing"}; expected github`)
-  }
-
-  if (actual.owner !== expected.owner) {
-    failures.push(`owner=${actual.owner || "missing"}; expected ${expected.owner}`)
-  }
-
-  if (actual.repo !== expected.repo) {
-    failures.push(`repo=${actual.repo || "missing"}; expected ${expected.repo}`)
-  }
-
-  if (actual.ref !== expected.ref) {
-    failures.push(`ref=${actual.ref || "missing"}; expected main`)
-  }
-
-  if (!/^[0-9a-f]{40}$/i.test(actual.sha || "")) {
-    failures.push(`commit SHA=${actual.sha || "missing"}; expected a 40-character Git SHA`)
+  if (actual.provider !== expected.provider) failures.push(`provider=${actual.provider || "missing"}; expected github`)
+  if (actual.owner !== expected.owner) failures.push(`owner=${actual.owner || "missing"}; expected ${expected.owner}`)
+  if (actual.repo !== expected.repo) failures.push(`repo=${actual.repo || "missing"}; expected ${expected.repo}`)
+  if (actual.ref !== expected.ref) failures.push(`ref=${actual.ref || "missing"}; expected main`)
+  if (!/^[0-9a-f]{40}$/i.test(actual.sha || "")) failures.push(`commit SHA=${actual.sha || "missing"}; expected a 40-character Git SHA`)
+  if (!/^[0-9a-f]{40}$/i.test(approvedSha || "")) failures.push("APPROVED_RELEASE_SHA is missing or invalid")
+  if (approvedSha && actual.sha && approvedSha !== actual.sha) {
+    failures.push(`commit SHA=${actual.sha}; approved release SHA=${approvedSha}`)
   }
 
   if (failures.length > 0) {
-    console.error(`Blocked production deployment: canonical GitHub source verification failed (${failures.join("; ")}).`)
+    console.error(`Blocked production deployment: approved-release verification failed (${failures.join("; ")}).`)
     process.exit(1)
   }
+
+  console.log(`Approved production SHA verified: ${actual.sha}`)
 }

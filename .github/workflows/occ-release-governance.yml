@@ -1,0 +1,26 @@
+name: OCC release governance
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Governance unit tests
+        run: npm run test:release-governance
+      - name: Content preservation
+        run: node scripts/verify-protected-content.mjs
+      - name: Editorial image ownership
+        run: node scripts/audit-editorial-images.mjs
+      - name: Static asset integrity
+        run: node scripts/verify-static-assets.mjs
