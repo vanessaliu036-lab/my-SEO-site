@@ -1,0 +1,31 @@
+{
+  "approvedVersion": "OCC-GOVERNANCE-2026-09-19-RC1",
+  "releaseMode": "normal",
+  "approvedBy": "Vanessa",
+  "approvedAt": "2026-09-19",
+  "routesIncluded": [
+    "governance-only"
+  ],
+  "approvedChanges": [
+    {
+      "id": "approved-sha-lock",
+      "ownerApproved": true
+    },
+    {
+      "id": "five-change-threshold",
+      "ownerApproved": true
+    },
+    {
+      "id": "whole-site-image-ownership",
+      "ownerApproved": true
+    },
+    {
+      "id": "asset-integrity-gate",
+      "ownerApproved": true
+    },
+    {
+      "id": "content-preservation-gate",
+      "ownerApproved": true
+    }
+  ]
+}

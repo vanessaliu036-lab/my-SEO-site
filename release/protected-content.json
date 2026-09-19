@@ -1,0 +1,56 @@
+{
+  "routes": [
+    {
+      "route": "/solutions/wholesale",
+      "files": [
+        "app/(site)/solutions/wholesale/page.tsx",
+        "app/(site)/solutions/wholesale/WholesaleApprovedLayout.tsx"
+      ],
+      "required": [
+        "Cambodian Fine Robusta",
+        "Roasted Coffee",
+        "Preparing a sourcing inquiry?",
+        "/resources/coffee-buyer-specification-template",
+        "Wholesale FAQs."
+      ]
+    },
+    {
+      "route": "/solutions/roasting-program",
+      "files": [
+        "app/(site)/solutions/roasting-program/page.tsx"
+      ],
+      "required": [
+        "CUSTOM ROASTING PROGRAM",
+        "Your Market. Your Customer. Your Roast Profile.",
+        "From Market to Production Profile",
+        "Choose Our Profile. Or Build Yours.",
+        "Reference Approval",
+        "Can Fine Robusta be used in a custom program?"
+      ]
+    },
+    {
+      "route": "/about",
+      "files": [
+        "components/templates/about-editorial-template.tsx"
+      ],
+      "required": [
+        "One origin.",
+        "100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist.",
+        "/solutions/wholesale",
+        "/solutions/roasting-program"
+      ]
+    },
+    {
+      "route": "/partnerships",
+      "files": [
+        "app/(site)/partnerships/page.tsx"
+      ],
+      "required": [
+        "/brand-gifting",
+        "/distribution",
+        "OCC",
+        "ARUNERA"
+      ]
+    }
+  ]
+}
