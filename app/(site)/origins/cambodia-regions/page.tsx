@@ -73,10 +73,10 @@ const sections = [
           Coffee is grown in Cambodia, although the country remains a relatively small and under-recognized producer compared with larger Southeast Asian coffee origins. For OCC, the first job of an origin page is therefore simple: make the geography clear.
         </p>
         <p>
-          The strongest contemporary geographic association is with northeastern Cambodia, particularly <strong className="font-semibold text-[#182019]">Mondulkiri</strong>. Coffee has also been associated with <strong className="font-semibold text-[#182019]">Ratanakiri</strong> and other upland agricultural areas, but public documentation and lot-level evidence are not equally developed across every location.
+          The strongest contemporary geographic association is with northeastern Cambodia, particularly <strong className="font-semibold text-occ-primary">Mondulkiri</strong>. Coffee has also been associated with <strong className="font-semibold text-occ-primary">Ratanakiri</strong> and other upland agricultural areas, but public documentation and lot-level evidence are not equally developed across every location.
         </p>
         <p>
-          This is why OCC does not treat <strong className="font-semibold text-[#182019]">Cambodia coffee</strong> as one uniform terroir. A country can contain different regions, elevations, landscapes, agricultural systems, plant material, and post-harvest practices. Regional identity should become more specific as the evidence becomes stronger.
+          This is why OCC does not treat <strong className="font-semibold text-occ-primary">Cambodia coffee</strong> as one uniform terroir. A country can contain different regions, elevations, landscapes, agricultural systems, plant material, and post-harvest practices. Regional identity should become more specific as the evidence becomes stronger.
         </p>
       </div>
     ),
@@ -90,10 +90,10 @@ const sections = [
           Much of Cambodia is associated with lowland plains, river systems, and tropical heat. The northeastern provinces introduce a different physical landscape, including elevated plateaux, rolling uplands, forest-agriculture mosaics, and red-earth agricultural zones.
         </p>
         <p>
-          That geographic contrast is the foundation behind searches such as <strong className="font-semibold text-[#182019]">Cambodia coffee highlands</strong>, <strong className="font-semibold text-[#182019]">Cambodian highland coffee</strong>, and <strong className="font-semibold text-[#182019]">coffee growing regions in Cambodia</strong>. These queries are fundamentally asking where Cambodian coffee comes from, not how a particular farm manages soil, shade, or harvest.
+          That geographic contrast is the foundation behind searches such as <strong className="font-semibold text-occ-primary">Cambodia coffee highlands</strong>, <strong className="font-semibold text-occ-primary">Cambodian highland coffee</strong>, and <strong className="font-semibold text-occ-primary">coffee growing regions in Cambodia</strong>. These queries are fundamentally asking where Cambodian coffee comes from, not how a particular farm manages soil, shade, or harvest.
         </p>
         <p>
-          Geography gives the map. Farm-level growing conditions belong to the next layer: <Link href="/origins/farm-terroir" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Farm & Terroir</Link>.
+          Geography gives the map. Farm-level growing conditions belong to the next layer: <Link href="/origins/farm-terroir" className="border-b border-occ-primary/45 font-medium text-occ-primary transition-colors hover:border-occ-secondary">Farm & Terroir</Link>.
         </p>
       </div>
     ),
@@ -104,17 +104,17 @@ const sections = [
     content: (
       <div className="space-y-6">
         <p>
-          <strong className="font-semibold text-[#182019]">Mondulkiri coffee</strong> is one of the clearest regional terms for understanding modern Cambodian coffee. The province sits in eastern Cambodia and is widely associated with upland terrain, cooler conditions at elevation, red-earth landscapes, forest, and agriculture.
+          <strong className="font-semibold text-occ-primary">Mondulkiri coffee</strong> is one of the clearest regional terms for understanding modern Cambodian coffee. The province sits in eastern Cambodia and is widely associated with upland terrain, cooler conditions at elevation, red-earth landscapes, forest, and agriculture.
         </p>
         <p>
-          Around <strong className="font-semibold text-[#182019]">Sen Monorom</strong>, published field research has documented Coffea canephora production and examined real coffee-growing systems. That matters because it gives an emerging coffee origin something more useful than broad marketing language: a geographic evidence base.
+          Around <strong className="font-semibold text-occ-primary">Sen Monorom</strong>, published field research has documented Coffea canephora production and examined real coffee-growing systems. That matters because it gives an emerging coffee origin something more useful than broad marketing language: a geographic evidence base.
         </p>
         <p>
-          OCC treats Mondulkiri first as a <strong className="font-semibold text-[#182019]">regional origin</strong>. It is not automatically a flavor claim, a quality grade, or another name for Fine Robusta. A coffee can be grown in Mondulkiri without every farm, harvest, or lot being identical.
+          OCC treats Mondulkiri first as a <strong className="font-semibold text-occ-primary">regional origin</strong>. It is not automatically a flavor claim, a quality grade, or another name for Fine Robusta. A coffee can be grown in Mondulkiri without every farm, harvest, or lot being identical.
         </p>
-        <div className="border-l-2 border-[#a8542a] bg-[#eee8dc]/65 px-5 py-5 sm:px-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a8542a]">Geographic rule</p>
-          <p className="mt-3 font-[var(--font-display)] text-2xl leading-[1.12] tracking-[-0.025em] text-[#182019]">
+        <div className="border-l-2 border-occ-secondary bg-occ-background/65 px-5 py-5 sm:px-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-occ-secondary">Geographic rule</p>
+          <p className="mt-3 font-[var(--font-display)] text-2xl leading-[1.12] tracking-[-0.025em] text-occ-primary">
             Mondulkiri tells us where the coffee comes from. It does not, by itself, tell us how the coffee grew or how a lot was verified.
           </p>
         </div>
@@ -130,7 +130,7 @@ const sections = [
           Sen Monorom, the provincial capital of Mondulkiri, sits within the upland landscape most frequently associated with contemporary Cambodian coffee cultivation. Research around the area has examined Canephora farms, shade systems, soil moisture, yield, fruit development, and seasonal conditions.
         </p>
         <p>
-          The role of this information on a regional page is not to turn one research site into a universal description of every Mondulkiri farm. Its value is to show that <strong className="font-semibold text-[#182019]">Mondulkiri coffee Cambodia</strong> can be discussed through real places and documented growing areas rather than a vague national story.
+          The role of this information on a regional page is not to turn one research site into a universal description of every Mondulkiri farm. Its value is to show that <strong className="font-semibold text-occ-primary">Mondulkiri coffee Cambodia</strong> can be discussed through real places and documented growing areas rather than a vague national story.
         </p>
         <p>
           As Cambodia develops more producer, farm, harvest, process, and lot records, the regional term can gain more resolution. A mature origin becomes stronger when a country name can lead to a region, then to a locality, then to a specific source.
@@ -144,7 +144,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <p>
-          Mondulkiri is OCC’s primary origin focus today, but Cambodia’s coffee geography should not be reduced to one province. <strong className="font-semibold text-[#182019]">Ratanakiri</strong>, to the north, is another major northeastern highland province with basaltic upland landscapes and a long agricultural association with perennial crops.
+          Mondulkiri is OCC’s primary origin focus today, but Cambodia’s coffee geography should not be reduced to one province. <strong className="font-semibold text-occ-primary">Ratanakiri</strong>, to the north, is another major northeastern highland province with basaltic upland landscapes and a long agricultural association with perennial crops.
         </p>
         <p>
           OCC does not assume that coffee from Ratanakiri should taste like coffee from Mondulkiri, and we do not treat every northeastern farm as one terroir. The purpose of a regional origin architecture is the opposite: to create enough geographic resolution that differences can eventually become visible.
@@ -161,12 +161,12 @@ const sections = [
     content: (
       <div className="space-y-6">
         <p>
-          There is an important difference between coffee <strong className="font-semibold text-[#182019]">grown in Cambodia</strong> and coffee that is only roasted, packed, branded, or served in Cambodia. Only the first describes agricultural origin.
+          There is an important difference between coffee <strong className="font-semibold text-occ-primary">grown in Cambodia</strong> and coffee that is only roasted, packed, branded, or served in Cambodia. Only the first describes agricultural origin.
         </p>
         <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
           {["Coffee grown in Cambodia — agricultural origin", "Coffee roasted in Cambodia — production location", "Coffee packed in Cambodia — packaging location", "Cambodian-style coffee — preparation or cultural style"].map((item, index) => (
             <div key={item} className="border-b border-r border-black/10 p-4 text-sm leading-6 text-black/68">
-              <span className="mr-3 text-[9px] tracking-[0.18em] text-[#a8542a]">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mr-3 text-[9px] tracking-[0.18em] text-occ-secondary">{String(index + 1).padStart(2, "0")}</span>
               {item}
             </div>
           ))}
@@ -186,13 +186,13 @@ const sections = [
           Cambodia is the country. Mondulkiri or another verified location is the regional layer. Farm & Terroir explains the growing environment. Single Origin explains how a particular coffee remains identifiable through producer, process, and lot records. Fine Robusta Cambodia explains OCC’s quality specialization.
         </p>
         <div className="border-y border-black/10 py-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a8542a]">Origin resolution</p>
-          <p className="mt-4 font-[var(--font-display)] text-[clamp(1.8rem,7vw,2.7rem)] leading-[1.04] tracking-[-0.035em] text-[#182019]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-occ-secondary">Origin resolution</p>
+          <p className="mt-4 font-[var(--font-display)] text-[clamp(1.8rem,7vw,2.7rem)] leading-[1.04] tracking-[-0.035em] text-occ-primary">
             Cambodia → Northeast → Mondulkiri → Farm → Harvest → Process → Lot
           </p>
         </div>
         <p>
-          This page owns the first half of that chain: <strong className="font-semibold text-[#182019]">country and regional geography</strong>. It deliberately stops before farm management and lot traceability become the main subject.
+          This page owns the first half of that chain: <strong className="font-semibold text-occ-primary">country and regional geography</strong>. It deliberately stops before farm management and lot traceability become the main subject.
         </p>
       </div>
     ),
@@ -200,11 +200,11 @@ const sections = [
 ]
 
 export default function CambodiaRegionsPage() {
-  const sectionLabelClass = "text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a8542a]"
-  const sectionTitleClass = "mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#182019]"
+  const sectionLabelClass = "text-[11px] font-semibold uppercase tracking-[0.22em] text-occ-secondary"
+  const sectionTitleClass = "mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-occ-primary"
 
   return (
-    <div className="origins-text-only bg-[#f6f3ea] text-[#182019]" data-image-free="true">
+    <div className="origins-text-only bg-occ-background text-occ-primary" data-image-free="true">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section className="relative overflow-hidden border-b border-black/10 pt-28 lg:pt-32">
@@ -218,7 +218,7 @@ export default function CambodiaRegionsPage() {
               <Link href="/origins" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/42 transition-colors hover:text-black">
                 <ArrowLeft className="size-3" /> Origins
               </Link>
-              <p className="mt-10 text-[10px] font-medium uppercase tracking-[0.24em] text-[#a8542a]">WHERE / GEOGRAPHY</p>
+              <p className="mt-10 text-[10px] font-medium uppercase tracking-[0.24em] text-occ-secondary">WHERE / GEOGRAPHY</p>
               <p className="mt-3 text-[9px] uppercase tracking-[0.2em] text-black/34">Origins / 01</p>
             </MotionReveal>
 
@@ -242,7 +242,7 @@ export default function CambodiaRegionsPage() {
               </p>
             </div>
             <div className="md:col-span-2 md:col-start-11">
-              <Link href="/origins/farm-terroir" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
+              <Link href="/origins/farm-terroir" className="group inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-occ-background transition-transform duration-300 hover:-translate-y-0.5">
                 Explore Farm & Terroir <ArrowUpRight className="size-3" />
               </Link>
             </div>
@@ -255,7 +255,7 @@ export default function CambodiaRegionsPage() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
               <p className={sectionLabelClass}>Origin Map</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
               <h2 className={sectionTitleClass}>Cambodia Coffee Geography</h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
                 This page owns geographic search intent: country, highlands, regions, Mondulkiri, Ratanakiri, and where coffee is grown in Cambodia.
@@ -266,9 +266,9 @@ export default function CambodiaRegionsPage() {
               <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
                 {highlights.map((card, index) => (
                   <MotionReveal key={card.title} direction={index % 2 === 0 ? "left" : "right"}>
-                    <article className="min-h-[220px] border-b border-r border-black/10 p-6 transition-colors duration-300 hover:bg-[#eee8dc] lg:min-h-[250px] lg:p-8">
+                    <article className="min-h-[220px] border-b border-r border-black/10 p-6 transition-colors duration-300 hover:bg-occ-background lg:min-h-[250px] lg:p-8">
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-[9px] tracking-[0.2em] text-[#a8542a]">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="text-[9px] tracking-[0.2em] text-occ-secondary">{String(index + 1).padStart(2, "0")}</span>
                         <span className="text-[9px] uppercase tracking-[0.16em] text-black/35">{card.meta}</span>
                       </div>
                       <h3 className="mt-12 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.025em]">{card.title}</h3>
@@ -289,7 +289,7 @@ export default function CambodiaRegionsPage() {
                   <article className="grid grid-cols-1 border-t border-black/10 py-12 md:grid-cols-8 md:gap-8 lg:py-16">
                     <div className="md:col-span-3">
                       <p className={sectionLabelClass}>{section.label}</p>
-                      <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+                      <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
                       <h2 className={sectionTitleClass}>{section.title}</h2>
                     </div>
                     <div className="mt-8 max-w-[34rem] text-[15px] leading-8 text-black/76 md:col-span-5 md:mt-0">
@@ -301,7 +301,7 @@ export default function CambodiaRegionsPage() {
             </div>
 
             <MotionReveal direction="right" className="md:col-span-3 md:col-start-10">
-              <aside className="sticky top-28 border-t border-black/10 bg-[#202820] px-6 py-7 text-[#f6f3ea] lg:px-7 lg:py-8">
+              <aside className="sticky top-28 border-t border-black/10 bg-occ-primary px-6 py-7 text-occ-background lg:px-7 lg:py-8">
                 <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/45">Geography Owner</p>
                 <p className="mt-5 font-[var(--font-display)] text-2xl leading-[1.08] tracking-[-0.025em]">Where is Cambodian coffee grown?</p>
                 <div className="mt-7">

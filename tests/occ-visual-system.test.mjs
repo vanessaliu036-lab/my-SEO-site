@@ -139,7 +139,7 @@ test("homepage and About use local photo-led assets", () => {
   for (const image of [
     "about-origin.svg",
     "about-fine-robusta.svg",
-    "occ-about-atlas.avif",
+    "about-ready-to-sell.svg",
     "about-made-for-you.svg",
   ]) {
     assert.match(css, new RegExp(`\\/about\\/${image.replace(".", "\\.")}`))

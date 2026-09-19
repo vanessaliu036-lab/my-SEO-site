@@ -75,7 +75,7 @@ type WholesaleEditorialTemplateProps = {
 }
 
 const eyebrowClass = "text-[10px] font-medium uppercase tracking-[0.28em] text-black/48"
-const displayTitleClass = "font-[var(--font-display)] font-normal tracking-[-0.045em] text-[#182019]"
+const displayTitleClass = "font-[var(--font-display)] font-normal tracking-[-0.045em] text-occ-primary"
 
 export function WholesaleEditorialTemplate({
   index,
@@ -106,7 +106,7 @@ export function WholesaleEditorialTemplate({
   const supportingSections = sections.slice(1)
 
   return (
-    <div data-wholesale-layout="reference-editorial" className="bg-[#f3f1ea] text-[#182019]">
+    <div data-wholesale-layout="reference-editorial" className="bg-occ-background text-occ-primary">
       <div className="mx-auto w-full max-w-[1680px] px-5 py-8 sm:px-8 md:px-12 lg:px-16 lg:py-12">
         <section className="grid grid-cols-1 gap-10 border-b border-black/10 pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:pb-20" aria-labelledby="wholesale-title">
           <MotionReveal direction="left" className="flex flex-col justify-center py-2 lg:py-8">
@@ -123,18 +123,18 @@ export function WholesaleEditorialTemplate({
             </p>
             <p className="mt-6 max-w-[640px] text-[15px] leading-8 text-black/60 sm:text-base">{subtitle}</p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/contact" className="group inline-flex items-center gap-3 rounded-full bg-[#182019] px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform hover:-translate-y-0.5">
+              <Link href="/contact" className="group inline-flex items-center gap-3 rounded-full bg-occ-primary px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-background transition-transform hover:-translate-y-0.5">
                 {heroCtaLabel}<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              <Link href="#commercial-focus" className="group inline-flex items-center gap-3 rounded-full border border-black/18 px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#182019] transition-colors hover:bg-white/60">
+              <Link href="#commercial-focus" className="group inline-flex items-center gap-3 rounded-full border border-black/18 px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary transition-colors hover:bg-white/60">
                 Explore Supply<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
           </MotionReveal>
 
-          <MotionReveal direction="right" className="relative min-h-[430px] overflow-hidden bg-[#e8e3d9] sm:min-h-[520px] lg:min-h-[650px]">
+          <MotionReveal direction="right" className="relative min-h-[430px] overflow-hidden bg-occ-surface sm:min-h-[520px] lg:min-h-[650px]">
             <img src="/hero-home.webp" alt="Cambodia-origin coffee prepared for professional wholesale supply" className="h-full w-full object-cover" />
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/25 bg-[#182019]/58 px-5 py-4 text-[9px] uppercase tracking-[0.2em] text-white/72 backdrop-blur-[2px] sm:px-7">
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/25 bg-occ-primary/58 px-5 py-4 text-[9px] uppercase tracking-[0.2em] text-white/72 backdrop-blur-[2px] sm:px-7">
               <span>Origin Coffee Cambodia</span>
               <span>Wholesale / {index}</span>
             </div>
@@ -172,7 +172,7 @@ export function WholesaleEditorialTemplate({
 
         {leadSection ? (
           <section className="grid grid-cols-1 gap-10 border-b border-black/10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-20" aria-labelledby="wholesale-market-path">
-            <MotionReveal direction="left" className="relative min-h-[430px] overflow-hidden bg-[#e8e3d9] lg:min-h-[620px]">
+            <MotionReveal direction="left" className="relative min-h-[430px] overflow-hidden bg-occ-surface lg:min-h-[620px]">
               <img src="/about/about-origin.svg" alt="Cambodian coffee origin and supply context" className="h-full w-full object-cover" />
             </MotionReveal>
             <MotionReveal direction="right" className="flex flex-col justify-center">
@@ -205,14 +205,14 @@ export function WholesaleEditorialTemplate({
               <p className={eyebrowClass}>Evidence Standard</p>
               <h2 id="wholesale-process-title" className={`${displayTitleClass} mt-5 max-w-[760px] text-[clamp(2.9rem,5.7vw,5.1rem)] leading-[0.94]`}>{processTitle}</h2>
               <p className="mt-6 max-w-[720px] text-[15px] leading-8 text-black/60 sm:text-base">{processIntro}</p>
-              <div className="mt-8 max-w-[720px] border-l-2 border-[#9d6b32] pl-5">
+              <div className="mt-8 max-w-[720px] border-l-2 border-occ-secondary pl-5">
                 <p className="text-[13px] leading-6 text-black/55">Preparing a sourcing inquiry?</p>
-                <Link href="/resources/coffee-buyer-specification-template" className="group mt-2 inline-flex items-center gap-2 border-b border-[#182019]/35 pb-1 text-[13px] font-semibold leading-6 text-[#182019] transition-colors hover:border-[#182019] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#182019]">
+                <Link href="/resources/coffee-buyer-specification-template" className="group mt-2 inline-flex items-center gap-2 border-b border-occ-primary/35 pb-1 text-[13px] font-semibold leading-6 text-occ-primary transition-colors hover:border-occ-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-occ-primary">
                   Use the Coffee Buyer Specification Template<ArrowUpRight className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
             </MotionReveal>
-            <MotionReveal direction="right" className="min-h-[320px] overflow-hidden bg-[#e8e3d9] sm:min-h-[390px]">
+            <MotionReveal direction="right" className="min-h-[320px] overflow-hidden bg-occ-surface sm:min-h-[390px]">
               <img src="/about/about-fine-robusta.svg" alt="Coffee evaluation supporting OCC wholesale qualification" className="h-full w-full object-cover" />
             </MotionReveal>
           </div>
@@ -264,13 +264,13 @@ export function WholesaleEditorialTemplate({
           <div className="mt-10 grid grid-cols-1 border-l border-t border-black/12 lg:grid-cols-2">
             {comparison.map((item, itemIndex) => (
               <MotionReveal key={item.title} direction={itemIndex === 0 ? "left" : "right"}>
-                <article className={`flex min-h-[330px] h-full flex-col justify-between border-b border-r p-7 sm:p-9 ${item.active ? "border-[#2f3b2d] bg-[#2f3b2d] text-[#f3f1ea]" : "border-black/12 bg-white/24 text-[#182019]"}`}>
+                <article className={`flex min-h-[330px] h-full flex-col justify-between border-b border-r p-7 sm:p-9 ${item.active ? "border-occ-primary bg-occ-primary text-occ-background" : "border-black/12 bg-white/24 text-occ-primary"}`}>
                   <div>
                     <p className={`text-[9px] font-medium uppercase tracking-[0.2em] ${item.active ? "text-white/48" : "text-black/38"}`}>{item.eyebrow}</p>
-                    <h3 className={`mt-5 font-[var(--font-display)] text-[2.6rem] font-normal leading-none tracking-[-0.035em] ${item.active ? "text-white" : "text-[#182019]"}`}>{item.title}</h3>
+                    <h3 className={`mt-5 font-[var(--font-display)] text-[2.6rem] font-normal leading-none tracking-[-0.035em] ${item.active ? "text-white" : "text-occ-primary"}`}>{item.title}</h3>
                     <p className={`mt-6 max-w-[560px] text-[15px] leading-7 ${item.active ? "text-white/66" : "text-black/60"}`}>{item.description}</p>
                   </div>
-                  <Link href={item.href} className={`group mt-8 inline-flex w-fit items-center gap-2 border-b pb-1 text-[10px] font-semibold uppercase tracking-[0.15em] ${item.active ? "border-white/35 text-white" : "border-black/30 text-[#182019]"}`}>
+                  <Link href={item.href} className={`group mt-8 inline-flex w-fit items-center gap-2 border-b pb-1 text-[10px] font-semibold uppercase tracking-[0.15em] ${item.active ? "border-white/35 text-white" : "border-black/30 text-occ-primary"}`}>
                     {item.cta}<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </article>
@@ -280,13 +280,13 @@ export function WholesaleEditorialTemplate({
         </section>
 
         <MotionReveal>
-          <section className="my-12 grid grid-cols-1 gap-8 bg-[#2f3b2d] p-7 text-[#f3f1ea] sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end lg:p-12">
+          <section className="my-12 grid grid-cols-1 gap-8 bg-occ-primary p-7 text-occ-background sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end lg:p-12">
             <div>
               <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/46">{nextPath.eyebrow}</p>
               <h2 className="mt-4 max-w-[800px] font-[var(--font-display)] text-[clamp(2.5rem,4.6vw,4.4rem)] font-normal leading-[0.95] tracking-[-0.04em] text-white">{nextPath.title}</h2>
               <p className="mt-5 max-w-[760px] text-[15px] leading-7 text-white/64">{nextPath.description}</p>
             </div>
-            <Link href={nextPath.href} className="group inline-flex items-center gap-3 rounded-full border border-white/32 px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-[#2f3b2d]">
+            <Link href={nextPath.href} className="group inline-flex items-center gap-3 rounded-full border border-white/32 px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
               {nextPath.cta}<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </section>
@@ -325,13 +325,13 @@ export function WholesaleEditorialTemplate({
         </section>
 
         <MotionReveal>
-          <section className="mb-8 grid grid-cols-1 gap-8 border border-black/12 bg-[#ece7dd] p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
+          <section className="mb-8 grid grid-cols-1 gap-8 border border-black/12 bg-occ-surface p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
             <div>
               <p className={eyebrowClass}>B2B Partnerships</p>
               <h2 className={`${displayTitleClass} mt-4 max-w-[820px] text-[clamp(2.5rem,4.5vw,4.3rem)] leading-[0.96]`}>{ctaLabel}</h2>
               <p className="mt-5 max-w-[760px] text-[15px] leading-7 text-black/58">{ctaDescription}</p>
             </div>
-            <Link href="/contact" className="group inline-flex items-center justify-center gap-3 rounded-full border border-black/20 bg-[#f6f3ea] px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#182019] transition-transform hover:-translate-y-0.5">
+            <Link href="/contact" className="group inline-flex items-center justify-center gap-3 rounded-full border border-black/20 bg-occ-background px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary transition-transform hover:-translate-y-0.5">
               Contact OCC<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </section>

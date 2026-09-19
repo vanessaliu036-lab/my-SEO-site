@@ -13,7 +13,7 @@ type EditorialVisualProps = {
 export function EditorialVisual({ src, alt, className, priority = false }: EditorialVisualProps) {
   return (
     <MotionReveal direction="right" className={cn("occ-editorial-visual-wrap", className)}>
-      <figure className="occ-editorial-visual relative aspect-[4/5] min-h-[260px] overflow-hidden bg-[#202820] shadow-[0_18px_50px_rgba(24,32,25,0.12)]">
+      <figure className="occ-editorial-visual relative aspect-[4/5] min-h-[260px] overflow-hidden bg-occ-primary shadow-[0_18px_50px_rgba(42,33,29,0.12)]">
         <Image
           src={src}
           alt={alt}

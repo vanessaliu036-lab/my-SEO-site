@@ -1,47 +1,55 @@
 {
-  "approvedVersion": "OCC-2026-09-19-PRODUCTION-1",
+  "approvedVersion": "OCC-2026-09-19-PRODUCTION-2",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
   "approvedAt": "2026-09-19",
   "routesIncluded": [
     "/about",
-    "/origins",
     "/partnerships",
+    "/solutions",
     "/solutions/wholesale",
-    "/solutions/roasting-program",
-    "release-governance"
+    "whole-public-site-brand-colors",
+    "whole-site-image-quality"
   ],
   "approvedChanges": [
     {
-      "id": "approved-sha-lock",
+      "id": "restore-solutions-seo-version",
       "ownerApproved": true
     },
     {
-      "id": "five-change-threshold",
+      "id": "replace-wholesale-duplicate-images",
       "ownerApproved": true
     },
     {
-      "id": "whole-site-image-ownership",
+      "id": "replace-partnerships-duplicate-images",
       "ownerApproved": true
     },
     {
-      "id": "asset-integrity-gate",
+      "id": "replace-low-resolution-about-asset",
       "ownerApproved": true
     },
     {
-      "id": "content-preservation-gate",
+      "id": "remove-obsolete-duplicate-assets",
       "ownerApproved": true
     },
     {
-      "id": "about-route-owned-image-css",
+      "id": "enforce-minimum-editorial-resolution",
       "ownerApproved": true
     },
     {
-      "id": "commercial-route-image-ownership",
+      "id": "enforce-exact-and-visual-duplicate-gates",
       "ownerApproved": true
     },
     {
-      "id": "partnerships-route-image-ownership",
+      "id": "unify-public-site-five-color-brand-system",
+      "ownerApproved": true
+    },
+    {
+      "id": "enforce-public-site-brand-color-gate",
+      "ownerApproved": true
+    },
+    {
+      "id": "remove-hardcoded-blog-page-count",
       "ownerApproved": true
     }
   ]

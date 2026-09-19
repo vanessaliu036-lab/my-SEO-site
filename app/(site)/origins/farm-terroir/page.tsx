@@ -71,7 +71,7 @@ const sections = [
     content: (
       <div className="space-y-6">
         <p>
-          <Link href="/origins/cambodia-regions" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Cambodia & Regions</Link> explains where coffee is grown. Farm & Terroir goes one level closer and asks a different question: <strong className="font-semibold text-[#182019]">what happens inside the coffee-growing environment?</strong>
+          <Link href="/origins/cambodia-regions" className="border-b border-occ-primary/45 font-medium text-occ-primary transition-colors hover:border-occ-secondary">Cambodia & Regions</Link> explains where coffee is grown. Farm & Terroir goes one level closer and asks a different question: <strong className="font-semibold text-occ-primary">what happens inside the coffee-growing environment?</strong>
         </p>
         <p>
           Two farms in the same province can experience different conditions. They can sit at different elevations, face different slopes, receive different amounts of shade, move water differently through the soil, use different plant material, and follow different agricultural practices.
@@ -79,9 +79,9 @@ const sections = [
         <p>
           This is why a regional name is useful but incomplete at farm scale. Terroir is the interaction between environment and agriculture around a specific coffee plant, not a guarantee that every coffee from one region will behave the same way.
         </p>
-        <div className="border-l-2 border-[#a8542a] bg-[#eee8dc]/65 px-5 py-5 sm:px-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a8542a]">Farm-level question</p>
-          <p className="mt-3 font-[var(--font-display)] text-2xl leading-[1.12] tracking-[-0.025em] text-[#182019]">
+        <div className="border-l-2 border-occ-secondary bg-occ-background/65 px-5 py-5 sm:px-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-occ-secondary">Farm-level question</p>
+          <p className="mt-3 font-[var(--font-display)] text-2xl leading-[1.12] tracking-[-0.025em] text-occ-primary">
             How did this coffee grow here — under these soil, climate, shade, water, plant, and management conditions?
           </p>
         </div>
@@ -114,12 +114,12 @@ const sections = [
     content: (
       <div className="space-y-6">
         <p>
-          Red soils are visually associated with parts of Cambodia’s northeastern highlands, but <strong className="font-semibold text-[#182019]">red soil is not a flavor note</strong>. At farm level, soil matters through physical and biological function.
+          Red soils are visually associated with parts of Cambodia’s northeastern highlands, but <strong className="font-semibold text-occ-primary">red soil is not a flavor note</strong>. At farm level, soil matters through physical and biological function.
         </p>
         <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
           {["Drainage and water movement", "Water-holding capacity", "Soil texture and structure", "Organic matter", "Rooting conditions", "Nutrient availability", "Ground cover and erosion", "Farm inputs and soil care"].map((item, index) => (
             <div key={item} className="border-b border-r border-black/10 p-4 text-sm leading-6 text-black/68">
-              <span className="mr-3 text-[9px] tracking-[0.18em] text-[#a8542a]">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mr-3 text-[9px] tracking-[0.18em] text-occ-secondary">{String(index + 1).padStart(2, "0")}</span>
               {item}
             </div>
           ))}
@@ -176,15 +176,15 @@ const sections = [
     content: (
       <div className="space-y-6">
         <p>
-          Much of OCC’s current farm-level work centers on <strong className="font-semibold text-[#182019]">Coffea canephora</strong>, commonly called Robusta. But species alone does not describe all plant differences inside a farm.
+          Much of OCC’s current farm-level work centers on <strong className="font-semibold text-occ-primary">Coffea canephora</strong>, commonly called Robusta. But species alone does not describe all plant differences inside a farm.
         </p>
         <p>
           Planting material can differ in vigor, yield, disease response, maturation behavior, resilience, and sensory potential. OCC therefore separates three levels of description: species, verified variety or clone where known, and quality category only after quality evaluation.
         </p>
         <div className="border-y border-black/10 py-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a8542a]">Keep the layers separate</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-occ-secondary">Keep the layers separate</p>
           <p className="mt-4 text-[15px] leading-8 text-black/76">
-            <strong className="text-[#182019]">Coffea canephora</strong> describes species. A verified variety or clone describes plant material. <Link href="/fine-robusta-cambodia" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Fine Robusta Cambodia</Link> describes OCC’s quality specialization. They are related, but they are not interchangeable terms.
+            <strong className="text-occ-primary">Coffea canephora</strong> describes species. A verified variety or clone describes plant material. <Link href="/fine-robusta-cambodia" className="border-b border-occ-primary/45 font-medium text-occ-primary transition-colors hover:border-occ-secondary">Fine Robusta Cambodia</Link> describes OCC’s quality specialization. They are related, but they are not interchangeable terms.
           </p>
         </div>
       </div>
@@ -201,7 +201,7 @@ const sections = [
         <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
           {["Pruning", "Nutrition", "Weed management", "Shade management", "Soil protection", "Plant health", "Pest and disease management", "Water management", "Harvest timing", "Cherry selection"].map((item, index) => (
             <div key={item} className="border-b border-r border-black/10 p-4 text-sm leading-6 text-black/68">
-              <span className="mr-3 text-[9px] tracking-[0.18em] text-[#a8542a]">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mr-3 text-[9px] tracking-[0.18em] text-occ-secondary">{String(index + 1).padStart(2, "0")}</span>
               {item}
             </div>
           ))}
@@ -224,10 +224,10 @@ const sections = [
           Selective harvesting of mature cherries can provide a more consistent starting point for processing. Mixed maturity can increase variability before fermentation, drying, sorting, roasting, or brewing even begins.
         </p>
         <p>
-          This is where Farm & Terroir deliberately stops. Once the cherry leaves the farm stage, the central questions change from <strong className="font-semibold text-[#182019]">how did it grow?</strong> to <strong className="font-semibold text-[#182019]">how is quality evaluated through processing, physical condition, sensory evidence, traceability, and repeatability?</strong>
+          This is where Farm & Terroir deliberately stops. Once the cherry leaves the farm stage, the central questions change from <strong className="font-semibold text-occ-primary">how did it grow?</strong> to <strong className="font-semibold text-occ-primary">how is quality evaluated through processing, physical condition, sensory evidence, traceability, and repeatability?</strong>
         </p>
         <p>
-          That next quality layer belongs to <Link href="/fine-robusta-cambodia" className="border-b border-[#182019]/45 font-medium text-[#182019] transition-colors hover:border-[#a8542a]">Fine Robusta Cambodia</Link>.
+          That next quality layer belongs to <Link href="/fine-robusta-cambodia" className="border-b border-occ-primary/45 font-medium text-occ-primary transition-colors hover:border-occ-secondary">Fine Robusta Cambodia</Link>.
         </p>
       </div>
     ),
@@ -235,11 +235,11 @@ const sections = [
 ]
 
 export default function FarmTerroirPage() {
-  const sectionLabelClass = "text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a8542a]"
-  const sectionTitleClass = "mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#182019]"
+  const sectionLabelClass = "text-[11px] font-semibold uppercase tracking-[0.22em] text-occ-secondary"
+  const sectionTitleClass = "mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-occ-primary"
 
   return (
-    <div className="bg-[#f6f3ea] text-[#182019]">
+    <div className="bg-occ-background text-occ-primary">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section className="relative overflow-hidden border-b border-black/10 pt-28 lg:pt-32">
@@ -253,7 +253,7 @@ export default function FarmTerroirPage() {
               <Link href="/origins" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/42 transition-colors hover:text-black">
                 <ArrowLeft className="size-3" /> Origins
               </Link>
-              <p className="mt-10 text-[10px] font-medium uppercase tracking-[0.24em] text-[#a8542a]">HOW IT GROWS / TERROIR</p>
+              <p className="mt-10 text-[10px] font-medium uppercase tracking-[0.24em] text-occ-secondary">HOW IT GROWS / TERROIR</p>
               <p className="mt-3 text-[9px] uppercase tracking-[0.2em] text-black/34">Origins / 02</p>
             </MotionReveal>
 
@@ -277,7 +277,7 @@ export default function FarmTerroirPage() {
               </p>
             </div>
             <div className="md:col-span-2 md:col-start-11">
-              <Link href="/fine-robusta-cambodia" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
+              <Link href="/fine-robusta-cambodia" className="group inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-occ-background transition-transform duration-300 hover:-translate-y-0.5">
                 Explore Fine Robusta <ArrowUpRight className="size-3" />
               </Link>
             </div>
@@ -290,7 +290,7 @@ export default function FarmTerroirPage() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
               <p className={sectionLabelClass}>Farm-scale Terroir</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
               <h2 className={sectionTitleClass}>What Shapes the Growing Environment?</h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
                 This page owns micro growing conditions and agricultural decisions. Regional geography stays on Cambodia & Regions; post-harvest quality evaluation continues on Fine Robusta Cambodia.
@@ -301,9 +301,9 @@ export default function FarmTerroirPage() {
               <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
                 {highlights.map((card, index) => (
                   <MotionReveal key={card.title} direction={index % 2 === 0 ? "left" : "right"}>
-                    <article className="min-h-[220px] border-b border-r border-black/10 p-6 transition-colors duration-300 hover:bg-[#eee8dc] lg:min-h-[250px] lg:p-8">
+                    <article className="min-h-[220px] border-b border-r border-black/10 p-6 transition-colors duration-300 hover:bg-occ-background lg:min-h-[250px] lg:p-8">
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-[9px] tracking-[0.2em] text-[#a8542a]">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="text-[9px] tracking-[0.2em] text-occ-secondary">{String(index + 1).padStart(2, "0")}</span>
                         <span className="text-[9px] uppercase tracking-[0.16em] text-black/35">{card.meta}</span>
                       </div>
                       <h3 className="mt-12 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.025em]">{card.title}</h3>
@@ -324,7 +324,7 @@ export default function FarmTerroirPage() {
                   <article className="grid grid-cols-1 border-t border-black/10 py-12 md:grid-cols-8 md:gap-8 lg:py-16">
                     <div className="md:col-span-3">
                       <p className={sectionLabelClass}>{section.label}</p>
-                      <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+                      <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
                       <h2 className={sectionTitleClass}>{section.title}</h2>
                     </div>
                     <div className="mt-8 max-w-[34rem] text-[15px] leading-8 text-black/76 md:col-span-5 md:mt-0">
@@ -336,7 +336,7 @@ export default function FarmTerroirPage() {
             </div>
 
             <MotionReveal direction="right" className="md:col-span-3 md:col-start-10">
-              <aside className="sticky top-28 border-t border-black/10 bg-[#202820] px-6 py-7 text-[#f6f3ea] lg:px-7 lg:py-8">
+              <aside className="sticky top-28 border-t border-black/10 bg-occ-primary px-6 py-7 text-occ-background lg:px-7 lg:py-8">
                 <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/45">Growing Conditions Owner</p>
                 <p className="mt-5 font-[var(--font-display)] text-2xl leading-[1.08] tracking-[-0.025em]">How did this coffee grow?</p>
                 <div className="mt-7">

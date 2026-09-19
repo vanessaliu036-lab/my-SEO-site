@@ -27,8 +27,8 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(2) > div:fir
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
-  background-image: url("/about/occ-about-atlas.avif") !important;
-  background-position: 50% 50% !important;
+  background-image: url("/about/about-ready-to-sell.svg") !important;
+  background-position: center !important;
 }
 
 section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:first-child {
@@ -71,4 +71,5 @@ section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:fir
     background-repeat: no-repeat !important;
     background-color: var(--occ-logo-burgundy) !important;
   }
+
 }

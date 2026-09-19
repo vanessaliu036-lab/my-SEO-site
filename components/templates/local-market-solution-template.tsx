@@ -61,11 +61,11 @@ export function LocalMarketSolutionTemplate({
   ctaLabel,
   ctaDescription,
 }: LocalMarketSolutionTemplateProps) {
-  const sectionLabelClass = "text-[11px] font-semibold uppercase tracking-[0.22em] text-[#a8542a]"
-  const sectionTitleClass = "mt-5 max-w-[13ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-[#182019]"
+  const sectionLabelClass = "text-[11px] font-semibold uppercase tracking-[0.22em] text-occ-secondary"
+  const sectionTitleClass = "mt-5 max-w-[13ch] font-[var(--font-display)] text-[clamp(2.1rem,7.5vw,3.2rem)] font-normal leading-[0.98] tracking-[-0.035em] text-occ-primary"
 
   return (
-    <div className="bg-[#f6f3ea] text-[#182019]">
+    <div className="bg-occ-background text-occ-primary">
       <section className="relative overflow-hidden border-b border-black/10 pt-28 lg:pt-32">
         <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.055] md:grid" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
@@ -77,7 +77,7 @@ export function LocalMarketSolutionTemplate({
               <Link href="/solutions" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/42 transition-colors hover:text-black">
                 <ArrowLeft className="size-3" /> Solutions
               </Link>
-              <p className="mt-10 text-[10px] font-medium uppercase tracking-[0.24em] text-[#a8542a]">CAMBODIAN MARKET</p>
+              <p className="mt-10 text-[10px] font-medium uppercase tracking-[0.24em] text-occ-secondary">CAMBODIAN MARKET</p>
               <p className="mt-3 text-[9px] uppercase tracking-[0.2em] text-black/34">Solutions / {index}</p>
             </MotionReveal>
 
@@ -95,7 +95,7 @@ export function LocalMarketSolutionTemplate({
               <p className="font-[var(--font-display)] text-[clamp(2.25rem,8vw,3.7rem)] font-normal leading-[0.98] tracking-[-0.04em]">{heroStatement}</p>
             </div>
             <div className="md:col-span-2 md:col-start-11">
-              <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-[#f6f3ea] transition-transform duration-300 hover:-translate-y-0.5">
+              <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-occ-background transition-transform duration-300 hover:-translate-y-0.5">
                 {heroCtaLabel}<ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
@@ -114,7 +114,7 @@ export function LocalMarketSolutionTemplate({
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
               <p className={sectionLabelClass}>01 / Market Focus</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
               <h2 id={`${index}-highlights`} className={sectionTitleClass}>{highlightTitle}</h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">{highlightIntro}</p>
             </MotionReveal>
@@ -123,9 +123,9 @@ export function LocalMarketSolutionTemplate({
               <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
                 {highlightCards.map((card, cardIndex) => (
                   <MotionReveal key={card.title} direction={cardIndex % 2 === 0 ? "left" : "right"}>
-                    <article className="group min-h-[220px] border-b border-r border-black/10 p-6 transition-colors duration-300 hover:bg-[#eee8dc] lg:min-h-[250px] lg:p-8">
+                    <article className="group min-h-[220px] border-b border-r border-black/10 p-6 transition-colors duration-300 hover:bg-occ-background lg:min-h-[250px] lg:p-8">
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-[9px] tracking-[0.2em] text-[#a8542a]">{String(cardIndex + 1).padStart(2, "0")}</span>
+                        <span className="text-[9px] tracking-[0.2em] text-occ-secondary">{String(cardIndex + 1).padStart(2, "0")}</span>
                         {card.meta ? <span className="text-[9px] uppercase tracking-[0.16em] text-black/35">{card.meta}</span> : null}
                       </div>
                       <h3 className="mt-12 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.025em] transition-transform duration-300 group-hover:translate-x-1">{card.title}</h3>
@@ -146,10 +146,10 @@ export function LocalMarketSolutionTemplate({
                   <article className="grid grid-cols-1 border-t border-black/10 py-12 md:grid-cols-8 md:gap-8 lg:py-16">
                     <div className="md:col-span-3">
                       <p className={sectionLabelClass}>{section.label}</p>
-                      <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+                      <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
                       <h2 className={sectionTitleClass}>{section.title}</h2>
                     </div>
-                    <div className="mt-8 max-w-[34rem] text-[15px] leading-8 text-black/76 md:col-span-5 md:mt-0 [&_a]:border-b [&_a]:border-[#182019]/45 [&_a]:font-medium [&_a]:text-[#182019] [&_a]:transition-colors hover:[&_a]:border-[#a8542a]">
+                    <div className="mt-8 max-w-[34rem] text-[15px] leading-8 text-black/76 md:col-span-5 md:mt-0 [&_a]:border-b [&_a]:border-occ-primary/45 [&_a]:font-medium [&_a]:text-occ-primary [&_a]:transition-colors hover:[&_a]:border-occ-secondary">
                       {section.content}
                     </div>
                   </article>
@@ -161,12 +161,12 @@ export function LocalMarketSolutionTemplate({
                   <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/40">Related Paths</p>
                   <div className="mt-5 border-t border-black/10">
                     {relatedLinks.map((item) => (
-                      <Link key={item.href} href={item.href} className="group flex items-start justify-between gap-5 border-b border-black/10 py-5 transition-colors hover:bg-[#eee8dc]/70 sm:px-1">
+                      <Link key={item.href} href={item.href} className="group flex items-start justify-between gap-5 border-b border-black/10 py-5 transition-colors hover:bg-occ-background/70 sm:px-1">
                         <div className="max-w-[34rem]">
-                          <p className="text-[15px] font-semibold leading-6 text-[#182019]">{item.title}</p>
+                          <p className="text-[15px] font-semibold leading-6 text-occ-primary">{item.title}</p>
                           <p className="mt-1.5 text-sm leading-6 text-black/56">{item.description}</p>
                         </div>
-                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-[#a8542a] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-occ-secondary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </Link>
                     ))}
                   </div>
@@ -175,7 +175,7 @@ export function LocalMarketSolutionTemplate({
             </div>
 
             <MotionReveal direction="right" className="md:col-span-3 md:col-start-10">
-              <aside className="sticky top-28 border-t border-black/10 bg-[#202820] px-6 py-7 text-[#f6f3ea] lg:px-7 lg:py-8">
+              <aside className="sticky top-28 border-t border-black/10 bg-occ-primary px-6 py-7 text-occ-background lg:px-7 lg:py-8">
                 <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/45">Signature Development</p>
                 <div className="mt-7">
                   {sidebarFacts.map((fact, factIndex) => (
@@ -194,7 +194,7 @@ export function LocalMarketSolutionTemplate({
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
               <p className={sectionLabelClass}>02 / Process</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
               <h2 id={`${index}-process`} className={sectionTitleClass}>{processTitle}</h2>
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">{processIntro}</p>
             </MotionReveal>
@@ -203,7 +203,7 @@ export function LocalMarketSolutionTemplate({
               {processSteps.map((step, stepIndex) => (
                 <MotionReveal key={step.title} direction={stepIndex % 2 === 0 ? "left" : "right"}>
                   <article className="grid grid-cols-[44px_1fr] gap-5 border-t border-black/10 py-7 last:border-b sm:grid-cols-[56px_1fr] lg:grid-cols-[64px_220px_1fr] lg:gap-8 lg:py-8">
-                    <span className="pt-1 text-[9px] tracking-[0.2em] text-[#a8542a]">{String(stepIndex + 1).padStart(2, "0")}</span>
+                    <span className="pt-1 text-[9px] tracking-[0.2em] text-occ-secondary">{String(stepIndex + 1).padStart(2, "0")}</span>
                     <h3 className="font-[var(--font-display)] text-xl font-normal leading-[1.1] tracking-[-0.02em] sm:text-2xl">{step.title}</h3>
                     <p className="col-start-2 mt-2 max-w-[34rem] text-sm leading-7 text-black/64 lg:col-start-3 lg:mt-0">{step.text}</p>
                   </article>
@@ -215,7 +215,7 @@ export function LocalMarketSolutionTemplate({
 
         <MotionReveal>
           <section className="border-b border-black/10 py-12 lg:py-16">
-            <div className="grid grid-cols-1 gap-8 bg-[#202820] p-7 text-[#f6f3ea] sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
+            <div className="grid grid-cols-1 gap-8 bg-occ-primary p-7 text-occ-background sm:p-9 md:grid-cols-12 md:items-end lg:p-11">
               <div className="md:col-span-7">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">{darkEyebrow}</p>
                 <h2 className="mt-5 max-w-[15ch] font-[var(--font-display)] text-[clamp(2rem,7vw,3rem)] font-normal leading-[0.98] tracking-[-0.035em]">{darkTitle}</h2>
@@ -234,15 +234,15 @@ export function LocalMarketSolutionTemplate({
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
               <p className={sectionLabelClass}>03 / Product System</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
               <h2 id={`${index}-support`} className={sectionTitleClass}>{supportTitle}</h2>
             </MotionReveal>
 
             <div className="grid grid-cols-1 md:col-span-8 md:col-start-5 lg:grid-cols-2">
               {supportCards.map((card, cardIndex) => (
                 <MotionReveal key={card.title} direction={cardIndex === 0 ? "left" : "right"}>
-                  <article className={`flex min-h-[330px] flex-col border border-black/10 p-7 lg:min-h-[390px] lg:p-9 ${card.active ? "bg-[#202820] text-[#f6f3ea]" : "bg-transparent text-[#182019]"}`}>
-                    <p className={`text-[9px] font-medium uppercase tracking-[0.22em] ${card.active ? "text-white/45" : "text-[#a8542a]"}`}>{card.eyebrow}</p>
+                  <article className={`flex min-h-[330px] flex-col border border-black/10 p-7 lg:min-h-[390px] lg:p-9 ${card.active ? "bg-occ-primary text-occ-background" : "bg-transparent text-occ-primary"}`}>
+                    <p className={`text-[9px] font-medium uppercase tracking-[0.22em] ${card.active ? "text-white/45" : "text-occ-secondary"}`}>{card.eyebrow}</p>
                     <h3 className="mt-10 font-[var(--font-display)] text-3xl font-normal leading-[1] tracking-[-0.03em] sm:text-4xl">{card.title}</h3>
                     <p className={`mt-6 max-w-md text-sm leading-7 ${card.active ? "text-white/68" : "text-black/64"}`}>{card.description}</p>
                     <Link href={card.href} className={`group mt-auto inline-flex items-center gap-2 pt-10 text-[10px] font-semibold uppercase tracking-[0.16em] ${card.active ? "text-white" : "text-black"}`}>
@@ -259,7 +259,7 @@ export function LocalMarketSolutionTemplate({
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className={sectionLabelClass}>04 / Reference</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
               <h2 id={`${index}-faq-title`} className="mt-5 max-w-[13ch] font-[var(--font-display)] text-[clamp(2rem,7vw,2.8rem)] font-normal leading-[0.98] tracking-[-0.03em]">Program details,<br />kept clear.</h2>
             </div>
             <div className="md:col-span-8 md:col-start-5">
@@ -282,13 +282,13 @@ export function LocalMarketSolutionTemplate({
           <section className="grid grid-cols-1 border-b border-black/10 py-16 md:grid-cols-12 md:items-end lg:py-20">
             <div className="md:col-span-3">
               <p className={sectionLabelClass}>Next Step</p>
-              <span className="mt-3 block h-px w-10 bg-[#a8542a]" aria-hidden="true" />
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
             </div>
             <div className="mt-7 md:col-span-7 md:col-start-5 md:mt-0">
               <p className="max-w-[34rem] text-sm leading-7 text-black/58">{ctaDescription}</p>
-              <Link href="/contact" className="group mt-8 inline-flex items-end gap-4 border-b border-black/20 pb-2 transition-colors hover:border-[#a8542a]">
+              <Link href="/contact" className="group mt-8 inline-flex items-end gap-4 border-b border-black/20 pb-2 transition-colors hover:border-occ-secondary">
                 <span className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">{ctaLabel}</span>
-                <ArrowUpRight className="mb-1 size-5 text-[#a8542a] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <ArrowUpRight className="mb-1 size-5 text-occ-secondary transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
             </div>
           </section>

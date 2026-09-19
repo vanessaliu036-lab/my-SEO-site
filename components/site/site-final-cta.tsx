@@ -96,7 +96,7 @@ export function SiteFinalCta() {
   const cta = getCta(pathname)
 
   return (
-    <section className="border-t border-white/10 bg-[#6b1323] text-[#f6f3ea]" aria-label="Work with Origin Coffee Cambodia">
+    <section className="border-t border-white/10 bg-occ-burgundy text-occ-background" aria-label="Work with Origin Coffee Cambodia">
       <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-20">
         <div className="md:col-span-2">
           <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/46">{cta.eyebrow}</p>
@@ -111,14 +111,14 @@ export function SiteFinalCta() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href={cta.primaryHref}
-                className="inline-flex items-center gap-2 rounded-full bg-[#f6f3ea] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-[#182019] transition-transform duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary transition-transform duration-200 hover:-translate-y-0.5"
               >
                 {cta.primaryLabel} <ArrowUpRight className="size-3" />
               </Link>
               {cta.secondaryHref && cta.secondaryLabel ? (
                 <Link
                   href={cta.secondaryHref}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/28 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-white transition-colors hover:bg-white hover:text-[#182019]"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/28 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-white transition-colors hover:bg-white hover:text-occ-primary"
                 >
                   {cta.secondaryLabel} <ArrowUpRight className="size-3" />
                 </Link>

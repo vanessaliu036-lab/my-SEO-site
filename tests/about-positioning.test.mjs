@@ -61,12 +61,13 @@ test("About closes with international market direction without service sprawl", 
   assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
 })
 
-test("About uses the approved sage photo-led visual system without replacing shared site chrome", () => {
+test("About uses the approved OCC five-color visual system without replacing shared site chrome", () => {
   const source = read(templatePath)
 
-  assert.match(source, /#5c6f58/i)
-  assert.match(source, /#2f3b2d/i)
-  assert.match(source, /#f3f1ea/i)
+  assert.match(source, /occ-primary/)
+  assert.match(source, /occ-burgundy/)
+  assert.match(source, /occ-secondary/)
+  assert.match(source, /occ-background/)
   assert.match(source, /\/about\/about-origin\.svg/)
   assert.match(source, /\/about\/about-fine-robusta\.svg/)
   assert.match(source, /\/about\/about-ready-to-sell\.svg/)

@@ -7,7 +7,7 @@ const contactCss = "app/(site)/contact/contact-editorial.css"
 
 test("BLOG index uses the OCC warm ivory background while preserving pagination and Airtable data", () => {
   const page = read("app/(site)/blog/page.tsx")
-  assert.match(page, /bg-\[#f6f3ea\]/)
+  assert.match(page, /bg-occ-background/)
   assert.match(page, /max-w-5xl/)
   assert.match(page, /Field Notes &amp; Craft/)
   assert.match(page, /The Signal\./)
@@ -35,7 +35,7 @@ test("CONTACT uses its existing editorial shell without changing ContactForm beh
 test("CONTACT editorial CSS retains its current behavior", () => {
   const css = read(contactCss)
   assert.match(css, /display:\s*none/)
-  assert.match(css, /#f6f3ea/)
-  assert.match(css, /#182019/)
-  assert.match(css, /var\(--font-display\)/)
+  assert.match(css, /#F8F5EE/)
+  assert.match(css, /#2A211D/)
+  assert.match(css, /var\(--occ-font-title\)/)
 })

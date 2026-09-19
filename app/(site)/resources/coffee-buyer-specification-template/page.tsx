@@ -69,7 +69,7 @@ const breadcrumbSchema = {
 
 export default function CoffeeBuyerSpecificationTemplatePage() {
   return (
-    <article className="bg-[#f6f3ea] text-[#182019]">
+    <article className="bg-occ-background text-occ-primary">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -86,7 +86,7 @@ export default function CoffeeBuyerSpecificationTemplatePage() {
           <h1 className="max-w-4xl font-[var(--font-display)] text-[clamp(2.7rem,6vw,6rem)] font-normal leading-[0.98] tracking-[-0.04em]">
             COFFEE BUYER<br />SPECIFICATION TEMPLATE
           </h1>
-          <p className="mt-10 max-w-2xl border-l-2 border-[#9d6b32] pl-5 text-lg leading-8 text-black/70">
+          <p className="mt-10 max-w-2xl border-l-2 border-occ-secondary pl-5 text-lg leading-8 text-black/70">
             Use this checklist to define the coffee, evidence, and supply conditions before requesting a sample, lot list, or wholesale proposal.
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function CoffeeBuyerSpecificationTemplatePage() {
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-[#eee9df] px-6 py-16 sm:px-10 lg:px-20 lg:py-24" aria-labelledby="checklist-title">
+      <section className="border-y border-black/10 bg-occ-background px-6 py-16 sm:px-10 lg:px-20 lg:py-24" aria-labelledby="checklist-title">
         <div className="mx-auto max-w-6xl">
           <p className="text-[11px] uppercase tracking-[0.2em] text-black/45">Specification checklist</p>
           <h2 id="checklist-title" className="mt-4 max-w-2xl text-4xl font-normal tracking-[-0.04em]">
@@ -116,7 +116,7 @@ export default function CoffeeBuyerSpecificationTemplatePage() {
           <ol className="mt-12 divide-y divide-black/10 border-t border-black/10">
             {specificationFields.map((field, index) => (
               <li key={field.title} className="grid gap-5 py-7 md:grid-cols-12 md:gap-8">
-                <span className="text-sm text-[#9d6b32] md:col-span-1" aria-hidden="true">
+                <span className="text-sm text-occ-secondary md:col-span-1" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-xl font-medium md:col-span-3">{field.title}</h3>
@@ -141,7 +141,7 @@ export default function CoffeeBuyerSpecificationTemplatePage() {
             <li><strong className="text-black">Define the commercial next step.</strong> State whether the next action is a second sample, lot review, roast test, price discussion, or supply conversation.</li>
           </ul>
           <div className="mt-12 flex flex-wrap gap-4">
-            <Link className="bg-[#182019] px-6 py-4 text-[11px] uppercase tracking-[0.18em] text-[#f6f3ea] transition-colors hover:bg-[#9d6b32]" href="/contact">
+            <Link className="bg-occ-primary px-6 py-4 text-[11px] uppercase tracking-[0.18em] text-occ-background transition-colors hover:bg-occ-secondary" href="/contact">
               Discuss a sourcing brief
             </Link>
             <Link className="border border-black/20 px-6 py-4 text-[11px] uppercase tracking-[0.18em] transition-colors hover:border-black" href="/solutions/wholesale">

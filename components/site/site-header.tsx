@@ -19,13 +19,13 @@ export function SiteHeader() {
 
   const headerClass = onHome
     ? "absolute inset-x-0 top-0 z-[70] w-full border-b border-white/15 bg-transparent text-white"
-    : "sticky inset-x-0 top-0 z-[70] w-full border-b border-[#182019]/12 bg-[#f6f3ea]/95 text-[#182019] backdrop-blur-md"
+    : "sticky inset-x-0 top-0 z-[70] w-full border-b border-occ-primary/12 bg-occ-background/95 text-occ-primary backdrop-blur-md"
 
-  const inactiveLinkClass = onHome ? "text-white/70 hover:text-white" : "text-[#182019]/62 hover:text-[#182019]"
-  const activeLinkClass = onHome ? "text-white" : "text-[#182019]"
+  const inactiveLinkClass = onHome ? "text-white/70 hover:text-white" : "text-occ-primary/62 hover:text-occ-primary"
+  const activeLinkClass = onHome ? "text-white" : "text-occ-primary"
   const mobileButtonClass = onHome
     ? "border-white/30 text-white hover:bg-white hover:text-black"
-    : "border-[#182019]/20 text-[#182019] hover:bg-[#6b1323] hover:text-[#f6f3ea]"
+    : "border-occ-primary/20 text-occ-primary hover:bg-occ-burgundy hover:text-occ-background"
 
   return (
     <>
@@ -72,12 +72,12 @@ export function SiteHeader() {
                 )}
 
                 {item.children?.length ? (
-                  <div className="pointer-events-none absolute left-1/2 top-20 min-w-[230px] -translate-x-1/2 translate-y-2 border border-black/10 bg-[#f6f3ea] p-2 text-[#182019] opacity-0 shadow-[0_18px_45px_rgba(20,24,18,0.10)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  <div className="pointer-events-none absolute left-1/2 top-20 min-w-[230px] -translate-x-1/2 translate-y-2 border border-black/10 bg-occ-background p-2 text-occ-primary opacity-0 shadow-[0_18px_45px_rgba(42,33,29,0.10)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block border-b border-black/5 px-4 py-3 text-[11px] tracking-[0.08em] text-[#4f554e] transition-colors last:border-b-0 hover:bg-white/70 hover:text-[#182019]"
+                        className="block border-b border-black/5 px-4 py-3 text-[11px] tracking-[0.08em] text-occ-secondary transition-colors last:border-b-0 hover:bg-white/70 hover:text-occ-primary"
                       >
                         {child.label}
                       </Link>

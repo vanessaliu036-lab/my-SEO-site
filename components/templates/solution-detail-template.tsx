@@ -43,7 +43,7 @@ export function SolutionDetailTemplate({
   ctaLabel,
 }: SolutionDetailTemplateProps) {
   return (
-    <div className="bg-[#f6f3ea] text-[#182019]">
+    <div className="bg-occ-background text-occ-primary">
       <section className="relative overflow-hidden border-b border-black/10 pt-28 lg:pt-32">
         <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.06] md:grid" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
@@ -77,7 +77,7 @@ export function SolutionDetailTemplate({
                 <MotionReveal key={section.title} direction={sectionIndex % 2 === 0 ? "left" : "right"}>
                   <article className="grid grid-cols-1 border-t border-black/10 py-10 md:grid-cols-8 md:gap-8 lg:py-14">
                     <div className="md:col-span-3">
-                      <p className="text-[9px] tracking-[0.2em] text-[#a8542a]">{String(sectionIndex + 1).padStart(2, "0")}</p>
+                      <p className="text-[9px] tracking-[0.2em] text-occ-secondary">{String(sectionIndex + 1).padStart(2, "0")}</p>
                       <h2 className="mt-5 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.02em] sm:text-3xl">{section.title}</h2>
                     </div>
                     <div className="mt-7 text-[15px] leading-8 text-black/78 md:col-span-5 md:mt-0 [&_a]:border-b [&_a]:border-black/25 [&_a]:transition-colors hover:[&_a]:border-black">
@@ -89,7 +89,7 @@ export function SolutionDetailTemplate({
             </div>
 
             <MotionReveal direction="right" className="md:col-span-3 md:col-start-10">
-              <aside className="sticky top-28 border-t border-black/10 bg-[#202820] px-6 py-7 text-[#f6f3ea] lg:px-7 lg:py-8">
+              <aside className="sticky top-28 border-t border-black/10 bg-occ-primary px-6 py-7 text-occ-background lg:px-7 lg:py-8">
                 <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/45">{factsTitle}</p>
                 <div className="mt-7">
                   {facts.map((fact, factIndex) => (
@@ -136,7 +136,7 @@ export function SolutionDetailTemplate({
               {relatedServices.map((service, serviceIndex) => (
                 <MotionReveal key={service.href} direction={serviceIndex % 2 === 0 ? "left" : "right"}>
                   <Link href={service.href} className="group grid grid-cols-[38px_1fr_auto] items-end gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr_auto]">
-                    <span className="pb-1 text-[9px] tracking-[0.2em] text-[#a8542a]">{String(serviceIndex + 1).padStart(2, "0")}</span>
+                    <span className="pb-1 text-[9px] tracking-[0.2em] text-occ-secondary">{String(serviceIndex + 1).padStart(2, "0")}</span>
                     <div>
                       <h3 className="font-[var(--font-display)] text-xl font-normal tracking-[-0.02em] transition-transform duration-300 group-hover:translate-x-2 sm:text-2xl">{service.title}</h3>
                       <p className="mt-2 text-[11px] uppercase tracking-[0.13em] text-black/40">{service.desc}</p>

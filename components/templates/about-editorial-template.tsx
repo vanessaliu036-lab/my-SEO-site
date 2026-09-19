@@ -94,16 +94,16 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
   })
 
   return (
-    <div className="bg-[#f3f1ea] text-[#182019]">
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#2f3b2d] text-[#f3f1ea] lg:min-h-[700px]">
+    <div className="bg-occ-background text-occ-primary">
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-occ-primary text-occ-background lg:min-h-[700px]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
           role="img"
           aria-label="Cambodian coffee at origin"
         />
-        <div className="absolute inset-0 bg-[#6b1323]/45" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#6b1323]/20 via-[#6b1323]/18 to-[#6b1323]/68" aria-hidden="true" />
+        <div className="absolute inset-0 bg-occ-burgundy/45" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-occ-burgundy/20 via-occ-burgundy/18 to-occ-burgundy/68" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1180px] items-center justify-center px-6 pb-16 pt-28 text-center sm:px-8 lg:min-h-[700px] lg:px-12">
           <motion.div {...reveal(24)} className="mx-auto w-full max-w-[860px]">
@@ -126,7 +126,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
               <Link
                 href="#why-occ"
-                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-[#6b1323]/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-[#2f3b2d]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-occ-burgundy/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-occ-primary"
               >
                 Why OCC <ArrowUpRight className="size-3" />
               </Link>
@@ -136,7 +136,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         </div>
       </section>
 
-      <section id="why-occ" className="relative overflow-hidden bg-[#5c6f58] text-[#f3f1ea]">
+      <section id="why-occ" className="relative overflow-hidden bg-occ-secondary text-occ-background">
         <div data-about-ghost="origin" aria-hidden="true" className="pointer-events-none absolute -left-6 top-16 font-[var(--font-display)] text-[clamp(6rem,13vw,12rem)] font-semibold leading-none tracking-[-0.06em] text-white/[0.07]">
           origin
         </div>
@@ -166,7 +166,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </motion.div>
 
             <motion.div {...reveal(34)} className="flex justify-center lg:justify-end">
-              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-[#2f3b2d] shadow-[0_24px_60px_rgba(22,31,20,0.18)]">
+              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-occ-primary shadow-[0_24px_60px_rgba(42,33,29,0.18)]">
                 <img
                   src={whyOccImage}
                   alt="Cambodian coffee origin and production"
@@ -192,7 +192,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         </div>
       </section>
 
-      <section className="grid grid-cols-2 bg-[#2f3b2d] lg:grid-cols-4" aria-label="OCC origin and commercial paths">
+      <section className="grid grid-cols-2 bg-occ-primary lg:grid-cols-4" aria-label="OCC origin and commercial paths">
         {galleryPanels.map((panel, index) => (
           <Link
             key={panel.label}
@@ -205,7 +205,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               style={{ backgroundImage: `url(${panel.image})` }}
               aria-hidden="true"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-[#6b1323]/82 transition-colors duration-500 group-hover:bg-[#2f3b2d]/14" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-occ-burgundy/82 transition-colors duration-500 group-hover:bg-occ-primary/14" />
             <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-7 lg:p-8">
               <p className="text-[9px] uppercase tracking-[0.2em] text-white/58">0{index + 1}</p>
               <div className="mt-3 flex items-end justify-between gap-3 sm:gap-4">
@@ -220,11 +220,11 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         ))}
       </section>
 
-      <main className="bg-[#f3f1ea]">
+      <main className="bg-occ-background">
         <motion.section {...reveal()} className="mx-auto w-full max-w-[1180px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:py-28">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5c6f58]">03 / What We Are Building</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">03 / What We Are Building</p>
           <div className="mt-7 grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
-            <h2 aria-label="A Premium Cambodian Coffee Brand" className="max-w-[620px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-[#2f3b2d]">
+            <h2 aria-label="A Premium Cambodian Coffee Brand" className="max-w-[620px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-occ-primary">
               A Premium
               <br />Cambodian Coffee Brand
             </h2>
@@ -250,8 +250,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               ["Commercially usable", "Profiles must work in real cafés, retail programs, hospitality, and distribution."],
               ["Built for recognition", "Each buyer relationship should increase familiarity with Cambodian coffee, not hide it."],
             ].map(([title, copy]) => (
-              <div key={title} className="bg-[#f3f1ea] p-7 sm:p-8 lg:min-h-[150px]">
-                <h3 className="text-sm font-semibold text-[#2f3b2d]">{title}</h3>
+              <div key={title} className="bg-occ-background p-7 sm:p-8 lg:min-h-[150px]">
+                <h3 className="text-sm font-semibold text-occ-primary">{title}</h3>
                 <p className="mt-3 max-w-md text-[13px] leading-6 text-black/56">{copy}</p>
               </div>
             ))}
@@ -260,8 +260,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
         <section className="mx-auto w-full max-w-[1180px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:py-28" aria-labelledby="work-with-occ-title">
           <motion.div {...reveal(30)} className="mx-auto max-w-[920px] text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5c6f58]">04 / Work With OCC</p>
-            <h2 id="work-with-occ-title" aria-label="How would you like to work with OCC?" className="mx-auto mt-6 max-w-[780px] font-[var(--font-display)] text-[clamp(2.7rem,4.4vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.035em] text-[#2f3b2d]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">04 / Work With OCC</p>
+            <h2 id="work-with-occ-title" aria-label="How would you like to work with OCC?" className="mx-auto mt-6 max-w-[780px] font-[var(--font-display)] text-[clamp(2.7rem,4.4vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.035em] text-occ-primary">
               How would you like
               <br />to work with OCC?
             </h2>
@@ -271,12 +271,12 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </motion.div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <motion.article {...reveal(28)} className="flex h-full flex-col border border-[#5c6f58]/30 bg-white/28 p-7 sm:p-9 lg:min-h-[500px]">
+            <motion.article {...reveal(28)} className="flex h-full flex-col border border-occ-secondary/30 bg-white/28 p-7 sm:p-9 lg:min-h-[500px]">
               <div className="flex items-center justify-between gap-4">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#5c6f58]">01 / Ready-to-Sell</p>
+                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-occ-secondary">01 / Ready-to-Sell</p>
                 <span className="text-[9px] uppercase tracking-[0.18em] text-black/34">Choose our profile.</span>
               </div>
-              <h3 className="mt-7 font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.03em] text-[#2f3b2d]">Ready-to-Sell</h3>
+              <h3 className="mt-7 font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.03em] text-occ-primary">Ready-to-Sell</h3>
               <p className="mt-5 text-sm leading-7 text-black/66">
                 For distributors, importers, retailers, hospitality groups, and coffee businesses looking for a Cambodian coffee supplier with a defined profile and a clearer route to repeat supply.
               </p>
@@ -288,12 +288,12 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                   </div>
                 ))}
               </div>
-              <Link href="/solutions/wholesale" className="mt-auto inline-flex items-center gap-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.17em] text-[#2f3b2d]">
+              <Link href="/solutions/wholesale" className="mt-auto inline-flex items-center gap-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary">
                 Explore Wholesale Coffee Supply <ArrowUpRight className="size-3" />
               </Link>
             </motion.article>
 
-            <motion.article {...reveal(34)} className="flex h-full flex-col bg-[#2f3b2d] p-7 text-[#f3f1ea] sm:p-9 lg:min-h-[500px]">
+            <motion.article {...reveal(34)} className="flex h-full flex-col bg-occ-primary p-7 text-occ-background sm:p-9 lg:min-h-[500px]">
               <div className="flex items-center justify-between gap-4">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/70">02 / Made-for-You</p>
                 <span className="text-[9px] uppercase tracking-[0.18em] text-white/38">Build yours.</span>
@@ -317,7 +317,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           </div>
         </section>
 
-        <motion.section {...reveal()} className="bg-[#2f3b2d] px-6 py-20 text-[#f3f1ea] sm:px-8 md:px-12 lg:py-28">
+        <motion.section {...reveal()} className="bg-occ-primary px-6 py-20 text-occ-background sm:px-8 md:px-12 lg:py-28">
           <div className="mx-auto w-full max-w-[1180px]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/46">05 / Where We Are Going</p>
             <div className="mt-7 grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
@@ -338,13 +338,13 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                   </p>
                 </div>
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 rounded-full bg-[#f3f1ea] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2f3b2d] transition-transform duration-200 hover:-translate-y-0.5">
+                  <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary transition-transform duration-200 hover:-translate-y-0.5">
                     Discuss Supply <ArrowUpRight className="size-3" />
                   </Link>
-                  <Link href="/solutions/roasting-program" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-[#2f3b2d]">
+                  <Link href="/solutions/roasting-program" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
                     Develop a Roast <ArrowUpRight className="size-3" />
                   </Link>
-                  <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-[#2f3b2d]">
+                  <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
                     Contact OCC <ArrowUpRight className="size-3" />
                   </Link>
                 </div>
@@ -355,8 +355,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
         <section className="mx-auto w-full max-w-[1180px] px-6 py-20 sm:px-8 md:px-12 lg:py-28" aria-labelledby="about-explore-title">
           <div className="mx-auto max-w-[900px] text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#5c6f58]">06 / Explore OCC</p>
-            <h2 id="about-explore-title" className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] text-[#2f3b2d] sm:text-4xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">06 / Explore OCC</p>
+            <h2 id="about-explore-title" className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] text-occ-primary sm:text-4xl">
               The thinking
               <br />behind the company.
             </h2>
@@ -368,12 +368,12 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                 <Link href={section.href} className="group grid grid-cols-[38px_1fr_auto] items-end gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr_auto] sm:py-9 lg:py-10">
                   <span className="pb-1 text-[9px] font-medium tracking-[0.2em] text-black/34">{String(index + 1).padStart(2, "0")}</span>
                   <div>
-                    <h3 className="font-[var(--font-display)] text-2xl font-normal leading-none tracking-[-0.02em] text-[#2f3b2d] transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
+                    <h3 className="font-[var(--font-display)] text-2xl font-normal leading-none tracking-[-0.02em] text-occ-primary transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
                       {section.title}
                     </h3>
                     <p className="mt-3 max-w-xl text-[11px] uppercase tracking-[0.13em] text-black/42">{section.desc}</p>
                   </div>
-                  <ArrowUpRight className="mb-1 size-5 text-[#5c6f58] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="mb-1 size-5 text-occ-secondary transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </motion.div>
             ))}

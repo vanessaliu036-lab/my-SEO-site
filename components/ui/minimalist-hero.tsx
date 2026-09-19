@@ -28,7 +28,7 @@ interface MinimalistHeroProps {
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <a
     href={href}
-    className="text-[10px] font-medium tracking-[0.16em] text-[#182019]/55 transition-colors hover:text-[#182019]"
+    className="text-[10px] font-medium tracking-[0.16em] text-occ-primary/55 transition-colors hover:text-occ-primary"
   >
     {children}
   </a>
@@ -39,7 +39,7 @@ const SocialIcon = ({ href, icon: Icon }: { href: string; icon: LucideIcon }) =>
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-[#182019]/55 transition-colors hover:text-[#182019]"
+    className="text-occ-primary/55 transition-colors hover:text-occ-primary"
   >
     <Icon className="h-4 w-4" />
   </a>
@@ -71,7 +71,7 @@ export const MinimalistHero = ({
   return (
     <section
       className={cn(
-        "relative flex min-h-[calc(100svh-72px)] w-full flex-col items-center justify-between overflow-hidden bg-[#f6f3ea] px-6 py-8 font-sans text-[#182019] sm:px-8 md:px-12 lg:px-16",
+        "relative flex min-h-[calc(100svh-72px)] w-full flex-col items-center justify-between overflow-hidden bg-occ-background px-6 py-8 font-sans text-occ-primary sm:px-8 md:px-12 lg:px-16",
         className
       )}
     >
@@ -104,9 +104,9 @@ export const MinimalistHero = ({
           transition={transition(0.42)}
           className="order-3 text-center md:order-1 md:col-span-3 md:pr-10 md:text-left"
         >
-          <p className="occ-eyebrow mb-5 text-[#182019]/45">{eyebrow}</p>
-          <p className="mx-auto max-w-[310px] text-sm font-light leading-7 text-[#182019]/72 md:mx-0">{mainText}</p>
-          <a href={readMoreLink} className="mt-5 inline-block border-b border-[#182019]/35 pb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#182019]">
+          <p className="occ-eyebrow mb-5 text-occ-primary/45">{eyebrow}</p>
+          <p className="mx-auto max-w-[310px] text-sm font-light leading-7 text-occ-primary/72 md:mx-0">{mainText}</p>
+          <a href={readMoreLink} className="mt-5 inline-block border-b border-occ-primary/35 pb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-occ-primary">
             {readMoreLabel}
           </a>
         </motion.div>
@@ -116,7 +116,7 @@ export const MinimalistHero = ({
             initial={reducedMotion ? { opacity: 1 } : { scale: 0.82, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={transition(0.12)}
-            className="absolute z-0 h-[280px] w-[280px] rounded-full bg-[#d9d1b7] sm:h-[340px] sm:w-[340px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px]"
+            className="absolute z-0 h-[280px] w-[280px] rounded-full bg-occ-surface sm:h-[340px] sm:w-[340px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px]"
           />
           <motion.div
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 48 }}
@@ -161,7 +161,7 @@ export const MinimalistHero = ({
           initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={transition(0.54)}
-          className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#182019]/48"
+          className="text-[9px] font-medium uppercase tracking-[0.2em] text-occ-primary/48"
         >
           {locationText}
         </motion.div>

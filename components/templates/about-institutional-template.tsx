@@ -64,7 +64,7 @@ export function AboutInstitutionalTemplate({
   })
 
   return (
-    <div className="bg-[#f6f3ea] text-[#182019]">
+    <div className="bg-occ-background text-occ-primary">
       <section className="relative overflow-hidden border-b border-black/10">
         <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.055] md:grid" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
@@ -100,7 +100,7 @@ export function AboutInstitutionalTemplate({
       </section>
 
       {featureGrid.length > 0 ? (
-        <section className="border-b border-black/10 bg-[#ebe5d8]" aria-labelledby={`${title.toLowerCase()}-practice-title`}>
+        <section className="border-b border-black/10 bg-occ-surface" aria-labelledby={`${title.toLowerCase()}-practice-title`}>
           <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-14 sm:px-8 md:grid-cols-12 md:gap-10 md:px-12 md:py-16 lg:px-16 lg:py-20">
             <div className="md:col-span-3">
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">{practiceLabel}</p>
@@ -108,7 +108,7 @@ export function AboutInstitutionalTemplate({
             </div>
             <div className="mt-10 grid grid-cols-1 gap-px border border-black/10 bg-black/10 md:col-span-9 md:mt-0 md:grid-cols-3">
               {featureGrid.map((item) => (
-                <article key={item.title} className="bg-[#f6f3ea] p-6 sm:p-7 lg:p-8">
+                <article key={item.title} className="bg-occ-background p-6 sm:p-7 lg:p-8">
                   <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-black/38">{item.label}</p>
                   <h3 className="mt-10 font-[var(--font-display)] text-xl font-normal leading-none tracking-[-0.02em] sm:text-2xl">{item.title}</h3>
                   <p className="mt-6 text-[15px] leading-7 text-black/82">{item.body}</p>

@@ -25,6 +25,6 @@ test("closing CTA retains existing page-specific content, routes and exclusion p
   assert.match(source, /title: "Start with Cambodia\. Build from there\."/)
   assert.match(source, /primaryHref: "\/contact"/)
   assert.match(source, /secondaryHref: "\/solutions"/)
-  assert.match(source, /bg-\[#182019\] text-\[#f6f3ea\]/)
+  assert.match(source, /bg-occ-burgundy text-occ-background/)
   assert.match(source, /className="flex flex-wrap gap-3"/)
 })

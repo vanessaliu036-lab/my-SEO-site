@@ -42,8 +42,8 @@ export function WholesaleApprovedLayout() {
       heroCtaHref="#needs"
       splitId="why-occ"
       processImages={[
-        { src: "/images/wholesale/occ-wholesale-product-beans.png", alt: "Selected roasted Cambodian beans in an OCC wholesale product reference" },
-        { src: "/images/wholesale/occ-wholesale-roaster-evaluation.png", alt: "Roasting evaluation for wholesale coffee buyers" },
+        { src: "/images/wholesale/occ-wholesale-sample-selection.webp", alt: "Roasted Cambodian coffee samples compared for wholesale selection" },
+        { src: "/images/wholesale/occ-wholesale-brew-evaluation.webp", alt: "Espresso preparation used to evaluate wholesale roast performance" },
       ]}
       splitTitle="From Cambodian origin to your market."
       splitDescription={<>OCC focuses entirely on coffee grown in Cambodia, with Fine Robusta as a specialist starting point. Buyers can connect coffee selection with origin, cup evidence and commercial terms. Wholesale covers OCC-developed coffee; for made-to-order roast development, explore our <a href="/solutions/roasting-program">Roasting Program</a>.</>}
@@ -53,7 +53,7 @@ export function WholesaleApprovedLayout() {
       featureEyebrow="One origin. Cambodia."
       featureTitle="Origin. Quality. Commercial Clarity."
       featureDescription="Ask about the specific coffee, process, cup profile and available records. Discuss samples and commercial terms for your market, without promises of unconfirmed inventory, export documents or delivery capabilities."
-      featureImage={{ src: "/images/wholesale/occ-wholesale-packaged-beans.png", alt: "Roasted Cambodian coffee prepared in a wholesale bag" }}
+      featureImage={{ src: "/images/wholesale/occ-wholesale-packed-order.webp", alt: "Sealed roasted coffee bags prepared for a wholesale buyer order" }}
       ctaId="contact"
       ctaEyebrow="B2B Wholesale Enquiry"
       ctaTitle="Tell us what your business needs."

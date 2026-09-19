@@ -6,9 +6,6 @@ import { alternatesFromCanonical } from "@/lib/seo"
 import { getAllPosts, getRecentPosts } from "@/lib/airtable"
 
 const POSTS_PER_PAGE = 5
-// Canonical frontend corpus count verified from live Airtable on 2026-09-18.
-const BLOG_CORPUS_POSTS = 1905
-const BLOG_TOTAL_PAGES = Math.max(1, Math.ceil(BLOG_CORPUS_POSTS / POSTS_PER_PAGE))
 
 const CORE_FINE_ROBUSTA_OWNERS = [
   {
@@ -97,9 +94,8 @@ export default async function BlogPage({
   // Emergency performance guard: the landing page only needs the newest cards.
   // Do not read the full 1,800+ record corpus just to render five articles.
   const posts = isLandingPage ? await getRecentPosts() : await getAllPosts()
-  const totalPages = isLandingPage
-    ? BLOG_TOTAL_PAGES
-    : Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
+  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
+  const hasMorePosts = isLandingPage ? posts.length > POSTS_PER_PAGE : page < totalPages
 
   if (!isLandingPage && posts.length > 0 && page > totalPages) {
     redirect(`/blog?page=${totalPages}`)
@@ -115,7 +111,7 @@ export default async function BlogPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Keep the Blog surface aligned with the global OCC warm-ivory shell. */}
-      <main className="min-h-screen bg-[#f6f3ea] font-sans overflow-x-hidden">
+      <main className="min-h-screen bg-occ-background font-sans overflow-x-hidden">
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16">
 
           <header className="mb-8 md:mb-12 border-b border-stone-200 pb-8 md:pb-10">
@@ -133,7 +129,7 @@ export default async function BlogPage({
           {page === 1 && (
             <section className="mb-10 md:mb-14 border-b border-stone-200 pb-9 md:pb-11" aria-labelledby="core-fine-robusta-guides">
               <div className="flex flex-col gap-2 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.24em] text-[#7a1118] uppercase">
+                <span className="text-[10px] font-semibold tracking-[0.24em] text-occ-burgundy uppercase">
                   Topic Map · Start Here
                 </span>
                 <h2 id="core-fine-robusta-guides" className="text-xl sm:text-2xl font-semibold tracking-tight text-stone-950">
@@ -148,10 +144,10 @@ export default async function BlogPage({
                   <Link
                     key={guide.href}
                     href={guide.href}
-                    className="group flex min-h-0 flex-col border border-stone-300 border-l-2 border-l-[#7a1118] bg-white/55 px-4 py-4 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_30px_rgba(28,25,23,0.06)] lg:min-h-[150px] lg:p-5"
+                    className="group flex min-h-0 flex-col border border-stone-300 border-l-2 border-l-occ-burgundy bg-white/55 px-4 py-4 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_30px_rgba(42,33,29,0.06)] lg:min-h-[150px] lg:p-5"
                   >
                     <div className="flex items-center justify-between gap-4">
-                      <span className="text-[9px] font-semibold tracking-[0.2em] text-[#7a1118]">
+                      <span className="text-[9px] font-semibold tracking-[0.2em] text-occ-burgundy">
                         0{index + 1}
                       </span>
                       <span className="text-lg leading-none text-stone-400 transition-transform group-hover:translate-x-1 group-hover:text-stone-950" aria-hidden="true">
@@ -238,9 +234,9 @@ export default async function BlogPage({
                   ← Previous
                 </span>
                 <span className="text-[11px] tracking-[0.16em] text-stone-500 px-2">
-                  Page 1 / {totalPages}
+                  Page 1
                 </span>
-                {totalPages > 1 ? (
+                {hasMorePosts ? (
                   <Link
                     href="/blog?page=2"
                     className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
@@ -267,7 +263,7 @@ export default async function BlogPage({
                 <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
                   Page {page} / {totalPages}
                 </span>
-                {page < totalPages ? (
+                {hasMorePosts ? (
                   <Link
                     href={`/blog?page=${page + 1}`}
                     className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"

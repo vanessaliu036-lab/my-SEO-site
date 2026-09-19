@@ -37,7 +37,7 @@ const partnershipPaths = [
       "Work with OCC on Cambodian coffee gifts, hotel gifting, travel retail, corporate gifting and retail-ready product experiences.",
     href: "/brand-gifting",
     action: "Explore Brand & Gifting",
-    image: "/images/partnerships/occ-partnerships-roast.webp",
+    image: "/images/partnerships/occ-partnerships-gifting.webp",
     imageAlt: "A considered Cambodian coffee gifting experience",
   },
   {
@@ -47,7 +47,7 @@ const partnershipPaths = [
       "Bring Cambodia-origin coffee to your market as a distributor, importer, regional agent, retailer or hospitality partner.",
     href: "/distribution",
     action: "Explore Distribution",
-    image: "/images/partnerships/occ-partnerships-origin.webp",
+    image: "/images/partnerships/occ-partnerships-distribution.webp",
     imageAlt: "Cambodian coffee prepared for selected market partners",
   },
 ]
@@ -157,9 +157,9 @@ export default function PartnershipsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(partnershipSchema) }} />
 
-      <main className="bg-[#f7f5ef] text-[#171412]">
-        <section className="relative overflow-hidden bg-[#182019] text-[#f6f3ea]">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#6b1323_0%,#6b1323_68%,#7a1118_150%)]" />
+      <main className="bg-occ-background text-occ-primary">
+        <section className="relative overflow-hidden bg-occ-primary text-occ-background">
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#6B1E2B_0%,#6B1E2B_68%,#6B1E2B_150%)]" />
           <div className="relative mx-auto w-full max-w-[1120px] px-6 pb-20 pt-28 sm:px-10 md:px-14 lg:pb-28 lg:pt-36">
             <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">OCC · Partnerships</p>
             <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(4rem,10vw,7.2rem)] font-normal leading-[0.86] tracking-[-0.055em]">
@@ -179,12 +179,12 @@ export default function PartnershipsPage() {
                   Our approach <span aria-hidden="true">↓</span>
                 </Link>
               </div>
-              <div className="relative aspect-[4/5] overflow-hidden bg-[#202820]">
+              <div className="relative aspect-[4/5] overflow-hidden bg-occ-primary">
                 <Image src="/images/partnerships/occ-partnerships-roast.webp" alt="Fine Robusta coffee visual for an OCC partnership experience" fill priority sizes="(min-width: 768px) 38vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
               </div>
               <div className="flex flex-col">
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#202820]">
-                  <Image src="/images/partnerships/occ-partnerships-origin.webp" alt="Cambodian coffee origin visual for OCC partnerships" fill sizes="(min-width: 768px) 28vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
+                <div className="relative aspect-[4/5] overflow-hidden bg-occ-primary">
+                  <Image src="/images/partnerships/occ-partnerships-origin-collaboration.webp" alt="Cambodian producer and coffee buyer evaluating ripe cherries together" fill sizes="(min-width: 768px) 28vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
                 </div>
                 <p className="mt-6 text-[10px] uppercase tracking-[0.34em] leading-[1.7] text-white/48">BOLDER ROOTS<br />BRIGHTER TOMORROWS</p>
               </div>
@@ -194,19 +194,19 @@ export default function PartnershipsPage() {
 
         <section aria-label="Partnership pathways" className="mx-auto w-full max-w-[1120px] px-6 pb-20 pt-12 sm:px-10 md:px-14 lg:pb-28 lg:pt-16">
           <div className="relative z-[1] -mb-2 font-[var(--font-display)] text-[clamp(3.2rem,7.5vw,6.6rem)] font-normal leading-[0.88] tracking-[-0.055em] md:whitespace-nowrap">
-            <span>BRAND &amp; GIFTING</span><span className="mx-3 text-[#c46d33]">\</span><span>DISTRIBUTION</span>
+            <span>BRAND &amp; GIFTING</span><span className="mx-3 text-occ-secondary">\</span><span>DISTRIBUTION</span>
           </div>
-          <div className="grid grid-cols-1 gap-px border-t border-[#ddd8cf] md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-px border-t border-occ-surface md:grid-cols-2">
           {partnershipPaths.map((path) => (
-            <article key={path.href} className="bg-[#f7f5ef] md:border-r md:border-[#ddd8cf] md:last:border-r-0">
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#ede9df]">
+            <article key={path.href} className="bg-occ-background md:border-r md:border-occ-surface md:last:border-r-0">
+              <div className="relative aspect-[4/3] overflow-hidden bg-occ-background">
                 <Image src={path.image} alt={path.imageAlt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
-              <div className="min-h-[250px] border-b border-[#ddd8cf] bg-[#faf8f3] p-7 sm:p-9 lg:p-11">
-                <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-[#736d66]"><span>{path.number}</span><span className="h-px w-8 bg-[#b8b2a8]" /></p>
+              <div className="min-h-[250px] border-b border-occ-surface bg-occ-background p-7 sm:p-9 lg:p-11">
+                <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-occ-secondary"><span>{path.number}</span><span className="h-px w-8 bg-occ-secondary" /></p>
                 <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.4rem,4.5vw,4.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">{path.label}</h2>
-                <p className="mt-6 max-w-md text-[15px] leading-7 text-[#37322d]">{path.description}</p>
-                <Link href={path.href} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-[#171412] pb-2 text-[10px] font-semibold uppercase tracking-[0.2em]">{path.action} <ArrowUpRight className="size-3" /></Link>
+                <p className="mt-6 max-w-md text-[15px] leading-7 text-occ-primary">{path.description}</p>
+                <Link href={path.href} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-occ-primary pb-2 text-[10px] font-semibold uppercase tracking-[0.2em]">{path.action} <ArrowUpRight className="size-3" /></Link>
               </div>
             </article>
           ))}
@@ -235,7 +235,7 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="bg-[#e9e2d5] py-20 lg:py-28">
+        <section className="bg-occ-surface py-20 lg:py-28">
           <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
             <div className="grid md:grid-cols-12">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">02 / Partnership Audiences</p>
@@ -246,7 +246,7 @@ export default function PartnershipsPage() {
             </div>
             <div className="mt-12 grid gap-px border border-black/10 bg-black/10 md:grid-cols-2 xl:grid-cols-3">
               {partnerAudiences.map((partner) => (
-                <article key={partner.number} className="bg-[#f6f3ea] p-7 sm:p-9">
+                <article key={partner.number} className="bg-occ-background p-7 sm:p-9">
                   <p className="text-[10px] tracking-[0.2em] text-black/40">{partner.number}</p>
                   <h3 className="mt-6 font-[var(--font-display)] text-3xl leading-tight">{partner.name}</h3>
                   <p className="mt-5 text-[15px] leading-7 text-black/65">{partner.copy}</p>
@@ -277,11 +277,11 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="bg-[#071a32] py-20 text-[#f6e7c4] lg:py-28">
+        <section className="bg-occ-primary py-20 text-occ-surface lg:py-28">
           <div className="mx-auto grid w-full max-w-[1680px] px-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#e8be62] md:col-span-3">04 / Featured Collaboration</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-surface md:col-span-3">04 / Featured Collaboration</p>
             <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#e8be62]">OCC × ARUNERA</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-occ-surface">OCC × ARUNERA</p>
               <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.2rem)] leading-[0.96] tracking-[-0.035em]">
                 From Cambodian coffee to an experience worth remembering.
               </h2>
@@ -291,7 +291,7 @@ export default function PartnershipsPage() {
               <p className="mt-6 max-w-3xl text-[15px] leading-7 text-white/65">
                 Together, those roles can inform hotel gifts, travel-related products, retail concepts and corporate occasions. A project still requires its own product brief, availability check and commercial discussion. For detailed gifting applications and presentation, explore the dedicated Brand & Gifting page.
               </p>
-              <Link href="/brand-gifting" className="mt-10 inline-flex items-center gap-2 border-b border-[#e8be62] pb-2 text-[10px] font-semibold uppercase tracking-[0.17em] text-[#f6e7c4]">
+              <Link href="/brand-gifting" className="mt-10 inline-flex items-center gap-2 border-b border-occ-surface pb-2 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-surface">
                 Explore OCC × ARUNERA Brand & Gifting <ArrowUpRight className="size-4" />
               </Link>
             </div>
@@ -319,7 +319,7 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="bg-[#e9e2d5] py-20 lg:py-28">
+        <section className="bg-occ-surface py-20 lg:py-28">
           <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
             <div className="grid md:grid-cols-12">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">06 / From Idea to Agreement</p>
@@ -348,26 +348,26 @@ export default function PartnershipsPage() {
             <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] leading-[0.96] tracking-[-0.035em]">What to Include in Your Enquiry</h2>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-black/80">You do not need a finished brief to begin. Tell us what you are considering and share the information you already have. We can then identify the questions that need to be answered before a project can move forward.</p>
             <div className="mt-9 grid gap-5 border-y border-black/15 py-8 text-[15px] leading-7 text-black/68 sm:grid-cols-2 sm:gap-x-12">
-              <p><span className="font-semibold text-[#182019]">Your organisation:</span> company or organisation name and contact details.</p>
-              <p><span className="font-semibold text-[#182019]">Market:</span> country, city and intended sales or experience location.</p>
-              <p><span className="font-semibold text-[#182019]">Partnership type:</span> hospitality, travel, retail, corporate gifting, brand collaboration or distribution.</p>
-              <p><span className="font-semibold text-[#182019]">Audience and channels:</span> the people you want to reach and where they will encounter the product.</p>
-              <p><span className="font-semibold text-[#182019]">Product idea:</span> coffee format, gifting concept or experience you are exploring.</p>
-              <p><span className="font-semibold text-[#182019]">Project scope:</span> estimated quantity or project size, if known.</p>
-              <p><span className="font-semibold text-[#182019]">Timing:</span> possible launch date and any important milestones.</p>
-              <p><span className="font-semibold text-[#182019]">Requirements:</span> packaging, documentation, sampling or other decision criteria.</p>
+              <p><span className="font-semibold text-occ-primary">Your organisation:</span> company or organisation name and contact details.</p>
+              <p><span className="font-semibold text-occ-primary">Market:</span> country, city and intended sales or experience location.</p>
+              <p><span className="font-semibold text-occ-primary">Partnership type:</span> hospitality, travel, retail, corporate gifting, brand collaboration or distribution.</p>
+              <p><span className="font-semibold text-occ-primary">Audience and channels:</span> the people you want to reach and where they will encounter the product.</p>
+              <p><span className="font-semibold text-occ-primary">Product idea:</span> coffee format, gifting concept or experience you are exploring.</p>
+              <p><span className="font-semibold text-occ-primary">Project scope:</span> estimated quantity or project size, if known.</p>
+              <p><span className="font-semibold text-occ-primary">Timing:</span> possible launch date and any important milestones.</p>
+              <p><span className="font-semibold text-occ-primary">Requirements:</span> packaging, documentation, sampling or other decision criteria.</p>
             </div>
             <p className="mt-6 max-w-3xl text-[15px] leading-7 text-black/60">You can provide this context in your message on our Contact page. Enquiries are reviewed against the proposed project's needs and available coffee or product options.</p>
           </div>
         </section>
 
-        <section className="bg-[#182019] px-6 py-20 text-[#f6f3ea] sm:px-8 md:px-12 lg:px-16 lg:py-28">
+        <section className="bg-occ-primary px-6 py-20 text-occ-background sm:px-8 md:px-12 lg:px-16 lg:py-28">
           <div className="mx-auto w-full max-w-[1680px]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/50">Build a Cambodian Coffee Partnership</p>
             <h2 className="mt-7 max-w-5xl font-[var(--font-display)] text-[clamp(3rem,6vw,6rem)] leading-[0.95] tracking-[-0.04em]">Bring an idea. Begin with Cambodia.</h2>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/72">For hotels, retailers, travel businesses, corporate teams and brands interested in a meaningful Cambodian coffee experience, we would like to hear what you have in mind. Your next step is a conversation, not an obligation to commit.</p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-[#f6f3ea] px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#182019]">Discuss a Partnership <ArrowUpRight className="size-4" /></Link>
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary">Discuss a Partnership <ArrowUpRight className="size-4" /></Link>
               <Link href="/distribution" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">Explore Distribution <ArrowUpRight className="size-4" /></Link>
             </div>
             <p className="mt-12 text-[12px] tracking-[0.12em] text-white/50">100% Cambodian coffee. True to its origin, unmistakably its own.</p>

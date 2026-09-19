@@ -85,10 +85,10 @@ export default function BrandGiftingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
 
-      <div className="bg-[#f6f3ea] text-[#182019]">
-        <section className="relative overflow-hidden bg-[#182019] text-[#f6f3ea]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(196,109,51,0.28),transparent_30%),linear-gradient(125deg,#6b1323_0%,#6b1323_64%,#6b1323_100%)]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#182019] via-[#182019]/92 to-[#182019]/62" />
+      <div className="bg-occ-background text-occ-primary">
+        <section className="relative overflow-hidden bg-occ-primary text-occ-background">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(139,95,61,0.28),transparent_30%),linear-gradient(125deg,#6B1E2B_0%,#6B1E2B_64%,#6B1E2B_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-occ-primary via-occ-primary/92 to-occ-primary/62" />
 
           <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1680px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">
             <div className="md:col-span-9 lg:col-span-8">
@@ -101,7 +101,7 @@ export default function BrandGiftingPage() {
                 OCC works with selected partners to bring Cambodian coffee into new formats, markets and experiences. With ARUNERA, Cambodia-origin coffee becomes a premium gift people can discover, share and take home.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="#arunera" className="inline-flex items-center gap-2 rounded-full bg-[#f6f3ea] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-[#182019]">
+                <Link href="#arunera" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary">
                   OCC × ARUNERA <ArrowUpRight className="size-3" />
                 </Link>
                 <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
@@ -132,15 +132,15 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section id="arunera" className="bg-[#071a32] text-[#f3d28a]">
+        <section id="arunera" className="bg-occ-primary text-occ-surface">
           <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
             <div className="md:col-span-3">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[#e5ae45]">02 / Featured Partner</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-occ-secondary">02 / Featured Partner</p>
               <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/42">Coffee Origin × Cambodian Gifting</p>
             </div>
             <div className="mt-9 md:col-span-8 md:col-start-5 md:mt-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#e5ae45]">OCC × ARUNERA</p>
-              <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.4rem)] font-normal leading-[0.92] tracking-[-0.035em] text-[#f8e7bc]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-occ-secondary">OCC × ARUNERA</p>
+              <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.4rem)] font-normal leading-[0.92] tracking-[-0.035em] text-occ-surface">
                 From Cambodian coffee
                 <br />to a gift people remember.
               </h2>
@@ -168,8 +168,8 @@ export default function BrandGiftingPage() {
 
               <div className="mt-12 grid grid-cols-1 gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
                 {partnershipFlow.map(([title, copy]) => (
-                  <div key={title} className="bg-[#071a32] p-7">
-                    <p className="text-[9px] uppercase tracking-[0.22em] text-[#e5ae45]">{title}</p>
+                  <div key={title} className="bg-occ-primary p-7">
+                    <p className="text-[9px] uppercase tracking-[0.22em] text-occ-secondary">{title}</p>
                     <p className="mt-4 text-sm leading-6 text-white/72">{copy}</p>
                   </div>
                 ))}
@@ -205,10 +205,10 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="bg-[#7a1118] text-[#f6e7c4]">
+        <section className="bg-occ-burgundy text-occ-surface">
           <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
             <div className="md:col-span-3">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#e8be62]">04 / Hotels & Hospitality</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-surface">04 / Hotels & Hospitality</p>
             </div>
             <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
               <h2 className="font-[var(--font-display)] text-[clamp(2.6rem,5vw,5.2rem)] font-normal leading-[0.94] tracking-[-0.035em]">
@@ -220,11 +220,11 @@ export default function BrandGiftingPage() {
               </p>
               <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div className="border border-white/20 p-7">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#e8be62]">Hotel × OCC</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-occ-surface">Hotel × OCC</p>
                   <p className="mt-5 text-sm leading-7 text-white/72">Cambodian coffee, Fine Robusta expertise, roast direction and the coffee proposition behind the product.</p>
                 </div>
                 <div className="border border-white/20 p-7">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#e8be62]">Hotel × ARUNERA</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-occ-surface">Hotel × ARUNERA</p>
                   <p className="mt-5 text-sm leading-7 text-white/72">Gift concept, presentation, hotel identity, retail format and the experience around taking a Cambodian product home.</p>
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="border-t border-black/10 bg-[#efe8d8]">
+        <section className="border-t border-black/10 bg-occ-background">
           <div className="mx-auto flex w-full max-w-[1680px] flex-col gap-8 px-6 py-16 sm:px-8 md:flex-row md:items-end md:justify-between md:px-12 lg:px-16 lg:py-20">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/38">Build a Cambodian Coffee Gift</p>
@@ -262,7 +262,7 @@ export default function BrandGiftingPage() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-[#182019] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
                 Discuss a Partnership <ArrowUpRight className="size-3" />
               </Link>
               <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 rounded-full border border-black/20 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em]">

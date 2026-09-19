@@ -1,11 +1,11 @@
 .occ-contact-shell {
-  background: #f6f3ea;
-  color: #182019;
+  background: #F8F5EE;
+  color: #2A211D;
 }
 
 .occ-contact-shell > div {
-  background: #f6f3ea !important;
-  color: #182019 !important;
+  background: #F8F5EE !important;
+  color: #2A211D !important;
   font-family: var(--occ-font-body), system-ui, sans-serif !important;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .occ-contact-shell > div > .grid > div {
-  border-color: rgba(24, 32, 25, 0.12) !important;
+  border-color: rgba(42, 33, 29, 0.12) !important;
 }
 
 .occ-contact-shell h1 {
@@ -29,7 +29,7 @@
   font-weight: 400 !important;
   letter-spacing: -0.055em !important;
   line-height: 0.84 !important;
-  color: #182019 !important;
+  color: #2A211D !important;
 }
 
 .occ-contact-shell p,
@@ -37,30 +37,30 @@
 .occ-contact-shell label,
 .occ-contact-shell input,
 .occ-contact-shell textarea {
-  border-color: rgba(24, 32, 25, 0.16);
+  border-color: rgba(42, 33, 29, 0.16);
 }
 
 .occ-contact-shell button[type="submit"] {
   background: var(--occ-logo-burgundy) !important;
-  color: #f6f3ea !important;
+  color: #F8F5EE !important;
 }
 
 .occ-contact-shell button[type="submit"]:hover {
   background: var(--occ-logo-burgundy) !important;
 }
 
-.occ-contact-shell [class*="bg-[#0f0f0f]"] {
+.occ-contact-shell [class*="bg-[#2A211D]"] {
   background: var(--occ-logo-burgundy) !important;
 }
 
 .occ-contact-shell > div > div.border-t {
-  border-color: rgba(24, 32, 25, 0.12) !important;
-  background: #f6f3ea;
+  border-color: rgba(42, 33, 29, 0.12) !important;
+  background: #F8F5EE;
 }
 
 .occ-contact-shell [role="dialog"] {
   background: var(--occ-logo-burgundy) !important;
-  color: #f6f3ea !important;
+  color: #F8F5EE !important;
 }
 
 .occ-contact-shell [role="dialog"] h2 {

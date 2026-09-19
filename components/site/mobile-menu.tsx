@@ -8,7 +8,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto bg-[#f6f3ea] text-[#182019] lg:hidden">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-occ-background text-occ-primary lg:hidden">
       <div className="mx-auto min-h-full max-w-3xl px-6 py-6 sm:px-10">
         <div className="flex items-center justify-between border-b border-black/10 pb-5">
           <Link

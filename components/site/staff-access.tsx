@@ -5,7 +5,7 @@ export function StaffAccess({ dark = false }: { dark?: boolean }) {
     <Link
       href="/admin"
       className={`hidden shrink-0 text-[8px] font-medium uppercase tracking-[0.18em] transition-colors xl:inline-flex ${
-        dark ? "text-white/45 hover:text-white" : "text-[#6f746d] hover:text-[#182019]"
+        dark ? "text-white/45 hover:text-white" : "text-occ-secondary hover:text-occ-primary"
       }`}
       aria-label="Staff access"
     >
