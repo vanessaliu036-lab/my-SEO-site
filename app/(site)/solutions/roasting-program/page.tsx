@@ -70,12 +70,12 @@ export default function RoastingProgramPage() {
         title="CUSTOM ROASTING PROGRAM"
         lead="Your Market. Your Customer. Your Roast Profile."
         description="Roasting Supplier, Custom Roasting, and Roast Profile development built around your market, customer, brewing application, and commercial product target."
-        heroImage={{ src: "/images/roasting/roaster-evaluation.png", alt: "OCC roasting specialist evaluating freshly roasted coffee" }}
+        heroImage={{ src: "/images/roasting/occ-roasting-green-beans-pour.webp", alt: "OCC roasting specialist loading green coffee for profile development" }}
         heroCtaLabel="Develop Your Roast Profile"
         heroCtaHref="/contact"
         splitId="program"
         processImages={[
-          { src: "/images/roasting/coffee-beans-reference.png", alt: "OCC coffee beans inspected as a roast reference" },
+          { src: "/images/roasting/occ-roasting-bean-evaluation.webp", alt: "OCC coffee beans inspected as a roast reference" },
           { src: "/images/occ-roasting-program-background.webp", alt: "Coffee roast production reference and equipment" },
         ]}
         splitTitle="Program built around your business"
@@ -86,7 +86,7 @@ export default function RoastingProgramPage() {
         featureEyebrow="From Cambodia to your cup"
         featureTitle="Versatile. Distinctive. Reliable."
         featureDescription="Build espresso, house-blend, single-origin and hospitality coffee profiles around actual coffee quality and the product your customers need. Cambodia-origin coffee and Fine Robusta remain at the center of OCC’s expertise."
-        featureImage={{ src: "/hero-home.webp", alt: "Coffee experience from Origin Coffee Cambodia" }}
+        featureImage={{ src: "/images/roasting/occ-roasting-profile-cupping.webp", alt: "Roast profile evaluation for Origin Coffee Cambodia" }}
         ctaId="contact"
         ctaEyebrow="B2B Roast Profile Development"
         ctaTitle="Your market. Your customer. Your roast profile."

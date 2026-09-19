@@ -1,0 +1,74 @@
+/* Route-owned ABOUT image sources. Keep these overrides scoped to the About layout. */
+div[role="img"][aria-label="Cambodian coffee at origin"] {
+  background-image: url("/about/occ-about-green-hero.webp") !important;
+  background-size: cover !important;
+  background-position: center 45% !important;
+}
+
+div[role="img"][aria-label="Cambodian coffee origin and production"] {
+  background-image: url("/about/occ-about-intro.webp") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a > div:first-child {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a:nth-child(1) > div:first-child {
+  background-image: url("/about/about-origin.svg") !important;
+  background-position: 50% 44% !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a:nth-child(2) > div:first-child {
+  background-image: url("/about/about-fine-robusta.svg") !important;
+  background-position: 50% 46% !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
+  background-image: url("/about/occ-about-atlas.avif") !important;
+  background-position: 50% 50% !important;
+}
+
+section[aria-label="OCC origin and commercial paths"] > a:nth-child(4) > div:first-child {
+  background-image: url("/about/about-made-for-you.svg") !important;
+  background-position: 50% 40% !important;
+}
+
+/* Mobile safety net keeps the Why OCC photo source unique to that visual slot. */
+@media (max-width: 1023px) {
+  div[role="img"][aria-label="Cambodian coffee origin and production"] {
+    background-image: url("/about/occ-about-intro.webp") !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] > a {
+    aspect-ratio: 3 / 4 !important;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] > a > div:last-child {
+    padding: 1rem !important;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] > a h3 {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] > a h3 + p {
+    display: none;
+  }
+
+  section[aria-label="OCC origin and commercial paths"] > a:nth-child(3) > div:first-child {
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: var(--occ-logo-burgundy) !important;
+  }
+}

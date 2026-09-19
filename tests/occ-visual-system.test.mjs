@@ -133,13 +133,13 @@ test("distribution hero uses a valid public asset and the global header keeps a 
 
 test("homepage and About use local photo-led assets", () => {
   const home = read("components/templates/home-template.tsx")
-  const css = read("app/globals.css")
+  const css = read("app/(site)/about/about-images.css")
 
   assert.match(home, /\/hero-home\.webp/)
   for (const image of [
     "about-origin.svg",
     "about-fine-robusta.svg",
-    "about-ready-to-sell.svg",
+    "occ-about-atlas.avif",
     "about-made-for-you.svg",
   ]) {
     assert.match(css, new RegExp(`\\/about\\/${image.replace(".", "\\.")}`))
@@ -147,8 +147,10 @@ test("homepage and About use local photo-led assets", () => {
 })
 
 test("About semantic photo surfaces retain scoped cover-image fallbacks", () => {
-  const css = read("app/globals.css")
+  const css = read("app/(site)/about/about-images.css")
+  const layout = read("app/(site)/about/layout.tsx")
 
+  assert.match(layout, /import "\.\/about-images\.css"/)
   assert.match(css, /aria-label="Cambodian coffee at origin"/)
   assert.match(css, /aria-label="Cambodian coffee origin and production"/)
   assert.match(css, /background-size:\s*cover\s*!important/)
@@ -158,21 +160,20 @@ test("About semantic photo surfaces retain scoped cover-image fallbacks", () => 
 test("approved About hero uses dedicated high-resolution route assets", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  assert.match(about, /className=\{styles\.hero\}/)
-  assert.match(about, /aria-labelledby="about-hero-title"/)
-  assert.match(about, /\/about\/occ-about-hero-left\.webp/)
-  assert.match(about, /\/about\/occ-about-hero-right\.webp/)
-  assert.match(about, /One origin\.<br \/>Cambodia\./)
-  assert.match(about, /100% Cambodia origin \/ Fine Robusta specialist/)
+  assert.match(about, /const heroImage = "\/about\/occ-about-green-hero\.webp"/)
+  assert.match(about, /const whyOccImage = "\/about\/occ-about-intro\.webp"/)
+  assert.match(about, /aria-label="One origin\. Cambodia\."/)
+  assert.match(about, /One origin\.\s*<br \/>Cambodia\./)
+  assert.match(about, /100% Cambodia Origin/)
 })
 
 test("approved About content keeps explicit editorial sections without the legacy empty rail", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  assert.match(about, /id="about-pillars"/)
-  assert.match(about, /id="about-intro"/)
-  assert.match(about, /id="about-story"/)
-  assert.match(about, /id="about-work"/)
+  assert.match(about, /id="why-occ"/)
+  assert.match(about, /aria-label="OCC origin and commercial paths"/)
+  assert.match(about, /aria-labelledby="work-with-occ-title"/)
+  assert.match(about, /aria-labelledby="about-explore-title"/)
   assert.doesNotMatch(about, /md:col-span-3/)
   assert.doesNotMatch(about, /md:col-start-5/)
 })
@@ -180,10 +181,10 @@ test("approved About content keeps explicit editorial sections without the legac
 test("approved About visual entrances point to the intended origin and commercial paths", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  for (const href of ["/coffee/single-origin", "/fine-robusta-cambodia", "/solutions"]) {
+  for (const href of ["/origins", "/fine-robusta-cambodia", "/solutions/wholesale", "/solutions/roasting-program"]) {
     assert.match(about, new RegExp(`href: "${href.replaceAll("/", "\\/")}"`))
   }
-  assert.match(about, /pillars\.map\([\s\S]*?<Link/)
-  assert.match(about, /href="\/solutions" className=\{styles\.more\}>Ready-to-Sell/)
-  assert.match(about, /href="\/solutions\/roasting-program" className=\{styles\.more\}>Made-for-You/)
+  assert.match(about, /galleryPanels\.map\([\s\S]*?<Link/)
+  assert.match(about, /href="\/solutions\/wholesale"/)
+  assert.match(about, /href="\/solutions\/roasting-program"/)
 })

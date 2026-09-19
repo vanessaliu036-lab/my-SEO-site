@@ -53,7 +53,7 @@ export function WholesaleApprovedLayout() {
       featureEyebrow="One origin. Cambodia."
       featureTitle="Origin. Quality. Commercial Clarity."
       featureDescription="Ask about the specific coffee, process, cup profile and available records. Discuss samples and commercial terms for your market, without promises of unconfirmed inventory, export documents or delivery capabilities."
-      featureImage={{ src: "/images/wholesale/occ-wholesale-origin-harvest.png", alt: "Coffee origins in Cambodia and the harvested cherries" }}
+      featureImage={{ src: "/images/wholesale/occ-wholesale-packaged-beans.png", alt: "Roasted Cambodian coffee prepared in a wholesale bag" }}
       ctaId="contact"
       ctaEyebrow="B2B Wholesale Enquiry"
       ctaTitle="Tell us what your business needs."

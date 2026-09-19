@@ -37,7 +37,7 @@ const partnershipPaths = [
       "Work with OCC on Cambodian coffee gifts, hotel gifting, travel retail, corporate gifting and retail-ready product experiences.",
     href: "/brand-gifting",
     action: "Explore Brand & Gifting",
-    image: "/about/about-made-for-you.svg",
+    image: "/images/partnerships/occ-partnerships-roast.webp",
     imageAlt: "A considered Cambodian coffee gifting experience",
   },
   {
@@ -47,7 +47,7 @@ const partnershipPaths = [
       "Bring Cambodia-origin coffee to your market as a distributor, importer, regional agent, retailer or hospitality partner.",
     href: "/distribution",
     action: "Explore Distribution",
-    image: "/about/about-ready-to-sell.svg",
+    image: "/images/partnerships/occ-partnerships-origin.webp",
     imageAlt: "Cambodian coffee prepared for selected market partners",
   },
 ]
@@ -180,11 +180,11 @@ export default function PartnershipsPage() {
                 </Link>
               </div>
               <div className="relative aspect-[4/5] overflow-hidden bg-[#202820]">
-                <Image src="/about/about-fine-robusta.svg" alt="Fine Robusta coffee visual for an OCC partnership experience" fill priority sizes="(min-width: 768px) 38vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
+                <Image src="/images/partnerships/occ-partnerships-roast.webp" alt="Fine Robusta coffee visual for an OCC partnership experience" fill priority sizes="(min-width: 768px) 38vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
               </div>
               <div className="flex flex-col">
                 <div className="relative aspect-[4/5] overflow-hidden bg-[#202820]">
-                  <Image src="/about/about-origin.svg" alt="Cambodian coffee origin visual for OCC partnerships" fill sizes="(min-width: 768px) 28vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
+                  <Image src="/images/partnerships/occ-partnerships-origin.webp" alt="Cambodian coffee origin visual for OCC partnerships" fill sizes="(min-width: 768px) 28vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
                 </div>
                 <p className="mt-6 text-[10px] uppercase tracking-[0.34em] leading-[1.7] text-white/48">BOLDER ROOTS<br />BRIGHTER TOMORROWS</p>
               </div>

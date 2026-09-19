@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import "./about-images.css"
 
 export default function AboutLayout({ children }: { children: ReactNode }) {
   return (

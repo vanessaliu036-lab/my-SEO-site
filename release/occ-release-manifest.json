@@ -1,10 +1,15 @@
 {
-  "approvedVersion": "OCC-GOVERNANCE-2026-09-19-RC1",
+  "approvedVersion": "OCC-2026-09-19-PRODUCTION-1",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
   "approvedAt": "2026-09-19",
   "routesIncluded": [
-    "governance-only"
+    "/about",
+    "/origins",
+    "/partnerships",
+    "/solutions/wholesale",
+    "/solutions/roasting-program",
+    "release-governance"
   ],
   "approvedChanges": [
     {
@@ -25,6 +30,18 @@
     },
     {
       "id": "content-preservation-gate",
+      "ownerApproved": true
+    },
+    {
+      "id": "about-route-owned-image-css",
+      "ownerApproved": true
+    },
+    {
+      "id": "commercial-route-image-ownership",
+      "ownerApproved": true
+    },
+    {
+      "id": "partnerships-route-image-ownership",
       "ownerApproved": true
     }
   ]

@@ -24,9 +24,14 @@ test("roasting retains approved long copy under the user-supplied shared HTML la
 test("roasting removes the duplicate gallery and CSS override; preserves global chrome", () => {
   assert.doesNotMatch(layout, /roasting-photo-gallery|occ-roasting-program-background|<Image\b|<(?:header|footer|nav)\b/)
   assert.doesNotMatch(page, /<(?:header|footer|nav)\b/)
-  assert.match(page, /\/images\/roasting\/roaster-evaluation\.png/)
-  assert.match(page, /\/images\/roasting\/coffee-beans-reference\.png/)
-  for (const path of ["public/images/roasting/roaster-evaluation.png", "public/images/roasting/coffee-beans-reference.png"]) {
+  assert.match(page, /\/images\/roasting\/occ-roasting-green-beans-pour\.webp/)
+  assert.match(page, /\/images\/roasting\/occ-roasting-bean-evaluation\.webp/)
+  assert.match(page, /\/images\/roasting\/occ-roasting-profile-cupping\.webp/)
+  for (const path of [
+    "public/images/roasting/occ-roasting-green-beans-pour.webp",
+    "public/images/roasting/occ-roasting-bean-evaluation.webp",
+    "public/images/roasting/occ-roasting-profile-cupping.webp",
+  ]) {
     assert.equal(fs.existsSync(path), true, `missing official photo: ${path}`)
   }
 })

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { createPortal } from "react-dom"
 
 const WHY_OCC_SELECTOR = 'div[role="img"][aria-label="Cambodian coffee origin and production"]'
-const WHY_OCC_SOURCE = "/distribution-hero.webp"
+const WHY_OCC_SOURCE = "/about/occ-about-intro.webp"
 
 export function AboutImageFallback() {
   const pathname = usePathname()

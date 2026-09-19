@@ -4,8 +4,8 @@ import crypto from "node:crypto"
 import fs from "node:fs"
 import path from "node:path"
 
-const cssPath = "app/about-image-overrides.css"
-const layoutPath = "app/layout.tsx"
+const cssPath = "app/(site)/about/about-images.css"
+const layoutPath = "app/(site)/about/layout.tsx"
 const publicSiteLayoutPath = "app/(site)/layout.tsx"
 const mobileFallbackPath = "components/site/about-image-fallback.tsx"
 
@@ -24,8 +24,8 @@ test("ABOUT major visual slots use six independent image sources and hashes", ()
 
   assert.match(
     layout,
-    /import "\.\/globals\.css";\s*import "\.\/about-image-overrides\.css";/,
-    "ABOUT image overrides must load after globals.css so they are the effective image sources",
+    /import "\.\/about-images\.css"/,
+    "ABOUT image overrides must be owned by the About route layout",
   )
 
   assert.match(css, /aria-label="Cambodian coffee at origin"/)
@@ -73,12 +73,12 @@ test("ABOUT Why OCC keeps one unique photo source across responsive layouts", ()
   assert.match(publicSiteLayout, /<AboutImageFallback \/>/)
   assert.match(fallback, /usePathname/)
   assert.match(fallback, /Cambodian coffee origin and production/)
-  assert.match(fallback, /const WHY_OCC_SOURCE = "\/distribution-hero\.webp"/)
+  assert.match(fallback, /const WHY_OCC_SOURCE = "\/about\/occ-about-intro\.webp"/)
   assert.match(fallback, /lg:hidden/)
 
   assert.match(
     css,
-    /\/\* Mobile safety net keeps the Why OCC photo source unique to that visual slot\. \*\/[\s\S]*?@media \(max-width: 1023px\)[\s\S]*?Cambodian coffee origin and production[\s\S]*?distribution-hero\.webp/,
+    /\/\* Mobile safety net keeps the Why OCC photo source unique to that visual slot\. \*\/[\s\S]*?@media \(max-width: 1023px\)[\s\S]*?Cambodian coffee origin and production[\s\S]*?occ-about-intro\.webp/,
     "Why OCC must keep the same unique photo source on mobile as a no-JS safety net",
   )
   assert.match(fallback, /element\.style\.position = "relative"/)
