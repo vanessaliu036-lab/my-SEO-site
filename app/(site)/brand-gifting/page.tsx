@@ -86,29 +86,29 @@ export default function BrandGiftingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
 
       <div className="bg-occ-background text-occ-primary">
-        <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(104,23,37,0.14),transparent_30%),linear-gradient(125deg,#182019_0%,#1c211b_68%,#1c211b_100%)]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-occ-primary via-occ-primary/92 to-occ-primary/62" />
-
-          <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1360px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">
-            <div className="md:col-span-9 lg:col-span-8">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/58">Brand & Gifting · OCC × ARUNERA</p>
-              <h1 className="mt-7 max-w-[900px] font-[var(--font-display)] text-[clamp(3.3rem,6vw,5.9rem)] font-normal leading-[0.92] tracking-[-0.04em]">
+        <section className="bg-occ-background">
+          <div className="mx-auto grid min-h-[640px] w-full max-w-[1240px] grid-cols-1 md:grid-cols-[minmax(0,1.08fr)_minmax(380px,.92fr)]">
+            <div className="flex flex-col justify-center bg-occ-background px-6 py-16 text-occ-primary sm:px-10 md:px-12 md:py-20 lg:px-16">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-occ-burgundy">Brand & Gifting · OCC × ARUNERA</p>
+              <h1 className="mt-7 max-w-[720px] font-[var(--font-display)] text-[clamp(3.2rem,5.7vw,5.4rem)] font-normal leading-[0.92] tracking-[-0.04em]">
                 Cambodian coffee,
                 <br />made to be remembered.
               </h1>
-              <p className="mt-8 max-w-[760px] text-[clamp(1.15rem,2vw,1.75rem)] leading-[1.35] text-white/86">
+              <p className="mt-8 max-w-[650px] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-occ-secondary">
                 OCC works with selected partners to bring Cambodian coffee into new formats, markets and experiences. With ARUNERA, Cambodia-origin coffee becomes a premium gift people can discover, share and take home.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="#arunera" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary">
+                <Link href="#arunera" className="inline-flex items-center gap-2 rounded-full bg-occ-burgundy px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
                   OCC × ARUNERA <ArrowUpRight className="size-3" />
                 </Link>
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
+                <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-occ-primary/30 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary">
                   Discuss a Partnership <ArrowUpRight className="size-3" />
                 </Link>
               </div>
             </div>
+            <figure className="relative min-h-[420px] overflow-hidden md:min-h-full">
+              <img src="/images/occ-arunera-cambodian-coffee-gift-partnership.avif" alt="OCC and ARUNERA premium Cambodian coffee gift collection" width={1448} height={1086} className="absolute inset-0 h-full w-full object-cover" />
+            </figure>
           </div>
         </section>
 
@@ -132,45 +132,45 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section id="arunera" className="bg-occ-primary text-occ-surface">
+        <section id="arunera" className="bg-occ-surface text-occ-primary">
           <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
             <div className="md:col-span-3">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-occ-secondary">02 / Featured Partner</p>
-              <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/42">Coffee Origin × Cambodian Gifting</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-occ-burgundy">02 / Featured Partner</p>
+              <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-occ-secondary">Coffee Origin × Cambodian Gifting</p>
             </div>
             <div className="mt-9 md:col-span-9 md:col-start-4 md:mt-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-occ-secondary">OCC × ARUNERA</p>
-              <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.4rem)] font-normal leading-[0.92] tracking-[-0.035em] text-occ-surface">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-occ-burgundy">OCC × ARUNERA</p>
+              <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.2rem)] font-normal leading-[0.94] tracking-[-0.035em] text-occ-primary">
                 From Cambodian coffee
                 <br />to a gift people remember.
               </h2>
-              <p className="mt-9 max-w-3xl text-lg leading-8 text-white/78">
+              <p className="mt-9 max-w-3xl text-lg leading-8 text-occ-primary/80">
                 ARUNERA is a Cambodian gift platform focused on products worth bringing home. It curates Cambodian-made coffee, crafts and lifestyle products into more refined, useful and internationally presentable gift experiences.
               </p>
-              <p className="mt-6 max-w-3xl text-[15px] leading-7 text-white/62">
+              <p className="mt-6 max-w-3xl text-[15px] leading-7 text-occ-secondary">
                 For coffee gifting, ARUNERA works with OCC to connect Cambodian coffee with product concept, packaging direction, gifting format, retail presentation and traveler discovery. OCC remains responsible for the coffee proposition; ARUNERA develops the gifting experience around it.
               </p>
 
-              <figure className="mt-12 overflow-hidden border border-white/15 bg-black/10">
+              <figure className="mt-12 overflow-hidden border border-occ-primary/12 bg-occ-background">
                 <img
-                  src="/images/occ-arunera-cambodian-coffee-gift-partnership.avif"
-                  alt="OCC and ARUNERA premium Cambodian coffee gift collection"
+                  src="/images/brand-gifting-travel-retail.webp"
+                  alt="Cambodian coffee gift collection presented for travel retail"
                   width={1448}
                   height={1086}
                   loading="lazy"
                   decoding="async"
                   className="aspect-[4/3] h-auto w-full object-cover"
                 />
-                <figcaption className="border-t border-white/15 px-5 py-4 text-[10px] uppercase tracking-[0.18em] text-white/50">
+                <figcaption className="border-t border-occ-primary/12 px-5 py-4 text-[10px] uppercase tracking-[0.18em] text-occ-secondary">
                   ARUNERA Boutique · Cambodia specialty coffee gift collection
                 </figcaption>
               </figure>
 
-              <div className="mt-12 grid grid-cols-1 gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-12 grid grid-cols-1 gap-px border border-occ-primary/12 bg-occ-primary/12 sm:grid-cols-2 lg:grid-cols-4">
                 {partnershipFlow.map(([title, copy]) => (
-                  <div key={title} className="bg-occ-primary p-7">
-                    <p className="text-[9px] uppercase tracking-[0.22em] text-occ-secondary">{title}</p>
-                    <p className="mt-4 text-sm leading-6 text-white/72">{copy}</p>
+                  <div key={title} className="bg-occ-background p-7">
+                    <p className="text-[9px] uppercase tracking-[0.22em] text-occ-burgundy">{title}</p>
+                    <p className="mt-4 text-sm leading-6 text-occ-secondary">{copy}</p>
                   </div>
                 ))}
               </div>
@@ -218,6 +218,9 @@ export default function BrandGiftingPage() {
               <p className="mt-9 max-w-3xl text-lg leading-8 text-white/78">
                 A hotel can use Cambodian coffee as more than breakfast supply. The same origin can become a welcome gift, room experience, retail product or hotel-branded coffee gift that guests can take with them.
               </p>
+              <figure className="mt-10 overflow-hidden border border-white/15">
+                <img src="/images/brand-gifting-hotel-welcome.webp" alt="Cambodian coffee welcome gift arranged in a boutique hotel room" width={1536} height={1152} loading="lazy" className="aspect-[4/3] h-auto w-full object-cover" />
+              </figure>
               <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div className="border border-white/20 p-7">
                   <p className="text-[10px] uppercase tracking-[0.22em] text-occ-surface">Hotel × OCC</p>

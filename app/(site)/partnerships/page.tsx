@@ -158,55 +158,42 @@ export default function PartnershipsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(partnershipSchema) }} />
 
       <main className="bg-occ-background text-occ-primary">
-        <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#182019_0%,#1c211b_72%,#1c211b_150%)]" />
-          <div className="relative mx-auto w-full max-w-[1120px] px-6 pb-20 pt-28 sm:px-10 md:px-14 lg:pb-28 lg:pt-36">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">OCC · Partnerships</p>
-            <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(3.8rem,8vw,6rem)] font-normal leading-[0.92] tracking-[-0.045em]">
-              PARTNERSHIPS
-            </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-center font-[var(--font-display)] text-[clamp(1.6rem,3vw,2.6rem)] leading-[0.98] tracking-[-0.025em] text-white/82">
-              Cambodian Coffee Partnerships Built to Be Remembered
-            </p>
-            <div className="mt-12 grid gap-8 md:grid-cols-[.95fr_1.22fr_.9fr] md:gap-7">
-              <div className="flex flex-col justify-center md:pt-20">
-                <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.36em] text-white/58"><span>Entry</span><span className="h-px w-10 bg-white/35" /></p>
-                <h2 className="mt-7 font-[var(--font-display)] text-[clamp(3rem,5.8vw,5.5rem)] font-normal leading-[0.86] tracking-[-0.05em]">CAMBODIA<br />IN GOOD<br />COMPANY</h2>
-                <p className="mt-7 max-w-[270px] text-[15px] leading-7 text-white/72">
-                  OCC works with selected partners to bring Cambodia-origin coffee into experiences, products and markets with a clear reason to exist.
-                </p>
-                <Link href="#why-partnership" className="mt-7 inline-flex w-fit items-center gap-4 border-b border-white/45 pb-2 text-[10px] uppercase tracking-[0.28em] text-white/78">
-                  Our approach <span aria-hidden="true">↓</span>
-                </Link>
-              </div>
-              <div className="relative aspect-[4/5] overflow-hidden bg-occ-primary">
-                <Image src="/images/partnerships/occ-partnerships-roast.webp" alt="Fine Robusta coffee visual for an OCC partnership experience" fill priority sizes="(min-width: 768px) 38vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
-              </div>
-              <div className="flex flex-col">
-                <div className="relative aspect-[4/5] overflow-hidden bg-occ-primary">
-                  <Image src="/images/partnerships/occ-partnerships-origin-collaboration.webp" alt="Cambodian producer and coffee buyer evaluating ripe cherries together" fill sizes="(min-width: 768px) 28vw, 100vw" className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]" />
-                </div>
-                <p className="mt-6 text-[10px] uppercase tracking-[0.34em] leading-[1.7] text-white/48">BOLDER ROOTS<br />BRIGHTER TOMORROWS</p>
-              </div>
+        <section className="border-b border-occ-primary/10 bg-occ-background">
+          <div className="mx-auto grid min-h-[640px] w-full max-w-[1240px] grid-cols-1 px-6 sm:px-8 md:grid-cols-[minmax(0,1.05fr)_minmax(360px,.95fr)] md:px-12 lg:px-16">
+            <div className="flex flex-col justify-center py-20 pr-0 md:py-24 md:pr-14 lg:pr-20">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-occ-burgundy">OCC · Partnerships</p>
+              <h1 className="mt-6 max-w-[690px] font-[var(--font-display)] text-[clamp(3.8rem,7vw,5.8rem)] font-normal leading-[0.92] tracking-[-0.04em]">
+                Cambodian coffee,<br />in good company.
+              </h1>
+              <p className="mt-7 max-w-[580px] font-[var(--font-display)] text-[clamp(1.45rem,2.4vw,2rem)] leading-[1.12] tracking-[-0.02em] text-occ-primary/78">Cambodian Coffee Partnerships Built to Be Remembered</p>
+              <p className="mt-8 max-w-[600px] text-[17px] leading-8 text-occ-secondary">
+                OCC works with selected partners to bring Cambodia-origin coffee into experiences, products and markets with a clear reason to exist.
+              </p>
+              <Link href="#partnership-paths" className="mt-9 inline-flex w-fit items-center gap-4 border-b border-occ-primary/55 pb-2 text-[10px] font-semibold uppercase tracking-[0.22em]">
+                Our approach <span aria-hidden="true">↓</span>
+              </Link>
+            </div>
+            <div className="relative min-h-[420px] overflow-hidden md:min-h-full">
+              <Image src="/images/partnerships/occ-partnerships-origin-collaboration.webp" alt="Cambodian producer and coffee buyer evaluating ripe cherries together" fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
             </div>
           </div>
         </section>
 
-        <section aria-label="Partnership pathways" className="mx-auto w-full max-w-[1120px] px-6 pb-20 pt-12 sm:px-10 md:px-14 lg:pb-28 lg:pt-16">
-          <div className="relative z-[1] mb-7 flex max-w-[1080px] flex-wrap items-baseline gap-x-4 gap-y-1 font-[var(--font-display)] text-[clamp(2.8rem,6vw,5.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">
-            <span>BRAND &amp; GIFTING</span><span className="text-occ-burgundy">\</span><span>DISTRIBUTION</span>
+        <section id="partnership-paths" aria-label="Partnership pathways" className="mx-auto w-full max-w-[1240px] px-6 pb-20 pt-20 sm:px-8 md:px-12 lg:px-16 lg:pb-28 lg:pt-24">
+          <div className="mb-10 border-b border-occ-primary/12 pb-7">
+            <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,4.6rem)] font-normal leading-[0.96] tracking-[-0.035em]">Brand &amp; Gifting <span className="text-occ-burgundy">/</span> Distribution</h2>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {partnershipPaths.map((path) => (
-            <article key={path.href} className="bg-occ-background">
+            <article key={path.href} className="flex h-full flex-col bg-occ-background">
               <div className="relative aspect-[4/3] overflow-hidden bg-occ-background">
                 <Image src={path.image} alt={path.imageAlt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
-              <div className="min-h-[250px] border-x border-b border-occ-primary/12 bg-occ-background p-7 sm:p-9 lg:p-10">
+              <div className="flex flex-1 flex-col border-x border-b border-occ-primary/12 bg-occ-background p-7 sm:p-9 lg:min-h-[340px] lg:p-10">
                 <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-occ-secondary"><span>{path.number}</span><span className="h-px w-8 bg-occ-secondary" /></p>
                 <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.4rem,4.5vw,4.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">{path.label}</h2>
                 <p className="mt-6 max-w-md text-[15px] leading-7 text-occ-primary">{path.description}</p>
-                <Link href={path.href} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-occ-primary pb-2 text-[10px] font-semibold uppercase tracking-[0.2em]">{path.action} <ArrowUpRight className="size-3" /></Link>
+                <Link href={path.href} className="mt-auto inline-flex w-fit items-center gap-3 border-b border-occ-primary pt-8 pb-2 text-[10px] font-semibold uppercase tracking-[0.2em]">{path.action} <ArrowUpRight className="size-3" /></Link>
               </div>
             </article>
           ))}
@@ -252,6 +239,9 @@ export default function PartnershipsPage() {
                   <p className="mt-5 text-[15px] leading-7 text-black/65">{partner.copy}</p>
                 </article>
               ))}
+              <figure className="relative min-h-[330px] overflow-hidden bg-occ-primary md:min-h-[390px]" aria-label="Cambodian coffee partnership visual">
+                <Image src="/images/partnerships/occ-partnerships-roast.webp" alt="Roasted Cambodian coffee prepared for a partnership concept" fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+              </figure>
             </div>
           </div>
         </section>

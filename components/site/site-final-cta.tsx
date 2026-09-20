@@ -96,29 +96,28 @@ export function SiteFinalCta() {
   const cta = getCta(pathname)
 
   return (
-    <section className="border-t border-white/10 bg-occ-primary text-occ-background" aria-label="Work with Origin Coffee Cambodia">
-      <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-20">
-        <div className="md:col-span-2">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/46">{cta.eyebrow}</p>
-          <span className="mt-4 block h-px w-10 bg-white/28" aria-hidden="true" />
-        </div>
-        <div className="md:col-span-9 md:col-start-4">
-          <h2 className="max-w-[900px] font-[var(--font-display)] text-[clamp(2.4rem,4.8vw,5.2rem)] font-light leading-[0.92] tracking-[-0.04em] text-white">
-            {cta.title}
-          </h2>
-          <div className="mt-7 grid grid-cols-1 gap-6 border-t border-white/16 pt-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10">
-            <p className="max-w-[720px] text-[15px] leading-7 text-white/62">{cta.copy}</p>
-            <div className="flex flex-wrap gap-3">
+    <section className="border-y border-occ-primary/10 bg-occ-surface text-occ-primary" aria-label="Work with Origin Coffee Cambodia">
+      <div className="mx-auto w-full max-w-[1240px] px-6 py-14 sm:px-8 md:px-12 lg:px-16 lg:py-16">
+        <div className="grid overflow-hidden border border-occ-primary/12 bg-occ-background md:grid-cols-[minmax(0,1.35fr)_minmax(280px,.65fr)]">
+          <div className="px-7 py-9 sm:px-10 lg:px-12 lg:py-11">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">{cta.eyebrow}</p>
+            <h2 className="mt-5 max-w-[760px] font-[var(--font-display)] text-[clamp(2.25rem,4.2vw,4.25rem)] font-normal leading-[0.96] tracking-[-0.035em] text-occ-primary">
+              {cta.title}
+            </h2>
+          </div>
+          <div className="flex flex-col justify-between border-t border-occ-primary/12 px-7 py-8 sm:px-10 md:border-l md:border-t-0 lg:py-10">
+            <p className="max-w-[520px] text-[15px] leading-7 text-occ-secondary">{cta.copy}</p>
+            <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href={cta.primaryHref}
-                className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary transition-transform duration-200 hover:-translate-y-0.5"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-occ-burgundy px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-white transition duration-150 hover:-translate-y-0.5 hover:bg-occ-primary"
               >
                 {cta.primaryLabel} <ArrowUpRight className="size-3" />
               </Link>
               {cta.secondaryHref && cta.secondaryLabel ? (
                 <Link
                   href={cta.secondaryHref}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/28 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-white transition-colors hover:bg-white hover:text-occ-primary"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-occ-primary/28 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary transition duration-150 hover:border-occ-primary hover:bg-occ-primary hover:text-white"
                 >
                   {cta.secondaryLabel} <ArrowUpRight className="size-3" />
                 </Link>

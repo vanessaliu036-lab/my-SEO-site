@@ -425,6 +425,47 @@
   text-wrap: pretty;
 }
 
+/* OCC motion identity: calm, editorial and useful. */
+:root {
+  --occ-motion-quick: 140ms;
+  --occ-motion-standard: 480ms;
+  --occ-motion-slow: 680ms;
+  --occ-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.occ-site-main [data-occ-reveal] {
+  opacity: .001;
+  transform: translate3d(0, 22px, 0);
+  clip-path: inset(0 0 5% 0);
+  filter: blur(3px);
+  transition:
+    opacity var(--occ-motion-standard) var(--occ-motion-ease) var(--occ-reveal-delay, 0ms),
+    transform var(--occ-motion-slow) var(--occ-motion-ease) var(--occ-reveal-delay, 0ms),
+    clip-path var(--occ-motion-slow) var(--occ-motion-ease) var(--occ-reveal-delay, 0ms),
+    filter var(--occ-motion-standard) var(--occ-motion-ease) var(--occ-reveal-delay, 0ms);
+}
+
+.occ-site-main [data-occ-reveal][data-occ-visible] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  clip-path: inset(0);
+  filter: blur(0);
+}
+
+.occ-site-main :where(a, button) {
+  transition-timing-function: var(--occ-motion-ease);
+}
+
+.occ-site-main :where(figure, [class*="Visual"], [class*="visual"], [class*="image"], [class*="Image"]) > img {
+  transition: transform var(--occ-motion-slow) var(--occ-motion-ease), filter var(--occ-motion-standard) var(--occ-motion-ease);
+}
+
+@media (hover: hover) {
+  .occ-site-main :where(figure, [class*="Visual"], [class*="visual"], [class*="image"], [class*="Image"]):hover > img {
+    transform: scale(1.018);
+  }
+}
+
 .occ-home-hero {
   min-height: clamp(620px, 78vh, 760px) !important;
 }
@@ -441,5 +482,14 @@
   .occ-home-hero,
   .occ-about-hero {
     min-height: 580px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .occ-site-main [data-occ-reveal] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    filter: none;
   }
 }

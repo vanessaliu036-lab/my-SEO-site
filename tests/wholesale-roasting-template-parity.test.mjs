@@ -32,11 +32,11 @@ test("shared template reproduces the supplied HTML primary order and columns", (
   }
   assert.match(layout, /className="media-grid"/)
   assert.equal((layout.match(/className="media-card"/g) || []).length, 2)
-  assert.match(css, /grid-template-columns:\s*1\.35fr\s+\.65fr/)
-  assert.match(css, /grid-template-columns:\s*\.7fr\s+1\.3fr/)
+  assert.match(css, /grid-template-columns:minmax\(0,1\.02fr\) minmax\(360px,\.98fr\)/)
+  assert.match(css, /grid-template-columns:minmax\(0,1fr\) minmax\(340px,\.9fr\)/)
   assert.match(css, /grid-template-columns:\s*1fr\s+1\.2fr/)
-  assert.match(css, /--max:\s*1360px/)
-  assert.match(css, /font-size:\s*clamp\(58px,6vw,80px\)/)
+  assert.match(css, /--max:\s*1450px/)
+  assert.match(css, /font-size:\s*clamp\(58px,6vw,88px\)/)
 })
 
 test("the two pages retain the global SiteShell header/footer without copying prototype chrome", () => {

@@ -29,8 +29,8 @@ const story = [
     number: "02 · PEOPLE & PROCESS",
     title: "Origin is built by decisions.",
     body: "Farmers, processors, evaluators and roasters shape what happens after harvest. The work of selecting, handling, drying and evaluating a lot turns place into coffee that can be understood and used.",
-    img: "/media/raised-bed-drying-honey-process-mondulkiri.jpg",
-    alt: "Coffee drying and processing in Mondulkiri",
+    img: "/media/mondulkiri-red-coffee-cherry-sorting.webp",
+    alt: "Cambodian coffee workers sorting red coffee cherries on raised beds in Mondulkiri",
     cta: null,
   },
   {
