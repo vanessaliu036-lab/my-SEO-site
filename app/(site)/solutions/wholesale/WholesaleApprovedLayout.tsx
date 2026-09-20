@@ -1,4 +1,5 @@
 import { OccCommercialHtmlLayout } from "@/components/templates/occ-commercial-html-layout"
+import "./wholesale-approved.css"
 
 const options = [
   { title: "Cambodian Fine Robusta", text: "For roasters and cafés exploring Cambodian Canephora. Ask about the specific origin, process, sample and cup profile available for evaluation.", href: "/fine-robusta-cambodia", cta: "Explore Fine Robusta" },

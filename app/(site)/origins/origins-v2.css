@@ -3,7 +3,7 @@
 .occ-origins-v2 *, .occ-origins-v2 *::before, .occ-origins-v2 *::after {box-sizing:border-box}
 .occ-origins-v2 a {text-decoration:none;color:inherit}
 .occ-origins-v2 img {display:block;width:100%;height:100%;object-fit:cover}
-.occ-origins-v2 .originWrap {width:min(1180px,calc(100% - 48px));margin:auto}
+.occ-origins-v2 .originWrap {width:min(1240px,calc(100% - 48px));margin:auto}
 .occ-origins-v2 .originEyebrow {font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--occ-accent);font-weight:600}
 .occ-origins-v2 .originHero {height:clamp(540px,64vw,680px);position:relative;color:#F6F3EA;display:flex;align-items:flex-end;background:var(--occ-forest)}
 .occ-origins-v2 .originHeroImage {position:absolute;inset:0}
@@ -18,16 +18,16 @@
 .occ-origins-v2 .originIntro {display:grid;grid-template-columns:.7fr 1.3fr;gap:70px}
 .occ-origins-v2 .originIntro h2 {font-size:58px;line-height:1;margin:10px 0}
 .occ-origins-v2 .originIntro p {font-size:17px;line-height:1.85;color:#5F675F}
-.occ-origins-v2 .originChapter {display:grid;grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);gap:0;margin-top:48px;border:1px solid var(--occ-line)}
+.occ-origins-v2 .originChapter {display:grid;grid-template-columns:minmax(340px,1fr) minmax(0,1.08fr);gap:0;margin-top:56px;border:1px solid var(--occ-line)}
 .occ-origins-v2 .originChapterReverse .originChapterVisual {order:2}
-.occ-origins-v2 .originChapterVisual {height:clamp(340px,32vw,460px)}
+.occ-origins-v2 .originChapterVisual {height:clamp(380px,34vw,500px);overflow:hidden}
 .occ-origins-v2 .originChapterStory {padding:clamp(38px,5vw,64px);display:flex;flex-direction:column;justify-content:center;background:rgba(251,250,246,.72)}
 .occ-origins-v2 .originChapterStory h3 {font-size:48px;line-height:1;margin:10px 0 18px}
 .occ-origins-v2 .originChapterStory p {color:#5F675F;line-height:1.8;margin-bottom:0}
 .occ-origins-v2 .originTag {font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--occ-accent);font-weight:600}
 .occ-origins-v2 .originTextLink {display:inline-block;margin-top:8px;color:var(--occ-accent);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid rgba(24,32,25,.35);padding-bottom:5px}
-.occ-origins-v2 .originTrust {background:#182019;color:#F6F3EA;padding:90px 0}
-.occ-origins-v2 .originTrustGrid {display:grid;grid-template-columns:1.35fr .65fr;gap:72px;align-items:center}
+.occ-origins-v2 .originTrust {background:#1C211B;color:#F6F3EA;padding:72px 0}
+.occ-origins-v2 .originTrustGrid {display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .occ-origins-v2 .originTrust h2 {font-size:58px;line-height:1;margin:12px 0 20px}
 .occ-origins-v2 .originTrust p {color:#EFE9DC;line-height:1.85}
 .occ-origins-v2 .originEyebrowTrust {color:#5F675F}
