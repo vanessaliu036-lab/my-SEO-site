@@ -86,12 +86,12 @@ test("ABOUT Why OCC keeps one unique photo source across responsive layouts", ()
   assert.match(fallback, /createPortal\(/)
 })
 
-test("ABOUT Ready-to-Sell keeps the full product composition visible on mobile", () => {
+test("ABOUT Ready-to-Sell fills its mobile card with the dedicated portrait image", () => {
   const css = fs.readFileSync(cssPath, "utf8")
 
   assert.match(
     css,
-    /@media \(max-width: 1023px\)[\s\S]*?OCC origin and commercial paths"\] > a:nth-child\(3\) > div:first-child[\s\S]*?background-size:\s*contain\s*!important[\s\S]*?background-position:\s*center\s*!important/,
-    "Ready-to-Sell must use contain on mobile so the complete product image is not cropped away",
+    /@media \(max-width: 1023px\)[\s\S]*?OCC origin and commercial paths"\] > a:nth-child\(3\) > div:first-child[\s\S]*?background-size:\s*cover\s*!important[\s\S]*?background-position:\s*center\s*!important/,
+    "Ready-to-Sell must fill the mobile card without exposing a large background field",
   )
 })

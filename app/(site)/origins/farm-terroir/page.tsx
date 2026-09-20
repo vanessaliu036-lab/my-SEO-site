@@ -297,7 +297,7 @@ export default function FarmTerroirPage() {
               </p>
             </MotionReveal>
 
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-9 md:col-start-4">
               <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
                 {highlights.map((card, index) => (
                   <MotionReveal key={card.title} direction={index % 2 === 0 ? "left" : "right"}>

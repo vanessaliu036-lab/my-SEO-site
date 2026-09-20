@@ -111,14 +111,14 @@ export default async function BlogPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Keep the Blog surface aligned with the global OCC warm-ivory shell. */}
-      <main className="min-h-screen bg-occ-background font-sans overflow-x-hidden">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16">
+      <main className="min-h-screen overflow-x-clip bg-occ-background font-sans">
+        <div className="mx-auto max-w-[1180px] px-5 py-14 sm:px-8 md:py-20">
 
-          <header className="mb-8 md:mb-12 border-b border-stone-200 pb-8 md:pb-10">
+          <header className="mb-10 border-b border-stone-200 pb-10 md:mb-14 md:pb-14">
             <span className="text-[10px] tracking-[0.26em] text-stone-400 uppercase mb-4 block">
               Field Notes &amp; Craft
             </span>
-            <h1 className="font-sans text-3xl sm:text-4xl md:text-[3rem] font-semibold text-stone-950 tracking-tight leading-none mb-4">
+            <h1 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(3.4rem,7vw,5.5rem)] font-normal leading-[0.96] tracking-[-0.04em] text-stone-950">
               The Signal.
             </h1>
             <p className="max-w-xl font-sans text-sm sm:text-base text-stone-500 leading-relaxed">
@@ -139,12 +139,12 @@ export default async function BlogPage({
                   These are OCC&apos;s primary Fine Robusta topic owners. Choose the subject you need, then move into supporting evidence and applications.
                 </p>
               </div>
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2">
                 {CORE_FINE_ROBUSTA_OWNERS.map((guide, index) => (
                   <Link
                     key={guide.href}
                     href={guide.href}
-                    className="group flex min-h-0 flex-col border border-stone-300 border-l-2 border-l-occ-burgundy bg-white/55 px-4 py-4 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_30px_rgba(42,33,29,0.06)] lg:min-h-[150px] lg:p-5"
+                    className="group flex min-h-0 flex-col border-l-2 border-l-occ-burgundy bg-occ-background px-5 py-5 transition-colors hover:bg-white/70 sm:min-h-[150px] lg:p-6"
                   >
                     <div className="flex items-center justify-between gap-4">
                       <span className="text-[9px] font-semibold tracking-[0.2em] text-occ-burgundy">
@@ -185,11 +185,11 @@ export default async function BlogPage({
                             {post.category}
                           </span>
                         )}
-                        <h2 className="max-w-4xl font-sans text-[16px] font-semibold text-stone-950 tracking-tight leading-[1.35] mb-3 group-hover:underline underline-offset-4 decoration-[1px] break-words [text-wrap:balance]">
+                        <h2 className="mb-4 max-w-4xl break-words font-[var(--font-display)] text-[clamp(1.7rem,3vw,2.35rem)] font-normal leading-[1.08] tracking-[-0.025em] text-stone-950 group-hover:underline [text-wrap:balance] decoration-[1px] underline-offset-4">
                           {post.title}
                         </h2>
                         {post.summary && (
-                          <p className="font-sans text-[13px] sm:text-sm text-stone-500 leading-relaxed max-w-2xl [text-wrap:pretty]">
+                          <p className="max-w-[720px] font-sans text-[15px] leading-7 text-stone-500 [text-wrap:pretty]">
                             {post.summary}
                           </p>
                         )}

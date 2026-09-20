@@ -107,15 +107,15 @@ export function WholesaleEditorialTemplate({
 
   return (
     <div data-wholesale-layout="reference-editorial" className="bg-occ-background text-occ-primary">
-      <div className="mx-auto w-full max-w-[1680px] px-5 py-8 sm:px-8 md:px-12 lg:px-16 lg:py-12">
-        <section className="grid grid-cols-1 gap-10 border-b border-black/10 pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:pb-20" aria-labelledby="wholesale-title">
+      <div className="mx-auto w-full max-w-[1360px] px-5 py-8 sm:px-8 md:px-12 lg:px-16 lg:py-12">
+        <section className="grid grid-cols-1 gap-10 border-b border-black/10 pb-16 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16 lg:pb-20" aria-labelledby="wholesale-title">
           <MotionReveal direction="left" className="flex flex-col justify-center py-2 lg:py-8">
             <div className="flex items-center gap-4">
               <span className={eyebrowClass}>{pathLabel}</span>
               <span className="h-px w-10 bg-black/18" aria-hidden="true" />
               <span className="text-[9px] uppercase tracking-[0.22em] text-black/32">Solutions / {index}</span>
             </div>
-            <h1 id="wholesale-title" className={`${displayTitleClass} mt-6 max-w-[720px] text-[clamp(3.8rem,7.2vw,7rem)] leading-[0.88]`}>
+            <h1 id="wholesale-title" className={`${displayTitleClass} mt-6 max-w-[720px] text-[clamp(3.5rem,6vw,6rem)] leading-[0.92]`}>
               {title}
             </h1>
             <p className="mt-8 max-w-[650px] font-[var(--font-display)] text-[clamp(1.8rem,3vw,2.6rem)] font-normal leading-[1.08] tracking-[-0.03em] text-black/86">
@@ -133,7 +133,7 @@ export function WholesaleEditorialTemplate({
           </MotionReveal>
 
           <MotionReveal direction="right" className="relative min-h-[430px] overflow-hidden bg-occ-surface sm:min-h-[520px] lg:min-h-[650px]">
-            <img src="/hero-home.webp" alt="Cambodia-origin coffee prepared for professional wholesale supply" className="h-full w-full object-cover" />
+            <img src="/images/wholesale/occ-wholesale-packed-order.webp" alt="Cambodia-origin coffee prepared for professional wholesale supply" className="h-full w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-white/25 bg-occ-primary/58 px-5 py-4 text-[9px] uppercase tracking-[0.2em] text-white/72 backdrop-blur-[2px] sm:px-7">
               <span>Origin Coffee Cambodia</span>
               <span>Wholesale / {index}</span>
@@ -171,9 +171,9 @@ export function WholesaleEditorialTemplate({
         </section>
 
         {leadSection ? (
-          <section className="grid grid-cols-1 gap-10 border-b border-black/10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-20" aria-labelledby="wholesale-market-path">
+          <section className="grid grid-cols-1 gap-10 border-b border-black/10 py-16 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16 lg:py-20" aria-labelledby="wholesale-market-path">
             <MotionReveal direction="left" className="relative min-h-[430px] overflow-hidden bg-occ-surface lg:min-h-[620px]">
-              <img src="/about/about-origin.svg" alt="Cambodian coffee origin and supply context" className="h-full w-full object-cover" />
+              <img src="/images/wholesale/occ-wholesale-origin-harvest.png" alt="Cambodian coffee origin and supply context" className="h-full w-full object-cover" />
             </MotionReveal>
             <MotionReveal direction="right" className="flex flex-col justify-center">
               <p className={eyebrowClass}>{leadSection.label}</p>
@@ -200,7 +200,7 @@ export function WholesaleEditorialTemplate({
         ) : null}
 
         <section className="border-b border-black/10 py-16 lg:py-20" aria-labelledby="wholesale-process-title">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.02fr_0.78fr] lg:items-stretch lg:gap-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-stretch lg:gap-14">
             <MotionReveal direction="left" className="flex flex-col justify-center py-2">
               <p className={eyebrowClass}>Evidence Standard</p>
               <h2 id="wholesale-process-title" className={`${displayTitleClass} mt-5 max-w-[760px] text-[clamp(2.9rem,5.7vw,5.1rem)] leading-[0.94]`}>{processTitle}</h2>
@@ -213,7 +213,7 @@ export function WholesaleEditorialTemplate({
               </div>
             </MotionReveal>
             <MotionReveal direction="right" className="min-h-[320px] overflow-hidden bg-occ-surface sm:min-h-[390px]">
-              <img src="/about/about-fine-robusta.svg" alt="Coffee evaluation supporting OCC wholesale qualification" className="h-full w-full object-cover" />
+              <img src="/images/wholesale/occ-wholesale-brew-evaluation.webp" alt="Coffee evaluation supporting OCC wholesale qualification" className="h-full w-full object-cover" />
             </MotionReveal>
           </div>
 

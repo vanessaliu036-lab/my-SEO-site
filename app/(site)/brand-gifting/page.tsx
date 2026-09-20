@@ -87,13 +87,13 @@ export default function BrandGiftingPage() {
 
       <div className="bg-occ-background text-occ-primary">
         <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(139,95,61,0.28),transparent_30%),linear-gradient(125deg,#6B1E2B_0%,#6B1E2B_64%,#6B1E2B_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(104,23,37,0.14),transparent_30%),linear-gradient(125deg,#182019_0%,#1c211b_68%,#1c211b_100%)]" />
           <div className="absolute inset-0 bg-gradient-to-r from-occ-primary via-occ-primary/92 to-occ-primary/62" />
 
-          <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1680px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">
+          <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1360px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">
             <div className="md:col-span-9 lg:col-span-8">
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/58">Brand & Gifting · OCC × ARUNERA</p>
-              <h1 className="mt-7 font-[var(--font-display)] text-[clamp(3.4rem,7vw,7rem)] font-normal leading-[0.88] tracking-[-0.045em]">
+              <h1 className="mt-7 max-w-[900px] font-[var(--font-display)] text-[clamp(3.3rem,6vw,5.9rem)] font-normal leading-[0.92] tracking-[-0.04em]">
                 Cambodian coffee,
                 <br />made to be remembered.
               </h1>
@@ -112,11 +112,11 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
+        <section className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
           <div className="md:col-span-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/38">01 / Why Partnership</p>
           </div>
-          <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+          <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
             <h2 className="font-[var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.94] tracking-[-0.035em]">
               Coffee does not always
               <br />begin at a café.
@@ -133,12 +133,12 @@ export default function BrandGiftingPage() {
         </section>
 
         <section id="arunera" className="bg-occ-primary text-occ-surface">
-          <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
+          <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
             <div className="md:col-span-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-occ-secondary">02 / Featured Partner</p>
               <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/42">Coffee Origin × Cambodian Gifting</p>
             </div>
-            <div className="mt-9 md:col-span-8 md:col-start-5 md:mt-0">
+            <div className="mt-9 md:col-span-9 md:col-start-4 md:mt-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-occ-secondary">OCC × ARUNERA</p>
               <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.4rem)] font-normal leading-[0.92] tracking-[-0.035em] text-occ-surface">
                 From Cambodian coffee
@@ -178,12 +178,12 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-[1680px] px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28">
+        <section className="mx-auto w-full max-w-[1360px] px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28">
           <div className="grid grid-cols-1 md:grid-cols-12">
             <div className="md:col-span-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/38">03 / Premium Coffee Gifts</p>
             </div>
-            <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+            <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
               <h2 className="font-[var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[0.94] tracking-[-0.035em]">
                 Cambodian coffee gifts
                 <br />worth taking home.
@@ -205,12 +205,12 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="bg-occ-burgundy text-occ-surface">
-          <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
+        <section className="bg-occ-primary text-occ-surface">
+          <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
             <div className="md:col-span-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-surface">04 / Hotels & Hospitality</p>
             </div>
-            <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+            <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
               <h2 className="font-[var(--font-display)] text-[clamp(2.6rem,5vw,5.2rem)] font-normal leading-[0.94] tracking-[-0.035em]">
                 Make Cambodian coffee
                 <br />part of the guest experience.
@@ -232,11 +232,11 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
+        <section className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
           <div className="md:col-span-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/38">05 / Discovery After the Gift</p>
           </div>
-          <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+          <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
             <h2 className="font-[var(--font-display)] text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[0.94] tracking-[-0.035em]">
               A gift can keep working
               <br />after the guest leaves.
@@ -253,7 +253,7 @@ export default function BrandGiftingPage() {
         </section>
 
         <section className="border-t border-black/10 bg-occ-background">
-          <div className="mx-auto flex w-full max-w-[1680px] flex-col gap-8 px-6 py-16 sm:px-8 md:flex-row md:items-end md:justify-between md:px-12 lg:px-16 lg:py-20">
+          <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-8 px-6 py-16 sm:px-8 md:flex-row md:items-end md:justify-between md:px-12 lg:px-16 lg:py-20">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/38">Build a Cambodian Coffee Gift</p>
               <h2 className="mt-5 font-[var(--font-display)] text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[0.96] tracking-[-0.03em]">

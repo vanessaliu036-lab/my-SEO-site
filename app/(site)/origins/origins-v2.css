@@ -1,58 +1,59 @@
 /* Route-scoped: the global SiteShell owns header, navigation, final CTA and footer. */
-.occ-origins-v2 {box-sizing:border-box;background:var(--occ-ivory);color:var(--occ-ink);font-family:var(--font-sans),system-ui,sans-serif;overflow:hidden}
+.occ-origins-v2 {box-sizing:border-box;background:var(--occ-ivory);color:var(--occ-ink);font-family:var(--font-sans),system-ui,sans-serif;overflow:clip}
 .occ-origins-v2 *, .occ-origins-v2 *::before, .occ-origins-v2 *::after {box-sizing:border-box}
 .occ-origins-v2 a {text-decoration:none;color:inherit}
 .occ-origins-v2 img {display:block;width:100%;height:100%;object-fit:cover}
-.occ-origins-v2 .originWrap {width:min(1240px,92vw);margin:auto}
+.occ-origins-v2 .originWrap {width:min(1180px,calc(100% - 48px));margin:auto}
 .occ-origins-v2 .originEyebrow {font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--occ-accent);font-weight:600}
-.occ-origins-v2 .originHero {height:clamp(540px,64vw,680px);position:relative;color:#F8F5EE;display:flex;align-items:flex-end;background:var(--occ-logo-burgundy)}
+.occ-origins-v2 .originHero {height:clamp(540px,64vw,680px);position:relative;color:#F6F3EA;display:flex;align-items:flex-end;background:var(--occ-forest)}
 .occ-origins-v2 .originHeroImage {position:absolute;inset:0}
-.occ-origins-v2 .originHero::after {content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,33,29,.08),rgba(42,33,29,.58))}
+.occ-origins-v2 .originHero::after {content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,32,25,.08),rgba(24,32,25,.68))}
 .occ-origins-v2 .originHeroCopy {position:relative;z-index:2;padding:0 0 70px;max-width:1240px}
 .occ-origins-v2 .originHeroCopy > * {max-width:760px}
-.occ-origins-v2 .originEyebrowLight {color:#E8DDD1}
+.occ-origins-v2 .originEyebrowLight {color:#EFE9DC}
 .occ-origins-v2 h1, .occ-origins-v2 h2, .occ-origins-v2 h3 {font-family:var(--font-display),Georgia,serif;font-weight:400}
-.occ-origins-v2 .originHero h1 {font-size:78px;line-height:.94;letter-spacing:-.04em;margin:14px 0 22px}
-.occ-origins-v2 .originHero p {font-size:17px;line-height:1.8;color:#E8DDD1}
+.occ-origins-v2 .originHero h1 {font-size:clamp(56px,6vw,72px);line-height:.96;letter-spacing:-.04em;margin:14px 0 22px}
+.occ-origins-v2 .originHero p {font-size:17px;line-height:1.8;color:#EFE9DC}
 .occ-origins-v2 .originSection {padding:clamp(5rem,8vw,7rem) 0}
 .occ-origins-v2 .originIntro {display:grid;grid-template-columns:.7fr 1.3fr;gap:70px}
 .occ-origins-v2 .originIntro h2 {font-size:58px;line-height:1;margin:10px 0}
-.occ-origins-v2 .originIntro p {font-size:17px;line-height:1.85;color:#8B5F3D}
-.occ-origins-v2 .originChapter {display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:34px;border:1px solid var(--occ-line)}
+.occ-origins-v2 .originIntro p {font-size:17px;line-height:1.85;color:#5F675F}
+.occ-origins-v2 .originChapter {display:grid;grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);gap:0;margin-top:48px;border:1px solid var(--occ-line)}
 .occ-origins-v2 .originChapterReverse .originChapterVisual {order:2}
-.occ-origins-v2 .originChapterVisual {height:clamp(360px,38vw,500px)}
-.occ-origins-v2 .originChapterStory {padding:52px;display:flex;flex-direction:column;justify-content:center;background:rgba(248,245,238,.38)}
+.occ-origins-v2 .originChapterVisual {height:clamp(340px,32vw,460px)}
+.occ-origins-v2 .originChapterStory {padding:clamp(38px,5vw,64px);display:flex;flex-direction:column;justify-content:center;background:rgba(251,250,246,.72)}
 .occ-origins-v2 .originChapterStory h3 {font-size:48px;line-height:1;margin:10px 0 18px}
-.occ-origins-v2 .originChapterStory p {color:#8B5F3D;line-height:1.8;margin-bottom:0}
+.occ-origins-v2 .originChapterStory p {color:#5F675F;line-height:1.8;margin-bottom:0}
 .occ-origins-v2 .originTag {font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--occ-accent);font-weight:600}
-.occ-origins-v2 .originTextLink {display:inline-block;margin-top:8px;color:var(--occ-accent);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid rgba(139,95,61,.35);padding-bottom:5px}
-.occ-origins-v2 .originTrust {background:#2A211D;color:#F8F5EE;padding:90px 0}
-.occ-origins-v2 .originTrustGrid {display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.occ-origins-v2 .originTextLink {display:inline-block;margin-top:8px;color:var(--occ-accent);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid rgba(24,32,25,.35);padding-bottom:5px}
+.occ-origins-v2 .originTrust {background:#182019;color:#F6F3EA;padding:90px 0}
+.occ-origins-v2 .originTrustGrid {display:grid;grid-template-columns:1.35fr .65fr;gap:72px;align-items:center}
 .occ-origins-v2 .originTrust h2 {font-size:58px;line-height:1;margin:12px 0 20px}
-.occ-origins-v2 .originTrust p {color:#E8DDD1;line-height:1.85}
-.occ-origins-v2 .originEyebrowTrust {color:#8B5F3D}
+.occ-origins-v2 .originTrust p {color:#EFE9DC;line-height:1.85}
+.occ-origins-v2 .originEyebrowTrust {color:#5F675F}
 .occ-origins-v2 .originTrustList {margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.occ-origins-v2 .originTrustItem {padding-top:16px;border-top:1px solid rgba(248,245,238,.18)}
-.occ-origins-v2 .originTrustItem strong {display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8B5F3D;margin-bottom:8px}
-.occ-origins-v2 .originTrustVisual {height:clamp(360px,38vw,500px)}
-.occ-origins-v2 .originTrustVisual img,.occ-origins-v2 .originFinalVisual img {object-fit:contain;background:#F8F5EE}
+.occ-origins-v2 .originTrustItem {padding-top:16px;border-top:1px solid rgba(251,250,246,.18)}
+.occ-origins-v2 .originTrustItem strong {display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5F675F;margin-bottom:8px}
+.occ-origins-v2 .originTrustVisual {height:clamp(340px,32vw,460px)}
+.occ-origins-v2 .originTrustVisual img,.occ-origins-v2 .originFinalVisual img {object-fit:cover;background:#F6F3EA}
 .occ-origins-v2 .originFinal {padding:90px 0}
-.occ-origins-v2 .originFinalBox {display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
-.occ-origins-v2 .originFinalCopy {padding:52px;background:#E8DDD1;display:flex;flex-direction:column;justify-content:center}
+.occ-origins-v2 .originFinalBox {display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:stretch}
+.occ-origins-v2 .originFinalCopy {padding:52px;background:#EFE9DC;display:flex;flex-direction:column;justify-content:center}
 .occ-origins-v2 .originFinalCopy h2 {font-size:54px;line-height:1;margin:12px 0 20px}
-.occ-origins-v2 .originFinalCopy p {color:#8B5F3D;line-height:1.8}
+.occ-origins-v2 .originFinalCopy p {color:#5F675F;line-height:1.8}
 .occ-origins-v2 .originFinalVisual {min-height:clamp(360px,38vw,500px)}
-.occ-origins-v2 .originPath {margin:24px 0 28px;font-size:11px;line-height:2;letter-spacing:.08em;text-transform:uppercase;color:#8B5F3D}
-.occ-origins-v2 .originPath span {padding:0 7px;color:#8B5F3D}
+.occ-origins-v2 .originPath {margin:24px 0 28px;font-size:11px;line-height:2;letter-spacing:.08em;text-transform:uppercase;color:#5F675F}
+.occ-origins-v2 .originPath span {padding:0 7px;color:#5F675F}
 .occ-origins-v2 .originButtons {display:flex;flex-wrap:wrap;gap:10px}
-.occ-origins-v2 .originButton {display:inline-block;padding:13px 16px;background:var(--occ-accent);color:#F8F5EE;font-size:10px;letter-spacing:.14em;text-transform:uppercase;transition:transform 220ms var(--occ-ease),background-color 220ms var(--occ-ease)}
-.occ-origins-v2 .originButton:hover {transform:translateY(-2px);background:#8B5F3D}
+.occ-origins-v2 .originButton {display:inline-block;padding:13px 16px;background:var(--occ-accent);color:#F6F3EA;font-size:10px;letter-spacing:.14em;text-transform:uppercase;transition:transform 220ms var(--occ-ease),background-color 220ms var(--occ-ease)}
+.occ-origins-v2 .originButton:hover {transform:translateY(-2px);background:#5F675F}
 .occ-origins-v2 .originButtonDark {background:var(--occ-ink)}
 .occ-origins-v2 .originButtonDark:hover {background:var(--occ-forest)}
 @media(max-width:780px) {
  .occ-origins-v2 .originHero {height:560px}
  .occ-origins-v2 .originHeroCopy {padding:0 24px 50px}
- .occ-origins-v2 .originHero h1 {font-size:54px}
+ .occ-origins-v2 .originWrap {width:min(100% - 36px,1180px)}
+ .occ-origins-v2 .originHero h1 {font-size:46px}
  .occ-origins-v2 .originIntro,.occ-origins-v2 .originChapter,.occ-origins-v2 .originTrustGrid,.occ-origins-v2 .originFinalBox {grid-template-columns:1fr}
  .occ-origins-v2 .originChapterReverse .originChapterVisual {order:0}
  .occ-origins-v2 .originChapterVisual {height:340px}

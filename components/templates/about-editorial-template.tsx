@@ -57,7 +57,7 @@ const galleryPanels = [
   {
     label: "READY-TO-SELL",
     href: "/solutions/wholesale",
-    image: "/about/about-ready-to-sell.svg",
+    image: "/about/occ-about-ready-to-sell.webp",
     note: "Wholesale and supplier evaluation.",
   },
   {
@@ -102,8 +102,8 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           role="img"
           aria-label="Cambodian coffee at origin"
         />
-        <div className="absolute inset-0 bg-occ-burgundy/45" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-occ-burgundy/20 via-occ-burgundy/18 to-occ-burgundy/68" aria-hidden="true" />
+        <div className="absolute inset-0 bg-occ-primary/30" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-occ-primary/8 via-occ-primary/18 to-occ-primary/78" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1180px] items-center justify-center px-6 pb-16 pt-28 text-center sm:px-8 lg:min-h-[700px] lg:px-12">
           <motion.div {...reveal(24)} className="mx-auto w-full max-w-[860px]">
@@ -112,7 +112,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </p>
             <h1
               aria-label="One origin. Cambodia."
-              className="mx-auto mt-7 max-w-[820px] font-[var(--font-display)] text-[clamp(3.8rem,7vw,7.2rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white"
+              className="mx-auto mt-7 max-w-[820px] font-[var(--font-display)] text-[clamp(3.6rem,6vw,6rem)] font-normal leading-[0.92] tracking-[-0.04em] text-white"
             >
               One origin.
               <br />Cambodia.
@@ -126,7 +126,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
               <Link
                 href="#why-occ"
-                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-occ-burgundy/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-occ-primary"
+                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-occ-primary/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-occ-primary"
               >
                 Why OCC <ArrowUpRight className="size-3" />
               </Link>
@@ -136,11 +136,11 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         </div>
       </section>
 
-      <section id="why-occ" className="relative overflow-hidden bg-occ-secondary text-occ-background">
-        <div data-about-ghost="origin" aria-hidden="true" className="pointer-events-none absolute -left-6 top-16 font-[var(--font-display)] text-[clamp(6rem,13vw,12rem)] font-semibold leading-none tracking-[-0.06em] text-white/[0.07]">
+      <section id="why-occ" className="relative overflow-hidden bg-occ-primary text-occ-background">
+        <div data-about-ghost="origin" aria-hidden="true" className="pointer-events-none absolute -left-6 top-16 font-[var(--font-display)] text-[clamp(5rem,10vw,8rem)] font-semibold leading-none tracking-[-0.05em] text-white/[0.07]">
           origin
         </div>
-        <div data-about-ghost="coffee" aria-hidden="true" className="pointer-events-none absolute -right-8 bottom-4 font-[var(--font-display)] text-[clamp(6rem,13vw,12rem)] font-semibold leading-none tracking-[-0.06em] text-white/[0.07]">
+        <div data-about-ghost="coffee" aria-hidden="true" className="pointer-events-none absolute -right-8 bottom-4 font-[var(--font-display)] text-[clamp(5rem,10vw,8rem)] font-semibold leading-none tracking-[-0.05em] text-white/[0.07]">
           coffee
         </div>
 
@@ -166,7 +166,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </motion.div>
 
             <motion.div {...reveal(34)} className="flex justify-center lg:justify-end">
-              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-occ-primary shadow-[0_24px_60px_rgba(42,33,29,0.18)]">
+              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-occ-primary shadow-[0_24px_60px_rgba(24,32,25,0.18)]">
                 <img
                   src={whyOccImage}
                   alt="Cambodian coffee origin and production"
@@ -192,12 +192,12 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
         </div>
       </section>
 
-      <section className="grid grid-cols-2 bg-occ-primary lg:grid-cols-4" aria-label="OCC origin and commercial paths">
+      <section className="mx-auto grid w-full max-w-[1360px] grid-cols-2 gap-3 bg-occ-background px-6 py-16 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-12" aria-label="OCC origin and commercial paths">
         {galleryPanels.map((panel, index) => (
           <Link
             key={panel.label}
             href={panel.href}
-            className="group relative aspect-[3/4] overflow-hidden border-b border-r border-white/20 lg:aspect-[5/4] lg:border-b-0"
+            className="group relative aspect-[3/4] overflow-hidden bg-occ-primary lg:aspect-[4/3]"
             aria-label={`${panel.label}: ${panel.note}`}
           >
             <div
@@ -205,13 +205,13 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               style={{ backgroundImage: `url(${panel.image})` }}
               aria-hidden="true"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-occ-burgundy/82 transition-colors duration-500 group-hover:bg-occ-primary/14" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/90 transition-colors duration-500 group-hover:bg-occ-primary/20" />
             <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-7 lg:p-8">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-white/58">0{index + 1}</p>
+              <p className="text-[9px] uppercase tracking-[0.2em] text-white/70">0{index + 1}</p>
               <div className="mt-3 flex items-end justify-between gap-3 sm:gap-4">
                 <div>
                   <h3 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white sm:text-sm sm:tracking-[0.2em]">{panel.label}</h3>
-                  <p className="mt-2 hidden max-w-[230px] text-[12px] leading-5 text-white/62 sm:block">{panel.note}</p>
+                  <p className="mt-2 hidden max-w-[230px] text-[12px] leading-5 text-white/80 sm:block">{panel.note}</p>
                 </div>
                 <ArrowUpRight className="size-4 shrink-0 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>
@@ -222,7 +222,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
       <main className="bg-occ-background">
         <motion.section {...reveal()} className="mx-auto w-full max-w-[1180px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:py-28">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">03 / What We Are Building</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-burgundy">03 / What We Are Building</p>
           <div className="mt-7 grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
             <h2 aria-label="A Premium Cambodian Coffee Brand" className="max-w-[620px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-occ-primary">
               A Premium

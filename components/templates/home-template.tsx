@@ -22,7 +22,7 @@ export default function HomeTemplate() {
         />
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
         <div
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(42,33,29,0.18)_0%,rgba(42,33,29,0.08)_42%,rgba(42,33,29,0.58)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,32,25,0.18)_0%,rgba(24,32,25,0.08)_42%,rgba(24,32,25,0.58)_100%)]"
           aria-hidden="true"
         />
 
@@ -36,18 +36,18 @@ export default function HomeTemplate() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto w-full max-w-6xl px-6 pb-24 pt-32 text-center sm:px-8 md:pb-20">
-          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 sm:text-xs">
+        <div className="relative z-20 mx-auto w-full max-w-[1360px] px-6 pb-24 pt-32 text-left sm:px-8 md:pb-20 lg:px-12">
+          <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.3em] text-white/70 sm:text-xs">
             Cambodia · Coffea canephora · Fine Robusta
           </p>
-          <h1 className="mx-auto max-w-5xl text-balance text-5xl font-normal leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]">
+          <h1 className="max-w-[880px] text-balance text-5xl font-normal leading-[0.96] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-[6rem]">
             Fine Robusta & Specialty Coffee from Cambodia
           </h1>
-          <p className="mx-auto mt-7 max-w-2xl text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
+          <p className="mt-7 max-w-[720px] text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
             Origin Coffee Cambodia connects Cambodian coffee origins with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused knowledge.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link
               href="/solutions/wholesale"
               className="group inline-flex items-center rounded-full text-sm font-medium text-occ-primary"
@@ -109,7 +109,7 @@ export default function HomeTemplate() {
           </section>
           <div className="mt-20 border-t border-gray-200 pt-12">
             <h2 className="mb-12 text-sm font-light uppercase tracking-[0.3em] text-occ-primary/48">Frequently Asked Questions</h2>
-            <div className="space-y-10">{homeFaqs.map(({ q, a }) => <div key={q} className="grid grid-cols-12 gap-x-12 gap-y-3"><h3 className="col-span-12 border-l-4 border-occ-secondary pl-4 text-lg font-semibold tracking-tight text-occ-primary md:col-span-5">{q}</h3><p className="col-span-12 text-base leading-relaxed text-occ-primary/62 md:col-span-7">{a}</p></div>)}</div>
+            <div className="space-y-10">{homeFaqs.map(({ q, a }) => <div key={q} className="grid grid-cols-12 gap-x-12 gap-y-3 border-t border-occ-primary/14 pt-6"><h3 className="col-span-12 text-lg font-semibold tracking-tight text-occ-primary md:col-span-5">{q}</h3><p className="col-span-12 text-base leading-relaxed text-occ-primary/62 md:col-span-7">{a}</p></div>)}</div>
           </div>
         </div>
       </section>

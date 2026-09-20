@@ -159,10 +159,10 @@ export default function PartnershipsPage() {
 
       <main className="bg-occ-background text-occ-primary">
         <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#6B1E2B_0%,#6B1E2B_68%,#6B1E2B_150%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#182019_0%,#1c211b_72%,#1c211b_150%)]" />
           <div className="relative mx-auto w-full max-w-[1120px] px-6 pb-20 pt-28 sm:px-10 md:px-14 lg:pb-28 lg:pt-36">
             <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">OCC · Partnerships</p>
-            <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(4rem,10vw,7.2rem)] font-normal leading-[0.86] tracking-[-0.055em]">
+            <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(3.8rem,8vw,6rem)] font-normal leading-[0.92] tracking-[-0.045em]">
               PARTNERSHIPS
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-center font-[var(--font-display)] text-[clamp(1.6rem,3vw,2.6rem)] leading-[0.98] tracking-[-0.025em] text-white/82">
@@ -193,16 +193,16 @@ export default function PartnershipsPage() {
         </section>
 
         <section aria-label="Partnership pathways" className="mx-auto w-full max-w-[1120px] px-6 pb-20 pt-12 sm:px-10 md:px-14 lg:pb-28 lg:pt-16">
-          <div className="relative z-[1] -mb-2 font-[var(--font-display)] text-[clamp(3.2rem,7.5vw,6.6rem)] font-normal leading-[0.88] tracking-[-0.055em] md:whitespace-nowrap">
-            <span>BRAND &amp; GIFTING</span><span className="mx-3 text-occ-secondary">\</span><span>DISTRIBUTION</span>
+          <div className="relative z-[1] mb-7 flex max-w-[1080px] flex-wrap items-baseline gap-x-4 gap-y-1 font-[var(--font-display)] text-[clamp(2.8rem,6vw,5.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">
+            <span>BRAND &amp; GIFTING</span><span className="text-occ-burgundy">\</span><span>DISTRIBUTION</span>
           </div>
-          <div className="grid grid-cols-1 gap-px border-t border-occ-surface md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {partnershipPaths.map((path) => (
-            <article key={path.href} className="bg-occ-background md:border-r md:border-occ-surface md:last:border-r-0">
+            <article key={path.href} className="bg-occ-background">
               <div className="relative aspect-[4/3] overflow-hidden bg-occ-background">
                 <Image src={path.image} alt={path.imageAlt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
-              <div className="min-h-[250px] border-b border-occ-surface bg-occ-background p-7 sm:p-9 lg:p-11">
+              <div className="min-h-[250px] border-x border-b border-occ-primary/12 bg-occ-background p-7 sm:p-9 lg:p-10">
                 <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-occ-secondary"><span>{path.number}</span><span className="h-px w-8 bg-occ-secondary" /></p>
                 <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.4rem,4.5vw,4.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">{path.label}</h2>
                 <p className="mt-6 max-w-md text-[15px] leading-7 text-occ-primary">{path.description}</p>
@@ -213,11 +213,11 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section id="why-partnership" className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 pb-20 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-28">
+        <section id="why-partnership" className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 pb-20 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-28">
           <div className="md:col-span-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45">01 / Why Cambodian Coffee Partnerships?</p>
           </div>
-          <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+          <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
             <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] font-normal leading-[0.96] tracking-[-0.035em]">
               A coffee origin can become more than a product.
             </h2>
@@ -236,10 +236,10 @@ export default function PartnershipsPage() {
         </section>
 
         <section className="bg-occ-surface py-20 lg:py-28">
-          <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
+          <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-8 md:px-12 lg:px-16">
             <div className="grid md:grid-cols-12">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">02 / Partnership Audiences</p>
-              <div className="mt-7 md:col-span-8 md:col-start-5 md:mt-0">
+              <div className="mt-7 md:col-span-9 md:col-start-4 md:mt-0">
                 <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] leading-[0.96] tracking-[-0.035em]">Who We Work With</h2>
                 <p className="mt-7 max-w-3xl text-[15px] leading-7 text-black/70">We work with businesses and organisations that have a specific audience, a real setting and an idea for how Cambodian coffee could add meaning to the experience.</p>
               </div>
@@ -256,10 +256,10 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-[1680px] px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28">
+        <section className="mx-auto w-full max-w-[1360px] px-6 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-28">
           <div className="grid md:grid-cols-12">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">03 / Collaboration Formats</p>
-            <div className="mt-7 md:col-span-8 md:col-start-5 md:mt-0">
+            <div className="mt-7 md:col-span-9 md:col-start-4 md:mt-0">
               <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] leading-[0.96] tracking-[-0.035em]">What We Can Build Together</h2>
               <p className="mt-7 max-w-3xl text-[15px] leading-7 text-black/70">Every concept is shaped around the setting, the audience and actual product requirements. These are directions to explore, not pre-set packages or promises of fixed stock.</p>
               <div className="mt-10 grid gap-8 border-t border-black/15 pt-8 sm:grid-cols-2">
@@ -278,9 +278,9 @@ export default function PartnershipsPage() {
         </section>
 
         <section className="bg-occ-primary py-20 text-occ-surface lg:py-28">
-          <div className="mx-auto grid w-full max-w-[1680px] px-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16">
+          <div className="mx-auto grid w-full max-w-[1360px] px-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-surface md:col-span-3">04 / Featured Collaboration</p>
-            <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+            <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-occ-surface">OCC × ARUNERA</p>
               <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.7rem,5vw,5.2rem)] leading-[0.96] tracking-[-0.035em]">
                 From Cambodian coffee to an experience worth remembering.
@@ -298,9 +298,9 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="mx-auto grid w-full max-w-[1680px] px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
+        <section className="mx-auto grid w-full max-w-[1360px] px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
           <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">05 / Partnership Value</p>
-          <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+          <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
             <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] leading-[0.96] tracking-[-0.035em]">Why the Experience Matters</h2>
             <p className="mt-9 max-w-3xl text-lg leading-8 text-black/80">
               A thoughtful coffee experience gives people a reason to ask where the coffee came from, how it tastes and what makes it connected to Cambodia. The product, the story and the way it is presented should support one another.
@@ -320,10 +320,10 @@ export default function PartnershipsPage() {
         </section>
 
         <section className="bg-occ-surface py-20 lg:py-28">
-          <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
+          <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-8 md:px-12 lg:px-16">
             <div className="grid md:grid-cols-12">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">06 / From Idea to Agreement</p>
-              <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+              <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
                 <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] leading-[0.96] tracking-[-0.035em]">How a Partnership Works</h2>
                 <p className="mt-7 text-[15px] leading-7 text-black/70">A clear conversation keeps creative possibilities connected to product reality. The process is adapted to each project and does not imply that stock, pricing or timelines have already been confirmed.</p>
                 <div className="mt-9 divide-y divide-black/15 border-y border-black/15">
@@ -342,9 +342,9 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="mx-auto grid w-full max-w-[1680px] px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
+        <section className="mx-auto grid w-full max-w-[1360px] px-6 py-20 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-28">
           <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 md:col-span-3">07 / Start a Conversation</p>
-          <div className="mt-8 md:col-span-8 md:col-start-5 md:mt-0">
+          <div className="mt-8 md:col-span-9 md:col-start-4 md:mt-0">
             <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,5rem)] leading-[0.96] tracking-[-0.035em]">What to Include in Your Enquiry</h2>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-black/80">You do not need a finished brief to begin. Tell us what you are considering and share the information you already have. We can then identify the questions that need to be answered before a project can move forward.</p>
             <div className="mt-9 grid gap-5 border-y border-black/15 py-8 text-[15px] leading-7 text-black/68 sm:grid-cols-2 sm:gap-x-12">
@@ -362,7 +362,7 @@ export default function PartnershipsPage() {
         </section>
 
         <section className="bg-occ-primary px-6 py-20 text-occ-background sm:px-8 md:px-12 lg:px-16 lg:py-28">
-          <div className="mx-auto w-full max-w-[1680px]">
+          <div className="mx-auto w-full max-w-[1360px]">
             <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/50">Build a Cambodian Coffee Partnership</p>
             <h2 className="mt-7 max-w-5xl font-[var(--font-display)] text-[clamp(3rem,6vw,6rem)] leading-[0.95] tracking-[-0.04em]">Bring an idea. Begin with Cambodia.</h2>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/72">For hotels, retailers, travel businesses, corporate teams and brands interested in a meaningful Cambodian coffee experience, we would like to hear what you have in mind. Your next step is a conversation, not an obligation to commit.</p>

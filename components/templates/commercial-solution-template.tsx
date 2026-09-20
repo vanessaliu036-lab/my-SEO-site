@@ -116,7 +116,7 @@ export function CommercialSolutionTemplate({
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
         </div>
 
-        <div className="relative mx-auto w-full max-w-[1680px] px-6 pb-14 pt-6 sm:px-8 md:px-12 lg:px-16 lg:pb-20">
+        <div className="relative mx-auto w-full max-w-[1360px] px-6 pb-14 pt-6 sm:px-8 md:px-12 lg:px-16 lg:pb-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end">
             <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
               <Link href="/solutions" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/42 transition-colors hover:text-black">
@@ -152,14 +152,14 @@ export function CommercialSolutionTemplate({
           </MotionReveal>
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative mx-auto flex w-full max-w-[1360px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
           <span>Origin Coffee Cambodia</span>
           <span className="hidden sm:block">Commercial Coffee Solutions</span>
           <span>{index} / 02</span>
         </div>
       </section>
 
-      <main className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
+      <main className="mx-auto w-full max-w-[1360px] px-6 sm:px-8 md:px-12 lg:px-16">
         <section className="border-b border-black/10 py-16 lg:py-24" aria-labelledby={`${index}-highlights`}>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <MotionReveal direction="left" className="md:col-span-3">
@@ -169,7 +169,7 @@ export function CommercialSolutionTemplate({
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">{highlightIntro}</p>
             </MotionReveal>
 
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-9 md:col-start-4">
               <div className="grid grid-cols-1 border-l border-t border-black/10 sm:grid-cols-2">
                 {highlightCards.map((card, cardIndex) => (
                   <MotionReveal key={card.title} direction={cardIndex % 2 === 0 ? "left" : "right"}>
@@ -249,7 +249,7 @@ export function CommercialSolutionTemplate({
               <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">{processIntro}</p>
             </MotionReveal>
 
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-9 md:col-start-4">
               {processSteps.map((step, stepIndex) => (
                 <MotionReveal key={step.title} direction={stepIndex % 2 === 0 ? "left" : "right"}>
                   <article className="grid grid-cols-[44px_1fr] gap-5 border-t border-black/10 py-7 last:border-b sm:grid-cols-[56px_1fr] lg:grid-cols-[64px_220px_1fr] lg:gap-8 lg:py-8">
@@ -288,7 +288,7 @@ export function CommercialSolutionTemplate({
               <h2 id={`${index}-comparison`} className={sectionTitleClass}>{comparisonTitle}</h2>
             </MotionReveal>
 
-            <div className="grid grid-cols-1 md:col-span-8 md:col-start-5 lg:grid-cols-2">
+            <div className="grid grid-cols-1 md:col-span-9 md:col-start-4 lg:grid-cols-2">
               {comparison.map((path, pathIndex) => (
                 <MotionReveal key={path.title} direction={pathIndex === 0 ? "left" : "right"}>
                   <article className={`flex min-h-[330px] flex-col border border-black/10 p-7 lg:min-h-[390px] lg:p-9 ${path.active ? "bg-occ-primary text-occ-background" : "bg-transparent text-occ-primary"}`}>
@@ -312,7 +312,7 @@ export function CommercialSolutionTemplate({
               <span className="mt-3 block w-10 h-px bg-occ-secondary" aria-hidden="true" />
               <h2 id={`${index}-faq-title`} className="mt-5 max-w-[13ch] font-[var(--font-display)] text-[clamp(2rem,7vw,2.8rem)] font-normal leading-[0.98] tracking-[-0.03em]">Commercial details,<br />kept explicit.</h2>
             </div>
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-9 md:col-start-4">
               {faqs.map(({ q, a }, faqIndex) => (
                 <MotionReveal key={q}>
                   <div className="grid grid-cols-[38px_1fr] gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr]">

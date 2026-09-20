@@ -96,8 +96,8 @@ export function SiteFinalCta() {
   const cta = getCta(pathname)
 
   return (
-    <section className="border-t border-white/10 bg-occ-burgundy text-occ-background" aria-label="Work with Origin Coffee Cambodia">
-      <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-20">
+    <section className="border-t border-white/10 bg-occ-primary text-occ-background" aria-label="Work with Origin Coffee Cambodia">
+      <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-20">
         <div className="md:col-span-2">
           <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/46">{cta.eyebrow}</p>
           <span className="mt-4 block h-px w-10 bg-white/28" aria-hidden="true" />

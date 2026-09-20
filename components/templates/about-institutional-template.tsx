@@ -69,7 +69,7 @@ export function AboutInstitutionalTemplate({
         <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.055] md:grid" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
         </div>
-        <div className="relative mx-auto grid min-h-[min(590px,calc(100dvh-80px))] w-full max-w-[1680px] grid-cols-1 items-center gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:gap-8 md:px-12 md:py-20 lg:px-16">
+        <div className="relative mx-auto grid min-h-[min(590px,calc(100dvh-80px))] w-full max-w-[1360px] grid-cols-1 items-center gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:gap-8 md:px-12 md:py-20 lg:px-16">
           <motion.div {...reveal(-24, 0)} className="md:col-span-2">
             <Link href="/about" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/48 transition-colors hover:text-black">
               <ArrowLeft className="size-3" /> About
@@ -92,7 +92,7 @@ export function AboutInstitutionalTemplate({
             </div>
           </motion.div>
         </div>
-        <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative mx-auto flex w-full max-w-[1360px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
           <span>Origin Coffee Cambodia</span>
           <span className="hidden sm:block">Institutional / About</span>
           <span>{index} / 04</span>
@@ -101,7 +101,7 @@ export function AboutInstitutionalTemplate({
 
       {featureGrid.length > 0 ? (
         <section className="border-b border-black/10 bg-occ-surface" aria-labelledby={`${title.toLowerCase()}-practice-title`}>
-          <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-6 py-14 sm:px-8 md:grid-cols-12 md:gap-10 md:px-12 md:py-16 lg:px-16 lg:py-20">
+          <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-14 sm:px-8 md:grid-cols-12 md:gap-10 md:px-12 md:py-16 lg:px-16 lg:py-20">
             <div className="md:col-span-3">
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">{practiceLabel}</p>
               <h2 id={`${title.toLowerCase()}-practice-title`} className="mt-5 max-w-[13rem] font-[var(--font-display)] text-2xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-3xl">{practiceTitle}</h2>
@@ -119,7 +119,7 @@ export function AboutInstitutionalTemplate({
         </section>
       ) : null}
 
-      <div className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
+      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-8 md:px-12 lg:px-16">
         <section className="border-b border-black/10 py-16 lg:py-20" aria-labelledby={`${title.toLowerCase()}-chapters-title`}>
           <div className="mb-8 flex items-end justify-between gap-6 border-b border-black/10 pb-5">
             <h2 id={`${title.toLowerCase()}-chapters-title`} className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">A closer look at the work</h2>
@@ -155,7 +155,7 @@ export function AboutInstitutionalTemplate({
             <div className="md:col-span-3">
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">The takeaway</p>
             </div>
-            <div className="mt-7 md:col-span-8 md:col-start-5 md:mt-0">
+            <div className="mt-7 md:col-span-9 md:col-start-4 md:mt-0">
               {closing.map((paragraph, index) => (
                 <p key={paragraph} className={index === 0 ? "max-w-4xl font-[var(--font-display)] text-[clamp(1.5rem,2.4vw,2.4rem)] leading-[1.15] tracking-[-0.02em]" : "mt-8 max-w-3xl text-base leading-8 text-black/82"}>
                   {paragraph}
@@ -172,7 +172,7 @@ export function AboutInstitutionalTemplate({
                 <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">Good to know</p>
                 <h2 id={`${title.toLowerCase()}-faq-title`} className="mt-5 font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Questions,<br />answered.</h2>
               </div>
-              <div className="md:col-span-8 md:col-start-5">
+              <div className="md:col-span-9 md:col-start-4">
                 {faqs.map(({ q, a }, faqIndex) => (
                   <motion.div key={q} {...reveal(0, 24)} className="grid grid-cols-[38px_1fr] gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr]">
                     <span className="pt-1 text-[9px] tracking-[0.2em] text-black/32">{String(faqIndex + 1).padStart(2, "0")}</span>

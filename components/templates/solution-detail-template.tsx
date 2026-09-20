@@ -48,7 +48,7 @@ export function SolutionDetailTemplate({
         <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.06] md:grid" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
         </div>
-        <div className="relative mx-auto grid w-full max-w-[1680px] grid-cols-1 items-end gap-10 px-6 pb-14 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-16">
+        <div className="relative mx-auto grid w-full max-w-[1360px] grid-cols-1 items-end gap-10 px-6 pb-14 pt-6 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-16">
           <MotionReveal direction="left" className="md:col-span-3 md:pb-2">
             <Link href="/solutions" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/42 transition-colors hover:text-black">
               <ArrowLeft className="size-3" /> Solutions
@@ -62,14 +62,14 @@ export function SolutionDetailTemplate({
             <p className="border-t border-black/10 pt-5 text-[15px] leading-7 text-black/76">{subtitle}</p>
           </MotionReveal>
         </div>
-        <div className="relative mx-auto flex w-full max-w-[1680px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
+        <div className="relative mx-auto flex w-full max-w-[1360px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
           <span>Origin Coffee Cambodia</span>
           <span className="hidden sm:block">Coffee Authority &amp; B2B Solutions</span>
           <span>{index} / 04</span>
         </div>
       </section>
 
-      <main className="mx-auto w-full max-w-[1680px] px-6 sm:px-8 md:px-12 lg:px-16">
+      <main className="mx-auto w-full max-w-[1360px] px-6 sm:px-8 md:px-12 lg:px-16">
         <section className="border-b border-black/10 py-16 lg:py-24">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
             <div className="md:col-span-8">
@@ -110,7 +110,7 @@ export function SolutionDetailTemplate({
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/35">FAQ</p>
               <h2 id={`${index}-faq-title`} className="mt-5 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.02em] sm:text-3xl">Questions,<br />answered.</h2>
             </div>
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-9 md:col-start-4">
               {faqs.map(({ q, a }, faqIndex) => (
                 <MotionReveal key={q}>
                   <div className="grid grid-cols-[38px_1fr] gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr]">
@@ -132,7 +132,7 @@ export function SolutionDetailTemplate({
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/35">Related</p>
               <h2 id={`${index}-related-title`} className="mt-5 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.02em] sm:text-3xl">You may<br />also need.</h2>
             </div>
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-9 md:col-start-4">
               {relatedServices.map((service, serviceIndex) => (
                 <MotionReveal key={service.href} direction={serviceIndex % 2 === 0 ? "left" : "right"}>
                   <Link href={service.href} className="group grid grid-cols-[38px_1fr_auto] items-end gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr_auto]">

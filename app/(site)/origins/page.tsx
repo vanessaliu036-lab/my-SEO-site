@@ -21,8 +21,8 @@ const story = [
     number: "01 · PLACE",
     title: "Cambodia is where the story begins.",
     body: "Country, region, climate, agriculture and growing conditions give a coffee its first context. Explore Cambodia and Mondulkiri to understand the places behind OCC coffee.",
-    img: "/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg",
-    alt: "Coffee harvest in Mondulkiri, Cambodia",
+    img: "/media/mondulkiri-coffee-harvest-worker.webp",
+    alt: "Coffee worker harvesting ripe cherries in Mondulkiri, Cambodia",
     cta: { text: "Explore Cambodia & Regions", href: "/origins/cambodia-regions" },
   },
   {
@@ -54,7 +54,7 @@ export default function OriginsPage() {
   return (
     <div className="occ-origins-v2">
       <section className="originHero" aria-labelledby="origin-title">
-        <img src="/media/mondulkiri-terroir-red-earth-elevation.jpg" alt="Mondulkiri terrain and Cambodian coffee origin" className="originHeroImage" />
+        <img src="/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg" alt="Coffee farmers walking through a Cambodian coffee landscape" className="originHeroImage" />
         <div className="originWrap originHeroCopy">
           <div className="originEyebrow originEyebrowLight">ORIGINS · CAMBODIA</div>
           <h1 id="origin-title">Coffee with<br />a place behind it.</h1>

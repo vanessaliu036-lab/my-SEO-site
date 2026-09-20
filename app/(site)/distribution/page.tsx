@@ -142,7 +142,7 @@ export default function DistributionPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <section className="border-b border-occ-primary/15">
-        <div className="grid min-h-[680px] lg:grid-cols-12">
+        <div className="mx-auto grid min-h-[640px] w-full max-w-[1360px] lg:grid-cols-12">
           <div className="flex flex-col justify-between px-6 py-14 sm:px-10 lg:col-span-7 lg:px-14 lg:py-20 xl:px-20">
             <div className="flex items-center justify-between gap-6">
               <p className="text-[10px] uppercase tracking-[0.28em] text-occ-primary/58">
@@ -153,11 +153,11 @@ export default function DistributionPage() {
               </span>
             </div>
 
-            <div className="max-w-4xl py-16 lg:py-24">
+            <div className="max-w-3xl py-14 lg:py-20">
               <p className="mb-5 text-[11px] uppercase tracking-[0.3em] text-occ-primary/52">
                 Bring Cambodia-origin coffee to your market.
               </p>
-              <h1 className="max-w-4xl text-[clamp(3.25rem,6.3vw,6.6rem)] font-normal leading-[0.91] tracking-[-0.055em]">
+              <h1 className="max-w-3xl text-[clamp(3rem,5.5vw,5.8rem)] font-normal leading-[0.94] tracking-[-0.045em]">
                 International Coffee Distribution Partnerships
               </h1>
               <p className="mt-9 max-w-xl text-[15px] font-light leading-7 text-occ-primary/72 sm:text-base">
@@ -187,7 +187,7 @@ export default function DistributionPage() {
               fill
               priority
               sizes="(min-width: 1024px) 42vw, 100vw"
-              className="object-contain p-8 opacity-95 sm:p-12"
+              className="object-cover opacity-95"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-occ-primary/45 via-transparent to-transparent" />
             <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between border-t border-white/45 pt-5 text-white sm:bottom-10 sm:left-10 sm:right-10">
@@ -199,7 +199,7 @@ export default function DistributionPage() {
       </section>
 
       <section className="border-b border-occ-primary/15">
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
+        <div className="mx-auto grid w-full max-w-[1360px] grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
           {proofPoints.map((item) => (
             <div
               key={item}
@@ -211,7 +211,7 @@ export default function DistributionPage() {
         </div>
       </section>
 
-      <section className="px-6 py-24 sm:px-10 lg:px-14 lg:py-32 xl:px-20">
+      <section className="mx-auto w-full max-w-[1360px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="mb-5 text-[10px] uppercase tracking-[0.28em] text-occ-primary/48">01 · Partners</p>
@@ -233,7 +233,7 @@ export default function DistributionPage() {
       </section>
 
       <section className="border-y border-occ-primary/15 bg-occ-background">
-        <div className="px-6 py-16 sm:px-10 lg:px-14 xl:px-20">
+        <div className="mx-auto w-full max-w-[1360px] px-6 py-16 sm:px-10 lg:px-14">
           <div className="mb-14 flex flex-col gap-5 border-b border-occ-primary/15 pb-8 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-4 text-[10px] uppercase tracking-[0.28em] text-occ-primary/48">02 · Products</p>
@@ -264,7 +264,7 @@ export default function DistributionPage() {
         </div>
       </section>
 
-      <section className="px-6 py-24 sm:px-10 lg:px-14 lg:py-32 xl:px-20">
+      <section className="mx-auto w-full max-w-[1360px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <p className="mb-6 text-[10px] uppercase tracking-[0.28em] text-occ-primary/48">03 · Why OCC</p>
@@ -288,7 +288,7 @@ export default function DistributionPage() {
         </div>
       </section>
 
-      <section className="border-y border-occ-primary/15 bg-occ-background px-6 py-24 sm:px-10 lg:px-14 lg:py-32 xl:px-20">
+      <section className="mx-auto w-full max-w-[1360px] border-y border-occ-primary/15 bg-occ-background px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
         <div className="mb-14 grid gap-8 border-b border-occ-primary/15 pb-9 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="mb-5 text-[10px] uppercase tracking-[0.28em] text-occ-primary/48">04 · Process</p>
@@ -312,7 +312,7 @@ export default function DistributionPage() {
       </section>
 
       <section className="border-b border-occ-primary/15">
-        <div className="grid lg:grid-cols-2">
+        <div className="mx-auto grid w-full max-w-[1360px] lg:grid-cols-2">
           <div className="border-b border-occ-primary/15 px-6 py-16 sm:px-10 lg:border-b-0 lg:border-r lg:px-14 lg:py-20 xl:px-20">
             <p className="mb-5 text-[10px] uppercase tracking-[0.28em] text-occ-primary/48">05 · Partner Enquiry</p>
             <h2 className="max-w-xl text-4xl font-normal sm:text-5xl">What to Include in Your Enquiry</h2>
@@ -345,19 +345,19 @@ export default function DistributionPage() {
         </div>
       </section>
 
-      <section className="bg-occ-primary px-6 py-24 text-center text-occ-background sm:px-10 lg:px-14 lg:py-32 xl:px-20">
-        <p className="mb-8 text-[10px] uppercase tracking-[0.3em] text-occ-background/46">Represent OCC in Your Market</p>
-        <h2 className="mx-auto max-w-5xl text-[clamp(3.25rem,6.5vw,7rem)] font-normal leading-[0.93] tracking-[-0.045em]">
+      <section className="bg-occ-surface px-6 py-20 text-center text-occ-primary sm:px-10 lg:px-14 lg:py-24">
+        <p className="mb-7 text-[10px] uppercase tracking-[0.3em] text-occ-primary/52">Represent OCC in Your Market</p>
+        <h2 className="mx-auto max-w-4xl text-[clamp(3rem,5.5vw,5.6rem)] font-normal leading-[0.95] tracking-[-0.04em]">
           Let's Discuss Your Market.
         </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-sm leading-7 text-occ-background/62">
+        <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-7 text-occ-primary/68">
           Share your company, territory, existing channels, import capability, product interests, estimated volumes, and
           launch timeline. We will use these details to assess a possible international distribution partnership.
         </p>
-        <Link href="/contact" className="mt-10 inline-flex items-center gap-5 border-b border-occ-background/70 pb-2 text-[11px] uppercase tracking-[0.24em] transition-opacity hover:opacity-55">
+        <Link href="/contact" className="mt-9 inline-flex items-center gap-5 border-b border-occ-primary/70 pb-2 text-[11px] uppercase tracking-[0.24em] transition-opacity hover:opacity-55">
           Discuss an International Distribution Partnership <span aria-hidden="true">↗</span>
         </Link>
-        <p className="mt-20 text-[10px] uppercase tracking-[0.28em] text-occ-background/36">
+        <p className="mt-14 text-[10px] uppercase tracking-[0.28em] text-occ-primary/40">
           Origin Coffee Cambodia · Cambodia-origin coffee. Built for the world.
         </p>
       </section>

@@ -61,7 +61,7 @@ test("About closes with international market direction without service sprawl", 
   assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
 })
 
-test("About uses the approved OCC five-color visual system without replacing shared site chrome", () => {
+test("About uses the unified OCC semantic palette without replacing shared site chrome", () => {
   const source = read(templatePath)
 
   assert.match(source, /occ-primary/)
@@ -70,7 +70,7 @@ test("About uses the approved OCC five-color visual system without replacing sha
   assert.match(source, /occ-background/)
   assert.match(source, /\/about\/about-origin\.svg/)
   assert.match(source, /\/about\/about-fine-robusta\.svg/)
-  assert.match(source, /\/about\/about-ready-to-sell\.svg/)
+  assert.match(source, /\/about\/occ-about-ready-to-sell\.webp/)
   assert.match(source, /\/about\/about-made-for-you\.svg/)
   assert.doesNotMatch(source, /occ-about-atlas\.avif/)
   assert.match(source, /data-about-ghost="origin"/)

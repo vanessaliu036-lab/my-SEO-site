@@ -10,8 +10,8 @@ const scanRoots = [
   "components/ui",
 ]
 const sourceExtension = /\.(?:css|jsx?|tsx?)$/i
-const allowedHex = new Set(["#2A211D", "#6B1E2B", "#8B5F3D", "#E8DDD1", "#F8F5EE"])
-const allowedRgb = new Set(["42,33,29", "107,30,43", "139,95,61", "232,221,209", "248,245,238"])
+const allowedHex = new Set(["#182019", "#1C211B", "#681725", "#5F675F", "#D8D3C8", "#EFE9DC", "#F6F3EA", "#FBFAF6"])
+const allowedRgb = new Set(["24,32,25", "28,33,27", "104,23,37", "95,103,95", "216,211,200", "239,233,220", "246,243,234", "251,250,246"])
 const nonBrandUtility = /(?:bg|text|border|from|via|to)-(?:red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+/g
 const failures = []
 
@@ -48,5 +48,5 @@ if (failures.length) {
   console.error([...new Set(failures)].join("\n"))
   process.exitCode = 1
 } else {
-  console.log("Brand color gate passed: public website sources use only the OCC five-color palette.")
+  console.log("Brand color gate passed: public website sources use only the OCC semantic palette.")
 }

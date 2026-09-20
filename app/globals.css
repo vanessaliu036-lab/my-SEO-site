@@ -44,24 +44,25 @@
     --sidebar-border: 31.3 33.3% 86.5%;
     --sidebar-ring: 349.9 56.2% 26.9%;
 
-    --occ-primary: #2A211D;
-    --occ-burgundy: #6B1E2B;
-    --occ-secondary: #8B5F3D;
-    --occ-brand-surface: #E8DDD1;
-    --occ-brand-background: #F8F5EE;
-    --occ-ink: #2A211D;
-    --occ-olive: #2A211D;
-    --occ-logo-burgundy: #6B1E2B;
-    --occ-forest: var(--occ-primary);
-    --occ-ivory: #F8F5EE;
-    --occ-stone: #E8DDD1;
-    --occ-lime: var(--occ-brand-surface);
+    --occ-primary: #182019;
+    --occ-burgundy: #681725;
+    --occ-secondary: #5f675f;
+    --occ-brand-surface: #efe9dc;
+    --occ-brand-background: #f6f3ea;
+    --occ-ink: #182019;
+    --occ-olive: #1c211b;
+    --occ-logo-burgundy: #681725;
+    --occ-forest: #1c211b;
+    --occ-ivory: #f6f3ea;
+    --occ-stone: #d8d3c8;
+    --occ-lime: #efe9dc;
     --occ-accent: var(--occ-burgundy);
-    --occ-surface: #E8DDD1;
-    --occ-surface-soft: #F8F5EE;
-    --occ-line: rgba(42, 33, 29, 0.14);
+    --occ-surface: #efe9dc;
+    --occ-surface-soft: #fbfaf6;
+    --occ-line: rgba(24, 32, 25, 0.14);
     --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --occ-wide: 1680px;
+    --occ-wide: 1360px;
+    --occ-reading: 720px;
   }
   .dark {
     --background: 18.5 18.3% 13.9%;
@@ -96,7 +97,7 @@
   body {
     @apply text-foreground;
     font-family: var(--font-sans), system-ui, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: 0;
@@ -104,6 +105,7 @@
     -moz-osx-font-smoothing: grayscale;
     background: var(--occ-ivory);
     text-wrap: pretty;
+    overflow-x: clip;
   }
 
   ::selection {
@@ -122,14 +124,18 @@
   }
 
   img {
+    display: block;
     max-width: 100%;
+    height: auto;
   }
 
   h1 {
     font-family: var(--font-display), Georgia, serif;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.05;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   h2 {
@@ -137,6 +143,7 @@
     font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
   h3 {
@@ -169,7 +176,7 @@
   }
 
   .occ-grid-lines {
-    background-image: linear-gradient(to right, transparent calc(100% - 1px), rgba(42, 33, 29, 0.08) calc(100% - 1px));
+    background-image: linear-gradient(to right, transparent calc(100% - 1px), rgba(24, 32, 25, 0.08) calc(100% - 1px));
     background-size: calc(100% / 12) 100%;
   }
 
@@ -199,7 +206,7 @@
 
   .occ-pill:hover {
     transform: translateY(-2px);
-    background: #F8F5EE;
+    background: #F6F3EA;
   }
 
   .occ-image-frame {
@@ -217,7 +224,7 @@
 
   .occ-horizontal-frame {
     min-height: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     background-color: var(--occ-ivory);
     color: var(--occ-ink);
   }
@@ -244,7 +251,7 @@
 
   .occ-horizontal-frame [class*="bg-gray-100"],
   .occ-horizontal-frame [class*="bg-gray-50"],
-  .occ-horizontal-frame [class*="bg-[#F8F5EE]"] {
+  .occ-horizontal-frame [class*="bg-[#F6F3EA]"] {
     background-color: transparent !important;
   }
 
@@ -295,7 +302,7 @@
     grid-column: 4 / -1;
     margin-bottom: 0 !important;
     font-family: var(--font-display), Georgia, serif !important;
-    font-size: clamp(4rem, 7.8vw, 8.6rem) !important;
+    font-size: clamp(3.5rem, 6vw, 6rem) !important;
     font-weight: 400 !important;
     letter-spacing: -0.055em !important;
     line-height: 0.9 !important;
@@ -328,7 +335,7 @@
 
   .occ-horizontal-editorial article.max-w-5xl > header h1 {
     font-family: var(--font-display), Georgia, serif !important;
-    font-size: clamp(3.2rem, 6.6vw, 7.6rem) !important;
+    font-size: clamp(3.2rem, 5.8vw, 6rem) !important;
     font-weight: 400 !important;
     letter-spacing: -0.05em !important;
     line-height: 0.94 !important;
@@ -345,7 +352,7 @@
     max-width: 1120px !important;
     margin-top: 2.5rem !important;
     margin-bottom: 4rem !important;
-    background: rgba(248, 245, 238, 0.38) !important;
+    background: rgba(251, 250, 246, 0.38) !important;
     border-left-color: var(--occ-ink) !important;
   }
 
@@ -411,46 +418,11 @@
 .occ-site-main {
   background: var(--occ-ivory);
   color: var(--occ-ink);
+  overflow-x: clip;
 }
 
 .occ-site-main p {
   text-wrap: pretty;
-}
-
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"],
-.occ-site-main [class*="bg-[#2A211D]"] {
-  background-color: var(--occ-forest) !important;
-}
-
-.occ-site-main [class*="bg-[#6B1E2B]"],
-.occ-site-main [class*="bg-[#8B5F3D]"] {
-  background-color: var(--occ-accent) !important;
-}
-
-.occ-site-main [class*="bg-[#E8DDD1]"],
-.occ-site-main [class*="bg-[#F8F5EE]"],
-.occ-site-main [class*="bg-[#F8F5EE]"] {
-  background-color: var(--occ-ivory) !important;
-}
-
-.occ-site-main [class*="text-[#E8DDD1]"],
-.occ-site-main [class*="text-[#E8DDD1]"],
-.occ-site-main [class*="text-[#E8DDD1]"],
-.occ-site-main [class*="text-[#F8F5EE]"] {
-  color: var(--occ-ivory) !important;
-}
-
-.occ-site-main [class*="text-[#2A211D]"],
-.occ-site-main [class*="text-[#2A211D]"],
-.occ-site-main [class*="text-[#2A211D]"],
-.occ-site-main [class*="text-[#2A211D]"] {
-  color: var(--occ-ink) !important;
 }
 
 .occ-home-hero {

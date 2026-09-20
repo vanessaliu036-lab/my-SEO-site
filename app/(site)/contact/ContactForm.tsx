@@ -72,7 +72,7 @@ export default function ContactForm() {
         <span className="text-[11px] text-occ-secondary [font-family:var(--occ-font-subtitle)]">/ Contact</span>
       </nav>
 
-      <div className="grid md:grid-cols-2 min-h-screen pt-20">
+      <div className="grid min-h-screen pt-20 md:grid-cols-[0.8fr_1.2fr]">
         <div className="relative flex flex-col justify-between p-10 md:p-16 border-b md:border-b-0 md:border-r border-occ-surface">
           <div className="flex items-center gap-3 mb-10 text-[11px] tracking-[0.2em] text-occ-secondary uppercase [font-family:var(--occ-font-subtitle)]">
             <span className="inline-block w-8 h-px bg-occ-secondary" />
@@ -80,7 +80,7 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <h1 className="leading-[0.92] tracking-[0.02em] text-occ-primary mb-8 [font-family:var(--occ-font-title)]" style={{ fontSize: "clamp(64px, 8vw, 110px)" }}>
+            <h1 className="mb-8 leading-[0.94] tracking-[-0.03em] text-occ-primary [font-family:var(--occ-font-title)]" style={{ fontSize: "clamp(48px, 6vw, 72px)" }}>
               GET IN<br />TOUCH.
             </h1>
             <p className="text-sm font-light italic text-occ-secondary leading-relaxed max-w-[390px] mb-16 pl-4 border-l-2 border-occ-primary">
