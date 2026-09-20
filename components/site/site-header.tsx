@@ -45,7 +45,7 @@ export function SiteHeader() {
             />
           </Link>
 
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-7 font-sans lg:flex" aria-label="Primary navigation">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-7 lg:flex" aria-label="Primary navigation">
             {siteNavigation.map((item) => (
               <div key={item.label} className="group relative flex h-20 items-center">
                 {item.href ? (

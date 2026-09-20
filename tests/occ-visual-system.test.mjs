@@ -24,7 +24,7 @@ test("OCC global visual system keeps only title, subtitle and body font roles", 
   assert.match(layout, /occ-typography-system/)
 })
 
-test("OCC public site loads only Montserrat and Fraunces", () => {
+test("OCC public site loads only Cormorant Garamond and Inter", () => {
   const sourceFiles = [
     ...walkTextFiles("app"),
     ...walkTextFiles("components"),
@@ -35,8 +35,8 @@ test("OCC public site loads only Montserrat and Fraunces", () => {
   const fontImports = [...source.matchAll(/import\s*\{([^}]+)\}\s*from\s*["']next\/font\/(?:google|local)["']/g)]
 
   assert.equal(fontImports.length, 1, "public site should have exactly one next/font import")
-  assert.match(fontImports[0][1], /\bMontserrat\b/)
-  assert.match(fontImports[0][1], /\bFraunces\b/)
+  assert.match(fontImports[0][1], /\bInter\b/)
+  assert.match(fontImports[0][1], /\bCormorant_Garamond\b/)
   assert.doesNotMatch(source, /\b(?:Geist|Bebas|Barlow)\b/i)
 })
 
@@ -44,10 +44,10 @@ test("OCC typography maps every public text role to the two approved fonts", () 
   const layout = read("app/layout.tsx")
   const css = read("app/globals.css")
 
-  assert.match(layout, /--occ-font-title:\s*var\(--font-sans\)/)
+  assert.match(layout, /--occ-font-title:\s*var\(--font-display\)/)
   assert.match(layout, /--occ-font-subtitle:\s*var\(--font-sans\)/)
-  assert.match(layout, /--occ-font-body:\s*var\(--font-serif\)/)
-  assert.match(layout, /body[\s\S]*font-family:\s*var\(--occ-font-body\)/)
+  assert.match(layout, /--occ-font-body:\s*var\(--font-sans\)/)
+  assert.match(css, /body[\s\S]*font-family:\s*var\(--font-sans\)/)
   assert.match(css, /h1[\s\S]*font-family:\s*var\(--font-display\)/)
 })
 
@@ -162,8 +162,8 @@ test("approved About hero uses dedicated high-resolution route assets", () => {
 
   assert.match(about, /const heroImage = "\/about\/occ-about-green-hero\.webp"/)
   assert.match(about, /const whyOccImage = "\/about\/occ-about-intro\.webp"/)
-  assert.match(about, /title="One origin\. Cambodia\."/)
-  assert.match(about, /<InnerPageHero/)
+  assert.match(about, /aria-label="One origin\. Cambodia\."/)
+  assert.match(about, /One origin\.\s*<br \/>Cambodia\./)
   assert.match(about, /100% Cambodia Origin/)
 })
 

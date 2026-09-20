@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight, Building2, Gift, Handshake, Plane, Store } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { ogImage, siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
-import { InnerPageHero } from "@/components/site/inner-page-hero"
 
 export const metadata: Metadata = {
   title: "Cambodian Coffee Partnerships | OCC × ARUNERA",
@@ -33,7 +32,6 @@ export const metadata: Metadata = {
 const partnershipPaths = [
   {
     number: "01",
-    icon: Building2,
     label: "Brand & Gifting",
     description:
       "Work with OCC on Cambodian coffee gifts, hotel gifting, travel retail, corporate gifting and retail-ready product experiences.",
@@ -44,7 +42,6 @@ const partnershipPaths = [
   },
   {
     number: "02",
-    icon: Store,
     label: "Distribution Partners",
     description:
       "Bring Cambodia-origin coffee to your market as a distributor, importer, regional agent, retailer or hospitality partner.",
@@ -58,35 +55,30 @@ const partnershipPaths = [
 const partnerAudiences = [
   {
     number: "01",
-    icon: Building2,
     name: "Hotels & Hospitality",
     copy:
       "A first cup in a guest room, a thoughtful welcome gift or an item on a hotel retail shelf can introduce a visitor to Cambodian coffee. We discuss the guest, the moment and the coffee format before shaping a hospitality concept.",
   },
   {
     number: "02",
-    icon: Store,
     name: "Retail & Concept Stores",
     copy:
       "For shops and selected retailers looking for products with a clear sense of place, we explore coffee presentation, product information and the experience of discovering an origin that many customers have not yet encountered.",
   },
   {
     number: "03",
-    icon: Plane,
     name: "Travel & Tourism",
     copy:
       "Travel companies, destination businesses and cultural partners can make Cambodian coffee part of a visit, a welcome experience or a meaningful item to bring home, with the story of the coffee remaining connected to its origin.",
   },
   {
     number: "04",
-    icon: Gift,
     name: "Corporate Gifting",
     copy:
       "A company gift, conference welcome package or partner appreciation project can offer something more personal than a generic promotional product. We explore the audience, occasion, format and required presentation together.",
   },
   {
     number: "05",
-    icon: Handshake,
     name: "Brands & Product Collaborators",
     copy:
       "For creative teams and product partners, Cambodian coffee can be the starting point for a limited concept, a co-developed product or an origin-led campaign. Each project begins with the intended use and what can actually be delivered.",
@@ -166,37 +158,45 @@ export default function PartnershipsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(partnershipSchema) }} />
 
       <main className="bg-occ-background text-occ-primary">
-        <span className="sr-only">Cambodian Coffee Partnerships Built to Be Remembered</span>
-        <InnerPageHero
-          eyebrow="OCC · Partnerships"
-          title="Cambodian coffee, in good company."
-          summary="Build a gifting, hospitality, retail or distribution partnership with a clear audience and a real purpose."
-          image="/images/partnerships/occ-partnerships-origin-collaboration.webp"
-          imageAlt="Cambodian producer and coffee buyer evaluating ripe cherries together"
-          imageCaption="Origin-led collaboration · Cambodia"
-          actions={[{ href: "#partnership-paths", label: "Choose a path", direction: "down" }]}
-        />
+        <section className="border-b border-occ-primary/10 bg-occ-background">
+          <div className="mx-auto grid min-h-[640px] w-full max-w-[1240px] grid-cols-1 px-6 sm:px-8 md:grid-cols-[minmax(0,1.05fr)_minmax(360px,.95fr)] md:px-12 lg:px-16">
+            <div className="flex flex-col justify-center py-20 pr-0 md:py-24 md:pr-14 lg:pr-20">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-occ-burgundy">OCC · Partnerships</p>
+              <h1 className="mt-6 max-w-[690px] font-[var(--font-display)] text-[clamp(3.8rem,7vw,5.8rem)] font-normal leading-[0.92] tracking-[-0.04em]">
+                Cambodian coffee,<br />in good company.
+              </h1>
+              <p className="mt-7 max-w-[580px] font-[var(--font-display)] text-[clamp(1.45rem,2.4vw,2rem)] leading-[1.12] tracking-[-0.02em] text-occ-primary/78">Cambodian Coffee Partnerships Built to Be Remembered</p>
+              <p className="mt-8 max-w-[600px] text-[17px] leading-8 text-occ-secondary">
+                OCC works with selected partners to bring Cambodia-origin coffee into experiences, products and markets with a clear reason to exist.
+              </p>
+              <Link href="#partnership-paths" className="mt-9 inline-flex w-fit items-center gap-4 border-b border-occ-primary/55 pb-2 text-[10px] font-semibold uppercase tracking-[0.22em]">
+                Our approach <span aria-hidden="true">↓</span>
+              </Link>
+            </div>
+            <div className="relative min-h-[420px] overflow-hidden md:min-h-full">
+              <Image src="/images/partnerships/occ-partnerships-origin-collaboration.webp" alt="Cambodian producer and coffee buyer evaluating ripe cherries together" fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+            </div>
+          </div>
+        </section>
 
         <section id="partnership-paths" aria-label="Partnership pathways" className="mx-auto w-full max-w-[1240px] px-6 pb-20 pt-20 sm:px-8 md:px-12 lg:px-16 lg:pb-28 lg:pt-24">
           <div className="mb-10 border-b border-occ-primary/12 pb-7">
             <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,4.6rem)] font-normal leading-[0.96] tracking-[-0.035em]">Brand &amp; Gifting <span className="text-occ-burgundy">/</span> Distribution</h2>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-          {partnershipPaths.map((path, pathIndex) => {
-            const darkPath = pathIndex === 1
-            return (
-            <article key={path.href} className={`flex h-full flex-col ${darkPath ? "bg-occ-primary text-white" : "bg-occ-background"}`}>
+          {partnershipPaths.map((path) => (
+            <article key={path.href} className="flex h-full flex-col bg-occ-background">
               <div className="relative aspect-[4/3] overflow-hidden bg-occ-background">
                 <Image src={path.image} alt={path.imageAlt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
-              <div className={`flex flex-1 flex-col border-x border-b p-7 sm:p-9 lg:min-h-[340px] lg:p-10 ${darkPath ? "border-white/15 bg-occ-primary" : "border-occ-primary/12 bg-occ-background"}`}>
-                <p className={`flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] ${darkPath ? "text-white/55" : "text-occ-secondary"}`}><span>{path.number}</span><span className={`h-px w-8 ${darkPath ? "bg-white/40" : "bg-occ-secondary"}`} /></p>
+              <div className="flex flex-1 flex-col border-x border-b border-occ-primary/12 bg-occ-background p-7 sm:p-9 lg:min-h-[340px] lg:p-10">
+                <p className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-occ-secondary"><span>{path.number}</span><span className="h-px w-8 bg-occ-secondary" /></p>
                 <h2 className="mt-6 font-[var(--font-display)] text-[clamp(2.4rem,4.5vw,4.4rem)] font-normal leading-[0.9] tracking-[-0.045em]">{path.label}</h2>
-                <p className={`mt-6 max-w-md text-[17px] leading-8 ${darkPath ? "text-white/70" : "text-occ-primary/70"}`}>{path.description}</p>
-                <Link href={path.href} className={`occ-cta occ-cta--text mt-auto pt-8 ${darkPath ? "text-white" : "text-occ-primary"}`}>{path.action} <ArrowUpRight className="size-4" strokeWidth={1.8} /></Link>
+                <p className="mt-6 max-w-md text-[15px] leading-7 text-occ-primary">{path.description}</p>
+                <Link href={path.href} className="mt-auto inline-flex w-fit items-center gap-3 border-b border-occ-primary pt-8 pb-2 text-[10px] font-semibold uppercase tracking-[0.2em]">{path.action} <ArrowUpRight className="size-3" /></Link>
               </div>
             </article>
-          )})}
+          ))}
           </div>
         </section>
 
@@ -232,18 +232,13 @@ export default function PartnershipsPage() {
               </div>
             </div>
             <div className="mt-12 grid gap-px border border-black/10 bg-black/10 md:grid-cols-2 xl:grid-cols-3">
-              {partnerAudiences.map((partner) => {
-                const Icon = partner.icon
-                return (
+              {partnerAudiences.map((partner) => (
                 <article key={partner.number} className="bg-occ-background p-7 sm:p-9">
-                  <div className="flex items-center justify-between">
-                    <div className="flex size-12 items-center justify-center rounded-full border border-occ-primary/18 text-occ-burgundy"><Icon className="size-5" aria-hidden="true" strokeWidth={1.5} /></div>
-                    <p className="text-[10px] tracking-[0.2em] text-black/40">{partner.number}</p>
-                  </div>
+                  <p className="text-[10px] tracking-[0.2em] text-black/40">{partner.number}</p>
                   <h3 className="mt-6 font-[var(--font-display)] text-3xl leading-tight">{partner.name}</h3>
-                  <p className="mt-5 text-[17px] leading-8 text-black/65">{partner.copy}</p>
+                  <p className="mt-5 text-[15px] leading-7 text-black/65">{partner.copy}</p>
                 </article>
-              )})}
+              ))}
               <figure className="relative min-h-[330px] overflow-hidden bg-occ-primary md:min-h-[390px]" aria-label="Cambodian coffee partnership visual">
                 <Image src="/images/partnerships/occ-partnerships-roast.webp" alt="Roasted Cambodian coffee prepared for a partnership concept" fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
               </figure>
@@ -362,8 +357,8 @@ export default function PartnershipsPage() {
             <h2 className="mt-7 max-w-5xl font-[var(--font-display)] text-[clamp(3rem,6vw,6rem)] leading-[0.95] tracking-[-0.04em]">Bring an idea. Begin with Cambodia.</h2>
             <p className="mt-8 max-w-3xl text-lg leading-8 text-white/72">For hotels, retailers, travel businesses, corporate teams and brands interested in a meaningful Cambodian coffee experience, we would like to hear what you have in mind. Your next step is a conversation, not an obligation to commit.</p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="occ-cta border border-white bg-white text-occ-primary">Discuss a Partnership <ArrowUpRight className="size-4" strokeWidth={1.8} /></Link>
-              <Link href="/distribution" className="occ-cta border border-white/45 text-white hover:bg-white hover:text-occ-primary">Explore Distribution <ArrowUpRight className="size-4" strokeWidth={1.8} /></Link>
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary">Discuss a Partnership <ArrowUpRight className="size-4" /></Link>
+              <Link href="/distribution" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">Explore Distribution <ArrowUpRight className="size-4" /></Link>
             </div>
             <p className="mt-12 text-[12px] tracking-[0.12em] text-white/50">100% Cambodian coffee. True to its origin, unmistakably its own.</p>
           </div>

@@ -110,5 +110,5 @@ test("production source keeps approved pages and unified top navigation", () => 
   assert.match(header, /siteNavigation/)
   assert.match(mission, /title="OCC MISSION"/)
   assert.match(manifesto, /title="MANIFESTO"/)
-  assert.match(roasting, /title="Custom roasting, built for your market\."/)
+  assert.match(roasting, /title="CUSTOM ROASTING PROGRAM"/)
 })

@@ -12,8 +12,8 @@ test("About opens with OCC identity before services", () => {
   assert.match(source, /100% Cambodia-origin specialty coffee supplier/i)
   assert.match(source, /Fine Robusta specialist/i)
   assert.match(source, /small batches/i)
-  assert.match(source, /quality, roasting and commercial paths/i)
-  assert.match(source, /international markets/i)
+  assert.match(source, /origin, quality and roasting/i)
+  assert.match(source, /new markets/i)
 })
 
 test("About explains OCC differentiation in buyer-readable language", () => {
