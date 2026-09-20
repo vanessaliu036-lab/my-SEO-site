@@ -1,6 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Fraunces, Montserrat } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
@@ -8,18 +8,18 @@ import Script from "next/script";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
 import { pageAlternates } from "@/lib/seo";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const cormorant = Cormorant_Garamond({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-serif",
   display: "swap",
-  weight: ["300", "400", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
 });
 
@@ -69,14 +69,15 @@ const organizationId = `${siteUrl}/#organization`;
 
 const typographyCss = `
   :root {
-    --occ-font-title: var(--font-display);
+    --occ-font-title: var(--font-sans);
     --occ-font-subtitle: var(--font-sans);
-    --occ-font-body: var(--font-sans);
+    --occ-font-body: var(--font-serif);
+    --font-display: var(--font-sans);
   }
 
   html,
   body {
-    font-family: var(--occ-font-body), system-ui, sans-serif !important;
+    font-family: var(--occ-font-body), Georgia, serif !important;
   }
 
   body,
@@ -100,7 +101,7 @@ const typographyCss = `
   textarea,
   select,
   option {
-    font-family: var(--occ-font-body), system-ui, sans-serif !important;
+    font-family: var(--occ-font-body), Georgia, serif !important;
   }
 
   h1,
@@ -110,7 +111,7 @@ const typographyCss = `
   h5,
   h6,
   [data-occ-type="title"] {
-    font-family: var(--occ-font-title), Georgia, serif !important;
+    font-family: var(--occ-font-title), Arial, sans-serif !important;
     font-style: normal !important;
     font-feature-settings: "liga" 1, "kern" 1;
     text-rendering: optimizeLegibility;
@@ -119,14 +120,14 @@ const typographyCss = `
   h1,
   h2,
   [data-occ-type="title"] {
-    font-weight: 300 !important;
+    font-weight: 600 !important;
   }
 
   h3,
   h4,
   h5,
   h6 {
-    font-weight: 400 !important;
+    font-weight: 600 !important;
   }
 
   nav,
@@ -148,7 +149,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={htmlLang} data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang={htmlLang} data-scroll-behavior="smooth" className={`${montserrat.variable} ${fraunces.variable}`}>
       <head>
         <style id="occ-typography-system">{typographyCss}</style>
       </head>

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { ArrowDown, ArrowUpRight } from "lucide-react"
 import "./occ-commercial-html-layout.css"
 
 type Photo = { src: string; alt: string }
@@ -45,8 +46,8 @@ export function OccCommercialHtmlLayout({
             <span className="eyebrow">{eyebrow}</span>
             <h1>{title}</h1>
             <p className="lead">{lead}</p>
-            <p className="desc">{description}</p>
-            <a href={heroCtaHref} className="pill-btn">{heroCtaLabel} <span aria-hidden="true">→</span></a>
+            <p className="sr-only desc">{description}</p>
+            <a href={heroCtaHref} className="pill-btn">{heroCtaLabel} <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} /></a>
           </div>
           <div className="hero-visual">
             <img src={heroImage.src} alt={heroImage.alt} />
@@ -60,7 +61,7 @@ export function OccCommercialHtmlLayout({
           <div className="info-panel">
             <h2>{splitTitle}</h2>
             <p className="section-copy">{splitDescription}</p>
-            <a href={splitCtaHref} className="pill-btn">{splitCtaLabel} <span aria-hidden="true">→</span></a>
+            <a href={splitCtaHref} className="pill-btn">{splitCtaLabel} <ArrowDown aria-hidden="true" size={16} strokeWidth={1.8} /></a>
           </div>
         </section>
         <div className="divider" />
@@ -80,7 +81,7 @@ export function OccCommercialHtmlLayout({
             <span className="eyebrow">{ctaEyebrow}</span>
             <h3>{ctaTitle}</h3>
           </div>
-          <a href={ctaHref} className="cta-btn">{ctaLabel} <span aria-hidden="true">→</span></a>
+          <a href={ctaHref} className="cta-btn">{ctaLabel} <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} /></a>
         </section>
       </div>
     </div>

@@ -62,8 +62,8 @@ test("solutions hub aligns with the three current commercial paths without unsup
     assert.doesNotMatch(combined, pattern, `solutions hub contains unsupported phrase ${pattern}`)
   }
   for (const pattern of [/B2B/i, /sourcing/i, /enquir|marketing/i, /evidence-led/i, /Ready-to-Sell/i, /Made-for-You/i, /Cambodian Market/i, /pageAlternates\("\/solutions"\)/, /"@type": "CollectionPage"/]) assert.match(indexPage, pattern)
-  assert.match(indexTemplate, /From Origin to <em>Opportunity\.<\/em>/)
-  assert.match(indexTemplate, /origin-led coffee solutions from Cambodia/i)
+  assert.match(indexTemplate, /Choose the path that fits your market\./)
+  assert.match(indexTemplate, /Source an OCC-developed coffee, build a custom roast/i)
   assert.match(indexTemplate, /Wholesale Coffee Guide/)
   assert.doesNotMatch(indexTemplate, /Staffing/i)
   assert.match(detailTemplate, /Coffee Authority &amp; B2B Solutions/)

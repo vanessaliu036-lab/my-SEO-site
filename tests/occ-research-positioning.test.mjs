@@ -196,5 +196,5 @@ test('About hero removes the coffee-bag visual and keeps the approved identity c
   assert.doesNotMatch(aboutEditorialTemplate, /CoffeeBagVisual/)
   assert.doesNotMatch(aboutEditorialTemplate, /[\u3400-\u9fff]/)
   assert.match(aboutEditorialTemplate, /One origin\. Cambodia\./)
-  assert.match(aboutEditorialTemplate, /OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist\./)
+  assert.match(aboutEditorialTemplate, /100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist\./)
 })

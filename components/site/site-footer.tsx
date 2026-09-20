@@ -3,7 +3,7 @@ import { siteNavigation } from "@/components/site/navigation-data"
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-occ-primary/10 bg-occ-background text-occ-primary">
+    <footer className="border-t border-occ-primary/10 bg-occ-background font-sans text-occ-primary">
       <div className="mx-auto w-full max-w-[1360px] px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-12">
         <div className="grid gap-10 border-b border-occ-primary/12 pb-10 lg:grid-cols-[0.9fr_2.1fr] lg:gap-12 lg:pb-8">
           <div className="max-w-md">
@@ -34,7 +34,7 @@ export function SiteFooter() {
           </div>
 
           <nav
-            className="grid grid-cols-1 border-t border-occ-primary/12 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid grid-cols-1 border-t border-occ-primary/12 font-sans sm:grid-cols-2 lg:grid-cols-4"
             aria-label="Footer navigation"
           >
             {siteNavigation.map((item, index) => (

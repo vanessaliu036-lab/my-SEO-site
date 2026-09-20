@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, BadgeCheck, Boxes, Coffee, FileCheck2, MapPin } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
+import { InnerPageHero } from "@/components/site/inner-page-hero"
 
 type AboutSection = {
   title: string
@@ -20,22 +21,27 @@ const whyOccImage = "/about/occ-about-intro.webp"
 
 const differences = [
   {
+    icon: MapPin,
     title: "One origin",
     copy: "Every OCC coffee starts in Cambodia. Origin is the product foundation, not a label added later.",
   },
   {
+    icon: Boxes,
     title: "Small batches",
     copy: "We prefer smaller, clearer batches over volume that weakens quality or origin identity.",
   },
   {
+    icon: FileCheck2,
     title: "Origin clarity",
     copy: "Country, region, producer, process, and lot claims become more specific only when the evidence does.",
   },
   {
+    icon: BadgeCheck,
     title: "Quality focus",
     copy: "We evaluate processing, physical condition, sensory performance, roast application, and consistency.",
   },
   {
+    icon: Coffee,
     title: "Cambodian Fine Robusta expertise",
     copy: "Fine Robusta is our specialist wedge: canephora evaluated as a quality category, not a commodity stereotype.",
   },
@@ -95,46 +101,17 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
 
   return (
     <div className="bg-occ-background text-occ-primary">
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-occ-primary text-occ-background lg:min-h-[700px]">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-          role="img"
-          aria-label="Cambodian coffee at origin"
-        />
-        <div className="absolute inset-0 bg-occ-primary/30" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-occ-primary/8 via-occ-primary/18 to-occ-primary/78" aria-hidden="true" />
-
-        <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1180px] items-center justify-center px-6 pb-16 pt-28 text-center sm:px-8 lg:min-h-[700px] lg:px-12">
-          <motion.div {...reveal(24)} className="mx-auto w-full max-w-[860px]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.38em] text-white/70">
-              Who We Are · Origin Coffee Cambodia
-            </p>
-            <h1
-              aria-label="One origin. Cambodia."
-              className="mx-auto mt-7 max-w-[820px] font-[var(--font-display)] text-[clamp(3.6rem,6vw,6rem)] font-normal leading-[0.92] tracking-[-0.04em] text-white"
-            >
-              One origin.
-              <br />Cambodia.
-            </h1>
-            <p className="mx-auto mt-8 max-w-[660px] text-[clamp(1.12rem,1.5vw,1.45rem)] font-medium leading-[1.34] tracking-[-0.02em] text-white">
-              OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist.
-            </p>
-            <p className="mx-auto mt-6 max-w-[620px] text-sm leading-7 text-white/76 sm:text-[15px]">
-              We work with Cambodian coffee in small batches, connecting origin, quality and roasting with the people and businesses bringing Cambodian coffee to new markets.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
-              <Link
-                href="#why-occ"
-                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-occ-primary/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-occ-primary"
-              >
-                Why OCC <ArrowUpRight className="size-3" />
-              </Link>
-              <span className="text-[9px] uppercase tracking-[0.22em] text-white/54">100% Cambodia Origin</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <span hidden aria-label="One origin. Cambodia." />
+      <InnerPageHero
+        eyebrow="About OCC"
+        title="One origin. Cambodia."
+        summary="100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist. Connecting quality, roasting and commercial paths."
+        image={heroImage}
+        imageAlt="Cambodian coffee at origin"
+        imageCaption="100% Cambodia Origin · Fine Robusta expertise"
+        tone="forest"
+        actions={[{ href: "#why-occ", label: "Why OCC", direction: "down" }]}
+      />
 
       <section id="why-occ" className="relative overflow-hidden bg-occ-primary text-occ-background">
         <div data-about-ghost="origin" aria-hidden="true" className="pointer-events-none absolute -left-6 top-16 font-[var(--font-display)] text-[clamp(5rem,10vw,8rem)] font-semibold leading-none tracking-[-0.05em] text-white/[0.07]">
@@ -181,11 +158,14 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
               <motion.div
                 key={item.title}
                 {...reveal(22)}
-                className={`py-7 sm:px-6 xl:px-5 ${index > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""} ${index === 2 ? "sm:border-l-0 xl:border-l" : ""} ${index >= 2 ? "sm:border-t xl:border-t-0" : ""}`}
+                className={`py-8 sm:px-6 xl:px-5 ${index > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""} ${index === 2 ? "sm:border-l-0 xl:border-l" : ""} ${index >= 2 ? "sm:border-t xl:border-t-0" : ""}`}
               >
-                <p className="text-[9px] tracking-[0.2em] text-white/34">0{index + 1}</p>
-                <h3 className="mt-4 text-sm font-semibold leading-5 text-white">{item.title}</h3>
-                <p className="mt-3 max-w-[260px] text-[12px] leading-[1.65] text-white/58">{item.copy}</p>
+                <div className="flex items-center justify-between text-white/55">
+                  <item.icon aria-hidden="true" className="size-5" strokeWidth={1.6} />
+                  <span className="text-[10px] tracking-[0.2em]">0{index + 1}</span>
+                </div>
+                <h3 className="mt-5 text-base font-semibold leading-6 text-white">{item.title}</h3>
+                <p className="mt-3 max-w-[270px] text-[15px] leading-7 text-white/68">{item.copy}</p>
               </motion.div>
             ))}
           </div>
@@ -338,14 +318,11 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
                   </p>
                 </div>
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary transition-transform duration-200 hover:-translate-y-0.5">
-                    Discuss Supply <ArrowUpRight className="size-3" />
+                  <Link href="/contact" className="occ-cta border border-white bg-white text-occ-primary">
+                    Start a conversation <ArrowUpRight className="size-4" />
                   </Link>
-                  <Link href="/solutions/roasting-program" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
-                    Develop a Roast <ArrowUpRight className="size-3" />
-                  </Link>
-                  <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
-                    Contact OCC <ArrowUpRight className="size-3" />
+                  <Link href="/solutions" className="occ-cta border border-white/45 text-white hover:border-white hover:bg-white hover:text-occ-primary">
+                    Explore solutions <ArrowUpRight className="size-4" />
                   </Link>
                 </div>
               </div>

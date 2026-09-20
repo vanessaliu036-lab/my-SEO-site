@@ -35,7 +35,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           </button>
         </div>
 
-        <nav className="py-8" aria-label="Mobile navigation">
+        <nav className="py-8 font-sans" aria-label="Mobile navigation">
           {siteNavigation.map((item, index) => (
             <div key={item.label} className="border-b border-black/10 py-5">
               <div className="flex items-baseline justify-between gap-4">
@@ -43,12 +43,12 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="font-[var(--font-display)] text-3xl leading-none tracking-[-0.035em]"
+                    className="font-sans text-3xl leading-none tracking-[-0.035em]"
                   >
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="font-[var(--font-display)] text-3xl leading-none tracking-[-0.035em]">
+                  <span className="font-sans text-3xl leading-none tracking-[-0.035em]">
                     {item.label}
                   </span>
                 )}
@@ -63,7 +63,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="text-[11px] uppercase tracking-[0.12em] text-black/55"
+                      className="font-sans text-[11px] uppercase tracking-[0.12em] text-black/55"
                     >
                       {child.label}
                     </Link>

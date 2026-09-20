@@ -15,6 +15,7 @@ type CtaConfig = {
 }
 
 const excludedPaths = new Set(["/contact", "/distribution", "/partnerships"])
+const excludedPrefixes = ["/solutions", "/about", "/origins"]
 
 function getCta(pathname: string): CtaConfig {
   if (pathname === "/" || pathname === "") {
@@ -91,40 +92,38 @@ function getCta(pathname: string): CtaConfig {
 export function SiteFinalCta() {
   const pathname = usePathname() || "/"
 
-  if (excludedPaths.has(pathname)) return null
+  if (excludedPaths.has(pathname) || excludedPrefixes.some((prefix) => pathname.startsWith(prefix))) return null
 
   const cta = getCta(pathname)
 
   return (
-    <section className="border-y border-occ-primary/10 bg-occ-surface text-occ-primary" aria-label="Work with Origin Coffee Cambodia">
-      <div className="mx-auto w-full max-w-[1240px] px-6 py-14 sm:px-8 md:px-12 lg:px-16 lg:py-16">
-        <div className="grid overflow-hidden border border-occ-primary/12 bg-occ-background md:grid-cols-[minmax(0,1.35fr)_minmax(280px,.65fr)]">
-          <div className="px-7 py-9 sm:px-10 lg:px-12 lg:py-11">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">{cta.eyebrow}</p>
-            <h2 className="mt-5 max-w-[760px] font-[var(--font-display)] text-[clamp(2.25rem,4.2vw,4.25rem)] font-normal leading-[0.96] tracking-[-0.035em] text-occ-primary">
+    <section className="border-y border-white/10 bg-occ-primary text-white" aria-label="Work with Origin Coffee Cambodia">
+      <div className="mx-auto grid w-full max-w-[1240px] gap-10 px-6 py-16 sm:px-8 md:px-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end lg:px-16 lg:py-20">
+          <div>
+            <p className="occ-section-label text-white/60">{cta.eyebrow}</p>
+            <h2 className="mt-5 max-w-[760px] text-[clamp(2.35rem,4.2vw,4.25rem)] text-white">
               {cta.title}
             </h2>
           </div>
-          <div className="flex flex-col justify-between border-t border-occ-primary/12 px-7 py-8 sm:px-10 md:border-l md:border-t-0 lg:py-10">
-            <p className="max-w-[520px] text-[15px] leading-7 text-occ-secondary">{cta.copy}</p>
+          <div className="lg:border-l lg:border-white/20 lg:pl-10">
+            <p className="max-w-[520px] text-lg text-white/70">{cta.copy}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href={cta.primaryHref}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-occ-burgundy px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-white transition duration-150 hover:-translate-y-0.5 hover:bg-occ-primary"
+                className="occ-cta border border-white bg-white text-occ-primary"
               >
-                {cta.primaryLabel} <ArrowUpRight className="size-3" />
+                {cta.primaryLabel} <ArrowUpRight className="size-4" strokeWidth={1.8} />
               </Link>
               {cta.secondaryHref && cta.secondaryLabel ? (
                 <Link
                   href={cta.secondaryHref}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-occ-primary/28 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary transition duration-150 hover:border-occ-primary hover:bg-occ-primary hover:text-white"
+                  className="occ-cta border border-white/45 text-white hover:border-white hover:bg-white hover:text-occ-primary"
                 >
-                  {cta.secondaryLabel} <ArrowUpRight className="size-3" />
+                  {cta.secondaryLabel} <ArrowUpRight className="size-4" strokeWidth={1.8} />
                 </Link>
               ) : null}
             </div>
           </div>
-        </div>
       </div>
     </section>
   )

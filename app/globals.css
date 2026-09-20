@@ -96,8 +96,8 @@
   }
   body {
     @apply text-foreground;
-    font-family: var(--font-sans), system-ui, sans-serif;
-    font-size: 16px;
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: 17px;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: 0;
@@ -130,27 +130,27 @@
   }
 
   h1 {
-    font-family: var(--font-display), Georgia, serif;
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
     text-wrap: balance;
     overflow-wrap: anywhere;
   }
 
   h2 {
-    font-family: var(--font-display), Georgia, serif;
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
     text-wrap: balance;
   }
 
   h3 {
-    font-family: var(--font-display), Georgia, serif;
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
   }
 
   nav, label {
@@ -159,8 +159,8 @@
   }
 
   p {
-    font-family: var(--font-sans), system-ui, sans-serif;
-    line-height: 1.75;
+    font-family: var(--font-serif), Georgia, serif;
+    line-height: 1.82;
   }
 }
 
@@ -423,6 +423,218 @@
 
 .occ-site-main p {
   text-wrap: pretty;
+}
+
+/* Shared inner-page grammar: one clear message, one image, one next action. */
+.occ-inner-hero {
+  border-bottom: 1px solid var(--occ-line);
+}
+
+.occ-inner-hero--paper {
+  background: var(--occ-surface-soft);
+  color: var(--occ-ink);
+}
+
+.occ-inner-hero--forest {
+  background: var(--occ-forest);
+  color: var(--occ-ivory);
+}
+
+.occ-inner-hero__grid {
+  display: grid;
+  width: min(100%, var(--occ-wide));
+  min-height: min(660px, calc(100dvh - 72px));
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr);
+}
+
+.occ-inner-hero__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(4.5rem, 8vw, 7.5rem) clamp(2rem, 6vw, 6rem);
+}
+
+.occ-inner-hero__eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--occ-burgundy);
+  font-family: var(--font-sans), Arial, sans-serif !important;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.occ-inner-hero--forest .occ-inner-hero__eyebrow {
+  color: var(--occ-brand-surface);
+}
+
+.occ-inner-hero h1 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(3rem, 5.3vw, 5.4rem);
+  line-height: .96 !important;
+  overflow-wrap: normal;
+}
+
+.occ-inner-hero__summary {
+  max-width: 35rem;
+  margin: 2rem 0 0;
+  color: color-mix(in srgb, currentColor 72%, transparent);
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  line-height: 1.65 !important;
+}
+
+.occ-inner-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 2.25rem;
+}
+
+.occ-inner-hero__action {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: .8rem 1.1rem .8rem 1.25rem;
+  font-family: var(--font-sans), Arial, sans-serif !important;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: transform 220ms var(--occ-ease), background-color 220ms var(--occ-ease), color 220ms var(--occ-ease);
+}
+
+.occ-inner-hero__action--primary {
+  border-color: var(--occ-ink);
+  background: var(--occ-ink);
+  color: var(--occ-ivory);
+}
+
+.occ-inner-hero--forest .occ-inner-hero__action--primary {
+  border-color: var(--occ-ivory);
+  background: var(--occ-ivory);
+  color: var(--occ-ink);
+}
+
+.occ-inner-hero__action:hover {
+  transform: translateY(-2px);
+}
+
+.occ-section-label {
+  margin: 0;
+  color: var(--occ-burgundy);
+  font-family: var(--font-sans), Arial, sans-serif !important;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  line-height: 1.4 !important;
+  text-transform: uppercase;
+}
+
+.occ-cta {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  border-radius: 999px;
+  padding: .8rem 1.15rem .8rem 1.3rem;
+  font-family: var(--font-sans), Arial, sans-serif !important;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform 220ms var(--occ-ease), background-color 220ms var(--occ-ease), color 220ms var(--occ-ease), border-color 220ms var(--occ-ease);
+}
+
+.occ-cta:hover {
+  transform: translateY(-2px);
+}
+
+.occ-cta--primary {
+  border: 1px solid var(--occ-ink);
+  background: var(--occ-ink);
+  color: var(--occ-ivory);
+}
+
+.occ-cta--secondary {
+  border: 1px solid color-mix(in srgb, var(--occ-ink) 32%, transparent);
+  color: var(--occ-ink);
+}
+
+.occ-cta--secondary:hover {
+  border-color: var(--occ-ink);
+  background: var(--occ-ink);
+  color: var(--occ-ivory);
+}
+
+.occ-cta--text {
+  min-height: 36px;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  padding: 0 0 .35rem;
+}
+
+.occ-inner-hero__visual {
+  position: relative;
+  min-height: 480px;
+  margin: 0;
+  overflow: hidden;
+  background: var(--occ-surface);
+}
+
+.occ-inner-hero__visual::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(24, 32, 25, .48));
+  content: "";
+  pointer-events: none;
+}
+
+.occ-inner-hero__visual figcaption {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.4rem;
+  left: 1.5rem;
+  z-index: 1;
+  border-top: 1px solid color-mix(in srgb, var(--occ-ivory) 50%, transparent);
+  padding-top: .85rem;
+  color: white;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 899px) {
+  .occ-inner-hero__grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .occ-inner-hero__copy {
+    padding: 4rem 1.5rem 3.5rem;
+  }
+
+  .occ-inner-hero h1 {
+    font-size: clamp(2.7rem, 12vw, 4.4rem);
+  }
+
+  .occ-inner-hero__visual {
+    min-height: 62vw;
+  }
 }
 
 /* OCC motion identity: calm, editorial and useful. */

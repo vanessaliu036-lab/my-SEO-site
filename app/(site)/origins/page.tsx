@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { InnerPageHero } from "@/components/site/inner-page-hero"
 import { pageAlternates } from "@/lib/seo"
 import { siteUrl } from "@/lib/siteConfig"
 import "./origins-v2.css"
@@ -53,16 +54,21 @@ const originFramework = [
 export default function OriginsPage() {
   return (
     <div className="occ-origins-v2">
-      <section className="originHero" aria-labelledby="origin-title">
-        <img src="/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg" alt="Coffee farmers walking through a Cambodian coffee landscape" className="originHeroImage" />
-        <div className="originWrap originHeroCopy">
-          <div className="originEyebrow originEyebrowLight">ORIGINS · CAMBODIA</div>
-          <h1 id="origin-title">Coffee with<br />a place behind it.</h1>
-          <p>Origin Coffee Cambodia begins with coffee grown in Cambodia, with particular attention to Mondulkiri and the potential of Fine Robusta.</p>
-        </div>
-      </section>
+      <InnerPageHero
+        eyebrow="Origins · Cambodia"
+        title="Coffee with a place behind it."
+        summary="Follow Cambodian coffee from landscape and harvest to process, evaluation and the final cup."
+        image="/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg"
+        imageAlt="Coffee farmers walking through a Cambodian coffee landscape"
+        imageCaption="Cambodia · Mondulkiri · Fine Robusta"
+        tone="forest"
+        actions={[
+          { href: "#origin-story", label: "Explore the origin", direction: "down" },
+          { href: "/fine-robusta-cambodia", label: "Fine Robusta", kind: "secondary" },
+        ]}
+      />
 
-      <section className="originSection" aria-labelledby="origin-why-title">
+      <section id="origin-story" className="originSection" aria-labelledby="origin-why-title">
         <div className="originWrap">
           <div className="originIntro">
             <div>
@@ -107,8 +113,8 @@ export default function OriginsPage() {
             <p>From region to farm, harvest to processing, evaluation to roasting — every step adds context to the final cup.</p>
             <div className="originPath" aria-label="Region to cup journey">Region <span>→</span> Farm <span>→</span> Harvest <span>→</span> Processing <span>→</span> Evaluation <span>→</span> Roasting <span>→</span> Cup</div>
             <div className="originButtons">
-              <Link href="/origins/single-origin" className="originButton">Explore single-origin coffees</Link>
-              <Link href="/solutions/wholesale" className="originButton originButtonDark">Discuss wholesale supply</Link>
+              <Link href="/origins/single-origin" className="occ-cta occ-cta--secondary">Explore single-origin coffees</Link>
+              <Link href="/solutions/wholesale" className="occ-cta occ-cta--primary">Discuss wholesale supply</Link>
             </div>
           </div>
           <div className="originFinalVisual"><img src="/media/coffee-dispatch-sealed-bags-phnom-penh.jpg" alt="Prepared Cambodian coffee moving from origin toward buyers" loading="lazy" /></div>

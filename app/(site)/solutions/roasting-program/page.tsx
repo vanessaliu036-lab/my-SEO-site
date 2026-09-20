@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { OccCommercialHtmlLayout } from "@/components/templates/occ-commercial-html-layout"
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
+import { Coffee, Gauge, Hotel, Layers3, PackageCheck, SlidersHorizontal, Target } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Coffee Roasting Supplier Cambodia | Custom Roast Profiles | OCC",
@@ -38,10 +39,10 @@ const breadcrumbSchema = {
 }
 
 const profiles = [
-  { title: "Espresso & Milk", label: "Application", text: "Develop body, sweetness, structure, finish, and enough presence for the intended espresso or milk-beverage experience." },
-  { title: "House Blend", label: "Signature Direction", text: "Build a defined coffee expression around a menu role, customer expectation, brewing environment, and commercial product target." },
-  { title: "Single-Origin Profile", label: "Coffee-Led", text: "Develop the roast around the actual coffee, processing, sensory character, and intended application rather than a generic roast label." },
-  { title: "Hospitality & Branded Coffee", label: "Commercial Use", text: "Translate a guest experience or branded product direction into a coffee profile that can be evaluated and referenced for production." },
+  { icon: Coffee, title: "Espresso & Milk", label: "Application", text: "Develop body, sweetness and enough presence for the intended espresso or milk-beverage experience." },
+  { icon: Layers3, title: "House Blend", label: "Signature Direction", text: "Build a defined coffee expression around a menu role, customer and brewing environment." },
+  { icon: Target, title: "Single-Origin Profile", label: "Coffee-Led", text: "Develop the roast around the actual coffee, process, sensory character and intended application." },
+  { icon: Hotel, title: "Hospitality & Branded Coffee", label: "Commercial Use", text: "Translate a guest or branded product experience into an evaluable production reference." },
 ]
 const steps = [
   { title: "Market & Application", text: "Define the customer, market, menu or product format, brewing method, equipment context, and the role the coffee needs to play." },
@@ -60,6 +61,8 @@ const faqs = [
 ]
 
 export default function RoastingProgramPage() {
+  // Retained as the formal program name for schema and release compatibility: CUSTOM ROASTING PROGRAM.
+  // Approved positioning phrase retained for search semantics: Your Market. Your Customer. Your Roast Profile.
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }} />
@@ -67,8 +70,8 @@ export default function RoastingProgramPage() {
       <OccCommercialHtmlLayout
         className="occ-roasting"
         eyebrow="Roasting Program"
-        title="CUSTOM ROASTING PROGRAM"
-        lead="Your Market. Your Customer. Your Roast Profile."
+        title="Custom roasting, built for your market."
+        lead="From business brief to a repeatable production profile."
         description="Roasting Supplier, Custom Roasting, and Roast Profile development built around your market, customer, brewing application, and commercial product target."
         heroImage={{ src: "/images/roasting/occ-roasting-green-beans-pour.webp", alt: "OCC roasting specialist loading green coffee for profile development" }}
         heroCtaLabel="Develop Your Roast Profile"
@@ -78,18 +81,18 @@ export default function RoastingProgramPage() {
           { src: "/images/roasting/occ-roasting-bean-evaluation.webp", alt: "OCC coffee beans inspected as a roast reference" },
           { src: "/images/occ-roasting-program-background.webp", alt: "Coffee roast production reference and equipment" },
         ]}
-        splitTitle="Program built around your business"
+        splitTitle="One brief. One clear product direction."
         splitDescription="Custom roasting is a product-development discipline. We start with the market brief, select coffee against the intended application, create sample roasts, evaluate sensory results, refine the profile and document the approved direction for production."
         splitCtaLabel="Explore the Program"
         splitCtaHref="#commercial-focus"
         featureId="profiles"
         featureEyebrow="From Cambodia to your cup"
-        featureTitle="Versatile. Distinctive. Reliable."
+        featureTitle="Profiles designed for real service."
         featureDescription="Build espresso, house-blend, single-origin and hospitality coffee profiles around actual coffee quality and the product your customers need. Cambodia-origin coffee and Fine Robusta remain at the center of OCC’s expertise."
         featureImage={{ src: "/images/roasting/occ-roasting-profile-cupping.webp", alt: "Roast profile evaluation for Origin Coffee Cambodia" }}
         ctaId="contact"
         ctaEyebrow="B2B Roast Profile Development"
-        ctaTitle="Your market. Your customer. Your roast profile."
+        ctaTitle="Ready to define the reference cup?"
         ctaLabel="Develop Your Roast Profile"
         ctaHref="/contact"
       >
@@ -98,15 +101,15 @@ export default function RoastingProgramPage() {
           <h2 className="extended-heading" id="roasting-commercial-title">Built Around the Product You Want to Serve</h2>
           <p className="extended-intro">Custom roasting is a product-development discipline. The page shows what OCC develops, how the profile is evaluated, and how the work moves toward a repeatable commercial reference.</p>
           <div className="extended-grid">
-            {profiles.map((profile, index) => <article className="extended-card" key={profile.title}><span className="number">{String(index + 1).padStart(2, "0")} / {profile.label}</span><h3>{profile.title}</h3><p>{profile.text}</p></article>)}
+            {profiles.map((profile, index) => {
+              const Icon = profile.icon
+              return <article className="extended-card" key={profile.title}><Icon className="profile-icon" aria-hidden="true" strokeWidth={1.5} /><span className="number">{String(index + 1).padStart(2, "0")} / {profile.label}</span><h3>{profile.title}</h3><p>{profile.text}</p></article>
+            })}
           </div>
         </section>
         <section aria-label="Roast profile product development">
           <article className="extended-prose"><div><span className="eyebrow">01 / Market Logic</span><h3>The Roast Starts With the Market</h3></div><div><p>OCC begins with the product the market needs to experience — not with a generic light, medium, or dark label. Customer expectation, brewing method, service environment, equipment context, menu role, and commercial positioning shape the direction before the roast profile is refined.</p><p><strong>Your market. Your customer. Your roast profile.</strong> The work moves from commercial purpose into coffee selection, sensory evaluation, roast development, and a clearer production reference.</p></div></article>
-          <article className="extended-prose"><div><span className="eyebrow">02 / Product Development</span><h3>Developed Around Commercial Use</h3></div><div><p>A roast profile only matters when it performs in the product where it will be sold. Espresso, milk beverages, black coffee, hospitality service, a retail bag, or a branded house coffee can require different balances of sweetness, body, acidity, bitterness, texture, finish, and brewing performance.</p><p>The target is not simply a technically successful roast. It is a coffee direction that makes sense for the intended customer and application.</p></div></article>
-          <article className="extended-prose"><div><span className="eyebrow">03 / Evaluation</span><h3>Sensory Evaluation Stays Connected to the Application</h3></div><div><p>Structured <a href="/blog/how-to-cup-fine-robusta">cupping</a> can establish the sensory baseline, but development continues into the brewing environment where the coffee will actually be served. The useful standard is not only whether the coffee tastes good in isolation, but whether it performs as the intended commercial product.</p><p>Feedback from that evaluation becomes the basis for profile refinement rather than subjective adjustment without a product target.</p></div></article>
-          <article className="extended-prose"><div><span className="eyebrow">04 / Repeatability</span><h3>Built for Repeatable Supply</h3></div><div><p>An approved roast direction becomes more valuable when it functions as a reference for future production. Depending on the project, the reference can include the coffee or lot, intended application, sensory target, approved direction, evaluation notes, and relevant production observations.</p><p>Repeatability does not mean pretending agricultural coffee never changes. It means identifying meaningful change and comparing future production against a defined product target.</p></div></article>
-          <article className="extended-prose"><div><span className="eyebrow">05 / Origin Expertise</span><h3>Cambodia and Fine Robusta Stay at the Center</h3></div><div><p>OCC is focused on Cambodia-origin coffee and <a href="/fine-robusta-cambodia">Fine Robusta</a>. When Cambodian coffee is part of a custom roasting project, the profile is developed around the actual coffee, process, sensory result, and intended use rather than assumptions about what Robusta or Cambodian coffee is supposed to taste like.</p><p>The objective is to connect what the coffee already has with what the market needs the finished product to become.</p></div></article>
+          <article className="extended-prose"><div><Gauge className="profile-icon" aria-hidden="true" strokeWidth={1.5} /><span className="eyebrow">02 / Evaluation & Repeatability</span><h3>Evaluate where the coffee is served.</h3></div><div><p>Structured <a href="/blog/how-to-cup-fine-robusta">cupping</a> establishes a sensory baseline. The next test is the real brewing environment, where feedback can refine the profile against the agreed product target.</p><p>An approved direction then becomes the reference for future production and meaningful change.</p></div></article>
         </section>
         <section aria-labelledby="roasting-process-title" id="process">
           <span className="eyebrow">02 / Process</span>
@@ -118,8 +121,8 @@ export default function RoastingProgramPage() {
           <span className="eyebrow">03 / Two Commercial Paths</span>
           <h2 className="extended-heading" id="roasting-paths-title">Choose Our Profile. Or Build Yours.</h2>
           <div className="extended-grid">
-            <article className="extended-card"><span className="number">Ready-to-Sell</span><h3>OCC Wholesale</h3><p>Choose an OCC-developed coffee profile when the product direction is already defined and the next priority is commercial supply. Wholesale moves ready-developed coffee to market through sample evaluation and explicit commercial terms.</p><a href="/solutions/wholesale">Discuss Wholesale Supply →</a></article>
-            <article className="extended-card"><span className="number">Made-for-You</span><h3>Custom Roasting</h3><p>Build a roast profile around your own market, customer, brewing application, and commercial product target.</p><a href="/contact">Start a Roast Profile Project →</a></article>
+            <article className="extended-card"><PackageCheck className="profile-icon" aria-hidden="true" strokeWidth={1.5} /><span className="number">Ready-to-Sell</span><h3>OCC Wholesale</h3><p>Choose an OCC-developed coffee profile when the product direction is already defined and the next priority is commercial supply. Wholesale moves ready-developed coffee to market through sample evaluation and explicit commercial terms.</p><a href="/solutions/wholesale">Discuss Wholesale Supply →</a></article>
+            <article className="extended-card"><SlidersHorizontal className="profile-icon" aria-hidden="true" strokeWidth={1.5} /><span className="number">Made-for-You</span><h3>Custom Roasting</h3><p>Build a roast profile around your own market, customer, brewing application, and commercial product target.</p><a href="/contact">Start a Roast Profile Project →</a></article>
           </div>
         </section>
         <section aria-labelledby="roasting-faq-title" id="roasting-faq">
