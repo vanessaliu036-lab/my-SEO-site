@@ -14,7 +14,7 @@ Automated checks were added for pull requests and the main branch: CodeQL, Gitle
 
 The audit also confirmed a password hash in public Git history from a removed client-side admin gate. The value is intentionally omitted here. It is unknown whether the associated password was ever active or reused; the owner should rotate it immediately anywhere it may still be used. Removing the old file did not remove the historical commit.
 
-This report does not claim that the system is absolutely secure. Airtable rows, Vercel production environment values, production deployment SHA, and production behavior were not inspected. ZAP could not run locally because the Docker daemon was unavailable; the scheduled GitHub workflow will provide future passive scans after integration.
+This report does not claim that the system is absolutely secure. Airtable rows, Vercel production environment values, production deployment SHA, and authenticated production behavior were not inspected. A passive ZAP Baseline was run against the public site; it does not prove the absence of vulnerabilities.
 
 The deep source review in this task was AI-assisted and evidence-checked against CodeQL, Semgrep, Gitleaks, and npm audit. A separate Codex Security plugin is not present in the active toolset, so no plugin-specific assessment was run.
 
@@ -112,13 +112,14 @@ Threat actors considered: unauthenticated site visitors, abusive form submitters
 - **Recommended remediation:** add a distributed rate limit or Vercel Firewall/WAF rule, then test burst limits, expected legitimate submissions, and a clear retry response. Do not rely solely on in-process memory in serverless instances.
 - **Release block:** **No** based on evidence collected; monitor form abuse and prioritize before substantial public traffic or quota pressure.
 
-### R-04 — Content Security Policy allows inline scripts
+### R-04 — Content Security Policy allows inline scripts and broad image sources
 
-- **Severity:** Low (defense-in-depth gap)
+- **Severity:** Medium (defense-in-depth gap; not a standalone exploit)
 - **OWASP:** A02 Security Misconfiguration
 - **Affected location:** `next.config.mjs:12-22`.
-- **Evidence:** the site sets CSP, HSTS, frame, MIME, referrer, and permissions headers; production `script-src` includes `'unsafe-inline'`. This is not a standalone vulnerability, but weakens CSP's ability to contain an HTML/script injection.
-- **Recommended remediation:** plan a nonce-based CSP compatible with Next.js and required analytics. Validate rendered pages, metadata JSON-LD, analytics, and caching before tightening policy.
+- **Evidence:** the live ZAP Baseline on 2026-09-21 confirmed `script-src 'unsafe-inline'`, `style-src 'unsafe-inline'`, and `img-src ... https:` on the home page and `/origins`. The broad HTTPS image source permits image loads from any HTTPS origin. The source config matches those response headers.
+- **Exploit condition and impact:** these settings do not create an injection by themselves. They weaken browser-side containment if another injection or compromised script source is present.
+- **Recommended remediation:** plan a nonce-based CSP compatible with Next.js and required analytics, and narrow image sources to the actual approved origins. Validate rendered pages, metadata JSON-LD, analytics, and caching before tightening policy.
 - **Release block:** **No** based on this audit.
 
 ### R-05 — Semgrep unsafe-HTML pattern was not exploitable in current call sites; replaced defensively
@@ -130,15 +131,43 @@ Threat actors considered: unauthenticated site visitors, abusive form submitters
 - **Regression verification:** test asserts the renderer splits text into React nodes and contains no `dangerouslySetInnerHTML`; Semgrep final scan returned zero findings.
 - **Release block:** **No**, now mitigated on the branch.
 
+### R-06 — Wildcard CORS response header on public pages
+
+- **Severity:** Medium configuration risk; impact not confirmed
+- **OWASP:** A01 Broken Access Control
+- **Affected surface:** live responses from `https://origincafekh.com`, `/`, and `/origins`; no corresponding `Access-Control-Allow-Origin` configuration was found in repository source, so the header likely comes from hosting or an upstream layer.
+- **Evidence:** ZAP observed `Access-Control-Allow-Origin: *` on multiple unauthenticated `200` page responses. The scan found no authenticated user area, and it did not demonstrate a response containing private data or an API that relies on another access control.
+- **Exploit condition and impact:** wildcard CORS matters if a cross-origin page can read sensitive or otherwise access-controlled response data. Public page content is already public; no private-data exposure was proven.
+- **Recommended remediation:** identify the Vercel/upstream rule adding this header. Remove it from ordinary public pages; on APIs that genuinely require cross-origin use, allow only specific trusted origins and verify credential handling.
+- **Release block:** **No confirmed block**; verify API response policy before exposing any private or authenticated data.
+
+### R-07 — Third-party Google Tag Manager script has no Subresource Integrity hash
+
+- **Severity:** Medium supply-chain exposure; no compromise observed
+- **OWASP:** A03 Software Supply Chain Failures
+- **Affected surface:** public pages that load `https://www.googletagmanager.com/gtag/js?id=G-JLW92N1MK3`.
+- **Evidence:** ZAP reported a missing `integrity` attribute on five pages. The script is third-party and loaded directly by the browser. No malicious response or tampering was observed.
+- **Exploit condition and impact:** compromise of the third-party script source or its delivery could execute code in the site's origin. Google-managed tag scripts may change over time, which can make a fixed SRI hash operationally unsuitable.
+- **Recommended remediation:** review whether this integration is needed on every page, limit its CSP host allowlist, and document risk acceptance or adopt a vendor-supported integrity/controlled-loading approach if available.
+- **Release block:** **No** based on passive evidence; confirm third-party script ownership and necessity.
+
+### R-08 — Low-risk response-header hardening opportunities
+
+- **Severity:** Low
+- **OWASP:** A02 Security Misconfiguration
+- **Evidence:** ZAP reported missing or invalid `Cross-Origin-Embedder-Policy` and `Cross-Origin-Opener-Policy` on public pages, and disclosed `X-Powered-By: Next.js` on blog routes. No direct exploit was confirmed. COEP/COOP can break embedded third-party resources or popup flows if enabled without testing.
+- **Recommended remediation:** disable the framework identification header with Next.js `poweredByHeader: false`. Consider COOP/COEP only after checking popup, analytics, and cross-origin resource behavior; these headers are not universally required.
+- **Release block:** **No**.
+
 ## OWASP Top 10:2025 coverage
 
 The categories below follow [OWASP Top 10:2025](https://top10.owasp.org/2025/0x00_2025-Introduction/). “No finding” means no issue was confirmed in the reviewed scope, not that no issue exists.
 
 | Category | Audit result |
 |---|---|
-| A01 Broken Access Control | R-02 is pending verification against actual Airtable table contents. No current admin route or private authenticated user area was found in the audited source. |
-| A02 Security Misconfiguration | R-04: inline-script CSP weakens defense in depth. Core security headers are present. |
-| A03 Software Supply Chain Failures | S-01 and S-02 were confirmed at baseline and fixed on this branch; Dependabot and CI checks added. |
+| A01 Broken Access Control | R-02 is pending verification against actual Airtable table contents; R-06 wildcard CORS impact is unconfirmed. No current admin route or private authenticated user area was found in audited source. |
+| A02 Security Misconfiguration | R-04 CSP broad sources weaken defense in depth; R-08 covers low-risk response-header hardening. |
+| A03 Software Supply Chain Failures | S-01 and S-02 were confirmed at baseline and fixed on this branch; Dependabot and CI checks added. R-07 records the live third-party script/SRI tradeoff. |
 | A04 Cryptographic Failures | S-04 query-secret exposure fixed; R-01 historical SHA-256 password digest requires owner validation/possible rotation. No production secret values were inspected. |
 | A05 Injection | S-03 JSON-LD injection fixed; R-05 unsafe HTML pattern replaced. No SQL database or SQL query path was found. |
 | A06 Insecure Design | R-02 public-table data policy and R-03 form abuse control need owner/platform verification. |
@@ -156,12 +185,12 @@ The categories below follow [OWASP Top 10:2025](https://top10.owasp.org/2025/0x0
 | npm audit | Baseline: 1 High, 1 Moderate, 1 Low. After lockfile remediation: 0 vulnerabilities. |
 | Semgrep Community rules | Final: 121 rules evaluated across 151 tracked files; 0 findings. Earlier findings were the fixed Dependabot cooldown rule and the reviewed/fixed unsafe-HTML pattern. |
 | CodeQL security-extended | 105 queries; 134/134 JavaScript/TypeScript files and 5/5 GitHub workflow files scanned. Two low-signal missing-regexp-anchor alerts were confined to test assertions in `tests/occ-research-positioning.test.mjs:79-80`; no production-code alert was returned. |
+| ZAP Baseline against live public site | Completed 2026-09-21 against `https://origincafekh.com`; spidered 214 URLs. 0 High, 5 Medium, 3 Low, 4 Informational alert types; 58 passive checks passed. Medium observations: CSP wildcard/inline allowances, wildcard CORS header, and missing SRI on Google Tag Manager. Low observations: missing COEP/COOP and `X-Powered-By: Next.js`. No active scan or authenticated requests were run. ZAP exited with code 2 because the baseline command flags new WARN findings; detailed HTML was generated locally at `/private/tmp/vibe-zap-report/zap-baseline-report.html` and was not added to the repository. |
 | Security regression tests | 10 passed, 0 failed. |
 | Release-governance tests | 21 passed, 0 failed. |
 | TypeScript | `npx tsc --noEmit` passed. |
 | YAML and whitespace | All workflow/Dependabot YAML parsed; `git diff --check` passed. |
 | Entire existing test suite | 170 passed, 16 failed, 3 skipped. The unmodified baseline at `9f52edc` also had the same 16 failing About/navigation/content/layout assertions (165 passed, 16 failed, 3 skipped); the five added security tests pass. These failures predate this branch and are not security-test failures. |
-| OWASP ZAP Baseline | Not run locally: Docker is installed but its daemon is unavailable. A weekly passive ZAP Baseline workflow is configured for `https://origincafekh.com`; it will run after the workflow is present on the default branch or manually dispatched. No active scan was run. |
 
 ## GitHub automation and owner actions
 
@@ -175,8 +204,8 @@ The categories below follow [OWASP Top 10:2025](https://top10.owasp.org/2025/0x0
 - Enabled GitHub Dependabot alerts and automated security-fix PRs. GitHub reports Secret Scanning and push protection are already enabled. Non-provider pattern scanning remains disabled; Gitleaks in CI scans repository files and changed history.
 - At the security-branch push, GitHub reported **36 Dependabot vulnerabilities on the default branch** (2 Critical, 19 High, 12 Moderate, 3 Low). The local `npm audit` against the audited lockfile returned zero after remediation, so the platform alert set has not been reconciled item by item and may include dependency graphs or manifests beyond that lockfile. Treat the GitHub alerts as outstanding until reviewed in the repository's Dependabot page; this audit does not claim they are fixed.
 - GitHub currently reports that `main` has no branch-protection rule. Security workflows will run on `codex/**` pushes and pull requests, but GitHub will not require passing results or a PR before updating `main`. Branch-protection settings were not changed because the release procedure must be aligned first. After reviewing the PR and its workflow runs, the owner should require CodeQL, Gitleaks, Semgrep, npm audit, dependency review, and existing governance checks without blocking the designated release task.
-- Before any production release, verify whether the old revalidation GET form was used, whether the historical password is active/reused, and that public Airtable tables contain only publishable records. No production credentials or deployment were changed here.
+- Before any production release, verify whether the old revalidation GET form was used, whether the historical password is active/reused, and that public Airtable tables contain only publishable records. Review the live ZAP header findings with the hosting configuration owner. No production credentials or deployment were changed here.
 
 ## Limits
 
-This is a repository and source-level audit, not proof of absolute security. The audit did not access Vercel environment variables, Airtable records, production deployment metadata, live authenticated flows, Vercel firewall configuration, or GitHub branch protection. The ZAP production baseline has not yet run. Findings in those areas remain unverified until the owner checks the relevant systems.
+This is a repository, source, and passive public-site audit, not proof of absolute security. The audit did not access Vercel environment variables, Airtable records, production deployment metadata, live authenticated flows, Vercel firewall configuration, or GitHub branch protection. Findings in those areas remain unverified until the owner checks the relevant systems.
