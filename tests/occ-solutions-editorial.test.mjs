@@ -54,7 +54,7 @@ test("commercial headings and intent remain separate on the two shared-layout pa
 test("mobile hierarchy and buyer links remain explicit", () => {
   const css = read(sharedCss)
   const shared = read(sharedTemplate)
-  for (const token of [/font-size:clamp\(58px,6vw,88px\)/, /grid-template-columns:minmax\(0,1\.02fr\) minmax\(360px,\.98fr\)/, /grid-template-columns:\.7fr 1\.3fr/, /grid-template-columns:1fr 1\.2fr/, /@media\(max-width:720px\)/]) assert.match(css, token)
+  for (const token of [/font-size:clamp\(58px,6vw,80px\)/, /grid-template-columns:1\.35fr \.65fr/, /grid-template-columns:\.7fr 1\.3fr/, /grid-template-columns:1fr 1\.2fr/, /@media\(max-width:720px\)/]) assert.match(css, token)
   assert.match(shared, /heroCtaHref|ctaHref/)
   for (const token of [/Fine Robusta/, /Roasting Program/, /coffee-buyer-specification-template/, /Discuss Wholesale Supply/, /\/contact/]) assert.match(wholesale, token)
   for (const token of [/\/solutions\/wholesale/, /Fine Robusta/, /Develop Your Roast Profile/, /Discuss Wholesale Supply/, /\/contact/]) assert.match(roasting, token)
