@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache"
 import type { NextRequest } from "next/server"
+import { validateRevalidationPayload } from "@/lib/revalidation-payload.mjs"
 
 /**
  * On-demand ISR revalidation endpoint.
@@ -11,7 +12,6 @@ import type { NextRequest } from "next/server"
  *
  * Usage:
  *   POST  { "secret": "<REVALIDATE_SECRET>", "slug": "optional-post-slug" }
- *   GET   ?secret=<REVALIDATE_SECRET>&slug=<optional-post-slug>   (browser / cron / curl)
  *
  * Behaviour:
  *   - slug provided → revalidates /blog/<slug>
@@ -22,27 +22,23 @@ import type { NextRequest } from "next/server"
  *   2. In Airtable Automations add a "Send a POST request" action on the Articles
  *      and OCC_Blog_Posts tables, fired when Status becomes one of {Publish, Published}.
  *      URL:  https://origincafekh.com/api/revalidate
+ *      Header: Content-Type: application/json
  *      Body: { "secret": "<REVALIDATE_SECRET>", "slug": "{{record.slug}}" }
+ *
+ * Never send the secret in a URL. Query strings can be retained in browser history,
+ * request logs, and referrer data.
  */
 
-type Parsed = { secret?: string; slug?: string }
-
-async function readBody(req: NextRequest): Promise<Parsed> {
-  // Try JSON first, then fall back to query string (lets GET / curl work).
+async function readBody(req: NextRequest): Promise<unknown> {
   const contentType = req.headers.get("content-type") || ""
   if (req.method === "POST" && contentType.includes("application/json")) {
     try {
-      const j = (await req.json()) as Parsed
-      return j && typeof j === "object" ? j : {}
+      return await req.json()
     } catch {
       return {}
     }
   }
-  const url = new URL(req.url)
-  return {
-    secret: url.searchParams.get("secret") ?? undefined,
-    slug: url.searchParams.get("slug") ?? undefined,
-  }
+  return {}
 }
 
 async function handle(req: NextRequest) {
@@ -54,12 +50,15 @@ async function handle(req: NextRequest) {
     )
   }
 
-  const body = await readBody(req)
-  if (!body.secret || body.secret !== expected) {
+  const payload = validateRevalidationPayload(await readBody(req), expected)
+  if (!payload.ok && payload.status === 401) {
     return Response.json({ error: "Invalid secret" }, { status: 401 })
   }
+  if (!payload.ok) {
+    return Response.json({ error: "Invalid slug" }, { status: 400 })
+  }
 
-  const slug = (body.slug || "").trim()
+  const slug = payload.slug
   if (slug) {
     revalidatePath(`/blog/${slug}`)
     return Response.json({ revalidated: true, path: `/blog/${slug}` })
@@ -75,9 +74,5 @@ async function handle(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  return handle(req)
-}
-
-export async function GET(req: NextRequest) {
   return handle(req)
 }
