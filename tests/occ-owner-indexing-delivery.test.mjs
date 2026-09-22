@@ -45,7 +45,7 @@ test('sitemap is explicitly backed by the published Airtable corpus', () => {
 })
 
 test('Airtable Draft records are excluded from public lists and slug routes', () => {
-  assert.match(airtable, /import \{ isPublishedByStatus \} from ['"]\.\/publicationPolicy\.mjs['"]/)
+  assert.match(airtable, /import \{ isIndexableByPublicationPolicy \} from ['"]\.\/publicationPolicy\.mjs['"]/)
   assert.match(airtable, /['"]Status['"]/)
   assert.match(airtable, /function isFrontendRecord\(record: AirtableRecord\)/)
   assert.match(airtable, /if \(!isFrontendRecord\(record\)\) continue/)
