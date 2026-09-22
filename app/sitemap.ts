@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { siteUrl } from '@/lib/siteConfig'
-import { getAllPosts } from '@/lib/airtable'
+import { getPublishedPosts } from '@/lib/airtable'
 
 /**
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
@@ -9,7 +9,7 @@ import { getAllPosts } from '@/lib/airtable'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
-  const posts = await getAllPosts()
+  const posts = await getPublishedPosts()
   const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${siteUrl}/blog/${p.slug}`,
     lastModified: p.publish_date ? new Date(p.publish_date) : now,
