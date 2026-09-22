@@ -1,5 +1,5 @@
 import { unstable_cache } from 'next/cache'
-import { isPublishedByStatus } from './publicationPolicy.mjs'
+import { isIndexableByPublicationPolicy } from './publicationPolicy.mjs'
 
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
@@ -36,6 +36,7 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'SEO_Keyword',
     'OCC_INDEXED_PROTECTED',
     'Status',
+    'SEO_Gate',
   ],
   OCC_INDEXED_PROTECTED: [
     'title',
@@ -254,7 +255,7 @@ function sortFieldForTable(tableName: AirtableTableName): string {
 function isFrontendRecord(record: AirtableRecord): boolean {
   return (
     record.tableName === 'OCC_INDEXED_PROTECTED' ||
-    isPublishedByStatus(record.fields)
+    isIndexableByPublicationPolicy(record.fields)
   )
 }
 
