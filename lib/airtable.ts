@@ -1,12 +1,13 @@
 import { unstable_cache } from 'next/cache'
+import { isPublishedByStatus } from './publicationPolicy.mjs'
 
 const AIRTABLE_API_KEY =
   process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
 
-// Canonical frontend corpus = all OCC_Blog_Posts working records +
+// Canonical frontend corpus = Published OCC_Blog_Posts records +
 // OCC_INDEXED_PROTECTED records, deduplicated only by true public article identity.
-// Draft / Published / Public are workflow metadata and MUST NOT be frontend inclusion gates.
+// Draft records are never public frontend content, sitemap entries, or article routes.
 // There is deliberately NO maxRecords cap on canonical corpus list fetches; pagination runs
 // until Airtable returns no offset. Bounded reads are used only for non-corpus UI such as
 // related/recent article recommendations.
@@ -34,6 +35,7 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'Category',
     'SEO_Keyword',
     'OCC_INDEXED_PROTECTED',
+    'Status',
   ],
   OCC_INDEXED_PROTECTED: [
     'title',
@@ -249,6 +251,13 @@ function sortFieldForTable(tableName: AirtableTableName): string {
   return tableName === 'OCC_INDEXED_PROTECTED' ? 'scout_date' : 'publish_date'
 }
 
+function isFrontendRecord(record: AirtableRecord): boolean {
+  return (
+    record.tableName === 'OCC_INDEXED_PROTECTED' ||
+    isPublishedByStatus(record.fields)
+  )
+}
+
 function recordToListItem(record: AirtableRecord): BlogPost | null {
   const slug = slugFromRecord(record)
   if (!slug) return null
@@ -339,6 +348,7 @@ async function loadAllPosts(): Promise<BlogPost[]> {
   const posts: BlogPost[] = []
 
   for (const record of groups.flat()) {
+    if (!isFrontendRecord(record)) continue
     const item = recordToListItem(record)
     if (!item) continue
     const identity = item.slug.toLowerCase()
@@ -356,13 +366,17 @@ async function loadAllPosts(): Promise<BlogPost[]> {
   return posts
 }
 
-const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-corpus-v4'], {
+const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-published-corpus-v5'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
 export async function getAllPosts(): Promise<BlogPost[]> {
   requireAirtableCredentials()
   return getAllPostsCached()
+}
+
+export async function getPublishedPosts(): Promise<BlogPost[]> {
+  return getAllPosts()
 }
 
 async function loadRecentPosts(): Promise<BlogPost[]> {
@@ -377,6 +391,7 @@ async function loadRecentPosts(): Promise<BlogPost[]> {
   const posts: BlogPost[] = []
 
   for (const record of groups.flat()) {
+    if (!isFrontendRecord(record)) continue
     const item = recordToListItem(record)
     if (!item) continue
     const identity = item.slug.toLowerCase()
@@ -394,7 +409,7 @@ async function loadRecentPosts(): Promise<BlogPost[]> {
   return posts.slice(0, 6)
 }
 
-const getRecentPostsCached = unstable_cache(loadRecentPosts, ['occ-airtable-recent-v1'], {
+const getRecentPostsCached = unstable_cache(loadRecentPosts, ['occ-airtable-published-recent-v2'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
@@ -470,7 +485,10 @@ async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   // precedence and avoid a full 1,700+ record corpus scan on cold article requests.
   for (const tableName of AIRTABLE_TABLE_NAMES) {
     const direct = await fetchRecordBySlug(slug, tableName)
-    if (direct) return recordToDetail(direct)
+    if (direct) {
+      if (isFrontendRecord(direct)) return recordToDetail(direct)
+      continue
+    }
   }
 
   // Compatibility fallback: a small number of legacy records may rely on a title-derived
@@ -483,7 +501,7 @@ async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   return full ? recordToDetail(full) : null
 }
 
-const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-post-by-slug-v5'], {
+const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-published-post-by-slug-v6'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
