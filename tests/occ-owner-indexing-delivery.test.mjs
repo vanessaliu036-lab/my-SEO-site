@@ -8,6 +8,8 @@ function read(path) {
 
 const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const blogPage = read('app/(site)/blog/page.tsx')
+const sitemapPage = read('app/sitemap.ts')
+const airtable = read('lib/airtable.ts')
 
 test('article critical render does not wait for recent-post recommendations', () => {
   assert.doesNotMatch(
@@ -34,4 +36,18 @@ test('Blog hub exposes direct crawl paths to the Fine Robusta formal owners', ()
   for (const href of ownerHrefs) {
     assert.match(blogPage, new RegExp(`href:\\s*["']${href.replaceAll('/', '\\/')}["']`))
   }
+})
+
+
+test('sitemap is explicitly backed by the published Airtable corpus', () => {
+  assert.match(sitemapPage, /getPublishedPosts/)
+  assert.doesNotMatch(sitemapPage, /getAllPosts/)
+})
+
+test('Airtable Draft records are excluded from public lists and slug routes', () => {
+  assert.match(airtable, /import \{ isPublishedByStatus \} from ['"]\.\/publicationPolicy\.mjs['"]/)
+  assert.match(airtable, /['"]Status['"]/)
+  assert.match(airtable, /function isFrontendRecord\(record: AirtableRecord\)/)
+  assert.match(airtable, /if \(!isFrontendRecord\(record\)\) continue/)
+  assert.match(airtable, /if \(isFrontendRecord\(direct\)\) return recordToDetail\(direct\)/)
 })
