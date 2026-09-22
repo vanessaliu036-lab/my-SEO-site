@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { isIndexableBySeoGate, isPublishedByStatus } from '../lib/publicationPolicy.mjs'
+import { isIndexableByPublicationPolicy, isIndexableBySeoGate, isPublishedByStatus } from '../lib/publicationPolicy.mjs'
 
 test('explicit SEO deny gates are not indexable', () => {
   assert.equal(isIndexableBySeoGate({ SEO_Gate: 'Do Not Publish' }), false)
@@ -28,4 +28,12 @@ test('only Airtable records with Published status are public', () => {
   assert.equal(isPublishedByStatus({ Status: 'Draft' }), false)
   assert.equal(isPublishedByStatus({ Status: { name: 'Draft' } }), false)
   assert.equal(isPublishedByStatus({}), false)
+})
+
+
+test('publication policy requires Published and an allowed SEO gate', () => {
+  assert.equal(isIndexableByPublicationPolicy({ Status: 'Published' }), true)
+  assert.equal(isIndexableByPublicationPolicy({ Status: 'Published', SEO_Gate: 'Spoke — Unique Intent' }), true)
+  assert.equal(isIndexableByPublicationPolicy({ Status: 'Published', SEO_Gate: 'Do Not Publish' }), false)
+  assert.equal(isIndexableByPublicationPolicy({ Status: 'Draft', SEO_Gate: 'Spoke — Unique Intent' }), false)
 })
