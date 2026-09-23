@@ -35,7 +35,9 @@ export function SiteFooter() {
           </nav>
         </div>
         <div className="flex flex-col gap-3 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/45">© 2026 Origin Coffee Cambodia</p>
+          <p className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/45">
+            © 2024 Origin Coffee Cambodia · Design by <a href="https://lumora-studiokh.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition-colors hover:text-occ-primary hover:underline">Lumora Studio KH</a>
+          </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/36">Cambodia · Fine Robusta · B2B Coffee</p>
             <Link href="/admin" prefetch={false} className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/45 underline-offset-4 hover:text-occ-primary hover:underline" aria-label="Staff login">Staff login ↗</Link>
