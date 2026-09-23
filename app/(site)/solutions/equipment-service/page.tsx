@@ -67,16 +67,25 @@ const internalLinks: Record<string, string> = {
 
 const renderWithLinks = (text: string) => {
   const patterns = Object.keys(internalLinks).sort((a, b) => b.length - a.length)
-  let result = text
-  patterns.forEach((keyword) => {
-    const regex = new RegExp(`\\b${keyword}\\b`, "gi")
-    result = result.replace(
-      regex,
-      (match) =>
-        `<a href="${internalLinks[keyword]}" class="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors">${match}</a>`,
-    )
-  })
-  return <span dangerouslySetInnerHTML={{ __html: result }} />
+  const linkPattern = new RegExp(`\\b(${patterns.join("|")})\\b`, "gi")
+  return (
+    <span>
+      {text.split(linkPattern).map((part, index) => {
+        const href = internalLinks[part.toLowerCase()]
+        return href ? (
+          <a
+            key={index}
+            href={href}
+            className="border-b border-dashed border-gray-400 hover:border-gray-800 transition-colors"
+          >
+            {part}
+          </a>
+        ) : (
+          part
+        )
+      })}
+    </span>
+  )
 }
 
 export default function EquipmentServicePage() {

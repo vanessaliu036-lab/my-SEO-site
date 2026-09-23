@@ -6,6 +6,7 @@ import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical, seoDescription, seoTitle } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { getPostBySlug, getRecentPosts } from "@/lib/airtable"
+import { serializeJsonLd } from "@/lib/json-ld-serialization.mjs"
 
 // Plain-text / Markdown -> readable HTML with internal links injected
 const INTERNAL_LINKS: Record<string, string> = {
@@ -592,8 +593,8 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
 
       <div className="min-h-screen bg-white text-stone-950 overflow-x-hidden">
         {/* Breadcrumb nav */}

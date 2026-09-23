@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { persistContactLead } from '../lib/contact-lead-delivery.mjs'
 
 const sample = { name: 'OCC QA', email: 'qa@example.test', service: 'Sample Request', message: 'Synthetic smoke test' }
-const env = { AIRTABLE_TOKEN: 'test-server-only-token', AIRTABLE_BASE_ID: 'appJCcT41WRfKpWk2' }
+const env = { AIRTABLE_TOKEN: 'test-server-only-token', AIRTABLE_BASE_ID: 'appJCcT41WRfKpWk2' } // gitleaks:allow Airtable Base IDs are public identifiers, not credentials.
 
 test('fails closed when the Airtable credential is not configured', async () => {
   let called = false

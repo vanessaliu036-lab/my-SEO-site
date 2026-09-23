@@ -1,0 +1,21 @@
+name: Security - ZAP baseline
+
+on:
+  schedule:
+    - cron: "23 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    name: Passive baseline scan of public production site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run ZAP Baseline
+        uses: zaproxy/action-baseline@6c5a007541891231cd9e0ddec25d4f25c59c9874 # v0.15.0
+        with:
+          target: https://origincafekh.com
+          fail_action: false
+          allow_issue_writing: false
