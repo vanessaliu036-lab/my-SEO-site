@@ -4,11 +4,8 @@ import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import {
-  submitContactForm,
-  contactSchema,
-  type ContactFormData,
-} from "./action"
+import { submitContactForm } from "./action"
+import { contactSchema, type ContactFormData } from "./schema"
 
 const ENQUIRY_TYPES = [
   "Wholesale / Sourcing",
