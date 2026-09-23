@@ -20,6 +20,8 @@ export const contactSchema = z.object({
     { errorMap: () => ({ message: "Please select a project stage" }) }
   ),
   message: z.string().max(2000, "Message must be 2000 characters or fewer").optional(),
+  // Invisible honeypot. Human visitors leave this field empty.
+  website: z.string().max(200, "Invalid submission").optional(),
 })
 
 export type ContactFormData = z.infer<typeof contactSchema>
