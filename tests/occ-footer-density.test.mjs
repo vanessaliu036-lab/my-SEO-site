@@ -22,3 +22,10 @@ test("footer reduces excess desktop outer space but keeps mobile spacing", () =>
   assert.match(footer, /pb-10 lg:grid-cols-\[0\.9fr_2\.1fr\] lg:gap-12 lg:pb-8/)
   assert.match(footer, /sm:grid-cols-2 lg:grid-cols-4/)
 })
+
+test("footer carries the requested 2024 Lumora Studio KH credit", () => {
+  assert.match(footer, /© 2024 Origin Coffee Cambodia/)
+  assert.match(footer, /href="https:\/\/lumora-studiokh\.vercel\.app\/"/)
+  assert.match(footer, />Lumora Studio KH<\/a>/)
+  assert.match(footer, /target="_blank" rel="noopener noreferrer"/)
+})
