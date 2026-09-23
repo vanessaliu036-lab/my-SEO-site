@@ -2,11 +2,8 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
-import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script";
+import { AnalyticsGate } from "@/components/AnalyticsGate";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
-import { pageAlternates } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,7 +45,6 @@ export const metadata: Metadata = {
     "Coffee Processing",
     "Coffee Sensory Evaluation",
   ],
-  alternates: pageAlternates("/"),
   openGraph: {
     type: "website",
     url: siteUrl,
@@ -155,20 +151,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
 
-        <Analytics />
-        {gaMeasurementId ? <GoogleAnalytics measurementId={gaMeasurementId} /> : null}
-
-        <Script
-          id="microsoft-clarity"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "xjlld0s2hz");`,
-          }}
-        />
+        <AnalyticsGate measurementId={gaMeasurementId} clarityId="xjlld0s2hz" />
 
         <script
           type="application/ld+json"

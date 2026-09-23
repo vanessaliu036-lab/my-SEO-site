@@ -72,6 +72,9 @@ const ROBUSTA_PILLAR_ANCHORS = [
 // Keep legacy URLs live, but narrow their visible search target so broad intent
 // remains concentrated on the formal owner pages.
 const ARTICLE_TITLE_OVERRIDES: Record<string, string> = {
+  "what-is-fine-robusta-coffee-a-complete-beginners-guide": "Cambodian Fine Robusta Buyer Guide: Quality, Lots & Sourcing",
+  "fine-robusta-coffee-a-flavor-revolution-in-every-cup": "Fine Robusta Flavor Profiles: What Changes the Cup",
+  "what-makes-fine-robusta": "What Makes Fine Robusta? Quality Evidence & Evaluation",
   "cambodian-fine-robusta-wholesale-supply": "Cambodian Fine Robusta Wholesale Supply for Buyers",
   "sensory-evaluation-of-fine-robusta-flavour-aroma-body-and-beyond": "Sensory Evaluation of Fine Robusta: Flavor, Aroma & Body",
   "what-makes-coffee-origin-feel-premium": "What Makes a Coffee Origin Feel Premium? Evidence Beyond Processing",
@@ -96,6 +99,21 @@ function displayTitleForPost(slug: string, title: string): string {
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  "what-is-fine-robusta-coffee-a-complete-beginners-guide": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the primary Cambodia Fine Robusta definition and origin context, start with the",
+  },
+  "fine-robusta-coffee-a-flavor-revolution-in-every-cup": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For the central Cambodia origin and quality framework, start with the",
+  },
+  "what-makes-fine-robusta": {
+    href: ROBUSTA_PILLAR_HREF,
+    anchor: "Fine Robusta Cambodia guide",
+    lead: "For OCC’s primary Cambodia Fine Robusta owner page, start with the",
+  },
   "cambodian-fine-robusta-wholesale-supply": {
     href: ROBUSTA_PILLAR_HREF,
     anchor: "Fine Robusta Cambodia guide",
