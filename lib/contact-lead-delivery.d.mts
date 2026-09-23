@@ -1,7 +1,7 @@
 export interface ContactLeadInput {
   name: string
   email: string
-  service: "Wholesale / Sourcing" | "Sample Request" | "Lot List" | "Roasting / Solutions" | "Editorial / Source Correction" | "Media / Interview" | "General Enquiry"
+  service: "Wholesale / Sourcing" | "Sample Request" | "Lot List" | "Roasting / Solutions" | "Partnership / Distribution" | "Editorial / Source Correction" | "Media / Interview" | "General Enquiry"
   message?: string
 }
 export interface ContactLeadRuntime {
