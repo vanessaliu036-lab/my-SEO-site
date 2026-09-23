@@ -16,6 +16,7 @@ export const contactSchema = z.object({
       "Sample Request",
       "Lot List",
       "Roasting / Solutions",
+      "Partnership / Distribution",
       "Editorial / Source Correction",
       "Media / Interview",
       "General Enquiry",
