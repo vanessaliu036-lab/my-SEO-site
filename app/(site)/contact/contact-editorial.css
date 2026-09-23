@@ -40,6 +40,21 @@
   border-color: rgba(24, 32, 25, 0.16);
 }
 
+.occ-contact-shell .occ-contact-message {
+  min-height: 10.5rem;
+  border-color: rgba(24, 32, 25, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(246, 243, 234, 0.45);
+}
+
+.occ-contact-shell .occ-contact-message:hover {
+  border-color: rgba(24, 32, 25, 0.48);
+}
+
+.occ-contact-shell .occ-contact-message:focus-visible {
+  border-color: var(--occ-logo-burgundy);
+  box-shadow: 0 0 0 3px rgba(92, 18, 35, 0.12);
+}
+
 .occ-contact-shell button[type="submit"] {
   background: var(--occ-logo-burgundy) !important;
   color: #F6F3EA !important;

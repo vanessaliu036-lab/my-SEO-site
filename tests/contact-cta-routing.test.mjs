@@ -22,3 +22,13 @@ test('Contact publishes the service mailbox and Phnom Penh Telegram channel', ()
   assert.match(page, /telephone:\s*"\+85514360479"/)
 })
 
+test('Contact message field has a visible long-form affordance and guidance', () => {
+  const form = source('app/(site)/contact/ContactForm.tsx')
+  const styles = source('app/(site)/contact/contact-editorial.css')
+  assert.match(form, /id="message-help"/)
+  assert.match(form, /rows=\{6\}/)
+  assert.match(form, /maxLength=\{2000\}/)
+  assert.match(form, /resize-y/)
+  assert.match(form, /message\.length\} \/ 2000/)
+  assert.match(styles, /\.occ-contact-shell \.occ-contact-message:focus-visible/)
+})

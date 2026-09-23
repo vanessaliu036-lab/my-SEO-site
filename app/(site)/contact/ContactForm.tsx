@@ -38,6 +38,7 @@ export default function ContactForm() {
   })
 
   const selectedType = watch("service")
+  const message = watch("message") ?? ""
 
   const onSubmit = (data: ContactFormData) => {
     setServerError(null)
@@ -146,8 +147,26 @@ export default function ContactForm() {
 
             <div className="mb-8">
               <label htmlFor="message" className={labelBase}>Message <span className="normal-case tracking-normal font-normal">(optional)</span></label>
-              <textarea id="message" rows={4} data-clarity-mask="true" placeholder="Tell us what you need, the coffee or service context, expected use, timing, and any relevant quality or sourcing requirements." className={`${inputBase} resize-none`} {...register("message")} />
-              {errors.message && <p role="alert" className="mt-1.5 text-xs text-occ-burgundy">{errors.message.message}</p>}
+              <p id="message-help" className="mb-3 max-w-xl text-[13px] font-light leading-6 text-occ-secondary">
+                Share what you need, expected use, timing, quantity, and any quality or sourcing requirements.
+              </p>
+              <textarea
+                id="message"
+                rows={6}
+                maxLength={2000}
+                data-clarity-mask="true"
+                placeholder="Example: We are looking for roasted Fine Robusta for a café launch in Phnom Penh…"
+                className="occ-contact-message w-full resize-y rounded-sm border border-occ-primary/25 bg-white/35 px-4 py-3.5 text-[15px] font-light leading-7 text-occ-primary outline-none transition-colors placeholder:text-occ-secondary/75"
+                aria-describedby={`message-help message-count${errors.message ? " message-error" : ""}`}
+                aria-invalid={!!errors.message}
+                {...register("message")}
+              />
+              <div className="mt-2 flex items-start justify-between gap-4">
+                <div>
+                  {errors.message && <p id="message-error" role="alert" className="text-xs text-occ-burgundy">{errors.message.message}</p>}
+                </div>
+                <p id="message-count" className="shrink-0 text-[11px] tabular-nums text-occ-secondary" aria-live="polite">{message.length} / 2000</p>
+              </div>
             </div>
 
             {serverError && <p role="alert" className="mb-6 border border-occ-burgundy bg-occ-surface px-4 py-3 text-sm text-occ-burgundy">{serverError}</p>}
