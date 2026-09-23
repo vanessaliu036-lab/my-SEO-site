@@ -79,7 +79,8 @@ test('never claims success for rejected or unconfirmed Airtable writes', async (
 test('the contact server action gates success on confirmed persistence and does not log PII', async () => {
   const { readFileSync } = await import('node:fs')
   const source = readFileSync(new URL('../app/(site)/contact/action.ts', import.meta.url), 'utf8')
-  assert.match(source, /await persistContactLead\\(parsed\\.data\\)/)
-  assert.match(source, /if \\(!persisted\\)[\\s\\S]*success: false/)
-  assert.doesNotMatch(source, /console\\.log|New message received/)
+  assert.ok(source.includes('await persistContactLead(parsed.data)'))
+  assert.ok(source.includes('if (!persisted)'))
+  assert.ok(source.includes('success: false'))
+  assert.doesNotMatch(source, /console\.log|New message received/)
 })
