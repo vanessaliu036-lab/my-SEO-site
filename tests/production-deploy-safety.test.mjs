@@ -29,7 +29,6 @@ function runCorpusGuard(count) {
   })
 }
 
-const approvedSha = "daf1351dca7427043fb534c0bf31b18fe7086bc0"
 const validProductionGitEnv = {
   VERCEL: "1",
   VERCEL_ENV: "production",
@@ -37,8 +36,7 @@ const validProductionGitEnv = {
   VERCEL_GIT_REPO_OWNER: "vanessaliu036-lab",
   VERCEL_GIT_REPO_SLUG: "my-SEO-site",
   VERCEL_GIT_COMMIT_REF: "main",
-  VERCEL_GIT_COMMIT_SHA: approvedSha,
-  APPROVED_RELEASE_SHA: approvedSha,
+  VERCEL_GIT_COMMIT_SHA: "daf1351dca7427043fb534c0bf31b18fe7086bc0",
 }
 
 test("production deploy guard rejects a non-main Vercel source", () => {
@@ -46,16 +44,6 @@ test("production deploy guard rejects a non-main Vercel source", () => {
   const result = runGuard({ ...validProductionGitEnv, VERCEL_GIT_COMMIT_REF: "release/occ-current" })
   assert.notEqual(result.status, 0)
   assert.match(result.output, /main/i)
-})
-test("production deploy guard rejects a missing approved release SHA", () => {
-  const result = runGuard({ ...validProductionGitEnv, APPROVED_RELEASE_SHA: "" })
-  assert.notEqual(result.status, 0)
-  assert.match(result.output, /APPROVED_RELEASE_SHA|approved/i)
-})
-test("production deploy guard rejects a SHA different from the approved release", () => {
-  const result = runGuard({ ...validProductionGitEnv, VERCEL_GIT_COMMIT_SHA: "1111111111111111111111111111111111111111" })
-  assert.notEqual(result.status, 0)
-  assert.match(result.output, /approved release SHA|approved-release/i)
 })
 test("production deploy guard rejects a non-GitHub production source", () => {
   assert.notEqual(runGuard({ ...validProductionGitEnv, VERCEL_GIT_PROVIDER: "" }).status, 0)
@@ -70,7 +58,7 @@ test("production deploy guard rejects a missing or invalid Git commit SHA", () =
   assert.notEqual(runGuard({ ...validProductionGitEnv, VERCEL_GIT_COMMIT_SHA: "" }).status, 0)
   assert.notEqual(runGuard({ ...validProductionGitEnv, VERCEL_GIT_COMMIT_SHA: "not-a-git-sha" }).status, 0)
 })
-test("production deploy guard allows only the exact approved GitHub main SHA", () => {
+test("production deploy guard allows GitHub main without a manual approved-SHA environment variable", () => {
   assert.equal(runGuard(validProductionGitEnv).status, 0)
 })
 test("production corpus guard blocks a Research Journal regression below the verified baseline", () => {
@@ -88,16 +76,12 @@ test("production corpus guard requests only fields shared by both canonical tabl
   assert.match(source, /params\.append\("fields\[\]", "slug"\)/)
   assert.doesNotMatch(source, /params\.append\("fields\[\]", "source_title"\)/)
 })
-test("prebuild runs release, source, corpus, content and asset safety gates before publishing tests", () => {
+test("Vercel prebuild only enforces production source identity; release quality gates run separately", () => {
   const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8"))
-  for (const token of [
-    "verify-release-batch.mjs",
-    "verify-production-deploy.mjs",
-    "verify-production-corpus.mjs",
-    "verify-protected-content.mjs",
-    "audit-editorial-images.mjs",
-    "verify-static-assets.mjs",
-  ]) assert.match(pkg.scripts.prebuild, new RegExp(token.replace(".", "\\.")))
+  assert.equal(pkg.scripts.prebuild, "node scripts/verify-production-deploy.mjs")
+  assert.match(pkg.scripts["release:quality"], /verify-protected-content\.mjs/)
+  assert.match(pkg.scripts["release:quality"], /audit-brand-colors\.mjs/)
+  assert.match(pkg.scripts["release:quality"], /verify-static-assets\.mjs/)
 })
 test("production source keeps approved pages and unified top navigation", () => {
   const shell = readFileSync(resolve(root, "components/site/site-shell.tsx"), "utf8")

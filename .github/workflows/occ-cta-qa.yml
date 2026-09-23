@@ -1,6 +1,8 @@
-name: OCC CTA intake QA
+name: OCC release QA
 
 on:
+  push:
+    branches: [release/occ-current]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -9,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  contact:
+  release:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -20,13 +22,14 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
-      - name: Contact intake regression tests
-        run: node --test tests/cta-boundary.test.mjs tests/contact-lead-delivery.test.mjs
-      - name: Full repository tests
+      - name: Repository tests
         run: npm test
       - name: TypeScript verification
         if: ${{ always() }}
         run: npx tsc --noEmit
-      - name: Build and release integrity verification
+      - name: Release quality report
+        if: ${{ always() }}
+        run: npm run release:quality
+      - name: Next.js build
         if: ${{ always() }}
         run: npm run build
