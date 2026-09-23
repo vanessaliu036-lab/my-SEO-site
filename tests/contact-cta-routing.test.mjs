@@ -37,7 +37,7 @@ test('Contact captures the six commercial inbox fields', () => {
   const form = source('app/(site)/contact/ContactForm.tsx')
   const schema = source('app/(site)/contact/schema.ts')
   for (const field of ['name', 'company', 'email', 'country', 'service', 'projectStage']) {
-    assert.match(form, new RegExp('register\\\\("' + field + '"\\\\)'))
+    assert.ok(form.includes('register("' + field + '")'))
   }
   assert.match(schema, /"Partnership \\/ Distribution"/)
   assert.match(schema, /"Ready to order"/)
@@ -51,7 +51,7 @@ test('admin dashboard exposes working Order Inbox and Contact Inquiries workflow
   assert.match(dashboard, /Create B2B Account/)
   assert.match(dashboard, /Create B2B Contact/)
   assert.match(dashboard, /Create Quote/)
-  assert.doesNotMatch(dashboard, />\\+ New</)
+  assert.equal(dashboard.includes('>+ New<'), false)
   assert.match(page, /fetchOrderInbox/)
   assert.match(page, /fetchContactLeads/)
 })
