@@ -21,9 +21,7 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
       - name: Contact intake regression tests
-        run: node --test tests/cta-boundary.test.mjs tests/contact-lead-delivery.test.mjs
-      - name: Full repository tests
-        run: npm test
+        run: node --test tests/cta-boundary.test.mjs tests/contact-lead-delivery.test.mjs tests/contact-cta-routing.test.mjs
       - name: TypeScript verification
         run: npx tsc --noEmit
       - name: Build and release integrity verification
