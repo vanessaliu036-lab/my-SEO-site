@@ -4,6 +4,7 @@ export function StaffAccess({ dark = false }: { dark?: boolean }) {
   return (
     <Link
       href="/admin"
+      prefetch={false}
       className={`hidden shrink-0 text-[8px] font-medium uppercase tracking-[0.18em] transition-colors xl:inline-flex ${
         dark ? "text-white/45 hover:text-white" : "text-occ-secondary hover:text-occ-primary"
       }`}

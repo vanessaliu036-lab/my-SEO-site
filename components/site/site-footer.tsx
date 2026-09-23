@@ -38,7 +38,7 @@ export function SiteFooter() {
           <p className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/45">© 2026 Origin Coffee Cambodia</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/36">Cambodia · Fine Robusta · B2B Coffee</p>
-            <Link href="/admin" className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/45 underline-offset-4 hover:text-occ-primary hover:underline" aria-label="Staff login">Staff login ↗</Link>
+            <Link href="/admin" prefetch={false} className="text-[10px] uppercase tracking-[0.14em] text-occ-primary/45 underline-offset-4 hover:text-occ-primary hover:underline" aria-label="Staff login">Staff login ↗</Link>
           </div>
         </div>
       </div>
