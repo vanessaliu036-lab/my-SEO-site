@@ -14,8 +14,8 @@ const INTERNAL_LINKS: Record<string, string> = {
   "custom roasting": "/solutions/roasting-program",
   "roast profile": "/solutions/roasting-program",
   "roasting program": "/solutions/roasting-program",
-  "barista staffing": "/solutions/barista-staffing",
-  "barista": "/solutions/barista-staffing",
+  "barista staffing": "/contact",
+  "barista": "/contact",
 }
 
 const ROBUSTA_PILLAR_HREF = "/fine-robusta-cambodia"
