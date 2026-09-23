@@ -1,7 +1,20 @@
 export interface ContactLeadInput {
   name: string
+  company: string
   email: string
-  service: "Wholesale / Sourcing" | "Sample Request" | "Lot List" | "Roasting / Solutions" | "Editorial / Source Correction" | "Media / Interview" | "General Enquiry"
+  country: string
+  service:
+    | "Wholesale / Sourcing"
+    | "Roasting / Solutions"
+    | "Partnership / Distribution"
+    | "Other / General"
+    | "Sample Request"
+    | "Lot List"
+    | "Distribution / Partnership"
+    | "Editorial / Source Correction"
+    | "Media / Interview"
+    | "General Enquiry"
+  projectStage?: "Exploring" | "Comparing suppliers" | "Sampling / Trial" | "Ready to order"
   message?: string
 }
 export interface ContactLeadRuntime {
