@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { authorizeAdmin } from "@/lib/admin-basic-auth.mjs";
 
 const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   "/solutions/barista-staffing":
@@ -54,8 +55,36 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
     "/blog/cambodia-specialty-robusta-coffee-guide",
 };
 
+function adminResponse(request: NextRequest) {
+  const result = authorizeAdmin(request.headers.get("authorization"), {
+    username: process.env.OCC_ADMIN_USER,
+    password: process.env.OCC_ADMIN_PASSWORD,
+  });
+
+  if (result === "unconfigured") {
+    return new NextResponse("Staff access has not been configured.", {
+      status: 503,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
+  if (result !== "authorized") {
+    return new NextResponse("Staff sign-in required.", {
+      status: 401,
+      headers: {
+        "WWW-Authenticate": 'Basic realm="OCC Staff Access", charset="UTF-8"',
+        "Cache-Control": "no-store",
+      },
+    });
+  }
+  const response = NextResponse.next();
+  response.headers.set("Cache-Control", "private, no-store");
+  response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  return response;
+}
+
 export function proxy(request: NextRequest) {
   const { hostname, pathname, search } = request.nextUrl;
+
   const legacyTarget = LEGACY_BLOG_REDIRECTS[pathname.replace(/\/$/, "")];
   if (legacyTarget) {
     const url = new URL(`https://origincafekh.com${legacyTarget}`);
@@ -65,6 +94,10 @@ export function proxy(request: NextRequest) {
   if (hostname === "www.origincafekh.com") {
     const url = new URL(`https://origincafekh.com${pathname}${search}`);
     return NextResponse.redirect(url, 301);
+  }
+
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    return adminResponse(request);
   }
 
   return NextResponse.next();
