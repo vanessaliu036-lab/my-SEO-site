@@ -88,7 +88,12 @@ export default function ContactForm() {
         </div>
 
         <div className="occ-contact-hero-visual">
-          <img src="/media/cambodian-coffee-origin-field-notes.jpg" alt="Cambodian coffee origin landscape" />
+          <div className="occ-contact-visual-art" aria-hidden="true">
+            <span className="occ-contact-art-kicker">Origin Coffee Cambodia</span>
+            <span className="occ-contact-art-word">CAMBODIA</span>
+            <span className="occ-contact-art-line">Fine Robusta · Origin · B2B Coffee</span>
+            <span className="occ-contact-art-mark">OCC.</span>
+          </div>
           <div className="occ-contact-visual-tag">Cambodia · Origin · Coffee</div>
           <div className="occ-contact-visual-note">
             <small>Start from origin</small>
