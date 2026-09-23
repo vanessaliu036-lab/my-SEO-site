@@ -3,7 +3,6 @@
 import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import Link from "next/link"
 import { submitContactForm } from "./action"
 import { contactSchema, type ContactFormData } from "./schema"
 
@@ -12,16 +11,11 @@ const ENQUIRY_TYPES = [
   "Sample Request",
   "Lot List",
   "Roasting / Solutions",
+  "Partnership / Distribution",
   "Editorial / Source Correction",
   "Media / Interview",
   "General Enquiry",
 ] as const satisfies readonly ContactFormData["service"][]
-
-const inputBase =
-  "w-full bg-transparent border-0 border-b border-occ-surface focus:border-occ-primary py-2.5 text-[15px] font-light text-occ-primary placeholder:text-occ-secondary placeholder:italic outline-none transition-colors"
-
-const labelBase =
-  "block text-[10px] tracking-[0.2em] uppercase text-occ-secondary mb-2.5 [font-family:var(--occ-font-subtitle)]"
 
 export default function ContactForm() {
   const [isPending, startTransition] = useTransition()
@@ -57,135 +51,244 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="min-h-screen bg-occ-background [font-family:var(--occ-font-body)] relative">
-      <nav aria-label="Breadcrumb" className="absolute top-8 left-8 z-20 flex items-center gap-4">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-occ-secondary hover:text-occ-primary transition-colors [font-family:var(--occ-font-subtitle)]"
-          aria-label="Return to homepage"
-        >
-          <span className="inline-block w-5 h-px bg-current" aria-hidden="true" />
-          Home
-        </Link>
-        <span className="text-[11px] text-occ-secondary [font-family:var(--occ-font-subtitle)]">/ Contact</span>
-      </nav>
-
-      <div className="grid min-h-screen pt-20 md:grid-cols-[0.8fr_1.2fr]">
-        <div className="relative flex flex-col justify-between p-10 md:p-16 border-b md:border-b-0 md:border-r border-occ-surface">
-          <div className="flex items-center gap-3 mb-10 text-[11px] tracking-[0.2em] text-occ-secondary uppercase [font-family:var(--occ-font-subtitle)]">
-            <span className="inline-block w-8 h-px bg-occ-secondary" />
-            Contact
-          </div>
-
+    <div className="occ-contact-page">
+      <section className="occ-contact-hero">
+        <div className="occ-contact-hero-copy">
           <div>
-            <h1 className="mb-8 leading-[0.94] tracking-[-0.03em] text-occ-primary [font-family:var(--occ-font-title)]" style={{ fontSize: "clamp(48px, 6vw, 72px)" }}>
-              GET IN<br />TOUCH.
+            <div className="occ-contact-eyebrow">Contact · Origin Coffee Cambodia</div>
+            <h1>
+              LET&apos;S
+              <br />
+              <em>TALK.</em>
             </h1>
-            <p className="text-sm font-light italic text-occ-secondary leading-relaxed max-w-[390px] mb-16 pl-4 border-l-2 border-occ-primary">
-              Contact OCC for wholesale and sourcing enquiries, sample requests, lot-list questions, roasting or coffee solutions, as well as editorial and media enquiries.
+            <p className="occ-contact-intro">
+              From Cambodian coffee sourcing and Fine Robusta samples to roasting programs,
+              distribution and editorial enquiries — start with what you need, and OCC will
+              route the conversation clearly.
             </p>
-            <div className="mb-12 grid gap-3 text-sm">
-              <a className="w-fit border-b border-occ-primary/25 pb-1 text-occ-primary transition-colors hover:border-occ-primary" href="mailto:service@origincafekh.com">
-                service@origincafekh.com
-              </a>
-              <a className="w-fit border-b border-occ-primary/25 pb-1 text-occ-primary transition-colors hover:border-occ-primary" href="https://t.me/+85514360479" target="_blank" rel="noopener noreferrer">
-                Telegram · +855 14 360 479 · Phnom Penh
-              </a>
-            </div>
           </div>
 
-          <div className="mt-auto">
-            <div className="flex flex-col gap-1 mb-7 pb-7 border-b border-occ-surface">
-              <span className={labelBase}>Business Focus</span>
-              <span className="text-sm font-normal text-occ-primary">Sourcing · Wholesale · Roasting · B2B Coffee Solutions</span>
-            </div>
-            <div className="flex flex-col gap-1 mb-7 pb-7 border-b border-occ-surface">
-              <span className={labelBase}>Authority Focus</span>
-              <span className="text-sm font-normal text-occ-primary">Cambodia · Fine Robusta · Coffea canephora</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className={labelBase}>Platform</span>
-              <span className="text-sm font-normal text-occ-primary">OCC — Origin Coffee Cambodia</span>
-            </div>
+          <div className="occ-contact-quick-links" aria-label="Contact routes">
+            <a className="occ-contact-quick" href="#enquiry">
+              <span className="occ-contact-quick-number">01</span>
+              <strong>Source Coffee</strong>
+              <small>Wholesale · lots · samples</small>
+            </a>
+            <a className="occ-contact-quick" href="#enquiry">
+              <span className="occ-contact-quick-number">02</span>
+              <strong>Build a Program</strong>
+              <small>Roasting · B2B solutions</small>
+            </a>
+            <a className="occ-contact-quick" href="#enquiry">
+              <span className="occ-contact-quick-number">03</span>
+              <strong>Collaborate</strong>
+              <small>Media · partnerships · editorial</small>
+            </a>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center p-10 md:p-16">
-          <div className="mb-12">
-            <p className="text-[11px] tracking-[0.15em] text-occ-secondary uppercase mb-2 [font-family:var(--occ-font-subtitle)]">01 / Contact Form</p>
-            <p className="text-[22px] font-medium tracking-[0.08em] uppercase text-occ-primary [font-family:var(--occ-font-subtitle)]">Start an Enquiry</p>
+        <div className="occ-contact-hero-visual">
+          <img src="/hero-home.webp" alt="Cambodian coffee origin landscape" />
+          <div className="occ-contact-visual-tag">Cambodia · Origin · Coffee</div>
+          <div className="occ-contact-visual-note">
+            <small>Start from origin</small>
+            <strong>A clearer route from Cambodia to your next coffee project.</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="occ-contact-main" id="enquiry">
+        <aside className="occ-contact-aside">
+          <div className="occ-contact-sticky">
+            <div className="occ-contact-section-no">01 / Start an enquiry</div>
+            <h2>
+              Tell us what
+              <br />
+              you are building.
+            </h2>
+            <p>
+              Choose the closest enquiry type and share the market, quantity, timing or
+              project context you already know. You do not need a perfect brief.
+            </p>
+
+            <div className="occ-contact-methods">
+              <a href="mailto:service@origincafekh.com" className="occ-contact-method">
+                <span aria-hidden="true">↗</span>
+                <span>service@origincafekh.com</span>
+                <span className="occ-contact-arrow" aria-hidden="true">→</span>
+              </a>
+              <a
+                href="https://t.me/+85514360479"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="occ-contact-method"
+              >
+                <span aria-hidden="true">↗</span>
+                <span>Telegram · +855 14 360 479</span>
+                <span className="occ-contact-arrow" aria-hidden="true">→</span>
+              </a>
+              <div className="occ-contact-method">
+                <span aria-hidden="true">•</span>
+                <span>Phnom Penh · Cambodia</span>
+                <span />
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div className="occ-contact-form-card">
+          <div className="occ-contact-form-heading">
+            <h2>
+              What can we
+              <br />
+              help with?
+            </h2>
+            <p>Wholesale · sourcing · samples · roasting · partnerships · media</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="mb-8">
-              <label htmlFor="name" className={labelBase}>Full Name</label>
-              <input id="name" type="text" autoComplete="name" data-clarity-mask="true" placeholder="Your name" className={inputBase} aria-invalid={!!errors.name} {...register("name")} />
-              {errors.name && <p role="alert" className="mt-1.5 text-xs text-occ-burgundy">{errors.name.message}</p>}
+            <div className="occ-contact-field-row">
+              <div className="occ-contact-field">
+                <label htmlFor="name">Full Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  autoComplete="name"
+                  data-clarity-mask="true"
+                  placeholder="Your name"
+                  aria-invalid={!!errors.name}
+                  {...register("name")}
+                />
+                {errors.name && <p role="alert" className="occ-contact-error">{errors.name.message}</p>}
+              </div>
+
+              <div className="occ-contact-field">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  data-clarity-mask="true"
+                  placeholder="your@email.com"
+                  aria-invalid={!!errors.email}
+                  {...register("email")}
+                />
+                {errors.email && <p role="alert" className="occ-contact-error">{errors.email.message}</p>}
+              </div>
             </div>
 
-            <div className="mb-8">
-              <label htmlFor="email" className={labelBase}>Email Address</label>
-              <input id="email" type="email" autoComplete="email" data-clarity-mask="true" placeholder="your@email.com" className={inputBase} aria-invalid={!!errors.email} {...register("email")} />
-              {errors.email && <p role="alert" className="mt-1.5 text-xs text-occ-burgundy">{errors.email.message}</p>}
-            </div>
-
-            <fieldset className="mb-8">
-              <legend className={labelBase}>Enquiry Type</legend>
-              <div className="grid grid-cols-2 gap-2.5 mt-1">
+            <fieldset className="occ-contact-enquiry">
+              <legend>Enquiry Type</legend>
+              <div className="occ-contact-pills">
                 {ENQUIRY_TYPES.map((type) => {
                   const isSelected = selectedType === type
                   return (
-                    <label key={type} className={`flex items-center gap-2.5 px-3.5 py-3 border cursor-pointer transition-all text-[12px] tracking-[0.1em] uppercase [font-family:var(--occ-font-subtitle)] ${isSelected ? "bg-occ-primary text-occ-background border-occ-primary" : "border-occ-surface text-occ-secondary hover:border-occ-secondary hover:text-occ-primary"}`}>
-                      <input type="radio" value={type} className="sr-only" {...register("service")} />
-                      {type}
+                    <label key={type} className={`occ-contact-pill${isSelected ? " is-selected" : ""}`}>
+                      <input type="radio" value={type} {...register("service")} />
+                      <span>{type}</span>
                     </label>
                   )
                 })}
               </div>
-              {errors.service && <p role="alert" className="mt-1.5 text-xs text-occ-burgundy">{errors.service.message}</p>}
+              {errors.service && <p role="alert" className="occ-contact-error">{errors.service.message}</p>}
             </fieldset>
 
-            <div className="mb-8">
-              <label htmlFor="message" className={labelBase}>Message <span className="normal-case tracking-normal font-normal">(optional)</span></label>
-              <p id="message-help" className="mb-3 max-w-xl text-[13px] font-light leading-6 text-occ-secondary">
-                Share what you need, expected use, timing, quantity, and any quality or sourcing requirements.
+            <div className="occ-contact-field occ-contact-message-field">
+              <label htmlFor="message">Project Details <span>(optional)</span></label>
+              <p id="message-help" className="occ-contact-message-help">
+                Useful context: market, expected use, timing, estimated quantity, roast format,
+                quality or sourcing requirements.
               </p>
               <textarea
                 id="message"
                 rows={6}
                 maxLength={2000}
                 data-clarity-mask="true"
-                placeholder="Example: We are looking for roasted Fine Robusta for a café launch in Phnom Penh…"
-                className="occ-contact-message w-full resize-y rounded-sm border border-occ-primary/25 bg-white/35 px-4 py-3.5 text-[15px] font-light leading-7 text-occ-primary outline-none transition-colors placeholder:text-occ-secondary/75"
+                placeholder="Tell us what you are looking for…"
                 aria-describedby={`message-help message-count${errors.message ? " message-error" : ""}`}
                 aria-invalid={!!errors.message}
                 {...register("message")}
               />
-              <div className="mt-2 flex items-start justify-between gap-4">
+              <div className="occ-contact-message-meta">
                 <div>
-                  {errors.message && <p id="message-error" role="alert" className="text-xs text-occ-burgundy">{errors.message.message}</p>}
+                  {errors.message && (
+                    <p id="message-error" role="alert" className="occ-contact-error">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
-                <p id="message-count" className="shrink-0 text-[11px] tabular-nums text-occ-secondary" aria-live="polite">{message.length} / 2000</p>
+                <p id="message-count" aria-live="polite">{message.length} / 2000</p>
               </div>
             </div>
 
-            {serverError && <p role="alert" className="mb-6 border border-occ-burgundy bg-occ-surface px-4 py-3 text-sm text-occ-burgundy">{serverError}</p>}
+            {serverError && (
+              <p role="alert" className="occ-contact-server-error">{serverError}</p>
+            )}
 
-            <div className="flex items-center justify-end mt-12 pt-8 border-t border-occ-surface">
-              <button type="submit" disabled={isPending} className="flex items-center gap-3.5 bg-occ-primary text-occ-background px-7 py-4 text-[13px] tracking-[0.18em] uppercase [font-family:var(--occ-font-subtitle)] hover:bg-occ-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[160px] justify-center">
+            <div className="occ-contact-submit-row">
+              <p>Clear project context helps us route your enquiry faster.</p>
+              <button type="submit" disabled={isPending}>
                 {isPending ? "Sending…" : <>Send Enquiry <span aria-hidden="true">→</span></>}
               </button>
             </div>
           </form>
         </div>
-      </div>
+      </section>
+
+      <section className="occ-contact-routes">
+        <div className="occ-contact-routes-inner">
+          <div className="occ-contact-routes-heading">
+            <h2>
+              One contact.
+              <br />
+              Three clear routes.
+            </h2>
+            <p>
+              Every enquiry begins here and moves to the right OCC conversation without
+              making visitors decode our internal structure.
+            </p>
+          </div>
+
+          <div className="occ-contact-route-grid">
+            <article>
+              <span>01</span>
+              <h3>Sourcing &amp; Supply</h3>
+              <p>
+                For wholesale coffee, Cambodian origin sourcing, sample requests, current
+                lots and supply conversations.
+              </p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Roasting &amp; Coffee Solutions</h3>
+              <p>
+                For roast development, B2B coffee programs, product support and practical
+                coffee solutions.
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Partnerships &amp; Media</h3>
+              <p>
+                For distribution, brand collaboration, interviews, editorial requests and
+                source corrections.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
 
       {isSuccess && (
-        <div role="dialog" aria-modal="true" aria-labelledby="success-title" className="fixed inset-0 bg-occ-primary text-occ-background z-50 flex flex-col items-center justify-center text-center p-10">
-          <p className="text-[11px] tracking-[0.25em] text-occ-secondary uppercase mb-6 [font-family:var(--occ-font-subtitle)]">Enquiry Received</p>
-          <h2 id="success-title" className="tracking-[0.04em] mb-5 [font-family:var(--occ-font-title)]" style={{ fontSize: "72px" }}>NOTED.</h2>
-          <p className="text-[15px] font-light italic text-occ-secondary max-w-xs leading-relaxed mb-10">Your enquiry has been received.</p>
-          <button onClick={() => setIsSuccess(false)} className="text-[12px] tracking-[0.2em] uppercase text-white border-b border-occ-secondary pb-1 hover:border-white transition-colors [font-family:var(--occ-font-subtitle)]">← Return</button>
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="success-title"
+          className="occ-contact-success"
+        >
+          <p>Enquiry Received</p>
+          <h2 id="success-title">NOTED.</h2>
+          <div>Your enquiry has been received.</div>
+          <button type="button" onClick={() => setIsSuccess(false)}>← Return</button>
         </div>
       )}
     </div>
