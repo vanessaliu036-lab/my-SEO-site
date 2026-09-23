@@ -25,6 +25,8 @@ jobs:
       - name: Full repository tests
         run: npm test
       - name: TypeScript verification
+        if: ${{ always() }}
         run: npx tsc --noEmit
       - name: Build and release integrity verification
+        if: ${{ always() }}
         run: npm run build
