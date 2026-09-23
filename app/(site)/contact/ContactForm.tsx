@@ -88,7 +88,7 @@ export default function ContactForm() {
         </div>
 
         <div className="occ-contact-hero-visual">
-          <img src="/hero-home.webp" alt="Cambodian coffee origin landscape" />
+          <img src="/media/cambodian-coffee-origin-field-notes.jpg" alt="Cambodian coffee origin landscape" />
           <div className="occ-contact-visual-tag">Cambodia · Origin · Coffee</div>
           <div className="occ-contact-visual-note">
             <small>Start from origin</small>
@@ -205,6 +205,7 @@ export default function ContactForm() {
                 maxLength={2000}
                 data-clarity-mask="true"
                 placeholder="Tell us what you are looking for…"
+                className="occ-contact-message resize-y"
                 aria-describedby={`message-help message-count${errors.message ? " message-error" : ""}`}
                 aria-invalid={!!errors.message}
                 {...register("message")}
