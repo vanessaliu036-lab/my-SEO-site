@@ -10,5 +10,13 @@ initBotId({
         checkLevel: "basic",
       },
     },
+    {
+      // Keep GA4 / Clarity / Vercel Analytics focused on human production traffic.
+      path: "/api/analytics-eligibility",
+      method: "POST",
+      advancedOptions: {
+        checkLevel: "basic",
+      },
+    },
   ],
 })
