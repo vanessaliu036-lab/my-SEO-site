@@ -71,7 +71,7 @@ test('qualified contact lead can create a B2B Account without duplicate conversi
       if (options?.method === 'POST') {
         postCount += 1
         assert.match(String(url), /tblIr777MquGF8a2y/)
-        return { ok: true, json: async () => ({ id: 'recNEWACCOUNT00001' }) }
+        return { ok: true, json: async () => ({ id: 'recACCOUNT0000001' }) }
       }
       if (options?.method === 'PATCH') return { ok: true, json: async () => ({}) }
       return { ok: true, json: async () => leadPayload }
