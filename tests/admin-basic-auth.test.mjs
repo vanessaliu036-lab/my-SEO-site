@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 const { authorizeAdmin } = await import('../lib/admin-basic-auth.mjs')
-const expected = { username: 'occ-staff', password: 'this-is-a-long-demo-secret' }
+const expected = { username: 'admin', password: 'A7k9Q2' }
 const valid = `Basic ${Buffer.from(`${expected.username}:${expected.password}`).toString('base64')}`
 
 test('only a configured valid credential grants admin access', () => {
@@ -16,6 +16,8 @@ test('missing, malformed and incorrect credentials do not authorize', () => {
   }
 })
 
-test('short passwords never enable admin', () => {
-  assert.equal(authorizeAdmin(valid, { username: 'occ-staff', password: '12345678' }), 'unconfigured')
+test('admin access requires exactly six password characters', () => {
+  assert.equal(authorizeAdmin(valid, { username: 'admin', password: '12345' }), 'unconfigured')
+  assert.equal(authorizeAdmin(valid, { username: 'admin', password: '1234567' }), 'unconfigured')
+  assert.equal(authorizeAdmin(valid, expected), 'authorized')
 })
