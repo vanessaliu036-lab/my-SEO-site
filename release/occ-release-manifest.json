@@ -1,38 +1,52 @@
 {
-  "approvedVersion": "OCC-2026-09-23-CONTACT-REDESIGN",
+  "approvedVersion": "OCC-2026-09-23-ORDER-CONTACT-INBOX",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
   "approvedAt": "2026-09-23",
   "routesIncluded": [
-    "/contact"
+    "/contact",
+    "/admin",
+    "/admin/leads"
   ],
   "approvedChanges": [
     {
-      "id": "redesign-contact-editorial-hero",
+      "id": "preserve-approved-contact-editorial-redesign",
       "ownerApproved": true
     },
     {
-      "id": "clarify-three-contact-routes",
+      "id": "capture-company-work-email-country-intent-stage",
       "ownerApproved": true
     },
     {
-      "id": "upgrade-contact-form-visual-hierarchy",
+      "id": "persist-qualified-contact-data-to-airtable",
       "ownerApproved": true
     },
     {
-      "id": "add-partnership-distribution-enquiry",
+      "id": "surface-live-contact-inquiries-in-admin",
       "ownerApproved": true
     },
     {
-      "id": "persist-partnership-distribution-leads",
+      "id": "add-contact-read-priority-and-discussion-actions",
       "ownerApproved": true
     },
     {
-      "id": "preserve-contact-lead-validation-and-analytics",
+      "id": "convert-contact-to-b2b-account-contact-or-quote",
       "ownerApproved": true
     },
     {
-      "id": "preserve-shared-header-footer-and-site-shell",
+      "id": "create-unified-multichannel-order-inbox",
+      "ownerApproved": true
+    },
+    {
+      "id": "add-order-read-priority-review-conversion-actions",
+      "ownerApproved": true
+    },
+    {
+      "id": "drive-dashboard-counts-from-live-inbox-data",
+      "ownerApproved": true
+    },
+    {
+      "id": "add-order-contact-regression-tests",
       "ownerApproved": true
     }
   ]

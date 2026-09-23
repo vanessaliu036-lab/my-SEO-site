@@ -32,3 +32,26 @@ test('Contact message field has a visible long-form affordance and guidance', ()
   assert.match(form, /message\.length\} \/ 2000/)
   assert.match(styles, /\.occ-contact-shell \.occ-contact-message:focus-visible/)
 })
+
+test('Contact captures the six commercial inbox fields', () => {
+  const form = source('app/(site)/contact/ContactForm.tsx')
+  const schema = source('app/(site)/contact/schema.ts')
+  for (const field of ['name', 'company', 'email', 'country', 'service', 'projectStage']) {
+    assert.match(form, new RegExp('register\\\\("' + field + '"\\\\)'))
+  }
+  assert.match(schema, /"Partnership \\/ Distribution"/)
+  assert.match(schema, /"Ready to order"/)
+})
+
+test('admin dashboard exposes working Order Inbox and Contact Inquiries workflows', () => {
+  const dashboard = source('app/admin/AdminDashboard.tsx')
+  const page = source('app/admin/page.tsx')
+  assert.match(dashboard, /"Order Inbox"/)
+  assert.match(dashboard, /"Contact Inquiries"/)
+  assert.match(dashboard, /Create B2B Account/)
+  assert.match(dashboard, /Create B2B Contact/)
+  assert.match(dashboard, /Create Quote/)
+  assert.doesNotMatch(dashboard, />\\+ New</)
+  assert.match(page, /fetchOrderInbox/)
+  assert.match(page, /fetchContactLeads/)
+})

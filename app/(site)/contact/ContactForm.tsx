@@ -8,14 +8,17 @@ import { contactSchema, type ContactFormData } from "./schema"
 
 const ENQUIRY_TYPES = [
   "Wholesale / Sourcing",
-  "Sample Request",
-  "Lot List",
   "Roasting / Solutions",
   "Partnership / Distribution",
-  "Editorial / Source Correction",
-  "Media / Interview",
-  "General Enquiry",
+  "Other / General",
 ] as const satisfies readonly ContactFormData["service"][]
+
+const PROJECT_STAGES = [
+  "Exploring",
+  "Comparing suppliers",
+  "Sampling / Trial",
+  "Ready to order",
+] as const satisfies readonly ContactFormData["projectStage"][]
 
 export default function ContactForm() {
   const [isPending, startTransition] = useTransition()
@@ -32,6 +35,7 @@ export default function ContactForm() {
   })
 
   const selectedType = watch("service")
+  const selectedStage = watch("projectStage")
   const message = watch("message") ?? ""
 
   const onSubmit = (data: ContactFormData) => {
@@ -41,6 +45,9 @@ export default function ContactForm() {
       if (result.success) {
         window.gtag?.("event", "generate_lead", {
           lead_type: data.service,
+          company: data.company,
+          market: data.country,
+          project_stage: data.projectStage,
           page_path: `${window.location.pathname}${window.location.search}`,
         })
         setIsSuccess(true)
@@ -168,22 +175,52 @@ export default function ContactForm() {
               </div>
 
               <div className="occ-contact-field">
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="company">Company</label>
+                <input
+                  id="company"
+                  type="text"
+                  autoComplete="organization"
+                  data-clarity-mask="true"
+                  placeholder="Company name"
+                  aria-invalid={!!errors.company}
+                  {...register("company")}
+                />
+                {errors.company && <p role="alert" className="occ-contact-error">{errors.company.message}</p>}
+              </div>
+            </div>
+
+            <div className="occ-contact-field-row">
+              <div className="occ-contact-field">
+                <label htmlFor="email">Work Email</label>
                 <input
                   id="email"
                   type="email"
                   autoComplete="email"
                   data-clarity-mask="true"
-                  placeholder="your@email.com"
+                  placeholder="name@company.com"
                   aria-invalid={!!errors.email}
                   {...register("email")}
                 />
                 {errors.email && <p role="alert" className="occ-contact-error">{errors.email.message}</p>}
               </div>
+
+              <div className="occ-contact-field">
+                <label htmlFor="country">Country / Market</label>
+                <input
+                  id="country"
+                  type="text"
+                  autoComplete="country-name"
+                  data-clarity-mask="true"
+                  placeholder="e.g. Cambodia, Singapore"
+                  aria-invalid={!!errors.country}
+                  {...register("country")}
+                />
+                {errors.country && <p role="alert" className="occ-contact-error">{errors.country.message}</p>}
+              </div>
             </div>
 
             <fieldset className="occ-contact-enquiry">
-              <legend>Enquiry Type</legend>
+              <legend>Intent</legend>
               <div className="occ-contact-pills">
                 {ENQUIRY_TYPES.map((type) => {
                   const isSelected = selectedType === type
@@ -198,8 +235,24 @@ export default function ContactForm() {
               {errors.service && <p role="alert" className="occ-contact-error">{errors.service.message}</p>}
             </fieldset>
 
+            <fieldset className="occ-contact-enquiry">
+              <legend>Project Stage</legend>
+              <div className="occ-contact-pills">
+                {PROJECT_STAGES.map((stage) => {
+                  const isSelected = selectedStage === stage
+                  return (
+                    <label key={stage} className={`occ-contact-pill${isSelected ? " is-selected" : ""}`}>
+                      <input type="radio" value={stage} {...register("projectStage")} />
+                      <span>{stage}</span>
+                    </label>
+                  )
+                })}
+              </div>
+              {errors.projectStage && <p role="alert" className="occ-contact-error">{errors.projectStage.message}</p>}
+            </fieldset>
+
             <div className="occ-contact-field occ-contact-message-field">
-              <label htmlFor="message">Project Details <span>(optional)</span></label>
+              <label htmlFor="message">Project / Requirement <span>(optional)</span></label>
               <p id="message-help" className="occ-contact-message-help">
                 Useful context: market, expected use, timing, estimated quantity, roast format,
                 quality or sourcing requirements.
@@ -232,7 +285,7 @@ export default function ContactForm() {
             )}
 
             <div className="occ-contact-submit-row">
-              <p>Clear project context helps us route your enquiry faster.</p>
+              <p>Your submission is saved to the OCC staff inbox before success is shown.</p>
               <button type="submit" disabled={isPending}>
                 {isPending ? "Sending…" : <>Send Enquiry <span aria-hidden="true">→</span></>}
               </button>
@@ -293,7 +346,7 @@ export default function ContactForm() {
         >
           <p>Enquiry Received</p>
           <h2 id="success-title">NOTED.</h2>
-          <div>Your enquiry has been received.</div>
+          <div>Your enquiry has been saved to the OCC commercial inbox.</div>
           <button type="button" onClick={() => setIsSuccess(false)}>← Return</button>
         </div>
       )}
