@@ -5,7 +5,7 @@ const LEGACY_BLOG_REDIRECTS: Record<string, string> = {
   "/solutions/barista-staffing":
     "/solutions/coffee-marketing",
   "/fine-robusta-standards":
-    "/blog/fine-robusta-grading-verify-before-cupping",
+    "/blog/fine-robusta-standards-350g-defects",
   "/farmer-impact-sourcing":
     "/about/sustainability",
   "/coffee":
