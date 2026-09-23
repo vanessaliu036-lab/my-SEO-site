@@ -159,6 +159,19 @@ export default function ContactForm() {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <div
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}
+            >
+              <label htmlFor="website">Website</label>
+              <input
+                id="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                {...register("website")}
+              />
+            </div>
             <div className="occ-contact-field-row">
               <div className="occ-contact-field">
                 <label htmlFor="name">Full Name</label>
