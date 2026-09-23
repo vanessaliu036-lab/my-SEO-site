@@ -16,10 +16,16 @@ test('admin requests are guarded server-side and fail closed when not configured
   assert.match(proxy, /LEGACY_BLOG_REDIRECTS/)
 })
 
-test('operations dashboard stays clearly separated from the live read-only contact inbox', () => {
-  assert.match(source('app/admin/layout.tsx'), /CONTACT INBOX LIVE/)
-  assert.match(source('app/admin/layout.tsx'), /Operations demo/)
-  assert.match(source('app/admin/leads/page.tsx'), /fetchContactLeads/)
+test('operations dashboard integrates live Order Inbox and Contact Inquiries behind the protected admin route', () => {
+  const layout = source('app/admin/layout.tsx')
+  const page = source('app/admin/page.tsx')
+  const dashboard = source('app/admin/AdminDashboard.tsx')
+  assert.match(layout, /ORDER \+ CONTACT INBOX LIVE/)
+  assert.match(page, /fetchOrderInbox/)
+  assert.match(page, /fetchContactLeads/)
+  assert.match(dashboard, /Order Inbox/)
+  assert.match(dashboard, /Contact Inquiries/)
+  assert.match(source('app/admin/leads/page.tsx'), /redirect\('\/admin\?view=contact-inquiries'\)/)
   assert.doesNotMatch(source('app/admin/leads/page.tsx'), /persistContactLead/)
 })
 

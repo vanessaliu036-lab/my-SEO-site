@@ -39,7 +39,7 @@ test('Contact captures the six commercial inbox fields', () => {
   for (const field of ['name', 'company', 'email', 'country', 'service', 'projectStage']) {
     assert.ok(form.includes('register("' + field + '")'))
   }
-  assert.match(schema, /"Partnership \\/ Distribution"/)
+  assert.ok(schema.includes('"Partnership / Distribution"'))
   assert.match(schema, /"Ready to order"/)
 })
 
