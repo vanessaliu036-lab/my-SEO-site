@@ -1,35 +1,38 @@
 {
-  "approvedVersion": "OCC-2026-09-23-SITEWIDE-404",
+  "approvedVersion": "OCC-2026-09-23-CONTACT-REDESIGN",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
   "approvedAt": "2026-09-23",
   "routesIncluded": [
-    "/ (global unmatched-URL fallback)",
-    "/blog/[slug] (missing published article fallback)"
+    "/contact"
   ],
   "approvedChanges": [
     {
-      "id": "brand-global-not-found-page",
+      "id": "redesign-contact-editorial-hero",
       "ownerApproved": true
     },
     {
-      "id": "handle-not-found-inside-public-site-shell",
+      "id": "clarify-three-contact-routes",
       "ownerApproved": true
     },
     {
-      "id": "provide-home-origin-wholesale-journal-and-contact-recovery-links",
+      "id": "upgrade-contact-form-visual-hierarchy",
       "ownerApproved": true
     },
     {
-      "id": "mark-not-found-responses-noindex-follow",
+      "id": "add-partnership-distribution-enquiry",
       "ownerApproved": true
     },
     {
-      "id": "remove-inherited-homepage-canonical-from-not-found-responses",
+      "id": "persist-partnership-distribution-leads",
       "ownerApproved": true
     },
     {
-      "id": "route-auto-linked-barista-queries-to-live-contact-route",
+      "id": "preserve-contact-lead-validation-and-analytics",
+      "ownerApproved": true
+    },
+    {
+      "id": "preserve-shared-header-footer-and-site-shell",
       "ownerApproved": true
     }
   ]
