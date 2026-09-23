@@ -3,6 +3,7 @@
 import { contactSchema } from "./schema"
 import type { ContactFormData } from "./schema"
 import { persistContactLead } from "@/lib/contact-lead-delivery.mjs"
+import { sendContactNotification } from "@/lib/contact-notification.mjs"
 
 type ContactActionResult =
   | { success: true }
@@ -26,6 +27,10 @@ export async function submitContactForm(
       error: "Your enquiry could not be saved. Please try again.",
     }
   }
+
+  // Airtable remains the system of record. Notification failure must not ask the
+  // visitor to submit the same enquiry twice.
+  await sendContactNotification(parsed.data)
 
   return { success: true }
 }

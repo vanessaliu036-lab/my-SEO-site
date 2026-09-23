@@ -16,10 +16,11 @@ test('admin requests are guarded server-side and fail closed when not configured
   assert.match(proxy, /LEGACY_BLOG_REDIRECTS/)
 })
 
-test('dashboard and form lab are explicitly demo-only and never write to Airtable', () => {
-  assert.match(source('app/admin/layout.tsx'), /DEMO DATA/)
-  assert.match(source('app/admin/leads/LeadFormLab.tsx'), /SYNTHETIC/)
-  assert.doesNotMatch(source('app/admin/leads/LeadFormLab.tsx'), /persistContactLead|api\.airtable\.com|AIRTABLE_TOKEN/)
+test('operations dashboard stays clearly separated from the live read-only contact inbox', () => {
+  assert.match(source('app/admin/layout.tsx'), /CONTACT INBOX LIVE/)
+  assert.match(source('app/admin/layout.tsx'), /Operations demo/)
+  assert.match(source('app/admin/leads/page.tsx'), /fetchContactLeads/)
+  assert.doesNotMatch(source('app/admin/leads/page.tsx'), /persistContactLead/)
 })
 
 test('staff login sits in the footer and admin is excluded from robots indexing', () => {

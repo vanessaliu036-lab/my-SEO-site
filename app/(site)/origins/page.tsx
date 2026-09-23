@@ -108,7 +108,7 @@ export default function OriginsPage() {
             <div className="originPath" aria-label="Region to cup journey">Region <span>→</span> Farm <span>→</span> Harvest <span>→</span> Processing <span>→</span> Evaluation <span>→</span> Roasting <span>→</span> Cup</div>
             <div className="originButtons">
               <Link href="/origins/single-origin" className="originButton">Explore single-origin coffees</Link>
-              <Link href="/solutions/wholesale" className="originButton originButtonDark">Discuss wholesale supply</Link>
+              <Link href="/contact" className="originButton originButtonDark">Discuss wholesale supply</Link>
             </div>
           </div>
           <div className="originFinalVisual"><img src="/media/coffee-dispatch-sealed-bags-phnom-penh.jpg" alt="Prepared Cambodian coffee moving from origin toward buyers" loading="lazy" /></div>
