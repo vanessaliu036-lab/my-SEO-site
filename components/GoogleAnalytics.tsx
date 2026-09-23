@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import Script from "next/script"
 
@@ -10,41 +10,97 @@ declare global {
   }
 }
 
+const QA_SESSION_KEY = "occ_analytics_excluded"
+const PRODUCTION_HOSTS = new Set(["origincafekh.com", "www.origincafekh.com"])
+
 const sendEvent = (eventName: string, params: Record<string, unknown>) => {
   window.gtag?.("event", eventName, params)
 }
 
+function shouldExcludeAnalytics(pathname: string) {
+  if (!PRODUCTION_HOSTS.has(window.location.hostname.toLowerCase())) return true
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) return true
+
+  const params = new URLSearchParams(window.location.search)
+  if (params.get("occ_qa") === "1") {
+    window.sessionStorage.setItem(QA_SESSION_KEY, "1")
+    return true
+  }
+
+  if (window.sessionStorage.getItem(QA_SESSION_KEY) === "1") return true
+
+  const userAgent = window.navigator.userAgent || ""
+  const webdriver = Boolean(window.navigator.webdriver)
+  const knownAutomation = /HeadlessChrome|PhantomJS|Playwright|Puppeteer|Lighthouse/i.test(userAgent)
+  if (webdriver || knownAutomation) return true
+
+  if (document.referrer) {
+    try {
+      const referrerHost = new URL(document.referrer).hostname.toLowerCase()
+      const isVercelQaReferrer =
+        referrerHost === "vercel.com" ||
+        referrerHost.endsWith(".vercel.com") ||
+        referrerHost.endsWith(".vercel.app")
+
+      if (isVercelQaReferrer) {
+        window.sessionStorage.setItem(QA_SESSION_KEY, "1")
+        return true
+      }
+    } catch {
+      // Ignore malformed referrers and keep normal analytics behavior.
+    }
+  }
+
+  return false
+}
+
 /**
- * GA4 — `afterInteractive` loads gtag after hydration so short sessions and
- * typical crawlers are more likely to be counted (vs `lazyOnload` after full page load).
+ * OCC production-only GA4.
  *
- * Commercial events intentionally separate intent from outcome:
- * - wholesale_view/contact_view/contact_click = funnel intent
- * - generate_lead = successful contact-form submission (emitted in ContactForm)
- * - occ_404 = exact broken path for technical cleanup
- * - whatsapp_click/email_click = ready for direct-contact CTAs when present
+ * Traffic-quality rules:
+ * - no GA on Vercel previews, localhost or non-canonical hosts
+ * - no GA in /admin
+ * - no GA for browser automation exposed through navigator.webdriver / known headless UAs
+ * - sessions arriving from Vercel QA surfaces are excluded for the rest of that tab
+ * - ?occ_qa=1 explicitly marks the current tab as internal QA without changing public content
+ *
+ * This does NOT geo-block Singapore, China or any other market and does not block
+ * verified search/AI crawlers from accessing the site. It only keeps development /
+ * automation sessions out of the GA4 KPI stream.
  */
 export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   const pathname = usePathname()
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(false)
 
   useEffect(() => {
     if (!measurementId) return
+    setAnalyticsEnabled(!shouldExcludeAnalytics(pathname))
+  }, [measurementId, pathname])
+
+  useEffect(() => {
+    if (!measurementId || !analyticsEnabled) return
 
     const pagePath = `${window.location.pathname}${window.location.search}`
     const commonParams = {
       page_path: pagePath,
       page_location: window.location.href,
+      page_title: document.title,
     }
 
-    // gtag is loaded after hydration. Retry briefly so the first route signal is
-    // not lost if this effect wins the race against the afterInteractive script.
+    // GA config uses send_page_view:false so excluded sessions never emit an
+    // automatic page_view before the production/QA guard runs.
     let attempts = 0
     const signalTimer = window.setInterval(() => {
       attempts += 1
-      if (!window.gtag && attempts < 10) return
+      if (!window.gtag && attempts < 15) return
 
       window.clearInterval(signalTimer)
       if (!window.gtag) return
+
+      sendEvent("page_view", {
+        ...commonParams,
+        page_referrer: document.referrer || "(direct)",
+      })
 
       if (document.title.startsWith("404")) {
         sendEvent("occ_404", {
@@ -104,7 +160,9 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
       window.clearInterval(signalTimer)
       document.removeEventListener("click", handleClick)
     }
-  }, [measurementId, pathname])
+  }, [analyticsEnabled, measurementId, pathname])
+
+  if (!analyticsEnabled) return null
 
   return (
     <>
@@ -118,7 +176,7 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
           gtag('js', new Date());
-          gtag('config', '${measurementId}');
+          gtag('config', '${measurementId}', { send_page_view: false });
         `}
       </Script>
     </>
