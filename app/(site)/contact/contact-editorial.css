@@ -137,7 +137,7 @@
 .occ-contact-hero-visual::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(22, 25, 21, .03), rgba(22, 25, 21, .38));
+  background: linear-gradient(180deg, rgba(24, 32, 25, .03), rgba(24, 32, 25, .38));
   content: "";
 }
 
@@ -147,7 +147,7 @@
   top: 28px;
   right: 28px;
   padding: 11px 13px;
-  border: 1px solid rgba(255, 255, 255, .5);
+  border: 1px solid rgba(251, 250, 246, .5);
   background: rgba(24, 32, 25, .08);
   backdrop-filter: blur(8px);
   color: #FBFAF6;
@@ -249,7 +249,7 @@ a.occ-contact-method:hover .occ-contact-arrow {
 .occ-contact-form-card {
   padding: clamp(30px, 4vw, 58px);
   border: 1px solid rgba(104, 23, 37, .14);
-  background: rgba(255, 253, 249, .62);
+  background: rgba(251, 250, 246, .62);
   box-shadow: 0 24px 60px rgba(24, 32, 25, .055);
 }
 
@@ -338,7 +338,7 @@ a.occ-contact-method:hover .occ-contact-arrow {
   display: block;
   padding: 14px;
   border: 1px solid rgba(24, 32, 25, .15);
-  background: rgba(255, 255, 255, .18);
+  background: rgba(251, 250, 246, .18);
   color: #5F675F;
   font-size: 10px;
   font-weight: 500;
@@ -374,7 +374,7 @@ a.occ-contact-method:hover .occ-contact-arrow {
   border: 1px solid rgba(24, 32, 25, .2);
   border-radius: 0;
   outline: 0;
-  background: rgba(255, 255, 255, .34);
+  background: rgba(251, 250, 246, .34);
   color: var(--contact-ink);
   font: 14px/1.7 var(--occ-font-body), Inter, system-ui, sans-serif;
   transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
@@ -382,7 +382,7 @@ a.occ-contact-method:hover .occ-contact-arrow {
 
 .occ-contact-message-field textarea:focus {
   border-color: var(--contact-wine);
-  background: rgba(255, 255, 255, .7);
+  background: rgba(251, 250, 246, .7);
   box-shadow: 0 0 0 3px rgba(104, 23, 37, .08);
 }
 
