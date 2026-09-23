@@ -83,6 +83,14 @@ export default function ContactForm() {
             <p className="text-sm font-light italic text-occ-secondary leading-relaxed max-w-[390px] mb-16 pl-4 border-l-2 border-occ-primary">
               Contact OCC for wholesale and sourcing enquiries, sample requests, lot-list questions, roasting or coffee solutions, as well as editorial and media enquiries.
             </p>
+            <div className="mb-12 grid gap-3 text-sm">
+              <a className="w-fit border-b border-occ-primary/25 pb-1 text-occ-primary transition-colors hover:border-occ-primary" href="mailto:service@origincafekh.com">
+                service@origincafekh.com
+              </a>
+              <a className="w-fit border-b border-occ-primary/25 pb-1 text-occ-primary transition-colors hover:border-occ-primary" href="https://t.me/+85514360479" target="_blank" rel="noopener noreferrer">
+                Telegram · +855 14 360 479 · Phnom Penh
+              </a>
+            </div>
           </div>
 
           <div className="mt-auto">

@@ -1,14 +1,16 @@
 # OCC staff demo — setup and release gate
 
-Scope: restore the historical admin dashboard **for UX review only** and provide an interactive synthetic B2B lead form lab. Do not interpret any dashboard amounts, contacts or counts as OCC business data. This patch does not read or write Airtable, create a mailbox, or configure DNS.
+Scope: retain the historical operations dashboard **for UX review only** and provide a protected, read-only Contact inbox backed by the existing `OCC_B2B_Leads` Airtable table. Do not interpret the operations dashboard amounts, contacts or counts as OCC business data.
 
 ## Sign-in
 
 `/admin` and `/admin/leads` use server-side HTTP Basic authentication through the Next.js `proxy.ts` matcher. Configure `OCC_ADMIN_USER` and `OCC_ADMIN_PASSWORD` as encrypted **server-only** environment variables for the selected Vercel environment. Use a new unique 16+ character password; never reuse the password/hash from the historical removed admin login. Do not set a `NEXT_PUBLIC_` prefix, commit secrets, or paste credentials into chat. With either variable absent or password too short, the entire admin returns 503 and no demo content. Invalid credentials return 401 with the browser's sign-in prompt. HTTPS is required. Browser Basic auth may cache credentials; this prototype has no reliable logout/multi-user session management. Before any production activation, add Vercel Firewall rate limiting for `/admin/*`, review access and clear browser credentials if sharing devices.
 
-## Demo workflow
+## Contact inbox
 
-From the site footer use **Staff login** → `/admin`; choose **B2B lead form lab**. Three synthetic `.test` addresses represent hotel, overseas distributor and café workflows. Choose a sample, edit fields, press **Save sample edits** to update local React state, or **Reset demo data**. Refreshing clears edits. No sample record is created in `OCC_B2B_Leads` and none is sent to analytics or email. The existing public Contact form → Airtable implementation is intentionally untouched.
+From the site footer use **Staff login** → `/admin`; choose **Contact inbox**. The inbox reads the latest 100 records from `OCC_B2B_Leads` without exposing Airtable credentials to the browser and provides a mailto reply action. The public Contact form remains the only writer.
+
+Successful Contact submissions can also notify `service@origincafekh.com` through Resend. Configure encrypted server-only `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `CONTACT_NOTIFICATION_EMAIL=service@origincafekh.com`. The sending domain must be verified with the provider. Airtable remains the system of record, so a temporary notification failure never asks the visitor to submit the same enquiry twice.
 
 ## Release gate
 

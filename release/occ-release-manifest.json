@@ -1,55 +1,38 @@
 {
-  "approvedVersion": "OCC-2026-09-19-PRODUCTION-2",
+  "approvedVersion": "OCC-2026-09-23-CONTACT-INBOX",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
-  "approvedAt": "2026-09-19",
+  "approvedAt": "2026-09-23",
   "routesIncluded": [
-    "/about",
-    "/partnerships",
-    "/solutions",
-    "/solutions/wholesale",
-    "whole-public-site-brand-colors",
-    "whole-site-image-quality"
+    "/contact",
+    "/admin",
+    "/admin/leads",
+    "/origins",
+    "/solutions/roasting-program"
   ],
   "approvedChanges": [
     {
-      "id": "restore-solutions-seo-version",
+      "id": "enable-protected-admin-login",
       "ownerApproved": true
     },
     {
-      "id": "replace-wholesale-duplicate-images",
+      "id": "show-live-airtable-contact-inbox",
       "ownerApproved": true
     },
     {
-      "id": "replace-partnerships-duplicate-images",
+      "id": "add-non-blocking-contact-email-notification",
       "ownerApproved": true
     },
     {
-      "id": "replace-low-resolution-about-asset",
+      "id": "publish-service-email-and-telegram-contact",
       "ownerApproved": true
     },
     {
-      "id": "remove-obsolete-duplicate-assets",
+      "id": "route-commercial-discussion-ctas-to-contact",
       "ownerApproved": true
     },
     {
-      "id": "enforce-minimum-editorial-resolution",
-      "ownerApproved": true
-    },
-    {
-      "id": "enforce-exact-and-visual-duplicate-gates",
-      "ownerApproved": true
-    },
-    {
-      "id": "unify-public-site-five-color-brand-system",
-      "ownerApproved": true
-    },
-    {
-      "id": "enforce-public-site-brand-color-gate",
-      "ownerApproved": true
-    },
-    {
-      "id": "remove-hardcoded-blog-page-count",
+      "id": "preserve-existing-design-and-seo-surfaces",
       "ownerApproved": true
     }
   ]
