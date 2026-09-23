@@ -1,38 +1,34 @@
 {
-  "approvedVersion": "OCC-2026-09-23-CONTACT-INBOX",
+  "approvedVersion": "OCC-2026-09-23-CONTACT-REDESIGN",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
   "approvedAt": "2026-09-23",
   "routesIncluded": [
-    "/contact",
-    "/admin",
-    "/admin/leads",
-    "/origins",
-    "/solutions/roasting-program"
+    "/contact"
   ],
   "approvedChanges": [
     {
-      "id": "enable-protected-admin-login",
+      "id": "redesign-contact-editorial-hero",
       "ownerApproved": true
     },
     {
-      "id": "show-live-airtable-contact-inbox",
+      "id": "clarify-three-contact-routes",
       "ownerApproved": true
     },
     {
-      "id": "add-non-blocking-contact-email-notification",
+      "id": "upgrade-contact-form-visual-hierarchy",
       "ownerApproved": true
     },
     {
-      "id": "publish-service-email-and-telegram-contact",
+      "id": "add-partnership-distribution-enquiry",
       "ownerApproved": true
     },
     {
-      "id": "route-commercial-discussion-ctas-to-contact",
+      "id": "preserve-contact-lead-validation-and-analytics",
       "ownerApproved": true
     },
     {
-      "id": "preserve-existing-design-and-seo-surfaces",
+      "id": "preserve-shared-header-footer-and-site-shell",
       "ownerApproved": true
     }
   ]

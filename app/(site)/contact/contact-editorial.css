@@ -1,97 +1,778 @@
 .occ-contact-shell {
-  background: #F6F3EA;
-  color: #182019;
+  --contact-ivory: #F6F3EA;
+  --contact-paper: #FBFAF6;
+  --contact-ink: #182019;
+  --contact-muted: #5F675F;
+  --contact-line: rgba(24, 32, 25, 0.15);
+  --contact-wine: #681725;
+  background: var(--contact-ivory);
+  color: var(--contact-ink);
 }
 
-.occ-contact-shell > div {
-  background: #F6F3EA !important;
-  color: #182019 !important;
-  font-family: var(--occ-font-body), system-ui, sans-serif !important;
+.occ-contact-page {
+  background: var(--contact-ivory);
+  color: var(--contact-ink);
+  font-family: var(--occ-font-body), Inter, system-ui, sans-serif;
+  overflow: hidden;
 }
 
-/* Shared site header replaces the form's local breadcrumb and side label. */
-.occ-contact-shell > div > nav,
-.occ-contact-shell > div > div.fixed {
-  display: none !important;
+.occ-contact-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(420px, .98fr);
+  min-height: calc(100svh - 80px);
+  border-bottom: 1px solid var(--contact-line);
 }
 
-.occ-contact-shell > div > .grid {
-  min-height: calc(100svh - 80px) !important;
-  padding-top: 0 !important;
+.occ-contact-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(64px, 6.7vw, 104px) clamp(36px, 4.8vw, 76px) 48px clamp(40px, 5vw, 80px);
 }
 
-.occ-contact-shell > div > .grid > div {
-  border-color: rgba(24, 32, 25, 0.12) !important;
+.occ-contact-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--contact-muted);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
 }
 
-.occ-contact-shell h1 {
-  font-family: var(--occ-font-title), Georgia, serif !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.055em !important;
-  line-height: 0.84 !important;
-  color: #182019 !important;
+.occ-contact-eyebrow::before {
+  width: 42px;
+  height: 1px;
+  background: var(--contact-wine);
+  content: "";
 }
 
-.occ-contact-shell p,
-.occ-contact-shell span,
-.occ-contact-shell label,
-.occ-contact-shell input,
-.occ-contact-shell textarea {
-  border-color: rgba(24, 32, 25, 0.16);
+.occ-contact-hero h1 {
+  margin: 22px 0 28px;
+  color: var(--contact-ink);
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: clamp(70px, 8.4vw, 138px);
+  font-weight: 400;
+  letter-spacing: -.06em;
+  line-height: .78;
 }
 
-.occ-contact-shell .occ-contact-message {
-  min-height: 10.5rem;
-  border-color: rgba(24, 32, 25, 0.3);
-  box-shadow: inset 0 0 0 1px rgba(246, 243, 234, 0.45);
+.occ-contact-hero h1 em {
+  color: var(--contact-wine);
+  font-weight: 400;
 }
 
-.occ-contact-shell .occ-contact-message:hover {
-  border-color: rgba(24, 32, 25, 0.48);
+.occ-contact-intro {
+  max-width: 620px;
+  margin: 0;
+  color: #5F675F;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.85;
 }
+
+.occ-contact-quick-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 42px;
+  border-top: 1px solid var(--contact-line);
+}
+
+.occ-contact-quick {
+  min-width: 0;
+  padding: 19px 18px 17px 0;
+  border-right: 1px solid var(--contact-line);
+  transition: transform .28s ease, color .28s ease;
+}
+
+.occ-contact-quick:not(:first-child) { padding-left: 18px; }
+.occ-contact-quick:last-child { border-right: 0; }
+.occ-contact-quick:hover { color: var(--contact-wine); transform: translateY(-3px); }
+
+.occ-contact-quick-number {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--contact-wine);
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: 18px;
+}
+
+.occ-contact-quick strong,
+.occ-contact-quick small {
+  display: block;
+}
+
+.occ-contact-quick strong {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.occ-contact-quick small {
+  margin-top: 5px;
+  color: var(--contact-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.occ-contact-hero-visual {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  background: #182019;
+}
+
+.occ-contact-hero-visual::before,
+.occ-contact-hero-visual::after {
+  position: absolute;
+  content: "";
+}
+
+.occ-contact-hero-visual::before {
+  inset: 8% 9% 10%;
+  border: 1px solid rgba(216, 211, 200, .32);
+}
+
+.occ-contact-hero-visual::after {
+  width: 62%;
+  height: 62%;
+  right: -18%;
+  top: -12%;
+  border: 1px solid rgba(216, 211, 200, .22);
+  border-radius: 50%;
+}
+
+.occ-contact-visual-art {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  padding: clamp(80px, 9vw, 132px) clamp(34px, 5vw, 76px);
+  background:
+    linear-gradient(90deg, transparent 49.85%, rgba(216, 211, 200, .18) 50%, transparent 50.15%),
+    linear-gradient(180deg, transparent 49.85%, rgba(216, 211, 200, .14) 50%, transparent 50.15%);
+  color: #F6F3EA;
+}
+
+.occ-contact-art-kicker,
+.occ-contact-art-line {
+  position: absolute;
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.occ-contact-art-kicker {
+  top: 15%;
+  left: 12%;
+  color: #D8D3C8;
+}
+
+.occ-contact-art-line {
+  right: 9%;
+  bottom: 18%;
+  color: #D8D3C8;
+  writing-mode: vertical-rl;
+}
+
+.occ-contact-art-word {
+  position: absolute;
+  left: 10%;
+  top: 48%;
+  transform: translateY(-50%);
+  color: #F6F3EA;
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: clamp(58px, 7vw, 112px);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: .82;
+}
+
+.occ-contact-art-mark {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  color: #681725;
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: clamp(42px, 5vw, 74px);
+  font-weight: 400;
+  letter-spacing: -.05em;
+}
+
+.occ-contact-hero-visual:hover .occ-contact-art-word {
+  transform: translateY(-50%) translateX(8px);
+}
+
+.occ-contact-art-word {
+  transition: transform .55s ease;
+}
+
+.occ-contact-visual-tag {
+  position: absolute;
+  z-index: 2;
+  top: 28px;
+  right: 28px;
+  padding: 11px 13px;
+  border: 1px solid rgba(251, 250, 246, .5);
+  background: rgba(24, 32, 25, .08);
+  backdrop-filter: blur(8px);
+  color: #FBFAF6;
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.occ-contact-visual-note {
+  position: absolute;
+  z-index: 2;
+  left: 34px;
+  bottom: 32px;
+  max-width: 430px;
+  color: #FBFAF6;
+}
+
+.occ-contact-visual-note small {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .82;
+}
+
+.occ-contact-visual-note strong {
+  display: block;
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: clamp(28px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1.02;
+}
+
+.occ-contact-main {
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  gap: clamp(42px, 5vw, 80px);
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  padding: 96px clamp(24px, 4vw, 64px) 112px;
+}
+
+.occ-contact-sticky {
+  position: sticky;
+  top: 116px;
+}
+
+.occ-contact-section-no {
+  margin-bottom: 18px;
+  color: var(--contact-muted);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.occ-contact-aside h2,
+.occ-contact-form-heading h2,
+.occ-contact-routes-heading h2 {
+  margin: 0;
+  color: var(--contact-ink);
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  line-height: .96;
+}
+
+.occ-contact-aside h2 { font-size: clamp(46px, 5vw, 74px); }
+
+.occ-contact-aside > div > p {
+  max-width: 390px;
+  margin: 28px 0 0;
+  color: #5F675F;
+  font-size: 14px;
+  line-height: 1.78;
+}
+
+.occ-contact-methods {
+  margin-top: 38px;
+  border-top: 1px solid var(--contact-line);
+}
+
+.occ-contact-method {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--contact-line);
+  font-size: 12px;
+}
+
+.occ-contact-arrow { transition: transform .22s ease, color .22s ease; }
+a.occ-contact-method:hover .occ-contact-arrow {
+  color: var(--contact-wine);
+  transform: translateX(5px);
+}
+
+.occ-contact-form-card {
+  padding: clamp(30px, 4vw, 58px);
+  border: 1px solid rgba(104, 23, 37, .14);
+  background: rgba(251, 250, 246, .62);
+  box-shadow: 0 24px 60px rgba(24, 32, 25, .055);
+}
+
+.occ-contact-form-heading {
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 42px;
+}
+
+.occ-contact-form-heading h2 { font-size: clamp(40px, 4vw, 62px); }
+
+.occ-contact-form-heading p {
+  max-width: 230px;
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 10px;
+  line-height: 1.65;
+  text-align: right;
+}
+
+.occ-contact-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.occ-contact-field { margin-bottom: 28px; }
+
+.occ-contact-field label,
+.occ-contact-enquiry legend {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--contact-muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+
+.occ-contact-field label span {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.occ-contact-field input {
+  width: 100%;
+  padding: 12px 0 13px;
+  border: 0;
+  border-bottom: 1px solid rgba(24, 32, 25, .23);
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--contact-ink);
+  font: 14px var(--occ-font-body), Inter, system-ui, sans-serif;
+  transition: border-color .2s ease;
+}
+
+.occ-contact-field input:focus { border-color: var(--contact-wine); }
+
+.occ-contact-enquiry {
+  margin: 0 0 30px;
+  padding: 0;
+  border: 0;
+}
+
+.occ-contact-pills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.occ-contact-pill {
+  position: relative;
+  cursor: pointer;
+}
+
+.occ-contact-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.occ-contact-pill span {
+  display: block;
+  padding: 14px;
+  border: 1px solid rgba(24, 32, 25, .15);
+  background: rgba(251, 250, 246, .18);
+  color: #5F675F;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: border-color .22s ease, color .22s ease, background .22s ease;
+}
+
+.occ-contact-pill:hover span,
+.occ-contact-pill.is-selected span {
+  border-color: var(--contact-wine);
+  background: #FBFAF6;
+  color: var(--contact-wine);
+}
+
+.occ-contact-pill input:focus-visible + span {
+  outline: 2px solid var(--contact-wine);
+  outline-offset: 2px;
+}
+
+.occ-contact-message-help {
+  margin: -2px 0 12px;
+  color: var(--contact-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.occ-contact-message-field textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 16px;
+  resize: vertical;
+  border: 1px solid rgba(24, 32, 25, .2);
+  border-radius: 0;
+  outline: 0;
+  background: rgba(251, 250, 246, .34);
+  color: var(--contact-ink);
+  font: 14px/1.7 var(--occ-font-body), Inter, system-ui, sans-serif;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.occ-contact-message-field textarea:focus {
+  border-color: var(--contact-wine);
+  background: rgba(251, 250, 246, .7);
+  box-shadow: 0 0 0 3px rgba(104, 23, 37, .08);
+}
+
+.occ-contact-message-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.occ-contact-message-meta > p {
+  flex: none;
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.occ-contact-error {
+  margin: 7px 0 0 !important;
+  color: var(--contact-wine) !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+}
+
+.occ-contact-server-error {
+  margin: 0 0 24px;
+  padding: 13px 15px;
+  border: 1px solid rgba(104, 23, 37, .3);
+  color: var(--contact-wine);
+  font-size: 12px;
+}
+
+.occ-contact-submit-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 38px;
+  padding-top: 28px;
+  border-top: 1px solid var(--contact-line);
+}
+
+.occ-contact-submit-row > p {
+  max-width: 320px;
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 9px;
+  letter-spacing: .08em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.occ-contact-submit-row button {
+  min-width: 190px;
+  padding: 17px 23px;
+  border: 0;
+  background: var(--contact-wine);
+  color: var(--contact-ivory);
+  cursor: pointer;
+  font: 600 10px var(--occ-font-body), Inter, system-ui, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: background .25s ease, transform .25s ease;
+}
+
+.occ-contact-submit-row button:hover:not(:disabled) {
+  background: #681725;
+  transform: translateY(-2px);
+}
+
+.occ-contact-submit-row button:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.occ-contact-routes {
+  border-top: 1px solid var(--contact-line);
+  border-bottom: 1px solid var(--contact-line);
+  background: var(--contact-paper);
+}
+
+.occ-contact-routes-inner {
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  padding: 76px clamp(24px, 4vw, 64px) 82px;
+}
+
+.occ-contact-routes-heading {
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.occ-contact-routes-heading h2 { font-size: clamp(44px, 5vw, 70px); }
+
+.occ-contact-routes-heading > p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.occ-contact-route-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--contact-line);
+}
+
+.occ-contact-route-grid article {
+  min-height: 195px;
+  padding: 28px 28px 12px 0;
+  border-right: 1px solid var(--contact-line);
+}
+
+.occ-contact-route-grid article:not(:first-child) { padding-left: 28px; }
+.occ-contact-route-grid article:last-child { border-right: 0; }
+
+.occ-contact-route-grid article > span {
+  display: block;
+  margin-bottom: 30px;
+  color: var(--contact-wine);
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: 22px;
+}
+
+.occ-contact-route-grid h3 {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.occ-contact-route-grid p {
+  max-width: 300px;
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.occ-contact-success {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: var(--occ-forest, #182019);
+  color: var(--contact-ivory);
+  text-align: center;
+}
+
+.occ-contact-success > p {
+  margin: 0 0 22px;
+  color: rgba(246, 243, 234, .62);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+
+.occ-contact-success h2 {
+  margin: 0 0 16px;
+  font-family: var(--occ-font-title), Georgia, serif;
+  font-size: clamp(68px, 9vw, 120px);
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+
+.occ-contact-success > div {
+  margin-bottom: 34px;
+  color: rgba(246, 243, 234, .72);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.occ-contact-success button {
+  padding: 0 0 5px;
+  border: 0;
+  border-bottom: 1px solid rgba(246, 243, 234, .6);
+  background: transparent;
+  color: #FBFAF6;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+  .occ-contact-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .occ-contact-hero-copy {
+    padding: 68px 6vw 48px;
+  }
+
+  .occ-contact-hero-visual {
+    height: 58vw;
+    min-height: 430px;
+  }
+
+  .occ-contact-main {
+    grid-template-columns: 1fr;
+    padding-top: 72px;
+  }
+
+  .occ-contact-sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .occ-contact-hero-copy {
+    padding: 54px 22px 34px;
+  }
+
+  .occ-contact-hero h1 {
+    font-size: 64px;
+  }
+
+  .occ-contact-quick-links {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+
+  .occ-contact-quick,
+  .occ-contact-quick:not(:first-child) {
+    padding: 15px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--contact-line);
+  }
+
+  .occ-contact-hero-visual {
+    height: 68svh;
+    min-height: 370px;
+  }
+
+  .occ-contact-visual-tag {
+    top: 20px;
+    right: 20px;
+  }
+
+  .occ-contact-visual-note {
+    left: 22px;
+    right: 22px;
+    bottom: 24px;
+  }
+
+  .occ-contact-main {
+    gap: 44px;
+    padding: 56px 22px 72px;
+  }
+
+  .occ-contact-form-card {
+    padding: 27px 20px;
+  }
+
+  .occ-contact-form-heading {
+    display: block;
+  }
+
+  .occ-contact-form-heading p {
+    margin-top: 12px;
+    text-align: left;
+  }
+
+  .occ-contact-field-row,
+  .occ-contact-pills {
+    grid-template-columns: 1fr;
+  }
+
+  .occ-contact-submit-row {
+    display: block;
+  }
+
+  .occ-contact-submit-row > p {
+    margin-bottom: 16px;
+  }
+
+  .occ-contact-submit-row button {
+    width: 100%;
+  }
+
+  .occ-contact-routes-inner {
+    padding: 56px 22px 62px;
+  }
+
+  .occ-contact-routes-heading {
+    display: block;
+  }
+
+  .occ-contact-routes-heading > p {
+    margin-top: 16px;
+  }
+
+  .occ-contact-route-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .occ-contact-route-grid article,
+  .occ-contact-route-grid article:not(:first-child) {
+    min-height: 0;
+    padding: 24px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--contact-line);
+  }
+
+  .occ-contact-route-grid article:last-child {
+    border-bottom: 0;
+  }
+}
+
 
 .occ-contact-shell .occ-contact-message:focus-visible {
-  border-color: var(--occ-logo-burgundy);
-  box-shadow: 0 0 0 3px rgba(104, 23, 37, 0.12);
-}
-
-.occ-contact-shell button[type="submit"] {
-  background: var(--occ-logo-burgundy) !important;
-  color: #F6F3EA !important;
-}
-
-.occ-contact-shell button[type="submit"]:hover {
-  background: var(--occ-logo-burgundy) !important;
-}
-
-.occ-contact-shell [class*="bg-[#182019]"] {
-  background: var(--occ-forest) !important;
-}
-
-.occ-contact-shell > div > div.border-t {
-  border-color: rgba(24, 32, 25, 0.12) !important;
-  background: #F6F3EA;
-}
-
-.occ-contact-shell [role="dialog"] {
-  background: var(--occ-forest) !important;
-  color: #F6F3EA !important;
-}
-
-.occ-contact-shell [role="dialog"] h2 {
-  font-family: var(--occ-font-title), Georgia, serif !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.04em !important;
-}
-
-@media (min-width: 768px) {
-  .occ-contact-shell > div > .grid > div:first-child {
-    padding-left: clamp(2.5rem, 5vw, 5rem) !important;
-    padding-right: clamp(2.5rem, 5vw, 5rem) !important;
-  }
-
-  .occ-contact-shell > div > .grid > div:last-child {
-    padding-left: clamp(2.5rem, 5vw, 5rem) !important;
-    padding-right: clamp(2.5rem, 5vw, 5rem) !important;
-  }
+  border-color: var(--contact-wine);
+  background: rgba(251, 250, 246, .7);
+  box-shadow: 0 0 0 3px rgba(104, 23, 37, .08);
 }
