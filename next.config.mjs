@@ -56,12 +56,22 @@ const nextConfig = {
       },
       {
         source: '/cambodia-robusta-coffee',
-        destination: '/blog/cambodia-specialty-robusta-coffee-guide',
+        destination: '/fine-robusta-cambodia',
         permanent: true,
       },
       {
         source: '/blog/cambodian-coffee-origin-guide',
         destination: '/blog/cambodia-coffee',
+        permanent: true,
+      },
+      {
+        source: '/origins/single-origin',
+        destination: '/fine-robusta-cambodia',
+        permanent: true,
+      },
+      {
+        source: '/origins/cambodia-coffee',
+        destination: '/origins',
         permanent: true,
       },
       {
@@ -106,7 +116,7 @@ const nextConfig = {
       },
       {
         source: '/coffee/single-origin',
-        destination: '/origins/single-origin',
+        destination: '/fine-robusta-cambodia',
         permanent: true,
       },
       {
@@ -116,7 +126,7 @@ const nextConfig = {
       },
       {
         source: '/collection/sovann',
-        destination: '/origins/single-origin',
+        destination: '/fine-robusta-cambodia',
         permanent: true,
       },
       {
