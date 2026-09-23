@@ -9,13 +9,17 @@ import { contactSchema, type ContactFormData } from "./schema"
 
 const ENQUIRY_TYPES = [
   "Wholesale / Sourcing",
-  "Sample Request",
-  "Lot List",
   "Roasting / Solutions",
-  "Editorial / Source Correction",
-  "Media / Interview",
-  "General Enquiry",
+  "Distribution / Partnership",
+  "Other / General",
 ] as const satisfies readonly ContactFormData["service"][]
+
+const PROJECT_STAGES = [
+  "Exploring",
+  "Comparing suppliers",
+  "Sampling / Trial",
+  "Ready to order",
+] as const satisfies readonly ContactFormData["projectStage"][]
 
 export default function ContactForm() {
   const [isPending, startTransition] = useTransition()
@@ -30,6 +34,7 @@ export default function ContactForm() {
   } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) })
 
   const selectedType = watch("service")
+  const selectedStage = watch("projectStage")
   const message = watch("message") ?? ""
 
   const onSubmit = (data: ContactFormData) => {
@@ -39,7 +44,10 @@ export default function ContactForm() {
       if (result.success) {
         window.gtag?.("event", "generate_lead", {
           lead_type: data.service,
-          page_path: `${window.location.pathname}${window.location.search}`,
+          company: data.company,
+          market: data.country,
+          project_stage: data.projectStage,
+          page_path: window.location.pathname + window.location.search,
         })
         setIsSuccess(true)
       } else {
@@ -56,21 +64,20 @@ export default function ContactForm() {
             <p className="occ-contact-eyebrow">Contact · Origin Coffee Cambodia</p>
             <h1>LET&apos;S<br /><em>TALK.</em></h1>
             <p className="occ-contact-intro">
-              From Cambodian coffee sourcing and Fine Robusta samples to roasting programs,
-              distribution and editorial enquiries — start with what you need, and OCC will
-              route the conversation clearly.
+              From Cambodian coffee sourcing and Fine Robusta supply to roasting programs,
+              distribution and commercial partnerships — tell OCC what you are building.
             </p>
           </div>
 
           <div className="occ-contact-quick-grid">
             <a href="#enquiry" className="occ-contact-quick">
-              <span>01</span><strong>Source Coffee</strong><small>Wholesale · lots · samples</small>
+              <span>01</span><strong>Source Coffee</strong><small>Wholesale · lots · supply</small>
             </a>
             <a href="#enquiry" className="occ-contact-quick">
               <span>02</span><strong>Build a Program</strong><small>Roasting · B2B solutions</small>
             </a>
             <a href="#enquiry" className="occ-contact-quick">
-              <span>03</span><strong>Collaborate</strong><small>Media · partnerships · editorial</small>
+              <span>03</span><strong>Partner</strong><small>Distribution · hospitality · gifting</small>
             </a>
           </div>
         </div>
@@ -91,8 +98,8 @@ export default function ContactForm() {
             <p className="occ-contact-section-no">01 / Start an enquiry</p>
             <h2>Tell us what<br />you are building.</h2>
             <p>
-              Choose the closest enquiry type and share the market, quantity, timing or
-              project context you already know. You do not need a perfect brief.
+              Company, market, commercial intent and project stage go directly into the OCC
+              staff inbox so the enquiry can be qualified without re-entering information.
             </p>
             <div className="occ-contact-methods">
               <a href="mailto:service@origincafekh.com"><span>↗</span><b>service@origincafekh.com</b><i>→</i></a>
@@ -104,8 +111,8 @@ export default function ContactForm() {
 
         <div className="occ-contact-form-card">
           <div className="occ-contact-form-head">
-            <h2>What can we<br />help with?</h2>
-            <p>Wholesale · sourcing · samples · roasting · partnerships · media</p>
+            <h2>Commercial<br />enquiry.</h2>
+            <p>One form · one staff inbox · no duplicate data entry</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -116,14 +123,27 @@ export default function ContactForm() {
                 {errors.name && <p role="alert" className="occ-contact-error">{errors.name.message}</p>}
               </div>
               <div className="occ-contact-field">
-                <label htmlFor="email">Email Address</label>
-                <input id="email" type="email" autoComplete="email" data-clarity-mask="true" placeholder="your@email.com" aria-invalid={!!errors.email} {...register("email")} />
+                <label htmlFor="company">Company</label>
+                <input id="company" type="text" autoComplete="organization" data-clarity-mask="true" placeholder="Company name" aria-invalid={!!errors.company} {...register("company")} />
+                {errors.company && <p role="alert" className="occ-contact-error">{errors.company.message}</p>}
+              </div>
+            </div>
+
+            <div className="occ-contact-fields-two">
+              <div className="occ-contact-field">
+                <label htmlFor="email">Work Email</label>
+                <input id="email" type="email" autoComplete="email" data-clarity-mask="true" placeholder="name@company.com" aria-invalid={!!errors.email} {...register("email")} />
                 {errors.email && <p role="alert" className="occ-contact-error">{errors.email.message}</p>}
+              </div>
+              <div className="occ-contact-field">
+                <label htmlFor="country">Country / Market</label>
+                <input id="country" type="text" autoComplete="country-name" data-clarity-mask="true" placeholder="e.g. Cambodia, Singapore" aria-invalid={!!errors.country} {...register("country")} />
+                {errors.country && <p role="alert" className="occ-contact-error">{errors.country.message}</p>}
               </div>
             </div>
 
             <fieldset className="occ-contact-fieldset">
-              <legend>Enquiry Type</legend>
+              <legend>Intent</legend>
               <div className="occ-contact-pills">
                 {ENQUIRY_TYPES.map((type) => (
                   <label key={type} className={selectedType === type ? "is-selected" : ""}>
@@ -135,11 +155,23 @@ export default function ContactForm() {
               {errors.service && <p role="alert" className="occ-contact-error">{errors.service.message}</p>}
             </fieldset>
 
+            <fieldset className="occ-contact-fieldset">
+              <legend>Project Stage</legend>
+              <div className="occ-contact-pills">
+                {PROJECT_STAGES.map((stage) => (
+                  <label key={stage} className={selectedStage === stage ? "is-selected" : ""}>
+                    <input type="radio" value={stage} {...register("projectStage")} />
+                    <span>{stage}</span>
+                  </label>
+                ))}
+              </div>
+              {errors.projectStage && <p role="alert" className="occ-contact-error">{errors.projectStage.message}</p>}
+            </fieldset>
+
             <div className="occ-contact-field">
-              <label htmlFor="message">Project Details <span>(optional)</span></label>
+              <label htmlFor="message">Project / Requirement <span>(optional)</span></label>
               <p className="occ-contact-help" id="message-help">
-                Useful context: market, expected use, timing, estimated quantity, roast format,
-                quality or sourcing requirements.
+                Useful context: expected use, timing, estimated quantity, roast format, quality or sourcing requirements.
               </p>
               <textarea
                 id="message"
@@ -147,7 +179,7 @@ export default function ContactForm() {
                 maxLength={2000}
                 data-clarity-mask="true"
                 placeholder="Tell us what you are looking for…"
-                aria-describedby={`message-help message-count${errors.message ? " message-error" : ""}`}
+                aria-describedby={"message-help message-count" + (errors.message ? " message-error" : "")}
                 aria-invalid={!!errors.message}
                 {...register("message")}
               />
@@ -160,7 +192,7 @@ export default function ContactForm() {
             {serverError && <p role="alert" className="occ-contact-server-error">{serverError}</p>}
 
             <div className="occ-contact-submit">
-              <p>Clear project context helps us route your enquiry faster.</p>
+              <p>Your submission is saved to the OCC staff inbox before success is shown.</p>
               <button type="submit" disabled={isPending}>
                 {isPending ? "Sending…" : <>Send Enquiry <span aria-hidden="true">→</span></>}
               </button>
@@ -173,15 +205,12 @@ export default function ContactForm() {
         <div className="occ-contact-routes-inner">
           <div className="occ-contact-routes-head">
             <h2>One contact.<br />Three clear routes.</h2>
-            <p>
-              The contact page reduces decision friction. Every enquiry begins here and
-              moves to the right commercial conversation.
-            </p>
+            <p>Every commercial enquiry begins here and moves into the right OCC workflow.</p>
           </div>
           <div className="occ-contact-route-grid">
-            <article><span>01</span><h3>Sourcing & Supply</h3><p>Wholesale coffee, Cambodian origin sourcing, sample requests, current lots and supply conversations.</p><Link href="/solutions/wholesale">Explore wholesale →</Link></article>
-            <article><span>02</span><h3>Roasting & Coffee Solutions</h3><p>Roast development, B2B coffee programs, product support and practical coffee solutions.</p><Link href="/solutions/roasting-program">Explore roasting →</Link></article>
-            <article><span>03</span><h3>Partnerships & Distribution</h3><p>Distribution, brand collaboration, hospitality, media and editorial conversations.</p><Link href="/partnerships">Explore partnerships →</Link></article>
+            <article><span>01</span><h3>Sourcing & Supply</h3><p>Wholesale coffee, Cambodian origin sourcing and supply conversations.</p><Link href="/solutions/wholesale">Explore wholesale →</Link></article>
+            <article><span>02</span><h3>Roasting & Coffee Solutions</h3><p>Roast development, B2B coffee programs and product support.</p><Link href="/solutions/roasting-program">Explore roasting →</Link></article>
+            <article><span>03</span><h3>Partnerships & Distribution</h3><p>Distribution, hospitality, gifting and brand partnership conversations.</p><Link href="/partnerships">Explore partnerships →</Link></article>
           </div>
         </div>
       </section>
@@ -190,7 +219,7 @@ export default function ContactForm() {
         <div role="dialog" aria-modal="true" aria-labelledby="success-title" className="occ-contact-success">
           <p>Enquiry Received</p>
           <h2 id="success-title">NOTED.</h2>
-          <span>Your enquiry has been received.</span>
+          <span>Your enquiry has been saved to the OCC commercial inbox.</span>
           <button onClick={() => setIsSuccess(false)}>← Return</button>
         </div>
       )}
