@@ -131,9 +131,7 @@ export async function submitContactForm(
     }
   }
 
-  const { website: _honeypot, ...lead } = parsed.data
-
-  const persisted = await persistContactLead(lead)
+  const persisted = await persistContactLead(parsed.data)
   if (!persisted) {
     return {
       success: false,
@@ -143,7 +141,7 @@ export async function submitContactForm(
 
   // Airtable remains the system of record. Notification failure must not ask the
   // visitor to submit the same enquiry twice.
-  await sendContactNotification(lead)
+  await sendContactNotification(parsed.data)
 
   return { success: true }
 }
