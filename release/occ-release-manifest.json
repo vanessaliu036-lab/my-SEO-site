@@ -1,38 +1,31 @@
 {
-  "approvedVersion": "OCC-2026-09-23-CONTACT-INBOX",
+  "approvedVersion": "OCC-2026-09-23-SITEWIDE-404",
   "releaseMode": "normal",
   "approvedBy": "Vanessa",
   "approvedAt": "2026-09-23",
   "routesIncluded": [
-    "/contact",
-    "/admin",
-    "/admin/leads",
-    "/origins",
-    "/solutions/roasting-program"
+    "/ (global unmatched-URL fallback)",
+    "/blog/[slug] (missing published article fallback)"
   ],
   "approvedChanges": [
     {
-      "id": "enable-protected-admin-login",
+      "id": "brand-global-not-found-page",
       "ownerApproved": true
     },
     {
-      "id": "show-live-airtable-contact-inbox",
+      "id": "handle-not-found-inside-public-site-shell",
       "ownerApproved": true
     },
     {
-      "id": "add-non-blocking-contact-email-notification",
+      "id": "provide-home-origin-wholesale-journal-and-contact-recovery-links",
       "ownerApproved": true
     },
     {
-      "id": "publish-service-email-and-telegram-contact",
+      "id": "mark-not-found-responses-noindex-follow",
       "ownerApproved": true
     },
     {
-      "id": "route-commercial-discussion-ctas-to-contact",
-      "ownerApproved": true
-    },
-    {
-      "id": "preserve-existing-design-and-seo-surfaces",
+      "id": "route-auto-linked-barista-queries-to-live-contact-route",
       "ownerApproved": true
     }
   ]
