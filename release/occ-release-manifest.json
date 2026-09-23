@@ -25,6 +25,10 @@
       "ownerApproved": true
     },
     {
+      "id": "remove-inherited-homepage-canonical-from-not-found-responses",
+      "ownerApproved": true
+    },
+    {
       "id": "route-auto-linked-barista-queries-to-live-contact-route",
       "ownerApproved": true
     }
