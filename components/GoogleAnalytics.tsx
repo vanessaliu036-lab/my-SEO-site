@@ -15,8 +15,9 @@ const sendEvent = (eventName: string, params: Record<string, unknown>) => {
 }
 
 /**
- * GA4 — `afterInteractive` loads gtag after hydration so short sessions and
- * typical crawlers are more likely to be counted (vs `lazyOnload` after full page load).
+ * GA4 is loaded only after AnalyticsGate has confirmed a production, non-bot visit.
+ * Page views are emitted manually so App Router client-side navigation is counted
+ * exactly once instead of relying on the initial gtag config page_view.
  *
  * Commercial events intentionally separate intent from outcome:
  * - wholesale_view/contact_view/contact_click = funnel intent
@@ -45,6 +46,11 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
 
       window.clearInterval(signalTimer)
       if (!window.gtag) return
+
+      sendEvent("page_view", {
+        ...commonParams,
+        page_title: document.title,
+      })
 
       if (document.title.startsWith("404")) {
         sendEvent("occ_404", {
@@ -118,7 +124,7 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
           gtag('js', new Date());
-          gtag('config', '${measurementId}');
+          gtag('config', '${measurementId}', { send_page_view: false });
         `}
       </Script>
     </>
