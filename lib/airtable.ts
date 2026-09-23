@@ -35,8 +35,8 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'Category',
     'SEO_Keyword',
     'OCC_INDEXED_PROTECTED',
-    'Status',
-    'SEO_Gate',
+    // Airtable rejects unknown field names (422); OCC_Blog_Posts has lowercase `status` and no SEO gate field.
+    'status',
   ],
   OCC_INDEXED_PROTECTED: [
     'title',
