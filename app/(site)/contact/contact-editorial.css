@@ -52,7 +52,7 @@
 
 .occ-contact-shell .occ-contact-message:focus-visible {
   border-color: var(--occ-logo-burgundy);
-  box-shadow: 0 0 0 3px rgba(92, 18, 35, 0.12);
+  box-shadow: 0 0 0 3px rgba(104, 23, 37, 0.12);
 }
 
 .occ-contact-shell button[type="submit"] {
