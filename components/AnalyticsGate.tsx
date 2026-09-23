@@ -74,7 +74,7 @@ export function AnalyticsGate({
     <>
       <Analytics
         beforeSend={(event) => {
-          const url = new URL(event.url)
+          const url = new URL(event.url, window.location.origin)
           if (!PRODUCTION_HOSTS.has(url.hostname.toLowerCase())) return null
           if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return null
           return event
