@@ -105,7 +105,7 @@ test('sitemap emits current strategic routes while preserving the Airtable blog 
     assert.match(sitemap, new RegExp(path.replaceAll('/', '\\/')))
   }
   assert.doesNotMatch(sitemap, /\/coffee\/single-origin|\/collection\/sovann|\/collection\/prek|\/collection\/angkar/)
-  assert.match(sitemap, /const posts = await getAllPosts\(\)/)
+  assert.match(sitemap, /const posts = await getPublishedPosts\(\)/)
   assert.match(sitemap, /\.\.\.blogEntries/)
 })
 

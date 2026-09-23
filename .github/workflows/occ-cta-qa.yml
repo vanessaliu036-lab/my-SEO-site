@@ -1,0 +1,30 @@
+name: OCC CTA intake QA
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Contact intake regression tests
+        run: node --test tests/cta-boundary.test.mjs tests/contact-lead-delivery.test.mjs
+      - name: Full repository tests
+        run: npm test
+      - name: TypeScript verification
+        run: npx tsc --noEmit
+      - name: Build and release integrity verification
+        run: npm run build
