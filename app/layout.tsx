@@ -6,7 +6,6 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
-import { pageAlternates } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,7 +47,6 @@ export const metadata: Metadata = {
     "Coffee Processing",
     "Coffee Sensory Evaluation",
   ],
-  alternates: pageAlternates("/"),
   openGraph: {
     type: "website",
     url: siteUrl,
