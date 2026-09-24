@@ -90,6 +90,14 @@ function shouldLinkToRobustaPillar(slug: string): boolean {
   return ROBUSTA_CLUSTER_SLUGS.has(slug) || ROBUSTA_SUPPORT_SLUG_PATTERN.test(slug)
 }
 
+const ROBUSTA_TOPIC_OWNER_LABELS: Record<string, string> = {
+  "fine-robusta-grading-verify-before-cupping": "Grading & verification",
+  "fine-robusta-fermentation": "Fermentation & process control",
+  "how-to-brew-cambodian-fine-robusta": "Brewing",
+  "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability": "Buyer & sourcing",
+  "mondulkiri-next-specialty-coffee-origin": "Mondulkiri origin",
+}
+
 // Keep legacy URLs live, but narrow their visible search target so broad intent
 // remains concentrated on the formal owner pages.
 const ARTICLE_TITLE_OVERRIDES: Record<string, string> = {
@@ -593,6 +601,7 @@ export default async function BlogPostPage({
   const formattedContent = formatContent(post.content, post.title, post.slug)
   const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug)
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
+  const robustaTopicOwnerLabel = ROBUSTA_TOPIC_OWNER_LABELS[post.slug]
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -710,6 +719,22 @@ export default async function BlogPostPage({
             />
           ) : (
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
+          )}
+
+          {/* Formal topic owners link upward to the Fine Robusta Cambodia pillar. */}
+          {robustaTopicOwnerLabel && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-y border-stone-200 py-5">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Part of Fine Robusta Cambodia</p>
+              <Link
+                href={ROBUSTA_PILLAR_HREF}
+                className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+              >
+                Return to the Fine Robusta Cambodia pillar →
+              </Link>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                This is the {robustaTopicOwnerLabel} owner within OCC’s Fine Robusta knowledge cluster. Use the pillar for the broader Cambodia origin, quality, sourcing, and commercial context.
+              </p>
+            </aside>
           )}
 
           {/* Fine Robusta Cambodia pillar backlink: semantic support cluster only */}
