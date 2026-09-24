@@ -32,6 +32,7 @@ type ContactLead = {
   name: string
   company: string
   email: string
+  phone: string
   country: string
   interest: string
   message: string
@@ -302,7 +303,13 @@ export default function AdminDashboard({
                       <div>
                         <div className="text-[10px] uppercase tracking-[.12em] text-[#8d95a1]">{lead.status} · {lead.readStatus} · {lead.priority}</div>
                         <h2 className="mt-2 font-serif text-2xl">{lead.company || lead.name}</h2>
-                        <div className="mt-1 text-sm">{lead.name} · <a className="underline underline-offset-4" href={"mailto:" + lead.email}>{lead.email}</a></div>
+                        <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1 text-sm">
+                          <span>{lead.name}</span>
+                          <span>·</span>
+                          <a className="underline underline-offset-4" href={"tel:" + lead.phone}>{lead.phone || "No phone"}</a>
+                          <span>·</span>
+                          <a className="underline underline-offset-4" href={"mailto:" + lead.email}>{lead.email}</a>
+                        </div>
                       </div>
                       <div className="text-right text-xs leading-5 text-[#7d8592]">{timeLabel(lead.createdAt)}<br />{lead.source}</div>
                     </div>
