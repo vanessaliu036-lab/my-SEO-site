@@ -6,13 +6,13 @@ import { pageAlternates } from "@/lib/seo"
 
 // About presentation is template-owned; this route keeps the approved SEO, schema, links, and copy contract unchanged.
 export const metadata: Metadata = {
-  title: "About OCC | Cambodia-Origin Coffee & Fine Robusta",
+  title: "About Origin Coffee Cambodia | Cambodian Coffee & Fine Robusta",
   description:
-    "About Origin Coffee Cambodia: a Cambodia-origin specialty coffee company and Fine Robusta specialist connecting origin evidence with sourcing, roasted supply, roast development, and market access.",
+    "Meet Origin Coffee Cambodia (OCC), a Cambodia-origin coffee specialist focused on Fine Robusta, transparent sourcing, wholesale supply, roast development, and professional coffee solutions.",
   keywords:
     "Origin Coffee Cambodia, OCC, Cambodia coffee, Fine Robusta Cambodia, Cambodian coffee origin, Cambodia coffee sourcing, roasted coffee supply Cambodia, coffee roasting Cambodia, coffee distribution Cambodia",
   openGraph: {
-    title: "About OCC | Cambodia-Origin Coffee & Fine Robusta",
+    title: "About Origin Coffee Cambodia | Cambodian Coffee & Fine Robusta",
     description:
       "Origin Coffee Cambodia is built around one origin — Cambodia — with Fine Robusta expertise, traceable evidence, coffee supply, roast development, and market access.",
     url: `${siteUrl}/about`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About OCC | Cambodia-Origin Coffee & Fine Robusta",
+    title: "About Origin Coffee Cambodia | Cambodian Coffee & Fine Robusta",
     description:
       "Cambodia-origin coffee, Fine Robusta expertise, origin evidence, supply, roast development, and market access from OCC.",
     images: [ogImage],
