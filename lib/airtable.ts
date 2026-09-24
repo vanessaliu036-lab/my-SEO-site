@@ -332,6 +332,7 @@ export interface BlogPostDetail extends BlogPost {
   content: string
   excerpt: string
   keywords: string
+  primary_keyword: string
   modified_date: string
 }
 
@@ -427,6 +428,10 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
     content: sanitizeOccRecordText(record, pickField(record.fields, K.content)),
     excerpt: sanitizeOccRecordText(record, pickField(record.fields, K.excerpt)),
     keywords: pickField(record.fields, K.keywords),
+    primary_keyword: pickField(
+      record.fields,
+      ['Primary Keyword', 'primary_keyword', 'keyword', 'SEO_Keyword']
+    ),
     modified_date: pickField(record.fields, K.modifiedDate, base.publish_date),
   }
 }
@@ -502,7 +507,7 @@ async function loadPostBySlug(urlSlug: string): Promise<BlogPostDetail | null> {
   return full ? recordToDetail(full) : null
 }
 
-const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-published-post-by-slug-v6'], {
+const getPostBySlugCached = unstable_cache(loadPostBySlug, ['occ-published-post-by-slug-v7'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
