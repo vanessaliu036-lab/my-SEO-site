@@ -150,6 +150,40 @@ const CAMBODIA_COFFEE_TOPIC_OWNER_LABELS: Record<string, string> = {
   "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability": "buyer verification",
 }
 
+const CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS = new Set([
+  "where-is-coffee-grown-in-cambodia",
+  "cambodia-coffee-export-without-commodity-model",
+  "the-history-of-coffee-growing-in-cambodia",
+  "cambodian-coffee-vs-jamaica-blue-mountain",
+  "why-coffee-origins-need-lot-codes-before-blockchain",
+  "what-if-cambodia-coffee-production-doubled",
+  "cambodia-coffee-production-vs-domestic-consumption",
+  "can-cambodia-premium-origin-without-arabica",
+  "the-future-of-cambodias-coffee-industry-opportunities-challenges-and-a-vision-for-2030",
+  "what-mondulkiri-can-learn-emerging-asian-coffee-origins",
+  "cambodia-fine-robusta-not-next-vietnam",
+  "why-traditional-cambodian-coffee-tastes-buttery-sweet",
+  "cambodian-coffee-vs-burundian-coffee",
+  "how-cambodia-build-recognizable-coffee-origin",
+  "why-cambodia-imports-coffee",
+  "specialty-coffee-sourcing-in-emerging-markets-why-cambodia-belongs-on-your-radar",
+  "third-wave-coffees-new-frontier-in-2025-the-origins-you-should-be-watching",
+  "drying-capacity-limits-coffee-growth",
+  "cambodia-coffee-origin-standards-before-growth",
+  "emerging-robusta-origins-to-watch-in-the-coming-decade",
+  "cambodia-domestic-coffee-market-vs-export",
+  "small-coffee-origins-traceability-advantage",
+  "cambodia-coffee-competitive-moat",
+  "cambodian-coffee-vs-zambian-coffee",
+  "cambodias-emerging-specialty-coffee-scene",
+  "what-makes-cambodian-coffee-hard-to-copy",
+  "cambodia-coffee-southeast-asias-rising-origin-for-b2b-buyers",
+  "cambodian-coffee-kampot-pepper",
+  "cambodia-small-coffee-production-advantage",
+  "cambodia-coffee-southeast-asias-rising",
+  "why-education-sells-unknown-coffee-origin",
+])
+
 // Keep legacy URLs live, but narrow their visible search target so broad intent
 // remains concentrated on the formal owner pages.
 const ARTICLE_TITLE_OVERRIDES: Record<string, string> = {
@@ -687,7 +721,8 @@ export default async function BlogPostPage({
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title, post.slug)
-  const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug)
+  const isCambodiaCoffeeSupport = CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS.has(post.slug)
+  const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug) && !isCambodiaCoffeeSupport
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
   const robustaTopicOwnerLabel = ROBUSTA_TOPIC_OWNER_LABELS[post.slug]
   const isCambodiaCoffeePillar = post.slug === CAMBODIA_COFFEE_PILLAR_SLUG
@@ -851,6 +886,21 @@ export default async function BlogPostPage({
               </Link>
               <p className="mt-2 text-xs leading-relaxed text-stone-500">
                 This is the {cambodiaCoffeeTopicOwnerLabel} guide inside OCC’s Cambodian Coffee discovery cluster. Use the pillar for the broader country-level context before moving into specialist or commercial intent.
+              </p>
+            </aside>
+          )}
+
+          {isCambodiaCoffeeSupport && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Country guide</p>
+              <Link
+                href={CAMBODIA_COFFEE_PILLAR_HREF}
+                className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+              >
+                Cambodian Coffee guide →
+              </Link>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                This article supports a narrower Cambodia coffee question. Use the Cambodian Coffee pillar for the broader country-level discovery path before moving into regional, quality, or commercial topics.
               </p>
             </aside>
           )}
