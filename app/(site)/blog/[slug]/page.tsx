@@ -98,6 +98,64 @@ function displayTitleForPost(slug: string, title: string): string {
   return ARTICLE_TITLE_OVERRIDES[slug] || title
 }
 
+const SEO_CONTENT_EXPANSIONS: Record<string, {
+  label: string
+  title: string
+  intro: string
+  points: string[]
+  links: Array<{ href: string; label: string }>
+}> = {
+  "cambodia-coffee-production-vs-consumption": {
+    label: "2026 context",
+    title: "How to read Cambodia’s production and consumption gap",
+    intro:
+      "Production, domestic consumption, imports, and export potential answer different questions. For Cambodia, the useful buyer interpretation is not a single headline number, but whether local production can be identified, processed consistently, and matched to a repeatable commercial use.",
+    points: [
+      "Separate farm-level production estimates from roasted-coffee retail demand and imported coffee products.",
+      "Treat annual production figures as time-bound estimates; methodology, harvest conditions, and reporting coverage can change the total materially.",
+      "For buyers, the practical question is how much traceable coffee is available by origin, process, quality specification, and delivery window—not national production alone.",
+      "Import dependence does not mean local coffee lacks value. It means Cambodia’s domestic market and its origin-based specialty supply should be evaluated as separate layers.",
+    ],
+    links: [
+      { href: "/origins", label: "Explore Cambodia coffee origins" },
+      { href: "/solutions/wholesale", label: "Wholesale & sourcing for buyers" },
+    ],
+  },
+  "cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition": {
+    label: "Buyer perspective",
+    title: "What matters now in Cambodia’s coffee industry",
+    intro:
+      "For professional buyers, Cambodia’s opportunity is less about competing on commodity scale and more about building verifiable origin, processing discipline, roast fit, and repeatable supply around specific coffees.",
+    points: [
+      "Mondulkiri and Ratanakiri should be treated as origin contexts, not automatic quality grades.",
+      "Fine Robusta claims are strongest when tied to an identifiable sample, lot, process, evaluation context, and current availability.",
+      "Growth in cafés and consumer interest does not automatically translate into export-ready supply; quality control, lot identity, logistics, and documentation remain separate requirements.",
+      "OCC’s commercial role is to connect origin evidence with sourcing, wholesale supply, roast development, and buyer communication rather than treating editorial visibility as proof of inventory.",
+    ],
+    links: [
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia pillar" },
+      { href: "/solutions/roasting-program", label: "Custom roasting in Cambodia" },
+      { href: "/solutions/wholesale", label: "Cambodian coffee wholesale" },
+    ],
+  },
+  "the-origins-of-q-coffee-and-the-coffee-quality-institute": {
+    label: "Evaluation context",
+    title: "How to use CQI and Q Coffee references responsibly",
+    intro:
+      "CQI and Q-program records are useful evidence when they are read in context. A historic score or certification can document what was evaluated at a specific time, but it should not be stretched into a permanent quality claim for an origin, producer, or future commercial lot.",
+    points: [
+      "Check the evaluation date, program or protocol, sample identity, and any available lot information before comparing scores.",
+      "Distinguish a certified or evaluated sample from the coffee that is currently being offered for sale.",
+      "Use sensory scores together with physical condition, processing, traceability, storage, and sample representativeness.",
+      "For Cambodian Fine Robusta, historical CQI evidence is best used as proof of demonstrated potential—not as a blanket claim that every Cambodian Robusta meets the same level.",
+    ],
+    links: [
+      { href: "/blog/fine-robusta-grading-verify-before-cupping", label: "Fine Robusta grading & verification guide" },
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
+    ],
+  },
+}
+
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
   "what-is-fine-robusta-coffee-a-complete-beginners-guide": {
     href: ROBUSTA_PILLAR_HREF,
@@ -690,6 +748,36 @@ export default async function BlogPostPage({
           ) : (
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
           )}
+
+          {SEO_CONTENT_EXPANSIONS[post.slug] ? (
+            <section className="mx-auto mt-12 max-w-[720px] border-y border-stone-200 bg-stone-50 px-5 py-7 sm:px-6">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-stone-400">
+                {SEO_CONTENT_EXPANSIONS[post.slug].label}
+              </p>
+              <h2 className="text-lg font-semibold leading-snug tracking-tight text-stone-950 sm:text-xl">
+                {SEO_CONTENT_EXPANSIONS[post.slug].title}
+              </h2>
+              <p className="mt-4 text-[15px] leading-[1.8] text-stone-700">
+                {SEO_CONTENT_EXPANSIONS[post.slug].intro}
+              </p>
+              <ul className="mt-5 list-disc space-y-2 pl-5">
+                {SEO_CONTENT_EXPANSIONS[post.slug].points.map((point) => (
+                  <li key={point} className="text-[15px] leading-[1.75] text-stone-700">{point}</li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3">
+                {SEO_CONTENT_EXPANSIONS[post.slug].links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+                  >
+                    {link.label} →
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {/* Fine Robusta Cambodia pillar backlink: supporting cluster only */}
           {showRobustaPillarLink && (
