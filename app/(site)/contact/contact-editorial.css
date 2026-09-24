@@ -257,6 +257,12 @@
   text-transform: none;
 }
 
+.occ-contact-field label .occ-contact-required {
+  margin-left: 3px;
+  color: var(--contact-wine);
+  font-weight: 700;
+}
+
 .occ-contact-field input {
   width: 100%;
   padding: 12px 0 13px;
