@@ -347,6 +347,11 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     anchor: "Fine Robusta vs Arabica buyer guide",
     lead: "For the broad buyer comparison, see the",
   },
+  "best-cambodian-coffee-to-buy-2026": {
+    href: "/origins",
+    anchor: "Cambodian coffee origins guide",
+    lead: "For the origin-level guide to Cambodian coffee, explore the",
+  },
   "robusta-processing-methods-washed-natural-and-honey": {
     href: "/blog/fine-robusta-processing-transparency",
     anchor: "Fine Robusta processing transparency guide",
