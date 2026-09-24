@@ -351,7 +351,6 @@ test('broad Cambodian Coffee support pages converge on the discovery pillar', ()
   assert.match(articlePage, /Cambodian Coffee guide →/)
 
   const supportSlugs = [
-    'where-is-coffee-grown-in-cambodia',
     'the-history-of-coffee-growing-in-cambodia',
     'why-cambodia-imports-coffee',
     'cambodia-coffee-origin-standards-before-growth',
@@ -365,7 +364,7 @@ test('broad Cambodian Coffee support pages converge on the discovery pillar', ()
 test('Cambodian Coffee primary support does not also render the generic Fine Robusta support backlink', () => {
   assert.match(
     articlePage,
-    /const showRobustaPillarLink = shouldLinkToRobustaPillar\(post\.slug\) && !isCambodiaCoffeeSupport/,
+    /!isCambodiaCoffeeSupport[\s\S]{0,160}?!isCambodiaGeographySupport[\s\S]{0,160}?!isCambodiaRobustaRegionsOwner/,
   )
 })
 
@@ -401,4 +400,31 @@ test('production Cambodia Regions rewrite serves the static owner-routing page',
     cambodiaRegionsStatic,
     /class="read-more" href="https:\/\/origincafekh\.com\/origins\/cambodia-regions">Explore Cambodia &amp; Regions/,
   )
+})
+
+
+test('Cambodia geography support converges on the Regions pillar instead of discovery or Fine Robusta', () => {
+  assert.match(articlePage, /const CAMBODIA_GEOGRAPHY_SUPPORT_SLUGS = new Set/)
+  for (const slug of [
+    'where-is-coffee-grown-in-cambodia',
+    'is-cambodian-coffee-grown-in-cambodia',
+    'does-cambodia-grow-coffee-mondulkiri-origin',
+    'cambodia-coffee-regions',
+  ]) {
+    assert.match(articlePage, new RegExp(slug.replaceAll('-', '\\-')))
+  }
+  assert.match(articlePage, /Geography guide/)
+  assert.match(articlePage, /Cambodia coffee regions guide →/)
+  assert.match(articlePage, /isCambodiaGeographySupport/)
+})
+
+test('Cambodia Robusta growing-regions owner keeps species and geography boundaries separate', () => {
+  assert.match(articlePage, /CAMBODIA_ROBUSTA_REGIONS_OWNER_SLUG = "cambodia-robusta-growing-regions"/)
+  assert.match(articlePage, /CAMBODIA_ROBUSTA_HREF = "\/blog\/cambodia-specialty-robusta-coffee-guide"/)
+  assert.match(articlePage, /Species × geography owner/)
+  assert.match(articlePage, /Robusta Cambodia guide →/)
+  assert.match(articlePage, /Cambodia coffee regions guide →/)
+  const excludedOwners = articlePage.match(/const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set\(\[([\s\S]*?)\n\]\)/)
+  assert.ok(excludedOwners)
+  assert.match(excludedOwners[1], /cambodia-robusta-growing-regions/)
 })
