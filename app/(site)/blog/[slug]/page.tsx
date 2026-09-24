@@ -154,6 +154,56 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
       { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
     ],
   },
+  "best-cambodian-coffee-to-buy-2026": {
+    label: "Selection guide",
+    title: "How to choose Cambodian coffee by use, not hype",
+    intro:
+      "The best Cambodian coffee depends on what you want to do with it. A gift buyer, filter-coffee drinker, espresso bar, hotel, and wholesale buyer do not need the same roast, format, evidence, or supply conditions.",
+    points: [
+      "For filter brewing, prioritize roast freshness, origin clarity, and tasting information that is specific to the coffee you are buying.",
+      "For espresso and milk drinks, evaluate body, sweetness, roast development, extraction behavior, and whether the coffee performs consistently in service.",
+      "For gifts, packaging and story matter, but origin and product claims should still be clear enough to understand what is actually inside.",
+      "For professional sourcing, move beyond tasting notes to lot identity, process, sample representativeness, quality specifications, availability, and repeatability.",
+    ],
+    links: [
+      { href: "/origins", label: "Cambodia coffee origins" },
+      { href: "/fine-robusta-cambodia", label: "Understand Fine Robusta Cambodia" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "what-cambodian-coffee-should-you-try-first": {
+    label: "Start here",
+    title: "A simple first-cup decision framework",
+    intro:
+      "Instead of asking for one universal ‘best’ Cambodian coffee, start with brew method and flavor preference. That produces a more useful first choice and keeps origin, roast, and quality claims in the right context.",
+    points: [
+      "Choose filter first if you want to compare aroma, acidity, sweetness, and processing character with less influence from milk.",
+      "Choose espresso if you want to understand body, concentration, crema, and how the coffee performs under pressure.",
+      "Choose a named Cambodian origin when traceability matters more than a broad national label.",
+      "Choose Fine Robusta when you specifically want to explore quality-focused Canephora; do not assume every Cambodian Robusta represents that category.",
+    ],
+    links: [
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia guide" },
+      { href: "/origins/cambodia-regions", label: "Cambodia coffee regions" },
+    ],
+  },
+  "specialty-robusta-espresso-blend-guide": {
+    label: "Espresso application",
+    title: "What Fine Robusta can contribute to an espresso blend",
+    intro:
+      "Robusta in espresso should be evaluated by function rather than stereotype. Quality-focused Canephora can contribute body, crema, intensity, and flavor structure, but the useful percentage depends on the coffee, roast, grinder, recipe, milk format, and target cup.",
+    points: [
+      "Evaluate the Robusta component separately before blending so defects or roast problems are not hidden by the blend.",
+      "Use blend percentage as a development variable, not a universal recipe; small changes can materially affect body, bitterness, sweetness, and finish.",
+      "Cup and dial in the final roasted blend under the actual service recipe, especially when milk drinks are the main use.",
+      "For commercial programs, consistency between lots matters as much as the first successful blend trial.",
+    ],
+    links: [
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
+      { href: "/solutions/roasting-program", label: "Roast profile development" },
+      { href: "/solutions/wholesale", label: "Coffee supply for businesses" },
+    ],
+  },
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
