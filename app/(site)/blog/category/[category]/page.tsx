@@ -8,6 +8,10 @@ import { siteName, siteUrl } from "@/lib/siteConfig"
 
 const POSTS_PER_PAGE = 12
 
+function hasRawHtmlSummary(text: string): boolean {
+  return /<\/?(?:h[1-6]|p|a|strong|b|em|i|br|ul|ol|li)\b/i.test(text)
+}
+
 export const revalidate = 300
 
 export async function generateMetadata({
@@ -176,7 +180,7 @@ export default async function BlogCategoryPage({
                       <h2 className="mt-2 max-w-[880px] text-[clamp(1.55rem,2.8vw,2.35rem)] font-semibold leading-[1.03] tracking-[-0.035em] text-occ-primary group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
                         {post.title}
                       </h2>
-                      {post.summary ? (
+                      {post.summary && !hasRawHtmlSummary(post.summary) ? (
                         <p className="mt-4 max-w-[820px] text-sm leading-7 text-occ-primary/58 sm:text-[15px]">
                           {post.summary}
                         </p>
