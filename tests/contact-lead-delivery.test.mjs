@@ -6,6 +6,7 @@ const sample = {
   name: 'OCC QA',
   company: 'QA Hotel',
   email: 'qa@example.test',
+  phone: '+855 12 345 678',
   country: 'Cambodia',
   service: 'Wholesale / Sourcing',
   projectStage: 'Ready to order',
@@ -37,6 +38,7 @@ test('only returns success after a complete commercial lead is persisted', async
   assert.equal(fields.fldHHRfTCecsvyg5b, sample.name)
   assert.equal(fields.fldCkWbuV4lFt5Mbq, sample.company)
   assert.equal(fields.fldbLSnIyiApGAw7Q, sample.email)
+  assert.equal(fields.fld7D4yMzhagDsac0, sample.phone)
   assert.equal(fields.fldCEEsTN9XD3ddK4, sample.country)
   assert.equal(fields.fldq91HTSYa3rxLBC, 'Wholesale & Sourcing')
   assert.equal(fields.fldsOyCEEoIGPSQPb, sample.projectStage)
