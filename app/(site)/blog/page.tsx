@@ -79,7 +79,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section id="blog-categories" className="bg-[#FAF7F2] py-16 sm:py-20 lg:py-24">
+      <section id="blog-categories" className="bg-occ-background py-16 sm:py-20 lg:py-24">
         <div className="mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-12">
           <header className="mb-10 text-center sm:mb-12">
             <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-burgundy">Explore by topic</p>

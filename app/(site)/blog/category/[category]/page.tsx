@@ -104,7 +104,7 @@ export default async function BlogCategoryPage({
         </div>
       </section>
 
-      <section className="bg-[#FAF7F2] text-occ-primary">
+      <section className="bg-occ-background text-occ-primary">
         <div className="mx-auto w-full max-w-[1360px] px-5 py-4 sm:px-8 lg:px-12">
           {pagePosts.length === 0 ? (
             <div className="py-24 text-center">
