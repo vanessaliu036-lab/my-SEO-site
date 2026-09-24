@@ -150,6 +150,12 @@ const CAMBODIA_COFFEE_TOPIC_OWNER_LABELS: Record<string, string> = {
   "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability": "buyer verification",
 }
 
+const CAMBODIA_REGIONS_HREF = "/origins/cambodia-regions"
+const REGIONAL_SPECIALIST_LABELS: Record<string, string> = {
+  "mondulkiri-next-specialty-coffee-origin": "Mondulkiri",
+  "ratanakiri-coffee-cambodias-other-highland-origin": "Ratanakiri",
+}
+
 const CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS = new Set([
   "where-is-coffee-grown-in-cambodia",
   "cambodia-coffee-export-without-commodity-model",
@@ -755,6 +761,7 @@ export default async function BlogPostPage({
   const robustaTopicOwnerLabel = ROBUSTA_TOPIC_OWNER_LABELS[post.slug]
   const isCambodiaCoffeePillar = post.slug === CAMBODIA_COFFEE_PILLAR_SLUG
   const cambodiaCoffeeTopicOwnerLabel = CAMBODIA_COFFEE_TOPIC_OWNER_LABELS[post.slug]
+  const regionalSpecialistLabel = REGIONAL_SPECIALIST_LABELS[post.slug]
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -901,6 +908,21 @@ export default async function BlogPostPage({
                 ))}
               </div>
             </section>
+          )}
+
+          {regionalSpecialistLabel && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-y border-stone-200 py-5">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Geography context</p>
+              <Link
+                href={CAMBODIA_REGIONS_HREF}
+                className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+              >
+                Cambodia coffee regions guide →
+              </Link>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                {regionalSpecialistLabel} is a province-level origin owner. Use Cambodia & Regions for the broader country, northeastern-highlands, and regional-geography framework.
+              </p>
+            </aside>
           )}
 
           {cambodiaCoffeeTopicOwnerLabel && (
