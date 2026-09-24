@@ -34,3 +34,21 @@ test("contact submissions have server-side throttling and a honeypot", () => {
   assert.match(form, /register\("website"\)/)
   assert.match(form, /tabIndex=\{-1\}/)
 })
+
+
+test("approved Contact form keeps four intents and no project-stage questionnaire", () => {
+  const schema = source("app/(site)/contact/schema.ts")
+  const form = source("app/(site)/contact/ContactForm.tsx")
+
+  assert.match(schema, /jobTitle:/)
+  assert.match(schema, /Phone number is required/)
+  assert.match(schema, /Message is required/)
+  assert.match(form, /register\("jobTitle"\)/)
+  assert.match(form, /Founder, Manager, Purchasing Manager/)
+  assert.doesNotMatch(form, /Project Stage/)
+  assert.doesNotMatch(form, /register\("projectStage"\)/)
+  assert.match(form, />Wholesale</)
+  assert.match(form, />Roasting</)
+  assert.match(form, />Hotel \/ Partner</)
+  assert.match(form, />Other</)
+})
