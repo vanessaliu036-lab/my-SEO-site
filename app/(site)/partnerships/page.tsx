@@ -159,7 +159,7 @@ export default function PartnershipsPage() {
 
       <main className="bg-occ-background text-occ-primary">
         <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#F6F3EA_0%,#F6F3EA_72%,#F6F3EA_150%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#f2ede7_0%,#f2ede7_72%,#f2ede7_150%)]" />
           <div className="relative mx-auto w-full max-w-[1120px] px-6 pb-20 pt-28 sm:px-10 md:px-14 lg:pb-28 lg:pt-36">
             <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/58">OCC · Partnerships</p>
             <h1 className="mt-5 text-center font-[var(--font-display)] text-[clamp(3.8rem,8vw,6rem)] font-normal leading-[0.92] tracking-[-0.045em]">
@@ -361,16 +361,15 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="bg-occ-primary px-6 py-20 text-occ-background sm:px-8 md:px-12 lg:px-16 lg:py-28">
+        <section className="bg-occ-surface-soft px-6 py-20 text-occ-primary sm:px-8 md:px-12 lg:px-16 lg:py-28">
           <div className="mx-auto w-full max-w-[1360px]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/50">Build a Cambodian Coffee Partnership</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-occ-burgundy">Build a Cambodian Coffee Partnership</p>
             <h2 className="mt-7 max-w-5xl font-[var(--font-display)] text-[clamp(3rem,6vw,6rem)] leading-[0.95] tracking-[-0.04em]">Bring an idea. Begin with Cambodia.</h2>
-            <p className="mt-8 max-w-3xl text-lg leading-8 text-white/72">For hotels, retailers, travel businesses, corporate teams and brands interested in a meaningful Cambodian coffee experience, we would like to hear what you have in mind. Your next step is a conversation, not an obligation to commit.</p>
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-occ-secondary">For hotels, retailers, travel businesses, corporate teams and brands interested in a meaningful Cambodian coffee experience, we would like to hear what you have in mind. Your next step is a conversation, not an obligation to commit.</p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary">Discuss a Partnership <ArrowUpRight className="size-4" /></Link>
-              <Link href="/distribution" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">Explore Distribution <ArrowUpRight className="size-4" /></Link>
+              <Link href="/contact" className="occ-primary-cta">Discuss a Partnership <ArrowUpRight className="size-4" /></Link>
             </div>
-            <p className="mt-12 text-[12px] tracking-[0.12em] text-white/50">100% Cambodian coffee. True to its origin, unmistakably its own.</p>
+            <p className="mt-12 text-[12px] tracking-[0.12em] text-occ-secondary">100% Cambodian coffee. True to its origin, unmistakably its own.</p>
           </div>
         </section>
       </main>

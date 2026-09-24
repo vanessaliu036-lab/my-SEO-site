@@ -10,8 +10,8 @@ const scanRoots = [
   "components/ui",
 ]
 const sourceExtension = /\.(?:css|jsx?|tsx?)$/i
-const allowedHex = new Set(["#182019", "#1C211B", "#681725", "#5F675F", "#D8D3C8", "#EFE9DC", "#F6F3EA", "#FBFAF6"])
-const allowedRgb = new Set(["24,32,25", "28,33,27", "104,23,37", "95,103,95", "216,211,200", "239,233,220", "246,243,234", "251,250,246"])
+const allowedHex = new Set(["#292424", "#393235", "#984650", "#843B45", "#685F5B", "#D8CEC5", "#E9E1DA", "#F2EDE7", "#F7F4F0"])
+const allowedRgb = new Set(["41,36,36", "152,70,80", "104,95,91", "242,237,231", "247,244,240"])
 const nonBrandUtility = /(?:bg|text|border|from|via|to)-(?:red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+/g
 const failures = []
 

@@ -72,7 +72,7 @@ export function SiteHeader() {
                 )}
 
                 {item.children?.length ? (
-                  <div className="pointer-events-none absolute left-1/2 top-20 min-w-[230px] -translate-x-1/2 translate-y-2 border border-black/10 bg-occ-background p-2 text-occ-primary opacity-0 shadow-[0_18px_45px_rgba(24,32,25,0.10)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  <div className="pointer-events-none absolute left-1/2 top-20 min-w-[230px] -translate-x-1/2 translate-y-2 border border-black/10 bg-occ-background p-2 text-occ-primary opacity-0 shadow-[0_18px_45px_rgba(41,36,36,0.10)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}

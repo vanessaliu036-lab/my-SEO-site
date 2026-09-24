@@ -235,11 +235,11 @@ const sections = [
 
 export default function FarmTerroirPage() {
   const wrapClass = "mx-auto w-[calc(100%-40px)] max-w-[1240px] sm:w-[calc(100%-64px)]"
-  const eyebrowClass = "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#94454d]"
-  const sectionTitleClass = "mt-5 max-w-[14ch] font-[var(--font-display)] text-[clamp(2.25rem,5.2vw,4rem)] font-normal leading-[0.98] tracking-[-0.04em] text-[#25211f]"
+  const eyebrowClass = "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#984650]"
+  const sectionTitleClass = "mt-5 max-w-[14ch] font-[var(--font-display)] text-[clamp(2.25rem,5.2vw,4rem)] font-normal leading-[0.98] tracking-[-0.04em] text-[#292424]"
 
   return (
-    <div className="bg-[#f5f1ea] text-[#25211f]">
+    <div className="bg-[#f2ede7] text-[#292424]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes farm-reveal-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -258,46 +258,46 @@ export default function FarmTerroirPage() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.08fr_.92fr] lg:gap-20">
             <div className="farm-reveal-left max-w-[620px]">
               <p className={eyebrowClass}>ORIGINS / FARM &amp; TERROIR</p>
-              <span className="mt-6 block h-px w-12 bg-[#94454d]" aria-hidden="true" />
+              <span className="mt-6 block h-px w-12 bg-[#984650]" aria-hidden="true" />
               <h1 className="mt-7 font-[var(--font-display)] text-[clamp(3.4rem,4.9vw,4.75rem)] font-normal leading-[.9] tracking-[-.055em]">
-                Farm conditions.<br /><em className="font-normal text-[#94454d]">Read at ground level.</em>
+                Farm conditions.<br /><em className="font-normal text-[#984650]">Read at ground level.</em>
               </h1>
-              <p className="mt-8 max-w-[560px] text-[17px] leading-8 text-[#625b56]">
+              <p className="mt-8 max-w-[560px] text-[17px] leading-8 text-[#685f5b]">
                 Soil, elevation, climate, shade, water, plant material and farm decisions shape the environment in which Cambodian coffee grows.
               </p>
-              <a href="#farm-factors" className="mt-7 inline-flex items-center gap-5 border-b border-[#94454d] pb-2 text-[11px] font-semibold uppercase tracking-[.17em] text-[#94454d]">
+              <a href="#farm-factors" className="mt-7 inline-flex items-center gap-5 border-b border-[#984650] pb-2 text-[11px] font-semibold uppercase tracking-[.17em] text-[#984650]">
                 Explore the growing environment <span aria-hidden="true">↓</span>
               </a>
             </div>
 
             <div className="farm-reveal-right">
-              <figure className="relative m-0 aspect-[1.05/1] translate-x-0 translate-y-0 bg-[#ded5cd] shadow-[14px_14px_0_#e8dfd7] lg:-translate-y-1">
+              <figure className="relative m-0 aspect-[1.05/1] translate-x-0 translate-y-0 bg-[#e9e1da] shadow-[14px_14px_0_#e9e1da] lg:-translate-y-1">
                 <img src="/occ-pages/assets/occ-origin-mondulkiri-farm.webp" alt="Coffee trees and red-earth farm path in the Mondulkiri highlands" className="h-full w-full object-cover" />
-                <figcaption className="absolute bottom-5 left-5 bg-[#f5f1ea] px-5 py-3 text-[10px] font-semibold uppercase tracking-[.17em] text-[#25211f]">Farm / Growing environment</figcaption>
+                <figcaption className="absolute bottom-5 left-5 bg-[#f2ede7] px-5 py-3 text-[10px] font-semibold uppercase tracking-[.17em] text-[#292424]">Farm / Growing environment</figcaption>
               </figure>
             </div>
           </div>
 
           <div className="farm-reveal-up mt-16 grid gap-8 border-t border-[#d8cec5] pt-9 md:grid-cols-[.65fr_1.35fr] md:items-center lg:mt-20">
-            <div className="flex items-end gap-4 text-[#94454d]"><strong className="font-[var(--font-display)] text-[clamp(4.5rem,8vw,7.8rem)] font-normal leading-none tracking-[-.06em]">FARM</strong><span className="pb-3 text-[10px] font-semibold uppercase tracking-[.2em]">Scale<br />evidence</span></div>
-            <p className="max-w-[650px] text-[17px] leading-8 text-[#625b56]"><strong className="text-[#25211f]">The region tells us where the coffee comes from.</strong> The farm tells us how it grew there. Terroir becomes useful when the description gets closer to the actual plants, site and agricultural decisions.</p>
+            <div className="flex items-end gap-4 text-[#984650]"><strong className="font-[var(--font-display)] text-[clamp(4.5rem,8vw,7.8rem)] font-normal leading-none tracking-[-.06em]">FARM</strong><span className="pb-3 text-[10px] font-semibold uppercase tracking-[.2em]">Scale<br />evidence</span></div>
+            <p className="max-w-[650px] text-[17px] leading-8 text-[#685f5b]"><strong className="text-[#292424]">The region tells us where the coffee comes from.</strong> The farm tells us how it grew there. Terroir becomes useful when the description gets closer to the actual plants, site and agricultural decisions.</p>
           </div>
         </div>
       </section>
 
-      <section id="farm-factors" aria-label="Farm-scale factors" className="border-b border-[#d8cec5] bg-[#eee7df] py-14 lg:py-16">
+      <section id="farm-factors" aria-label="Farm-scale factors" className="border-b border-[#d8cec5] bg-[#e9e1da] py-14 lg:py-16">
         <div className={wrapClass}>
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <p className={eyebrowClass}>FOLLOW THE FARM</p>
-            <p className="font-[var(--font-display)] text-2xl italic text-[#94454d]">Each factor brings the evidence closer.</p>
+            <p className="font-[var(--font-display)] text-2xl italic text-[#984650]">Each factor brings the evidence closer.</p>
           </div>
-          <div className="mt-8 grid grid-cols-1 border-y border-[#cfc3b9] md:grid-cols-4">
+          <div className="mt-8 grid grid-cols-1 border-y border-[#d8cec5] md:grid-cols-4">
             {highlights.map((card, index) => (
               <div key={card.title}>
-                <article className="min-h-[225px] border-b border-[#cfc3b9] px-0 py-7 md:border-b-0 md:border-r md:px-7 md:last:border-r-0">
-                  <span className="text-[9px] font-semibold uppercase tracking-[.18em] text-[#94454d]">{String(index + 1).padStart(2, "0")} / {card.meta}</span>
+                <article className="min-h-[225px] border-b border-[#d8cec5] px-0 py-7 md:border-b-0 md:border-r md:px-7 md:last:border-r-0">
+                  <span className="text-[9px] font-semibold uppercase tracking-[.18em] text-[#984650]">{String(index + 1).padStart(2, "0")} / {card.meta}</span>
                   <h2 className="mt-7 font-[var(--font-display)] text-[2rem] font-normal leading-none tracking-[-.035em]">{card.title}</h2>
-                  <p className="mt-5 text-[14px] leading-7 text-[#6a625d]">{card.text}</p>
+                  <p className="mt-5 text-[14px] leading-7 text-[#685f5b]">{card.text}</p>
                 </article>
               </div>
             ))}
@@ -309,15 +309,15 @@ export default function FarmTerroirPage() {
         <section className="border-b border-[#d8cec5] py-16 lg:py-24">
           <div className={wrapClass}>
             <div className="grid gap-10 lg:grid-cols-[.84fr_1.16fr] lg:items-center lg:gap-20">
-              <figure className="m-0 aspect-[1.25/1] overflow-hidden bg-[#ddd3ca]">
+              <figure className="m-0 aspect-[1.25/1] overflow-hidden bg-[#e9e1da]">
                 <img src="/media/mondulkiri-terroir-red-earth-elevation.jpg" alt="Red earth, elevation and coffee-growing landscape in Mondulkiri" className="h-full w-full object-cover" />
                 <figcaption className="sr-only">Mondulkiri farm environment and red earth</figcaption>
               </figure>
               <div>
                 <p className={eyebrowClass}>FARM-SCALE TERROIR</p>
                 <h2 className={sectionTitleClass}>What shapes the growing environment?</h2>
-                <p className="mt-7 max-w-[610px] text-[17px] leading-8 text-[#625b56]">This page owns micro growing conditions and agricultural decisions. Regional geography stays on Cambodia &amp; Regions; post-harvest quality evaluation continues on Fine Robusta Cambodia.</p>
-                <Link href="/origins/cambodia-regions" className="mt-7 inline-flex border-b border-[#94454d] pb-2 text-[11px] font-semibold uppercase tracking-[.16em] text-[#94454d]">Return to Cambodia &amp; Regions ↗</Link>
+                <p className="mt-7 max-w-[610px] text-[17px] leading-8 text-[#685f5b]">This page owns micro growing conditions and agricultural decisions. Regional geography stays on Cambodia &amp; Regions; post-harvest quality evaluation continues on Fine Robusta Cambodia.</p>
+                <Link href="/origins/cambodia-regions" className="mt-7 inline-flex border-b border-[#984650] pb-2 text-[11px] font-semibold uppercase tracking-[.16em] text-[#984650]">Return to Cambodia &amp; Regions ↗</Link>
               </div>
             </div>
           </div>
@@ -331,10 +331,10 @@ export default function FarmTerroirPage() {
                   <article className="grid grid-cols-1 border-t border-[#d8cec5] py-12 lg:grid-cols-[.82fr_1.18fr] lg:gap-20 lg:py-16">
                     <div>
                       <p className={eyebrowClass}>{section.label}</p>
-                      <span className="mt-4 block h-px w-10 bg-[#94454d]" aria-hidden="true" />
+                      <span className="mt-4 block h-px w-10 bg-[#984650]" aria-hidden="true" />
                       <h2 className={sectionTitleClass}>{section.title}</h2>
                     </div>
-                    <div className="mt-8 max-w-[650px] text-[16px] leading-8 text-[#625b56] lg:mt-0 [&_a]:border-b [&_a]:border-[#94454d]/60 [&_a]:font-medium [&_a]:text-[#94454d] [&_strong]:font-semibold [&_strong]:text-[#25211f] [&_.border-l-2]:border-[#94454d] [&_.bg-occ-background\/65]:bg-[#eee7df] [&_.text-occ-secondary]:text-[#94454d] [&_.text-occ-primary]:text-[#25211f]">
+                    <div className="mt-8 max-w-[650px] text-[16px] leading-8 text-[#685f5b] lg:mt-0 [&_a]:border-b [&_a]:border-[#984650]/60 [&_a]:font-medium [&_a]:text-[#984650] [&_strong]:font-semibold [&_strong]:text-[#292424] [&_.border-l-2]:border-[#984650] [&_.bg-occ-background\/65]:bg-[#e9e1da] [&_.text-occ-secondary]:text-[#984650] [&_.text-occ-primary]:text-[#292424]">
                       {section.content}
                     </div>
                   </article>
@@ -344,15 +344,15 @@ export default function FarmTerroirPage() {
           </div>
         </section>
 
-        <section className="border-b border-[#d8cec5] bg-[#eee7df] py-16 lg:py-20">
+        <section className="border-b border-[#d8cec5] bg-[#e9e1da] py-16 lg:py-20">
           <div className={wrapClass}>
             <div>
               <p className={eyebrowClass}>A FARM DESCRIPTION SHOULD ANSWER</p>
-              <div className="mt-7 grid grid-cols-1 border-y border-[#cfc3b9] sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-7 grid grid-cols-1 border-y border-[#d8cec5] sm:grid-cols-2 lg:grid-cols-4">
                 {farmFacts.slice(0, 4).map((fact, index) => (
-                  <div key={fact} className="border-b border-[#cfc3b9] px-0 py-7 sm:px-6 lg:border-b-0 lg:border-r lg:first:pl-0 lg:last:border-r-0">
-                    <span className="text-[2rem] font-normal text-[#94454d]">0{index + 1}</span>
-                    <p className="mt-4 text-[15px] leading-7 text-[#625b56]">{fact}</p>
+                  <div key={fact} className="border-b border-[#d8cec5] px-0 py-7 sm:px-6 lg:border-b-0 lg:border-r lg:first:pl-0 lg:last:border-r-0">
+                    <span className="text-[2rem] font-normal text-[#984650]">0{index + 1}</span>
+                    <p className="mt-4 text-[15px] leading-7 text-[#685f5b]">{fact}</p>
                   </div>
                 ))}
               </div>
@@ -364,8 +364,8 @@ export default function FarmTerroirPage() {
           <div className={`${wrapClass} flex flex-col items-center`}>
             <p className={eyebrowClass}>FROM FARM TO CUP</p>
             <h2 className="mt-7 max-w-[950px] font-[var(--font-display)] text-[clamp(2.9rem,6vw,5.4rem)] font-normal leading-[.95] tracking-[-.05em]">Growing potential becomes meaningful when the coffee is evaluated.</h2>
-            <p className="mt-7 max-w-[720px] text-[17px] leading-8 text-[#625b56]">Continue with OCC&apos;s Fine Robusta work to understand processing, physical condition, sensory evidence, traceability and repeatability.</p>
-            <Link href="/fine-robusta-cambodia" className="mt-8 inline-flex items-center gap-3 bg-[#94454d] px-6 py-4 text-[11px] font-semibold uppercase tracking-[.17em] text-[#f5f1ea] transition-transform hover:-translate-y-0.5">Explore Fine Robusta <ArrowUpRight className="size-4" /></Link>
+            <p className="mt-7 max-w-[720px] text-[17px] leading-8 text-[#685f5b]">Continue with OCC&apos;s Fine Robusta work to understand processing, physical condition, sensory evidence, traceability and repeatability.</p>
+            <Link href="/fine-robusta-cambodia" className="mt-8 inline-flex items-center gap-3 bg-[#984650] px-6 py-4 text-[11px] font-semibold uppercase tracking-[.17em] text-[#f2ede7] transition-transform hover:-translate-y-0.5">Explore Fine Robusta <ArrowUpRight className="size-4" /></Link>
           </div>
         </section>
       </main>

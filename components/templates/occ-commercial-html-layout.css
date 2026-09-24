@@ -1,20 +1,20 @@
-.occ-commercial-html{--bg:var(--occ-page-background,#F6F3EA);--paper:#FBFAF6;--line:#D8D3C8;--text:#182019;--muted:#5F675F;--soft:#EFE9DC;--max:1360px;margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans),Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.occ-commercial-html{--bg:var(--occ-page-background,#f2ede7);--paper:#f7f4f0;--line:#d8cec5;--text:#292424;--muted:#685f5b;--soft:#e9e1da;--max:1360px;margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans),Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .occ-commercial-html,.occ-commercial-html *{box-sizing:border-box}
 .occ-commercial-html a{text-decoration:none;color:inherit}
 .occ-commercial-html img{display:block;width:100%;height:100%;object-fit:cover}
 .occ-commercial-html .page{width:min(calc(100% - 40px),var(--max));margin:0 auto;background:var(--bg);padding:42px 56px 28px}
 .occ-commercial-html .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:72px;align-items:start;padding:6px 0 72px}
-.occ-commercial-html .eyebrow{display:block;font-size:18px;letter-spacing:.30em;text-transform:uppercase;color:#5F675F;margin-bottom:18px}
+.occ-commercial-html .eyebrow{display:block;font-size:18px;letter-spacing:.30em;text-transform:uppercase;color:#685f5b;margin-bottom:18px}
 .occ-commercial-html h1,.occ-commercial-html h2,.occ-commercial-html h3{margin:0;font-family:var(--font-display),'Cormorant Garamond',Georgia,serif!important;font-weight:500!important;line-height:.92;letter-spacing:-.02em}
 .occ-commercial-html h1{font-size:clamp(58px,6vw,80px);margin-bottom:26px;max-width:680px;overflow-wrap:normal}
 .occ-commercial-html .lead{font-family:var(--font-display),'Cormorant Garamond',Georgia,serif!important;font-size:32px;line-height:1.18;max-width:520px;margin:0 0 24px}
 .occ-commercial-html .desc{max-width:540px;font-size:17px;line-height:1.7;color:var(--muted);margin:0 0 34px}
-.occ-commercial-html .pill-btn{display:inline-flex;align-items:center;gap:14px;background:var(--soft);border-radius:999px;padding:16px 28px;min-width:170px;font-size:14px;font-weight:500;color:#182019;transition:.25s ease}
-.occ-commercial-html .pill-btn:hover{transform:translateY(-1px);background:#EFE9DC}
-.occ-commercial-html .hero-visual{aspect-ratio:.92/1;overflow:hidden;background:#F6F3EA}
+.occ-commercial-html .pill-btn{display:inline-flex;align-items:center;gap:14px;background:var(--soft);border-radius:999px;padding:16px 28px;min-width:170px;font-size:14px;font-weight:500;color:#292424;transition:.25s ease}
+.occ-commercial-html .pill-btn:hover{transform:translateY(-1px);background:#e9e1da}
+.occ-commercial-html .hero-visual{aspect-ratio:.92/1;overflow:hidden;background:#f2ede7}
 .occ-commercial-html .split-section{display:grid;grid-template-columns:.7fr 1.3fr;gap:48px;align-items:start;padding:0 0 72px}
 .occ-commercial-html .media-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:22px;align-items:stretch}
-.occ-commercial-html .media-card{background:#F6F3EA;overflow:hidden;min-height:330px}
+.occ-commercial-html .media-card{background:#f2ede7;overflow:hidden;min-height:330px}
 .occ-commercial-html .info-panel{padding:6px 24px 0 34px}
 .occ-commercial-html h2{font-size:clamp(44px,4.5vw,60px);line-height:.98;margin-bottom:18px;max-width:620px}
 .occ-commercial-html .section-copy{font-size:16px;line-height:1.8;color:var(--muted);max-width:470px;margin:0 0 30px}
@@ -23,19 +23,19 @@
 .occ-commercial-html .feature-copy .eyebrow{font-size:16px;margin-bottom:14px}
 .occ-commercial-html .feature-copy h3{font-size:clamp(44px,4.5vw,58px);line-height:.98;margin-bottom:16px;max-width:680px}
 .occ-commercial-html .feature-copy p{margin:0;max-width:700px;color:var(--muted);line-height:1.7;font-size:17px}
-.occ-commercial-html .feature-image{min-height:270px;background:#F6F3EA;overflow:hidden}
+.occ-commercial-html .feature-image{min-height:270px;background:#f2ede7;overflow:hidden}
 .occ-commercial-html .b2b-cta{border:1px solid var(--line);background:var(--bg);margin-top:18px;padding:44px 48px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center}
 .occ-commercial-html .b2b-cta-copy{max-width:760px}
-.occ-commercial-html .b2b-cta .eyebrow{margin:0 0 12px;font-size:12px;letter-spacing:.24em;color:#5F675F}
+.occ-commercial-html .b2b-cta .eyebrow{margin:0 0 12px;font-size:12px;letter-spacing:.24em;color:#685f5b}
 .occ-commercial-html .b2b-cta h3{font-size:52px;line-height:1.02;max-width:720px}
-.occ-commercial-html .b2b-cta .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-width:190px;padding:17px 26px;border:1px solid #681725;border-radius:0;background:#681725;color:#F6F3EA;font-size:15px;font-weight:500;transition:.25s ease}
-.occ-commercial-html .b2b-cta .cta-btn:hover{transform:translateY(-1px);background:#7b2432}
+.occ-commercial-html .b2b-cta .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-width:190px;padding:17px 26px;border:1px solid #984650;border-radius:0;background:#984650;color:#f2ede7;font-size:15px;font-weight:500;transition:.25s ease}
+.occ-commercial-html .b2b-cta .cta-btn:hover{transform:translateY(-1px);background:#843b45}
 .occ-commercial-html .extended-sections{border-top:1px solid var(--line);padding:44px 0 12px}
 .occ-commercial-html .extended-heading{font-family:var(--font-display),Georgia,serif!important;font-size:clamp(38px,5vw,64px);font-weight:500!important;line-height:.98;margin:0 0 20px;max-width:780px}
 .occ-commercial-html .extended-intro{max-width:850px;color:var(--muted);font-size:16px;line-height:1.8;margin:0 0 28px}
 .occ-commercial-html .extended-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);margin-bottom:46px}
 .occ-commercial-html .extended-card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:25px 28px;min-height:175px}
-.occ-commercial-html .extended-card .number{display:block;color:#5F675F;font-size:11px;letter-spacing:.2em;margin-bottom:20px}
+.occ-commercial-html .extended-card .number{display:block;color:#685f5b;font-size:11px;letter-spacing:.2em;margin-bottom:20px}
 .occ-commercial-html .extended-card h3{font-size:35px;line-height:1.06;margin-bottom:14px}
 .occ-commercial-html .extended-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
 .occ-commercial-html .extended-card a{display:inline-flex;margin-top:20px;border-bottom:1px solid var(--text);padding-bottom:4px;font-size:14px}
@@ -45,7 +45,7 @@
 .occ-commercial-html .extended-prose a,.occ-commercial-html .extended-intro a{border-bottom:1px solid var(--text);text-underline-offset:4px}
 .occ-commercial-html .extended-steps{border-top:1px solid var(--line);margin-bottom:45px}
 .occ-commercial-html .extended-step{display:grid;grid-template-columns:42px .68fr 1.3fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
-.occ-commercial-html .extended-step .number{font-size:11px;letter-spacing:.2em;color:#5F675F;padding-top:8px}
+.occ-commercial-html .extended-step .number{font-size:11px;letter-spacing:.2em;color:#685f5b;padding-top:8px}
 .occ-commercial-html .extended-step h3{font-size:29px;line-height:1.05}
 .occ-commercial-html .extended-step p{margin:0;color:var(--muted);font-size:15px;line-height:1.75}
 .occ-commercial-html .extended-cta{display:inline-flex;border-bottom:1px solid var(--text);padding-bottom:5px;margin:0 0 40px;font-size:15px}

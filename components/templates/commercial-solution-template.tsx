@@ -140,14 +140,9 @@ export function CommercialSolutionTemplate({
               <p className="font-[var(--font-display)] text-[clamp(2.25rem,8vw,3.7rem)] font-normal leading-[0.98] tracking-[-0.04em]">{heroStatement}</p>
             </div>
             <div className="flex flex-wrap items-center gap-3 md:col-span-5 md:col-start-9 md:justify-end">
-              <Link href="/contact" className="group inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-occ-background transition-transform duration-300 hover:-translate-y-0.5">
+              <Link href="/contact" className="occ-primary-cta group">
                 {heroCtaLabel}<ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              {heroSecondaryCta ? (
-                <Link href={heroSecondaryCta.href} className="group inline-flex items-center gap-2 rounded-full border border-occ-primary/20 px-5 py-3 text-[10px] font-medium uppercase tracking-[0.16em] text-occ-primary transition-colors hover:border-occ-primary hover:bg-occ-background">
-                  {heroSecondaryCta.label}<ArrowUpRight className="size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-              ) : null}
             </div>
           </MotionReveal>
         </div>
@@ -327,22 +322,6 @@ export function CommercialSolutionTemplate({
             </div>
           </div>
         </section>
-
-        <MotionReveal>
-          <section className="grid grid-cols-1 border-b border-black/10 py-16 md:grid-cols-12 md:items-end lg:py-20">
-            <div className="md:col-span-3">
-              <p className={sectionLabelClass}>Next Step</p>
-              <span className="mt-3 block w-10 h-px bg-occ-secondary" aria-hidden="true" />
-            </div>
-            <div className="mt-7 md:col-span-7 md:col-start-5 md:mt-0">
-              <p className="max-w-[34rem] text-sm leading-7 text-black/58">{ctaDescription}</p>
-              <Link href="/contact" className="group mt-8 inline-flex items-end gap-4 border-b border-black/20 pb-2 transition-colors hover:border-occ-secondary">
-                <span className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">{ctaLabel}</span>
-                <ArrowUpRight className="mb-1 size-5 text-occ-secondary transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-            </div>
-          </section>
-        </MotionReveal>
 
         <footer className="flex flex-col gap-4 py-9 text-[9px] uppercase tracking-[0.19em] text-black/34 sm:flex-row sm:justify-between">
           <span>Origin Coffee Cambodia · OCC</span>

@@ -14,7 +14,7 @@ type CtaConfig = {
   secondaryHref?: string
 }
 
-const excludedPaths = new Set(["/contact", "/distribution", "/partnerships"])
+const excludedPaths = new Set(["/", "/about", "/contact", "/distribution", "/partnerships", "/origins"])
 
 function getCta(pathname: string): CtaConfig {
   if (pathname === "/" || pathname === "") {
@@ -115,7 +115,14 @@ function getCta(pathname: string): CtaConfig {
 export function SiteFinalCta() {
   const pathname = usePathname() || "/"
 
-  if (excludedPaths.has(pathname)) return null
+  const hasPageCta =
+    pathname.startsWith("/about/") ||
+    pathname.startsWith("/solutions") ||
+    pathname.startsWith("/resources/") ||
+    pathname.startsWith("/brand-gifting") ||
+    pathname.startsWith("/blog/")
+
+  if (excludedPaths.has(pathname) || hasPageCta) return null
 
   const cta = getCta(pathname)
 
@@ -132,21 +139,13 @@ export function SiteFinalCta() {
           </h2>
           <div className="mt-7 grid grid-cols-1 gap-6 border-t border-occ-primary/16 pt-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10">
             <p className="max-w-[720px] text-[15px] leading-7 text-occ-primary/68">{cta.copy}</p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap">
               <Link
                 href={cta.primaryHref}
-                className="inline-flex items-center gap-2 bg-occ-burgundy px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-background transition-transform duration-200 hover:-translate-y-0.5"
+                className="occ-primary-cta"
               >
                 {cta.primaryLabel} <ArrowUpRight className="size-3" />
               </Link>
-              {cta.secondaryHref && cta.secondaryLabel ? (
-                <Link
-                  href={cta.secondaryHref}
-                  className="inline-flex items-center gap-2 border border-occ-primary/28 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary transition-colors hover:border-occ-burgundy hover:bg-occ-burgundy hover:text-occ-background"
-                >
-                  {cta.secondaryLabel} <ArrowUpRight className="size-3" />
-                </Link>
-              ) : null}
             </div>
           </div>
         </div>
