@@ -285,3 +285,36 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Blog tag links: single-tap navigation on touch devices.
+   Hover fill is limited to real mouse/trackpad pointers so iOS does not get
+   stuck on a persistent hover state before navigation. */
+.occ-article-shell .blog-tag-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--occ-logo-burgundy) !important;
+  background: transparent !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: rgba(152, 70, 80, 0.12);
+  touch-action: manipulation;
+}
+
+.occ-article-shell .blog-tag-link:visited {
+  color: var(--occ-logo-burgundy) !important;
+  background: transparent !important;
+}
+
+.occ-article-shell .blog-tag-link:active {
+  opacity: 0.72;
+  background: transparent !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .occ-article-shell .blog-tag-link:hover {
+    color: var(--occ-page-background) !important;
+    background: var(--occ-logo-burgundy) !important;
+    border-color: var(--occ-logo-burgundy) !important;
+  }
+}

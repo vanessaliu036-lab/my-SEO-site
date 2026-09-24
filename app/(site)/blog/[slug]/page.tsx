@@ -1133,13 +1133,14 @@ export default async function BlogPostPage({
               <p className="text-[10px] tracking-[0.24em] text-occ-burgundy uppercase mb-3">Tags</p>
               <div className="flex flex-wrap gap-2">
                 {keywordList.map((kw) => (
-                  <Link
+                  <a
                     key={kw}
                     href={`/blog/tag/${blogTagSlug(kw)}`}
-                    className="rounded-full border border-occ-burgundy/28 px-3 py-1.5 text-xs text-occ-burgundy transition-colors hover:border-occ-burgundy hover:bg-occ-burgundy hover:text-occ-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-occ-burgundy/40"
+                    aria-label={`Browse articles tagged ${kw}`}
+                    className="blog-tag-link cursor-pointer touch-manipulation rounded-full border border-occ-burgundy/28 px-3 py-1.5 text-xs text-occ-burgundy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-occ-burgundy/40"
                   >
                     {kw}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
