@@ -385,10 +385,18 @@ function renderList(lines: string[], ordered: boolean): string {
 
 function formatContent(raw: string, title: string, slug?: string): string {
   if (!raw) return ""
-  const lines = raw
+  const sourceLines = raw
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line && !/^```/.test(line) && !isPromptNote(line))
+
+  const repeatedTitleIndex = sourceLines.findIndex(
+    (line) => stripMarkdown(line).toLowerCase() === title.trim().toLowerCase()
+  )
+  const lines =
+    repeatedTitleIndex > 0 && repeatedTitleIndex <= 10
+      ? sourceLines.slice(repeatedTitleIndex + 1)
+      : sourceLines
 
   const html: string[] = []
 
