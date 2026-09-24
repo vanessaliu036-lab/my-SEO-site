@@ -60,102 +60,21 @@ export default function ContactForm() {
   return (
     <div className="occ-contact-page">
       <section className="occ-contact-hero">
-        <div className="occ-contact-hero-copy">
-          <div>
-            <div className="occ-contact-eyebrow">Contact · Origin Coffee Cambodia</div>
-            <h1>
-              LET&apos;S
-              <br />
-              <em>TALK.</em>
-            </h1>
-            <p className="occ-contact-intro">
-              From Cambodian coffee sourcing and Fine Robusta samples to roasting programs,
-              distribution and editorial enquiries — start with what you need, and OCC will
-              route the conversation clearly.
-            </p>
-          </div>
-
-          <div className="occ-contact-quick-links" aria-label="Contact routes">
-            <a className="occ-contact-quick" href="#enquiry">
-              <span className="occ-contact-quick-number">01</span>
-              <strong>Source Coffee</strong>
-              <small>Wholesale · lots · samples</small>
-            </a>
-            <a className="occ-contact-quick" href="#enquiry">
-              <span className="occ-contact-quick-number">02</span>
-              <strong>Build a Program</strong>
-              <small>Roasting · B2B solutions</small>
-            </a>
-            <a className="occ-contact-quick" href="#enquiry">
-              <span className="occ-contact-quick-number">03</span>
-              <strong>Collaborate</strong>
-              <small>Media · partnerships · editorial</small>
-            </a>
-          </div>
-        </div>
-
-        <div className="occ-contact-hero-visual">
-          <div className="occ-contact-visual-art" aria-hidden="true">
-            <span className="occ-contact-art-kicker">Origin Coffee Cambodia</span>
-            <span className="occ-contact-art-word">CAMBODIA</span>
-            <span className="occ-contact-art-line">Fine Robusta · Origin · B2B Coffee</span>
-            <span className="occ-contact-art-mark">OCC.</span>
-          </div>
-          <div className="occ-contact-visual-tag">Cambodia · Origin · Coffee</div>
-          <div className="occ-contact-visual-note">
-            <small>Start from origin</small>
-            <strong>A clearer route from Cambodia to your next coffee project.</strong>
-          </div>
+        <div className="occ-contact-hero-inner">
+          <div className="occ-contact-eyebrow">CONTACT</div>
+          <h1>Start a conversation with OCC.</h1>
+          <p className="occ-contact-intro">
+            Wholesale, custom roasting, hotel partnerships and Cambodian coffee sourcing —
+            tell us what you&apos;re working on.
+          </p>
         </div>
       </section>
 
       <section className="occ-contact-main" id="enquiry">
-        <aside className="occ-contact-aside">
-          <div className="occ-contact-sticky">
-            <div className="occ-contact-section-no">01 / Start an enquiry</div>
-            <h2>
-              Tell us what
-              <br />
-              you are building.
-            </h2>
-            <p>
-              Choose the closest enquiry type and share the market, quantity, timing or
-              project context you already know. You do not need a perfect brief.
-            </p>
-
-            <div className="occ-contact-methods">
-              <a href="mailto:service@origincafekh.com" className="occ-contact-method">
-                <span aria-hidden="true">↗</span>
-                <span>service@origincafekh.com</span>
-                <span className="occ-contact-arrow" aria-hidden="true">→</span>
-              </a>
-              <a
-                href="https://t.me/+85514360479"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="occ-contact-method"
-              >
-                <span aria-hidden="true">↗</span>
-                <span>Telegram · +855 14 360 479</span>
-                <span className="occ-contact-arrow" aria-hidden="true">→</span>
-              </a>
-              <div className="occ-contact-method">
-                <span aria-hidden="true">•</span>
-                <span>Phnom Penh · Cambodia</span>
-                <span />
-              </div>
-            </div>
-          </div>
-        </aside>
-
         <div className="occ-contact-form-card">
           <div className="occ-contact-form-heading">
-            <h2>
-              What can we
-              <br />
-              help with?
-            </h2>
-            <p>Wholesale · sourcing · samples · roasting · partnerships · media</p>
+            <div className="occ-contact-section-no">Start an enquiry</div>
+            <p>Share the essentials. A short brief is enough.</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -305,51 +224,13 @@ export default function ContactForm() {
             </div>
           </form>
         </div>
-      </section>
-
-      <section className="occ-contact-routes">
-        <div className="occ-contact-routes-inner">
-          <div className="occ-contact-routes-heading">
-            <h2>
-              One contact.
-              <br />
-              Three clear routes.
-            </h2>
-            <p>
-              Every enquiry begins here and moves to the right OCC conversation without
-              making visitors decode our internal structure.
-            </p>
-          </div>
-
-          <div className="occ-contact-route-grid">
-            <article>
-              <span>01</span>
-              <h3>Sourcing &amp; Supply</h3>
-              <p>
-                For wholesale coffee, Cambodian origin sourcing, sample requests, current
-                lots and supply conversations.
-              </p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Roasting &amp; Coffee Solutions</h3>
-              <p>
-                For roast development, B2B coffee programs, product support and practical
-                coffee solutions.
-              </p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Partnerships &amp; Media</h3>
-              <p>
-                For distribution, brand collaboration, interviews, editorial requests and
-                source corrections.
-              </p>
-            </article>
-          </div>
+        <div className="occ-contact-direct">
+          <span>Prefer direct contact?</span>
+          <a href="mailto:service@origincafekh.com">service@origincafekh.com</a>
+          <span>·</span>
+          <a href="https://t.me/+85514360479" target="_blank" rel="noopener noreferrer">Telegram +855 14 360 479</a>
         </div>
       </section>
-
       {isSuccess && (
         <div
           role="dialog"
