@@ -5,10 +5,11 @@ import { persistContactLead } from '../lib/contact-lead-delivery.mjs'
 const sample = {
   name: 'OCC QA',
   company: 'QA Hotel',
+  jobTitle: 'Purchasing Manager',
+  phone: '+855 12 345 678',
   email: 'qa@example.test',
   country: 'Cambodia',
   service: 'Wholesale / Sourcing',
-  projectStage: 'Ready to order',
   message: 'Synthetic smoke test',
 }
 const env = { AIRTABLE_TOKEN: 'test-server-only-token', AIRTABLE_BASE_ID: 'appJCcT41WRfKpWk2' }
@@ -37,9 +38,10 @@ test('only returns success after a complete commercial lead is persisted', async
   assert.equal(fields.fldHHRfTCecsvyg5b, sample.name)
   assert.equal(fields.fldCkWbuV4lFt5Mbq, sample.company)
   assert.equal(fields.fldbLSnIyiApGAw7Q, sample.email)
+  assert.equal(fields.fld7D4yMzhagDsac0, sample.phone)
+  assert.equal(fields.fldgeHRZwYOrG0mf7, sample.jobTitle)
   assert.equal(fields.fldCEEsTN9XD3ddK4, sample.country)
   assert.equal(fields.fldq91HTSYa3rxLBC, 'Wholesale & Sourcing')
-  assert.equal(fields.fldsOyCEEoIGPSQPb, sample.projectStage)
   assert.equal(fields.fldZxno6lrUVyq0F1, 'Unread')
   assert.equal(fields.fldRkeLPYNy4eCpeG, 'Not Converted')
   assert.equal(fields.fldcUFGqwGNHEQ9SH, '/contact')

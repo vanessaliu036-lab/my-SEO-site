@@ -6,7 +6,7 @@ const { fetchOrderInbox, updateOrderInboxEntry } = await import('../lib/admin-or
 
 const env = { AIRTABLE_PAT: 'test-token', AIRTABLE_BASE_ID: 'appJCcT41WRfKpWk2' }
 
-test('admin contact inbox exposes Company, Work Email, Country, Intent and Project Stage', async () => {
+test('admin contact inbox exposes contact identity, title, phone, company, market and intent', async () => {
   const records = await fetchContactLeads({
     env,
     fetchImpl: async () => ({
@@ -17,11 +17,12 @@ test('admin contact inbox exposes Company, Work Email, Country, Intent and Proje
           fldvAZ4y6ZEqWbyq5: 'QA Hotel — Buyer',
           fldHHRfTCecsvyg5b: 'Buyer',
           fldCkWbuV4lFt5Mbq: 'QA Hotel',
+          fldgeHRZwYOrG0mf7: 'Founder',
+          fld7D4yMzhagDsac0: '+855 12 345 678',
           fldbLSnIyiApGAw7Q: 'buyer@example.test',
           fldCEEsTN9XD3ddK4: 'Cambodia',
           fldq91HTSYa3rxLBC: 'Wholesale & Sourcing',
           fldomWJyClrC2dFH8: 'Need 20kg',
-          fldsOyCEEoIGPSQPb: 'Ready to order',
           fldcUFGqwGNHEQ9SH: '/contact',
           fldyfWd2DzMJSUtxB: 'New',
           fldJTzqH6dFgUtlmy: '2026-09-23T08:00:00.000Z',
@@ -34,9 +35,10 @@ test('admin contact inbox exposes Company, Work Email, Country, Intent and Proje
   })
   assert.equal(records[0].company, 'QA Hotel')
   assert.equal(records[0].email, 'buyer@example.test')
+  assert.equal(records[0].phone, '+855 12 345 678')
+  assert.equal(records[0].jobTitle, 'Founder')
   assert.equal(records[0].country, 'Cambodia')
   assert.equal(records[0].interest, 'Wholesale & Sourcing')
-  assert.equal(records[0].stage, 'Ready to order')
   assert.equal(records[0].readStatus, 'Unread')
 })
 
@@ -58,11 +60,12 @@ test('qualified contact lead can create a B2B Account without duplicate conversi
     fields: {
       fldHHRfTCecsvyg5b: 'Buyer',
       fldCkWbuV4lFt5Mbq: 'QA Hotel',
+      fldgeHRZwYOrG0mf7: 'Purchasing Manager',
+      fld7D4yMzhagDsac0: '+855 12 345 678',
       fldbLSnIyiApGAw7Q: 'buyer@example.test',
       fldCEEsTN9XD3ddK4: 'Cambodia',
       fldq91HTSYa3rxLBC: 'Wholesale & Sourcing',
       fldomWJyClrC2dFH8: 'Need 20kg',
-      fldsOyCEEoIGPSQPb: 'Ready to order',
     },
   }
   const result = await convertContactLead('recABC12345678901', 'account', {

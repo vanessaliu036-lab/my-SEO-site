@@ -5,10 +5,11 @@ const { sendContactNotification } = await import('../lib/contact-notification.mj
 const enquiry = {
   name: 'Buyer <A>',
   company: 'QA Hotel',
+  jobTitle: 'Founder',
+  phone: '+855 12 345 678',
   email: 'buyer@example.test',
   country: 'Cambodia',
   service: 'Wholesale / Sourcing',
-  projectStage: 'Ready to order',
   message: 'Please send <details>.',
 }
 
@@ -30,7 +31,8 @@ test('contact notification carries commercial qualification fields and safe repl
   assert.deepEqual(payload.to, ['service@origincafekh.com'])
   assert.equal(payload.reply_to, 'buyer@example.test')
   assert.match(payload.html, /QA Hotel/)
-  assert.match(payload.html, /Ready to order/)
+  assert.match(payload.html, /Founder/)
+  assert.match(payload.html, /\+855 12 345 678/)
   assert.match(payload.html, /Buyer &lt;A&gt;/)
   assert.doesNotMatch(payload.html, /<details>/)
 })

@@ -1,8 +1,10 @@
 export interface ContactLeadInput {
   name: string
-  company: string
+  jobTitle?: string
+  phone: string
+  company?: string
   email: string
-  country: string
+  country?: string
   service:
     | "Wholesale / Sourcing"
     | "Roasting / Solutions"
@@ -14,8 +16,7 @@ export interface ContactLeadInput {
     | "Editorial / Source Correction"
     | "Media / Interview"
     | "General Enquiry"
-  projectStage?: "Exploring" | "Comparing suppliers" | "Sampling / Trial" | "Ready to order"
-  message?: string
+  message: string
 }
 export interface ContactLeadRuntime {
   env?: NodeJS.ProcessEnv
