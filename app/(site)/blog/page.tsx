@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { blogCategories, type BlogCategorySlug } from "@/lib/blogCategories"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { ogImage, siteName, siteUrl } from "@/lib/siteConfig"
@@ -92,23 +91,28 @@ export default function BlogPage() {
             {blogCategories.map((category) => {
               const visual = categoryVisuals[category.slug]
               return (
-                <Link key={category.slug} href={`/blog/category/${category.slug}`} className="group block">
-                  <div className="aspect-[1.8/1] overflow-hidden bg-occ-primary/5">
+                <a
+                  key={category.slug}
+                  href={`/blog/category/${category.slug}`}
+                  aria-label={`Open ${category.title} articles`}
+                  className="group relative z-[1] block cursor-pointer touch-manipulation pointer-events-auto"
+                >
+                  <div className="pointer-events-none aspect-[1.8/1] overflow-hidden bg-occ-primary/5">
                     <img
                       src={visual.image}
                       alt={visual.alt}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                      className="pointer-events-none h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
                     />
                   </div>
-                  <p className="mt-4 font-[var(--font-display)] text-[13px] text-occ-primary/48">OCC Journal</p>
-                  <h3 className="mt-1 font-[var(--font-display)] text-[clamp(1.7rem,2.6vw,2.25rem)] font-normal uppercase leading-[0.95] tracking-[-0.025em] text-occ-primary">
+                  <p className="pointer-events-none mt-4 font-[var(--font-display)] text-[13px] text-occ-primary/48">OCC Journal</p>
+                  <h3 className="pointer-events-none mt-1 font-[var(--font-display)] text-[clamp(1.7rem,2.6vw,2.25rem)] font-normal uppercase leading-[0.95] tracking-[-0.025em] text-occ-primary">
                     {category.title}
                   </h3>
-                  <div className="mt-3 flex items-center justify-between gap-4 border-b border-occ-primary/18 pb-4">
+                  <div className="pointer-events-none mt-3 flex items-center justify-between gap-4 border-b border-occ-primary/18 pb-4">
                     <span className="text-[8px] font-medium uppercase tracking-[0.23em] text-occ-primary/56">{category.kicker}</span>
                     <span className="text-lg leading-none text-occ-primary/50 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-occ-burgundy" aria-hidden="true">→</span>
                   </div>
-                </Link>
+                </a>
               )
             })}
           </div>
