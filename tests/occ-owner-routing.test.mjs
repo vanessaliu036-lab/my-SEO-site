@@ -372,8 +372,9 @@ test('Cambodian Coffee primary support does not also render the generic Fine Rob
 test('Cambodia Regions pillar routes geography to Mondulkiri and Ratanakiri owners', () => {
   assert.match(cambodiaRegions, /Regional Specialists/)
   assert.match(cambodiaRegions, /Go From Country to Province/)
-  assert.match(cambodiaRegions, /href="\/blog\/mondulkiri-next-specialty-coffee-origin"/)
-  assert.match(cambodiaRegions, /href="\/blog\/ratanakiri-coffee-cambodias-other-highland-origin"/)
+  assert.match(cambodiaRegions, /"\/blog\/mondulkiri-next-specialty-coffee-origin"/)
+  assert.match(cambodiaRegions, /"\/blog\/ratanakiri-coffee-cambodias-other-highland-origin"/)
+  assert.match(cambodiaRegions, /<Link href=\{region\.href\}/)
 })
 
 test('regional specialist owners expose distinct Cambodia geography context', () => {
