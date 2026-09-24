@@ -44,22 +44,21 @@
     --sidebar-border: 31.3 33.3% 86.5%;
     --sidebar-ring: 349.9 56.2% 26.9%;
 
-    --occ-primary: #182019;
-    --occ-burgundy: #681725;
-    --occ-secondary: #5f675f;
-    --occ-brand-surface: #efe9dc;
-    --occ-brand-background: #f6f3ea;
-    --occ-ink: #182019;
-    --occ-olive: #1c211b;
-    --occ-logo-burgundy: #681725;
-    --occ-forest: #1c211b;
-    --occ-ivory: #f6f3ea;
-    --occ-stone: #d8d3c8;
-    --occ-lime: #efe9dc;
+    --occ-primary: #292424;
+    --occ-burgundy: #984650;
+    --occ-secondary: #685f5b;
+    --occ-brand-surface: #e9e1da;
+    --occ-brand-background: #f2ede7;
+    --occ-ink: #292424;
+    --occ-olive: #292424;
+    --occ-logo-burgundy: #984650;
+    --occ-forest: #393235;
+    --occ-ivory: #f2ede7;
+    --occ-stone: #d8cec5;
     --occ-accent: var(--occ-burgundy);
-    --occ-surface: #efe9dc;
-    --occ-surface-soft: #fbfaf6;
-    --occ-line: rgba(24, 32, 25, 0.14);
+    --occ-surface: #e9e1da;
+    --occ-surface-soft: #f7f4f0;
+    --occ-line: rgba(41, 36, 36, 0.14);
     --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --occ-wide: 1360px;
     --occ-reading: 720px;
@@ -109,8 +108,8 @@
   }
 
   ::selection {
-    background: var(--occ-lime);
-    color: var(--occ-ink);
+    background: var(--occ-burgundy);
+    color: var(--occ-brand-background);
   }
 
   :focus-visible {
@@ -176,7 +175,7 @@
   }
 
   .occ-grid-lines {
-    background-image: linear-gradient(to right, transparent calc(100% - 1px), rgba(24, 32, 25, 0.08) calc(100% - 1px));
+    background-image: linear-gradient(to right, transparent calc(100% - 1px), rgba(41, 36, 36, 0.08) calc(100% - 1px));
     background-size: calc(100% / 12) 100%;
   }
 
@@ -198,15 +197,60 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
-    background: var(--occ-lime);
-    color: var(--occ-ink);
+    background: var(--occ-burgundy);
+    color: var(--occ-brand-background);
     transition: transform 220ms var(--occ-ease), background-color 220ms var(--occ-ease);
   }
 
   .occ-pill:hover {
+    background: #843b45;
+    color: var(--occ-brand-background);
+  }
+
+  .occ-primary-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--occ-burgundy);
+    color: var(--occ-brand-background);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: transform 180ms var(--occ-ease), background-color 180ms var(--occ-ease);
+  }
+
+  .occ-primary-cta:hover {
     transform: translateY(-2px);
-    background: #F6F3EA;
+    background: #843b45;
+  }
+
+  .occ-primary-cta:active {
+    transform: translateY(1px);
+  }
+
+  .occ-site-main a[href="/contact"][class*="rounded-full"],
+  .occ-site-main a[href="/contact"][class*="bg-"] {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: var(--occ-burgundy) !important;
+    color: var(--occ-brand-background) !important;
+    padding: 0.875rem 1.5rem !important;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: transform 180ms var(--occ-ease), background-color 180ms var(--occ-ease);
+  }
+
+  .occ-site-main a[href="/contact"][class*="rounded-full"]:hover,
+  .occ-site-main a[href="/contact"][class*="bg-"]:hover {
+    transform: translateY(-2px);
+    background: #843b45 !important;
+    color: var(--occ-brand-background) !important;
   }
 
   .occ-image-frame {
@@ -251,7 +295,7 @@
 
   .occ-horizontal-frame [class*="bg-gray-100"],
   .occ-horizontal-frame [class*="bg-gray-50"],
-  .occ-horizontal-frame [class*="bg-[#F6F3EA]"] {
+  .occ-horizontal-frame [class*="bg-[#f2ede7]"] {
     background-color: transparent !important;
   }
 
@@ -352,7 +396,7 @@
     max-width: 1120px !important;
     margin-top: 2.5rem !important;
     margin-bottom: 4rem !important;
-    background: rgba(251, 250, 246, 0.38) !important;
+    background: rgba(247, 244, 240, 0.38) !important;
     border-left-color: var(--occ-ink) !important;
   }
 

@@ -32,8 +32,8 @@ type Props = {
 
 /** User-supplied OCC HTML skeleton. SiteShell owns the only navbar and footer. */
 export function OccCommercialHtmlLayout({
-  className = "", title, eyebrow, lead, description, heroImage, heroCtaLabel, heroCtaHref,
-  splitId, processImages, splitTitle, splitDescription, splitCtaLabel, splitCtaHref,
+  className = "", title, eyebrow, lead, description, heroImage,
+  splitId, processImages, splitTitle, splitDescription,
   featureId, featureEyebrow, featureTitle, featureDescription, featureImage,
   ctaId = "contact", ctaEyebrow, ctaTitle, ctaLabel, ctaHref, children,
 }: Props) {
@@ -46,7 +46,6 @@ export function OccCommercialHtmlLayout({
             <h1>{title}</h1>
             <p className="lead">{lead}</p>
             <p className="desc">{description}</p>
-            <a href={heroCtaHref} className="pill-btn">{heroCtaLabel} <span aria-hidden="true">→</span></a>
           </div>
           <div className="hero-visual">
             <img src={heroImage.src} alt={heroImage.alt} />
@@ -60,7 +59,6 @@ export function OccCommercialHtmlLayout({
           <div className="info-panel">
             <h2>{splitTitle}</h2>
             <p className="section-copy">{splitDescription}</p>
-            <a href={splitCtaHref} className="pill-btn">{splitCtaLabel} <span aria-hidden="true">→</span></a>
           </div>
         </section>
         <div className="divider" />

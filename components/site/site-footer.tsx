@@ -13,9 +13,6 @@ export function SiteFooter() {
             <p className="mt-6 max-w-sm text-sm leading-7 text-occ-primary/66">
               Cambodia-origin specialty coffee, Fine Robusta expertise, sourcing, roasting, and B2B coffee solutions.
             </p>
-            <Link href="/contact" className="mt-6 inline-flex border-b border-occ-primary pb-1 text-[11px] font-medium uppercase tracking-[0.18em] transition-opacity hover:opacity-60">
-              Start an enquiry
-            </Link>
           </div>
           <nav className="grid grid-cols-1 border-t border-occ-primary/12 sm:grid-cols-2 lg:grid-cols-4" aria-label="Footer navigation">
             {siteNavigation.map((item, index) => (

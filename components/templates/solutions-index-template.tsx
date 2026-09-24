@@ -123,7 +123,6 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
           Whether you&apos;re launching a new blend, expanding your sourcing, or looking for a trusted partner in
           Cambodian coffee, OCC brings origin, expertise, and long-term thinking to help your business go further.
         </p>
-        <Link href="/contact" className={styles.bottomLink}>Start a Conversation <span>→</span></Link>
         <div className={styles.final}>Better Coffee &nbsp; — &nbsp; A Brighter Cambodia</div>
       </section>
     </div>

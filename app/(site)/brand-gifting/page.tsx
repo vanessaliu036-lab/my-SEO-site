@@ -87,7 +87,7 @@ export default function BrandGiftingPage() {
 
       <div className="bg-occ-background text-occ-primary">
         <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(104,23,37,0.14),transparent_30%),linear-gradient(125deg,#182019_0%,#1c211b_68%,#1c211b_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(152,70,80,0.14),transparent_30%),linear-gradient(125deg,#292424_0%,#393235_68%,#393235_100%)]" />
           <div className="absolute inset-0 bg-gradient-to-r from-occ-primary via-occ-primary/92 to-occ-primary/62" />
 
           <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1360px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">
@@ -101,7 +101,7 @@ export default function BrandGiftingPage() {
                 OCC works with selected partners to bring Cambodian coffee into new formats, markets and experiences. With ARUNERA, Cambodia-origin coffee becomes a premium gift people can discover, share and take home.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="#arunera" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary">
+                <Link href="#arunera" className="inline-flex items-center gap-2 border-b border-white/55 pb-1 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
                   OCC × ARUNERA <ArrowUpRight className="size-3" />
                 </Link>
                 <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
@@ -262,10 +262,7 @@ export default function BrandGiftingPage() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
-                Discuss a Partnership <ArrowUpRight className="size-3" />
-              </Link>
-              <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 rounded-full border border-black/20 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.17em]">
+              <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 border-b border-occ-primary/40 pb-1 text-[10px] font-semibold uppercase tracking-[0.17em]">
                 Coffee Supply <ArrowUpRight className="size-3" />
               </Link>
             </div>

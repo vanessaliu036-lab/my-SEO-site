@@ -166,7 +166,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
             </motion.div>
 
             <motion.div {...reveal(34)} className="flex justify-center lg:justify-end">
-              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-occ-primary shadow-[0_24px_60px_rgba(24,32,25,0.18)]">
+              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-occ-primary shadow-[0_24px_60px_rgba(41,36,36,0.18)]">
                 <img
                   src={whyOccImage}
                   alt="Cambodian coffee origin and production"

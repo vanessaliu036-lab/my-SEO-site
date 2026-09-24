@@ -171,12 +171,6 @@ export default function DistributionPage() {
               <p className="max-w-md text-sm leading-6 text-occ-primary/58">
                 Fine Robusta, premium roasted coffee, and origin-led collections for selected international markets.
               </p>
-              <Link
-                href="/contact"
-                className="inline-flex w-fit items-center gap-4 border-b border-occ-primary pb-1 text-[11px] uppercase tracking-[0.22em] transition-opacity hover:opacity-55"
-              >
-                Discuss Distribution <span aria-hidden="true">↗</span>
-              </Link>
             </div>
           </div>
 
@@ -354,7 +348,7 @@ export default function DistributionPage() {
           Share your company, territory, existing channels, import capability, product interests, estimated volumes, and
           launch timeline. We will use these details to assess a possible international distribution partnership.
         </p>
-        <Link href="/contact" className="mt-9 inline-flex items-center gap-5 border-b border-occ-primary/70 pb-2 text-[11px] uppercase tracking-[0.24em] transition-opacity hover:opacity-55">
+        <Link href="/contact" className="occ-primary-cta mt-9">
           Discuss an International Distribution Partnership <span aria-hidden="true">↗</span>
         </Link>
         <p className="mt-14 text-[10px] uppercase tracking-[0.28em] text-occ-primary/40">

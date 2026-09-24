@@ -118,8 +118,8 @@ export default function RoastingProgramPage() {
           <span className="eyebrow">03 / Two Commercial Paths</span>
           <h2 className="extended-heading" id="roasting-paths-title">Choose Our Profile. Or Build Yours.</h2>
           <div className="extended-grid">
-            <article className="extended-card"><span className="number">Ready-to-Sell</span><h3>OCC Wholesale</h3><p>Choose an OCC-developed coffee profile when the product direction is already defined and the next priority is commercial supply. Review the <a href="/solutions/wholesale">Wholesale &amp; Sourcing</a> process, then use Contact to discuss the requirement.</p><a href="/contact">Discuss Wholesale Supply →</a></article>
-            <article className="extended-card"><span className="number">Made-for-You</span><h3>Custom Roasting</h3><p>Build a roast profile around your own market, customer, brewing application, and commercial product target.</p><a href="/contact">Start a Roast Profile Project →</a></article>
+            <article className="extended-card"><span className="number">Ready-to-Sell</span><h3>OCC Wholesale</h3><p>Choose an OCC-developed coffee profile when the product direction is already defined and the next priority is commercial supply. Review the <a href="/solutions/wholesale">Wholesale &amp; Sourcing</a> process, then use Contact to discuss the requirement.</p></article>
+            <article className="extended-card"><span className="number">Made-for-You</span><h3>Custom Roasting</h3><p>Build a roast profile around your own market, customer, brewing application, and commercial product target.</p></article>
           </div>
         </section>
         <section aria-labelledby="roasting-faq-title" id="roasting-faq">

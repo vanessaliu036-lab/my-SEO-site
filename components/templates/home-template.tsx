@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 import {
   homeAuthoritySections,
   homeDirectAnswer,
@@ -22,7 +21,7 @@ export default function HomeTemplate() {
         />
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
         <div
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,32,25,0.18)_0%,rgba(24,32,25,0.08)_42%,rgba(24,32,25,0.58)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(41,36,36,0.18)_0%,rgba(41,36,36,0.08)_42%,rgba(41,36,36,0.58)_100%)]"
           aria-hidden="true"
         />
 
@@ -48,23 +47,8 @@ export default function HomeTemplate() {
           </p>
 
           <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Link
-              href="/solutions/wholesale"
-              className="group inline-flex items-center rounded-full text-sm font-medium text-occ-primary"
-            >
-              <span className="rounded-full bg-occ-background px-6 py-3.5 transition-colors duration-300 group-hover:bg-white">
-                Wholesale & Sourcing
-              </span>
-              <span className="relative -ml-px flex size-[50px] items-center justify-center overflow-hidden rounded-full bg-occ-background transition-colors duration-300 group-hover:bg-white">
-                <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-6 group-hover:-translate-y-6" />
-                <ArrowUpRight className="absolute size-5 -translate-x-6 translate-y-6 transition-transform duration-300 group-hover:translate-x-0 group-hover:translate-y-0" />
-              </span>
-            </Link>
-            <Link
-              href="/fine-robusta-cambodia"
-              className="border-b border-white/45 pb-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 transition-colors hover:border-white hover:text-white"
-            >
-              Fine Robusta Guide · Coffea canephora Cambodia
+            <Link href="/contact" className="occ-primary-cta">
+              Start an enquiry
             </Link>
           </div>
         </div>
@@ -81,14 +65,6 @@ export default function HomeTemplate() {
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-occ-primary/52">Origin Coffee Cambodia</p>
           <h2 className="mb-6 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-occ-primary md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-occ-primary/72 md:text-lg">{homeDirectAnswer}</p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-occ-primary px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-occ-background transition-transform duration-200 hover:-translate-y-0.5 hover:bg-occ-primary">
-              Start an Enquiry <ArrowUpRight className="size-3.5" />
-            </Link>
-            <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-occ-primary/20 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-occ-primary transition-colors duration-200 hover:border-occ-primary hover:bg-white/60">
-              Research Journal <ArrowUpRight className="size-3.5" />
-            </Link>
-          </div>
           <div className="mt-16 border-t border-occ-primary/14 md:mt-20">
             {homeAuthoritySections.map((section, sectionIndex) => (
               <section key={section.id} id={section.id} className="grid scroll-mt-24 grid-cols-12 gap-x-8 gap-y-5 border-b border-occ-primary/14 py-12 md:gap-x-12 md:py-14">

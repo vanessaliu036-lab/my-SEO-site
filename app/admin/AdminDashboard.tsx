@@ -87,8 +87,8 @@ const accounts = [
 
 function Status({ children }: { children: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-[#f4f5f6] px-2.5 py-1.5 text-[11px] text-[#48515f]">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#355f49]" />
+    <span className="inline-flex items-center gap-2 rounded-full bg-[#f7f4f0] px-2.5 py-1.5 text-[11px] text-[#48515f]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#984650]" />
       {children}
     </span>
   )
@@ -107,7 +107,7 @@ function ActionButton({ action, id, type, value, children }: { action: ActionFn;
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="action" value={type} />
       {value && <input type="hidden" name="value" value={value} />}
-      <button className="rounded-full border border-[#dfe3e8] bg-white px-3 py-2 text-[10px] font-semibold text-[#4f5967] transition hover:border-[#121826] hover:text-[#121826]">
+      <button className="rounded-full border border-[#dfe3e8] bg-white px-3 py-2 text-[10px] font-semibold text-[#4f5967] transition hover:border-[#292424] hover:text-[#292424]">
         {children}
       </button>
     </form>
@@ -156,13 +156,13 @@ export default function AdminDashboard({
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f5ee] text-[#121826]">
-      <Link href="/" className="fixed right-5 top-[60px] z-50 rounded-full border border-[#d9d8d2] bg-[#fbf8f1] px-4 py-2.5 text-[11px] font-semibold tracking-[0.14em] shadow-sm transition hover:bg-[#121826] hover:text-white">
+    <div className="min-h-screen bg-[#f2ede7] text-[#292424]">
+      <Link href="/" className="fixed right-5 top-[60px] z-50 rounded-full border border-[#d8cec5] bg-[#f7f4f0] px-4 py-2.5 text-[11px] font-semibold tracking-[0.14em] shadow-sm transition hover:bg-[#292424] hover:text-white">
         FRONTEND ↗
       </Link>
 
       <div className="grid min-h-screen lg:grid-cols-[278px_1fr]">
-        <aside className="border-r border-[#dedbd3] bg-[#f8f5ee] px-6 py-8">
+        <aside className="border-r border-[#d8cec5] bg-[#f2ede7] px-6 py-8">
           <div className="mb-10">
             <div className="font-serif text-[30px] tracking-[-0.04em]">OCC<span className="text-[#7d2f3a]">.</span></div>
             <div className="mt-2 text-[10px] tracking-[0.2em] text-[#8d95a1]">ORIGIN COFFEE CAMBODIA</div>
@@ -174,11 +174,11 @@ export default function AdminDashboard({
                 key={item}
                 onClick={() => setActive(item)}
                 className={"flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-[13px] transition " +
-                  (active === item ? "bg-[#1e2b25] font-semibold text-white" : "text-[#657080] hover:bg-[#eee9de] hover:text-[#121826]")}
+                  (active === item ? "bg-[#292424] font-semibold text-white" : "text-[#657080] hover:bg-[#e9e1da] hover:text-[#292424]")}
               >
                 <span>{item}</span>
                 {menuCount[item] !== undefined && menuCount[item]! > 0 ? (
-                  <span className={"min-w-6 rounded-full px-2 py-1 text-center text-[10px] " + (active === item ? "bg-white/15 text-white" : "bg-[#ece6dc] text-[#67707d]")}>
+                  <span className={"min-w-6 rounded-full px-2 py-1 text-center text-[10px] " + (active === item ? "bg-white/15 text-white" : "bg-[#e9e1da] text-[#67707d]")}>
                     {menuCount[item]}
                   </span>
                 ) : active === item ? <span className="h-1.5 w-1.5 rounded-full bg-current" /> : null}
@@ -208,7 +208,7 @@ export default function AdminDashboard({
                   ["URGENT", String(urgent), "Items flagged urgent"],
                   ["OPEN ACTIONS", String(unreadOrders + unreadContacts), "Requires staff review"],
                 ].map(([label, value, meta]) => (
-                  <button key={label} onClick={() => setActive(label.includes("ORDER") ? "Order Inbox" : label.includes("CONTACT") ? "Contact Inquiries" : "Dashboard")} className="rounded-2xl border border-[#ddd8cd] bg-[#fbf8f1] p-5 text-left">
+                  <button key={label} onClick={() => setActive(label.includes("ORDER") ? "Order Inbox" : label.includes("CONTACT") ? "Contact Inquiries" : "Dashboard")} className="rounded-2xl border border-[#d8cec5] bg-[#f7f4f0] p-5 text-left">
                     <div className="text-[10px] tracking-[0.12em] text-[#9299a5]">{label}</div>
                     <div className="mt-3 font-serif text-3xl">{value}</div>
                     <div className="mt-2 text-[11px] text-[#a0a7b1]">{meta}</div>
@@ -216,7 +216,7 @@ export default function AdminDashboard({
                 ))}
               </section>
               <section className="mt-6 grid gap-4 xl:grid-cols-[1.15fr_.85fr]">
-                <div className="rounded-2xl border border-[#ddd8cd] bg-[#fbf8f1] p-5">
+                <div className="rounded-2xl border border-[#d8cec5] bg-[#f7f4f0] p-5">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="font-serif text-2xl">Newest business intake</h2>
                     <button onClick={() => setActive("Order Inbox")} className="text-xs underline underline-offset-4">Open inbox</button>
@@ -231,7 +231,7 @@ export default function AdminDashboard({
                     {!initialOrders.length && <div className="py-5 text-sm text-[#8d95a1]">No order inbox records.</div>}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-[#ddd8cd] bg-[#fbf8f1] p-5">
+                <div className="rounded-2xl border border-[#d8cec5] bg-[#f7f4f0] p-5">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="font-serif text-2xl">New contact leads</h2>
                     <button onClick={() => setActive("Contact Inquiries")} className="text-xs underline underline-offset-4">Open contacts</button>
@@ -259,7 +259,7 @@ export default function AdminDashboard({
               </div>
               <div className="grid gap-4">
                 {initialOrders.map((item) => (
-                  <article key={item.id} className={"rounded-2xl border bg-[#fbf8f1] p-5 " + (item.readStatus === "Unread" ? "border-[#7d2f3a]/35" : "border-[#ddd8cd]")}>
+                  <article key={item.id} className={"rounded-2xl border bg-[#f7f4f0] p-5 " + (item.readStatus === "Unread" ? "border-[#7d2f3a]/35" : "border-[#d8cec5]")}>
                     <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#e9e4db] pb-4">
                       <div>
                         <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[.12em] text-[#8d95a1]">
@@ -297,7 +297,7 @@ export default function AdminDashboard({
               </div>
               <div className="grid gap-4">
                 {initialContacts.map((lead) => (
-                  <article key={lead.id} className={"rounded-2xl border bg-[#fbf8f1] p-5 " + (lead.readStatus === "Unread" ? "border-[#7d2f3a]/35" : "border-[#ddd8cd]")}>
+                  <article key={lead.id} className={"rounded-2xl border bg-[#f7f4f0] p-5 " + (lead.readStatus === "Unread" ? "border-[#7d2f3a]/35" : "border-[#d8cec5]")}>
                     <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#e9e4db] pb-4">
                       <div>
                         <div className="text-[10px] uppercase tracking-[.12em] text-[#8d95a1]">{lead.status} · {lead.readStatus} · {lead.priority}</div>
@@ -331,7 +331,7 @@ export default function AdminDashboard({
           {active === "Orders" && (
             <section>
               <div className="mb-4 flex flex-wrap items-center justify-end gap-3">
-                <input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search formal order…" className="min-w-[280px] rounded-full border border-[#ddd8cd] bg-[#fbf8f1] px-4 py-2.5 text-sm outline-none" />
+                <input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search formal order…" className="min-w-[280px] rounded-full border border-[#d8cec5] bg-[#f7f4f0] px-4 py-2.5 text-sm outline-none" />
               </div>
               <Table headers={["Order","Customer","Channel","Items","Status","Total"]} rows={filteredOrders} statusCol={4} />
             </section>
@@ -356,10 +356,10 @@ export default function AdminDashboard({
 
 function Table({ headers, rows, statusCol = -1 }: { headers: string[]; rows: string[][]; statusCol?: number }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[#ddd8cd] bg-[#fbf8f1]">
+    <div className="overflow-x-auto rounded-2xl border border-[#d8cec5] bg-[#f7f4f0]">
       <table className="w-full min-w-[900px] border-collapse text-left text-sm">
         <thead><tr>{headers.map((h)=><th key={h} className="border-b border-[#e4dfd6] px-4 py-4 text-[10px] font-semibold uppercase tracking-[.12em] text-[#a2a8b2]">{h}</th>)}</tr></thead>
-        <tbody>{rows.map((row,i)=><tr key={i} className="hover:bg-white/50">{row.map((cell,j)=><td key={j} className={"border-b border-[#ebe7df] px-4 py-4 " + (j===0?"font-semibold":"")}>{j===statusCol?<Status>{cell}</Status>:cell}</td>)}</tr>)}</tbody>
+        <tbody>{rows.map((row,i)=><tr key={i} className="hover:bg-white/50">{row.map((cell,j)=><td key={j} className={"border-b border-[#e9e1da] px-4 py-4 " + (j===0?"font-semibold":"")}>{j===statusCol?<Status>{cell}</Status>:cell}</td>)}</tr>)}</tbody>
       </table>
     </div>
   )
@@ -370,5 +370,5 @@ function SimplePanel({ title, headers, rows, statusCol = -1 }: { title: string; 
 }
 
 function InfoCard({ title, rows }: { title: string; rows: string[][] }) {
-  return <div className="max-w-xl rounded-2xl border border-[#ddd8cd] bg-[#fbf8f1] p-5"><h2 className="font-serif text-2xl">{title}</h2><div className="mt-4 divide-y divide-[#ebe7df]">{rows.map(([k,v])=><div key={k} className="flex justify-between py-3 text-sm"><span className="text-[#8f97a3]">{k}</span><strong>{v}</strong></div>)}</div></div>
+  return <div className="max-w-xl rounded-2xl border border-[#d8cec5] bg-[#f7f4f0] p-5"><h2 className="font-serif text-2xl">{title}</h2><div className="mt-4 divide-y divide-[#e9e1da]">{rows.map(([k,v])=><div key={k} className="flex justify-between py-3 text-sm"><span className="text-[#8f97a3]">{k}</span><strong>{v}</strong></div>)}</div></div>
 }

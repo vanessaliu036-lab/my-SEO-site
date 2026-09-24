@@ -238,9 +238,6 @@ export function WholesaleEditorialTemplate({
               <p className={eyebrowClass}>{sidebarLabel}</p>
               <h2 id="commercial-requirements-title" className={`${displayTitleClass} mt-5 max-w-[560px] text-[clamp(2.8rem,5vw,4.7rem)] leading-[0.94]`}>{comparisonTitle}</h2>
               <p className="mt-6 max-w-[520px] text-[15px] leading-8 text-black/60">{ctaDescription}</p>
-              <Link href="/contact" className="group mt-8 inline-flex items-center gap-3 rounded-full border border-black/18 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] transition-colors hover:bg-white/60">
-                {ctaLabel}<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
             </MotionReveal>
 
             <MotionReveal direction="right">
@@ -331,9 +328,6 @@ export function WholesaleEditorialTemplate({
               <h2 className={`${displayTitleClass} mt-4 max-w-[820px] text-[clamp(2.5rem,4.5vw,4.3rem)] leading-[0.96]`}>{ctaLabel}</h2>
               <p className="mt-5 max-w-[760px] text-[15px] leading-7 text-black/58">{ctaDescription}</p>
             </div>
-            <Link href="/contact" className="group inline-flex items-center justify-center gap-3 rounded-full border border-black/20 bg-occ-background px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary transition-transform hover:-translate-y-0.5">
-              Contact OCC<ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
           </section>
         </MotionReveal>
       </div>
