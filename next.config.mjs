@@ -185,6 +185,19 @@ const nextConfig = {
       })),
     ]
   },
+
+  // Serve the reviewed editorial pages at their canonical public URLs before
+  // the legacy App Router versions are evaluated.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: '/about/mission', destination: '/occ-pages/mission.html' },
+        { source: '/solutions/roasting-program', destination: '/occ-pages/roasting-program.html' },
+        { source: '/origins/cambodia-regions', destination: '/occ-pages/cambodia-regions.html' },
+        { source: '/partnerships', destination: '/occ-pages/partnerships.html' },
+      ],
+    }
+  },
 }
 
 export default withBotId(nextConfig)

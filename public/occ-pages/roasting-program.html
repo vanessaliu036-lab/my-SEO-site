@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Custom Coffee Roasting Cambodia | Roast Profile Development | OCC</title>
+<meta content="Custom coffee roasting and roast profile development in Cambodia for cafés, hotels, and coffee brands. Build a clear commercial coffee profile with OCC's Cambodia-origin coffee and Fine Robusta expertise." name="description"/>
+<meta content="index,follow" name="robots"/>
+<style>
+:root{--bg:#F2EDE6;--paper:#FAF7F2;--ink:#292424;--muted:#6A6663;--line:#D9D0C7;--soft:#E9E1D8;--accent:#91434D;--max:1320px;--serif:Georgia,'Times New Roman',serif;--sans:Inter,Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{display:block;width:100%;height:100%;object-fit:cover}.shell{max-width:var(--max);margin:0 auto;background:var(--paper)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-size:26px;letter-spacing:.06em}.brand b{font-weight:600}.brand i{font-style:normal;color:var(--accent)}.toplink{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:680px}.hero-copy{padding:82px 64px 72px;display:flex;flex-direction:column;justify-content:center}.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;margin:0}h1{font-size:clamp(54px,6vw,88px);line-height:.94;max-width:760px}.hero-lead{font-family:var(--serif);font-size:clamp(24px,2.6vw,34px);line-height:1.2;margin:28px 0 18px;max-width:660px}.hero-desc{font-size:16px;line-height:1.7;color:var(--muted);max-width:610px;margin:0 0 30px}.actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.primary{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:15px 22px;border-radius:999px;font-size:14px}.secondary{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:4px}.hero-photo{min-height:680px;overflow:hidden}
+.section{padding:92px 64px;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:.6fr 1.4fr;gap:48px;align-items:end;margin-bottom:48px}.section-head h2{font-size:clamp(42px,4.6vw,66px);line-height:.98;max-width:780px}.section-head p{margin:0;color:var(--muted);font-size:16px;line-height:1.7;max-width:620px}
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.audience-card{border:1px solid var(--line);background:#fff}.audience-img{aspect-ratio:4/3;overflow:hidden}.audience-copy{padding:25px 24px 27px}.audience-copy span{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}.audience-copy h3{font-size:30px;line-height:1.04;margin:12px 0 10px}.audience-copy p{font-size:14px;line-height:1.65;color:var(--muted);margin:0}
+.process-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(66px,6vw,92px);align-items:start}.process-photo{aspect-ratio:4/5;overflow:hidden;position:sticky;top:24px}.steps{border-top:1px solid var(--line)}.step{display:grid;grid-template-columns:42px 1fr;padding:24px 0;border-bottom:1px solid var(--line);gap:18px}.step-num{font-size:11px;color:var(--muted);padding-top:7px;letter-spacing:.18em}.step h3{font-size:32px;line-height:1.04;margin-bottom:8px}.step p{margin:0;color:var(--muted);font-size:14px;line-height:1.65;max-width:560px}.path-note{margin-top:28px;background:var(--soft);padding:22px 24px;display:flex;justify-content:space-between;gap:22px;align-items:center}.path-note p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.path-note a{white-space:nowrap;font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.origin{display:grid;grid-template-columns:1.1fr .9fr;min-height:540px;padding:0;border-top:1px solid var(--line)}.origin-copy{padding:88px 64px;display:flex;flex-direction:column;justify-content:center}.origin-copy h2{font-size:clamp(44px,5vw,68px);line-height:.98;max-width:720px}.origin-quote{font-family:var(--serif);font-size:28px;line-height:1.25;margin:26px 0 18px;max-width:580px}.origin-copy p{font-size:15px;line-height:1.7;color:var(--muted);max-width:610px;margin:0 0 22px}.origin-copy a{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:4px;align-self:flex-start}.origin-photo{overflow:hidden}
+.cta{padding:88px 64px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.35fr .65fr;gap:44px;align-items:center;background:var(--soft)}.cta h2{font-size:clamp(46px,5.2vw,74px);line-height:.96;max-width:800px}.cta p{margin:20px 0 0;color:var(--muted);font-size:15px;line-height:1.65;max-width:650px}.cta-action{justify-self:end}
+.faq{padding:66px 64px 80px;border-top:1px solid var(--line)}.faq h2{font-size:42px;margin-bottom:28px}details{border-top:1px solid var(--line);padding:20px 0}details:last-child{border-bottom:1px solid var(--line)}summary{cursor:pointer;font-family:var(--serif);font-size:24px;list-style:none;display:flex;justify-content:space-between;gap:20px}summary::-webkit-details-marker{display:none}summary::after{content:'+';font-family:var(--sans);font-size:20px;font-weight:400}details[open] summary::after{content:'−'}details p{margin:14px 0 0;color:var(--muted);font-size:14px;line-height:1.65;max-width:760px}
+.footer{padding:24px 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
+/* Motion is deliberately restrained: no parallax, scale, pinning, or scroll hijacking. */
+.reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(10px);transition:opacity .42s ease,transform .42s ease}.js .reveal.is-visible{opacity:1;transform:none}
+
+/* V4.1 — HOW IT WORKS: tighter editorial rhythm, scoped to this section only */
+.process-section{padding-top:74px;padding-bottom:82px}
+.process-section .section-head{grid-template-columns:minmax(0,.92fr) minmax(360px,1.08fr);gap:64px;align-items:start;margin-bottom:30px}
+.process-section .section-head h2{font-size:clamp(46px,3.8vw,58px);line-height:.96;max-width:570px;letter-spacing:-.025em}
+.process-section .section-head p{align-self:start;padding-top:45px;max-width:560px;font-size:15.5px;line-height:1.65}
+.process-section .process-wrap{grid-template-columns:.94fr 1.06fr;gap:clamp(66px,6vw,92px);align-items:start}
+.process-section .process-photo{aspect-ratio:5/4}
+.process-section .step{padding:21px 0}
+.process-section .step h3{font-size:30px}
+@media(max-width:900px){
+  .process-section{padding-top:62px;padding-bottom:68px}
+  .process-section .section-head{grid-template-columns:1fr;gap:14px;margin-bottom:26px}
+  .process-section .section-head h2{font-size:clamp(42px,7vw,54px);max-width:620px}
+  .process-section .section-head p{padding-top:0;max-width:680px}
+  .process-section .process-wrap{grid-template-columns:1fr;gap:28px}
+  .process-section .process-photo{aspect-ratio:16/9}
+}
+@media(max-width:560px){
+  .process-section{padding-top:54px;padding-bottom:58px}
+  .process-section .section-head h2{font-size:42px;line-height:.98}
+  .process-section .section-head{margin-bottom:22px}
+  .process-section .process-wrap{gap:22px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1!important;transform:none!important;transition:none!important}}
+@media(max-width:900px){.topbar{padding:18px 24px}.hero{grid-template-columns:1fr;min-height:auto}.hero-copy{padding:64px 28px 48px}.hero-photo{min-height:500px}.section{padding:70px 28px}.section-head{grid-template-columns:1fr;gap:16px}.audience-grid{grid-template-columns:1fr}.process-wrap{grid-template-columns:1fr;gap:34px}.process-photo{position:relative;top:0;aspect-ratio:16/9}.origin{grid-template-columns:1fr}.origin-copy{padding:70px 28px}.origin-photo{min-height:460px}.cta{padding:70px 28px;grid-template-columns:1fr}.cta-action{justify-self:start}.faq{padding:58px 28px 70px}.footer{padding:22px 28px;flex-direction:column}}
+@media(max-width:560px){h1{font-size:52px}.hero-photo{min-height:420px}.section{padding-top:58px;padding-bottom:58px}.section-head h2{font-size:44px}.audience-copy h3{font-size:28px}.process-photo{aspect-ratio:4/3}.step h3{font-size:29px}.path-note{align-items:flex-start;flex-direction:column}.origin-copy h2{font-size:45px}.origin-quote{font-size:25px}.origin-photo{min-height:400px}.cta h2{font-size:48px}.faq h2{font-size:36px}summary{font-size:22px}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+<style id="occ-unified-brand-style">
+:root {
+  --occ-canvas: #F2EDE6;
+  --occ-surface: #FAF7F2;
+  --occ-ink: #292424;
+  --occ-muted: #6A6663;
+  --occ-wine: #91434D;
+  --occ-wine-deep: #71323A;
+  --occ-on-dark: #F2EDE6;
+  --occ-on-dark-muted: #E0D7D0;
+  --occ-line: #D9D0C7;
+  --cream: var(--occ-canvas); --paper: var(--occ-surface); --paper2: #E9E1D8;
+  --bg: var(--occ-canvas); --soft: #E9E1D8; --taupe: #E9E1D8;
+  --ink: var(--occ-ink); --coffee: var(--occ-ink); --muted: var(--occ-muted);
+  --wine: var(--occ-wine); --wine-deep: var(--occ-wine-deep);
+  --red: var(--occ-wine); --accent: var(--occ-wine); --rule: var(--occ-line);
+  --line: var(--occ-line);
+  color-scheme: light;
+}
+html, body { background-color: var(--occ-canvas) !important; color: var(--occ-ink) !important; }
+body { font-family: Arial, Helvetica, sans-serif !important; font-size: 16px !important; }
+h1, h2, h3, .display, .serif, .hero-lead, .origin-quote {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  color: var(--occ-ink) !important;
+}
+h1 { font-size: clamp(46px, 5vw, 76px) !important; line-height: 1 !important; font-weight: 400 !important; }
+h2 { font-size: clamp(30px, 3.1vw, 44px) !important; line-height: 1.12 !important; font-weight: 400 !important; }
+h3 { font-size: clamp(22px, 2.05vw, 29px) !important; line-height: 1.16 !important; font-weight: 400 !important; }
+p, .hero-desc, .hero-support, .hero-intro, .section-head p, .origin-copy p,
+.chapter-copy p, .feature p, .approach-note, .faq-answer, .step p,
+.audience-copy p, .cta p, .rhythm-note, figcaption {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important; line-height: 1.7 !important;
+  color: var(--occ-muted) !important;
+}
+.hero-lead, .origin-quote { font-size: clamp(22px, 2.1vw, 28px) !important; line-height: 1.25 !important; }
+.eyebrow, .small, .chapter-nav-label, .hero-sub, .chapter-number {
+  color: var(--occ-wine) !important; font-size: 12px !important;
+  font-weight: 700 !important; letter-spacing: .16em !important;
+}
+a:hover, .text-link:hover, .jump:hover, .nav-contact, .logo b, .brand-word span,
+.hero h1 em, .origin-mark strong, .faq-plus, .step-num { color: var(--occ-wine) !important; }
+.primary, .button:not(.light):not(.outline), #back-to-top { background-color: var(--occ-wine) !important; }
+.primary:hover, .button:hover:not(.light):not(.outline) { background-color: var(--occ-wine-deep) !important; }
+::selection { background: #E8D3D5 !important; color: var(--occ-ink) !important; }
+:focus-visible { outline-color: var(--occ-wine) !important; }
+html[data-occ-page="mission"] .bottom-cta :is(h1,h2,h3,p,.eyebrow,.text-link),
+html[data-occ-page="mission"] .site-footer { color: var(--occ-on-dark) !important; }
+html[data-occ-page="mission"] .bottom-cta .eyebrow { color: #E4B9B4 !important; }
+html[data-occ-page="partners"] .hero :is(h1,h2,h3,p,.serif,.eyebrow,.overline,.hero-intro,.side-caption,.hero-footer,.hero-top,.link-line,.hero-copy) {
+  color: var(--occ-on-dark) !important;
+}
+html[data-occ-page="partners"] .hero :is(.eyebrow,.overline,.hero h1 em,.link-line:hover) { color: #E4B9B4 !important; }
+html[data-occ-page="partners"] .brands :is(h1,h2,h3,p,.eyebrow,.brand-name,.brand-plus,.brand-bottom) { color: var(--occ-on-dark) !important; }
+html[data-occ-page="partners"] .brands :is(.eyebrow,.brand-plus) { color: #E4B9B4 !important; }
+html[data-occ-page="partners"] .contact :is(h1,h2,h3,p,.eyebrow,.contact-small,.link-line) { color: var(--occ-on-dark) !important; }
+html[data-occ-page="partners"] .contact :is(.eyebrow,.contact-small) { color: #E4B9B4 !important; }
+</style>
+<style id="occ-premium-motion">
+:root { --occ-motion-ease: cubic-bezier(.2,.75,.22,1); --occ-motion-fast: 180ms; --occ-motion-mid: 520ms; --occ-motion-slow: 900ms; }
+@media (prefers-reduced-motion: no-preference) {
+  html.occ-motion-ready [data-occ-reveal] { opacity: 0; transform: translate3d(0, 22px, 0); transition: opacity 650ms var(--occ-motion-ease), transform 760ms var(--occ-motion-ease); }
+  html.occ-motion-ready [data-occ-reveal].is-in { opacity: 1; transform: none; }
+  html.occ-motion-ready [data-occ-reveal][data-occ-depth="2"] { transform: translate3d(0, 34px, 0); transition-delay: 70ms; }
+  html.occ-motion-ready [data-occ-reveal][data-occ-depth="3"] { transform: translate3d(0, 42px, 0); transition-delay: 140ms; }
+  html.occ-motion-ready .hero-copy > *, html.occ-motion-ready .hero-text > *, html.occ-motion-ready .hero-top,
+  html.occ-motion-ready .hero-side, html.occ-motion-ready .hero-footer { animation: occ-settle 760ms var(--occ-motion-ease) both; }
+  html.occ-motion-ready .hero-copy > :nth-child(2), html.occ-motion-ready .hero-text > :nth-child(2) { animation-delay: 90ms; }
+  html.occ-motion-ready .hero-copy > :nth-child(3), html.occ-motion-ready .hero-text > :nth-child(3) { animation-delay: 170ms; }
+  html.occ-motion-ready .hero-copy > :nth-child(4), html.occ-motion-ready .hero-text > :nth-child(4) { animation-delay: 240ms; }
+  html.occ-motion-ready .hero-photo img, html.occ-motion-ready .hero-media img, html.occ-motion-ready .hero-image img {
+    animation: occ-photo-reveal 1100ms cubic-bezier(.18,.77,.23,1) both;
+  }
+  .feature, .audience-card, .route-card, .format-card, .chapter, .beat, .step, .button, .primary, .text-link, .link-line, .jump {
+    transition-timing-function: var(--occ-motion-ease);
+  }
+  .feature:hover, .audience-card:hover, .route-card:hover, .format-card:hover { transform: translateY(-5px); }
+  .feature, .audience-card, .route-card, .format-card { transition: transform 320ms var(--occ-motion-ease), box-shadow 320ms var(--occ-motion-ease); }
+  .button:active, .primary:active { transform: translateY(1px) scale(.985); }
+  .text-link:hover, .link-line:hover, .jump:hover { transform: translateX(3px); transition: transform 200ms var(--occ-motion-ease); }
+  .photo img, .media img, .hero-photo img, .hero-media img, .image-wrap img, .origin-photo img { transition: transform 900ms var(--occ-motion-ease); }
+  .photo:hover img, .media:hover img, .hero-photo:hover img, .hero-media:hover img, .image-wrap:hover img, .origin-photo:hover img { transform: scale(1.035); }
+}
+@keyframes occ-settle { from { opacity: .01; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: none; } }
+@keyframes occ-photo-reveal { from { opacity: .72; clip-path: inset(7% 0 0 0); transform: scale(1.025); } to { opacity: 1; clip-path: inset(0); transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+<link href="https://origincafekh.com/solutions/roasting-program" rel="canonical"/>
+<meta content="website" property="og:type"/><meta content="Custom Coffee Roasting in Cambodia | OCC" property="og:title"/><meta content="Custom coffee roasting and roast profile development in Cambodia for cafés, hotels, and coffee brands. Build a clear commercial coffee profile with OCC's Cambodia-origin coffee and Fine Robusta expertise." property="og:description"/><meta content="https://origincafekh.com/solutions/roasting-program" property="og:url"/><meta content="https://origincafekh.com/assets/occ-roasting-hero.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Custom Coffee Roasting in Cambodia | OCC" name="twitter:title"/><meta content="Custom coffee roasting and roast profile development in Cambodia for cafés, hotels, and coffee brands. Build a clear commercial coffee profile with OCC's Cambodia-origin coffee and Fine Robusta expertise." name="twitter:description"/><meta content="https://origincafekh.com/assets/occ-roasting-hero.webp" name="twitter:image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://origincafekh.com/#organization","name":"Origin Coffee Cambodia","url":"https://origincafekh.com/","logo":"https://origincafekh.com/occ-logo-primary-local.svg"},{"@type":"WebSite","@id":"https://origincafekh.com/#website","url":"https://origincafekh.com/","name":"Origin Coffee Cambodia","publisher":{"@id":"https://origincafekh.com/#organization"},"inLanguage":"en"},{"@type":"Service","@id":"https://origincafekh.com/solutions/roasting-program#webpage","url":"https://origincafekh.com/solutions/roasting-program","name":"Custom Coffee Roasting in Cambodia","description":"Custom coffee roasting and roast profile development in Cambodia for cafés, hotels, and coffee brands. Build a clear commercial coffee profile with OCC's Cambodia-origin coffee and Fine Robusta expertise.","isPartOf":{"@id":"https://origincafekh.com/#website"},"about":{"@id":"https://origincafekh.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://origincafekh.com/assets/occ-roasting-hero.webp"},"inLanguage":"en"}]}</script>
+<style id="occ-final-alignment-and-contrast-fixes">
+:root{--occ-canvas:#F2EDE6;--occ-surface:#FAF7F2;--occ-ink:#292424;--occ-muted:#625E5B;--occ-wine:#91434D;--occ-line:#D9D0C7}
+html,body{background:var(--occ-canvas)!important;color:var(--occ-ink)!important}
+/* Keep reveal choreography, but never hide copy while an observer starts. */
+html.occ-motion-ready [data-occ-reveal],.js .reveal,.js-ready .reveal{opacity:1!important}
+/* Light page theme and readable dark copy across all large sections. */
+.brands,.contact,.bottom-cta,.cta,.end{background-color:var(--occ-canvas)!important;color:var(--occ-ink)!important}
+.brands :is(h1,h2,h3,.brand-bottom),.contact :is(h1,h2,h3),.bottom-cta :is(h1,h2,h3),.cta :is(h1,h2,h3),.end :is(h1,h2,h3){color:var(--occ-ink)!important;-webkit-text-fill-color:var(--occ-ink)!important}
+.brands p,.contact p,.bottom-cta p,.cta p,.end p,.site-footer{color:var(--occ-muted)!important;-webkit-text-fill-color:var(--occ-muted)!important}
+.brands :is(.eyebrow,.brand-plus),.contact :is(.eyebrow,.contact-small),.bottom-cta .eyebrow,.cta .eyebrow,.end .eyebrow{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+.brands .brand-name{display:block;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;font-weight:500!important;opacity:1!important;visibility:visible!important}
+.brands .brand-side{min-width:0}.brands .brand-side p{color:var(--occ-muted)!important;-webkit-text-fill-color:var(--occ-muted)!important}
+.brands .brand-diagram{border-color:var(--occ-line)!important}.brands .brand-diagram .brand-plus{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+html :is(a.primary,a.end-button,a.button,.button.primary,button.button){background:var(--occ-wine)!important;border:1px solid var(--occ-wine)!important;color:var(--occ-surface)!important;-webkit-text-fill-color:var(--occ-surface)!important;opacity:1!important;visibility:visible!important}
+html :is(a.primary,a.end-button,a.button,.button.primary,button.button) *{color:var(--occ-surface)!important;-webkit-text-fill-color:var(--occ-surface)!important;opacity:1!important;visibility:visible!important}
+html a.button.light{background:var(--occ-surface)!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+html a.button.outline{background:transparent!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+/* Stable, aligned content rows. */
+.audience-grid,.format-grid{align-items:stretch!important}
+.format-grid>.format-card{align-self:stretch!important;margin-top:0!important;transform:none!important}
+.route-detail{position:relative!important;padding-left:40px!important}
+.route-detail .number{position:absolute!important;left:-28px!important;top:21px!important;z-index:1;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+@media(max-width:900px){.route-detail{padding-left:34px!important}.route-detail .number{left:-22px!important}}
+/* Restore the contact photograph as a visible, softly screened backdrop. */
+.contact-bg{opacity:.34!important}
+.contact-bg .media::before{background:rgba(242,237,230,.24)!important}
+.contact-bg img{filter:saturate(.8)!important}
+/* Keep proof notes clear of the final evidence row. */
+.evidence-proof .proof-line{transform:none!important}
+.evidence-proof .evidence-note{display:block!important;position:relative!important;margin:18px 0 0!important;padding-top:16px!important;border-top:1px solid var(--occ-line)!important;line-height:1.7!important;clear:both!important}
+@media(prefers-reduced-motion:reduce){html.occ-motion-ready [data-occ-reveal],.js .reveal,.js-ready .reveal,.rise{opacity:1!important;transform:none!important;visibility:visible!important;animation:none!important;transition:none!important}}
+</style>
+<style id="occ-final-layout-qa">
+/* Shared type and color tokens; structure and section order stay intact. */
+:root{--occ-canvas:#F2EDE6;--occ-paper:#FAF7F2;--occ-charcoal:#292424;--occ-body:#625E5B;--occ-wine:#91434D;--occ-rule:#D9D0C7}
+html,body{background-color:var(--occ-canvas)!important;color:var(--occ-charcoal)!important}
+body{font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important}
+h1,h2,h3,.serif,.display,.hero-lead,.origin-quote{font-family:Georgia,'Times New Roman',serif!important;color:var(--occ-charcoal)!important}
+p,.hero-desc,.hero-support,.hero-intro,.section-head p,.origin-copy p,.chapter-copy p,.feature p,.approach-note,.faq-answer,.step p,.audience-copy p,.cta p,.rhythm-note,figcaption{font-family:Arial,Helvetica,sans-serif!important;color:var(--occ-body)!important;line-height:1.7!important}
+.eyebrow,.small,.chapter-nav-label,.hero-sub,.chapter-number,.step-num,.route-detail .number{color:var(--occ-wine)!important}
+/* Burgundy remains a small accent; all broad brand, proof and CTA surfaces stay warm white. */
+.brands,.contact,.bottom-cta,.cta,.end{background-color:var(--occ-canvas)!important;color:var(--occ-charcoal)!important}
+html[data-occ-page="partners"] .brands :is(h1,h2,h3,.brand-name,.brand-plus){color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
+html[data-occ-page="partners"] .brands .brand-name{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;opacity:1!important;visibility:visible!important}
+html[data-occ-page="partners"] .brands .brand-plus{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+html[data-occ-page="partners"] .brands :is(p,.brand-bottom){color:var(--occ-body)!important;-webkit-text-fill-color:var(--occ-body)!important}
+html[data-occ-page="partners"] .brands .section-index{color:var(--occ-wine)!important;border-color:var(--occ-rule)!important}
+html[data-occ-page="partners"] .contact :is(h1,h2,h3,p,.eyebrow,.contact-small,.link-line){color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
+html[data-occ-page="partners"] .contact :is(.eyebrow,.contact-small,.link-line){color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+html[data-occ-page="partners"] .contact .contact-bg{z-index:0!important;opacity:.58!important;pointer-events:none}
+html[data-occ-page="partners"] .contact .contact-bg .media::before{background:rgba(242,237,230,.08)!important}
+html[data-occ-page="partners"] .contact .contact-inner{z-index:2}
+html :is(a.primary,a.end-button,a.button,.button.primary,button.button){background:var(--occ-wine)!important;border-color:var(--occ-wine)!important;color:var(--occ-paper)!important;-webkit-text-fill-color:var(--occ-paper)!important}
+html a.button.light{background:var(--occ-paper)!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+html a.button.outline{background:transparent!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+/* Align repeated cards and content rows without changing their grid or order. */
+.audience-grid,.format-grid{align-items:stretch!important}
+.format-grid>.format-card{align-self:stretch!important;margin-top:0!important;transform:none!important;display:flex!important;flex-direction:column!important}
+.format-card .media{width:100%!important;aspect-ratio:1.06!important;flex:none!important}
+.format-card .format-body{flex:1 1 auto!important}
+.route-card:nth-child(2){margin-top:0!important}
+.route-detail{position:relative!important;padding-left:40px!important}
+.route-detail .number{position:absolute!important;left:-28px!important;top:21px!important;z-index:2!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+.steps{align-items:stretch!important}
+.steps>.step{align-self:stretch!important;transform:none!important}
+html[data-occ-page="partners"] .steps>.step{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
+html[data-occ-page="partners"] .steps>.step .step-num{display:block!important;min-height:1.5em!important;margin:0!important}
+html[data-occ-page="partners"] .steps>.step h3{margin:60px 0 17px!important}
+html[data-occ-page="partners"] .steps>.step p{margin-top:0!important}
+.process-section .steps>.step.reveal{transform:none!important}
+/* Evidence footnote occupies its own line after the last numbered row. */
+.evidence-proof .proof-line{transform:none!important}
+.evidence-proof .evidence-note{display:block!important;position:relative!important;margin:18px 0 0!important;padding-top:16px!important;border-top:1px solid var(--occ-rule)!important;line-height:1.7!important;clear:both!important}
+/* Restore visual cadence while preserving all sections. */
+html[data-occ-page="partners"] .brands{padding:clamp(72px,8vw,112px) 0!important}
+html[data-occ-page="partners"] .brands-head{margin:clamp(30px,4vw,56px) auto clamp(38px,5vw,68px)!important}
+@media(max-width:700px){html[data-occ-page="partners"] .steps>.step h3{margin:25px 0 15px!important}.route-detail{padding-left:34px!important}.route-detail .number{left:-22px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important;transform:none!important}}
+</style>
+<style id="occ-final-mission-contrast">
+/* Keep mission CTA and footer legible on the shared light surface. */
+html[data-occ-page="mission"] .bottom-cta :is(h1,h2,h3,p,.eyebrow,.text-link),html[data-occ-page="mission"] .site-footer{color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
+html[data-occ-page="mission"] .bottom-cta .eyebrow,html[data-occ-page="mission"] .bottom-cta .text-link{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+<div class="brand"><b>OCC</b><i>.</i></div>
+<a class="toplink" href="https://origincafekh.com/contact">Contact</a>
+</header>
+<main>
+<section aria-labelledby="page-title" class="hero">
+<div class="hero-copy reveal">
+<span class="eyebrow">Roasting Program · Cambodia</span>
+<h1 id="page-title">Custom Coffee Roasting in Cambodia</h1>
+<p class="hero-lead">A roast profile built for your café, hotel, or coffee brand.</p>
+<p class="hero-desc">OCC develops coffee around your market, brewing setup, sensory target, and commercial use — with Cambodia-origin coffee and Fine Robusta at the center of our expertise.</p>
+<div class="actions">
+<a class="primary" href="https://origincafekh.com/contact">Discuss a Roast Profile <span aria-hidden="true">→</span></a>
+<a class="secondary" href="https://origincafekh.com/solutions/wholesale">Need ready-to-sell coffee? Explore Wholesale</a>
+</div>
+</div>
+<div class="hero-photo"><img alt="Cambodian coffee beans roasting in a sample roaster" fetchpriority="high" loading="eager" src="/occ-pages/assets/occ-roasting-hero.webp"/></div>
+</section>
+<section aria-labelledby="who-title" class="section">
+<div class="section-head reveal">
+<div><span class="eyebrow">01 · Who it is for</span><h2 id="who-title">Built for a real service environment.</h2></div>
+<p>Custom roasting makes sense when the coffee has a specific job to do — on a menu, at breakfast service, or inside a branded product.</p>
+</div>
+<div class="audience-grid">
+<article class="audience-card reveal"><div class="audience-img"><img alt="Barista preparing espresso for a café coffee program" loading="lazy" src="/occ-pages/assets/occ-roasting-espresso.webp"/></div><div class="audience-copy"><span>Cafés</span><h3>A house profile that fits your menu.</h3><p>Develop espresso, milk-beverage, or filter coffee around your equipment, customers, and service style.</p></div></article>
+<article class="audience-card reveal"><div class="audience-img"><img alt="Pour-over coffee prepared for hotel and restaurant service" loading="lazy" src="/occ-pages/assets/occ-roasting-hospitality.webp"/></div><div class="audience-copy"><span>Hotels</span><h3>Coffee designed for the guest experience.</h3><p>Build a profile for breakfast, restaurant, lounge, or guest-facing coffee service with a defined sensory direction.</p></div></article>
+<article class="audience-card reveal"><div class="audience-img"><img alt="Ground coffee samples prepared for roast profile evaluation" loading="lazy" src="/occ-pages/assets/occ-roasting-sample-evaluation.webp"/></div><div class="audience-copy"><span>Coffee Brands</span><h3>A product with a clear point of view.</h3><p>Create a branded coffee direction that can be evaluated, approved, and referenced for future production.</p></div></article>
+</div>
+</section>
+<section aria-labelledby="process-title" class="section process-section">
+<div class="section-head reveal">
+<div><span class="eyebrow">02 · How it works</span><h2 id="process-title">From brief to approved roast profile.</h2></div>
+<p>The process is deliberately simple: define the product, roast against the brief, evaluate it in context, then approve a commercial reference.</p>
+</div>
+<div class="process-wrap">
+<div class="process-photo reveal"><img alt="Freshly roasted Cambodian coffee beans cooling after profile production" loading="lazy" src="/occ-pages/assets/occ-roasting-profile.webp"/></div>
+<div>
+<div class="steps">
+<article class="step reveal"><div class="step-num">01</div><div><h3>Brief</h3><p>Tell us the target customer, brewing method, equipment, service context, and the experience the coffee should create.</p></div></article>
+<article class="step reveal"><div class="step-num">02</div><div><h3>Sample Roast</h3><p>We select the coffee and develop roast directions against the commercial brief rather than a generic roast label.</p></div></article>
+<article class="step reveal"><div class="step-num">03</div><div><h3>Evaluate</h3><p>Cup and brew the samples in the intended application, focusing on sweetness, body, structure, finish, and performance.</p></div></article>
+<article class="step reveal"><div class="step-num">04</div><div><h3>Approve</h3><p>The chosen direction becomes the reference for production and future quality conversations.</p></div></article>
+</div>
+<div class="path-note reveal"><p><strong>Already know what you want to sell?</strong> OCC Wholesale is the Ready-to-Sell path. Custom Roasting is the Made-for-You path.</p><a href="https://origincafekh.com/solutions/wholesale">Compare with Wholesale →</a></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="origin-title" class="origin">
+<div class="origin-copy reveal">
+<span class="eyebrow">03 · Cambodia expertise</span>
+<h2 id="origin-title">Cambodian coffee, developed for your market.</h2>
+<div class="origin-quote">“You may know Robusta. But you may not know Cambodian Robusta.”</div>
+<p>OCC is a Cambodia-origin specialty coffee supplier and Fine Robusta specialist. In a custom roasting project, origin is not a decorative story — it is part of the coffee, sensory result, and product decision.</p>
+<a href="https://origincafekh.com/fine-robusta-cambodia">Explore Fine Robusta Cambodia →</a>
+</div>
+<div class="origin-photo"><img alt="Coffee professional evaluating sample roasts at a cupping table" loading="lazy" src="/occ-pages/assets/occ-sensory-cupping.webp"/></div>
+</section>
+<section aria-labelledby="start-title" class="cta">
+<div class="reveal"><span class="eyebrow">04 · Start the conversation</span><h2 id="start-title">Tell us what coffee you want to create.</h2><p>Bring your market, brewing application, target flavour, current coffee if relevant, and the commercial role the product needs to play. We can start from there.</p></div>
+<div class="cta-action reveal"><a class="primary" href="https://origincafekh.com/contact">Develop Your Roast Profile <span aria-hidden="true">→</span></a></div>
+</section>
+<section aria-labelledby="faq-title" class="faq">
+<span class="eyebrow">Reference</span><h2 id="faq-title">Before you contact us.</h2>
+<details><summary>Do I need to know the roast profile already?</summary><p>No. A clear product goal, customer context, and brewing application are enough to begin. The development process translates those requirements into an evaluable roast direction.</p></details>
+<details><summary>Can Fine Robusta be part of the program?</summary><p>Yes, when it suits the intended product. OCC evaluates the actual coffee, processing, sensory character, application, and roast direction together.</p></details>
+<details><summary>How is this different from OCC Wholesale?</summary><p>Wholesale is for OCC-developed, ready-to-sell coffee profiles. Custom Roasting is for partners who need a profile or product direction developed around their own market and use case.</p></details>
+</section>
+</main>
+<footer class="footer"><span>Origin Coffee Cambodia · Roasting Program Preview V4</span><span>Reading-first concept · Not production</span></footer>
+</div>
+<script>
+(function(){
+  const items=[...document.querySelectorAll('.reveal')];
+  if(!('IntersectionObserver' in window)){items.forEach(el=>el.classList.add('is-visible'));return}
+  const io=new IntersectionObserver((entries,obs)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  items.forEach(el=>io.observe(el));
+})();
+</script>
+<script id="occ-motion-controller">
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const groups = {
+    mission: '.feature, .chapter, .faq-item, .conclusion-grid, .bottom-grid',
+    roasting: '.section-head, .audience-grid, .steps, .path-note, .origin-copy, .cta, .faq details',
+    origins: '.origin-statement, .beat, .chapter, .evidence-inner, .end-button',
+    partners: '.route-grid, .manifesto-grid, .format-grid, .brand-diagram, .steps, .contact-inner',
+  };
+  const path = location.pathname.toLowerCase();
+  const key = path.includes('mission') ? 'mission' : path.includes('roasting') ? 'roasting' : path.includes('origin') ? 'origins' : 'partners';
+  document.documentElement.dataset.occPage = key;
+  document.documentElement.classList.add('occ-motion-ready');
+  const items = [...document.querySelectorAll(groups[key])].filter(el => !el.closest('footer') && !el.classList.contains('reveal') && !el.classList.contains('rise'));
+  items.forEach((el, i) => { el.dataset.occReveal = ''; el.dataset.occDepth = String(i % 3 + 1); });
+  if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('is-in')); return; }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); observer.unobserve(entry.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  items.forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
