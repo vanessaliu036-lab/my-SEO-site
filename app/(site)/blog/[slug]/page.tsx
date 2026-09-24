@@ -418,6 +418,139 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
     ],
   },
 
+  "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability": {
+    label: "Supplier evaluation",
+    title: "Five checks before a supplier becomes commercially credible",
+    intro:
+      "A supplier should be evaluated on evidence that can survive repeat orders. For Cambodian coffee, the strongest commercial case combines traceability, representative sampling, quality specifications, logistics discipline, and a clear process for resolving variance.",
+    points: [
+      "Verify who owns the coffee, where it was produced or processed, and whether the offered sample can be tied to the lot actually available for sale.",
+      "Request specifications that matter to your use case, including process, moisture, preparation, defects, packaging, roast state, or other agreed tolerances.",
+      "Confirm how samples are selected and whether the approval sample is representative of the shipment rather than a hand-picked showcase lot.",
+      "Assess lead times, documentation, communication, complaint handling, and repeatability; commercial reliability is part of quality.",
+    ],
+    links: [
+      { href: "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist", label: "Cambodian coffee buyer checklist" },
+      { href: "/solutions/wholesale", label: "Wholesale & sourcing" },
+      { href: "/contact", label: "Discuss sourcing requirements" },
+    ],
+  },
+  "sample-cambodian-coffee-before-buying-lot": {
+    label: "Sample approval",
+    title: "A sample is useful only when it represents the lot you may buy",
+    intro:
+      "Sampling reduces risk only when the buyer knows what the sample represents. A pre-purchase cup can be misleading if the sample was selected differently from the commercial lot, stored differently, or roasted under conditions that cannot be repeated.",
+    points: [
+      "Record the sample code, lot reference, harvest period, process, date received, and whether it is offer, pre-shipment, or arrival material.",
+      "Ask how the sample was drawn and whether the same preparation standard applies to the commercial lot.",
+      "Evaluate physical condition and sensory performance separately so a strong roast does not hide green-coffee problems.",
+      "Define what happens after approval: reservation period, pre-shipment verification, arrival inspection, and tolerances for variance.",
+    ],
+    links: [
+      { href: "/blog/offer-vs-pre-shipment-vs-arrival-coffee-sample", label: "Offer vs pre-shipment vs arrival samples" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "offer-vs-pre-shipment-vs-arrival-coffee-sample": {
+    label: "Sample control",
+    title: "Offer, pre-shipment, and arrival samples answer different questions",
+    intro:
+      "These three samples should not be treated as interchangeable. Each belongs to a different control point in the buying process and helps the buyer verify a different type of risk.",
+    points: [
+      "An offer sample helps decide whether the coffee is worth pursuing, but may precede final milling, packing, or shipment preparation.",
+      "A pre-shipment sample checks whether the prepared commercial lot still matches the approved specification before it leaves origin.",
+      "An arrival sample checks what actually reached the buyer after transit, storage, handling, and time.",
+      "Use the same documented roast and evaluation method where possible so differences are easier to attribute to the coffee rather than the test.",
+    ],
+    links: [
+      { href: "/blog/sample-cambodian-coffee-before-buying-lot", label: "Sample before buying a lot" },
+      { href: "/blog/green-coffee-arrival-inspection-checklist", label: "Arrival inspection checklist" },
+    ],
+  },
+  "green-coffee-arrival-inspection-checklist": {
+    label: "Arrival QC",
+    title: "What to verify when green coffee arrives",
+    intro:
+      "Arrival inspection closes the loop between purchase approval and the coffee that was actually delivered. The goal is to detect shipping, storage, preparation, documentation, or quality variance before the coffee is released into production.",
+    points: [
+      "Match shipment documents, lot codes, bag counts, packaging condition, and any agreed marks or identifiers to the purchase record.",
+      "Check physical condition such as moisture, odor, visible contamination, bag integrity, or other specifications defined in the contract.",
+      "Draw a representative arrival sample rather than evaluating only the easiest bag to access.",
+      "Compare arrival performance against the approved reference and record any variance before roasting or distributing the lot.",
+    ],
+    links: [
+      { href: "/blog/offer-vs-pre-shipment-vs-arrival-coffee-sample", label: "Sample stages explained" },
+      { href: "/blog/green-coffee-shipment-fails-arrival-qc", label: "When a shipment fails arrival QC" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "coffee-contract-quality-tolerances-fine-robusta": {
+    label: "Contract control",
+    title: "Quality tolerances turn a tasting decision into a commercial agreement",
+    intro:
+      "A coffee contract is stronger when quality expectations are written as measurable tolerances instead of broad language such as ‘same as sample’. The exact tolerances depend on the product and buyer, but the logic should be explicit before shipment.",
+    points: [
+      "Define which reference sample or approved lot the contract refers to and how future comparisons will be made.",
+      "List the physical and sensory variables that matter to the use case, together with acceptable ranges or decision rules where appropriate.",
+      "State the inspection stage, sampling method, responsibility for testing, and what evidence is required if a dispute occurs.",
+      "Define remedies before problems happen, including replacement, discount, rejection, rework, or another agreed resolution path.",
+    ],
+    links: [
+      { href: "/blog/green-coffee-purchase-contract-checklist-roasters", label: "Green coffee contract checklist" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "what-creates-fine-robusta-price-premium": {
+    label: "Price premium",
+    title: "A Fine Robusta premium needs more than a cup score",
+    intro:
+      "A price premium becomes more defensible when sensory quality is combined with evidence that lowers buyer risk. Traceability, lot consistency, processing control, logistics, documentation, and repeatability can matter as much as an isolated high-scoring sample.",
+    points: [
+      "Cup quality can open the conversation, but buyers pay more confidently when the commercial lot can reproduce the approved experience.",
+      "Traceability adds value when it helps verify identity, processing, accountability, and future repeatability—not merely as storytelling.",
+      "Consistent preparation, storage, packing, and delivery reduce the operational risk hidden behind a headline price per kilogram.",
+      "A sustainable premium is usually supported by repeat purchase and buyer retention, not by a single exceptional sample.",
+    ],
+    links: [
+      { href: "/blog/fine-robusta-price-score-traceability-consistency", label: "Score, traceability & consistency" },
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "fine-robusta-consistency-vs-extra-cup-point": {
+    label: "Buyer trade-off",
+    title: "Why repeatability can matter more than one extra cup point",
+    intro:
+      "For a commercial buyer, the highest-scoring sample is not automatically the best purchase. A slightly lower-scoring coffee that repeats reliably across lots, shipments, and roast production can create more value than a volatile lot with a higher peak score.",
+    points: [
+      "Compare score stability across samples instead of using only the single best cupping result.",
+      "Evaluate whether processing, drying, storage, and lot separation are controlled well enough to reproduce the result.",
+      "Consider the cost of recipe changes, staff recalibration, customer complaints, and inventory disruption when quality varies.",
+      "Use cup score together with consistency, traceability, availability, and supplier response time when approving a commercial program.",
+    ],
+    links: [
+      { href: "/blog/what-creates-fine-robusta-price-premium", label: "What creates a Fine Robusta premium" },
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "fine-robusta-post-harvest-quality": {
+    label: "Post-harvest quality",
+    title: "Where post-harvest control protects Fine Robusta quality",
+    intro:
+      "Post-harvest quality is not one processing choice. It is a chain of controls from cherry selection through fermentation, drying, storage, milling, and sample preparation. A weakness at one stage can limit the quality created earlier in the chain.",
+    points: [
+      "Selective harvesting improves the raw material, but poor fermentation or drying can still introduce defects or unstable flavors.",
+      "Drying should be evaluated for uniformity and storage readiness, not only for speed or final moisture at one measurement point.",
+      "Storage and milling can change physical condition and cup performance after processing has finished.",
+      "For buyers, the useful evidence is whether process controls are documented well enough to explain and repeat the quality seen in the sample.",
+    ],
+    links: [
+      { href: "/blog/fine-robusta-fermentation", label: "Fine Robusta fermentation" },
+      { href: "/blog/fine-robusta-grading-verify-before-cupping", label: "Grading & verification" },
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
+    ],
+  },
 
 }
 
