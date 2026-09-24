@@ -86,6 +86,9 @@ const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set([
   "fine-robusta-consistency-vs-extra-cup-point",
   "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
   "mondulkiri-next-specialty-coffee-origin",
+  "what-cambodian-coffee-should-you-try-first",
+  "ratanakiri-coffee-cambodias-other-highland-origin",
+  "best-cambodian-coffee-beans-robusta-quality-guide",
 ])
 
 const ROBUSTA_SUPPORT_SLUG_PATTERN =
@@ -102,6 +105,49 @@ const ROBUSTA_TOPIC_OWNER_LABELS: Record<string, string> = {
   "how-to-brew-cambodian-fine-robusta": "Brewing",
   "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability": "Buyer & sourcing",
   "mondulkiri-next-specialty-coffee-origin": "Mondulkiri origin",
+}
+
+const CAMBODIA_COFFEE_PILLAR_SLUG = "what-cambodian-coffee-should-you-try-first"
+const CAMBODIA_COFFEE_PILLAR_HREF = `/blog/${CAMBODIA_COFFEE_PILLAR_SLUG}`
+
+const CAMBODIA_COFFEE_TOPIC_GUIDES = [
+  {
+    label: "Mondulkiri",
+    href: "/blog/mondulkiri-next-specialty-coffee-origin",
+    title: "Mondulkiri coffee origin",
+    description: "The strongest geographic anchor in OCC’s current Cambodia coffee knowledge graph.",
+  },
+  {
+    label: "Ratanakiri",
+    href: "/blog/ratanakiri-coffee-cambodias-other-highland-origin",
+    title: "Ratanakiri coffee origin",
+    description: "A second highland-region guide that broadens the country story beyond a single province.",
+  },
+  {
+    label: "Buying",
+    href: "/blog/best-cambodian-coffee-beans-robusta-quality-guide",
+    title: "Best Cambodian coffee to buy",
+    description: "Product-discovery guidance for first-time buyers without turning local café search into the same intent.",
+  },
+  {
+    label: "Buyer / Sourcing",
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    title: "Cambodian coffee buyer verification",
+    description: "Due diligence, traceability and supplier-evaluation context before commercial supply moves to Wholesale.",
+  },
+  {
+    label: "Quality",
+    href: "/fine-robusta-cambodia",
+    title: "Fine Robusta Cambodia",
+    description: "The technical quality pillar for Cambodia Fine Robusta, evidence, evaluation and specialist buyer context.",
+  },
+]
+
+const CAMBODIA_COFFEE_TOPIC_OWNER_LABELS: Record<string, string> = {
+  "mondulkiri-next-specialty-coffee-origin": "Mondulkiri origin",
+  "ratanakiri-coffee-cambodias-other-highland-origin": "Ratanakiri origin",
+  "best-cambodian-coffee-beans-robusta-quality-guide": "product buying",
+  "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability": "buyer verification",
 }
 
 // Keep legacy URLs live, but narrow their visible search target so broad intent
@@ -644,6 +690,8 @@ export default async function BlogPostPage({
   const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug)
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
   const robustaTopicOwnerLabel = ROBUSTA_TOPIC_OWNER_LABELS[post.slug]
+  const isCambodiaCoffeePillar = post.slug === CAMBODIA_COFFEE_PILLAR_SLUG
+  const cambodiaCoffeeTopicOwnerLabel = CAMBODIA_COFFEE_TOPIC_OWNER_LABELS[post.slug]
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -761,6 +809,50 @@ export default async function BlogPostPage({
             />
           ) : (
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
+          )}
+
+          {isCambodiaCoffeePillar && (
+            <section className="mx-auto max-w-[720px] mt-12 border-t border-stone-200 pt-10" aria-labelledby="cambodian-coffee-topic-cluster">
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.24em] text-stone-400">Cambodian Coffee knowledge map</p>
+              <h2 id="cambodian-coffee-topic-cluster" className="text-xl font-semibold tracking-tight text-stone-950">
+                Explore the five core Cambodian Coffee paths
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-stone-600">
+                Use this page for broad first-time Cambodian coffee discovery, then move into the specialist guide that matches the regional, buying, sourcing, or quality question.
+              </p>
+              <div className="mt-6 divide-y divide-stone-200 border-y border-stone-200">
+                {CAMBODIA_COFFEE_TOPIC_GUIDES.map((topic, index) => (
+                  <article key={topic.href} className="grid gap-3 py-5 sm:grid-cols-[42px_1fr_auto] sm:items-start sm:gap-5">
+                    <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">{topic.label}</p>
+                      <h3 className="mt-1 text-base font-semibold tracking-tight text-stone-950">{topic.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-stone-600">{topic.description}</p>
+                    </div>
+                    <Link href={topic.href} className="mt-1 inline-block whitespace-nowrap border-b border-stone-300 text-sm font-medium text-stone-950 hover:border-stone-950">
+                      Open guide →
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {cambodiaCoffeeTopicOwnerLabel && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-y border-stone-200 py-5">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Part of Cambodian Coffee</p>
+              <Link
+                href={CAMBODIA_COFFEE_PILLAR_HREF}
+                className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+              >
+                Return to the Cambodian Coffee guide →
+              </Link>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                This is the {cambodiaCoffeeTopicOwnerLabel} guide inside OCC’s Cambodian Coffee discovery cluster. Use the pillar for the broader country-level context before moving into specialist or commercial intent.
+              </p>
+            </aside>
           )}
 
           {/* Formal topic owners link upward to the Fine Robusta Cambodia pillar. */}
