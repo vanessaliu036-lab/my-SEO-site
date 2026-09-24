@@ -760,40 +760,6 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
       { href: "/solutions/wholesale", label: "Cambodian coffee wholesale" },
     ],
   },
-  "b2b-coffee-sourcing-in-cambodia-minimum-order-pricing-lead-times-explained": {
-    label: "Commercial terms",
-    title: "How buyers should verify MOQ, price, and lead time",
-    intro:
-      "MOQ, pricing, and lead time are not fixed Cambodia-wide benchmarks. They should be treated as transaction-specific commercial terms that depend on product type, lot size, processing status, packaging, destination, supplier role, and current availability.",
-    points: [
-      "Request a dated quote that identifies the exact product, lot or SKU, quantity, currency, unit, price basis, Incoterm where relevant, and offer-validity period.",
-      "Confirm whether MOQ applies per lot, roast profile, packaging format, SKU, or shipment; the operational minimum can differ from a simple kilogram threshold.",
-      "Separate production lead time from export preparation, freight, customs, and destination delivery so the buyer can identify where delay risk actually sits.",
-      "Do not treat example price ranges or lead times as a standing OCC offer; current supply must be confirmed against a real buyer request.",
-    ],
-    links: [
-      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Supplier evaluation guide" },
-      { href: "/solutions/wholesale", label: "Request current wholesale terms" },
-      { href: "/contact", label: "Discuss quantity and lead time" },
-    ],
-  },
-  "how-to-source-reliable-coffee-suppliers-2026-edition": {
-    label: "Supplier qualification",
-    title: "Reliability is demonstrated through the transaction, not the sales claim",
-    intro:
-      "A reliable coffee supplier is one that can connect product identity, representative samples, specifications, current availability, delivery responsibilities, and repeat-order performance. Certification or origin storytelling can support due diligence, but neither replaces transaction evidence.",
-    points: [
-      "Verify the legal seller and the roles of producer, processor, roaster, exporter, and logistics provider instead of assuming one company performs every step.",
-      "Tie every approved sample to the actual lot, specification, availability, and inspection plan.",
-      "Review response time, documentation quality, change communication, claims handling, and repeat delivery alongside cup quality.",
-      "Re-qualify material changes in harvest, process, lot, roast, packaging, or supplier role rather than assuming an earlier approval remains valid indefinitely.",
-    ],
-    links: [
-      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Cambodian supplier evaluation owner" },
-      { href: "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist", label: "Wholesale buyer checklist" },
-      { href: "/solutions/wholesale", label: "Wholesale & sourcing" },
-    ],
-  },
   "when-b2b-buyers-source-cambodia-coffee-navigating-cooperative-partnerships-in-2026": {
     label: "Transaction roles",
     title: "Map the commercial chain before approving a partnership",
