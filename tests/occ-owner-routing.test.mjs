@@ -302,3 +302,41 @@ test('five specialist owners link back to the Fine Robusta pillar', () => {
     assert.match(articlePage, new RegExp(slug.replaceAll('-', '\\-')))
   }
 })
+
+
+test('Cambodian Coffee discovery pillar exposes five specialist paths', () => {
+  assert.match(articlePage, /CAMBODIA_COFFEE_PILLAR_SLUG = "what-cambodian-coffee-should-you-try-first"/)
+  assert.match(articlePage, /Cambodian Coffee knowledge map/)
+  assert.match(articlePage, /Explore the five core Cambodian Coffee paths/)
+
+  const expected = [
+    '/blog/mondulkiri-next-specialty-coffee-origin',
+    '/blog/ratanakiri-coffee-cambodias-other-highland-origin',
+    '/blog/best-cambodian-coffee-beans-robusta-quality-guide',
+    '/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability',
+    '/fine-robusta-cambodia',
+  ]
+  for (const href of expected) {
+    assert.match(articlePage, new RegExp(href.replaceAll('/', '\\/').replaceAll('-', '\\-')))
+  }
+})
+
+test('Cambodian Coffee specialist guides route back to the discovery pillar', () => {
+  const owners = [
+    'mondulkiri-next-specialty-coffee-origin',
+    'ratanakiri-coffee-cambodias-other-highland-origin',
+    'best-cambodian-coffee-beans-robusta-quality-guide',
+    'evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability',
+  ]
+  assert.match(articlePage, /const CAMBODIA_COFFEE_TOPIC_OWNER_LABELS/)
+  assert.match(articlePage, /Part of Cambodian Coffee/)
+  assert.match(articlePage, /Return to the Cambodian Coffee guide/)
+  for (const slug of owners) {
+    assert.match(articlePage, new RegExp(slug.replaceAll('-', '\\-')))
+  }
+})
+
+test('Fine Robusta pillar no longer links to the retired Cambodian coffee 404 route', () => {
+  assert.doesNotMatch(fineRobustaPillar, /href="\/blog\/cambodia-coffee"/)
+  assert.match(fineRobustaPillar, /href="\/blog\/what-cambodian-coffee-should-you-try-first"/)
+})
