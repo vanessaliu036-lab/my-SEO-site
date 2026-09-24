@@ -20,7 +20,7 @@ const sendEvent = (eventName: string, params: Record<string, unknown>) => {
  * exactly once instead of relying on the initial gtag config page_view.
  *
  * Commercial events intentionally separate intent from outcome:
- * - wholesale_view/contact_view/contact_click = funnel intent
+ * - wholesale_view/roasting_view/partnership_view/contact_view/contact_click = funnel intent
  * - generate_lead = successful contact-form submission (emitted in ContactForm)
  * - occ_404 = exact broken path for technical cleanup
  * - whatsapp_click/email_click = ready for direct-contact CTAs when present
@@ -61,6 +61,14 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
 
       if (pathname === "/solutions/wholesale") {
         sendEvent("wholesale_view", commonParams)
+      }
+
+      if (pathname === "/solutions/roasting-program") {
+        sendEvent("roasting_view", commonParams)
+      }
+
+      if (pathname === "/partnerships") {
+        sendEvent("partnership_view", commonParams)
       }
 
       if (pathname === "/contact") {
