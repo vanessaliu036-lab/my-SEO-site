@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
 import { getAllPosts } from "@/lib/airtable"
-import { getBlogCategory, postMatchesBlogCategory } from "@/lib/blogCategories"
+import { blogCategories, getBlogCategory, postMatchesBlogCategory } from "@/lib/blogCategories"
 import { alternatesFromCanonical } from "@/lib/seo"
 import { siteName, siteUrl } from "@/lib/siteConfig"
 
@@ -103,6 +103,36 @@ export default async function BlogCategoryPage({
           </p>
         </div>
       </section>
+
+      <nav className="border-b border-occ-primary/16 bg-occ-background" aria-label="Journal categories">
+        <div className="mx-auto w-full max-w-[1360px] overflow-x-auto px-5 sm:px-8 lg:px-12">
+          <div className="flex min-w-max items-center gap-2 py-5 sm:flex-wrap sm:gap-2.5">
+            <Link
+              href="/blog"
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-occ-primary/18 px-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary/58 transition-colors hover:border-occ-primary hover:text-occ-primary"
+            >
+              All Journal
+            </Link>
+            {blogCategories.map((item) => {
+              const active = item.slug === category.slug
+              return (
+                <Link
+                  key={item.slug}
+                  href={`/blog/category/${item.slug}`}
+                  aria-current={active ? "page" : undefined}
+                  className={`inline-flex min-h-10 items-center justify-center rounded-full border px-4 text-[10px] font-semibold uppercase tracking-[0.16em] transition-colors ${
+                    active
+                      ? "border-occ-primary bg-occ-primary text-occ-background"
+                      : "border-occ-primary/18 text-occ-primary/58 hover:border-occ-primary hover:text-occ-primary"
+                  }`}
+                >
+                  {item.title}
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </nav>
 
       <section className="bg-occ-background text-occ-primary">
         <div className="mx-auto w-full max-w-[1360px] px-5 py-4 sm:px-8 lg:px-12">

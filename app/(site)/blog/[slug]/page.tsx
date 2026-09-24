@@ -14,6 +14,11 @@ const INTERNAL_LINKS: Record<string, string> = {
   "custom roasting": "/solutions/roasting-program",
   "roast profile": "/solutions/roasting-program",
   "roasting program": "/solutions/roasting-program",
+  "Cambodian Fine Robusta": "/fine-robusta-cambodia",
+  "Cambodia Fine Robusta": "/fine-robusta-cambodia",
+  "processing transparency": "/blog/fine-robusta-processing-transparency",
+  "Mondulkiri coffee": "/origins",
+  "supplier evaluation": "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
   "barista staffing": "/contact",
   "barista": "/contact",
 }
@@ -231,6 +236,11 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     anchor: "Fine Robusta vs Arabica buyer guide",
     lead: "For the broad buyer comparison, see the",
   },
+  "robusta-processing-methods-washed-natural-and-honey": {
+    href: "/blog/fine-robusta-processing-transparency",
+    anchor: "Fine Robusta processing transparency guide",
+    lead: "For the broader evidence and disclosure framework, see the",
+  },
 }
 
 function robustaAnchorForSlug(slug: string): string {
@@ -375,10 +385,18 @@ function renderList(lines: string[], ordered: boolean): string {
 
 function formatContent(raw: string, title: string, slug?: string): string {
   if (!raw) return ""
-  const lines = raw
+  const sourceLines = raw
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line && !/^```/.test(line) && !isPromptNote(line))
+
+  const repeatedTitleIndex = sourceLines.findIndex(
+    (line) => stripMarkdown(line).toLowerCase() === title.trim().toLowerCase()
+  )
+  const lines =
+    repeatedTitleIndex > 0 && repeatedTitleIndex <= 10
+      ? sourceLines.slice(repeatedTitleIndex + 1)
+      : sourceLines
 
   const html: string[] = []
 
@@ -391,6 +409,23 @@ function formatContent(raw: string, title: string, slug?: string): string {
     }
 
     if (/^\*\*Meta Description:\*\*/i.test(line) || /^Meta Description:/i.test(line)) {
+      continue
+    }
+
+    if (/^\\?_?Target keyword:/i.test(line)) {
+      continue
+    }
+
+    if (/^\*\*Quick Answer(?: \(AI Overview\))?\*\*$/i.test(line)) {
+      const next = lines[i + 1]
+      if (next && !/^#{1,6}\s+/.test(next) && !/^[-*]\s+/.test(next) && !/^\d+\.\s+/.test(next)) {
+        html.push(
+          `<aside class="article-key-answer"><span>Quick answer</span><p>${renderInlineMarkdown(next)}</p></aside>`,
+        )
+        i += 1
+      } else {
+        html.push(`<aside class="article-key-answer"><span>Quick answer</span></aside>`)
+      }
       continue
     }
 
@@ -493,6 +528,12 @@ function isLowSignalSeoText(text: string, title = ""): boolean {
   if (titleLower && lower === titleLower) return true
   if (value.length < 30) return true
   return false
+}
+
+function headerSummaryForPost(post: NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>): string {
+  const source = (post.summary || post.excerpt || "").replace(/\s+/g, " ").trim()
+  if (source.length <= 220) return source
+  return `${source.slice(0, 217).replace(/\s+\S*$/, "")}...`
 }
 
 function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>): string {
@@ -674,7 +715,7 @@ export default async function BlogPostPage({
 
             {(post.summary || post.excerpt) && (
               <p className="article-summary max-w-2xl font-sans text-[13px] sm:text-sm text-stone-600 leading-relaxed border-l border-stone-950 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
-                {post.summary || post.excerpt}
+                {headerSummaryForPost(post)}
               </p>
             )}
 
