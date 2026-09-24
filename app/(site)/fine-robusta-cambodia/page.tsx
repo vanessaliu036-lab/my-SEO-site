@@ -261,17 +261,45 @@ export default function FineRobustaCambodiaPage() {
               </div>
             </section>
 
-            <section className="mt-12 border-t border-stone-200 pt-10">
-              <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Exploring Cambodian Fine Robusta beyond the category</h2>
-              <div className="mt-5 space-y-5 text-[15px] leading-[1.8] text-stone-700 sm:text-base">
+            <section className="mt-12 border-t border-stone-200 pt-10" aria-labelledby="fine-robusta-commercial-paths">
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.24em] text-stone-400">From knowledge to commercial use</p>
+              <h2 id="fine-robusta-commercial-paths" className="text-2xl font-semibold tracking-tight text-stone-950">
+                Choose the OCC path that matches your buying intent
+              </h2>
+              <p className="mt-5 text-[15px] leading-[1.8] text-stone-700 sm:text-base">
+                This page is the primary Fine Robusta Cambodia reference. When the research stage is complete, move into the solution page that matches the commercial requirement rather than skipping directly from an informational article to a generic enquiry.
+              </p>
+
+              <div className="mt-7 grid gap-4 sm:grid-cols-2">
+                <article className="border border-stone-200 p-5">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">Ready-to-Sell</p>
+                  <h3 className="mt-3 text-lg font-semibold tracking-tight text-stone-950">Wholesale &amp; Sourcing</h3>
+                  <p className="mt-3 text-sm leading-7 text-stone-600">
+                    For cafés, hotels, retailers, roasters, distributors, and buyers who need OCC-developed coffee, Cambodia-origin supply, samples, formats, or commercial availability.
+                  </p>
+                  <Link href="/solutions/wholesale" className="mt-5 inline-block border-b border-stone-300 text-sm font-medium text-stone-950 hover:border-stone-950">
+                    Explore Wholesale &amp; Sourcing →
+                  </Link>
+                </article>
+
+                <article className="border border-stone-200 p-5">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">Made-for-You</p>
+                  <h3 className="mt-3 text-lg font-semibold tracking-tight text-stone-950">Custom Roasting Program</h3>
+                  <p className="mt-3 text-sm leading-7 text-stone-600">
+                    For coffee brands, cafés, hotels, and B2B partners that need a roast profile developed around their market, customer, brewing application, and product target.
+                  </p>
+                  <Link href="/solutions/roasting-program" className="mt-5 inline-block border-b border-stone-300 text-sm font-medium text-stone-950 hover:border-stone-950">
+                    Explore Custom Roasting →
+                  </Link>
+                </article>
+              </div>
+
+              <div className="mt-7 space-y-5 text-[15px] leading-[1.8] text-stone-700 sm:text-base">
                 <p>
-                  If you’re exploring Cambodian coffee beyond the category itself, OCC is developing a Cambodia-focused premium coffee brand built around origin, Fine Robusta, quality, and international market access.
+                  For a consumer or retail reader, continue to <Link href="/origins" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">explore Cambodia Origins</Link> or read the <Link href="/blog/cambodia-coffee" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Cambodian coffee overview</Link>.
                 </p>
                 <p>
-                  For a consumer or retail reader, the natural next step is to <Link href="/origins" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">explore the Mondulkiri Origins</Link> and compare how Cambodian Robusta is presented as a finished coffee product. For broader context, continue with the <Link href="/blog/cambodia-coffee" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Cambodian coffee overview</Link>.
-                </p>
-                <p>
-                  If your interest is professional rather than retail—distribution, wholesale supply, hospitality, or a longer-term coffee partnership—continue to <Link href="/solutions/wholesale" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Wholesale &amp; Sourcing</Link> or <Link href="/contact" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">contact OCC</Link>. Those commercial routes are separate from the evidence required to understand Fine Robusta itself.
+                  For professional buyers, the commercial path is now deliberate: <strong>Pillar → Solution → Contact</strong>. Wholesale and Custom Roasting each explain the offer, process, and fit before the final enquiry step.
                 </p>
               </div>
             </section>

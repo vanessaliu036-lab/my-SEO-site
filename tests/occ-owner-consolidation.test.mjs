@@ -11,6 +11,9 @@ const articlePage = read('app/(site)/blog/[slug]/page.tsx')
 const articleLayout = read('app/(site)/blog/[slug]/layout.tsx')
 const homeTemplate = read('components/templates/home-template.tsx')
 const wholesalePage = read('app/(site)/solutions/wholesale/page.tsx')
+const wholesaleLayout = read('app/(site)/solutions/wholesale/WholesaleApprovedLayout.tsx')
+const roastingPage = read('app/(site)/solutions/roasting-program/page.tsx')
+const fineRobustaPillar = read('app/(site)/fine-robusta-cambodia/page.tsx')
 
 test('known wrong-page families route broad intent to the Fine Robusta Cambodia owner', () => {
   const expectedSupportSlugs = [
@@ -44,4 +47,14 @@ test('homepage and wholesale page give the Cambodia Fine Robusta pillar an expli
   assert.match(homeTemplate, /Coffea canephora Cambodia/)
   assert.match(wholesalePage, /"Fine Robusta Cambodia": "\/fine-robusta-cambodia"/)
   assert.match(wholesalePage, /Fine Robusta Cambodia/)
+})
+
+
+test('Fine Robusta commercial intent follows Pillar to Solution to Conversion', () => {
+  assert.match(fineRobustaPillar, /href="\/solutions\/wholesale"/)
+  assert.match(fineRobustaPillar, /href="\/solutions\/roasting-program"/)
+  assert.match(fineRobustaPillar, /Pillar → Solution → Contact/)
+  assert.match(wholesaleLayout, /ctaHref="\/contact"/)
+  assert.match(roastingPage, /heroCtaHref="\/contact"/)
+  assert.match(roastingPage, /ctaHref="\/contact"/)
 })
