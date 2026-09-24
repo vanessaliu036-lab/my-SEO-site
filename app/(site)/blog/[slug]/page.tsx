@@ -237,7 +237,8 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
       { href: "/origins/farm-terroir", label: "Farm & terroir context" },
       { href: "/solutions/wholesale", label: "Wholesale sourcing" },
     ],
-  },  "what-is-fine-robusta-coffee-a-complete-beginners-guide": {
+  },
+  "what-is-fine-robusta-coffee-a-complete-beginners-guide": {
     label: "Definition",
     title: "Fine Robusta: the category, the evidence, and the limit of the claim",
     intro:
