@@ -13,6 +13,7 @@ const nextConfig = read('next.config.mjs')
 const proxySource = read('proxy.ts')
 const sitemap = read('app/sitemap.ts')
 const fineRobustaPillar = read('app/(site)/fine-robusta-cambodia/page.tsx')
+const cambodiaRegions = read('app/(site)/origins/cambodia-regions/page.tsx')
 
 test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owner', () => {
   assert.match(homeTemplate, /href="\/fine-robusta-cambodia"/)
@@ -365,4 +366,22 @@ test('Cambodian Coffee primary support does not also render the generic Fine Rob
     articlePage,
     /const showRobustaPillarLink = shouldLinkToRobustaPillar\(post\.slug\) && !isCambodiaCoffeeSupport/,
   )
+})
+
+
+test('Cambodia Regions pillar routes geography to Mondulkiri and Ratanakiri owners', () => {
+  assert.match(cambodiaRegions, /Regional Specialists/)
+  assert.match(cambodiaRegions, /Go From Country to Province/)
+  assert.match(cambodiaRegions, /"\/blog\/mondulkiri-next-specialty-coffee-origin"/)
+  assert.match(cambodiaRegions, /"\/blog\/ratanakiri-coffee-cambodias-other-highland-origin"/)
+  assert.match(cambodiaRegions, /<Link href=\{region\.href\}/)
+})
+
+test('regional specialist owners expose distinct Cambodia geography context', () => {
+  assert.match(articlePage, /const CAMBODIA_REGIONS_HREF = "\/origins\/cambodia-regions"/)
+  assert.match(articlePage, /const REGIONAL_SPECIALIST_LABELS/)
+  assert.match(articlePage, /Geography context/)
+  assert.match(articlePage, /Cambodia coffee regions guide →/)
+  assert.match(articlePage, /mondulkiri-next-specialty-coffee-origin/)
+  assert.match(articlePage, /ratanakiri-coffee-cambodias-other-highland-origin/)
 })

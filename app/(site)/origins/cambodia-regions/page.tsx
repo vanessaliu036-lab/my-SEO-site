@@ -63,6 +63,21 @@ const regionFacts = [
   "Region names require origin evidence",
 ]
 
+const regionalSpecialists = [
+  {
+    label: "Mondulkiri",
+    href: "/blog/mondulkiri-next-specialty-coffee-origin",
+    title: "Mondulkiri coffee origin",
+    text: "Use the Mondulkiri owner for the province-level origin story, evidence, and the strongest current regional reference in OCC’s Cambodia coffee architecture.",
+  },
+  {
+    label: "Ratanakiri",
+    href: "/blog/ratanakiri-coffee-cambodias-other-highland-origin",
+    title: "Ratanakiri coffee origin",
+    text: "Use the Ratanakiri owner for province-specific highland context without treating the wider northeast as one uniform terroir.",
+  },
+]
+
 const sections = [
   {
     label: "01 / Cambodia Coffee Origin",
@@ -273,6 +288,36 @@ export default function CambodiaRegionsPage() {
                       </div>
                       <h3 className="mt-12 font-[var(--font-display)] text-2xl font-normal leading-[1.05] tracking-[-0.025em]">{card.title}</h3>
                       <p className="mt-4 max-w-sm text-sm leading-7 text-black/64">{card.text}</p>
+                    </article>
+                  </MotionReveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-black/10 py-16 lg:py-20" aria-labelledby="regional-specialist-guides">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
+            <MotionReveal direction="left" className="md:col-span-3">
+              <p className={sectionLabelClass}>Regional Specialists</p>
+              <span className="mt-3 block h-px w-10 bg-occ-secondary" aria-hidden="true" />
+              <h2 id="regional-specialist-guides" className={sectionTitleClass}>Go From Country to Province</h2>
+              <p className="mt-6 max-w-xs text-sm leading-7 text-black/62">
+                Cambodia & Regions owns the country-level geography. Province-level questions move to the dedicated Mondulkiri and Ratanakiri owner guides.
+              </p>
+            </MotionReveal>
+
+            <div className="md:col-span-9 md:col-start-4">
+              <div className="grid grid-cols-1 border-l border-t border-black/10 md:grid-cols-2">
+                {regionalSpecialists.map((region, index) => (
+                  <MotionReveal key={region.href} direction={index === 0 ? "left" : "right"}>
+                    <article className="border-b border-r border-black/10 p-6 lg:p-8">
+                      <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-occ-secondary">{region.label}</p>
+                      <h3 className="mt-4 font-[var(--font-display)] text-2xl leading-[1.05] tracking-[-0.025em] text-occ-primary">{region.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-black/64">{region.text}</p>
+                      <Link href={region.href} className="mt-6 inline-flex items-center gap-2 border-b border-occ-primary/35 pb-1 text-xs font-medium uppercase tracking-[0.14em] text-occ-primary transition-colors hover:border-occ-secondary">
+                        Open regional guide <ArrowUpRight className="size-3" />
+                      </Link>
                     </article>
                   </MotionReveal>
                 ))}
