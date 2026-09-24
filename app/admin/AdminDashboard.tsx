@@ -11,7 +11,6 @@ type OrderInboxItem = {
   customer: string
   company: string
   email: string
-  phone: string
   country: string
   type: string
   items: string
@@ -33,6 +32,7 @@ type ContactLead = {
   name: string
   company: string
   email: string
+  phone: string
   country: string
   interest: string
   message: string
