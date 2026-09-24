@@ -61,11 +61,11 @@ export default function ContactForm() {
     <div className="occ-contact-page">
       <section className="occ-contact-hero">
         <div className="occ-contact-hero-inner">
-          <div className="occ-contact-eyebrow">Contact · Origin Coffee Cambodia</div>
-          <h1>LET&apos;S TALK.</h1>
+          <div className="occ-contact-eyebrow">CONTACT</div>
+          <h1>Start a conversation with OCC.</h1>
           <p className="occ-contact-intro">
-            Tell us what you need. OCC will route wholesale, sourcing, roasting,
-            partnership and media enquiries to the right conversation.
+            Wholesale, custom roasting, hotel partnerships and Cambodian coffee sourcing —
+            tell us what you&apos;re working on.
           </p>
         </div>
       </section>
