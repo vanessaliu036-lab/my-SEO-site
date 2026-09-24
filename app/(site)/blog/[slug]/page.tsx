@@ -86,6 +86,17 @@ const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set([
   "fine-robusta-consistency-vs-extra-cup-point",
   "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
   "mondulkiri-next-specialty-coffee-origin",
+  // Broad Cambodia consumer/market intent belongs to Cambodia-origin or industry owners,
+  // not to the Fine Robusta pillar.
+  "cambodia-coffee-production-vs-consumption",
+  "why-cambodia-imports-coffee",
+  "could-cambodia-replace-10-percent-coffee-imports",
+  "cambodia-coffee-industry-2030-fine-robusta-scenario",
+  "cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
+  "best-cambodian-coffee-to-buy-2026",
+  "what-cambodian-coffee-should-you-try-first",
+  "cambodia-barista-training-infrastructure-certification",
+  "when-ratanakiri-farmers-transform-cambodia-coffee-production-through-2027-sustainability-protocols",
 ])
 
 const ROBUSTA_SUPPORT_SLUG_PATTERN =
@@ -411,6 +422,46 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  "cambodia-coffee-production-vs-consumption": {
+    href: "/blog/cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
+    anchor: "Cambodia coffee industry guide",
+    lead: "For the broader industry structure and origin context, see the",
+  },
+  "why-cambodia-imports-coffee": {
+    href: "/blog/cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
+    anchor: "Cambodia coffee industry guide",
+    lead: "For the broader Cambodia market and industry context, see the",
+  },
+  "could-cambodia-replace-10-percent-coffee-imports": {
+    href: "/blog/cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
+    anchor: "Cambodia coffee industry guide",
+    lead: "For the broader industry baseline behind this scenario, see the",
+  },
+  "cambodia-coffee-industry-2030-fine-robusta-scenario": {
+    href: "/blog/cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
+    anchor: "Cambodia coffee industry guide",
+    lead: "For the current industry baseline before considering a 2030 scenario, see the",
+  },
+  "best-cambodian-coffee-to-buy-2026": {
+    href: "/origins",
+    anchor: "Cambodia coffee origins guide",
+    lead: "For the broad Cambodia-origin framework before choosing a coffee, see the",
+  },
+  "what-cambodian-coffee-should-you-try-first": {
+    href: "/origins",
+    anchor: "Cambodia coffee origins guide",
+    lead: "For the broad origin context behind a first-cup choice, see the",
+  },
+  "cambodia-barista-training-infrastructure-certification": {
+    href: "/blog/cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
+    anchor: "Cambodia coffee industry guide",
+    lead: "For the wider industry context around training infrastructure, see the",
+  },
+  "when-ratanakiri-farmers-transform-cambodia-coffee-production-through-2027-sustainability-protocols": {
+    href: "/origins/cambodia-regions",
+    anchor: "Cambodia coffee regions guide",
+    lead: "For the broader regional origin context, see the",
+  },
   "what-is-fine-robusta-coffee-a-complete-beginners-guide": {
     href: ROBUSTA_PILLAR_HREF,
     anchor: "Fine Robusta Cambodia guide",
