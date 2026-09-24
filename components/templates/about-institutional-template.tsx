@@ -4,22 +4,9 @@ import Link from "next/link"
 import { ArrowLeft, ArrowUpRight } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
 
-type InstitutionalSection = {
-  title: string
-  paragraphs: string[]
-}
-
-type FaqItem = {
-  q: string
-  a: string
-}
-
-type FeatureItem = {
-  label: string
-  title: string
-  body: string
-}
-
+type InstitutionalSection = { title: string; paragraphs: string[] }
+type FaqItem = { q: string; a: string }
+type FeatureItem = { label: string; title: string; body: string }
 type AboutInstitutionalTemplateProps = {
   index: string
   title: string
@@ -31,183 +18,94 @@ type AboutInstitutionalTemplateProps = {
   featureGrid?: FeatureItem[]
   practiceLabel?: string
   practiceTitle?: string
-  next?: {
-    href: string
-    label: string
-    description: string
-    note?: string
-  }
+  next?: { href: string; label: string; description: string; note?: string }
 }
 
+const chapterImages = [
+  "/occ-pages/assets/occ-origin-mondulkiri-farm.webp",
+  "/occ-pages/assets/occ-sensory-cupping.webp",
+  "/occ-pages/assets/occ-roasting-sample-evaluation.webp",
+  "/occ-pages/assets/occ-roasting-espresso.webp",
+]
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
+const anchor = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
 
 export function AboutInstitutionalTemplate({
-  index,
-  title,
-  subtitle,
-  lead,
-  sections,
-  closing = [],
-  faqs = [],
-  featureGrid = [],
-  practiceLabel = "In practice",
-  practiceTitle = "How the work moves.",
-  next,
+  index, title, subtitle, lead, sections, closing = [], faqs = [], featureGrid = [],
+  practiceLabel = "Our approach", practiceTitle = "The work, put into practice.", next,
 }: AboutInstitutionalTemplateProps) {
   const reducedMotion = useReducedMotion()
-  const titleScale = title.length > 11 ? "text-[clamp(2rem,3.4vw,3.2rem)]" : "text-[clamp(2.2rem,3.8vw,3.6rem)]"
-  const reveal = (x = 0, y = 34) => ({
-    initial: reducedMotion ? { opacity: 1 } : { opacity: 0, x, y },
-    whileInView: { opacity: 1, x: 0, y: 0 },
-    viewport: { once: true, amount: 0.22 },
-    transition: { duration: reducedMotion ? 0.01 : 0.64, ease },
+  const reveal = (y = 22) => ({
+    initial: reducedMotion ? { opacity: 1 } : { opacity: 0, y },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.18 },
+    transition: { duration: reducedMotion ? 0.01 : 0.58, ease },
   })
 
   return (
-    <div className="bg-occ-background text-occ-primary">
-      <section className="relative overflow-hidden border-b border-black/10">
-        <div className="pointer-events-none absolute inset-0 hidden grid-cols-12 divide-x divide-black/[0.055] md:grid" aria-hidden="true">
-          {Array.from({ length: 12 }).map((_, item) => <div key={item} />)}
-        </div>
-        <div className="relative mx-auto grid min-h-[min(590px,calc(100dvh-80px))] w-full max-w-[1360px] grid-cols-1 items-center gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:gap-8 md:px-12 md:py-20 lg:px-16">
-          <motion.div {...reveal(-24, 0)} className="md:col-span-2">
-            <Link href="/about" className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black/48 transition-colors hover:text-black">
-              <ArrowLeft className="size-3" /> About
-            </Link>
-            <p className="mt-8 text-[10px] font-medium uppercase tracking-[0.24em] text-black/35">About / {index}</p>
+    <main className="bg-[#f2ede6] text-[#292424]">
+      <section className="border-b border-[#d9d0c7]">
+        <div className="mx-auto grid w-full max-w-[1160px] grid-cols-1 items-center gap-8 px-5 py-9 sm:px-8 md:grid-cols-2 md:gap-12 md:py-14 lg:px-0">
+          <motion.div {...reveal()}>
+            <Link href="/about" className="inline-flex items-center gap-2 text-xs font-semibold text-[#6a6663] hover:text-[#91434d]"><ArrowLeft className="size-3" /> About OCC</Link>
+            <p className="mb-4 mt-8 text-[11px] font-bold uppercase tracking-[.12em] text-[#6a6663]">About / {index} · Origin Coffee Cambodia</p>
+            <h1 className="font-[var(--font-display)] text-[clamp(3.6rem,8vw,6.5rem)] font-normal leading-[.96] tracking-[-.07em]">{title}</h1>
+            <p className="mt-5 max-w-[430px] text-sm font-bold uppercase leading-6 tracking-[.07em] text-[#91434d]">{subtitle}</p>
+            <p className="mt-7 max-w-[535px] font-[var(--font-display)] text-[clamp(1.75rem,3.2vw,2.45rem)] leading-[1.2] tracking-[-.03em]">{lead[0]}</p>
+            {lead[1] ? <p className="mt-4 max-w-[520px] text-base leading-7 text-[#6a6663]">{lead[1]}</p> : null}
+            <a href="#chapters" className="mt-6 inline-flex items-center gap-3 border-b border-[#91434d] pb-2 text-sm font-bold hover:text-[#91434d]">Explore the story <span aria-hidden="true">↓</span></a>
           </motion.div>
-          <motion.div {...reveal(0, 22)} className="min-w-0 md:col-span-6 md:col-start-3">
-            <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.24em] text-black/42">Origin Coffee Cambodia</p>
-            <h1 id={`${title.toLowerCase()}-title`} className={`max-w-[11ch] break-words font-[var(--font-display)] ${titleScale} font-normal leading-[0.94] tracking-[-0.02em]`}>{title}</h1>
-            <p className="mt-7 max-w-xl text-[10px] font-medium uppercase leading-6 tracking-[0.18em] text-black/48">{subtitle}</p>
-          </motion.div>
-          <motion.div {...reveal(26, 0)} className="min-w-0 md:col-span-4 md:col-start-9">
-            <p className="border-t border-black/15 pt-5 text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">The point of view</p>
-            <div className="mt-7 max-w-md">
-              {lead.map((paragraph, leadIndex) => (
-                <p key={paragraph} className={leadIndex === 0 ? "text-[clamp(1.15rem,1.6vw,1.55rem)] leading-7 text-black/86" : "mt-6 border-l border-black/25 pl-5 text-sm italic leading-6 text-black/78"}>
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-        <div className="relative mx-auto flex w-full max-w-[1360px] items-center justify-between border-t border-black/10 px-6 py-5 text-[9px] uppercase tracking-[0.2em] text-black/34 sm:px-8 md:px-12 lg:px-16">
-          <span>Origin Coffee Cambodia</span>
-          <span className="hidden sm:block">Institutional / About</span>
-          <span>{index} / 04</span>
+          <motion.figure {...reveal(32)} className="relative m-0 min-h-[340px] overflow-hidden bg-[#e9e1d8] md:min-h-[490px]">
+            <img src="/occ-pages/assets/occ-roasting-hero.webp" alt="Coffee being prepared and evaluated by Origin Coffee Cambodia" className="absolute inset-0 size-full object-cover" />
+            <figcaption className="absolute bottom-0 left-0 bg-[#f2ede6] px-5 py-3 text-xs font-bold tracking-[.08em]">Origin Coffee Cambodia · {index} / 04</figcaption>
+          </motion.figure>
         </div>
       </section>
 
-      {featureGrid.length > 0 ? (
-        <section className="border-b border-black/10 bg-occ-surface" aria-labelledby={`${title.toLowerCase()}-practice-title`}>
-          <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 px-6 py-14 sm:px-8 md:grid-cols-12 md:gap-10 md:px-12 md:py-16 lg:px-16 lg:py-20">
-            <div className="md:col-span-3">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">{practiceLabel}</p>
-              <h2 id={`${title.toLowerCase()}-practice-title`} className="mt-5 max-w-[13rem] font-[var(--font-display)] text-2xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-3xl">{practiceTitle}</h2>
-            </div>
-            <div className="mt-10 grid grid-cols-1 gap-px border border-black/10 bg-black/10 md:col-span-9 md:mt-0 md:grid-cols-3">
-              {featureGrid.map((item) => (
-                <article key={item.title} className="bg-occ-background p-6 sm:p-7 lg:p-8">
-                  <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-black/38">{item.label}</p>
-                  <h3 className="mt-10 font-[var(--font-display)] text-xl font-normal leading-none tracking-[-0.02em] sm:text-2xl">{item.title}</h3>
-                  <p className="mt-6 text-[15px] leading-7 text-black/82">{item.body}</p>
-                </article>
-              ))}
-            </div>
+      {featureGrid.length ? <section id="approach" className="scroll-mt-16 border-b border-[#d9d0c7] bg-[#faf7f2] py-12 md:py-16">
+        <div className="mx-auto w-full max-w-[1160px] px-5 sm:px-8 lg:px-0">
+          <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div><p className="text-xs font-bold uppercase tracking-[.12em] text-[#91434d]">{practiceLabel}</p><h2 className="mt-2 max-w-[600px] font-[var(--font-display)] text-3xl leading-tight tracking-[-.04em] md:text-[2.8rem]">{practiceTitle}</h2></div>
+            <p className="max-w-[250px] text-sm leading-6 text-[#6a6663]">Origin knowledge made useful for the coffee business.</p>
           </div>
-        </section>
-      ) : null}
-
-      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-8 md:px-12 lg:px-16">
-        <section className="border-b border-black/10 py-16 lg:py-20" aria-labelledby={`${title.toLowerCase()}-chapters-title`}>
-          <div className="mb-8 flex items-end justify-between gap-6 border-b border-black/10 pb-5">
-            <h2 id={`${title.toLowerCase()}-chapters-title`} className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">A closer look at the work</h2>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-black/32">{sections.length} chapters</span>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            {featureGrid.map((item) => <article key={item.title} className="border-t-2 border-[#91434d] bg-[#f2ede6] p-6 md:p-7"><p className="text-[11px] font-bold uppercase tracking-[.1em] text-[#91434d]">{item.label}</p><h3 className="mt-5 font-[var(--font-display)] text-2xl leading-tight tracking-[-.03em]">{item.title}</h3><p className="mt-4 text-[15px] leading-7 text-[#6a6663]">{item.body}</p></article>)}
           </div>
-          {sections.map((section, sectionIndex) => {
-            const fromLeft = sectionIndex % 2 === 0
-            return (
-              <motion.article
-                key={section.title}
-                {...reveal(fromLeft ? -56 : 56, 0)}
-                className="grid grid-cols-1 border-t border-black/10 py-10 md:grid-cols-12 md:gap-10 lg:py-14"
-              >
-                <div className="md:col-span-4">
-                  <div className="flex items-center gap-4">
-                    <span className="flex size-8 items-center justify-center rounded-full border border-black/20 text-[9px] font-medium tracking-[0.1em]">{String(sectionIndex + 1).padStart(2, "0")}</span>
-                    <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-black/38">Chapter</span>
-                  </div>
-                  <h2 className="mt-6 max-w-sm font-[var(--font-display)] text-2xl font-normal leading-[1.02] tracking-[-0.02em] sm:text-3xl">{section.title}</h2>
-                </div>
-                <div className="mt-8 md:col-span-7 md:col-start-6 md:mt-0">
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph} className="mb-5 max-w-3xl text-base leading-8 text-black/82 last:mb-0">{paragraph}</p>
-                  ))}
-                </div>
-              </motion.article>
-            )
-          })}
-        </section>
+        </div>
+      </section> : null}
 
-        {closing.length > 0 ? (
-          <motion.section {...reveal()} className="grid grid-cols-1 border-b border-black/10 py-16 md:grid-cols-12 lg:py-20">
-            <div className="md:col-span-3">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">The takeaway</p>
-            </div>
-            <div className="mt-7 md:col-span-9 md:col-start-4 md:mt-0">
-              {closing.map((paragraph, index) => (
-                <p key={paragraph} className={index === 0 ? "max-w-4xl font-[var(--font-display)] text-[clamp(1.5rem,2.4vw,2.4rem)] leading-[1.15] tracking-[-0.02em]" : "mt-8 max-w-3xl text-base leading-8 text-black/82"}>
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </motion.section>
-        ) : null}
+      <nav aria-label={`${title} chapters`} className="sticky top-0 z-20 border-y border-[#d9d0c7] bg-[#f7f4ed]/95 backdrop-blur-md">
+        <div className="mx-auto flex min-h-14 max-w-[1160px] items-center gap-6 overflow-x-auto px-5 sm:px-8 lg:px-0">
+          <span className="shrink-0 text-[10px] font-bold uppercase tracking-[.1em] text-[#91434d]">{title}</span>
+          <div className="flex min-w-max items-center gap-5 md:gap-8">{sections.map((section, i) => <a key={section.title} href={`#${anchor(section.title)}`} className="border-b-2 border-transparent py-4 text-xs font-semibold text-[#6a6663] hover:border-[#91434d] hover:text-[#91434d]">{String(i + 1).padStart(2, "0")} {section.title}</a>)}</div>
+        </div>
+      </nav>
 
-        {faqs.length > 0 ? (
-          <section className="border-b border-black/10 py-16 lg:py-20" aria-labelledby={`${title.toLowerCase()}-faq-title`}>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-              <div className="md:col-span-3">
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">Good to know</p>
-                <h2 id={`${title.toLowerCase()}-faq-title`} className="mt-5 font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Questions,<br />answered.</h2>
-              </div>
-              <div className="md:col-span-9 md:col-start-4">
-                {faqs.map(({ q, a }, faqIndex) => (
-                  <motion.div key={q} {...reveal(0, 24)} className="grid grid-cols-[38px_1fr] gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr]">
-                    <span className="pt-1 text-[9px] tracking-[0.2em] text-black/32">{String(faqIndex + 1).padStart(2, "0")}</span>
-                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-10">
-                      <h3 className="font-[var(--font-sans)] text-base font-semibold leading-7 tracking-[-0.01em]">{q}</h3>
-                      <p className="text-base leading-7 text-black/82">{a}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+      <section id="chapters" className="mx-auto w-full max-w-[1160px] px-5 pb-8 pt-12 sm:px-8 md:pt-16 lg:px-0">
+        <div className="mb-2 flex items-end justify-between gap-4 border-b border-[#d9d0c7] pb-5">
+          <div><p className="text-xs font-bold uppercase tracking-[.12em] text-[#91434d]">Origin Coffee Cambodia · About</p><h2 className="mt-2 font-[var(--font-display)] text-3xl tracking-[-.04em] md:text-4xl">{practiceTitle}</h2></div>
+          <span className="shrink-0 text-[11px] font-bold uppercase tracking-[.1em] text-[#6a6663]">{sections.length} chapters</span>
+        </div>
+        {sections.map((section, i) => (
+          <motion.article id={anchor(section.title)} key={section.title} {...reveal()} className="grid scroll-mt-24 grid-cols-1 items-center gap-6 border-b border-[#d9d0c7] py-10 md:grid-cols-2 md:gap-12 md:py-14">
+            <figure className={`m-0 min-w-0 bg-[#e9e1d8] ${i % 2 ? "md:order-2" : ""}`}><img src={chapterImages[i % chapterImages.length]} alt="" loading="lazy" className="aspect-[1.3] w-full object-cover"/><figcaption className="bg-[#f2ede6] pt-3 text-xs font-semibold text-[#6a6663]">Origin · Quality · Professional coffee</figcaption></figure>
+            <div className={i % 2 ? "md:order-1" : ""}>
+              <div className="mb-4 flex items-center gap-3"><span className="border-b border-[#91434d] pb-1 text-[13px] font-extrabold text-[#91434d]">{String(i + 1).padStart(2, "0")}</span><span className="text-[11px] font-bold uppercase tracking-[.1em] text-[#6a6663]">Chapter · OCC</span></div>
+              <h3 className="mb-5 font-[var(--font-display)] text-[clamp(2.2rem,4vw,3.25rem)] leading-[1.08] tracking-[-.045em]">{section.title}</h3>
+              <div className="space-y-4 text-base leading-7 text-[#6a6663] md:text-[17px] md:leading-[1.72]">{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
             </div>
-          </section>
-        ) : null}
+          </motion.article>
+        ))}
+      </section>
 
-        {next ? (
-          <section className="my-10 grid grid-cols-1 border-y border-black/10 py-12 md:grid-cols-12 md:items-end lg:my-16 lg:py-14">
-            <div className="md:col-span-3">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/42">Continue the story</p>
-            </div>
-            <div className="mt-6 md:col-span-6 md:col-start-5 md:mt-0">
-              <Link href={next.href} className="group inline-flex items-end gap-4">
-                <span className="font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.04em] transition-transform duration-300 group-hover:translate-x-2 sm:text-5xl">{next.label}</span>
-                <ArrowUpRight className="mb-1 size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-              <p className="mt-4 text-[11px] uppercase leading-6 tracking-[0.14em] text-black/42">{next.description}</p>
-            </div>
-            {next.note ? <p className="mt-6 text-sm italic leading-7 text-black/46 md:col-span-3 md:mt-0">{next.note}</p> : null}
-          </section>
-        ) : null}
+      {closing.length ? <section className="border-y border-[#d9d0c7] bg-[#faf7f2] py-12 md:py-16"><div className="mx-auto grid max-w-[1160px] grid-cols-1 gap-5 px-5 sm:px-8 md:grid-cols-[220px_1fr] md:gap-12 lg:px-0"><p className="text-xs font-bold uppercase tracking-[.12em] text-[#91434d]">The takeaway</p><div>{closing.map((paragraph, i) => <p key={paragraph} className={i === 0 ? "max-w-[815px] font-[var(--font-display)] text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.14] tracking-[-.04em]" : "mt-5 max-w-[800px] text-base leading-7 text-[#6a6663]"}>{paragraph}</p>)}</div></div></section> : null}
 
-        <footer className="flex flex-col gap-4 py-9 text-[9px] uppercase tracking-[0.19em] text-black/34 sm:flex-row sm:justify-between">
-          <span>Origin Coffee Cambodia · OCC</span>
-          <span>About / {index}</span>
-        </footer>
-      </div>
-    </div>
+      {faqs.length ? <section className="mx-auto grid max-w-[1160px] grid-cols-1 gap-7 px-5 py-12 sm:px-8 md:grid-cols-[270px_1fr] md:gap-12 md:py-16 lg:px-0"><div><p className="text-xs font-bold uppercase tracking-[.12em] text-[#91434d]">Good to know</p><h2 className="mt-3 font-[var(--font-display)] text-4xl leading-tight tracking-[-.04em]">Questions,<br/>answered.</h2></div><div>{faqs.map(({ q, a }, i) => <details key={q} className="group border-t border-[#d9d0c7] py-4 last:border-b"><summary className="grid cursor-pointer list-none grid-cols-[32px_1fr_20px] items-center gap-3 py-2 text-base font-semibold"><span className="text-xs text-[#91434d]">{String(i + 1).padStart(2, "0")}</span>{q}<span className="text-xl font-normal text-[#91434d] group-open:rotate-45">＋</span></summary><p className="pb-3 pl-11 text-[15px] leading-7 text-[#6a6663]">{a}</p></details>)}</div></section> : null}
+
+      {next ? <section className="mx-auto grid max-w-[1160px] grid-cols-1 items-end gap-5 border-y border-[#d9d0c7] px-5 py-8 sm:px-8 md:grid-cols-[1fr_auto] lg:px-0"><div><p className="text-xs font-bold uppercase tracking-[.12em] text-[#91434d]">Continue the story</p><h2 className="mt-2 font-[var(--font-display)] text-3xl tracking-[-.04em]">{next.note || next.description}</h2><p className="mt-2 max-w-xl text-sm leading-6 text-[#6a6663]">Explore the next part of OCC's work.</p></div><Link href={next.href} className="inline-flex items-center gap-2 border-b border-[#91434d] pb-2 text-sm font-bold">{next.label}<ArrowUpRight className="size-4"/></Link></section> : null}
+
+      <section className="mt-10 bg-[#faf7f2] py-12 md:py-16"><div className="mx-auto grid max-w-[1160px] grid-cols-1 items-end gap-6 px-5 sm:px-8 md:grid-cols-[1fr_auto] lg:px-0"><div><p className="text-xs font-bold uppercase tracking-[.12em] text-[#91434d]">For professional buyers</p><h2 className="mt-3 max-w-3xl font-[var(--font-display)] text-[clamp(2.2rem,4vw,3.4rem)] leading-tight tracking-[-.04em]">Start with Cambodian coffee. Build a program around it.</h2><p className="mt-4 max-w-2xl text-base leading-7 text-[#6a6663]">Talk with OCC about Cambodian coffee, Fine Robusta, sourcing, supply, and roasting options for your business.</p></div><Link href="/contact" className="inline-flex w-fit items-center gap-2 border-b border-[#91434d] pb-2 text-sm font-bold">Discuss your coffee needs <ArrowUpRight className="size-4"/></Link></div></section>
+      <footer className="mx-auto flex max-w-[1160px] flex-wrap justify-between gap-3 px-5 py-6 text-[10px] font-semibold uppercase tracking-[.12em] text-[#6a6663] sm:px-8 lg:px-0"><span>Origin Coffee Cambodia · OCC</span><span>About / {index} · Cambodia · Fine Robusta · B2B Coffee</span></footer>
+    </main>
   )
 }
