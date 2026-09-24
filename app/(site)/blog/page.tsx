@@ -1,76 +1,40 @@
-import Link from "next/link"
 import type { Metadata } from "next"
-import { redirect } from "next/navigation"
-import { siteUrl, siteName, ogImage } from "@/lib/siteConfig"
+import Link from "next/link"
+import { blogCategories, type BlogCategorySlug } from "@/lib/blogCategories"
 import { alternatesFromCanonical } from "@/lib/seo"
-import { getAllPosts, getRecentPosts } from "@/lib/airtable"
-
-const POSTS_PER_PAGE = 5
-
-const CORE_FINE_ROBUSTA_OWNERS = [
-  {
-    href: "/fine-robusta-cambodia",
-    label: "Fine Robusta Cambodia",
-    note: "Origin, quality, sourcing and Cambodia-specific context.",
-  },
-  {
-    href: "/blog/fine-robusta-grading-verify-before-cupping",
-    label: "Fine Robusta Grading",
-    note: "Buyer verification, grading and pre-cupping evidence.",
-  },
-  {
-    href: "/blog/fine-robusta-fermentation",
-    label: "Fine Robusta Fermentation",
-    note: "Process control, sensory risk and fermentation decisions.",
-  },
-  {
-    href: "/blog/how-to-brew-cambodian-fine-robusta",
-    label: "How to Brew Fine Robusta",
-    note: "Brewing methods, extraction and evaluation.",
-  },
-  {
-    href: "/blog/fine-robusta-vs-arabica-buyer-guide",
-    label: "Fine Robusta vs Arabica",
-    note: "Buyer-focused species comparison and use cases.",
-  },
-] as const
-
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>
-}): Promise<Metadata> {
-  const { page: pageStr } = await searchParams
-  const page = Math.max(1, parseInt(pageStr || "1", 10) || 1)
-  const titleBase = "Blog | Origin Coffee Cambodia"
-  const canonical =
-    page <= 1 ? `${siteUrl}/blog` : `${siteUrl}/blog?page=${page}`
-  return {
-    title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
-    description:
-      "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
-    alternates: alternatesFromCanonical(canonical),
-    openGraph: {
-      title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
-      description:
-        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
-      url: canonical,
-      siteName,
-      locale: "en_US",
-      type: "website",
-      images: [{ url: ogImage, width: 1672, height: 941, alt: siteName }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page <= 1 ? titleBase : `${titleBase} — Page ${page}`,
-      description:
-        "Insights on specialty coffee sourcing, Cambodia origins, and precision roasting from Origin Coffee Cambodia.",
-      images: [ogImage],
-    },
-  }
-}
+import { ogImage, siteName, siteUrl } from "@/lib/siteConfig"
 
 export const revalidate = 300
+
+const categoryVisuals: Record<BlogCategorySlug, { image: string; alt: string }> = {
+  "fine-robusta": { image: "/blog-media/fine-robusta.webp", alt: "Fine Robusta coffee cherries and origin research" },
+  processing: { image: "/blog-media/processing.webp", alt: "Commercial coffee roasting and processing equipment" },
+  "brewing-roasting": { image: "/blog-media/brewing.webp", alt: "Professional coffee brewing and roast evaluation" },
+  "origin-producers": { image: "/blog-media/origin-producers.webp", alt: "Coffee origin and producer collaboration" },
+  "quality-grading": { image: "/blog-media/quality-grading.webp", alt: "Coffee bean quality evaluation and grading" },
+  "buyer-market": { image: "/blog-media/buyer-market.webp", alt: "Commercial coffee sourcing and buyer market activity" },
+}
+
+export const metadata: Metadata = {
+  title: "Cambodia Coffee Journal | Fine Robusta Research & Market Insights | OCC",
+  description: "Explore OCC's journal on Cambodian coffee, Fine Robusta, processing, roasting, quality, origins, producers and buyer intelligence.",
+  alternates: alternatesFromCanonical(`${siteUrl}/blog`),
+  openGraph: {
+    title: "Cambodia Coffee Journal | Origin Coffee Cambodia",
+    description: "Research, origin and commercial coffee intelligence from Origin Coffee Cambodia.",
+    url: `${siteUrl}/blog`,
+    siteName,
+    locale: "en_US",
+    type: "website",
+    images: [{ url: ogImage, width: 1672, height: 941, alt: siteName }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cambodia Coffee Journal | Origin Coffee Cambodia",
+    description: "Research, origin and commercial coffee intelligence from Origin Coffee Cambodia.",
+    images: [ogImage],
+  },
+}
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -81,207 +45,75 @@ const breadcrumbSchema = {
   ],
 }
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>
-}) {
-  const { page: pageStr } = await searchParams
-  const pageRaw = parseInt(pageStr || "1", 10)
-  const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1
-  const isLandingPage = page === 1
-
-  // Emergency performance guard: the landing page only needs the newest cards.
-  // Do not read the full 1,800+ record corpus just to render five articles.
-  const posts = isLandingPage ? await getRecentPosts() : await getAllPosts()
-  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE))
-  const hasMorePosts = isLandingPage ? posts.length > POSTS_PER_PAGE : page < totalPages
-
-  if (!isLandingPage && posts.length > 0 && page > totalPages) {
-    redirect(`/blog?page=${totalPages}`)
-  }
-
-  const start = isLandingPage ? 0 : (page - 1) * POSTS_PER_PAGE
-  const pagePosts = posts.slice(start, start + POSTS_PER_PAGE)
-
+export default function BlogPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      {/* Keep the Blog surface aligned with the global OCC warm-ivory shell. */}
-      <main className="min-h-screen overflow-x-clip bg-occ-background font-sans">
-        <div className="mx-auto max-w-[1180px] px-5 py-14 sm:px-8 md:py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-          <header className="mb-10 border-b border-stone-200 pb-10 md:mb-14 md:pb-14">
-            <span className="text-[10px] tracking-[0.26em] text-stone-400 uppercase mb-4 block">
-              Field Notes &amp; Craft
-            </span>
-            <h1 className="mb-5 max-w-3xl font-[var(--font-display)] text-[clamp(3.4rem,7vw,5.5rem)] font-normal leading-[0.96] tracking-[-0.04em] text-stone-950">
-              The Signal.
+      <section className="overflow-hidden bg-occ-background text-occ-primary">
+        <div className="mx-auto grid min-h-[620px] w-full max-w-[1360px] lg:grid-cols-[44%_56%]">
+          <div className="relative min-h-[430px] overflow-hidden sm:min-h-[520px] lg:min-h-[620px]">
+            <img
+              src="/blog-media/hero.webp"
+              alt="Cambodian coffee origin"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+          </div>
+
+          <div className="relative flex min-h-[480px] flex-col justify-center px-6 py-14 sm:px-10 lg:min-h-[620px] lg:px-16 xl:px-20">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-burgundy">OCC Journal</p>
+            <h1 className="max-w-[760px] text-[clamp(3.6rem,6.4vw,6.9rem)] font-normal leading-[0.9] tracking-[-0.065em] text-occ-primary">
+              The art of<br />Cambodian coffee.
             </h1>
-            <p className="max-w-xl font-sans text-sm sm:text-base text-stone-500 leading-relaxed">
-              Origin intelligence from the OCC team.
+            <p className="mt-7 max-w-[560px] text-xl leading-tight tracking-[-0.025em] text-occ-primary/72 sm:text-2xl lg:text-[1.8rem]">
+              Research, origin and commercial coffee intelligence.
             </p>
+            <a
+              href="#blog-categories"
+              className="mt-9 inline-flex w-fit items-center gap-5 bg-occ-primary px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-background transition-colors hover:bg-occ-burgundy"
+            >
+              Explore the journal <span aria-hidden="true">→</span>
+            </a>
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 -right-24 h-[310px] w-[460px] rotate-[-17deg] rounded-tr-[100%] border-r border-t border-occ-primary/25" />
+          </div>
+        </div>
+      </section>
+
+      <section id="blog-categories" className="bg-occ-background py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-12">
+          <header className="mb-10 text-center sm:mb-12">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-burgundy">Explore by topic</p>
+            <h2 className="font-[var(--font-display)] text-[clamp(2.7rem,5vw,4.5rem)] font-normal leading-none tracking-[-0.035em] text-occ-primary">
+              Blog Categories
+            </h2>
           </header>
 
-          {page === 1 && (
-            <section className="mb-10 md:mb-14 border-b border-stone-200 pb-9 md:pb-11" aria-labelledby="core-fine-robusta-guides">
-              <div className="flex flex-col gap-2 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.24em] text-occ-burgundy uppercase">
-                  Topic Map · Start Here
-                </span>
-                <h2 id="core-fine-robusta-guides" className="text-xl sm:text-2xl font-semibold tracking-tight text-stone-950">
-                  Explore Fine Robusta by topic.
-                </h2>
-                <p className="max-w-2xl text-[13px] sm:text-sm leading-relaxed text-stone-500">
-                  These are OCC&apos;s primary Fine Robusta topic owners. Choose the subject you need, then move into supporting evidence and applications.
-                </p>
-              </div>
-              <div className="grid gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2">
-                {CORE_FINE_ROBUSTA_OWNERS.map((guide, index) => (
-                  <Link
-                    key={guide.href}
-                    href={guide.href}
-                    className="group flex min-h-0 flex-col border-l-2 border-l-occ-burgundy bg-occ-background px-5 py-5 transition-colors hover:bg-white/70 sm:min-h-[150px] lg:p-6"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-[9px] font-semibold tracking-[0.2em] text-occ-burgundy">
-                        0{index + 1}
-                      </span>
-                      <span className="text-lg leading-none text-stone-400 transition-transform group-hover:translate-x-1 group-hover:text-stone-950" aria-hidden="true">
-                        →
-                      </span>
-                    </div>
-                    <span className="mt-3 text-[15px] font-semibold leading-snug text-stone-950 group-hover:underline underline-offset-4">
-                      {guide.label}
-                    </span>
-                    <span className="mt-2 text-[12px] leading-5 text-stone-500 lg:mt-auto lg:pt-5">
-                      {guide.note}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {posts.length === 0 ? (
-            <div className="py-24 text-center">
-              <p className="text-stone-400 text-sm tracking-[0.18em] uppercase">
-                Articles coming soon.
-              </p>
-            </div>
-          ) : (
-            <>
-            <ul className="divide-y divide-stone-200">
-              {pagePosts.map((post) => (
-                <li key={post.id} className="py-8 md:py-11 group">
-                  <Link href={`/blog/${post.slug}`} className="block active:opacity-90">
-                    <div className="flex items-start justify-between gap-5 sm:gap-10">
-                      <div className="flex-1 min-w-0">
-                        {post.category && (
-                          <span className="text-[10px] tracking-[0.22em] text-stone-400 uppercase mb-3 block">
-                            {post.category}
-                          </span>
-                        )}
-                        <h2 className="mb-4 max-w-4xl break-words font-[var(--font-display)] text-[clamp(1.7rem,3vw,2.35rem)] font-normal leading-[1.08] tracking-[-0.025em] text-stone-950 group-hover:underline [text-wrap:balance] decoration-[1px] underline-offset-4">
-                          {post.title}
-                        </h2>
-                        {post.summary && (
-                          <p className="max-w-[720px] font-sans text-[15px] leading-7 text-stone-500 [text-wrap:pretty]">
-                            {post.summary}
-                          </p>
-                        )}
-                        <div className="flex items-center gap-3 mt-5">
-                          {post.publish_date && (
-                            <time
-                              dateTime={post.publish_date}
-                              className="text-[10px] tracking-[0.18em] text-stone-400 uppercase"
-                            >
-                              {new Date(post.publish_date).toLocaleDateString("en-GB", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                              })}
-                            </time>
-                          )}
-                          {post.author && post.author !== "OCC Team" && (
-                            <span className="text-[10px] tracking-[0.18em] text-stone-400 uppercase">
-                              / {post.author}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <span
-                        className="text-stone-300 text-xl flex-shrink-0 group-hover:text-stone-950 transition-colors mt-2"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {isLandingPage ? (
-              <nav
-                className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
-                aria-label="Blog pagination"
-              >
-                <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
-                  ← Previous
-                </span>
-                <span className="text-[11px] tracking-[0.16em] text-stone-500 px-2">
-                  Page 1
-                </span>
-                {hasMorePosts ? (
-                  <Link
-                    href="/blog?page=2"
-                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
-                  >
-                    Next →
-                  </Link>
-                ) : (
-                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
-                    Next →
-                  </span>
-                )}
-              </nav>
-            ) : totalPages > 1 ? (
-              <nav
-                className="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-3 border-t border-stone-200 pt-10 md:pt-12"
-                aria-label="Blog pagination"
-              >
-                <Link
-                  href={page === 2 ? "/blog" : `/blog?page=${page - 1}`}
-                  className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
-                >
-                  ← Previous
+          <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {blogCategories.map((category) => {
+              const visual = categoryVisuals[category.slug]
+              return (
+                <Link key={category.slug} href={`/blog/category/${category.slug}`} className="group block">
+                  <div className="aspect-[1.8/1] overflow-hidden bg-occ-primary/5">
+                    <img
+                      src={visual.image}
+                      alt={visual.alt}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                    />
+                  </div>
+                  <p className="mt-4 font-[var(--font-display)] text-[13px] text-occ-primary/48">OCC Journal</p>
+                  <h3 className="mt-1 font-[var(--font-display)] text-[clamp(1.7rem,2.6vw,2.25rem)] font-normal uppercase leading-[0.95] tracking-[-0.025em] text-occ-primary">
+                    {category.title}
+                  </h3>
+                  <div className="mt-3 flex items-center justify-between gap-4 border-b border-occ-primary/18 pb-4">
+                    <span className="text-[8px] font-medium uppercase tracking-[0.23em] text-occ-primary/56">{category.kicker}</span>
+                    <span className="text-lg leading-none text-occ-primary/50 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-occ-burgundy" aria-hidden="true">→</span>
+                  </div>
                 </Link>
-                <span className="text-[11px] tracking-[0.16em] text-stone-400 px-2">
-                  Page {page} / {totalPages}
-                </span>
-                {hasMorePosts ? (
-                  <Link
-                    href={`/blog?page=${page + 1}`}
-                    className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-600 border border-stone-200 px-5 py-2.5 hover:border-stone-950 hover:text-stone-950 transition-colors"
-                  >
-                    Next →
-                  </Link>
-                ) : (
-                  <span className="min-h-[44px] inline-flex items-center justify-center text-xs tracking-[0.16em] uppercase text-stone-300 border border-stone-100 px-5 py-2.5 cursor-not-allowed">
-                    Next →
-                  </span>
-                )}
-              </nav>
-            ) : null}
-            </>
-          )}
-
+              )
+            })}
+          </div>
         </div>
-      </main>
+      </section>
     </>
   )
 }
