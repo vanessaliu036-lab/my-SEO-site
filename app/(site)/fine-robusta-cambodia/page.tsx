@@ -359,7 +359,7 @@ export default function FineRobustaCambodiaPage() {
 
               <div className="mt-7 space-y-5 text-[15px] leading-[1.8] text-stone-700 sm:text-base">
                 <p>
-                  For a consumer or retail reader, continue to <Link href="/origins" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">explore Cambodia Origins</Link> or read the <Link href="/blog/cambodia-coffee" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Cambodian coffee overview</Link>.
+                  For a consumer or retail reader, continue to <Link href="/origins" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">explore Cambodia Origins</Link> or read the <Link href="/blog/what-cambodian-coffee-should-you-try-first" className="border-b border-stone-300 text-stone-950 hover:border-stone-950">Cambodian Coffee guide</Link>.
                 </p>
                 <p>
                   For professional buyers, the commercial path is now deliberate: <strong>Pillar → Solution → Contact</strong>. Wholesale and Custom Roasting each explain the offer, process, and fit before the final enquiry step.
