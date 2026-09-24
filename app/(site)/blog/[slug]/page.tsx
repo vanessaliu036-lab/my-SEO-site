@@ -760,10 +760,93 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
       { href: "/solutions/wholesale", label: "Cambodian coffee wholesale" },
     ],
   },
+  "b2b-coffee-sourcing-in-cambodia-minimum-order-pricing-lead-times-explained": {
+    label: "Commercial terms",
+    title: "How buyers should verify MOQ, price, and lead time",
+    intro:
+      "MOQ, pricing, and lead time are not fixed Cambodia-wide benchmarks. They should be treated as transaction-specific commercial terms that depend on product type, lot size, processing status, packaging, destination, supplier role, and current availability.",
+    points: [
+      "Request a dated quote that identifies the exact product, lot or SKU, quantity, currency, unit, price basis, Incoterm where relevant, and offer-validity period.",
+      "Confirm whether MOQ applies per lot, roast profile, packaging format, SKU, or shipment; the operational minimum can differ from a simple kilogram threshold.",
+      "Separate production lead time from export preparation, freight, customs, and destination delivery so the buyer can identify where delay risk actually sits.",
+      "Do not treat example price ranges or lead times as a standing OCC offer; current supply must be confirmed against a real buyer request.",
+    ],
+    links: [
+      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Supplier evaluation guide" },
+      { href: "/solutions/wholesale", label: "Request current wholesale terms" },
+      { href: "/contact", label: "Discuss quantity and lead time" },
+    ],
+  },
+  "how-to-source-reliable-coffee-suppliers-2026-edition": {
+    label: "Supplier qualification",
+    title: "Reliability is demonstrated through the transaction, not the sales claim",
+    intro:
+      "A reliable coffee supplier is one that can connect product identity, representative samples, specifications, current availability, delivery responsibilities, and repeat-order performance. Certification or origin storytelling can support due diligence, but neither replaces transaction evidence.",
+    points: [
+      "Verify the legal seller and the roles of producer, processor, roaster, exporter, and logistics provider instead of assuming one company performs every step.",
+      "Tie every approved sample to the actual lot, specification, availability, and inspection plan.",
+      "Review response time, documentation quality, change communication, claims handling, and repeat delivery alongside cup quality.",
+      "Re-qualify material changes in harvest, process, lot, roast, packaging, or supplier role rather than assuming an earlier approval remains valid indefinitely.",
+    ],
+    links: [
+      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Cambodian supplier evaluation owner" },
+      { href: "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist", label: "Wholesale buyer checklist" },
+      { href: "/solutions/wholesale", label: "Wholesale & sourcing" },
+    ],
+  },
+  "when-b2b-buyers-source-cambodia-coffee-navigating-cooperative-partnerships-in-2026": {
+    label: "Transaction roles",
+    title: "Map the commercial chain before approving a partnership",
+    intro:
+      "A producer group, processor, seller, exporter, and logistics provider may be different parties. Buyers should document who performs each role and who is accountable for product identity, invoicing, export documents, shipment quality, and claims.",
+    points: [
+      "Identify who owns the coffee at each stage and who has authority to sell the commercial lot.",
+      "Confirm which party prepares export or destination documentation and whether the named seller is actually responsible for those obligations.",
+      "Record who controls sample selection, final lot preparation, packing, shipment release, and post-arrival claims.",
+      "Use a dated commercial offer for MOQ, price, payment terms, lead time, and shipment basis rather than assuming one Cambodia-wide standard.",
+    ],
+    links: [
+      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Supplier evaluation guide" },
+      { href: "/blog/coffee-contract-quality-tolerances-fine-robusta", label: "Contract quality tolerances" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "hotel-coffee-door-hanger-breakfast-pilot-sofitel-2026": {
+    label: "Hotel buyer pathway",
+    title: "Turn a hotel coffee idea into a controlled pilot",
+    intro:
+      "A hotel coffee pilot should be evaluated as an operating program, not only as a branding concept. The buyer needs a defined service point, coffee format, volume assumption, preparation method, staff workflow, guest feedback method, and decision rule for continuing or stopping the test.",
+    points: [
+      "Choose one initial use case—breakfast, restaurant, café, in-room amenity, or a limited guest ritual—before expanding across the property.",
+      "Define the coffee specification, serving recipe, equipment, packaging, staff training, expected daily volume, replenishment process, and pilot duration.",
+      "Measure guest uptake, preparation consistency, waste, service friction, repeat demand, and the commercial effect on food-and-beverage operations.",
+      "Separate third-party case references from OCC partnership claims; a public campaign example is inspiration, not evidence of an OCC hotel relationship.",
+    ],
+    links: [
+      { href: "/solutions/wholesale", label: "Coffee supply for hospitality" },
+      { href: "/solutions/roasting-program", label: "Custom roast development" },
+      { href: "/contact", label: "Discuss a hotel coffee pilot" },
+    ],
+  },
 
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  "b2b-coffee-sourcing-in-cambodia-minimum-order-pricing-lead-times-explained": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader supplier and procurement framework behind commercial terms, see the",
+  },
+  "how-to-source-reliable-coffee-suppliers-2026-edition": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the Cambodia-specific buyer qualification framework, see the",
+  },
+  "when-b2b-buyers-source-cambodia-coffee-navigating-cooperative-partnerships-in-2026": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader supplier qualification framework behind partnership roles, see the",
+  },
   "sample-cambodian-coffee-before-buying-lot": {
     href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
     anchor: "Cambodian coffee supplier evaluation guide",
