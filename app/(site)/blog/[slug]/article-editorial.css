@@ -25,8 +25,8 @@
 
 /* Equal page gutters on both sides. */
 .occ-article-shell article {
-  width: min(100%, 1280px) !important;
-  max-width: 1280px !important;
+  width: min(100%, 1360px) !important;
+  max-width: 1360px !important;
   margin-inline: auto !important;
   padding: 0 clamp(1.5rem, 4vw, 4rem) 4.5rem !important;
 }
@@ -34,7 +34,7 @@
 /* Compact editorial masthead: title left, metadata right, equal outer margins. */
 .occ-article-shell article > header {
   width: 100% !important;
-  max-width: 1160px !important;
+  max-width: 1240px !important;
   margin-inline: auto !important;
   padding: clamp(2.6rem, 5vw, 4.4rem) 0 clamp(2.2rem, 4vw, 3.4rem) !important;
   display: grid;
@@ -54,7 +54,7 @@
 .occ-article-shell article > header > h1 {
   grid-column: 1;
   grid-row: 2;
-  max-width: 860px !important;
+  max-width: 900px !important;
   margin: 0 !important;
   font-family: var(--font-display), Georgia, serif !important;
   font-size: clamp(2.55rem, 4.2vw, 4.15rem) !important;
@@ -98,7 +98,7 @@
 .occ-article-shell article > header + p,
 .occ-article-shell [class*="max-w-[720px]"] {
   width: 100% !important;
-  max-width: 880px !important;
+  max-width: 1040px !important;
 }
 
 .occ-article-shell article > header + div,
@@ -185,6 +185,21 @@
   line-height: 1.7 !important;
 }
 
+.occ-article-shell article .article-context-note {
+  margin: 0 0 2rem !important;
+  padding: 1rem 1.15rem !important;
+  border-left: 2px solid var(--occ-logo-burgundy);
+  background: color-mix(in srgb, var(--occ-logo-burgundy) 5%, var(--occ-page-background)) !important;
+  color: color-mix(in srgb, var(--occ-ink) 68%, transparent) !important;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.occ-article-shell article > header + div a {
+  color: var(--occ-logo-burgundy) !important;
+  border-bottom-color: color-mix(in srgb, var(--occ-logo-burgundy) 38%, transparent) !important;
+}
+
 .occ-article-shell article .article-table-wrap {
   border-color: rgba(41, 36, 36, 0.14) !important;
 }
@@ -195,17 +210,17 @@
   border-left-color: var(--occ-ink) !important;
 }
 
-/* Topic band and CTA use the same 880px reading width. */
-.occ-article-shell article > div.bg-stone-950 {
-  background: var(--occ-ink) !important;
+/* OCC CTA: burgundy rather than deep black. */
+.occ-article-shell article .article-cta {
+  background: var(--occ-logo-burgundy) !important;
   color: var(--occ-page-background) !important;
-  border-radius: 0 !important;
+  border-radius: 1.25rem !important;
 }
 
 /* Related stories use the same balanced full page frame. */
 .occ-article-shell > div > section {
-  width: min(100%, 1280px) !important;
-  max-width: 1280px !important;
+  width: min(100%, 1360px) !important;
+  max-width: 1360px !important;
   margin-inline: auto !important;
   padding-left: clamp(1.5rem, 4vw, 4rem) !important;
   padding-right: clamp(1.5rem, 4vw, 4rem) !important;
@@ -224,16 +239,16 @@
 }
 
 .occ-article-shell > div > div:last-child {
-  width: min(100%, 1280px) !important;
-  max-width: 1280px !important;
+  width: min(100%, 1360px) !important;
+  max-width: 1360px !important;
   margin-inline: auto !important;
   padding-left: clamp(1.5rem, 4vw, 4rem) !important;
   padding-right: clamp(1.5rem, 4vw, 4rem) !important;
 }
 
 .occ-article-shell > aside {
-  width: min(calc(100% - 3rem), 880px) !important;
-  max-width: 880px !important;
+  width: min(calc(100% - 3rem), 1040px) !important;
+  max-width: 1040px !important;
   margin-inline: auto !important;
   margin-bottom: 3.5rem !important;
 }

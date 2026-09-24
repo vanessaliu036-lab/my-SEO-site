@@ -109,7 +109,8 @@ export default async function BlogCategoryPage({
           <div className="flex min-w-max items-center gap-2 py-5 sm:flex-wrap sm:gap-2.5">
             <Link
               href="/blog"
-              className="inline-flex min-h-10 items-center justify-center rounded-full border border-occ-primary/18 px-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary/58 transition-colors hover:border-occ-primary hover:text-occ-primary"
+              style={{ borderRadius: "9999px" }}
+              className="inline-flex min-h-10 items-center justify-center !rounded-full border border-occ-primary/18 px-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary/58 transition-colors hover:border-occ-burgundy hover:text-occ-burgundy focus-visible:!rounded-full active:!rounded-full"
             >
               All Journal
             </Link>
@@ -120,10 +121,11 @@ export default async function BlogCategoryPage({
                   key={item.slug}
                   href={`/blog/category/${item.slug}`}
                   aria-current={active ? "page" : undefined}
-                  className={`inline-flex min-h-10 items-center justify-center rounded-full border px-4 text-[10px] font-semibold uppercase tracking-[0.16em] transition-colors ${
+                  style={{ borderRadius: "9999px" }}
+                  className={`inline-flex min-h-10 items-center justify-center !rounded-full border px-4 text-[10px] font-semibold uppercase tracking-[0.16em] transition-colors focus-visible:!rounded-full active:!rounded-full ${
                     active
-                      ? "border-occ-primary bg-occ-primary text-occ-background"
-                      : "border-occ-primary/18 text-occ-primary/58 hover:border-occ-primary hover:text-occ-primary"
+                      ? "border-occ-burgundy bg-occ-burgundy text-occ-background"
+                      : "border-occ-primary/18 text-occ-primary/58 hover:border-occ-burgundy hover:text-occ-burgundy"
                   }`}
                 >
                   {item.title}

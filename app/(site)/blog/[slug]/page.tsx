@@ -496,6 +496,11 @@ function formatContent(raw: string, title: string, slug?: string): string {
       continue
     }
 
+    if (/^\*\*Published\s+/i.test(line)) {
+      html.push(`<aside class="article-context-note">${renderInlineMarkdown(line)}</aside>`)
+      continue
+    }
+
     if (/^\*\*Quick Answer(?: \(AI Overview\))?\*\*$/i.test(line)) {
       const next = lines[i + 1]
       if (next && !/^#{1,6}\s+/.test(next) && !/^[-*]\s+/.test(next) && !/^\d+\.\s+/.test(next)) {
@@ -610,16 +615,38 @@ function isLowSignalSeoText(text: string, title = ""): boolean {
   return false
 }
 
+function isInternalEditorialNote(text: string): boolean {
+  const value = text.trim().replace(/\s+/g, " ")
+  return (
+    /^updated\s+\d{1,2}\s+[a-z]{3,9}\s+20\d{2}\s+from\s+forum\s+heat\./i.test(value) ||
+    /stable slug retained/i.test(value) ||
+    /target keyword:/i.test(value) ||
+    /internal (?:seo|editorial|content) note/i.test(value)
+  )
+}
+
 function headerSummaryForPost(post: NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>): string {
-  const source = (post.summary || post.excerpt || "").replace(/\s+/g, " ").trim()
+  const candidates = [post.summary, post.excerpt].filter(Boolean) as string[]
+  const source = candidates.find((text) => !isInternalEditorialNote(text))?.replace(/\s+/g, " ").trim() || ""
+  if (!source) return ""
   if (source.length <= 220) return source
   return `${source.slice(0, 217).replace(/\s+\S*$/, "")}...`
 }
 
 function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>): string {
   if (!post) return "Specialty coffee insights from Origin Coffee Cambodia."
-  const summary = post.summary && !isLowSignalSeoText(post.summary, post.title) ? post.summary : ""
-  const excerpt = post.excerpt && !isLowSignalSeoText(post.excerpt, post.title) ? post.excerpt : ""
+  const summary =
+    post.summary &&
+    !isLowSignalSeoText(post.summary, post.title) &&
+    !isInternalEditorialNote(post.summary)
+      ? post.summary
+      : ""
+  const excerpt =
+    post.excerpt &&
+    !isLowSignalSeoText(post.excerpt, post.title) &&
+    !isInternalEditorialNote(post.excerpt)
+      ? post.excerpt
+      : ""
   return seoDescription(
     summary ||
     excerpt ||
@@ -721,6 +748,7 @@ export default async function BlogPostPage({
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title, post.slug)
+  const headerSummary = headerSummaryForPost(post)
   const isCambodiaCoffeeSupport = CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS.has(post.slug)
   const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug) && !isCambodiaCoffeeSupport
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
@@ -768,9 +796,9 @@ export default async function BlogPostPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <div className="min-h-screen bg-white text-stone-950 overflow-x-hidden">
+      <div className="min-h-screen bg-occ-background text-occ-primary overflow-x-hidden">
         {/* Breadcrumb nav */}
-        <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-stone-200">
+        <nav className="sticky top-0 z-40 bg-occ-background/95 backdrop-blur-sm border-b border-occ-primary/15">
           <div className="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.16em] text-stone-400 uppercase min-w-0">
             <Link href="/" className="hover:text-stone-950 transition-colors shrink-0">Home</Link>
             <span className="shrink-0">/</span>
@@ -796,9 +824,9 @@ export default async function BlogPostPage({
               {displayTitle}
             </h1>
 
-            {(post.summary || post.excerpt) && (
-              <p className="article-summary max-w-2xl font-sans text-[13px] sm:text-sm text-stone-600 leading-relaxed border-l border-stone-950 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
-                {headerSummaryForPost(post)}
+            {headerSummary && (
+              <p className="article-summary max-w-2xl font-sans text-[13px] sm:text-sm text-stone-600 leading-relaxed border-l border-occ-burgundy/45 pl-4 sm:pl-5 mb-8 [text-wrap:pretty]">
+                {headerSummary}
               </p>
             )}
 
@@ -940,10 +968,10 @@ export default async function BlogPostPage({
           {/* Keywords */}
           {keywordList.length > 0 && (
             <div className="mx-auto max-w-[720px] mt-16 pt-8 border-t border-stone-200">
-              <p className="text-[10px] tracking-[0.24em] text-stone-400 uppercase mb-3">Topics</p>
+              <p className="text-[10px] tracking-[0.24em] text-occ-burgundy uppercase mb-3">Tags</p>
               <div className="flex flex-wrap gap-2">
                 {keywordList.map((kw) => (
-                  <span key={kw} className="text-xs text-stone-600 border border-stone-300 px-3 py-1">
+                  <span key={kw} className="rounded-full border border-occ-burgundy/28 px-3 py-1.5 text-xs text-occ-burgundy">
                     {kw}
                   </span>
                 ))}
@@ -952,14 +980,14 @@ export default async function BlogPostPage({
           )}
 
           {/* CTA */}
-          <div className="mx-auto max-w-[720px] mt-12 bg-stone-950 text-white p-7 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div className="article-cta mx-auto max-w-[720px] mt-12 bg-occ-burgundy text-occ-background p-7 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
-              <p className="text-xs tracking-[0.24em] text-stone-400 uppercase mb-1">Origin Coffee Cambodia</p>
+              <p className="text-xs tracking-[0.24em] text-occ-background/68 uppercase mb-1">Origin Coffee Cambodia</p>
               <p className="font-bold tracking-tight">Need wholesale supply or roasting support?</p>
             </div>
             <Link
               href="/contact"
-              className="shrink-0 text-xs tracking-[0.14em] border border-white px-5 py-2.5 hover:bg-white hover:text-stone-950 transition-colors uppercase"
+              className="shrink-0 rounded-full border border-occ-background/55 px-5 py-2.5 text-xs uppercase tracking-[0.14em] text-occ-background transition-colors hover:bg-occ-background hover:text-occ-burgundy"
             >
               Talk to Our Team →
             </Link>
