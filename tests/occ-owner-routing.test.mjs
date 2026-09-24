@@ -340,3 +340,29 @@ test('Fine Robusta pillar no longer links to the retired Cambodian coffee 404 ro
   assert.doesNotMatch(fineRobustaPillar, /href="\/blog\/cambodia-coffee"/)
   assert.match(fineRobustaPillar, /href="\/blog\/what-cambodian-coffee-should-you-try-first"/)
 })
+
+
+test('broad Cambodian Coffee support pages converge on the discovery pillar', () => {
+  assert.match(articlePage, /const CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS = new Set/)
+  assert.match(articlePage, /const isCambodiaCoffeeSupport = CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS\.has\(post\.slug\)/)
+  assert.match(articlePage, /Country guide/)
+  assert.match(articlePage, /Cambodian Coffee guide →/)
+
+  const supportSlugs = [
+    'where-is-coffee-grown-in-cambodia',
+    'the-history-of-coffee-growing-in-cambodia',
+    'why-cambodia-imports-coffee',
+    'cambodia-coffee-origin-standards-before-growth',
+    'what-makes-cambodian-coffee-hard-to-copy',
+  ]
+  for (const slug of supportSlugs) {
+    assert.match(articlePage, new RegExp(slug.replaceAll('-', '\\-')))
+  }
+})
+
+test('Cambodian Coffee primary support does not also render the generic Fine Robusta support backlink', () => {
+  assert.match(
+    articlePage,
+    /const showRobustaPillarLink = shouldLinkToRobustaPillar\(post\.slug\) && !isCambodiaCoffeeSupport/,
+  )
+})
