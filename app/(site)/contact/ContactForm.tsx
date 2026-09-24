@@ -133,7 +133,7 @@ export default function ContactForm() {
 
             <div className="occ-contact-field-row">
               <div className="occ-contact-field">
-                <label htmlFor="name">Full Name</label>
+                <label htmlFor="name">Full Name <span className="occ-contact-required" aria-hidden="true">*</span></label>
                 <input
                   id="name"
                   type="text"
@@ -144,6 +144,37 @@ export default function ContactForm() {
                   {...register("name")}
                 />
                 {errors.name && <p role="alert" className="occ-contact-error">{errors.name.message}</p>}
+              </div>
+
+              <div className="occ-contact-field">
+                <label htmlFor="phone">Phone <span className="occ-contact-required" aria-hidden="true">*</span></label>
+                <input
+                  id="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  data-clarity-mask="true"
+                  placeholder="+855 12 345 678"
+                  aria-invalid={!!errors.phone}
+                  {...register("phone")}
+                />
+                {errors.phone && <p role="alert" className="occ-contact-error">{errors.phone.message}</p>}
+              </div>
+            </div>
+
+            <div className="occ-contact-field-row">
+              <div className="occ-contact-field">
+                <label htmlFor="email">Work Email <span className="occ-contact-required" aria-hidden="true">*</span></label>
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  data-clarity-mask="true"
+                  placeholder="name@company.com"
+                  aria-invalid={!!errors.email}
+                  {...register("email")}
+                />
+                {errors.email && <p role="alert" className="occ-contact-error">{errors.email.message}</p>}
               </div>
 
               <div className="occ-contact-field">
@@ -161,34 +192,18 @@ export default function ContactForm() {
               </div>
             </div>
 
-            <div className="occ-contact-field-row">
-              <div className="occ-contact-field">
-                <label htmlFor="email">Work Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  data-clarity-mask="true"
-                  placeholder="name@company.com"
-                  aria-invalid={!!errors.email}
-                  {...register("email")}
-                />
-                {errors.email && <p role="alert" className="occ-contact-error">{errors.email.message}</p>}
-              </div>
-
-              <div className="occ-contact-field">
-                <label htmlFor="country">Country / Market</label>
-                <input
-                  id="country"
-                  type="text"
-                  autoComplete="country-name"
-                  data-clarity-mask="true"
-                  placeholder="e.g. Cambodia, Singapore"
-                  aria-invalid={!!errors.country}
-                  {...register("country")}
-                />
-                {errors.country && <p role="alert" className="occ-contact-error">{errors.country.message}</p>}
-              </div>
+            <div className="occ-contact-field occ-contact-field-wide">
+              <label htmlFor="country">Country / Market</label>
+              <input
+                id="country"
+                type="text"
+                autoComplete="country-name"
+                data-clarity-mask="true"
+                placeholder="e.g. Cambodia, Singapore"
+                aria-invalid={!!errors.country}
+                {...register("country")}
+              />
+              {errors.country && <p role="alert" className="occ-contact-error">{errors.country.message}</p>}
             </div>
 
             <fieldset className="occ-contact-enquiry">
@@ -224,7 +239,7 @@ export default function ContactForm() {
             </fieldset>
 
             <div className="occ-contact-field occ-contact-message-field">
-              <label htmlFor="message">Project / Requirement <span>(optional)</span></label>
+              <label htmlFor="message">Project / Requirement <span className="occ-contact-required" aria-hidden="true">*</span></label>
               <p id="message-help" className="occ-contact-message-help">
                 Useful context: market, expected use, timing, estimated quantity, roast format,
                 quality or sourcing requirements.
