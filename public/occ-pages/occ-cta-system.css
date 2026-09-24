@@ -1,0 +1,38 @@
+:root {
+  --occ-cta-primary-background: #984650;
+  --occ-cta-primary-foreground: #f2ede7;
+  --occ-cta-primary-border: #984650;
+  --occ-cta-radius: 0px;
+}
+
+.occ-cta-primary {
+  display: inline-flex !important;
+  min-height: 52px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border: 1px solid !important;
+  border-radius: var(--occ-cta-radius) !important;
+  padding: 12px 24px !important;
+  font: 600 10px/1.2 Arial, Helvetica, sans-serif !important;
+  letter-spacing: .17em !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease !important;
+}
+
+.occ-cta-primary {
+  border-color: var(--occ-cta-primary-border) !important;
+  background: var(--occ-cta-primary-background) !important;
+  color: var(--occ-cta-primary-foreground) !important;
+  -webkit-text-fill-color: var(--occ-cta-primary-foreground) !important;
+}
+
+.occ-cta-primary:hover {
+  transform: translateY(-2px);
+}
+
+.occ-cta-primary:focus-visible {
+  outline: 2px solid var(--occ-cta-primary-border);
+  outline-offset: 4px;
+}
