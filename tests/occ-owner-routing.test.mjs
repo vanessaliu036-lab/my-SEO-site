@@ -20,11 +20,36 @@ test('Fine Robusta Cambodia support cluster routes to the root Fine Robusta owne
   assert.match(articlePage, /navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers/)
 })
 
-test('Robusta Cambodia formal owner is excluded from Fine Robusta pillar backlink logic', () => {
+test('Fine Robusta support backlink logic is semantic, owner-safe, and anchor-controlled', () => {
   const condition = articlePage.match(/const showRobustaPillarLink =\s*([\s\S]*?)\n\s*const robustaPillarAnchor/)
   assert.ok(condition, 'pillar backlink condition must exist')
-  assert.match(condition[1], /ROBUSTA_CLUSTER_SLUGS\.has\(post\.slug\)/)
-  assert.doesNotMatch(condition[1], /post\.slug === ROBUSTA_PILLAR_SLUG/)
+  assert.match(condition[1], /shouldLinkToRobustaPillar\(post\.slug\)/)
+
+  assert.match(articlePage, /const ROBUSTA_SUPPORT_SLUG_PATTERN/)
+  for (const family of [
+    'fine-robusta',
+    'specialty-robusta',
+    'cambodian-',
+    'cambodia-',
+    'mondulkiri',
+    'canephora',
+  ]) {
+    assert.match(articlePage, new RegExp(family))
+  }
+
+  const excludedOwners = articlePage.match(/const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set\(\[([\s\S]*?)\n\]\)/)
+  assert.ok(excludedOwners, 'formal owner exclusion set must exist')
+  for (const ownerSlug of [
+    'fine-robusta-grading-verify-before-cupping',
+    'fine-robusta-fermentation',
+    'how-to-brew-cambodian-fine-robusta',
+    'fine-robusta-vs-arabica-buyer-guide',
+    'why-is-fine-robusta-coffee-becoming-popular',
+    'is-coffee-industry-undervaluing-canephora-quality',
+    'fine-robusta-consistency-vs-extra-cup-point',
+  ]) {
+    assert.match(excludedOwners[1], new RegExp(ownerSlug.replaceAll('-', '\\-')))
+  }
 
   const anchorPool = articlePage.match(/const ROBUSTA_PILLAR_ANCHORS = \[([\s\S]*?)\n\]/)
   assert.ok(anchorPool, 'Fine Robusta anchor pool must exist')

@@ -69,6 +69,27 @@ const ROBUSTA_PILLAR_ANCHORS = [
   "Cambodia Fine Robusta buyer guide",
 ]
 
+const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set([
+  "cambodia-specialty-robusta-coffee-guide",
+  "fine-robusta-grading-verify-before-cupping",
+  "fine-robusta-fermentation",
+  "how-to-brew-cambodian-fine-robusta",
+  "fine-robusta-vs-arabica-buyer-guide",
+  "why-is-fine-robusta-coffee-becoming-popular",
+  "is-coffee-industry-undervaluing-canephora-quality",
+  "the-economic-advantages-of-fine-robusta-cost-benefit-analysis-for-cambodian-coffee-businesses",
+  "fine-robusta-consistency-vs-extra-cup-point",
+  "mondulkiri-next-specialty-coffee-origin",
+])
+
+const ROBUSTA_SUPPORT_SLUG_PATTERN =
+  /(?:fine-robusta|specialty-robusta|cambodian-(?:coffee|robusta)|cambodia-(?:coffee|robusta)|mondulkiri|canephora)/i
+
+function shouldLinkToRobustaPillar(slug: string): boolean {
+  if (ROBUSTA_PILLAR_EXCLUDED_SLUGS.has(slug)) return false
+  return ROBUSTA_CLUSTER_SLUGS.has(slug) || ROBUSTA_SUPPORT_SLUG_PATTERN.test(slug)
+}
+
 // Keep legacy URLs live, but narrow their visible search target so broad intent
 // remains concentrated on the formal owner pages.
 const ARTICLE_TITLE_OVERRIDES: Record<string, string> = {
@@ -570,7 +591,7 @@ export default async function BlogPostPage({
     ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title, post.slug)
-  const showRobustaPillarLink = ROBUSTA_CLUSTER_SLUGS.has(post.slug)
+  const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug)
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
 
   const articleSchema = {
@@ -691,7 +712,7 @@ export default async function BlogPostPage({
             <p className="mx-auto max-w-[720px] text-stone-400 text-sm italic">Content coming soon.</p>
           )}
 
-          {/* Fine Robusta Cambodia pillar backlink: supporting cluster only */}
+          {/* Fine Robusta Cambodia pillar backlink: semantic support cluster only */}
           {showRobustaPillarLink && (
             <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
               <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Core guide</p>
