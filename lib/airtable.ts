@@ -34,6 +34,7 @@ const LIST_FIELDS: Record<AirtableTableName, string[]> = {
     'featured_image_url',
     'Category',
     'SEO_Keyword',
+    'Primary Keyword',
     'OCC_INDEXED_PROTECTED',
     // Airtable rejects unknown field names (422); OCC_Blog_Posts has lowercase `status` and no SEO gate field.
     'status',
@@ -271,6 +272,11 @@ function recordToListItem(record: AirtableRecord): BlogPost | null {
     publish_date: pickField(record.fields, K.publishDate),
     featured_image_url: pickField(record.fields, K.featured),
     category: pickField(record.fields, K.category),
+    keywords: pickField(record.fields, K.keywords),
+    primary_keyword: pickField(
+      record.fields,
+      ['Primary Keyword', 'primary_keyword', 'keyword', 'SEO_Keyword']
+    ),
     table_name: record.tableName,
   }
 }
@@ -325,14 +331,14 @@ export interface BlogPost {
   publish_date: string
   featured_image_url: string
   category: string
+  keywords: string
+  primary_keyword: string
   table_name: string
 }
 
 export interface BlogPostDetail extends BlogPost {
   content: string
   excerpt: string
-  keywords: string
-  primary_keyword: string
   modified_date: string
 }
 
@@ -368,7 +374,7 @@ async function loadAllPosts(): Promise<BlogPost[]> {
   return posts
 }
 
-const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-published-corpus-v5'], {
+const getAllPostsCached = unstable_cache(loadAllPosts, ['occ-airtable-published-corpus-v6'], {
   revalidate: AIRTABLE_CACHE_SECONDS,
 })
 
@@ -427,11 +433,6 @@ function recordToDetail(record: AirtableRecord): BlogPostDetail | null {
     ...base,
     content: sanitizeOccRecordText(record, pickField(record.fields, K.content)),
     excerpt: sanitizeOccRecordText(record, pickField(record.fields, K.excerpt)),
-    keywords: pickField(record.fields, K.keywords),
-    primary_keyword: pickField(
-      record.fields,
-      ['Primary Keyword', 'primary_keyword', 'keyword', 'SEO_Keyword']
-    ),
     modified_date: pickField(record.fields, K.modifiedDate, base.publish_date),
   }
 }
