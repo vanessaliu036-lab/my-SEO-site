@@ -13,12 +13,6 @@ const ENQUIRY_TYPES = [
   "Other / General",
 ] as const satisfies readonly ContactFormData["service"][]
 
-const PROJECT_STAGES = [
-  "Exploring",
-  "Comparing suppliers",
-  "Sampling / Trial",
-  "Ready to order",
-] as const satisfies readonly ContactFormData["projectStage"][]
 
 export default function ContactForm() {
   const [isPending, startTransition] = useTransition()
@@ -35,7 +29,6 @@ export default function ContactForm() {
   })
 
   const selectedType = watch("service")
-  const selectedStage = watch("projectStage")
   const message = watch("message") ?? ""
 
   const onSubmit = (data: ContactFormData) => {
@@ -47,7 +40,6 @@ export default function ContactForm() {
           lead_type: data.service,
           company: data.company,
           market: data.country,
-          project_stage: data.projectStage,
           page_path: `${window.location.pathname}${window.location.search}`,
         })
         setIsSuccess(true)
@@ -147,6 +139,22 @@ export default function ContactForm() {
               </div>
 
               <div className="occ-contact-field">
+                <label htmlFor="jobTitle">Job Title / Position</label>
+                <input
+                  id="jobTitle"
+                  type="text"
+                  autoComplete="organization-title"
+                  data-clarity-mask="true"
+                  placeholder="Founder, Manager, Purchasing Manager…"
+                  aria-invalid={!!errors.jobTitle}
+                  {...register("jobTitle")}
+                />
+                {errors.jobTitle && <p role="alert" className="occ-contact-error">{errors.jobTitle.message}</p>}
+              </div>
+            </div>
+
+            <div className="occ-contact-field-row">
+              <div className="occ-contact-field">
                 <label htmlFor="phone">Phone <span className="occ-contact-required" aria-hidden="true">*</span></label>
                 <input
                   id="phone"
@@ -160,9 +168,7 @@ export default function ContactForm() {
                 />
                 {errors.phone && <p role="alert" className="occ-contact-error">{errors.phone.message}</p>}
               </div>
-            </div>
 
-            <div className="occ-contact-field-row">
               <div className="occ-contact-field">
                 <label htmlFor="email">Work Email <span className="occ-contact-required" aria-hidden="true">*</span></label>
                 <input
@@ -176,7 +182,9 @@ export default function ContactForm() {
                 />
                 {errors.email && <p role="alert" className="occ-contact-error">{errors.email.message}</p>}
               </div>
+            </div>
 
+            <div className="occ-contact-field-row">
               <div className="occ-contact-field">
                 <label htmlFor="company">Company</label>
                 <input
@@ -190,20 +198,20 @@ export default function ContactForm() {
                 />
                 {errors.company && <p role="alert" className="occ-contact-error">{errors.company.message}</p>}
               </div>
-            </div>
 
-            <div className="occ-contact-field occ-contact-field-wide">
-              <label htmlFor="country">Country / Market</label>
-              <input
-                id="country"
-                type="text"
-                autoComplete="country-name"
-                data-clarity-mask="true"
-                placeholder="e.g. Cambodia, Singapore"
-                aria-invalid={!!errors.country}
-                {...register("country")}
-              />
-              {errors.country && <p role="alert" className="occ-contact-error">{errors.country.message}</p>}
+              <div className="occ-contact-field">
+                <label htmlFor="country">Country / Market</label>
+                <input
+                  id="country"
+                  type="text"
+                  autoComplete="country-name"
+                  data-clarity-mask="true"
+                  placeholder="e.g. Cambodia, Singapore"
+                  aria-invalid={!!errors.country}
+                  {...register("country")}
+                />
+                {errors.country && <p role="alert" className="occ-contact-error">{errors.country.message}</p>}
+              </div>
             </div>
 
             <fieldset className="occ-contact-enquiry">
@@ -214,28 +222,20 @@ export default function ContactForm() {
                   return (
                     <label key={type} className={`occ-contact-pill${isSelected ? " is-selected" : ""}`}>
                       <input type="radio" value={type} {...register("service")} />
-                      <span>{type}</span>
+                      <span>
+                        {type === "Wholesale / Sourcing"
+                          ? "Wholesale"
+                          : type === "Roasting / Solutions"
+                            ? "Roasting"
+                            : type === "Partnership / Distribution"
+                              ? "Hotel / Partner"
+                              : "Other"}
+                      </span>
                     </label>
                   )
                 })}
               </div>
               {errors.service && <p role="alert" className="occ-contact-error">{errors.service.message}</p>}
-            </fieldset>
-
-            <fieldset className="occ-contact-enquiry">
-              <legend>Project Stage</legend>
-              <div className="occ-contact-pills">
-                {PROJECT_STAGES.map((stage) => {
-                  const isSelected = selectedStage === stage
-                  return (
-                    <label key={stage} className={`occ-contact-pill${isSelected ? " is-selected" : ""}`}>
-                      <input type="radio" value={stage} {...register("projectStage")} />
-                      <span>{stage}</span>
-                    </label>
-                  )
-                })}
-              </div>
-              {errors.projectStage && <p role="alert" className="occ-contact-error">{errors.projectStage.message}</p>}
             </fieldset>
 
             <div className="occ-contact-field occ-contact-message-field">
