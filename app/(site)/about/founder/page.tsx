@@ -96,6 +96,12 @@ const sections = [
   },
 ]
 
+const featureGrid = [
+  { label: "01 / Origin evidence", title: "Start with what can be verified.", body: "Origin, process, and quality details should be specific enough to support a sourcing decision." },
+  { label: "02 / Clear boundaries", title: "Keep claims proportional.", body: "A single lot or dated protocol should not stand in for a whole origin or category." },
+  { label: "03 / Business practice", title: "Make evidence useful.", body: "Documented information should improve sourcing, quality, roasting, and repeatable supply." },
+]
+
 export default function FounderPage() {
   return (
     <>
@@ -110,6 +116,9 @@ export default function FounderPage() {
           "Origin knowledge matters when it improves sourcing, quality, roasting, and repeatability.",
         ]}
         sections={sections}
+        featureGrid={featureGrid}
+        practiceLabel="The founder's principle"
+        practiceTitle="Evidence that improves the work."
         faqs={faqs}
         next={{
           href: "/about/manifesto",

@@ -103,6 +103,12 @@ const sections = [
   },
 ]
 
+const featureGrid = [
+  { label: "01 / Quality", title: "Every handoff matters.", body: "Origin, processing, sourcing, roasting, brewing, people, and equipment all shape the cup." },
+  { label: "02 / Fine Robusta", title: "Evaluate the coffee itself.", body: "Selection, processing, sensory evaluation, and roast fit matter more than a category label." },
+  { label: "03 / Supply", title: "Accountability is part of quality.", body: "Clear specifications and practical support help buyers deliver a more consistent result." },
+]
+
 export default function ManifestoPage() {
   return (
     <>
@@ -117,6 +123,9 @@ export default function ManifestoPage() {
           "It comes from a system that makes quality repeatable from Cambodian origin and sourcing through roasting, preparation, and service.",
         ]}
         sections={sections}
+        featureGrid={featureGrid}
+        practiceLabel="The OCC manifesto"
+        practiceTitle="Quality is a system."
         closing={[
           "Zero compromise does not mean pretending perfection exists. It means taking responsibility for the variables we can control and refusing to let convenience replace standards.",
           "OCC exists to strengthen the coffee behind the business: Cambodia specialty coffee supply, Fine Robusta expertise, and B2B roasting solutions built for consistency.",

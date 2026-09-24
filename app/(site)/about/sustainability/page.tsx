@@ -97,6 +97,12 @@ const sections = [
   },
 ]
 
+const featureGrid = [
+  { label: "01 / Evidence", title: "A label is not proof.", body: "Claims need a source, a clear scope, and a record tied to the relevant farm, practice, or lot." },
+  { label: "02 / Traceability", title: "Follow the documented chain.", body: "Useful traceability describes which origin and custody details are recorded and can be checked." },
+  { label: "03 / Claim boundaries", title: "State what is still unknown.", body: "Environmental outcomes depend on local practices; missing evidence stays visible instead of becoming an assumed benefit." },
+]
+
 export default function SustainabilityPage() {
   return (
     <>
@@ -111,6 +117,9 @@ export default function SustainabilityPage() {
           "OCC separates documented practice from assumption and treats missing evidence as a boundary, not a blank to fill.",
         ]}
         sections={sections}
+        featureGrid={featureGrid}
+        practiceLabel="How OCC assesses claims"
+        practiceTitle="Evidence before declaration."
         closing={[
           "Documentation before declaration.",
           "For emerging origins and Fine Robusta in particular, careful claim boundaries are more useful than generic sustainability language.",
