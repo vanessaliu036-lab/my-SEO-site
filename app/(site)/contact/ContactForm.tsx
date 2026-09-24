@@ -60,21 +60,60 @@ export default function ContactForm() {
   return (
     <div className="occ-contact-page">
       <section className="occ-contact-hero">
-        <div className="occ-contact-hero-inner">
-          <div className="occ-contact-eyebrow">CONTACT</div>
-          <h1>Start a conversation with OCC.</h1>
-          <p className="occ-contact-intro">
-            Wholesale, custom roasting, hotel partnerships and Cambodian coffee sourcing —
-            tell us what you&apos;re working on.
-          </p>
+        <div className="occ-contact-hero-grid">
+          <div className="occ-contact-hero-copy">
+            <div className="occ-contact-eyebrow">CONTACT</div>
+            <h1>Start a conversation with OCC.</h1>
+            <p className="occ-contact-intro">
+              Wholesale, custom roasting, hotel partnerships and Cambodian coffee sourcing —
+              tell us what you&apos;re working on.
+            </p>
+          </div>
+
+          <aside className="occ-contact-rail" aria-label="Direct contact">
+            <div className="occ-contact-rail-kicker">Direct Contact</div>
+
+            <div className="occ-contact-rail-item">
+              <span className="occ-contact-rail-label">Company Email</span>
+              <div className="occ-contact-rail-value">
+                <a href="mailto:service@origincafekh.com">service@origincafekh.com</a>
+              </div>
+            </div>
+
+            <div className="occ-contact-rail-item">
+              <span className="occ-contact-rail-label">Telegram</span>
+              <div className="occ-contact-rail-value">
+                <a
+                  href="https://t.me/+85514360479"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  +855 14 360 479
+                </a>
+              </div>
+            </div>
+
+            <div className="occ-contact-rail-item">
+              <span className="occ-contact-rail-label">Enquiries</span>
+              <div className="occ-contact-rail-note">
+                Wholesale · Roasting · Hotel · Distribution
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
       <section className="occ-contact-main" id="enquiry">
         <div className="occ-contact-form-card">
           <div className="occ-contact-form-heading">
-            <div className="occ-contact-section-no">Start an enquiry</div>
-            <p>Share the essentials. A short brief is enough.</p>
+            <div>
+              <div className="occ-contact-section-kicker">01 / Enquiry</div>
+              <h2>Tell us the essentials.</h2>
+            </div>
+            <p>
+              A short brief is enough. OCC will route your enquiry to the right
+              commercial conversation.
+            </p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -91,6 +130,7 @@ export default function ContactForm() {
                 {...register("website")}
               />
             </div>
+
             <div className="occ-contact-field-row">
               <div className="occ-contact-field">
                 <label htmlFor="name">Full Name</label>
@@ -217,20 +257,25 @@ export default function ContactForm() {
             )}
 
             <div className="occ-contact-submit-row">
-              <p>Your submission is saved to the OCC staff inbox before success is shown.</p>
+              <p>
+                Your submission is saved to the OCC commercial inbox before success is shown.
+              </p>
               <button type="submit" disabled={isPending}>
                 {isPending ? "Sending…" : <>Send Enquiry <span aria-hidden="true">→</span></>}
               </button>
             </div>
           </form>
         </div>
-        <div className="occ-contact-direct">
-          <span>Prefer direct contact?</span>
-          <a href="mailto:service@origincafekh.com">service@origincafekh.com</a>
-          <span>·</span>
-          <a href="https://t.me/+85514360479" target="_blank" rel="noopener noreferrer">Telegram +855 14 360 479</a>
+
+        <div className="occ-contact-brand-strip">
+          <div className="occ-contact-brand-group">
+            <span><strong>Origin</strong> Cambodia</span>
+            <span><strong>Focus</strong> Fine Robusta · B2B</span>
+          </div>
+          <span>Origin Coffee Cambodia</span>
         </div>
       </section>
+
       {isSuccess && (
         <div
           role="dialog"
