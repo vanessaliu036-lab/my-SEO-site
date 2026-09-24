@@ -127,7 +127,7 @@ export default function RoastingProgramPage() {
           <h2 className="extended-heading" id="roasting-faq-title">Commercial details, kept explicit.</h2>
           <div className="faq-grid">{faqs.map((faq) => <article className="faq-card" key={faq.q}><h3>{faq.q}</h3><p>{faq.a}</p></article>)}</div>
         </section>
-        <p className="extended-intro">Bring the commercial goal, intended application, market context, current coffee if relevant, and the experience the finished product needs to create. The roast profile can be developed from there. <a href="/contact">Develop Your Roast Profile →</a></p>
+        <p className="extended-intro">Bring the commercial goal, intended application, market context, current coffee if relevant, and the experience the finished product needs to create. The roast profile can be developed from there.</p>
       </OccCommercialHtmlLayout>
     </>
   )

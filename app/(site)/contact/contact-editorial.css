@@ -414,7 +414,7 @@
   padding: 16px 22px;
   border: 0;
   background: var(--contact-wine);
-  color: var(--contact-ivory);
+  color: #fff;
   cursor: pointer;
   font: 700 10px var(--occ-font-body), Inter, system-ui, sans-serif;
   letter-spacing: .16em;
@@ -464,14 +464,14 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: #292424;
-  color: var(--contact-ivory);
+  background: #f2ede7;
+  color: #292424;
   text-align: center;
 }
 
 .occ-contact-success > p {
   margin: 0 0 22px;
-  color: rgba(242, 237, 231, .62);
+  color: rgba(41, 36, 36, .62);
   font-size: 10px;
   letter-spacing: .25em;
   text-transform: uppercase;
@@ -487,7 +487,7 @@
 
 .occ-contact-success > div {
   margin-bottom: 34px;
-  color: rgba(242, 237, 231, .72);
+  color: rgba(41, 36, 36, .72);
   font-size: 14px;
 }
 

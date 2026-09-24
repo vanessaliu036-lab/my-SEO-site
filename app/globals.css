@@ -48,12 +48,13 @@
     --occ-burgundy: #984650;
     --occ-secondary: #685f5b;
     --occ-brand-surface: #e9e1da;
-    --occ-brand-background: #f2ede7;
+    --occ-page-background: #f2ede7;
+    --occ-brand-background: var(--occ-page-background);
     --occ-ink: #292424;
     --occ-olive: #292424;
     --occ-logo-burgundy: #984650;
     --occ-forest: #393235;
-    --occ-ivory: #f2ede7;
+    --occ-ivory: var(--occ-page-background);
     --occ-stone: #d8cec5;
     --occ-accent: var(--occ-burgundy);
     --occ-surface: #e9e1da;
@@ -102,7 +103,7 @@
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: var(--occ-ivory);
+    background: var(--occ-page-background);
     text-wrap: pretty;
     overflow-x: clip;
   }
@@ -203,8 +204,8 @@
   }
 
   .occ-pill:hover {
+    transform: translateY(-2px);
     background: #843b45;
-    color: var(--occ-brand-background);
   }
 
   .occ-primary-cta {
@@ -460,9 +461,77 @@
 
 /* Cross-page visual normalization: one OCC canvas, one accent, controlled media. */
 .occ-site-main {
-  background: var(--occ-ivory);
+  background: var(--occ-page-background);
   color: var(--occ-ink);
   overflow-x: clip;
+}
+
+/* Use the Cambodia regions ivory canvas across every public page. */
+.occ-site-main section.bg-occ-surface {
+  background-color: var(--occ-page-background) !important;
+}
+
+/* Replace forest-green panels with the shared canvas while keeping each layout intact. */
+.occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]) {
+  background-color: var(--occ-page-background) !important;
+  color: var(--occ-ink) !important;
+}
+
+.occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]):not(:has([role="img"])) [class*="text-white"],
+.occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]):not(:has([role="img"])) [class*="text-occ-background"],
+.occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]):not(:has([role="img"])) [class*="text-occ-surface"] {
+  color: rgba(41, 36, 36, 0.76) !important;
+}
+
+.occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]) [class*="border-white"] {
+  border-color: var(--occ-line) !important;
+}
+
+.occ-site-main a[class~="bg-occ-primary"],
+.occ-site-main button[class~="bg-occ-primary"],
+.occ-site-main [class~="bg-occ-primary"] a[class*="bg-occ-background"],
+.occ-site-main [class~="bg-occ-primary"] button[class*="bg-occ-background"],
+.occ-site-main [class~="bg-occ-primary"] a[class*="rounded-full"] {
+  border-color: var(--occ-burgundy) !important;
+  border-radius: 0 !important;
+  background-color: var(--occ-burgundy) !important;
+  color: var(--occ-page-background) !important;
+}
+
+/* Keep photo overlays neutral instead of green-tinted. */
+.occ-site-main [class~="bg-occ-primary/20"] { background-color: rgb(20 20 20 / 20%) !important; }
+.occ-site-main [class~="bg-occ-primary/28"] { background-color: rgb(20 20 20 / 28%) !important; }
+.occ-site-main [class~="bg-occ-primary/30"] { background-color: rgb(20 20 20 / 30%) !important; }
+.occ-site-main [class~="bg-occ-primary/58"] { background-color: rgb(20 20 20 / 58%) !important; }
+.occ-site-main [class*="from-occ-primary"] { --tw-gradient-from: #292424 var(--tw-gradient-from-position) !important; }
+.occ-site-main [class*="via-occ-primary"] { --tw-gradient-via: #292424 var(--tw-gradient-via-position) !important; }
+.occ-site-main [class*="to-occ-primary"] { --tw-gradient-to: #292424 var(--tw-gradient-to-position) !important; }
+
+.occ-site-final-cta {
+  border-color: var(--occ-line) !important;
+  background-color: var(--occ-page-background) !important;
+  color: var(--occ-ink) !important;
+}
+
+.occ-site-final-cta a[class*="border"] {
+  border-color: var(--occ-burgundy) !important;
+  border-radius: 0 !important;
+}
+
+.occ-site-main .occ-page-final-cta a[href="/contact"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  border: 1px solid var(--occ-burgundy) !important;
+  border-radius: 0 !important;
+  background-color: var(--occ-burgundy) !important;
+  color: var(--occ-page-background) !important;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+}
+
+.occ-site-main .occ-commercial-html .page {
+  background-color: var(--occ-page-background) !important;
 }
 
 .occ-site-main p {

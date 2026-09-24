@@ -53,6 +53,18 @@ function getCta(pathname: string): CtaConfig {
     }
   }
 
+  if (pathname === "/solutions/roasting-program") {
+    return {
+      eyebrow: "B2B Roast Profile Development",
+      title: "Your market. Your customer. Your roast profile.",
+      copy: "Tell us about your market, customer, brewing application, and the coffee product you want to develop.",
+      primaryLabel: "Develop Your Roast Profile",
+      primaryHref: "/contact",
+      secondaryLabel: "Wholesale Coffee",
+      secondaryHref: "/solutions/wholesale",
+    }
+  }
+
   if (pathname.startsWith("/solutions")) {
     return {
       eyebrow: "Build Your Coffee Program",
@@ -62,6 +74,18 @@ function getCta(pathname: string): CtaConfig {
       primaryHref: "/contact",
       secondaryLabel: "Wholesale Coffee",
       secondaryHref: "/solutions/wholesale",
+    }
+  }
+
+  if (pathname === "/brand-gifting") {
+    return {
+      eyebrow: "Work With OCC",
+      title: "Bring Cambodian coffee into your next program.",
+      copy: "Tell us about your business, market, coffee application, and what you need to evaluate next.",
+      primaryLabel: "Contact OCC",
+      primaryHref: "/contact",
+      secondaryLabel: "Explore Solutions",
+      secondaryHref: "/solutions",
     }
   }
 
@@ -103,18 +127,18 @@ export function SiteFinalCta() {
   const cta = getCta(pathname)
 
   return (
-    <section className="border-t border-occ-primary/10 bg-occ-surface-soft text-occ-primary" aria-label="Work with Origin Coffee Cambodia">
+    <section className="occ-site-final-cta border-t border-occ-primary/10 bg-occ-background text-occ-primary" aria-label="Work with Origin Coffee Cambodia">
       <div className="mx-auto grid w-full max-w-[1360px] grid-cols-1 gap-10 px-6 py-16 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:py-20">
         <div className="md:col-span-2">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-occ-secondary">{cta.eyebrow}</p>
-          <span className="mt-4 block h-px w-10 bg-occ-burgundy/50" aria-hidden="true" />
+          <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-occ-burgundy">{cta.eyebrow}</p>
+          <span className="mt-4 block h-px w-10 bg-occ-burgundy/40" aria-hidden="true" />
         </div>
         <div className="md:col-span-9 md:col-start-4">
           <h2 className="max-w-[900px] font-[var(--font-display)] text-[clamp(2.4rem,4.8vw,5.2rem)] font-light leading-[0.92] tracking-[-0.04em] text-occ-primary">
             {cta.title}
           </h2>
-          <div className="mt-7 grid grid-cols-1 gap-6 border-t border-occ-primary/15 pt-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10">
-            <p className="max-w-[720px] text-[15px] leading-7 text-occ-secondary">{cta.copy}</p>
+          <div className="mt-7 grid grid-cols-1 gap-6 border-t border-occ-primary/16 pt-6 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10">
+            <p className="max-w-[720px] text-[15px] leading-7 text-occ-primary/68">{cta.copy}</p>
             <div className="flex flex-wrap">
               <Link
                 href={cta.primaryHref}
