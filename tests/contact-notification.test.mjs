@@ -6,6 +6,7 @@ const enquiry = {
   name: 'Buyer <A>',
   company: 'QA Hotel',
   email: 'buyer@example.test',
+  phone: '+855 12 345 678',
   country: 'Cambodia',
   service: 'Wholesale / Sourcing',
   projectStage: 'Ready to order',
@@ -31,6 +32,7 @@ test('contact notification carries commercial qualification fields and safe repl
   assert.equal(payload.reply_to, 'buyer@example.test')
   assert.match(payload.html, /QA Hotel/)
   assert.match(payload.html, /Ready to order/)
+  assert.match(payload.html, /\+855 12 345 678/)
   assert.match(payload.html, /Buyer &lt;A&gt;/)
   assert.doesNotMatch(payload.html, /<details>/)
 })
