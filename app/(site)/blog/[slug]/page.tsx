@@ -89,6 +89,7 @@ const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set([
   "what-cambodian-coffee-should-you-try-first",
   "ratanakiri-coffee-cambodias-other-highland-origin",
   "best-cambodian-coffee-beans-robusta-quality-guide",
+  "cambodia-robusta-growing-regions",
 ])
 
 const ROBUSTA_SUPPORT_SLUG_PATTERN =
@@ -151,13 +152,22 @@ const CAMBODIA_COFFEE_TOPIC_OWNER_LABELS: Record<string, string> = {
 }
 
 const CAMBODIA_REGIONS_HREF = "/origins/cambodia-regions"
+const CAMBODIA_ROBUSTA_HREF = "/blog/cambodia-specialty-robusta-coffee-guide"
+const CAMBODIA_ROBUSTA_REGIONS_OWNER_SLUG = "cambodia-robusta-growing-regions"
+
+const CAMBODIA_GEOGRAPHY_SUPPORT_SLUGS = new Set([
+  "where-is-coffee-grown-in-cambodia",
+  "is-cambodian-coffee-grown-in-cambodia",
+  "does-cambodia-grow-coffee-mondulkiri-origin",
+  "cambodia-coffee-regions",
+])
+
 const REGIONAL_SPECIALIST_LABELS: Record<string, string> = {
   "mondulkiri-next-specialty-coffee-origin": "Mondulkiri",
   "ratanakiri-coffee-cambodias-other-highland-origin": "Ratanakiri",
 }
 
 const CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS = new Set([
-  "where-is-coffee-grown-in-cambodia",
   "cambodia-coffee-export-without-commodity-model",
   "the-history-of-coffee-growing-in-cambodia",
   "cambodian-coffee-vs-jamaica-blue-mountain",
@@ -270,10 +280,25 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     anchor: "Fine Robusta Cambodia guide",
     lead: "For the Cambodia-specific comparison point, see the",
   },
+  "where-is-coffee-grown-in-cambodia": {
+    href: CAMBODIA_REGIONS_HREF,
+    anchor: "Cambodia coffee regions guide",
+    lead: "For the country-level map of where Cambodian coffee is grown, start with the",
+  },
   "is-cambodian-coffee-grown-in-cambodia": {
-    href: ROBUSTA_PILLAR_HREF,
-    anchor: "Fine Robusta Cambodia guide",
-    lead: "For the broader Fine Robusta origin guide, see the",
+    href: CAMBODIA_REGIONS_HREF,
+    anchor: "Cambodia coffee regions guide",
+    lead: "For the country-level origin and growing-region framework, see the",
+  },
+  "does-cambodia-grow-coffee-mondulkiri-origin": {
+    href: CAMBODIA_REGIONS_HREF,
+    anchor: "Cambodia coffee regions guide",
+    lead: "For the broader country and regional geography, start with the",
+  },
+  "cambodia-coffee-regions": {
+    href: CAMBODIA_REGIONS_HREF,
+    anchor: "Cambodia coffee regions guide",
+    lead: "For OCC’s canonical country and regional geography, use the",
   },
   "fine-robusta-grading-standards-cqi-certification-for-cambodia": {
     href: "/blog/fine-robusta-grading-verify-before-cupping",
@@ -756,7 +781,13 @@ export default async function BlogPostPage({
   const formattedContent = formatContent(post.content, post.title, post.slug)
   const headerSummary = headerSummaryForPost(post)
   const isCambodiaCoffeeSupport = CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS.has(post.slug)
-  const showRobustaPillarLink = shouldLinkToRobustaPillar(post.slug) && !isCambodiaCoffeeSupport
+  const isCambodiaGeographySupport = CAMBODIA_GEOGRAPHY_SUPPORT_SLUGS.has(post.slug)
+  const isCambodiaRobustaRegionsOwner = post.slug === CAMBODIA_ROBUSTA_REGIONS_OWNER_SLUG
+  const showRobustaPillarLink =
+    shouldLinkToRobustaPillar(post.slug) &&
+    !isCambodiaCoffeeSupport &&
+    !isCambodiaGeographySupport &&
+    !isCambodiaRobustaRegionsOwner
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
   const robustaTopicOwnerLabel = ROBUSTA_TOPIC_OWNER_LABELS[post.slug]
   const isCambodiaCoffeePillar = post.slug === CAMBODIA_COFFEE_PILLAR_SLUG
@@ -908,6 +939,44 @@ export default async function BlogPostPage({
                 ))}
               </div>
             </section>
+          )}
+
+          {isCambodiaGeographySupport && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Geography guide</p>
+              <Link
+                href={CAMBODIA_REGIONS_HREF}
+                className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+              >
+                Cambodia coffee regions guide →
+              </Link>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                This page answers a narrower growing-location or origin-evidence question. Use Cambodia & Regions for the broad country, highlands, and regional-geography framework.
+              </p>
+            </aside>
+          )}
+
+          {isCambodiaRobustaRegionsOwner && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-y border-stone-200 py-5">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Species × geography owner</p>
+              <div className="flex flex-wrap gap-x-6 gap-y-3">
+                <Link
+                  href={CAMBODIA_REGIONS_HREF}
+                  className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+                >
+                  Cambodia coffee regions guide →
+                </Link>
+                <Link
+                  href={CAMBODIA_ROBUSTA_HREF}
+                  className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+                >
+                  Robusta Cambodia guide →
+                </Link>
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                This article owns the narrow Cambodia Robusta growing-regions question. Country geography and general Cambodia Robusta remain separate owner families.
+              </p>
+            </aside>
           )}
 
           {regionalSpecialistLabel && (
