@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="light" name="color-scheme"/>
+<meta content="#f5f1ea" name="theme-color"/>
+<meta content="Explore Cambodian coffee partnerships with OCC: brand and gifting experiences with ARUNERA, plus distribution opportunities for importers and retailers." name="description"/>
+<meta content="index,follow" name="robots"/>
+<!-- CONTENT PREVIEW ONLY. Do not copy the noindex directive into the production page. -->
+<title>Cambodian Coffee Partnerships | OCC</title>
+<style>
+    :root {
+      --cream:#F2EDE6; --paper:#FAF7F2; --taupe:#E9E1D8; --ink:#292424; --coffee:#292424;
+      --wine:#91434D; --wine-deep:#71323A; --muted:#6A6663; --line:rgba(55,38,32,.18);
+      --serif: "Iowan Old Style", "Baskerville", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --page: min(1480px, calc(100% - clamp(38px, 7vw, 136px)));
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    button,a{-webkit-tap-highlight-color:transparent}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--wine);outline-offset:5px}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    button{font:inherit}
+    ::selection{background:#E8D3D5;color:#292424}
+    .skip-link{position:absolute;left:16px;top:-70px;background:var(--paper);padding:13px 18px;z-index:99}
+    .skip-link:focus{top:16px}
+    .scroll-track{height:2px;position:fixed;top:0;left:0;right:0;z-index:120;pointer-events:none}
+    .scroll-track span{display:block;height:100%;width:0;background:var(--wine);will-change:width}
+    .wrap{width:var(--page);margin-inline:auto}
+    .eyebrow{font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:650;line-height:1.6}
+    .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.055em}
+    .muted{color:var(--muted)}
+    .rule{height:1px;background:var(--line)}
+    .arrow{font-size:18px;font-weight:400;line-height:1;display:inline-block;transition:transform .35s var(--ease)}
+    a:hover .arrow{transform:translate(3px,-3px)}
+    .link-line{display:inline-flex;align-items:center;justify-content:space-between;gap:23px;min-height:42px;border-bottom:1px solid currentColor;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+    .button{display:inline-flex;align-items:center;justify-content:space-between;gap:36px;min-height:54px;padding:0 24px;background:var(--wine);color:#fff;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;transition:background .25s,color .25s,transform .25s}
+    .button:hover{background:var(--wine-deep);transform:translateY(-2px)}
+    .button.light{background:var(--cream);color:var(--ink)}
+    .button.outline{background:transparent;border:1px solid rgba(250,245,238,.5);color:var(--cream)}
+    .button.outline:hover{background:rgba(255,255,255,.09)}
+    .site-header{height:76px;background:rgba(245,241,234,.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:90;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+    .head-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:25px}
+    .logo{width:125px;height:45px;display:flex;align-items:center;position:relative;flex-shrink:0}
+    .logo img{width:100%;height:44px;object-fit:contain;object-position:left center}
+    .logo-fallback{display:none;font:normal 28px/1 var(--serif);letter-spacing:-.05em}
+    .logo.no-image img{display:none}.logo.no-image .logo-fallback{display:block}
+    .nav{display:flex;align-items:center;gap:clamp(15px,2vw,32px);margin-left:auto}
+    .nav a{font-size:10px;white-space:nowrap;font-weight:650;letter-spacing:.13em;text-transform:uppercase;position:relative}
+    .nav a:not(.nav-contact)::after{content:"";position:absolute;bottom:-9px;left:0;width:0;height:1px;background:var(--wine);transition:width .3s}
+    .nav a:hover::after{width:100%}
+    .nav .nav-contact{color:var(--wine);border-bottom:1px solid var(--wine);padding-bottom:7px}
+    .menu-button{display:none;width:40px;height:40px;padding:10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+    .menu-button span{display:block;height:1px;background:currentColor;margin:5px 0}
+    .preview-tag{position:fixed;z-index:80;left:18px;bottom:calc(18px + env(safe-area-inset-bottom));background:rgba(245,241,234,.95);border:1px solid rgba(62,43,35,.22);padding:11px 14px;color:var(--wine);box-shadow:0 8px 30px rgba(38,29,21,.12);font-size:9px;font-weight:750;letter-spacing:.18em;pointer-events:none}
+    .media{position:relative;overflow:hidden;background:#6A6663}
+    .media img{position:absolute;inset:0;object-fit:cover;transition:transform 1.15s var(--ease),opacity .4s}
+    .media:hover img{transform:scale(1.045)}
+    .media::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(30,19,15,.22),transparent 53%);pointer-events:none}
+    .media[data-image-status="missing"]{background:linear-gradient(130deg,#6A6663,#8A746D 58%,#292424)}
+    .media[data-image-status="missing"]::after{content:"OCC ORIGINAL IMAGE · INTERNET REQUIRED";position:absolute;inset:auto 16px 20px;z-index:3;font:600 10px/1.6 var(--sans);color:#F2EDE6;letter-spacing:.18em;overflow-wrap:anywhere}
+    .media[data-image-status="missing"] img{opacity:0}
+    /* 01 · Editorial entry */
+    .hero{background:var(--coffee);color:var(--cream);min-height:690px;overflow:hidden;position:relative}
+    .hero::after{content:"";position:absolute;inset:auto -7% -26% auto;width:500px;height:500px;border:1px solid rgba(255,255,255,.07);border-radius:50%;pointer-events:none}
+    .hero-inner{padding:48px 0 90px;position:relative;z-index:2}
+    .hero-top{display:flex;align-items:center;justify-content:space-between;color:rgba(247,238,227,.62);padding-bottom:23px;border-bottom:1px solid rgba(255,255,255,.18)}
+    .hero-top .origin-mark{letter-spacing:.2em}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1.04fr) minmax(0,.58fr);gap:clamp(15px,2.8vw,42px);align-items:end;padding-top:clamp(35px,5vw,74px)}
+    .hero-copy{align-self:center;padding-bottom:18px;min-width:0}
+    .hero-copy .overline{display:flex;gap:12px;align-items:center;color:#E8D3D5}
+    .hero-copy .overline::before{content:"";height:1px;width:33px;background:#9C8074}
+    .hero h1{margin:30px 0 23px;font:normal clamp(53px,5.25vw,86px)/.94 var(--serif);letter-spacing:-.065em;max-width:650px}
+    .hero h1 em{display:block;font-size:.83em;font-weight:400;color:#E8D3D5;font-style:italic}
+    .hero-intro{max-width:340px;font-size:15px;line-height:1.9;color:rgba(249,242,232,.77);margin:28px 0 34px}
+    .hero .link-line{color:#E9E1D8}
+    .hero-photo{aspect-ratio:3/4.1;margin-bottom:0}
+    .hero-photo img{object-position:center}
+    .hero-side{display:flex;flex-direction:column;gap:25px;padding-bottom:22px}
+    .hero-side .media{aspect-ratio:3/4.7}
+    .side-caption{font-size:10px;text-transform:uppercase;letter-spacing:.22em;line-height:1.8;color:rgba(255,255,255,.57)}
+    .hero-footer{display:flex;justify-content:space-between;align-items:center;margin-top:39px;font-size:10px;letter-spacing:.18em;color:rgba(250,244,236,.46)}
+    .hero-footer .down{font-size:22px}
+    /* 02 · Routes */
+    .routes{padding:clamp(64px,7vw,100px) 0 92px;background:var(--cream)}
+    .section-index{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid var(--line);padding-top:20px;color:var(--wine)}
+    .section-head{display:grid;grid-template-columns:.95fr 1.05fr;align-items:end;gap:44px;margin:30px 0 46px}
+    .section-head h2{margin:0;font-size:clamp(49px,6vw,94px);line-height:.95;max-width:760px}
+    .section-head h2 em{color:var(--wine);font-weight:400}
+    .section-head p{max-width:370px;margin:0 0 5px auto;font-size:15px;line-height:1.9;color:var(--muted)}
+    .route-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,56px);align-items:start}
+    .route-card{position:relative}
+    .route-card:nth-child(2){margin-top:52px}
+    .route-card .media{aspect-ratio:1.08;border:1px solid var(--line)}
+    .route-detail{display:flex;justify-content:space-between;align-items:start;gap:20px;border-top:1px solid var(--line);margin-top:21px;padding-top:23px}
+    .route-detail .number{font-family:var(--serif);font-size:19px;color:var(--wine);font-style:italic}
+    .route-text{flex:1;max-width:500px}
+    .route-text h3{margin:0 0 14px;font:normal clamp(34px,3.9vw,62px)/1 var(--serif);letter-spacing:-.06em}
+    .route-text p{color:var(--muted);font-size:14px;line-height:1.85;max-width:390px;margin:0 0 19px}
+    .route-text .link-line{color:var(--wine)}
+    /* 03 · Photo pause */
+    .manifesto{background:var(--paper);padding:105px 0;overflow:hidden}
+    .manifesto-grid{display:grid;grid-template-columns:.76fr 1.1fr;gap:10%;align-items:center}
+    .manifesto-text{padding:36px 0 36px 3%}
+    .manifesto h2{font-size:clamp(47px,5.5vw,84px);line-height:1.01;margin:26px 0}
+    .manifesto h2 em{color:var(--wine)}
+    .manifesto p{max-width:390px;font-size:15px;line-height:1.95;color:var(--muted)}
+    .manifesto .media{aspect-ratio:1.2}
+    .manifesto .caption{padding-top:15px;text-align:right;font-size:9px;letter-spacing:.22em;color:var(--muted)}
+    /* 04 · Experience mosaic */
+    .experiences{padding:115px 0 145px;background:var(--taupe)}
+    .experiences .section-head{margin-bottom:50px}
+    .format-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2vw,30px);align-items:stretch}
+    .format-card{display:flex;flex-direction:column;border:1px solid var(--line);background:rgba(255,255,255,.16);min-height:100%}
+    .format-card .media{aspect-ratio:1.06;border-bottom:1px solid var(--line)}
+    .format-body{padding:22px 22px 26px}
+    .format-card .label-row{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(74,47,42,.12)}
+    .format-card .label-row span{font:italic 18px var(--serif);color:var(--wine)}
+    .format-card h3{font:normal clamp(28px,3vw,43px)/1.04 var(--serif);letter-spacing:-.05em;margin:0}
+    .format-intro{font-size:14px;line-height:1.8;color:var(--text);margin:16px 0 0}
+    .format-meta{display:grid;gap:16px;margin-top:20px}
+    .format-block{padding-top:14px;border-top:1px solid rgba(74,47,42,.12)}
+    .format-block .eyebrow{color:var(--wine)}
+    .format-block p{font-size:13px;line-height:1.75;color:var(--muted);margin:8px 0 0}
+    .format-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+    .format-list li{position:relative;padding-left:15px;font-size:13px;line-height:1.7;color:var(--muted)}
+    .format-list li::before{content:"—";position:absolute;left:0;color:var(--wine)}
+    .format-note{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0 24px;margin-top:42px}
+    .format-note p{max-width:690px;font-size:13px;line-height:1.85;color:var(--muted);margin:0}
+    .format-note .eyebrow{color:var(--wine);text-align:right;max-width:280px}
+    /* 05 · Dual brand architecture */
+    .brands{background:var(--wine-deep);color:var(--cream);padding:clamp(95px,10vw,160px) 0;position:relative;overflow:hidden}
+    .brands::before{content:"";position:absolute;width:570px;height:570px;border-radius:50%;border:1px solid rgba(255,255,255,.11);right:-150px;top:-200px}
+    .brands .section-index{border-color:rgba(255,255,255,.22);color:#E8D3D5;position:relative}
+    .brands-head{text-align:center;margin:70px auto 85px;max-width:980px;position:relative}
+    .brands-head h2{font-size:clamp(57px,9.2vw,150px);line-height:.87;margin:20px 0 0}
+    .brands-head h2 em{font-weight:400;color:#E8D3D5}
+    .brand-diagram{display:grid;grid-template-columns:1fr 60px 1fr;max-width:990px;margin:0 auto;align-items:center;border-top:1px solid rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.3);padding:43px 0;gap:25px}
+    .brand-side{padding:12px 0}
+    .brand-side:last-child{text-align:right}
+    .brand-name{display:block;font:normal clamp(43px,6vw,79px)/1 var(--serif);letter-spacing:-.06em}
+    .brand-side p{font-size:13px;line-height:1.8;color:rgba(250,242,230,.62);max-width:330px;margin:16px 0 0}
+    .brand-side:last-child p{margin-left:auto}
+    .brand-plus{font:normal 38px/1 var(--serif);text-align:center;color:#E8D3D5}
+    .brand-bottom{max-width:670px;margin:46px auto 0;text-align:center;color:rgba(251,243,233,.74);font-size:15px;line-height:1.95}
+    .brands .link-line{display:flex;max-width:max-content;margin:30px auto 0;color:#E8D3D5}
+    /* 06 · Process */
+    .process{background:var(--paper);padding:115px 0 130px}
+    .process-title{font-size:clamp(58px,7vw,108px);line-height:.95;margin:35px 0 66px;max-width:950px}
+    .process-title em{color:var(--wine)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .step{padding:36px clamp(15px,3vw,44px) 55px;min-height:290px;border-right:1px solid var(--line)}
+    .step:first-child{padding-left:0}.step:last-child{border-right:0;padding-right:0}
+    .step-num{font:italic 23px/1 var(--serif);color:var(--wine)}
+    .step h3{font:normal clamp(32px,3vw,46px)/1.05 var(--serif);letter-spacing:-.055em;margin:60px 0 17px}
+    .step p{max-width:280px;font-size:14px;line-height:1.9;color:var(--muted);margin:0}
+    .process-foot{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:35px;font-size:13px;line-height:1.9;color:var(--muted)}
+    .process-foot p{max-width:700px;margin:0}
+    .process-foot a{color:var(--wine);flex-shrink:0}
+    /* 07 · CTA */
+    .contact{background:var(--coffee);color:var(--cream);position:relative;overflow:hidden}
+    .contact-bg{position:absolute;inset:0;opacity:.19}
+    .contact-bg .media{height:100%;width:100%}
+    .contact-bg .media::before{background:#261a15b9}
+    .contact-bg img{object-position:center 44%}
+    .contact-inner{position:relative;z-index:2;padding:110px 0 125px}
+    .contact h2{font-size:clamp(63px,8.2vw,138px);max-width:1050px;line-height:.91;margin:25px 0 32px}
+    .contact h2 em{color:#E8D3D5}
+    .contact p{font-size:16px;max-width:540px;line-height:1.8;color:rgba(255,255,255,.76);margin-bottom:35px}
+    .cta-actions{display:flex;flex-wrap:wrap;gap:14px}
+    .contact-small{margin-top:73px;padding-top:20px;border-top:1px solid rgba(255,255,255,.21);display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.55);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+    .site-footer{background:var(--cream);padding:35px 0 38px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:30px;color:var(--muted);font-size:11px;line-height:1.7}
+    .footer-inner strong{color:var(--wine);letter-spacing:.18em;font-size:11px}
+    .footer-inner a{text-decoration:underline;text-underline-offset:4px}
+    /* Scroll choreography: no hidden content without JS */
+    .js-ready .reveal{opacity:0;transform:translateY(35px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+    .js-ready .reveal.in-view{opacity:1;transform:translateY(0)}
+    .js-ready .reveal.delay-1{transition-delay:.11s}
+    .js-ready .reveal.delay-2{transition-delay:.22s}
+    .js-ready .reveal.delay-3{transition-delay:.33s}
+    .image-shift{will-change:transform}
+    @media(max-width:1100px){
+      .hero-grid{grid-template-columns:1.05fr 1fr .6fr;gap:18px}
+      .hero h1{font-size:clamp(51px,6.1vw,70px)}
+      .hero-inner{padding-bottom:72px}
+      .brand-diagram{gap:15px}
+    }
+    @media (max-width: 900px){
+      :root{--page:calc(100% - 68px)}
+      .site-header{height:70px}
+      .nav{gap:15px}.nav a{font-size:9px;letter-spacing:.09em}
+      .logo{width:98px}
+      .hero{min-height:unset}.hero-inner{padding:34px 0 58px}
+      .hero-grid{grid-template-columns:1fr 1fr;gap:24px;padding-top:45px;align-items:center}
+      .hero-copy{grid-column:1;grid-row:1;padding:0}
+      .hero-photo{grid-column:2;grid-row:1;aspect-ratio:3/4}
+      .hero-side{display:none}
+      .hero h1{font-size:clamp(53px,7.2vw,67px)}
+      .hero-footer{margin-top:30px}
+      .section-head{gap:22px;margin:30px 0 44px}
+      .section-head h2{font-size:clamp(51px,6vw,75px)}
+      .routes{padding:90px 0}
+      .route-grid{gap:28px}
+      .route-card:nth-child(2){margin-top:34px}
+      .route-text h3{font-size:clamp(34px,4vw,47px)}
+      .manifesto{padding:85px 0}.manifesto-grid{gap:6%}
+      .experiences{padding:88px 0 95px}
+      .format-grid{gap:18px}
+      .format-body{padding:18px 18px 22px}
+      .format-card h3{font-size:29px}
+      .format-note{gap:16px}
+      .brands,.process{padding:85px 0 95px}
+      .step h3{margin-top:45px}
+      .step{min-height:300px}
+      .contact-inner{padding:90px 0 90px}
+    }
+    @media (max-width: 700px){
+      .nav{display:none;position:absolute;top:70px;left:0;right:0;z-index:95;background:var(--cream);padding:24px 34px 32px;box-shadow:0 20px 25px rgba(32,20,14,.12);flex-direction:column;align-items:stretch;gap:25px}
+      .nav.is-open{display:flex}.nav a{font-size:12px}
+      .menu-button{display:block;margin-left:auto}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-copy{grid-column:auto;grid-row:1}
+      .hero-photo{grid-column:auto;grid-row:2;aspect-ratio:5/4}
+      .hero h1{font-size:clamp(54px,9vw,67px);max-width:600px}
+      .hero-intro{max-width:500px}
+      .section-head,.manifesto-grid{grid-template-columns:1fr}
+      .section-head p{margin:0;max-width:470px}
+      .manifesto-text{padding:0}
+      .route-grid{grid-template-columns:1fr;gap:48px}
+      .route-card:nth-child(2){margin-top:0}
+      .route-card .media,.route-card:nth-child(2) .media{aspect-ratio:1.26}
+      .format-grid{grid-template-columns:1fr;gap:22px}
+      .format-card .media{aspect-ratio:1.28}
+      .format-note{flex-direction:column;align-items:flex-start}
+      .format-note .eyebrow{text-align:left;max-width:none}
+      .brand-diagram{grid-template-columns:1fr 35px 1fr;gap:9px}
+      .brand-side p{font-size:12px}.brand-name{font-size:49px}
+      .steps{grid-template-columns:1fr}
+      .step,.step:first-child,.step:last-child{min-height:0;padding:30px 0 38px;border-right:0;border-bottom:1px solid var(--line)}
+      .step:last-child{border-bottom:0}
+      .step h3{margin-top:25px}
+      .step p{max-width:500px}
+      .process-foot{align-items:start;flex-direction:column}
+    }
+    @media (max-width: 600px){
+      :root{--page:calc(100% - 40px)}
+      html{scroll-padding-top:70px}
+      .site-header{height:65px}.nav{top:65px}.head-inner{gap:12px}
+      .logo{width:102px;height:40px}
+      .hero-top .origin-mark{display:none}
+      .hero-inner{padding:26px 0 45px}
+      .hero-grid{padding-top:35px;gap:35px}
+      .hero h1{font-size:clamp(47px,11.6vw,61px);margin:19px 0}
+      .hero-intro{margin:20px 0 21px;font-size:14px}
+      .hero-photo{aspect-ratio:1.15}
+      .hero-footer{font-size:8px;margin-top:19px}
+      .routes,.manifesto,.experiences,.brands,.process{padding:69px 0 79px}
+      .section-head{margin:27px 0 36px;gap:16px}
+      .section-head h2{font-size:clamp(49px,12vw,70px)}
+      .section-head p{font-size:14px}
+      .route-grid{gap:38px}
+      .route-card .media,.route-card:nth-child(2) .media{aspect-ratio:1.1}
+      .route-detail{gap:15px}
+      .route-text h3{font-size:37px}
+      .manifesto h2{font-size:57px}
+      .manifesto-grid{gap:27px}
+      .format-grid{grid-template-columns:1fr;gap:18px}
+      .format-card .media{aspect-ratio:1.05}
+      .format-card h3{font-size:36px}
+      .format-intro,.format-block p,.format-list li{font-size:14px}
+      .format-note{margin-top:32px;padding:18px 0 20px}
+      .quiet-line{margin-top:45px;line-height:1.9}
+      .brands-head{margin:45px auto 49px}
+      .brands-head h2{font-size:clamp(62px,13vw,89px)}
+      .brand-diagram{grid-template-columns:1fr;padding:30px 0;gap:20px}
+      .brand-side,.brand-side:last-child{text-align:left}
+      .brand-side:last-child p{margin-left:0}
+      .brand-plus{text-align:left;margin-left:2px}
+      .brand-name{font-size:55px}
+      .process-title{font-size:66px;margin:31px 0 37px}
+      .contact-inner{padding:72px 0 65px}
+      .contact h2{font-size:clamp(65px,13vw,88px)}
+      .contact p{font-size:14px}
+      .cta-actions{flex-direction:column;align-items:stretch}
+      .cta-actions .button{width:100%}
+      .contact-small{flex-direction:column;margin-top:50px}
+      .footer-inner{flex-direction:column;align-items:start;gap:15px}
+      .preview-tag{font-size:8px;left:10px;bottom:calc(9px + env(safe-area-inset-bottom));padding:9px 10px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .js-ready .reveal{opacity:1;transform:none;transition:none}
+      .image-shift{transform:none!important;will-change:auto}
+      .media img,.arrow,.button{transition:none!important}
+    }
+  </style>
+<style id="occ-unified-brand-style">
+:root {
+  --occ-canvas: #F2EDE6;
+  --occ-surface: #FAF7F2;
+  --occ-ink: #292424;
+  --occ-muted: #6A6663;
+  --occ-wine: #91434D;
+  --occ-wine-deep: #71323A;
+  --occ-on-dark: #F2EDE6;
+  --occ-on-dark-muted: #E0D7D0;
+  --occ-line: #D9D0C7;
+  --cream: var(--occ-canvas); --paper: var(--occ-surface); --paper2: #E9E1D8;
+  --bg: var(--occ-canvas); --soft: #E9E1D8; --taupe: #E9E1D8;
+  --ink: var(--occ-ink); --coffee: var(--occ-ink); --muted: var(--occ-muted);
+  --wine: var(--occ-wine); --wine-deep: var(--occ-wine-deep);
+  --red: var(--occ-wine); --accent: var(--occ-wine); --rule: var(--occ-line);
+  --line: var(--occ-line);
+  color-scheme: light;
+}
+html, body { background-color: var(--occ-canvas) !important; color: var(--occ-ink) !important; }
+body { font-family: Arial, Helvetica, sans-serif !important; font-size: 16px !important; }
+h1, h2, h3, .display, .serif, .hero-lead, .origin-quote {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  color: var(--occ-ink) !important;
+}
+h1 { font-size: clamp(46px, 5vw, 76px) !important; line-height: 1 !important; font-weight: 400 !important; }
+h2 { font-size: clamp(30px, 3.1vw, 44px) !important; line-height: 1.12 !important; font-weight: 400 !important; }
+h3 { font-size: clamp(22px, 2.05vw, 29px) !important; line-height: 1.16 !important; font-weight: 400 !important; }
+p, .hero-desc, .hero-support, .hero-intro, .section-head p, .origin-copy p,
+.chapter-copy p, .feature p, .approach-note, .faq-answer, .step p,
+.audience-copy p, .cta p, .rhythm-note, figcaption {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important; line-height: 1.7 !important;
+  color: var(--occ-muted) !important;
+}
+.hero-lead, .origin-quote { font-size: clamp(22px, 2.1vw, 28px) !important; line-height: 1.25 !important; }
+.eyebrow, .small, .chapter-nav-label, .hero-sub, .chapter-number {
+  color: var(--occ-wine) !important; font-size: 12px !important;
+  font-weight: 700 !important; letter-spacing: .16em !important;
+}
+a:hover, .text-link:hover, .jump:hover, .nav-contact, .logo b, .brand-word span,
+.hero h1 em, .origin-mark strong, .faq-plus, .step-num { color: var(--occ-wine) !important; }
+.primary, .button:not(.light):not(.outline), #back-to-top { background-color: var(--occ-wine) !important; }
+.primary:hover, .button:hover:not(.light):not(.outline) { background-color: var(--occ-wine-deep) !important; }
+::selection { background: #E8D3D5 !important; color: var(--occ-ink) !important; }
+:focus-visible { outline-color: var(--occ-wine) !important; }
+html[data-occ-page="mission"] .bottom-cta :is(h1,h2,h3,p,.eyebrow,.text-link),
+html[data-occ-page="mission"] .site-footer { color: var(--occ-on-dark) !important; }
+html[data-occ-page="mission"] .bottom-cta .eyebrow { color: #E4B9B4 !important; }
+html[data-occ-page="partners"] .hero :is(h1,h2,h3,p,.serif,.eyebrow,.overline,.hero-intro,.side-caption,.hero-footer,.hero-top,.link-line,.hero-copy) {
+  color: var(--occ-on-dark) !important;
+}
+html[data-occ-page="partners"] .hero :is(.eyebrow,.overline,.hero h1 em,.link-line:hover) { color: #E4B9B4 !important; }
+html[data-occ-page="partners"] .brands :is(h1,h2,h3,p,.eyebrow,.brand-name,.brand-plus,.brand-bottom) { color: var(--occ-on-dark) !important; }
+html[data-occ-page="partners"] .brands :is(.eyebrow,.brand-plus) { color: #E4B9B4 !important; }
+html[data-occ-page="partners"] .contact :is(h1,h2,h3,p,.eyebrow,.contact-small,.link-line) { color: var(--occ-on-dark) !important; }
+html[data-occ-page="partners"] .contact :is(.eyebrow,.contact-small) { color: #E4B9B4 !important; }
+</style>
+<style id="occ-premium-motion">
+:root { --occ-motion-ease: cubic-bezier(.2,.75,.22,1); --occ-motion-fast: 180ms; --occ-motion-mid: 520ms; --occ-motion-slow: 900ms; }
+@media (prefers-reduced-motion: no-preference) {
+  html.occ-motion-ready [data-occ-reveal] { opacity: 0; transform: translate3d(0, 22px, 0); transition: opacity 650ms var(--occ-motion-ease), transform 760ms var(--occ-motion-ease); }
+  html.occ-motion-ready [data-occ-reveal].is-in { opacity: 1; transform: none; }
+  html.occ-motion-ready [data-occ-reveal][data-occ-depth="2"] { transform: translate3d(0, 34px, 0); transition-delay: 70ms; }
+  html.occ-motion-ready [data-occ-reveal][data-occ-depth="3"] { transform: translate3d(0, 42px, 0); transition-delay: 140ms; }
+  html.occ-motion-ready .hero-copy > *, html.occ-motion-ready .hero-text > *, html.occ-motion-ready .hero-top,
+  html.occ-motion-ready .hero-side, html.occ-motion-ready .hero-footer { animation: occ-settle 760ms var(--occ-motion-ease) both; }
+  html.occ-motion-ready .hero-copy > :nth-child(2), html.occ-motion-ready .hero-text > :nth-child(2) { animation-delay: 90ms; }
+  html.occ-motion-ready .hero-copy > :nth-child(3), html.occ-motion-ready .hero-text > :nth-child(3) { animation-delay: 170ms; }
+  html.occ-motion-ready .hero-copy > :nth-child(4), html.occ-motion-ready .hero-text > :nth-child(4) { animation-delay: 240ms; }
+  html.occ-motion-ready .hero-photo img, html.occ-motion-ready .hero-media img, html.occ-motion-ready .hero-image img {
+    animation: occ-photo-reveal 1100ms cubic-bezier(.18,.77,.23,1) both;
+  }
+  .feature, .audience-card, .route-card, .format-card, .chapter, .beat, .step, .button, .primary, .text-link, .link-line, .jump {
+    transition-timing-function: var(--occ-motion-ease);
+  }
+  .feature:hover, .audience-card:hover, .route-card:hover, .format-card:hover { transform: translateY(-5px); }
+  .feature, .audience-card, .route-card, .format-card { transition: transform 320ms var(--occ-motion-ease), box-shadow 320ms var(--occ-motion-ease); }
+  .button:active, .primary:active { transform: translateY(1px) scale(.985); }
+  .text-link:hover, .link-line:hover, .jump:hover { transform: translateX(3px); transition: transform 200ms var(--occ-motion-ease); }
+  .photo img, .media img, .hero-photo img, .hero-media img, .image-wrap img, .origin-photo img { transition: transform 900ms var(--occ-motion-ease); }
+  .photo:hover img, .media:hover img, .hero-photo:hover img, .hero-media:hover img, .image-wrap:hover img, .origin-photo:hover img { transform: scale(1.035); }
+}
+@keyframes occ-settle { from { opacity: .01; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: none; } }
+@keyframes occ-photo-reveal { from { opacity: .72; clip-path: inset(7% 0 0 0); transform: scale(1.025); } to { opacity: 1; clip-path: inset(0); transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+<link href="https://origincafekh.com/partnerships" rel="canonical"/>
+<meta content="website" property="og:type"/><meta content="Cambodian Coffee Partnerships | OCC" property="og:title"/><meta content="Explore Cambodian coffee partnerships with OCC: brand and gifting experiences with ARUNERA, plus distribution opportunities for importers and retailers." property="og:description"/><meta content="https://origincafekh.com/partnerships" property="og:url"/><meta content="https://origincafekh.com/assets/occ-hospitality-hotel.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Cambodian Coffee Partnerships | OCC" name="twitter:title"/><meta content="Explore Cambodian coffee partnerships with OCC: brand and gifting experiences with ARUNERA, plus distribution opportunities for importers and retailers." name="twitter:description"/><meta content="https://origincafekh.com/assets/occ-hospitality-hotel.webp" name="twitter:image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://origincafekh.com/#organization","name":"Origin Coffee Cambodia","url":"https://origincafekh.com/","logo":"https://origincafekh.com/occ-logo-primary-local.svg"},{"@type":"WebSite","@id":"https://origincafekh.com/#website","url":"https://origincafekh.com/","name":"Origin Coffee Cambodia","publisher":{"@id":"https://origincafekh.com/#organization"},"inLanguage":"en"},{"@type":"Service","@id":"https://origincafekh.com/partnerships#webpage","url":"https://origincafekh.com/partnerships","name":"Cambodian Coffee Partnerships","description":"Explore Cambodian coffee partnerships with OCC: brand and gifting experiences with ARUNERA, plus distribution opportunities for importers and retailers.","isPartOf":{"@id":"https://origincafekh.com/#website"},"about":{"@id":"https://origincafekh.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://origincafekh.com/assets/occ-hospitality-hotel.webp"},"inLanguage":"en"}]}</script>
+<style id="occ-final-alignment-and-contrast-fixes">
+:root{--occ-canvas:#F2EDE6;--occ-surface:#FAF7F2;--occ-ink:#292424;--occ-muted:#625E5B;--occ-wine:#91434D;--occ-line:#D9D0C7}
+html,body{background:var(--occ-canvas)!important;color:var(--occ-ink)!important}
+/* Keep reveal choreography, but never hide copy while an observer starts. */
+html.occ-motion-ready [data-occ-reveal],.js .reveal,.js-ready .reveal{opacity:1!important}
+/* Light page theme and readable dark copy across all large sections. */
+.brands,.contact,.bottom-cta,.cta,.end{background-color:var(--occ-canvas)!important;color:var(--occ-ink)!important}
+.brands :is(h1,h2,h3,.brand-bottom),.contact :is(h1,h2,h3),.bottom-cta :is(h1,h2,h3),.cta :is(h1,h2,h3),.end :is(h1,h2,h3){color:var(--occ-ink)!important;-webkit-text-fill-color:var(--occ-ink)!important}
+.brands p,.contact p,.bottom-cta p,.cta p,.end p,.site-footer{color:var(--occ-muted)!important;-webkit-text-fill-color:var(--occ-muted)!important}
+.brands :is(.eyebrow,.brand-plus),.contact :is(.eyebrow,.contact-small),.bottom-cta .eyebrow,.cta .eyebrow,.end .eyebrow{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+.brands .brand-name{display:block;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;font-weight:500!important;opacity:1!important;visibility:visible!important}
+.brands .brand-side{min-width:0}.brands .brand-side p{color:var(--occ-muted)!important;-webkit-text-fill-color:var(--occ-muted)!important}
+.brands .brand-diagram{border-color:var(--occ-line)!important}.brands .brand-diagram .brand-plus{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+html :is(a.primary,a.end-button,a.button,.button.primary,button.button){background:var(--occ-wine)!important;border:1px solid var(--occ-wine)!important;color:var(--occ-surface)!important;-webkit-text-fill-color:var(--occ-surface)!important;opacity:1!important;visibility:visible!important}
+html :is(a.primary,a.end-button,a.button,.button.primary,button.button) *{color:var(--occ-surface)!important;-webkit-text-fill-color:var(--occ-surface)!important;opacity:1!important;visibility:visible!important}
+html a.button.light{background:var(--occ-surface)!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+html a.button.outline{background:transparent!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+/* Stable, aligned content rows. */
+.audience-grid,.format-grid{align-items:stretch!important}
+.format-grid>.format-card{align-self:stretch!important;margin-top:0!important;transform:none!important}
+.route-detail{position:relative!important;padding-left:40px!important}
+.route-detail .number{position:absolute!important;left:-28px!important;top:21px!important;z-index:1;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+@media(max-width:900px){.route-detail{padding-left:34px!important}.route-detail .number{left:-22px!important}}
+/* Restore the contact photograph as a visible, softly screened backdrop. */
+.contact-bg{opacity:.34!important}
+.contact-bg .media::before{background:rgba(242,237,230,.24)!important}
+.contact-bg img{filter:saturate(.8)!important}
+/* Keep proof notes clear of the final evidence row. */
+.evidence-proof .proof-line{transform:none!important}
+.evidence-proof .evidence-note{display:block!important;position:relative!important;margin:18px 0 0!important;padding-top:16px!important;border-top:1px solid var(--occ-line)!important;line-height:1.7!important;clear:both!important}
+@media(prefers-reduced-motion:reduce){html.occ-motion-ready [data-occ-reveal],.js .reveal,.js-ready .reveal,.rise{opacity:1!important;transform:none!important;visibility:visible!important;animation:none!important;transition:none!important}}
+</style>
+<style id="occ-final-layout-qa">
+/* Shared type and color tokens; structure and section order stay intact. */
+:root{--occ-canvas:#F2EDE6;--occ-paper:#FAF7F2;--occ-charcoal:#292424;--occ-body:#625E5B;--occ-wine:#91434D;--occ-rule:#D9D0C7}
+html,body{background-color:var(--occ-canvas)!important;color:var(--occ-charcoal)!important}
+body{font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important}
+h1,h2,h3,.serif,.display,.hero-lead,.origin-quote{font-family:Georgia,'Times New Roman',serif!important;color:var(--occ-charcoal)!important}
+p,.hero-desc,.hero-support,.hero-intro,.section-head p,.origin-copy p,.chapter-copy p,.feature p,.approach-note,.faq-answer,.step p,.audience-copy p,.cta p,.rhythm-note,figcaption{font-family:Arial,Helvetica,sans-serif!important;color:var(--occ-body)!important;line-height:1.7!important}
+.eyebrow,.small,.chapter-nav-label,.hero-sub,.chapter-number,.step-num,.route-detail .number{color:var(--occ-wine)!important}
+/* Burgundy remains a small accent; all broad brand, proof and CTA surfaces stay warm white. */
+.brands,.contact,.bottom-cta,.cta,.end{background-color:var(--occ-canvas)!important;color:var(--occ-charcoal)!important}
+html[data-occ-page="partners"] .brands :is(h1,h2,h3,.brand-name,.brand-plus){color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
+html[data-occ-page="partners"] .brands .brand-name{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;opacity:1!important;visibility:visible!important}
+html[data-occ-page="partners"] .brands .brand-plus{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+html[data-occ-page="partners"] .brands :is(p,.brand-bottom){color:var(--occ-body)!important;-webkit-text-fill-color:var(--occ-body)!important}
+html[data-occ-page="partners"] .brands .section-index{color:var(--occ-wine)!important;border-color:var(--occ-rule)!important}
+html[data-occ-page="partners"] .contact :is(h1,h2,h3,p,.eyebrow,.contact-small,.link-line){color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
+html[data-occ-page="partners"] .contact :is(.eyebrow,.contact-small,.link-line){color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+html[data-occ-page="partners"] .contact .contact-bg{z-index:0!important;opacity:.58!important;pointer-events:none}
+html[data-occ-page="partners"] .contact .contact-bg .media::before{background:rgba(242,237,230,.08)!important}
+html[data-occ-page="partners"] .contact .contact-inner{z-index:2}
+html :is(a.primary,a.end-button,a.button,.button.primary,button.button){background:var(--occ-wine)!important;border-color:var(--occ-wine)!important;color:var(--occ-paper)!important;-webkit-text-fill-color:var(--occ-paper)!important}
+html a.button.light{background:var(--occ-paper)!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+html a.button.outline{background:transparent!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important;border-color:var(--occ-wine)!important}
+/* Align repeated cards and content rows without changing their grid or order. */
+.audience-grid,.format-grid{align-items:stretch!important}
+.format-grid>.format-card{align-self:stretch!important;margin-top:0!important;transform:none!important;display:flex!important;flex-direction:column!important}
+.format-card .media{width:100%!important;aspect-ratio:1.06!important;flex:none!important}
+.format-card .format-body{flex:1 1 auto!important}
+.route-card:nth-child(2){margin-top:0!important}
+.route-detail{position:relative!important;padding-left:40px!important}
+.route-detail .number{position:absolute!important;left:-28px!important;top:21px!important;z-index:2!important;color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+.steps{align-items:stretch!important}
+.steps>.step{align-self:stretch!important;transform:none!important}
+html[data-occ-page="partners"] .steps>.step{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
+html[data-occ-page="partners"] .steps>.step .step-num{display:block!important;min-height:1.5em!important;margin:0!important}
+html[data-occ-page="partners"] .steps>.step h3{margin:60px 0 17px!important}
+html[data-occ-page="partners"] .steps>.step p{margin-top:0!important}
+.process-section .steps>.step.reveal{transform:none!important}
+/* Evidence footnote occupies its own line after the last numbered row. */
+.evidence-proof .proof-line{transform:none!important}
+.evidence-proof .evidence-note{display:block!important;position:relative!important;margin:18px 0 0!important;padding-top:16px!important;border-top:1px solid var(--occ-rule)!important;line-height:1.7!important;clear:both!important}
+/* Restore visual cadence while preserving all sections. */
+html[data-occ-page="partners"] .brands{padding:clamp(72px,8vw,112px) 0!important}
+html[data-occ-page="partners"] .brands-head{margin:clamp(30px,4vw,56px) auto clamp(38px,5vw,68px)!important}
+@media(max-width:700px){html[data-occ-page="partners"] .steps>.step h3{margin:25px 0 15px!important}.route-detail{padding-left:34px!important}.route-detail .number{left:-22px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important;transform:none!important}}
+</style>
+<style id="occ-final-mission-contrast">
+/* Keep mission CTA and footer legible on the shared light surface. */
+html[data-occ-page="mission"] .bottom-cta :is(h1,h2,h3,p,.eyebrow,.text-link),html[data-occ-page="mission"] .site-footer{color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
+html[data-occ-page="mission"] .bottom-cta .eyebrow,html[data-occ-page="mission"] .bottom-cta .text-link{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
+</style>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div aria-hidden="true" class="scroll-track"><span id="scroll-progress"></span></div>
+<header class="site-header">
+<div class="wrap head-inner">
+<a aria-label="OCC · back to top" class="logo" href="#top">
+<img alt="Official Origin Coffee Cambodia logo" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/occ-logo-primary-local.svg" decoding="async" height="44" loading="lazy" src="https://origincafekh.com/occ-logo-primary-local.svg" width="125"/>
+<span aria-hidden="true" class="logo-fallback">OCC.</span>
+</a>
+<nav aria-label="Primary navigation" class="nav" id="site-nav">
+<a href="#routes">Ways to partner</a>
+<a href="#experiences">Who we work with</a>
+<a href="#brands">OCC × ARUNERA</a>
+<a href="#process">How it works</a>
+<a class="nav-contact" href="#contact">Discuss a partnership ↗</a>
+</nav>
+<button aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" class="menu-button" id="menu-button" type="button"><span></span><span></span><span></span></button>
+</div>
+</header>
+<main id="main">
+<section aria-labelledby="hero-title" class="hero">
+<div class="wrap hero-inner">
+<div class="hero-top eyebrow"><span>OCC / PARTNERSHIPS</span><span class="origin-mark">100% CAMBODIAN COFFEE · SHARED WITH PURPOSE</span></div>
+<div class="hero-grid">
+<div class="hero-copy reveal">
+<div class="overline eyebrow">100% Cambodian coffee · distinct partnerships</div>
+<h1 class="serif" id="hero-title">Cambodian<br/>coffee<br/><em>partnerships.</em></h1>
+<p class="hero-intro">Bring 100% Cambodia-origin coffee into hospitality, gifting and international markets with OCC. Start with our Fine Robusta expertise, then choose the partnership that fits your audience.</p>
+<a class="link-line" href="#routes">Find your partnership <span aria-hidden="true" class="arrow">↗</span></a>
+</div>
+<div class="media hero-photo reveal delay-1">
+<img alt="OCC coffee image representing a Cambodia-origin partnership" class="image-shift" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-roast.webp" decoding="async" fetchpriority="high" loading="eager" src="https://origincafekh.com/images/partnerships/occ-partnerships-roast.webp"/>
+</div>
+<div class="hero-side reveal delay-2">
+<div class="media"><img alt="Cambodian coffee producer and buyer examining ripe coffee cherries" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-origin-collaboration.webp" decoding="async" loading="lazy" src="https://origincafekh.com/images/partnerships/occ-partnerships-origin-collaboration.webp"/></div>
+<span class="side-caption">From Cambodian ground<br/>to global connections</span>
+</div>
+</div>
+<div class="hero-footer eyebrow"><span>ORIGIN COFFEE CAMBODIA</span><span>ONE ORIGIN. TWO DISTINCT WAYS TO PARTNER. <span aria-hidden="true" class="down">↓</span></span></div>
+</div>
+</section>
+<section aria-labelledby="routes-title" class="routes" id="routes">
+<div class="wrap">
+<div class="section-index eyebrow reveal"><span>01 / PARTNERSHIP PATHWAYS</span><span>CHOOSE YOUR ROUTE</span></div>
+<div class="section-head reveal">
+<h2 class="serif" id="routes-title">One origin.<br/><em>Two ways to partner.</em></h2>
+<p>Choose a brand collaboration for a specific experience or a distribution partnership for an established market. Each route has its own brief and next steps.</p>
+</div>
+<div class="route-grid">
+<article class="route-card reveal">
+<div class="media"><img alt="OCC Cambodian coffee gifting concept" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-gifting.webp" decoding="async" loading="lazy" src="https://origincafekh.com/images/partnerships/occ-partnerships-gifting.webp"/></div>
+<div class="route-detail"><span class="number">01</span><div class="route-text"><h3>Brand &amp; Gifting</h3><p>Develop Cambodian coffee gifts and experiences for hotels, travel retail and corporate occasions. OCC brings the coffee; ARUNERA helps shape the gifting concept.</p><a class="link-line" href="https://origincafekh.com/brand-gifting" rel="noopener noreferrer" target="_blank">Explore Brand &amp; Gifting <span aria-hidden="true" class="arrow">↗</span></a></div></div>
+</article>
+<article class="route-card reveal delay-1">
+<div class="media"><img alt="OCC Cambodian coffee prepared for distribution partners" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-distribution.webp" decoding="async" loading="lazy" src="https://origincafekh.com/images/partnerships/occ-partnerships-distribution.webp"/></div>
+<div class="route-detail"><span class="number">02</span><div class="route-text"><h3>Distribution partners</h3><p>For importers, regional distributors, agents and retailers introducing Cambodian coffee to their markets. We assess product fit, channels and terms for each proposal.</p><a class="link-line" href="https://origincafekh.com/distribution" rel="noopener noreferrer" target="_blank">Explore Distribution <span aria-hidden="true" class="arrow">↗</span></a></div></div>
+</article>
+</div>
+</div>
+</section>
+<section aria-labelledby="manifesto-title" class="manifesto">
+<div class="wrap manifesto-grid">
+<div class="manifesto-text reveal">
+<span class="eyebrow" style="color:var(--wine)">WHY CAMBODIAN COFFEE</span>
+<h2 class="serif" id="manifesto-title">Coffee with<br/>a place<br/><em>behind it.</em></h2>
+<p>Every OCC coffee begins in Cambodia. A partnership connects that origin to a real setting, from a hotel breakfast to a market launch. Producer, lot and quality details are shared only when supported by the coffee selected for the project.</p>
+<a class="link-line" href="#experiences" style="color:var(--wine)">Explore partnership settings <span aria-hidden="true" class="arrow">↗</span></a>
+</div>
+<div class="reveal delay-1">
+<div class="media"><img alt="Cambodian producer and coffee buyer examining coffee cherries" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-origin-collaboration.webp" decoding="async" loading="lazy" src="https://origincafekh.com/images/partnerships/occ-partnerships-origin-collaboration.webp"/></div>
+<div class="caption eyebrow">A DISTINCT PLACE. A PURPOSEFUL PARTNERSHIP.</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="experiences-title" class="experiences" id="experiences">
+<div class="wrap">
+<div class="section-index eyebrow reveal"><span>02 / COLLABORATION FORMATS</span><span>THREE CLEAR WAYS TO WORK TOGETHER</span></div>
+<div class="section-head reveal"><h2 class="serif" id="experiences-title">Choose the partnership<br/><em>that fits your business.</em></h2><p>If you are exploring a brand collaboration rather than a distribution agreement, start here. Each format below shows who it is for, where the coffee appears and what a typical collaboration includes.</p></div>
+<div class="format-grid reveal">
+<article class="format-card">
+<div class="media"><img alt="Hotel team serving Cambodian coffee in a boutique hotel breakfast room" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/wholesale/occ-wholesale-sample-selection.webp" decoding="async" loading="lazy" src="/occ-pages/assets/occ-hospitality-hotel.webp"/></div>
+<div class="format-body">
+<div class="label-row"><span>01</span><h3>Hospitality</h3></div>
+<p class="format-intro">Bring Cambodian coffee into the guest journey through service, experience and presentation.</p>
+<div class="format-meta">
+<div class="format-block"><span class="eyebrow">BEST FOR</span><p>Hotels, resorts, cafés, restaurants and travel businesses that want a distinctive coffee touchpoint.</p></div>
+<div class="format-block"><span class="eyebrow">COMMON FORMATS</span><ul class="format-list"><li>Breakfast coffee service</li><li>Welcome drinks or lobby coffee</li><li>In-room amenities or guest gifting</li></ul></div>
+</div>
+</div>
+</article>
+<article class="format-card">
+<div class="media"><img alt="Retail and gifting concept for OCC Cambodian coffee" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-gifting.webp" decoding="async" loading="lazy" src="https://origincafekh.com/images/partnerships/occ-partnerships-gifting.webp"/></div>
+<div class="format-body">
+<div class="label-row"><span>02</span><h3>Retail &amp; gifts</h3></div>
+<p class="format-intro">Turn Cambodia-origin coffee into a product people can discover, purchase and take away.</p>
+<div class="format-meta">
+<div class="format-block"><span class="eyebrow">BEST FOR</span><p>Concept stores, museum shops, travel retail, gift curation and seasonal brand collaborations.</p></div>
+<div class="format-block"><span class="eyebrow">COMMON FORMATS</span><ul class="format-list"><li>Shelf-ready coffee products</li><li>Gift boxes and curated sets</li><li>Travel or event gifting collections</li></ul></div>
+</div>
+</div>
+</article>
+<article class="format-card">
+<div class="media"><img alt="Corporate gifting and quantity-based OCC coffee partnership format" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/wholesale/occ-wholesale-packed-order.webp" decoding="async" loading="lazy" src="https://origincafekh.com/images/wholesale/occ-wholesale-packed-order.webp"/></div>
+<div class="format-body">
+<div class="label-row"><span>03</span><h3>Corporate gifting</h3></div>
+<p class="format-intro">Offer a more thoughtful Cambodian gift for teams, clients, events and business relationships.</p>
+<div class="format-meta">
+<div class="format-block"><span class="eyebrow">BEST FOR</span><p>Companies, conferences, business events, partner appreciation and internal gifting programs.</p></div>
+<div class="format-block"><span class="eyebrow">COMMON FORMATS</span><ul class="format-list"><li>Client and partner gift sets</li><li>Event welcome kits</li><li>Custom quantity requests with presentation guidance</li></ul></div>
+</div>
+</div>
+</article>
+</div>
+<div class="format-note reveal"><p>Need something outside these three formats? We also support limited creative collaborations and can adapt the proposal according to market, quantity, packaging direction and timeline.</p><div class="eyebrow">FOR IMPORTERS &amp; DISTRIBUTION PARTNERS, USE THE DEDICATED DISTRIBUTION ROUTE ABOVE</div></div>
+</div>
+</section>
+<section aria-labelledby="brands-title" class="brands" id="brands">
+<div class="wrap">
+<div class="section-index eyebrow reveal"><span>03 / FEATURED COLLABORATION</span><span>OCC × ARUNERA</span></div>
+<div class="brands-head reveal"><span class="eyebrow" style="color:#e4b9b4">ONE COFFEE ORIGIN · COMPLEMENTARY ROLES</span><h2 class="serif" id="brands-title">Two brands.<br/><em>One origin.</em></h2></div>
+<div class="brand-diagram reveal">
+<div class="brand-side"><span class="brand-name">OCC</span><p>100% Cambodia-origin coffee, Fine Robusta expertise, coffee selection and the proposition behind the cup.</p></div>
+<div aria-hidden="true" class="brand-plus">×</div>
+<div class="brand-side"><span class="brand-name">ARUNERA</span><p>Cambodian gift curation, product presentation and discovery for travelers, guests and retail customers.</p></div>
+</div>
+<p class="brand-bottom reveal">OCC is the coffee supplier and specialist. ARUNERA develops the gifting experience. Together, they can create a Cambodia-led concept for your audience—subject to product availability and an agreed project brief.</p>
+<a class="link-line reveal" href="https://origincafekh.com/brand-gifting" rel="noopener noreferrer" target="_blank">Explore OCC × ARUNERA gifting <span aria-hidden="true" class="arrow">↗</span></a>
+</div>
+</section>
+<section aria-labelledby="process-title" class="process" id="process">
+<div class="wrap">
+<div class="section-index eyebrow reveal"><span>04 / HOW PARTNERSHIPS WORK</span><span>FROM ENQUIRY TO AGREED SCOPE</span></div>
+<h2 class="process-title serif reveal" id="process-title">From an idea<br/>to <em>a workable brief.</em></h2>
+<div class="steps">
+<article class="step reveal"><span class="step-num">01 / Explore</span><h3>Share your<br/>opportunity.</h3><p>Tell us your organisation, audience, market and intended coffee experience.</p></article>
+<article class="step reveal delay-1"><span class="step-num">02 / Define</span><h3>Shape the<br/>proposal.</h3><p>Review coffee options, product format, presentation and any documentation required.</p></article>
+<article class="step reveal delay-2"><span class="step-num">03 / Confirm</span><h3>Agree on<br/>next steps.</h3><p>Availability, samples, quantities, timing and commercial terms are confirmed before any agreement.</p></article>
+</div>
+<div class="process-foot reveal"><p>Need coffee beans or roasted coffee for procurement, rather than a brand collaboration? Visit the dedicated wholesale and sourcing page.</p><a class="link-line" href="https://origincafekh.com/solutions/wholesale" rel="noopener noreferrer" target="_blank">Wholesale &amp; sourcing <span aria-hidden="true" class="arrow">↗</span></a></div>
+</div>
+</section>
+<section aria-labelledby="contact-title" class="contact" id="contact">
+<div aria-hidden="true" class="contact-bg"><div class="media"><img alt="" data-fallback="https://raw.githubusercontent.com/vanessaliu036-lab/my-SEO-site/main/public/images/partnerships/occ-partnerships-roast.webp" decoding="async" loading="lazy" src="/occ-pages/assets/occ-hospitality-hotel.webp"/></div></div>
+<div class="wrap contact-inner">
+<span class="eyebrow reveal" style="color:#e0b6ae">05 / START A CONVERSATION</span>
+<h2 class="serif reveal" id="contact-title">Bring your idea.<br/><em>Begin with<br/>Cambodia.</em></h2>
+<p class="reveal">Tell us your organisation, market, partnership type, audience and idea. Include an indicative volume and timing if known. We will review the scope together before discussing any commitments.</p>
+<div class="cta-actions reveal">
+<a class="button light" href="https://origincafekh.com/contact" rel="noopener noreferrer" target="_blank">Discuss a partnership <span aria-hidden="true" class="arrow">↗</span></a>
+<a class="button outline" href="https://origincafekh.com/distribution" rel="noopener noreferrer" target="_blank">Explore distribution <span aria-hidden="true" class="arrow">↗</span></a>
+</div>
+<div class="contact-small"><span>100% CAMBODIAN COFFEE</span><span>ORIGIN COFFEE CAMBODIA · FROM ORIGIN TO OPPORTUNITY</span></div>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="wrap footer-inner"><strong>OCC / CAMBODIAN COFFEE PARTNERSHIPS</strong><span>SEO + brand-writing preview · No live-site files modified · <a href="https://origincafekh.com/partnerships" rel="noopener noreferrer" target="_blank">View the live page ↗</a></span><span>Images require an internet connection.</span></div></footer>
+<div aria-label="This is a preview, not the live website" class="preview-tag">PREVIEW ONLY · NOT PUBLISHED</div>
+<script>
+    (() => {
+      "use strict";
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const menuButton = document.getElementById('menu-button');
+      const navigation = document.getElementById('site-nav');
+      const progress = document.getElementById('scroll-progress');
+      const revealElements = [...document.querySelectorAll('.reveal')];
+      const photo = document.querySelector('.hero-photo .image-shift');
+
+      document.querySelectorAll('img[data-fallback]').forEach((image) => {
+        image.addEventListener("error", () => {
+          if (image.dataset.triedFallback !== 'yes') {
+            image.dataset.triedFallback = 'yes';
+            image.src = image.dataset.fallback;
+            return;
+          }
+          if (image.closest('.media')) image.closest('.media').dataset.imageStatus = 'missing';
+          if (image.closest('.logo')) image.closest('.logo').classList.add('no-image');
+        });
+      });
+
+      if ('IntersectionObserver' in window && !reduceMotion.matches) {
+        document.documentElement.classList.add('js-ready');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {threshold: .08, rootMargin: '0px 0px -15px 0px'});
+        revealElements.forEach((element) => observer.observe(element));
+        requestAnimationFrame(() => revealElements.forEach((element) => {
+          if (element.getBoundingClientRect().top < window.innerHeight * .94) element.classList.add('in-view');
+        }));
+      }
+
+      menuButton.addEventListener('click', () => {
+        const open = !navigation.classList.contains('is-open');
+        navigation.classList.toggle('is-open', open);
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      });
+      navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navigation.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+      }));
+      window.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          navigation.classList.remove('is-open');
+          menuButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+      let pending = false;
+      const draw = () => {
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        progress.style.width = (100 * Math.min(1, window.scrollY / max)).toFixed(2) + '%';
+        if (photo && !reduceMotion.matches && window.scrollY < window.innerHeight * 1.7) {
+          const travel = Math.min(26, window.scrollY * .035);
+          photo.style.transform = `translate3d(0, ${travel}px, 0) scale(1.06)`;
+        } else if (photo) photo.style.transform = '';
+        pending = false;
+      };
+      window.addEventListener('scroll', () => { if (!pending) { pending=true; requestAnimationFrame(draw); } }, {passive:true});
+      window.addEventListener('resize', draw, {passive:true});
+      reduceMotion.addEventListener?.('change', draw);
+      draw();
+    })();
+  </script>
+<script id="occ-motion-controller">
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const groups = {
+    mission: '.feature, .chapter, .faq-item, .conclusion-grid, .bottom-grid',
+    roasting: '.section-head, .audience-grid, .steps, .path-note, .origin-copy, .cta, .faq details',
+    origins: '.origin-statement, .beat, .chapter, .evidence-inner, .end-button',
+    partners: '.route-grid, .manifesto-grid, .format-grid, .brand-diagram, .steps, .contact-inner',
+  };
+  const path = location.pathname.toLowerCase();
+  const key = path.includes('mission') ? 'mission' : path.includes('roasting') ? 'roasting' : path.includes('origin') ? 'origins' : 'partners';
+  document.documentElement.dataset.occPage = key;
+  document.documentElement.classList.add('occ-motion-ready');
+  const items = [...document.querySelectorAll(groups[key])].filter(el => !el.closest('footer') && !el.classList.contains('reveal') && !el.classList.contains('rise'));
+  items.forEach((el, i) => { el.dataset.occReveal = ''; el.dataset.occDepth = String(i % 3 + 1); });
+  if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('is-in')); return; }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); observer.unobserve(entry.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  items.forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
