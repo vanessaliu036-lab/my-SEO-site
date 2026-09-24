@@ -97,6 +97,14 @@ const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set([
   "what-cambodian-coffee-should-you-try-first",
   "cambodia-barista-training-infrastructure-certification",
   "when-ratanakiri-farmers-transform-cambodia-coffee-production-through-2027-sustainability-protocols",
+  // Buyer/QC support pages belong to the Buyer & Sourcing owner, not the broad Fine Robusta pillar.
+  "green-coffee-shipment-fails-arrival-qc",
+  "why-great-coffee-sample-fails-commercial-scale",
+  "why-green-coffee-moisture-consistency-matters",
+  "why-coffee-origins-need-lot-codes-before-blockchain",
+  "roaster-checklist-buying-cambodian-green-coffee",
+  "understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee",
+  "navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers",
 ])
 
 const ROBUSTA_SUPPORT_SLUG_PATTERN =
@@ -551,10 +559,179 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
       { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
     ],
   },
+  "green-coffee-shipment-fails-arrival-qc": {
+    label: "Arrival failure",
+    title: "What to do when a shipment fails arrival QC",
+    intro:
+      "An arrival failure should trigger a documented comparison against the approved reference and contract—not an improvised argument after the coffee is already in production. The goal is to identify whether the variance came from lot preparation, transit, storage, sampling, or evaluation.",
+    points: [
+      "Quarantine the affected lot or portion before it is blended, roasted, or redistributed so evidence is preserved.",
+      "Repeat inspection with a representative sample and document physical condition, packaging, moisture, odor, defects, and sensory variance against the agreed reference.",
+      "Separate shipping or storage damage from origin-quality variance; the remedy may depend on where the failure occurred.",
+      "Follow the contract remedy path and retain samples, photos, measurements, and timestamps that support the claim.",
+    ],
+    links: [
+      { href: "/blog/green-coffee-arrival-inspection-checklist", label: "Arrival inspection checklist" },
+      { href: "/blog/coffee-contract-quality-tolerances-fine-robusta", label: "Contract quality tolerances" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "why-great-coffee-sample-fails-commercial-scale": {
+    label: "Scale risk",
+    title: "Why an excellent sample can fail at commercial scale",
+    intro:
+      "A strong sample proves that quality is possible; it does not prove that the same quality can be delivered across the whole lot, shipment, or repeat order. Commercial scale introduces sampling, preparation, storage, logistics, and consistency risks that a small showcase sample may not reveal.",
+    points: [
+      "A hand-selected sample may not represent the distribution of defects, moisture, screen size, or processing variation across a larger lot.",
+      "Milling, bagging, storage, and transit can change physical condition after the original sample was evaluated.",
+      "Roast and cup performance can shift when the production lot is less uniform than the sample used for approval.",
+      "Buyers should confirm lot representativeness, pre-shipment verification, arrival QC, and repeatability before treating one sample as proof of scalable quality.",
+    ],
+    links: [
+      { href: "/blog/sample-cambodian-coffee-before-buying-lot", label: "Sample approval guide" },
+      { href: "/blog/offer-vs-pre-shipment-vs-arrival-coffee-sample", label: "Sample stages" },
+      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Supplier evaluation" },
+    ],
+  },
+  "why-green-coffee-moisture-consistency-matters": {
+    label: "Physical quality",
+    title: "Why moisture consistency matters beyond one moisture reading",
+    intro:
+      "A single moisture reading is only one snapshot. Buyers care about consistency because uneven drying, storage conditions, and moisture distribution can affect stability, roasting behavior, defects, and the comparability of samples across a lot.",
+    points: [
+      "Measure representative samples rather than assuming one bag or one point in a bag describes the entire lot.",
+      "Interpret moisture together with storage history, water activity where available, odor, physical condition, and visible signs of instability.",
+      "Large variation can indicate uneven drying, re-wetting, poor storage, or inconsistent lot preparation even when the average appears acceptable.",
+      "For repeat purchases, track the same measurement method over time so supplier performance can be compared consistently.",
+    ],
+    links: [
+      { href: "/blog/green-coffee-arrival-inspection-checklist", label: "Arrival QC checklist" },
+      { href: "/blog/understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee", label: "Buyer technical specifications" },
+    ],
+  },
+  "why-coffee-origins-need-lot-codes-before-blockchain": {
+    label: "Traceability",
+    title: "Why basic lot identity matters before advanced traceability tools",
+    intro:
+      "Traceability starts with disciplined identifiers. A blockchain record cannot repair a supply chain that does not consistently assign, preserve, and reconcile lot codes across processing, storage, sampling, contracting, and shipment.",
+    points: [
+      "Use stable lot identifiers that follow the coffee through processing, warehouse movement, sampling, contracts, and shipment documents.",
+      "Record splits, blends, re-bagging, or other transformations so the identifier remains meaningful after the coffee changes form.",
+      "Connect each buyer sample and approval record to the same lot identity used in the commercial transaction.",
+      "Adopt more advanced traceability systems only after the underlying data and operating discipline are reliable enough to support them.",
+    ],
+    links: [
+      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Supplier traceability evaluation" },
+      { href: "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist", label: "Wholesale buyer checklist" },
+    ],
+  },
+  "fine-robusta-price-score-traceability-consistency": {
+    label: "Commercial value",
+    title: "How score, traceability, and consistency work together in Fine Robusta pricing",
+    intro:
+      "Fine Robusta pricing is more credible when quality evidence and commercial reliability reinforce one another. A cup score can describe one evaluation; traceability explains identity; consistency shows whether the value can survive repeat orders.",
+    points: [
+      "Treat score as evidence about a tested sample, not as a complete pricing model for every bag in the lot.",
+      "Traceability can support a premium when it reduces uncertainty about origin, processing, sample identity, and accountability.",
+      "Consistency protects the buyer from hidden costs such as recipe changes, customer complaints, production waste, and re-qualification.",
+      "The strongest premium is usually the one that a buyer is willing to pay again after receiving and using the coffee—not the highest one-time asking price.",
+    ],
+    links: [
+      { href: "/blog/what-creates-fine-robusta-price-premium", label: "What creates a Fine Robusta premium" },
+      { href: "/blog/fine-robusta-consistency-vs-extra-cup-point", label: "Consistency vs one extra cup point" },
+      { href: "/fine-robusta-cambodia", label: "Fine Robusta Cambodia" },
+    ],
+  },
+  "roaster-checklist-buying-cambodian-green-coffee": {
+    label: "Roaster checklist",
+    title: "What a roaster should confirm before buying Cambodian green coffee",
+    intro:
+      "Roasters need enough information to predict how a coffee will behave in production—not just whether an offer sample tastes interesting. The buying checklist should connect origin and sensory evidence to physical specifications, lot identity, volume, delivery, and repeatability.",
+    points: [
+      "Confirm origin, process, harvest period, lot identity, sample type, and whether the sample represents the commercial coffee offered.",
+      "Review physical specifications and storage condition before building a roast plan around the sample.",
+      "Ask how much coffee is available, how the lot is divided, what the lead time is, and whether a similar profile can be supplied again.",
+      "Run a production-relevant roast and brew test before approval if the coffee will be used for espresso, milk drinks, filter service, or a branded retail product.",
+    ],
+    links: [
+      { href: "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist", label: "Cambodian coffee buyer checklist" },
+      { href: "/blog/understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee", label: "Technical specifications" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee": {
+    label: "Buyer specifications",
+    title: "Turn quality expectations into specifications a supplier can verify",
+    intro:
+      "Technical specifications make buyer expectations operational. They should describe the coffee, the evidence required, the acceptable condition, and the inspection point clearly enough that both buyer and supplier can evaluate the same shipment against the same standard.",
+    points: [
+      "Specify identity first: origin, process, harvest or crop period, lot code, product form, packaging, and any verified producer or processor information.",
+      "Add the physical and sensory criteria relevant to the intended use rather than copying a generic specification sheet.",
+      "Define how samples are drawn, which sample controls approval, and when pre-shipment or arrival verification is required.",
+      "Keep tolerances and remedies explicit so a variance can be resolved using agreed evidence rather than subjective memory.",
+    ],
+    links: [
+      { href: "/resources/coffee-buyer-specification-template", label: "Buyer specification template" },
+      { href: "/blog/coffee-contract-quality-tolerances-fine-robusta", label: "Contract quality tolerances" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+  "navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers": {
+    label: "International buyer",
+    title: "A practical route through Cambodia’s coffee market",
+    intro:
+      "International buyers should separate market discovery from supplier approval. Cambodia’s coffee story includes origin development, imported coffee, local roasting, cafés, emerging Fine Robusta work, and different levels of commercial readiness; each needs a different verification step.",
+    points: [
+      "Start by defining the product needed: green or roasted coffee, origin specificity, roast use, quality target, volume, timing, and documentation.",
+      "Use regional and producer stories to generate leads, but qualify every supplier through sample identity, specifications, availability, and repeatability.",
+      "Expect domestic market growth and export-ready supply to develop at different speeds; one does not automatically prove the other.",
+      "Build the purchase path from discovery to sample, specification, pre-shipment verification, arrival QC, and repeat order instead of buying on narrative alone.",
+    ],
+    links: [
+      { href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability", label: "Supplier evaluation guide" },
+      { href: "/blog/cambodia-specialty-coffee-wholesale-buyer-checklist", label: "Wholesale buyer checklist" },
+      { href: "/solutions/wholesale", label: "Cambodian coffee wholesale" },
+    ],
+  },
 
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  "green-coffee-shipment-fails-arrival-qc": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader supplier-risk and procurement framework, see the",
+  },
+  "why-great-coffee-sample-fails-commercial-scale": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader supplier and lot-risk framework, see the",
+  },
+  "why-green-coffee-moisture-consistency-matters": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader buyer-quality framework, see the",
+  },
+  "why-coffee-origins-need-lot-codes-before-blockchain": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader traceability and supplier-verification framework, see the",
+  },
+  "roaster-checklist-buying-cambodian-green-coffee": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader supplier evaluation framework behind this checklist, see the",
+  },
+  "understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader procurement framework behind buyer specifications, see the",
+  },
+  "navigating-the-cambodian-coffee-market-a-guide-for-international-wholesale-buyers": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the detailed supplier qualification framework, continue with the",
+  },
   "sample-cambodian-coffee-before-buying-lot": {
     href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
     anchor: "Cambodian coffee supplier evaluation guide",
