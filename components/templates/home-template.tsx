@@ -22,7 +22,7 @@ export default function HomeTemplate() {
         />
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
         <div
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,32,25,0.18)_0%,rgba(24,32,25,0.08)_42%,rgba(24,32,25,0.58)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,20,20,0.18)_0%,rgba(20,20,20,0.08)_42%,rgba(20,20,20,0.58)_100%)]"
           aria-hidden="true"
         />
 
