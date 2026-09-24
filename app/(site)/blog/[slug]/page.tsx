@@ -203,7 +203,41 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
       { href: "/solutions/roasting-program", label: "Roast profile development" },
       { href: "/solutions/wholesale", label: "Coffee supply for businesses" },
     ],
+  },  "cambodia-barista-training-infrastructure-certification": {
+    label: "Industry application",
+    title: "Training is infrastructure, not only certification",
+    intro:
+      "For Cambodia’s coffee sector, barista development is most useful when certification, practical service skills, sensory calibration, equipment discipline, and café operating standards reinforce one another.",
+    points: [
+      "A certificate can document training, but it does not replace repeated practice on the equipment and recipes used in a real café.",
+      "Sensory vocabulary is more valuable when staff can connect it to grind, dose, yield, water, milk, and roast variables.",
+      "For hospitality teams, consistency across shifts is usually a more commercial outcome than isolated technical knowledge.",
+      "For buyers and coffee brands, training becomes part of quality assurance when product specifications and service recipes are taught together.",
+    ],
+    links: [
+      { href: "/solutions/roasting-program", label: "Roast profile & service development" },
+      { href: "/partnerships", label: "OCC partnerships" },
+      { href: "/contact", label: "Discuss a professional coffee program" },
+    ],
   },
+  "when-ratanakiri-farmers-transform-cambodia-coffee-production-through-2027-sustainability-protocols": {
+    label: "Evidence check",
+    title: "How to read sustainability plans through 2027",
+    intro:
+      "Multi-year sustainability programs should be read as a combination of completed actions, current implementation, and future targets. Keeping those categories separate makes the article more useful to buyers and avoids turning planned outcomes into present-tense claims.",
+    points: [
+      "Label completed infrastructure, farmer support, or training separately from targets that are still scheduled for future seasons.",
+      "Tie sustainability claims to the geography, participating farms, implementing organization, and reporting period where those details are available.",
+      "For coffee quality, connect sustainability work to measurable production variables such as harvest selection, processing control, drying, storage, and traceability.",
+      "For buyers, the commercial test remains whether improvements can be verified in representative samples and repeated lots.",
+    ],
+    links: [
+      { href: "/origins/cambodia-regions", label: "Cambodia coffee regions" },
+      { href: "/origins/farm-terroir", label: "Farm & terroir context" },
+      { href: "/solutions/wholesale", label: "Wholesale sourcing" },
+    ],
+  },
+
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
