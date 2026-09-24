@@ -79,6 +79,7 @@ const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set([
   "is-coffee-industry-undervaluing-canephora-quality",
   "the-economic-advantages-of-fine-robusta-cost-benefit-analysis-for-cambodian-coffee-businesses",
   "fine-robusta-consistency-vs-extra-cup-point",
+  "evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
   "mondulkiri-next-specialty-coffee-origin",
 ])
 
