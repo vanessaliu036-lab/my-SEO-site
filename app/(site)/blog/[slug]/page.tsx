@@ -499,9 +499,66 @@ function renderList(lines: string[], ordered: boolean): string {
   return ordered ? `<ol>${items}</ol>` : `<ul>${items}</ul>`
 }
 
+function hasStoredHtmlMarkup(text: string): boolean {
+  return /<\/?(?:h[1-6]|p|a|strong|b|em|i|br|ul|ol|li)\b/i.test(text)
+}
+
+function decodeStoredHtmlEntities(text: string): string {
+  return text
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+}
+
+function stripStoredHtml(text: string): string {
+  return decodeStoredHtmlEntities(
+    text
+      .replace(/<a\b[^>]*>([\s\S]*?)<\/a>/gi, "$1")
+      .replace(/<\/?(?:h[1-6]|p|strong|b|em|i|span|div|ul|ol|li|blockquote)\b[^>]*>/gi, " ")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+  )
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+function normalizeStoredRichText(raw: string): string {
+  if (!hasStoredHtmlMarkup(raw)) return raw
+
+  let text = raw
+
+  text = text.replace(
+    /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,
+    (_match, href: string, label: string) => `[${stripStoredHtml(label)}](${href})`
+  )
+  text = text
+    .replace(/<(?:strong|b)\b[^>]*>([\s\S]*?)<\/(?:strong|b)>/gi, "**$1**")
+    .replace(/<(?:em|i)\b[^>]*>([\s\S]*?)<\/(?:em|i)>/gi, "*$1*")
+    .replace(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi, "\n# $1\n")
+    .replace(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi, "\n## $1\n")
+    .replace(/<h3\b[^>]*>([\s\S]*?)<\/h3>/gi, "\n### $1\n")
+    .replace(/<h[4-6]\b[^>]*>([\s\S]*?)<\/h[4-6]>/gi, "\n### $1\n")
+    .replace(/<li\b[^>]*>([\s\S]*?)<\/li>/gi, "\n- $1\n")
+    .replace(/<\/?(?:ul|ol)\b[^>]*>/gi, "\n")
+    .replace(/<p\b[^>]*>([\s\S]*?)<\/p>/gi, "\n$1\n")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/?(?:span|div|blockquote)\b[^>]*>/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+
+  return decodeStoredHtmlEntities(text)
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n[ \t]+/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+}
+
 function formatContent(raw: string, title: string, slug?: string): string {
   if (!raw) return ""
-  const sourceLines = raw
+  const normalizedRaw = normalizeStoredRichText(raw)
+  const sourceLines = normalizedRaw
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line && !/^```/.test(line) && !isPromptNote(line))
@@ -616,12 +673,12 @@ function formatContent(raw: string, title: string, slug?: string): string {
 }
 
 function readingTime(content: string): number {
-  const words = content.trim().split(/\s+/).length
+  const words = stripStoredHtml(normalizeStoredRichText(content)).trim().split(/\s+/).length
   return Math.max(1, Math.round(words / 200))
 }
 
 function plainTextExcerpt(content: string, title: string): string {
-  const excerpt = content
+  const excerpt = normalizeStoredRichText(content)
     .split("\n")
     .map((line) => stripMarkdown(line.trim()))
     .filter((line) => {
@@ -631,6 +688,9 @@ function plainTextExcerpt(content: string, title: string): string {
       return line.toLowerCase() !== title.toLowerCase()
     })
     .join(" ")
+    .replace(/\[(.*?)\]\((.*?)\)/g, "$1")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
     .replace(/\s+/g, " ")
     .trim()
 
@@ -662,8 +722,13 @@ function isInternalEditorialNote(text: string): boolean {
 }
 
 function headerSummaryForPost(post: NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>): string {
-  const candidates = [post.summary, post.excerpt].filter(Boolean) as string[]
-  const source = candidates.find((text) => !isInternalEditorialNote(text))?.replace(/\s+/g, " ").trim() || ""
+  const candidates = [post.summary, post.excerpt]
+    .filter((text): text is string => Boolean(text))
+    .filter((text) => !hasStoredHtmlMarkup(text))
+    .map((text) => stripStoredHtml(text))
+    .filter((text) => !isInternalEditorialNote(text))
+
+  const source = candidates[0] || plainTextExcerpt(post.content, post.title)
   if (!source) return ""
   if (source.length <= 220) return source
   return `${source.slice(0, 217).replace(/\s+\S*$/, "")}...`
@@ -674,13 +739,15 @@ function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>)
   const summary =
     post.summary &&
     !isLowSignalSeoText(post.summary, post.title) &&
-    !isInternalEditorialNote(post.summary)
+    !isInternalEditorialNote(post.summary) &&
+    !hasStoredHtmlMarkup(post.summary)
       ? post.summary
       : ""
   const excerpt =
     post.excerpt &&
     !isLowSignalSeoText(post.excerpt, post.title) &&
-    !isInternalEditorialNote(post.excerpt)
+    !isInternalEditorialNote(post.excerpt) &&
+    !hasStoredHtmlMarkup(post.excerpt)
       ? post.excerpt
       : ""
   return seoDescription(
@@ -754,8 +821,8 @@ async function RelatedArticles({ currentSlug }: { currentSlug: string }) {
               <h3 className="text-sm font-semibold text-stone-950 leading-snug mb-2 group-hover:underline underline-offset-2">
                 {post.title}
               </h3>
-              {post.summary && (
-                <p className="text-xs text-stone-500 leading-relaxed line-clamp-2">{post.summary}</p>
+              {post.summary && !hasStoredHtmlMarkup(post.summary) && (
+                <p className="text-xs text-stone-500 leading-relaxed line-clamp-2">{stripStoredHtml(post.summary)}</p>
               )}
               <span className="inline-block mt-3 text-[10px] tracking-[0.14em] text-stone-400 group-hover:text-stone-950 group-hover:translate-x-1 transition-all">
                 Read →
@@ -781,7 +848,7 @@ export default async function BlogPostPage({
   const displayTitle = displayTitleForPost(post.slug, post.title)
   const mins = readingTime(post.content)
   const keywordList = post.keywords
-    ? post.keywords.split(",").map((k) => k.trim()).filter(Boolean)
+    ? post.keywords.split(/[;,]/).map((k) => k.trim()).filter(Boolean)
     : []
   const formattedContent = formatContent(post.content, post.title, post.slug)
   const headerSummary = headerSummaryForPost(post)
