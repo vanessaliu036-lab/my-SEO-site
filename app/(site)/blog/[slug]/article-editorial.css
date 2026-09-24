@@ -132,8 +132,8 @@
 
 /* Topic band and CTA stay within the reading measure but use OCC surfaces. */
 .occ-article-shell article > div.bg-stone-950 {
-  background: var(--occ-forest) !important;
-  color: #F6F3EA !important;
+  background: var(--occ-page-background) !important;
+  color: var(--occ-ink) !important;
   border-radius: 0 !important;
 }
 
