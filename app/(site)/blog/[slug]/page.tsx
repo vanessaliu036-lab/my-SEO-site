@@ -555,6 +555,36 @@ const SEO_CONTENT_EXPANSIONS: Record<string, {
 }
 
 const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lead: string }> = {
+  "sample-cambodian-coffee-before-buying-lot": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader sourcing and supplier-risk framework, see the",
+  },
+  "offer-vs-pre-shipment-vs-arrival-coffee-sample": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader procurement and verification framework, see the",
+  },
+  "green-coffee-arrival-inspection-checklist": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the wider supplier-quality framework behind arrival QC, see the",
+  },
+  "coffee-contract-quality-tolerances-fine-robusta": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader buyer and supplier-control framework, see the",
+  },
+  "green-coffee-purchase-contract-checklist-roasters": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader procurement and supplier-risk framework, see the",
+  },
+  "how-many-green-coffee-samples-before-approving-lot": {
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    anchor: "Cambodian coffee supplier evaluation guide",
+    lead: "For the broader supplier evaluation framework, see the",
+  },
   "cambodia-coffee-production-vs-consumption": {
     href: "/blog/cambodia-coffee-industry-guide-2026-from-colonial-roots-to-global-recognition",
     anchor: "Cambodia coffee industry guide",
