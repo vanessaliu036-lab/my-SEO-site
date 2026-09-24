@@ -34,3 +34,17 @@ test("contact submissions have server-side throttling and a honeypot", () => {
   assert.match(form, /register\("website"\)/)
   assert.match(form, /tabIndex=\{-1\}/)
 })
+
+
+test("contact form requires core contact details and a message", () => {
+  const schema = source("app/(site)/contact/schema.ts")
+  const form = source("app/(site)/contact/ContactForm.tsx")
+
+  assert.match(schema, /phone:\s*z/)
+  assert.match(schema, /Phone number is required/)
+  assert.match(schema, /Message is required/)
+  assert.match(form, /register\("phone"\)/)
+  assert.match(form, /type="tel"/)
+  assert.match(form, /occ-contact-required/)
+  assert.doesNotMatch(form, /Project \/ Requirement <span>\(optional\)<\/span>/)
+})
