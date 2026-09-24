@@ -33,6 +33,7 @@ type ContactLead = {
   company: string
   email: string
   phone: string
+  jobTitle: string
   country: string
   interest: string
   message: string
@@ -305,6 +306,7 @@ export default function AdminDashboard({
                         <h2 className="mt-2 font-serif text-2xl">{lead.company || lead.name}</h2>
                         <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1 text-sm">
                           <span>{lead.name}</span>
+                          {lead.jobTitle ? <><span>·</span><span>{lead.jobTitle}</span></> : null}
                           <span>·</span>
                           <a className="underline underline-offset-4" href={"tel:" + lead.phone}>{lead.phone || "No phone"}</a>
                           <span>·</span>
