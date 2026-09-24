@@ -6,6 +6,7 @@ import { siteUrl, siteName } from "@/lib/siteConfig"
 import { alternatesFromCanonical, seoDescription, seoTitle } from "@/lib/seo"
 import { publisherLogoImageObject } from "@/lib/organizationSchema"
 import { getPostBySlug, getRecentPosts } from "@/lib/airtable"
+import { blogTagSlug, visibleTagsForPost } from "@/lib/blogTags"
 
 // Plain-text / Markdown -> readable HTML with internal links injected
 const INTERNAL_LINKS: Record<string, string> = {
@@ -758,44 +759,6 @@ function metaDescriptionForPost(post: Awaited<ReturnType<typeof getPostBySlug>>)
   )
 }
 
-const GENERIC_DISPLAY_TAGS = new Set([
-  "fine robusta cambodia",
-  "specialty robusta coffee",
-  "cambodia robusta coffee",
-  "cambodia coffee supplier",
-  "cambodia coffee origin",
-  "fine robusta",
-  "cambodia robusta",
-])
-
-function visibleTagsForPost(post: NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>): string[] {
-  const primary = post.primary_keyword?.trim() || ""
-  const category = post.category?.trim() || ""
-  const secondary = post.keywords
-    ? post.keywords.split(/[;,]/).map((value) => value.trim()).filter(Boolean)
-    : []
-
-  const candidates = [primary, category, ...secondary]
-  const seen = new Set<string>()
-  const result: string[] = []
-
-  for (const tag of candidates) {
-    const key = tag.toLowerCase().replace(/\s+/g, " ").trim()
-    if (!key || seen.has(key)) continue
-
-    const isPrimary = primary && key === primary.toLowerCase().replace(/\s+/g, " ").trim()
-    const isCategory = category && key === category.toLowerCase().replace(/\s+/g, " ").trim()
-    if (!isPrimary && !isCategory && GENERIC_DISPLAY_TAGS.has(key)) continue
-
-    seen.add(key)
-    result.push(tag)
-    if (result.length >= 4) break
-  }
-
-  if (!result.length && secondary.length) return secondary.slice(0, 2)
-  return result
-}
-
 export const revalidate = 60
 
 /** 列表未預建的 slug 仍可開文（與 canonical corpus 規則一致）。 */
@@ -1170,9 +1133,13 @@ export default async function BlogPostPage({
               <p className="text-[10px] tracking-[0.24em] text-occ-burgundy uppercase mb-3">Tags</p>
               <div className="flex flex-wrap gap-2">
                 {keywordList.map((kw) => (
-                  <span key={kw} className="rounded-full border border-occ-burgundy/28 px-3 py-1.5 text-xs text-occ-burgundy">
+                  <Link
+                    key={kw}
+                    href={`/blog/tag/${blogTagSlug(kw)}`}
+                    className="rounded-full border border-occ-burgundy/28 px-3 py-1.5 text-xs text-occ-burgundy transition-colors hover:border-occ-burgundy hover:bg-occ-burgundy hover:text-occ-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-occ-burgundy/40"
+                  >
                     {kw}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </div>
