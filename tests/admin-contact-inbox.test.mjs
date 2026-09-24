@@ -18,6 +18,8 @@ test('admin contact inbox exposes Company, Work Email, Country, Intent and Proje
           fldHHRfTCecsvyg5b: 'Buyer',
           fldCkWbuV4lFt5Mbq: 'QA Hotel',
           fldbLSnIyiApGAw7Q: 'buyer@example.test',
+      fld7D4yMzhagDsac0: '+855 12 345 678',
+          fld7D4yMzhagDsac0: '+855 12 345 678',
           fldCEEsTN9XD3ddK4: 'Cambodia',
           fldq91HTSYa3rxLBC: 'Wholesale & Sourcing',
           fldomWJyClrC2dFH8: 'Need 20kg',
@@ -34,6 +36,7 @@ test('admin contact inbox exposes Company, Work Email, Country, Intent and Proje
   })
   assert.equal(records[0].company, 'QA Hotel')
   assert.equal(records[0].email, 'buyer@example.test')
+  assert.equal(records[0].phone, '+855 12 345 678')
   assert.equal(records[0].country, 'Cambodia')
   assert.equal(records[0].interest, 'Wholesale & Sourcing')
   assert.equal(records[0].stage, 'Ready to order')
