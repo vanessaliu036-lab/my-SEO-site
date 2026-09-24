@@ -154,6 +154,11 @@ const CAMBODIA_COFFEE_TOPIC_OWNER_LABELS: Record<string, string> = {
 const CAMBODIA_REGIONS_HREF = "/origins/cambodia-regions"
 const CAMBODIA_ROBUSTA_HREF = "/blog/cambodia-specialty-robusta-coffee-guide"
 const CAMBODIA_ROBUSTA_REGIONS_OWNER_SLUG = "cambodia-robusta-growing-regions"
+const CAMBODIA_PRODUCT_BUYING_OWNER_HREF =
+  "/blog/best-cambodian-coffee-beans-robusta-quality-guide"
+const CAMBODIA_PRODUCT_BUYING_SUPPORT_SLUGS = new Set([
+  "best-cambodian-coffee-to-buy-2026",
+])
 
 const CAMBODIA_GEOGRAPHY_SUPPORT_SLUGS = new Set([
   "where-is-coffee-grown-in-cambodia",
@@ -348,9 +353,9 @@ const CONTEXTUAL_OWNER_LINKS: Record<string, { href: string; anchor: string; lea
     lead: "For the broad buyer comparison, see the",
   },
   "best-cambodian-coffee-to-buy-2026": {
-    href: "/origins",
-    anchor: "Cambodian coffee origins guide",
-    lead: "For the origin-level guide to Cambodian coffee, explore the",
+    href: CAMBODIA_PRODUCT_BUYING_OWNER_HREF,
+    anchor: "Best Cambodian coffee buyer guide",
+    lead: "For the broader Cambodian coffee product-selection guide, see the",
   },
   "robusta-processing-methods-washed-natural-and-honey": {
     href: "/blog/fine-robusta-processing-transparency",
@@ -788,11 +793,13 @@ export default async function BlogPostPage({
   const isCambodiaCoffeeSupport = CAMBODIA_COFFEE_PRIMARY_SUPPORT_SLUGS.has(post.slug)
   const isCambodiaGeographySupport = CAMBODIA_GEOGRAPHY_SUPPORT_SLUGS.has(post.slug)
   const isCambodiaRobustaRegionsOwner = post.slug === CAMBODIA_ROBUSTA_REGIONS_OWNER_SLUG
+  const isCambodiaProductBuyingSupport = CAMBODIA_PRODUCT_BUYING_SUPPORT_SLUGS.has(post.slug)
   const showRobustaPillarLink =
     shouldLinkToRobustaPillar(post.slug) &&
     !isCambodiaCoffeeSupport &&
     !isCambodiaGeographySupport &&
-    !isCambodiaRobustaRegionsOwner
+    !isCambodiaRobustaRegionsOwner &&
+    !isCambodiaProductBuyingSupport
   const robustaPillarAnchor = robustaAnchorForSlug(post.slug)
   const robustaTopicOwnerLabel = ROBUSTA_TOPIC_OWNER_LABELS[post.slug]
   const isCambodiaCoffeePillar = post.slug === CAMBODIA_COFFEE_PILLAR_SLUG
@@ -944,6 +951,21 @@ export default async function BlogPostPage({
                 ))}
               </div>
             </section>
+          )}
+
+          {isCambodiaProductBuyingSupport && (
+            <aside className="mx-auto max-w-[720px] mt-10 border-l border-stone-950 bg-stone-50 px-5 py-4">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-stone-400 mb-1">Buying guide</p>
+              <Link
+                href={CAMBODIA_PRODUCT_BUYING_OWNER_HREF}
+                className="text-sm font-medium text-stone-950 border-b border-stone-300 hover:border-stone-950 transition-colors"
+              >
+                Best Cambodian coffee buyer guide →
+              </Link>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                This page answers a narrower time-specific buying question. Use the product-selection owner for the broader “best Cambodian coffee” and “which beans to buy” decision; local café discovery and origin geography remain separate intents.
+              </p>
+            </aside>
           )}
 
           {isCambodiaGeographySupport && (
