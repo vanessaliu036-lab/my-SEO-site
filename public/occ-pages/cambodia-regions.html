@@ -207,10 +207,70 @@ html[data-occ-page="partners"] .brands-head{margin:clamp(30px,4vw,56px) auto cla
 html[data-occ-page="mission"] .bottom-cta :is(h1,h2,h3,p,.eyebrow,.text-link),html[data-occ-page="mission"] .site-footer{color:var(--occ-charcoal)!important;-webkit-text-fill-color:var(--occ-charcoal)!important}
 html[data-occ-page="mission"] .bottom-cta .eyebrow,html[data-occ-page="mission"] .bottom-cta .text-link{color:var(--occ-wine)!important;-webkit-text-fill-color:var(--occ-wine)!important}
 </style>
+
+<style id="occ-official-shell-css">
+.occ-global-header,.occ-global-footer,.occ-global-header *,.occ-global-footer *{box-sizing:border-box}
+.occ-global-header{position:sticky;inset:0 0 auto;z-index:1000;width:100%;height:80px;border-bottom:1px solid rgba(24,32,25,.12);background:rgba(246,243,234,.96);color:#182019;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font-family:Arial,Helvetica,sans-serif}
+.occ-global-header-inner{width:100%;max-width:1680px;height:80px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:24px}
+.occ-global-brand{display:flex;align-items:flex-end;gap:12px;flex:0 0 auto;color:#182019!important;text-decoration:none!important}
+.occ-global-brand-word{font:600 24px/1 Arial,Helvetica,sans-serif;letter-spacing:-.07em}
+.occ-global-brand-caption{margin-bottom:1px;color:rgba(24,32,25,.55);font:500 9px/1.15 Arial,Helvetica,sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.occ-global-nav{min-width:0;flex:1;height:80px;display:flex;align-items:stretch;justify-content:center;gap:28px}
+.occ-global-nav-item{position:relative;display:flex;align-items:center;height:80px}
+.occ-global-nav-item>a{display:inline-flex;align-items:center;gap:4px;color:rgba(24,32,25,.64)!important;font:500 10px/1 Arial,Helvetica,sans-serif;letter-spacing:.18em;text-decoration:none!important;white-space:nowrap;transition:color .2s ease}
+.occ-global-nav-item>a:hover,.occ-global-nav-item>a[aria-current="page"]{color:#182019!important}
+.occ-global-nav-item>a span{font-size:12px;opacity:.55;transform:translateY(-1px)}
+.occ-global-dropdown{pointer-events:none;position:absolute;top:80px;left:50%;min-width:230px;padding:8px;transform:translate(-50%,8px);border:1px solid rgba(0,0,0,.1);background:#f6f3ea;box-shadow:0 18px 45px rgba(20,24,18,.1);opacity:0;transition:opacity .2s ease,transform .2s ease}
+.occ-global-dropdown a{display:block;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,.05);color:#4f554e!important;font:400 11px/1.35 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-decoration:none!important;white-space:nowrap}
+.occ-global-dropdown a:last-child{border-bottom:0}.occ-global-dropdown a:hover{background:rgba(255,255,255,.7);color:#182019!important}
+.occ-global-nav-item:hover .occ-global-dropdown,.occ-global-nav-item:focus-within .occ-global-dropdown{pointer-events:auto;transform:translate(-50%,0);opacity:1}
+.occ-global-menu-button{display:none;margin-left:auto;width:40px;height:40px;padding:0;border:1px solid rgba(24,32,25,.2);border-radius:50%;background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:4px;color:#182019;cursor:pointer}
+.occ-global-menu-button span{display:block;width:15px;height:1px;background:currentColor}
+.occ-global-mobile-menu{position:fixed;inset:0;z-index:1100;overflow:auto;background:#f6f3ea;color:#182019;padding:24px 28px}
+.occ-global-mobile-menu[hidden]{display:none}.occ-global-mobile-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,.1)}
+.occ-global-mobile-top>a{color:#182019!important;font:600 24px/1 Arial,Helvetica,sans-serif;letter-spacing:-.07em;text-decoration:none!important}.occ-global-mobile-top button{width:44px;height:44px;border:1px solid rgba(0,0,0,.15);border-radius:50%;background:transparent;font:300 26px/1 Arial;cursor:pointer}
+.occ-global-mobile-menu nav>div{position:relative;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.1)}.occ-global-mobile-menu nav>div>a{color:#182019!important;font:400 32px/1 Georgia,'Times New Roman',serif;letter-spacing:-.035em;text-decoration:none!important}.occ-global-mobile-menu nav>div>span{position:absolute;right:0;top:25px;color:rgba(0,0,0,.35);font:500 9px/1 Arial;letter-spacing:.22em}.occ-global-mobile-menu p{display:flex;flex-wrap:wrap;gap:8px 20px;margin:16px 0 0!important}.occ-global-mobile-menu p a{color:rgba(24,32,25,.6)!important;font:500 10px/1.35 Arial;text-transform:uppercase;letter-spacing:.12em;text-decoration:none!important}
+.occ-global-footer{width:100%;border-top:1px solid rgba(24,32,25,.12);background:#f6f3ea;color:rgba(24,32,25,.48);font-family:Arial,Helvetica,sans-serif}
+.occ-global-footer-inner{width:min(calc(100% - 96px),1584px);min-height:86px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;font-size:9px;line-height:1.5;letter-spacing:.19em;text-transform:uppercase}
+.occ-global-footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}.occ-global-footer a{color:inherit!important;text-decoration:none!important}.occ-global-footer a:hover{color:#94454d!important}
+@media(max-width:1050px){.occ-global-header-inner{padding:0 28px}.occ-global-nav{display:none}.occ-global-menu-button{display:flex}.occ-global-footer-inner{width:min(calc(100% - 56px),1584px);align-items:flex-start;flex-direction:column;padding:28px 0;gap:16px}.occ-global-footer nav{justify-content:flex-start}}
+@media(max-width:560px){.occ-global-header,.occ-global-header-inner{height:68px}.occ-global-header-inner{padding:0 20px}.occ-global-brand-caption{display:none}.occ-global-footer-inner{width:calc(100% - 40px)}}
+@media(prefers-reduced-motion:reduce){.occ-global-header *,.occ-global-footer *{transition:none!important}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="top-progress" id="progress"></div>
-<header class="site-header"><div class="wrap header-inner"><a aria-label="OCC — back to top" class="logo" href="#top">OCC<b>.</b></a><div class="brandline">Origin Coffee Cambodia / Origins</div><nav aria-label="On-page navigation" class="mini-nav"><a href="#explore">Explore</a><a href="#evidence">Our approach</a><a href="#next">The cup</a></nav></div></header>
+
+<header class="occ-global-header">
+  <div class="occ-global-header-inner">
+    <a class="occ-global-brand" href="/" aria-label="Origin Coffee Cambodia home">
+      <span class="occ-global-brand-word">OCC</span>
+      <span class="occ-global-brand-caption">Origin Coffee<br>Cambodia</span>
+    </a>
+    <nav class="occ-global-nav" aria-label="Primary navigation">
+      <div class="occ-global-nav-item"><a href="/about">ABOUT <span aria-hidden="true">⌄</span></a><div class="occ-global-dropdown"><a href="/about/mission">Mission</a><a href="/about/founder">Founder</a><a href="/about/manifesto">Manifesto</a><a href="/about/sustainability">Sustainability</a></div></div>
+      <div class="occ-global-nav-item"><a href="/solutions">SOLUTIONS <span aria-hidden="true">⌄</span></a><div class="occ-global-dropdown"><a href="/solutions/wholesale">Wholesale</a><a href="/solutions/roasting-program">Roasting Program</a><a href="/solutions/barista-staffing">Barista Staffing</a><a href="/solutions/equipment-service">Equipment Service</a></div></div>
+      <div class="occ-global-nav-item"><a href="/origins">ORIGINS <span aria-hidden="true">⌄</span></a><div class="occ-global-dropdown"><a href="/origins/single-origin">Single Origin</a><a href="/fine-robusta-cambodia">Fine Robusta Cambodia</a><a href="/origins/farm-terroir">Farm &amp; Terroir</a></div></div>
+      <div class="occ-global-nav-item"><a href="/blog">BLOG</a></div>
+      <div class="occ-global-nav-item"><a href="/contact">CONTACT</a></div>
+      <div class="occ-global-nav-item"><a href="/partnerships">PARTNERSHIPS</a></div>
+      <div class="occ-global-nav-item"><a href="/distribution">DISTRIBUTION</a></div>
+    </nav>
+    <button class="occ-global-menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="occ-global-mobile-menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="occ-global-mobile-menu" id="occ-global-mobile-menu" hidden>
+    <div class="occ-global-mobile-top"><a href="/" aria-label="Origin Coffee Cambodia home">OCC</a><button type="button" aria-label="Close navigation menu">×</button></div>
+    <nav aria-label="Mobile navigation">
+      <div><a href="/about">ABOUT</a><span>01</span><p><a href="/about/mission">Mission</a><a href="/about/founder">Founder</a><a href="/about/manifesto">Manifesto</a><a href="/about/sustainability">Sustainability</a></p></div>
+      <div><a href="/solutions">SOLUTIONS</a><span>02</span><p><a href="/solutions/wholesale">Wholesale</a><a href="/solutions/roasting-program">Roasting Program</a><a href="/solutions/barista-staffing">Barista Staffing</a><a href="/solutions/equipment-service">Equipment Service</a></p></div>
+      <div><a href="/origins">ORIGINS</a><span>03</span><p><a href="/origins/single-origin">Single Origin</a><a href="/fine-robusta-cambodia">Fine Robusta Cambodia</a><a href="/origins/farm-terroir">Farm &amp; Terroir</a></p></div>
+      <div><a href="/blog">BLOG</a><span>04</span></div>
+      <div><a href="/contact">CONTACT</a><span>05</span></div>
+      <div><a href="/partnerships">PARTNERSHIPS</a><span>06</span></div>
+      <div><a href="/distribution">DISTRIBUTION</a><span>07</span></div>
+    </nav>
+  </div>
+</header>
 <main id="top">
 <section aria-labelledby="hero-title" class="hero"><div class="wrap">
 <div class="hero-inner">
@@ -237,7 +297,15 @@ html[data-occ-page="mission"] .bottom-cta .eyebrow,html[data-occ-page="mission"]
 <section aria-labelledby="evidence-title" class="evidence" id="evidence"><div class="wrap evidence-inner"><div class="evidence-copy rise"><div class="small">Origin / The proof behind the story</div><h2 id="evidence-title">A place name starts the story.<br/><em>Evidence gives it meaning.</em></h2><p>We describe what can be supported for each coffee. Country and region create context; producer, harvest, process and lot information add precision when verified. We do not invent missing details.</p></div><div class="evidence-proof rise"><div class="proof-kicker">Three questions behind every origin claim</div><div class="proof-line"><div class="index">01</div><div><h3>Where did it grow?</h3><p>Start with Cambodia and the verified region or farm location.</p></div></div><div class="proof-line"><div class="index">02</div><div><h3>What happened after harvest?</h3><p>Connect processing and lot identity to available records.</p></div></div><div class="proof-line"><div class="index">03</div><div><h3>What does the cup show?</h3><p>Keep tasting notes and quality statements tied to the coffee evaluated.</p></div></div><p class="evidence-note">Specific evidence is provided only where it is available and verified.</p></div></div></section>
 <section aria-labelledby="next-title" class="end" id="next"><div class="wrap rise"><div class="small">From place to cup</div><h2 id="next-title">There is more to Cambodian coffee.</h2><p>Start with OCC's specialty: Fine Robusta, explored through individual coffees, processing and cup quality.</p><a class="end-button" href="https://origincafekh.com/fine-robusta-cambodia">Discover Fine Robusta <span aria-hidden="true">↗</span></a></div></section>
 </main>
-<footer><div class="wrap footer-inner"><a aria-label="OCC — back to top" class="logo" href="#top" style="font-size:27px">OCC<b>.</b></a><small>Origin Coffee Cambodia · HTML concept preview · Official website unchanged</small></div></footer>
+
+<footer class="occ-global-footer">
+  <div class="occ-global-footer-inner">
+    <span>Origin Coffee Cambodia · OCC</span>
+    <nav aria-label="Footer navigation"><a href="/about">About</a><a href="/solutions">Solutions</a><a href="/origins">Origins</a><a href="/contact">Contact</a></nav>
+    <span>100% Cambodia-origin coffee · Fine Robusta specialist</span>
+  </div>
+</footer>
+
 <script>
 (()=>{const bar=document.getElementById('progress'),reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;let busy=false;function update(){busy=false;const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);bar.style.width=(Math.max(0,Math.min(1,window.scrollY/max))*100)+'%';if(!reduced){const image=document.querySelector('.hero-image img:not([hidden])');if(image){const shift=Math.min(42,Math.max(0,window.scrollY*.045));image.style.transform=`scale(1.04) translate3d(0,${shift/3}px,0)`}}}window.addEventListener('scroll',()=>{if(!busy){busy=true;requestAnimationFrame(update)}},{passive:true});update();if(!reduced&&'IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.rise').forEach(el=>observer.observe(el))}})();
 </script>
@@ -263,6 +331,10 @@ html[data-occ-page="mission"] .bottom-cta .eyebrow,html[data-occ-page="mission"]
   }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
   items.forEach(el => observer.observe(el));
 })();
+</script>
+
+<script id="occ-official-shell-js">
+(()=>{const open=document.querySelector('.occ-global-menu-button'),panel=document.getElementById('occ-global-mobile-menu'),close=panel?.querySelector('.occ-global-mobile-top button');if(!open||!panel||!close)return;const setOpen=value=>{panel.hidden=!value;open.setAttribute('aria-expanded',String(value));document.documentElement.style.overflow=value?'hidden':'';if(value)close.focus();else open.focus()};open.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));panel.addEventListener('click',event=>{if(event.target.closest('a'))setOpen(false)});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden)setOpen(false)});const path=location.pathname;document.querySelectorAll('.occ-global-nav-item>a').forEach(link=>{const href=link.getAttribute('href');if(href==='/'?path==='/':path===href||path.startsWith(href+'/'))link.setAttribute('aria-current','page')})})();
 </script>
 </body>
 </html>
