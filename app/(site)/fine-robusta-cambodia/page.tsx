@@ -57,6 +57,39 @@ const professionalChecks = [
   "Commercial reality: available quantity, packaging, timing, documentation, and whether a comparable lot can realistically be repeated.",
 ]
 
+const topicCluster = [
+  {
+    label: "Grading",
+    href: "/blog/fine-robusta-grading-verify-before-cupping",
+    title: "Fine Robusta grading & verification",
+    description: "Standards, score context, physical checks, sensory evidence, and what buyers should verify before treating a quality claim as comparable.",
+  },
+  {
+    label: "Fermentation",
+    href: "/blog/fine-robusta-fermentation",
+    title: "Fermentation & process control",
+    description: "How fermentation changes coffee, where process control matters, and how to separate useful processing evidence from marketing language.",
+  },
+  {
+    label: "Brewing",
+    href: "/blog/how-to-brew-cambodian-fine-robusta",
+    title: "Brewing Cambodian Fine Robusta",
+    description: "A practical owner guide for ratio, grind, water temperature, extraction, and brew-method decisions after the coffee has been roasted.",
+  },
+  {
+    label: "Buyer / Sourcing",
+    href: "/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability",
+    title: "Buyer & sourcing verification",
+    description: "A procurement-focused route covering supplier evidence, traceability, lot identity, repeatability, samples, and commercial buying checks.",
+  },
+  {
+    label: "Origin",
+    href: "/blog/mondulkiri-next-specialty-coffee-origin",
+    title: "Mondulkiri origin guide",
+    description: "The geographic context behind Cambodia’s emerging Canephora story, including what is documented and what should not be generalized.",
+  },
+]
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -258,6 +291,36 @@ export default function FineRobustaCambodiaPage() {
                 <p>
                   That is why Fine Robusta matters here. It gives Cambodian Canephora a way to be evaluated beyond the old assumption that Robusta is only about strength, caffeine, or low-cost volume—without requiring anyone to pretend that every Cambodian coffee has already reached that quality level.
                 </p>
+              </div>
+            </section>
+
+            <section className="mt-12 border-t border-stone-200 pt-10" aria-labelledby="fine-robusta-topic-cluster">
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.24em] text-stone-400">Fine Robusta knowledge map</p>
+              <h2 id="fine-robusta-topic-cluster" className="text-2xl font-semibold tracking-tight text-stone-950">
+                Explore the five core Fine Robusta topics
+              </h2>
+              <p className="mt-5 text-[15px] leading-[1.8] text-stone-700 sm:text-base">
+                Use this pillar for the broad Cambodia Fine Robusta framework, then move into the specialist owner page that matches the question you are researching. Each owner links back here so the topic hierarchy remains explicit for readers and search engines.
+              </p>
+              <div className="mt-7 divide-y divide-stone-200 border-y border-stone-200">
+                {topicCluster.map((topic, index) => (
+                  <article key={topic.href} className="grid gap-3 py-5 sm:grid-cols-[42px_1fr_auto] sm:items-start sm:gap-5">
+                    <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">{topic.label}</p>
+                      <h3 className="mt-1 text-base font-semibold tracking-tight text-stone-950">{topic.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-stone-600">{topic.description}</p>
+                    </div>
+                    <Link
+                      href={topic.href}
+                      className="mt-1 inline-block whitespace-nowrap border-b border-stone-300 text-sm font-medium text-stone-950 hover:border-stone-950"
+                    >
+                      Open guide →
+                    </Link>
+                  </article>
+                ))}
               </div>
             </section>
 

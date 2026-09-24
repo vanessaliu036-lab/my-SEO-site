@@ -268,3 +268,37 @@ test(
     assert.doesNotMatch(content, /\]\(\/fine-robusta-standards\)/)
   },
 )
+
+
+test('Fine Robusta pillar exposes five specialist owner routes', () => {
+  const owners = [
+    '/blog/fine-robusta-grading-verify-before-cupping',
+    '/blog/fine-robusta-fermentation',
+    '/blog/how-to-brew-cambodian-fine-robusta',
+    '/blog/evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability',
+    '/blog/mondulkiri-next-specialty-coffee-origin',
+  ]
+
+  assert.match(fineRobustaPillar, /Fine Robusta knowledge map/)
+  assert.match(fineRobustaPillar, /Explore the five core Fine Robusta topics/)
+  for (const href of owners) {
+    assert.match(fineRobustaPillar, new RegExp(href.replaceAll('/', '\\/').replaceAll('-', '\\-')))
+  }
+})
+
+test('five specialist owners link back to the Fine Robusta pillar', () => {
+  const owners = [
+    'fine-robusta-grading-verify-before-cupping',
+    'fine-robusta-fermentation',
+    'how-to-brew-cambodian-fine-robusta',
+    'evaluating-cambodian-coffee-suppliers-a-procurement-manager-s-guide-to-quality-and-traceability',
+    'mondulkiri-next-specialty-coffee-origin',
+  ]
+
+  assert.match(articlePage, /const ROBUSTA_TOPIC_OWNER_LABELS/)
+  assert.match(articlePage, /Part of Fine Robusta Cambodia/)
+  assert.match(articlePage, /Return to the Fine Robusta Cambodia pillar/)
+  for (const slug of owners) {
+    assert.match(articlePage, new RegExp(slug.replaceAll('-', '\\-')))
+  }
+})
