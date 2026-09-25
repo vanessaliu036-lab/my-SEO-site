@@ -107,7 +107,9 @@ export default function OriginsPage() {
             <p>From region to farm, harvest to processing, evaluation to roasting — every step adds context to the final cup.</p>
             <div className="originPath" aria-label="Region to cup journey">Region <span>→</span> Farm <span>→</span> Harvest <span>→</span> Processing <span>→</span> Evaluation <span>→</span> Roasting <span>→</span> Cup</div>
             <div className="originButtons">
-              <Link href="/origins/single-origin" className="originTextLink">Explore single-origin coffees</Link>
+              <Link href="/origins/cambodia-regions" className="originButton">Explore Cambodia &amp; Regions</Link>
+              <Link href="/fine-robusta-cambodia" className="originButton">Understand Fine Robusta</Link>
+              <Link href="/solutions/wholesale" className="originButton">Explore Wholesale Supply</Link>
               <Link href="/contact" className="originButton originButtonDark">Discuss wholesale supply</Link>
             </div>
           </div>
