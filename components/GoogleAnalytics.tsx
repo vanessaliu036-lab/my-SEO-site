@@ -21,9 +21,9 @@ const sendEvent = (eventName: string, params: Record<string, unknown>) => {
  *
  * Commercial events intentionally separate intent from outcome:
  * - wholesale_view/contact_view/contact_click = funnel intent
- * - generate_lead = successful contact-form submission (emitted in ContactForm)
+ * - contact_form_submit = successful contact-form submission (emitted in ContactForm)
  * - occ_404 = exact broken path for technical cleanup
- * - whatsapp_click/email_click = ready for direct-contact CTAs when present
+ * - email_click/telegram_click/whatsapp_click = direct-contact intent
  */
 export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   const pathname = usePathname()
@@ -91,6 +91,11 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
       try {
         url = new URL(rawHref, window.location.href)
       } catch {
+        return
+      }
+
+      if (url.hostname.toLowerCase() === "t.me") {
+        sendEvent("telegram_click", clickParams)
         return
       }
 
