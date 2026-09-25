@@ -11,6 +11,11 @@ const sample = {
   country: 'Cambodia',
   service: 'Wholesale / Sourcing',
   message: 'Synthetic smoke test',
+  landingPage: '/blog/cambodia-coffee',
+  lastTouchPage: '/solutions/wholesale',
+  sourceMedium: 'google / organic',
+  utmCampaign: '',
+  kpiExclude: false,
 }
 const env = { AIRTABLE_TOKEN: 'test-server-only-token', AIRTABLE_BASE_ID: 'appJCcT41WRfKpWk2' }
 
@@ -45,6 +50,11 @@ test('only returns success after a complete commercial lead is persisted', async
   assert.equal(fields.fldZxno6lrUVyq0F1, 'Unread')
   assert.equal(fields.fldRkeLPYNy4eCpeG, 'Not Converted')
   assert.equal(fields.fldcUFGqwGNHEQ9SH, '/contact')
+  assert.equal(fields.fldJHVMy9vt8r4Mwu, sample.landingPage)
+  assert.equal(fields.fldAvM2AeJ32onisf, sample.lastTouchPage)
+  assert.equal(fields.fldA5l9MZquBNWk5E, sample.sourceMedium)
+  assert.equal(fields.fldOkPloT4e4CZ2Px, sample.utmCampaign)
+  assert.equal(fields.fldKEJcmjmG3yUHLs, false)
 })
 
 test('all four Contact intents map to supported Airtable choices', async () => {
@@ -85,4 +95,27 @@ test('the contact server action gates success on confirmed persistence and does 
   assert.ok(source.includes('if (!persisted)'))
   assert.ok(source.includes('success: false'))
   assert.doesNotMatch(source, /console\.log|New message received/)
+})
+
+
+test('synthetic QA enquiries are persisted but excluded from production KPI reporting', async () => {
+  let body
+  const result = await persistContactLead(
+    {
+      ...sample,
+      company: '[TEST] OCC QA',
+      email: 'qa@example.test',
+      kpiExclude: false,
+    },
+    {
+      env,
+      fetchImpl: async (_url, options) => {
+        body = JSON.parse(options.body)
+        return { ok: true, json: async () => ({ records: [{ id: 'recABC12345678901' }] }) }
+      },
+    },
+  )
+
+  assert.equal(result, true)
+  assert.equal(body.records[0].fields.fldKEJcmjmG3yUHLs, true)
 })
