@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useRef, useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { submitContactForm } from "./action"
@@ -18,6 +18,7 @@ export default function ContactForm() {
   const [isPending, startTransition] = useTransition()
   const [isSuccess, setIsSuccess] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
+  const hasTrackedContactStart = useRef(false)
 
   const {
     register,
@@ -31,17 +32,29 @@ export default function ContactForm() {
   const selectedType = watch("service")
   const message = watch("message") ?? ""
 
+  const trackContactStart = () => {
+    if (hasTrackedContactStart.current) return
+    hasTrackedContactStart.current = true
+
+    window.gtag?.("event", "contact_start", {
+      page_path: `${window.location.pathname}${window.location.search}`,
+      lead_type: selectedType || "(not selected)",
+    })
+  }
+
   const onSubmit = (data: ContactFormData) => {
     setServerError(null)
     startTransition(async () => {
       const result = await submitContactForm(data)
       if (result.success) {
-        window.gtag?.("event", "generate_lead", {
+        const leadEventParams = {
           lead_type: data.service,
-          company: data.company,
           market: data.country,
           page_path: `${window.location.pathname}${window.location.search}`,
-        })
+        }
+
+        window.gtag?.("event", "contact_submit", leadEventParams)
+        window.gtag?.("event", "generate_lead", leadEventParams)
         setIsSuccess(true)
       } else {
         setServerError(result.error)
@@ -108,7 +121,7 @@ export default function ContactForm() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <form onSubmit={handleSubmit(onSubmit)} onFocusCapture={trackContactStart} noValidate>
             <div
               aria-hidden="true"
               style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}
