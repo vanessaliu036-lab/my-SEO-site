@@ -22,8 +22,8 @@ const sendEvent = (eventName: string, params: Record<string, unknown>) => {
  * Commercial events intentionally separate intent from outcome:
  * - wholesale_view/contact_view = route-level funnel signals
  * - solution_click/wholesale_click/contact_click = qualified navigation intent
- * - contact_start/contact_submit/generate_lead = contact-form journey (emitted in ContactForm)
- * - generate_lead remains the canonical successful lead event
+ * - contact_start = first form interaction on the Contact route
+ * - generate_lead = canonical successful lead event (emitted after persistence in ContactForm)
  * - occ_404 = exact broken path for technical cleanup
  * - whatsapp_click/email_click = direct-contact intent
  */
@@ -124,11 +124,24 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
       }
     }
 
+    let contactStarted = false
+    const handleContactFocus = (event: FocusEvent) => {
+      if (pathname !== "/contact" || contactStarted || !window.gtag) return
+
+      const target = event.target as Element | null
+      if (!target?.closest("form")) return
+
+      contactStarted = true
+      sendEvent("contact_start", commonParams)
+    }
+
     document.addEventListener("click", handleClick)
+    document.addEventListener("focusin", handleContactFocus)
 
     return () => {
       window.clearInterval(signalTimer)
       document.removeEventListener("click", handleClick)
+      document.removeEventListener("focusin", handleContactFocus)
     }
   }, [measurementId, pathname])
 
