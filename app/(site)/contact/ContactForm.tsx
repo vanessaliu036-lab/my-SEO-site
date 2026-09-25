@@ -33,13 +33,13 @@ export default function ContactForm() {
   const message = watch("message") ?? ""
 
   const trackContactStart = () => {
-    if (hasTrackedContactStart.current) return
-    hasTrackedContactStart.current = true
+    if (hasTrackedContactStart.current || !window.gtag) return
 
-    window.gtag?.("event", "contact_start", {
+    window.gtag("event", "contact_start", {
       page_path: `${window.location.pathname}${window.location.search}`,
       lead_type: selectedType || "(not selected)",
     })
+    hasTrackedContactStart.current = true
   }
 
   const onSubmit = (data: ContactFormData) => {
