@@ -103,18 +103,20 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
 
       if (url.origin !== window.location.origin) return
 
-      if (url.pathname === "/contact") {
+      const isSamePath = url.pathname === window.location.pathname
+
+      if (url.pathname === "/contact" && !isSamePath) {
         sendEvent("contact_click", clickParams)
       }
 
-      if (url.pathname.startsWith("/solutions/")) {
+      if (url.pathname.startsWith("/solutions/") && !isSamePath) {
         sendEvent("solution_click", {
           ...clickParams,
           solution_path: url.pathname,
         })
       }
 
-      if (url.pathname === "/solutions/wholesale") {
+      if (url.pathname === "/solutions/wholesale" && !isSamePath) {
         sendEvent("wholesale_click", {
           ...clickParams,
           source_path: pagePath,
