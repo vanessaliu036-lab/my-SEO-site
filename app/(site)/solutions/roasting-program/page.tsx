@@ -4,8 +4,8 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Roasting Supplier Cambodia | Custom Roast Profiles | OCC",
-  description: "Custom coffee roasting and roast profile development from Cambodia for cafés, hotels, coffee brands, and B2B partners. Develop a repeatable coffee profile around your market, customers, and brewing application.",
+  title: "Custom Coffee Roasting & Profile Development | OCC Cambodia",
+  description: "Develop a coffee profile for your café, hotel or brand. OCC aligns Cambodian coffee and roast evaluation with your market and use case for your business.",
   keywords: "Roasting Supplier Cambodia, coffee roasting supplier Cambodia, Custom Roasting Cambodia, Roast Profile development, custom coffee roasting Cambodia, Cambodia roasting supplier, custom roast profile development, coffee roasting service Cambodia, B2B coffee roasting Cambodia, Fine Robusta custom roasting",
   openGraph: {
     title: "Custom Coffee Roasting Program | OCC",
@@ -69,7 +69,7 @@ export default function RoastingProgramPage() {
         eyebrow="Roasting Program"
         title="CUSTOM ROASTING PROGRAM"
         lead="Your Market. Your Customer. Your Roast Profile."
-        description="Roasting Supplier, Custom Roasting, and Roast Profile development built around your market, customer, brewing application, and commercial product target."
+        description="OCC develops roast profiles for cafés, hotels and coffee brands that have a defined market, brewing application or product goal. We begin with your brief, evaluate sample roasts in context and agree on a reference profile before discussing production requirements."
         heroImage={{ src: "/images/roasting/occ-roasting-green-beans-pour.webp", alt: "OCC roasting specialist loading green coffee for profile development" }}
         heroCtaLabel="Develop Your Roast Profile"
         heroCtaHref="/contact"
@@ -107,6 +107,14 @@ export default function RoastingProgramPage() {
           <article className="extended-prose"><div><span className="eyebrow">03 / Evaluation</span><h3>Sensory Evaluation Stays Connected to the Application</h3></div><div><p>Structured <a href="/blog/how-to-cup-fine-robusta">cupping</a> can establish the sensory baseline, but development continues into the brewing environment where the coffee will actually be served. The useful standard is not only whether the coffee tastes good in isolation, but whether it performs as the intended commercial product.</p><p>Feedback from that evaluation becomes the basis for profile refinement rather than subjective adjustment without a product target.</p></div></article>
           <article className="extended-prose"><div><span className="eyebrow">04 / Repeatability</span><h3>Built for Repeatable Supply</h3></div><div><p>An approved roast direction becomes more valuable when it functions as a reference for future production. Depending on the project, the reference can include the coffee or lot, intended application, sensory target, approved direction, evaluation notes, and relevant production observations.</p><p>Repeatability does not mean pretending agricultural coffee never changes. It means identifying meaningful change and comparing future production against a defined product target.</p></div></article>
           <article className="extended-prose"><div><span className="eyebrow">05 / Origin Expertise</span><h3>Cambodia and Fine Robusta Stay at the Center</h3></div><div><p>OCC is focused on Cambodia-origin coffee and <a href="/fine-robusta-cambodia">Fine Robusta</a>. When Cambodian coffee is part of a custom roasting project, the profile is developed around the actual coffee, process, sensory result, and intended use rather than assumptions about what Robusta or Cambodian coffee is supposed to taste like.</p><p>The objective is to connect what the coffee already has with what the market needs the finished product to become.</p></div></article>
+        </section>
+        <section aria-labelledby="roasting-readiness-title" id="readiness">
+          <span className="eyebrow">02 / Project Readiness</span>
+          <h2 className="extended-heading" id="roasting-readiness-title">Bring the brief. Confirm the production path.</h2>
+          <div className="extended-grid">
+            <article className="extended-card"><span className="number">Bring</span><h3>Bring to the first conversation</h3><p>Your customer and market · brew method and equipment · target cup or current coffee · expected format and volume · timing and packaging needs.</p></article>
+            <article className="extended-card"><span className="number">Confirm</span><h3>Confirm before production</h3><p>Coffee availability · responsible production partner · batch parameters · packaging and labeling roles · quality-release process · minimums, price basis and lead time.</p></article>
+          </div>
         </section>
         <section aria-labelledby="roasting-process-title" id="process">
           <span className="eyebrow">02 / Process</span>
