@@ -59,9 +59,30 @@ const OWNER_ROUTES = {
     anchor: "Fine Robusta consistency",
     description: "Use the formal consistency owner for broad repeatability, lot consistency, and buyer-control intent.",
   },
+  cambodianCoffee: {
+    href: "/blog/what-cambodian-coffee-should-you-try-first",
+    anchor: "Cambodian Coffee guide",
+    description: "Use the formal Cambodian Coffee guide for broad country-level discovery intent before moving into regional, quality, or commercial pages.",
+  },
+  ratanakiri: {
+    href: "/blog/ratanakiri-coffee-cambodias-other-highland-origin",
+    anchor: "Ratanakiri coffee origin",
+    description: "Use the formal Ratanakiri owner for broad Ratanakiri coffee origin intent; supporting field, trade, and sustainability articles remain narrower.",
+  },
 } satisfies Record<string, OwnerRoute>
 
 const OWNER_ROUTE_BY_SUPPORT_SLUG: Record<string, OwnerRoute> = {
+  // 2026-09-25 live GSC owner consolidation: the broad Cambodian Coffee query is
+  // currently surfacing this wholesale-oriented legacy article ahead of the
+  // formal country guide. Keep the URL live, but route broad country intent up.
+  "the-rise-of-cambodian-coffee-a-guide-for-international-wholesale-buyers-to-emerging-origins": OWNER_ROUTES.cambodianCoffee,
+
+  // Ratanakiri query visibility is split across three narrower support articles.
+  // Route all three to the formal regional owner instead of creating another URL.
+  "cambodia-fine-robusta-mondulkiri-and-ratanakiri-explained": OWNER_ROUTES.ratanakiri,
+  "when-ratanakiri-farmers-meet-european-buyers-cambodia-coffee-direct-trade-scenarios": OWNER_ROUTES.ratanakiri,
+  "when-ratanakiri-farmers-transform-cambodia-coffee-production-through-2027-sustainability-protocols": OWNER_ROUTES.ratanakiri,
+
   // Cambodia: keep broad and wholesale-specific support pages narrow while routing Fine Robusta Cambodia intent to the pillar.
   "what-is-fine-robusta-coffee-a-complete-beginners-guide": OWNER_ROUTES.cambodia,
   "fine-robusta-coffee-a-flavor-revolution-in-every-cup": OWNER_ROUTES.cambodia,
