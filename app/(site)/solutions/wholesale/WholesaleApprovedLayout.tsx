@@ -36,10 +36,10 @@ export function WholesaleApprovedLayout() {
       eyebrow="Cambodia-origin wholesale coffee"
       title="WHOLESALE COFFEE SUPPLY"
       lead="Cambodian coffee for the way your business buys, roasts and serves."
-      description="OCC works with roasters, cafés, hotels and retailers sourcing 100% Cambodia-origin coffee. Explore Cambodian Fine Robusta and OCC-developed roasted coffee, then discuss samples, current availability and supply terms for your market."
+      description="OCC supplies Cambodia-origin coffee for roasters, cafés, hotels and retailers. Tell us your market, intended use and estimated volume; we will confirm which coffees, samples and supply terms are currently available."
       heroImage={{ src: "/images/wholesale/occ-wholesale-origin-harvest.png", alt: "Cambodian coffee harvest for OCC origin-led wholesale supply" }}
-      heroCtaLabel="Explore Wholesale Options"
-      heroCtaHref="#needs"
+      heroCtaLabel="Ask About Available Coffee"
+      heroCtaHref="/contact"
       splitId="why-occ"
       processImages={[
         { src: "/images/wholesale/occ-wholesale-sample-selection.webp", alt: "Roasted Cambodian coffee samples compared for wholesale selection" },
@@ -63,7 +63,7 @@ export function WholesaleApprovedLayout() {
       <section id="needs" aria-labelledby="wholesale-options-title">
         <span className="eyebrow">What You Can Source</span>
         <h2 className="extended-heading" id="wholesale-options-title">Choose your wholesale path.</h2>
-        <p className="extended-intro">Begin with the coffee you need, not a generic wholesale catalogue. We will discuss the available product or lot, sample options and commercial requirements for your intended use. Availability is confirmed per enquiry.</p>
+        <p className="extended-intro">Begin with the coffee you need, not a generic wholesale catalogue. We will discuss the available product or lot, sample options and commercial requirements for your intended use. Availability is confirmed per enquiry.</p><p className="extended-intro"><strong>Start with the details that shape a supply decision:</strong> coffee or format · intended use · destination market · estimated volume · sample and quality information needed.</p>
         <div className="extended-grid">
           {options.map((option, index) => <article className="extended-card" key={option.title}><span className="number">{String(index + 1).padStart(2, "0")}</span><h3>{option.title}</h3><p>{option.text}</p><a href={option.href}>{option.cta} →</a></article>)}
         </div>
