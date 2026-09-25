@@ -3,8 +3,8 @@ import { WholesaleApprovedLayout } from "./WholesaleApprovedLayout"
 import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
-const title = "Wholesale Coffee Cambodia | B2B Sourcing | OCC"
-const description = "Explore Cambodia-origin wholesale coffee with OCC: Fine Robusta, OCC-developed coffee, samples and supply discussions for roasters, retailers, hotels and cafés."
+const title = "Cambodian Coffee Wholesale Supplier & B2B Sourcing | OCC"
+const description = "Source Cambodia-origin coffee for your roastery, café, hotel or retail business. Explore available coffee, request samples and confirm supply terms with OCC."
 
 export const metadata: Metadata = {
   title, description,
