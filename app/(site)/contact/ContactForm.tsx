@@ -36,11 +36,10 @@ export default function ContactForm() {
     startTransition(async () => {
       const result = await submitContactForm(data)
       if (result.success) {
-        window.gtag?.("event", "generate_lead", {
-          lead_type: data.service,
-          company: data.company,
-          market: data.country,
-          page_path: `${window.location.pathname}${window.location.search}`,
+        window.gtag?.("event", "contact_form_submit", {
+          form_name: "occ_contact",
+          inquiry_type: data.service,
+          page_location: window.location.href,
         })
         setIsSuccess(true)
       } else {
@@ -57,8 +56,7 @@ export default function ContactForm() {
             <div className="occ-contact-eyebrow">CONTACT</div>
             <h1>Start a conversation with OCC.</h1>
             <p className="occ-contact-intro">
-              Wholesale, custom roasting, hotel partnerships and Cambodian coffee sourcing —
-              tell us what you&apos;re working on.
+              Contact OCC about Cambodian coffee sourcing, wholesale supply, Fine Robusta samples, roast development or a partnership. Choose the closest enquiry type and share the market and project details you already know. We will route your message to the right conversation.
             </p>
           </div>
 
