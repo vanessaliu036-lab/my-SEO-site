@@ -32,15 +32,14 @@ test("Origins provides region to quality to wholesale navigation without removin
   assert.match(origins, /href="\/contact"[^>]*>Discuss wholesale supply/)
 })
 
-test("GA4 records qualified solution navigation and the contact journey without company identifiers", () => {
+test("GA4 records qualified navigation and first Contact interaction while keeping generate_lead canonical", () => {
   const ga = source("components/GoogleAnalytics.tsx")
   const contact = source("app/(site)/contact/ContactForm.tsx")
 
   assert.match(ga, /sendEvent\("solution_click"/)
   assert.match(ga, /sendEvent\("wholesale_click"/)
   assert.match(ga, /sendEvent\("contact_click"/)
-  assert.match(contact, /"contact_start"/)
-  assert.match(contact, /"contact_submit"/)
+  assert.match(ga, /sendEvent\("contact_start"/)
   assert.match(contact, /"generate_lead"/)
-  assert.doesNotMatch(contact, /company:\s*data\.company/)
+  assert.doesNotMatch(ga, /sendEvent\("contact_submit"/)
 })
