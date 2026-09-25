@@ -3,8 +3,8 @@
 import { createHash } from "node:crypto"
 import { headers } from "next/headers"
 import { checkBotId } from "botid/server"
-import { contactSchema } from "./schema"
-import type { ContactFormData } from "./schema"
+import { contactAttributionSchema, contactSchema } from "./schema"
+import type { ContactAttribution, ContactFormData } from "./schema"
 import { persistContactLead } from "@/lib/contact-lead-delivery.mjs"
 import { sendContactNotification } from "@/lib/contact-notification.mjs"
 
@@ -74,7 +74,8 @@ async function getClientAddress() {
 }
 
 export async function submitContactForm(
-  data: ContactFormData
+  data: ContactFormData,
+  attribution?: ContactAttribution
 ): Promise<ContactActionResult> {
   const verification = await checkBotId({
     advancedOptions: {
@@ -98,6 +99,9 @@ export async function submitContactForm(
       error: parsed.error.errors[0]?.message ?? "Validation failed",
     }
   }
+
+  const parsedAttribution = contactAttributionSchema.safeParse(attribution ?? {})
+  const safeAttribution = parsedAttribution.success ? parsedAttribution.data : {}
 
   if (parsed.data.website?.trim()) {
     console.warn("[contact-security] Honeypot blocked an automated enquiry")
@@ -131,7 +135,10 @@ export async function submitContactForm(
     }
   }
 
-  const persisted = await persistContactLead(parsed.data)
+  const persisted = await persistContactLead({
+    ...parsed.data,
+    ...safeAttribution,
+  })
   if (!persisted) {
     return {
       success: false,
