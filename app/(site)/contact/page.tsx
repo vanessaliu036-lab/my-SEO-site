@@ -6,16 +6,16 @@ import ContactForm from "./ContactForm"
 import "./contact-editorial.css"
 
 export const metadata: Metadata = {
-  title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
+  title: "Contact OCC | Cambodian Coffee Wholesale & Roasting",
   description:
-    "Contact Origin Coffee Cambodia for wholesale, sourcing, samples, lot-list questions, roasting, B2B coffee solutions, editorial, or media enquiries.",
+    "Contact Origin Coffee Cambodia about wholesale coffee, sourcing, Fine Robusta samples, custom roasting, partnerships or media enquiries. Share your needs.",
   keywords:
     "Origin Coffee Cambodia contact, Cambodia coffee wholesale enquiry, Fine Robusta supplier Cambodia, Cambodia coffee sourcing, coffee sample request, coffee lot list, B2B coffee solutions Cambodia",
   alternates: pageAlternates("/contact"),
   openGraph: {
-    title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
+    title: "Contact OCC | Cambodian Coffee Wholesale & Roasting",
     description:
-      "Start a wholesale, sourcing, sample, lot-list, roasting, B2B coffee solution, editorial, or media enquiry with OCC.",
+      "Contact OCC about wholesale coffee, sourcing, Fine Robusta samples, custom roasting, partnerships or media enquiries.",
     url: `${siteUrl}/contact`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wholesale, Sourcing & Contact | Origin Coffee Cambodia",
+    title: "Contact OCC | Cambodian Coffee Wholesale & Roasting",
     description:
-      "Wholesale, sourcing, sample, lot-list, roasting, coffee solution, editorial, and media enquiries for OCC.",
+      "Contact OCC about wholesale coffee, sourcing, Fine Robusta samples, custom roasting, partnerships or media enquiries.",
   },
 }
 
