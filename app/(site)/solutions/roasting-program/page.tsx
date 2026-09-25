@@ -108,6 +108,14 @@ export default function RoastingProgramPage() {
           <article className="extended-prose"><div><span className="eyebrow">04 / Repeatability</span><h3>Built for Repeatable Supply</h3></div><div><p>An approved roast direction becomes more valuable when it functions as a reference for future production. Depending on the project, the reference can include the coffee or lot, intended application, sensory target, approved direction, evaluation notes, and relevant production observations.</p><p>Repeatability does not mean pretending agricultural coffee never changes. It means identifying meaningful change and comparing future production against a defined product target.</p></div></article>
           <article className="extended-prose"><div><span className="eyebrow">05 / Origin Expertise</span><h3>Cambodia and Fine Robusta Stay at the Center</h3></div><div><p>OCC is focused on Cambodia-origin coffee and <a href="/fine-robusta-cambodia">Fine Robusta</a>. When Cambodian coffee is part of a custom roasting project, the profile is developed around the actual coffee, process, sensory result, and intended use rather than assumptions about what Robusta or Cambodian coffee is supposed to taste like.</p><p>The objective is to connect what the coffee already has with what the market needs the finished product to become.</p></div></article>
         </section>
+        <section aria-labelledby="roasting-readiness-title" id="readiness">
+          <span className="eyebrow">02 / Project Readiness</span>
+          <h2 className="extended-heading" id="roasting-readiness-title">Bring the brief. Confirm the production path.</h2>
+          <div className="extended-grid">
+            <article className="extended-card"><span className="number">Bring</span><h3>Bring to the first conversation</h3><p>Your customer and market · brew method and equipment · target cup or current coffee · expected format and volume · timing and packaging needs.</p></article>
+            <article className="extended-card"><span className="number">Confirm</span><h3>Confirm before production</h3><p>Coffee availability · responsible production partner · batch parameters · packaging and labeling roles · quality-release process · minimums, price basis and lead time.</p></article>
+          </div>
+        </section>
         <section aria-labelledby="roasting-process-title" id="process">
           <span className="eyebrow">02 / Process</span>
           <h2 className="extended-heading" id="roasting-process-title">From Market to Production Profile</h2>
