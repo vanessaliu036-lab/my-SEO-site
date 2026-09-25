@@ -20,10 +20,12 @@ const sendEvent = (eventName: string, params: Record<string, unknown>) => {
  * exactly once instead of relying on the initial gtag config page_view.
  *
  * Commercial events intentionally separate intent from outcome:
- * - wholesale_view/contact_view/contact_click = funnel intent
- * - generate_lead = successful contact-form submission (emitted in ContactForm)
+ * - wholesale_view/contact_view = route-level funnel signals
+ * - solution_click/wholesale_click/contact_click = qualified navigation intent
+ * - contact_start/contact_submit/generate_lead = contact-form journey (emitted in ContactForm)
+ * - generate_lead remains the canonical successful lead event
  * - occ_404 = exact broken path for technical cleanup
- * - whatsapp_click/email_click = ready for direct-contact CTAs when present
+ * - whatsapp_click/email_click = direct-contact intent
  */
 export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   const pathname = usePathname()
@@ -99,8 +101,24 @@ export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
         return
       }
 
-      if (url.origin === window.location.origin && url.pathname === "/contact") {
+      if (url.origin !== window.location.origin) return
+
+      if (url.pathname === "/contact") {
         sendEvent("contact_click", clickParams)
+      }
+
+      if (url.pathname.startsWith("/solutions/")) {
+        sendEvent("solution_click", {
+          ...clickParams,
+          solution_path: url.pathname,
+        })
+      }
+
+      if (url.pathname === "/solutions/wholesale") {
+        sendEvent("wholesale_click", {
+          ...clickParams,
+          source_path: pagePath,
+        })
       }
     }
 
