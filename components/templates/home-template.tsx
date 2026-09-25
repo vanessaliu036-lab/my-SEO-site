@@ -76,7 +76,7 @@ export default function HomeTemplate() {
             <div className="grid gap-3 sm:grid-cols-3">
               <Link
                 href="/origins"
-                className="group border border-occ-primary/14 bg-white/35 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70"
+                className="group border border-occ-primary/14 bg-white/40 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70"
               >
                 <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">Discover</span>
                 <h3 className="mt-3 text-xl font-normal leading-tight tracking-[-0.02em] text-occ-primary">Cambodian Coffee</h3>
@@ -86,7 +86,7 @@ export default function HomeTemplate() {
 
               <Link
                 href="/solutions/wholesale"
-                className="group border border-occ-primary/14 bg-white/35 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70"
+                className="group border border-occ-primary/14 bg-white/40 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70"
               >
                 <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">Source</span>
                 <h3 className="mt-3 text-xl font-normal leading-tight tracking-[-0.02em] text-occ-primary">Wholesale Coffee</h3>
@@ -96,7 +96,7 @@ export default function HomeTemplate() {
 
               <Link
                 href="/fine-robusta-cambodia"
-                className="group border border-occ-primary/14 bg-white/35 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70"
+                className="group border border-occ-primary/14 bg-white/40 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70"
               >
                 <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">Understand</span>
                 <h3 className="mt-3 text-xl font-normal leading-tight tracking-[-0.02em] text-occ-primary">Fine Robusta</h3>
