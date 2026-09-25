@@ -24,6 +24,27 @@ const INTERNAL_LINKS: Record<string, string> = {
   "barista": "/contact",
 }
 
+const ARTICLE_NEXT_PATHS = [
+  {
+    href: "/origins",
+    label: "Origins",
+    title: "Explore Cambodian coffee origins",
+    description: "Move from the article into Cambodia, regions and the evidence behind place.",
+  },
+  {
+    href: "/fine-robusta-cambodia",
+    label: "Quality",
+    title: "Understand Fine Robusta",
+    description: "Review Cambodia-specific quality, evaluation and buyer context.",
+  },
+  {
+    href: "/solutions/wholesale",
+    label: "Commercial",
+    title: "Explore wholesale sourcing",
+    description: "Move from research into samples, buying requirements and supply discussions.",
+  },
+] as const
+
 const ROBUSTA_PILLAR_HREF = "/fine-robusta-cambodia"
 const ROBUSTA_CLUSTER_SLUGS = new Set([
   "what-is-specialty-robusta-coffee-complete-guide",
@@ -1126,6 +1147,41 @@ export default async function BlogPostPage({
               </p>
             </aside>
           )}
+
+          <section
+            className="mx-auto mt-12 max-w-[720px] border-y border-stone-200 py-7"
+            aria-labelledby="occ-article-next-path"
+          >
+            <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-occ-burgundy">
+              Continue by intent
+            </p>
+            <h2
+              id="occ-article-next-path"
+              className="mt-2 text-xl font-semibold tracking-tight text-stone-950"
+            >
+              Choose the next OCC path.
+            </h2>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {ARTICLE_NEXT_PATHS.map((path) => (
+                <Link
+                  key={path.href}
+                  href={path.href}
+                  className="group border border-stone-200 bg-white/55 p-4 transition-colors hover:border-occ-burgundy/45 hover:bg-white"
+                >
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">
+                    {path.label}
+                  </span>
+                  <h3 className="mt-2 text-[15px] font-semibold leading-snug tracking-tight text-stone-950">
+                    {path.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-5 text-stone-600">{path.description}</p>
+                  <span className="mt-4 inline-flex text-xs font-medium text-stone-950 transition-transform group-hover:translate-x-1">
+                    Continue →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
 
           {/* Keywords */}
           {keywordList.length > 0 && (
