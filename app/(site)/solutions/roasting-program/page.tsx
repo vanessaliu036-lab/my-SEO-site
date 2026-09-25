@@ -4,8 +4,8 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Roasting Supplier Cambodia | Custom Roast Profiles | OCC",
-  description: "Custom coffee roasting and roast profile development from Cambodia for cafés, hotels, coffee brands, and B2B partners. Develop a repeatable coffee profile around your market, customers, and brewing application.",
+  title: "Custom Coffee Roasting & Profile Development | OCC Cambodia",
+  description: "Develop a coffee profile for your café, hotel or brand. OCC aligns Cambodian coffee and roast evaluation with your market and use case for your business.",
   keywords: "Roasting Supplier Cambodia, coffee roasting supplier Cambodia, Custom Roasting Cambodia, Roast Profile development, custom coffee roasting Cambodia, Cambodia roasting supplier, custom roast profile development, coffee roasting service Cambodia, B2B coffee roasting Cambodia, Fine Robusta custom roasting",
   openGraph: {
     title: "Custom Coffee Roasting Program | OCC",
@@ -69,7 +69,7 @@ export default function RoastingProgramPage() {
         eyebrow="Roasting Program"
         title="CUSTOM ROASTING PROGRAM"
         lead="Your Market. Your Customer. Your Roast Profile."
-        description="Roasting Supplier, Custom Roasting, and Roast Profile development built around your market, customer, brewing application, and commercial product target."
+        description="OCC develops roast profiles for cafés, hotels and coffee brands that have a defined market, brewing application or product goal. We begin with your brief, evaluate sample roasts in context and agree on a reference profile before discussing production requirements."
         heroImage={{ src: "/images/roasting/occ-roasting-green-beans-pour.webp", alt: "OCC roasting specialist loading green coffee for profile development" }}
         heroCtaLabel="Develop Your Roast Profile"
         heroCtaHref="/contact"
