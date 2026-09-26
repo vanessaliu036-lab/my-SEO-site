@@ -4,16 +4,16 @@ import { pageAlternates } from "@/lib/seo"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "OCC Manifesto | Coffee Quality Principles",
+  title: "OCC Manifesto | Building Better Coffee in Cambodia",
   description:
-    "The OCC manifesto defines how Origin Coffee Cambodia approaches quality as a system, Fine Robusta standards, supplier accountability, and repeatable B2B coffee programs.",
+    "Why Origin Coffee Cambodia is building more than a coffee brand: Cambodian coffee, barista development, reliable roasting, and the systems behind better coffee experiences.",
   keywords:
-    "OCC manifesto, Origin Coffee Cambodia manifesto, coffee quality principles, Fine Robusta standards, supplier accountability, B2B coffee principles",
+    "OCC manifesto, Origin Coffee Cambodia, Cambodian coffee, barista development Cambodia, coffee quality standards, coffee infrastructure Cambodia",
   alternates: pageAlternates("/about/manifesto"),
   openGraph: {
-    title: "OCC Manifesto | Coffee Quality Principles",
+    title: "OCC Manifesto | Building Better Coffee in Cambodia",
     description:
-      "Quality is a system. OCC's manifesto sets out its principles on Fine Robusta standards, supplier accountability, and repeatable coffee quality.",
+      "OCC's manifesto on Cambodian coffee, skilled people, reliable roasting, and the systems behind consistent coffee experiences.",
     url: `${siteUrl}/about/manifesto`,
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
@@ -21,18 +21,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OCC Manifesto | Coffee Quality Principles",
+    title: "OCC Manifesto | Building Better Coffee in Cambodia",
     description:
-      "OCC's principles on coffee quality as a system, Fine Robusta standards, and supplier accountability.",
+      "OCC's manifesto on Cambodian coffee, skilled people, reliable roasting, and the systems behind consistent coffee experiences.",
   },
 }
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "OCC Manifesto: Quality Is a System",
+  name: "OCC Manifesto: Building Better Coffee in Cambodia",
   description:
-    "Origin Coffee Cambodia's manifesto on coffee quality as a system, Fine Robusta standards, supplier accountability, and repeatable B2B coffee programs.",
+    "Origin Coffee Cambodia's manifesto on Cambodian coffee, barista development, roasting, and the systems required to deliver consistent coffee experiences.",
   url: `${siteUrl}/about/manifesto`,
   about: {
     "@type": "Organization",
@@ -59,54 +59,84 @@ const breadcrumbSchema = {
 
 const faqs = [
   {
-    q: "What does the OCC manifesto stand for?",
-    a: "OCC believes coffee quality is a system. Origin, processing, sourcing, roasting, brewing, people, equipment, and service all affect whether quality can be repeated consistently.",
+    q: "Why doesn't OCC operate its own café?",
+    a: "OCC is focused on supporting the businesses that already serve coffee across Cambodia. Instead of concentrating resources on one retail location, we develop coffee supply, roasting support, barista capability, and practical systems that can support multiple hospitality businesses.",
   },
   {
-    q: "Why does OCC not build its identity around operating a café?",
-    a: "One café can control quality in one location. OCC is built to support many coffee businesses through supply, roasting, training, and operational support, so its impact is not limited to a single venue.",
+    q: "What is the OCC Skilled Barista Army?",
+    a: "The Skilled Barista Army is OCC's long-term barista development vision. It is designed to build practical coffee knowledge, technical skills, and professional standards that baristas can carry into cafés, hotels, restaurants, and other hospitality businesses.",
   },
   {
-    q: "How does Fine Robusta fit into OCC's manifesto?",
-    a: "OCC treats Fine Robusta as a specialist quality category rather than a lower-grade substitute for Arabica. Better selection, processing, evaluation, roasting, and buyer understanding can create more useful and more valuable Cambodian Robusta coffee.",
+    q: "What does OCC mean by zero-compromise coffee infrastructure?",
+    a: "It describes OCC's approach to treating coffee quality as the result of connected elements: coffee origin, roasting, equipment, barista skills, and ongoing support. The objective is consistent execution from the coffee source to the final cup.",
+  },
+  {
+    q: "Does OCC work with Cambodian coffee?",
+    a: "Yes. Cambodian coffee and the development of Cambodia's specialty coffee sector are central to OCC's direction. Our work connects origin with the roasting, training, and B2B systems required to represent those coffees consistently.",
   },
 ]
 
 const sections = [
   {
-    title: "Quality Is a System",
+    title: "Great Coffee Needs More Than Great Beans",
     paragraphs: [
-      "Origin Coffee Cambodia is a Cambodia specialty coffee supplier and Fine Robusta specialist focused on B2B coffee supply and roasting solutions. We believe good coffee is not created at one point in the chain.",
-      "Origin matters. Processing matters. Sourcing matters. Roasting matters. Brewing matters. People and equipment matter. Quality only becomes meaningful when those parts work together consistently from the first sample to the cup served to a customer.",
+      "Cambodia has the ingredients for a stronger specialty coffee culture: distinctive origins, ambitious hospitality businesses, curious consumers, and a new generation of coffee professionals.",
+      "But origin alone cannot guarantee a good cup. Roasting, storage, grinder calibration, extraction, equipment, service, and the people behind each step all shape the result. For OCC, improving Cambodian coffee means strengthening what happens around the bean as well as the bean itself.",
     ],
   },
   {
-    title: "Why We Will Not Build Our Identity Around a Café",
+    title: "One Café Can Serve Customers. A System Can Support Many Businesses.",
     paragraphs: [
-      "Opening a café would be an easy way to demonstrate our coffee in one controlled environment. But one excellent café solves quality in one location, and that is not the problem OCC is built to solve.",
-      "We would rather strengthen the coffee programs behind cafés, hotels, restaurants, offices, and hospitality businesses. Our customers build the experience. OCC helps make the coffee inside that experience more dependable through supply, roasting, training, and operational support.",
+      "The obvious path for a coffee company is to open a café. We chose a different one. A single café gives control over one counter, one team, and one customer experience, but Cambodia's coffee culture is much larger than one address.",
+      "Hotels need reliable coffee programs. Restaurants need consistent service. Independent cafés need technical support. Hospitality teams need people who understand the coffee they serve. OCC is building behind those businesses rather than competing with all of them for the same customer.",
     ],
   },
   {
-    title: "Fine Robusta Deserves Better Standards",
+    title: "Knowledge Should Travel Further Than One Coffee Bar",
     paragraphs: [
-      "Robusta should not be defined by the lowest-quality examples of the category. Cambodia's Coffea canephora sector has room to create greater value when better cherry selection, processing, drying, sorting, sensory evaluation, and roasting are applied with discipline.",
-      "For OCC, Fine Robusta is not a substitute for Arabica and not a marketing label. It is a field of specialization that connects Cambodian origin, measurable quality, roast development, and real buyer applications.",
+      "Equipment can be purchased and coffee can be delivered. Skills have to be built. The Skilled Barista Army is OCC's long-term vision for developing coffee professionals who understand not only how to operate a machine, but why each step affects the final cup.",
+      "Training begins with fundamentals such as origin, roast development, grind size, extraction, milk, workflow, equipment care, and sensory understanding. The goal is to create more people capable of carrying stronger coffee standards into cafés, hotels, restaurants, and hospitality businesses across Cambodia.",
     ],
   },
   {
-    title: "Supply Means Accountability",
+    title: "Coffee Quality Is Built Across the Entire Chain",
     paragraphs: [
-      "Supplying coffee is not only about delivering bags. A professional supplier should be accountable for consistency, appropriate quality, clear communication, useful specifications, roasting decisions, and the support required for the coffee to perform in the buyer's operation.",
-      "That is why OCC connects Cambodian coffee supply with roasting solutions and practical B2B support. We are not trying to become everything in coffee. We are building around three clear roles: Cambodia specialty coffee supplier, Fine Robusta specialist, and B2B coffee supply plus roasting solutions.",
+      "OCC approaches coffee as an interconnected operating system. Origin gives the coffee its starting point. Roasting develops its expression. Equipment creates the brewing conditions. Baristas translate those variables into the cup. Service and technical support keep the experience consistent over time.",
+      "That is what OCC means by zero-compromise coffee infrastructure: connecting Cambodian coffee with the practical systems required to serve it well. Different partners need different combinations, but the principle remains the same — the coffee should not be left alone after delivery.",
+    ],
+  },
+  {
+    title: "Better Coffee Should Create More Value at Origin",
+    paragraphs: [
+      "Cambodia should not be treated simply as a place where coffee happens to be grown. Its origins deserve to be understood, its producers deserve stronger recognition, and its coffee professionals deserve access to better knowledge.",
+      "OCC is building from Cambodia outward. That means developing deeper understanding of Cambodian origins, strengthening the people who work with the coffee, and helping businesses communicate where their coffee comes from and why it matters.",
+    ],
+  },
+  {
+    title: "Consistency Is Earned",
+    paragraphs: [
+      "We do not believe quality comes from one perfect roast, one talented barista, or one exceptional harvest. It comes from repeating good decisions: source carefully, roast intentionally, train continuously, measure what matters, maintain the equipment, correct problems quickly, and keep learning.",
+      "That discipline is less romantic than talking about the perfect cup. It is also what makes the perfect cup more likely.",
     ],
   },
 ]
 
 const featureGrid = [
-  { label: "01 / Quality", title: "Every handoff matters.", body: "Origin, processing, sourcing, roasting, brewing, people, and equipment all shape the cup." },
-  { label: "02 / Fine Robusta", title: "Evaluate the coffee itself.", body: "Selection, processing, sensory evaluation, and roast fit matter more than a category label." },
-  { label: "03 / Supply", title: "Accountability is part of quality.", body: "Clear specifications and practical support help buyers deliver a more consistent result." },
+  {
+    label: "01 / Origin",
+    title: "Cambodia first.",
+    body: "Better coffee should create stronger recognition, knowledge, and value around Cambodian origin.",
+  },
+  {
+    label: "02 / People",
+    title: "Skills become infrastructure.",
+    body: "Barista knowledge should travel beyond one counter and strengthen many hospitality businesses.",
+  },
+  {
+    label: "03 / Systems",
+    title: "Consistency is built.",
+    body: "Coffee, roasting, equipment, people, and support must work together to deliver a dependable result.",
+  },
 ]
 
 export default function ManifestoPage() {
@@ -117,20 +147,21 @@ export default function ManifestoPage() {
       <AboutInstitutionalTemplate
         index="03"
         title="MANIFESTO"
-        subtitle="QUALITY IS A SYSTEM."
+        subtitle="BEYOND THE BEAN."
         lead={[
-          "Quality is a system.",
-          "Origin, sourcing, roasting, preparation, and service must work together.",
+          "Build the people. Build the standard. Build the industry.",
+          "Great coffee happens when origin, roasting, people, equipment, and service work together — consistently.",
         ]}
         sections={sections}
-        heroImage={{ src: "/about/institutional/occ-manifesto-system.svg", alt: "Editorial system diagram representing OCC coffee quality principles" }}
+        heroImage={{ src: "/about/institutional/occ-manifesto-system.svg", alt: "Editorial system diagram representing OCC's coffee infrastructure approach" }}
         chapterImage="/about/institutional/occ-manifesto-system.svg"
         featureGrid={featureGrid}
-        practiceLabel="The OCC manifesto"
-        practiceTitle="Quality is a system."
+        practiceLabel="What OCC is building"
+        practiceTitle="Build more than a cup."
         closing={[
-          "Zero compromise does not mean pretending perfection exists. It means taking responsibility for the variables we can control and refusing to let convenience replace standards.",
-          "OCC exists to strengthen the coffee behind the business: Cambodia specialty coffee supply, Fine Robusta expertise, and B2B roasting solutions built for consistency.",
+          "OCC is building a Cambodian coffee company around a simple idea: the value of great coffee should extend beyond the bag.",
+          "For coffee businesses, that means stronger supply, roasting, and operational support. For baristas, it means knowledge that can become a profession. For Cambodian coffee, it means stronger representation through origin, craft, and traceability.",
+          "The goal is not to become another café. The goal is to help create an environment where better coffee can happen in many places.",
         ]}
         faqs={faqs}
         next={{
