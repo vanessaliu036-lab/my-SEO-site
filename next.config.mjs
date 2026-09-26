@@ -66,7 +66,7 @@ const nextConfig = {
       },
       {
         source: '/origins/single-origin',
-        destination: '/fine-robusta-cambodia',
+        destination: '/origins',
         permanent: true,
       },
       {
@@ -116,7 +116,7 @@ const nextConfig = {
       },
       {
         source: '/coffee/single-origin',
-        destination: '/fine-robusta-cambodia',
+        destination: '/origins',
         permanent: true,
       },
       {
