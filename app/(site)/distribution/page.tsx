@@ -339,6 +339,17 @@ export default function DistributionPage() {
         </div>
       </section>
 
+      <section className="bg-occ-background px-6 py-14 sm:px-10 lg:px-14 xl:px-20">
+        <div className="mx-auto flex w-full max-w-[1360px] flex-col items-start justify-between gap-7 border-t border-occ-primary/15 pt-10 md:flex-row md:items-end">
+          <div>
+            <p className="mb-3 text-[10px] uppercase tracking-[0.28em] text-occ-burgundy">07 · Distribution Enquiry</p>
+            <h2 className="max-w-3xl text-3xl font-normal sm:text-4xl">Discuss an International Distribution Partnership</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-occ-primary/60">Share your market, channels, product interest and expected scope so OCC can assess the next practical step.</p>
+          </div>
+          <Link href="/contact" className="occ-primary-cta shrink-0">Start a Conversation</Link>
+        </div>
+      </section>
+
     </div>
   )
 }
