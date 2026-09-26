@@ -116,6 +116,12 @@ export default function BlogPage() {
               )
             })}
           </div>
+
+          <nav aria-label="OCC editorial foundations" className="mt-14 flex flex-wrap justify-center gap-x-7 gap-y-3 border-t border-occ-primary/15 pt-7">
+            <a href="/fine-robusta-cambodia" className="text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-burgundy hover:underline">Fine Robusta Cambodia</a>
+            <a href="/origins/cambodia-regions" className="text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-primary/65 hover:text-occ-burgundy">Cambodia &amp; Regions</a>
+            <a href="/solutions/wholesale" className="text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-primary/65 hover:text-occ-burgundy">Wholesale</a>
+          </nav>
         </div>
       </section>
     </>
