@@ -23,6 +23,23 @@ function isProductionE2E(params: URLSearchParams) {
   )
 }
 
+function hasInternalAnalyticsReferrer() {
+  if (!document.referrer) return false
+
+  try {
+    const referrerHost = new URL(document.referrer).hostname.toLowerCase().replace(/^www\./, "")
+    return (
+      referrerHost === "vercel.com" ||
+      referrerHost.endsWith(".vercel.com") ||
+      referrerHost === "localhost" ||
+      referrerHost === "127.0.0.1" ||
+      referrerHost === "[::1]"
+    )
+  } catch {
+    return false
+  }
+}
+
 function deriveSourceMedium() {
   const params = new URLSearchParams(window.location.search)
   const utmSource = params.get("utm_source")?.trim()
@@ -64,14 +81,15 @@ export function AnalyticsGate({
     const params = new URLSearchParams(window.location.search)
     const qaMode = params.get("occ_qa")
     const productionE2E = isProductionE2E(params)
+    const internalReferrer = hasInternalAnalyticsReferrer()
 
     if (qaMode === "1") {
       window.localStorage.setItem(QA_DISABLE_KEY, "1")
       window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
     }
-    if (productionE2E) {
-      // Synthetic production checks must never become GA4 traffic or lead KPIs.
-      // Keep this session-scoped so a tester's next normal visit is unaffected.
+    if (productionE2E || internalReferrer) {
+      // Synthetic production checks and developer-tool referrals must never
+      // become GA4/Clarity/Vercel Analytics traffic or lead KPIs.
       window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
     }
     if (qaMode === "0") {
@@ -107,15 +125,20 @@ export function AnalyticsGate({
       const params = new URLSearchParams(window.location.search)
       const qaMode = params.get("occ_qa")
       const productionE2E = isProductionE2E(params)
+      const internalReferrer = hasInternalAnalyticsReferrer()
 
       if (qaMode === "1") window.localStorage.setItem(QA_DISABLE_KEY, "1")
       if (qaMode === "0") window.localStorage.removeItem(QA_DISABLE_KEY)
-      if (productionE2E) window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
+      if (productionE2E || internalReferrer) {
+        window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
+      }
 
       const isProductionHost = PRODUCTION_HOSTS.has(hostname)
       const isAutomatedBrowser = navigator.webdriver === true
       const isInternalQa =
-        window.localStorage.getItem(QA_DISABLE_KEY) === "1" || productionE2E
+        window.localStorage.getItem(QA_DISABLE_KEY) === "1" ||
+        productionE2E ||
+        internalReferrer
 
       if (!isProductionHost || isAutomatedBrowser || isInternalQa) {
         if (!cancelled) setEligible(false)
@@ -124,7 +147,7 @@ export function AnalyticsGate({
 
       try {
         const controller = new AbortController()
-        const timeout = window.setTimeout(() => controller.abort(), 1800)
+        const timeout = window.setTimeout(() => controller.abort(), 3000)
         const response = await fetch("/api/analytics-eligibility", {
           method: "POST",
           cache: "no-store",
@@ -138,9 +161,9 @@ export function AnalyticsGate({
         const result = (await response.json()) as { allow?: boolean }
         if (!cancelled) setEligible(result.allow === true)
       } catch {
-        // Fail open for real visitors if the measurement-quality check is unavailable.
-        // Preview, QA and webdriver traffic are still excluded above.
-        if (!cancelled) setEligible(true)
+        // Prefer undercounting to contaminating commercial KPIs when bot
+        // verification is unavailable or times out.
+        if (!cancelled) setEligible(false)
       }
     }
 
