@@ -58,3 +58,28 @@ test('Fine Robusta commercial intent follows Pillar to Solution to Conversion', 
   assert.match(roastingPage, /heroCtaHref="\/contact"/)
   assert.match(roastingPage, /ctaHref="\/contact"/)
 })
+
+
+test('live GSC Cambodian Coffee and Ratanakiri support winners route to their formal owners', () => {
+  const cambodianCoffeeWinner =
+    'the-rise-of-cambodian-coffee-a-guide-for-international-wholesale-buyers-to-emerging-origins'
+  const ratanakiriSupport = [
+    'cambodia-fine-robusta-mondulkiri-and-ratanakiri-explained',
+    'when-ratanakiri-farmers-meet-european-buyers-cambodia-coffee-direct-trade-scenarios',
+    'when-ratanakiri-farmers-transform-cambodia-coffee-production-through-2027-sustainability-protocols',
+  ]
+
+  assert.match(articleLayout, new RegExp(cambodianCoffeeWinner.replaceAll('-', '\\-')))
+  assert.match(
+    articleLayout,
+    /href:\s*"\/blog\/what-cambodian-coffee-should-you-try-first"/,
+  )
+
+  for (const slug of ratanakiriSupport) {
+    assert.match(articleLayout, new RegExp(slug.replaceAll('-', '\\-')))
+  }
+  assert.match(
+    articleLayout,
+    /href:\s*"\/blog\/ratanakiri-coffee-cambodias-other-highland-origin"/,
+  )
+})
