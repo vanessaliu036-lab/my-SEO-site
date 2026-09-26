@@ -39,8 +39,8 @@ const services = [
   {
     href: "/solutions/hotels",
     tag: "Hospitality",
-    title: "Hotel Coffee Program",
-    desc: "Source roasted Cambodian coffee for hotel service or develop a custom flavor and roast profile around your guests, menu, equipment, and brand direction.",
+    title: "Hotel Partnerships",
+    desc: "Start with an on-site pour-over pilot, then choose ready-roasted OCC coffee or a custom profile, with staff training, quality follow-up, and guest-experience support."
   },
   {
     href: "/distribution",
