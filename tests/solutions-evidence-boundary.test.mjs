@@ -53,7 +53,7 @@ test("solutions CTAs are inquiry-led rather than transaction-led", () => {
   }
 })
 
-test("solutions hub aligns with the three current commercial paths without unsupported operating promises", () => {
+test("solutions hub aligns with the current commercial paths without unsupported operating promises", () => {
   const indexPage = read("app/(site)/solutions/page.tsx")
   const indexTemplate = read("components/templates/solutions-index-template.tsx")
   const detailTemplate = read("components/templates/solution-detail-template.tsx")
