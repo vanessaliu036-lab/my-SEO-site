@@ -23,6 +23,9 @@ test('admin contact inbox exposes contact identity, title, phone, company, marke
           fldCEEsTN9XD3ddK4: 'Cambodia',
           fldq91HTSYa3rxLBC: 'Wholesale & Sourcing',
           fldomWJyClrC2dFH8: 'Need 20kg',
+      fldJHVMy9vt8r4Mwu: '/blog/hotel-coffee-guest-experience-cambodia',
+      fldAvM2AeJ32onisf: '/solutions/wholesale',
+      fldA5l9MZquBNWk5E: 'google / organic',
           fldcUFGqwGNHEQ9SH: '/contact',
           fldyfWd2DzMJSUtxB: 'New',
           fldJTzqH6dFgUtlmy: '2026-09-23T08:00:00.000Z',
@@ -84,6 +87,11 @@ test('qualified contact lead can create a B2B Account without duplicate conversi
       if (options?.method === 'POST') {
         postCount += 1
         assert.match(String(url), /tblIr777MquGF8a2y/)
+        const body = JSON.parse(options.body)
+        assert.match(body.fields.fldqUNnDbdaMLiOG7, /google \/ organic/)
+        assert.match(body.fields.fldqUNnDbdaMLiOG7, /hotel-coffee-guest-experience/)
+        assert.match(body.fields.fldCXyBGZZ7FRoGlH, /Acquisition: google \/ organic/)
+        assert.match(body.fields.fldCXyBGZZ7FRoGlH, /Last touch: \/solutions\/wholesale/)
         return { ok: true, json: async () => ({ id: 'recACCOUNT0000001' }) }
       }
       if (options?.method === 'PATCH') return { ok: true, json: async () => ({}) }
