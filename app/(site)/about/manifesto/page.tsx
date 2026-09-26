@@ -123,6 +123,7 @@ export default function ManifestoPage() {
           "It comes from a system that makes quality repeatable from Cambodian origin and sourcing through roasting, preparation, and service.",
         ]}
         sections={sections}
+        visual={{ src: "/about/institutional/occ-manifesto-system.svg", alt: "Editorial system diagram representing OCC coffee quality principles" }}
         featureGrid={featureGrid}
         practiceLabel="The OCC manifesto"
         practiceTitle="Quality is a system."
