@@ -47,12 +47,15 @@ export default function HomeTemplate() {
             Fine Robusta & Specialty Coffee from Cambodia
           </h1>
           <p className="mt-7 max-w-[720px] text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
-            Origin Coffee Cambodia connects Cambodian coffee origins with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused knowledge.
+            Origin Coffee Cambodia helps professional buyers source, develop, serve, and bring Cambodia-origin coffee to market through wholesale supply, custom roasting, hospitality programs, and distribution partnerships.
           </p>
 
           <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Link href="/contact" className="occ-primary-cta">
-              Start an enquiry
+            <Link href="/solutions" className="occ-primary-cta">
+              Explore coffee solutions
+            </Link>
+            <Link href="/contact" className="inline-flex items-center gap-2 border-b border-white/45 pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
+              Start an enquiry <ArrowUpRight className="size-3.5" />
             </Link>
           </div>
         </div>
@@ -64,12 +67,68 @@ export default function HomeTemplate() {
         </div>
       </section>
 
+      <section className="border-t border-occ-primary/12 bg-occ-background px-6 py-20 sm:px-8 md:py-24" aria-labelledby="commercial-paths-title">
+        <div className="mx-auto max-w-5xl">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-occ-primary/52">Choose your path</p>
+          <h2 id="commercial-paths-title" className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-occ-primary md:text-4xl">
+            From Cambodian coffee to a commercial program.
+          </h2>
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-occ-primary/72 md:text-lg">
+            Start with the business outcome you need. OCC keeps Cambodia-origin coffee at the center while routing each enquiry to the right supply, roast, hospitality, or market-development path.
+          </p>
+          <div className="mt-12 grid grid-cols-1 border-l border-t border-occ-primary/14 sm:grid-cols-2">
+            {[
+              {
+                eyebrow: "Ready-to-Sell",
+                title: "Wholesale Coffee",
+                body: "For roasters, retailers, cafés, hotels, and professional buyers evaluating OCC-developed Cambodia-origin coffee for commercial supply.",
+                href: "/solutions/wholesale",
+                cta: "Explore Wholesale",
+              },
+              {
+                eyebrow: "Made-for-You",
+                title: "Custom Roasting",
+                body: "For businesses that need a roast profile built around a customer, brewing application, menu role, or product direction.",
+                href: "/solutions/roasting-program",
+                cta: "Explore Roasting",
+              },
+              {
+                eyebrow: "Hospitality",
+                title: "Hotel Coffee Program",
+                body: "For hotels building a Cambodian coffee experience across breakfast, restaurants, lounges, guest touchpoints, and selected retail.",
+                href: "/solutions/hotels",
+                cta: "Explore Hotel Program",
+              },
+              {
+                eyebrow: "International Markets",
+                title: "Distribution Partnerships",
+                body: "For importers and distributors assessing Cambodia-origin coffee for established retail, hospitality, or specialty channels.",
+                href: "/distribution",
+                cta: "Explore Distribution",
+              },
+            ].map((item) => (
+              <article key={item.title} className="border-b border-r border-occ-primary/14 p-7 sm:p-8">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-occ-secondary">{item.eyebrow}</p>
+                <h3 className="mt-5 text-2xl font-semibold tracking-tight text-occ-primary">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-occ-primary/66">{item.body}</p>
+                <Link href={item.href} className="mt-7 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary">
+                  {item.cta} <ArrowUpRight className="size-3.5" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-occ-primary/12 bg-occ-background px-6 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-occ-primary/52">Origin Coffee Cambodia</p>
-          <h2 className="mb-6 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-occ-primary md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-occ-primary/52">Research & Evidence</p>
+          <h2 className="mb-6 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-occ-primary md:text-3xl">Evidence for buyers who need to go deeper.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-occ-primary/72 md:text-lg">{homeDirectAnswer}</p>
           <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/fine-robusta-cambodia" className="inline-flex items-center gap-2 rounded-full border border-occ-primary/20 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-occ-primary transition-colors duration-200 hover:border-occ-primary hover:bg-white/60">
+              Fine Robusta Pillar <ArrowUpRight className="size-3.5" />
+            </Link>
             <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-occ-primary/20 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-occ-primary transition-colors duration-200 hover:border-occ-primary hover:bg-white/60">
               Research Journal <ArrowUpRight className="size-3.5" />
             </Link>
