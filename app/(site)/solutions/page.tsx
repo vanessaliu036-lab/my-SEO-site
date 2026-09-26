@@ -31,16 +31,16 @@ const services = [
     desc: "Build a roast profile around your market, application, customer, and commercial product direction.",
   },
   {
+    href: "/solutions/hotels",
+    tag: "Hospitality",
+    title: "Hotel Partnerships",
+    desc: "Start with an on-site pour-over pilot, then choose ready-roasted OCC coffee or a custom profile, with staff training, quality follow-up, and guest-experience support.",
+  },
+  {
     href: "/solutions/coffee-marketing",
     tag: "Cambodian Market",
     title: "Coffee Marketing",
     desc: "Turn the menu you already have into a signature drink customers remember, talk about, and return for.",
-  },
-  {
-    href: "/solutions/hotels",
-    tag: "Hospitality",
-    title: "Hotel Partnerships",
-    desc: "Start with an on-site pour-over pilot, then choose ready-roasted OCC coffee or a custom profile, with staff training, quality follow-up, and guest-experience support."
   },
   {
     href: "/distribution",
