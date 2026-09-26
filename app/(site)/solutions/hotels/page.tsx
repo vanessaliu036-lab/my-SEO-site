@@ -54,98 +54,95 @@ const breadcrumbSchema = {
 export default function HotelCoffeeProgramPage() {
   const sections = [
     {
-      title: "A Hotel Partnership, Not Just a Bean Order",
+      title: "Hotel Partnership Is a Service Program",
       content: (
         <>
           <p>
-            The OCC Hotel Coffee Partnership is a hospitality collaboration program. The coffee itself can come from either of
-            OCC&apos;s two supply paths — a <Link href="/solutions/wholesale">ready-to-supply roasted coffee</Link> or a{" "}
-            <Link href="/solutions/roasting-program">custom-developed roast profile</Link> — but the hotel partnership adds the
-            service layer around that coffee.
+            OCC Hotel Partnership is a hospitality collaboration program, not a third coffee product. The hotel can choose an
+            OCC-developed roasted coffee through <Link href="/solutions/wholesale">Wholesale</Link>, or work with OCC on a
+            made-for-you flavor and roast direction through the <Link href="/solutions/roasting-program">Roasting Program</Link>.
           </p>
           <p className="mt-5">
-            That service layer is designed to help a hotel test the guest response first, train the team, introduce Cambodian
-            coffee with confidence and then decide whether to move into an ongoing paid coffee program.
+            OCC then adds the service layer around that coffee: pilot tasting, on-site pour-over activation, staff training,
+            quality follow-up, origin storytelling and a guest-facing path that can convert the experience into ongoing coffee demand.
           </p>
         </>
       ),
     },
     {
-      title: "Start With a Live Pour-Over Pilot",
+      title: "Start With a Real Hotel Pilot",
       content: (
         <>
           <p>
-            OCC can begin the conversation with an on-site pour-over trial at the hotel, typically around breakfast, restaurant
-            or another guest-facing food-and-beverage setting. The purpose is practical: let the hotel team and guests experience
-            the coffee in the real service environment before committing to a longer-term program.
+            A hotel can begin with a limited breakfast or hospitality pilot before committing to a wider rollout. OCC can support
+            an on-site pour-over session so the property can observe guest response, service flow and cup quality in the actual hotel environment.
           </p>
           <p className="mt-5">
-            A limited first-kilogram evaluation can be used for the pilot. If the hotel chooses to continue, the second kilogram
-            and subsequent supply move into a paid trial or regular commercial purchase.
+            The current pilot model can begin with a limited 1 kg evaluation allocation; additional coffee moves into paid trial
+            or regular B2B purchasing based on the agreed requirement.
           </p>
         </>
       ),
     },
     {
-      title: "Choose the Coffee After the Experience",
+      title: "Coffee Choice: Ready-to-Sell or Custom",
       content: (
         <>
           <p>
-            After the pilot, the hotel can choose the coffee model that fits the property. One option is an OCC-developed roasted
-            coffee that can move directly into wholesale supply. The other is a custom flavor and roast direction built around the
-            property&apos;s guests, menu, brewing equipment and brand positioning.
+            Hotels that want a faster implementation can select OCC&apos;s existing roasted coffee supply. Properties that want
+            a more distinctive result can develop a custom profile around breakfast service, espresso, milk drinks, brewing equipment,
+            guest mix or the property&apos;s own brand direction.
           </p>
           <p className="mt-5">
-            This keeps the decision simple: the <strong>Hotel Partnership</strong> is the collaboration and service program;
-            <strong> Wholesale</strong> and <strong>Custom Roasting</strong> are the two coffee supply models underneath it.
+            Both paths remain Cambodia-origin coffee. The difference is whether the hotel adopts an existing OCC product or develops
+            a dedicated coffee direction with OCC.
           </p>
         </>
       ),
     },
     {
-      title: "Complimentary Staff Training",
+      title: "Staff Training & Quality Follow-Up",
       content: (
         <>
           <p>
-            Formal hotel partners can receive complimentary staff training and quality follow-up as part of the rollout. The
-            training covers the agreed brewing recipe, equipment use, service consistency, basic coffee presentation and how to
-            explain the Cambodian origin to guests without turning breakfast service into a lecture.
+            Hotel cooperation includes an initial training and support phase so the coffee can be reproduced consistently by the
+            property team. Training can cover recipe standards, equipment use, hygiene, pour-over execution, peak breakfast workflow,
+            guest introduction and quality checks.
           </p>
           <p className="mt-5">
-            The current hotel framework allows staged training and quality support for up to three months, with the exact schedule
-            agreed around the property&apos;s service needs and the coffee program being implemented.
+            The current program can support a staged training period of up to three months after formal adoption, with scope and
+            frequency confirmed in the cooperation terms. The objective is to transfer the program to hotel staff, not create permanent OCC staffing.
           </p>
         </>
       ),
     },
     {
-      title: "Build a Cambodian Coffee Guest Experience",
+      title: "Turn Coffee Into a Guest Experience",
       content: (
         <>
           <p>
-            The partnership can extend beyond the cup through origin storytelling, a premium display, a QR path to the coffee
-            story or reservation flow, and selected take-home or retail opportunities. The objective is to make Cambodian coffee
-            part of the stay rather than another anonymous breakfast beverage.
+            The strongest hotel use case is not only replacing coffee beans. OCC can connect the coffee to Cambodia through origin
+            information, Fine Robusta education, tasting moments, selected display materials and QR journeys that lead guests to
+            learn more, reserve a coffee experience or continue to a relevant retail path.
           </p>
           <p className="mt-5">
-            Hotels that want retail gifting or a broader cultural presentation can connect the program with{" "}
-            <Link href="/brand-gifting">Brand &amp; Gifting</Link> after the core hotel coffee partnership is defined.
+            The commercial goal is simple: the guest experiences Cambodian coffee inside the hotel, while the hotel gains a more
+            distinctive local F&amp;B story and OCC gains a measurable path from tasting to repeat B2B supply.
           </p>
         </>
       ),
     },
     {
-      title: "Move From Pilot to Paid Partnership",
+      title: "Send a Hotel Partnership Enquiry",
       content: (
         <>
           <p>
-            The commercial goal is a formal hotel enquiry and a measurable pilot. OCC reviews the property, intended service
-            point, current coffee setup, approximate consumption, equipment and target timing, then proposes the most suitable
-            pilot and coffee supply path.
+            If you manage a hotel, resort, restaurant or hospitality property in Cambodia, send OCC your property name, current
+            coffee setup, brewing equipment, approximate monthly volume, intended service area and whether you prefer an existing
+            roasted coffee or a custom profile.
           </p>
           <p className="mt-5">
-            <Link href="/contact#enquiry">Start a Hotel Coffee Partnership enquiry</Link> and include the hotel name, current coffee
-            setup, service area and preferred timing. OCC will route the enquiry into the appropriate pilot and supply discussion.
+            <Link href="/contact#enquiry">Start the formal hotel partnership enquiry →</Link>
           </p>
         </>
       ),
@@ -154,24 +151,24 @@ export default function HotelCoffeeProgramPage() {
 
   const faqs = [
     {
-      q: "How is the Hotel Coffee Partnership different from Wholesale?",
-      a: <>Wholesale is the coffee supply path. The Hotel Coffee Partnership adds the on-site pilot, hospitality implementation, staff training, quality follow-up and guest-experience layer around the coffee.</>,
+      q: "Is Hotel Partnership different from Wholesale and Custom Roasting?",
+      a: <>Yes. Wholesale and Custom Roasting are coffee supply paths. Hotel Partnership is the service and collaboration layer built around the coffee selected by the property.</>,
     },
     {
-      q: "Does the hotel have to use an existing OCC coffee?",
-      a: <>No. A hotel can choose an existing OCC roasted coffee or move into a custom flavor and roast profile after the pilot. The Hotel Partnership works with either supply model.</>,
+      q: "Can our hotel use OCC's existing roasted coffee?",
+      a: <>Yes. Hotels can use an existing OCC roasted coffee through the Wholesale path and then add the Hotel Partnership program around service, training and guest experience.</>,
     },
     {
-      q: "Can OCC come to the hotel for a live coffee trial?",
-      a: <>Yes. The program can begin with an on-site pour-over pilot so the hotel can evaluate the coffee, service flow and guest response in a real hospitality setting before deciding on ongoing supply.</>,
+      q: "Can OCC create a custom coffee for our hotel?",
+      a: <>Yes. OCC can develop a custom flavor and roast direction around the hotel&apos;s menu, equipment, guest profile and target cup experience, then support implementation through the Hotel Partnership program.</>,
     },
     {
-      q: "Is staff training included?",
-      a: <>Yes. Formal hotel partners can receive complimentary staff training and staged quality follow-up as part of the rollout, with the current framework allowing support for up to three months.</>,
+      q: "Can OCC run a pour-over trial at the hotel before we commit?",
+      a: <>Yes. A limited pilot can be used to test guest response, workflow and cup quality in the actual hotel environment before a broader paid rollout.</>,
     },
     {
-      q: "What happens after the pilot?",
-      a: <>If the hotel decides to continue, OCC confirms whether the best route is ready-to-supply roasted coffee or a custom profile, then moves the account into paid supply, training and ongoing quality follow-up.</>,
+      q: "Does OCC provide hotel staff training?",
+      a: <>Yes. Initial adoption can include staged staff training and quality follow-up covering recipes, brewing execution, workflow and guest-facing coffee presentation, with the exact scope confirmed in the cooperation terms.</>,
     },
   ]
 
