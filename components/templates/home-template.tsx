@@ -47,13 +47,13 @@ export default function HomeTemplate() {
             Fine Robusta & Specialty Coffee from Cambodia
           </h1>
           <p className="mt-7 max-w-[720px] text-pretty text-sm font-light leading-7 text-white/80 sm:text-base md:text-lg md:leading-8">
-            Origin Coffee Cambodia helps professional buyers source, develop, serve, and bring Cambodia-origin coffee to market through wholesale supply, custom roasting, hospitality programs, and distribution partnerships.
+            Origin Coffee Cambodia connects Cambodian coffee origins with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused knowledge.
           </p>
 
           <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Link href="/solutions" className="occ-primary-cta">
-              Explore coffee solutions
-            </Link>
+            <a href="#commercial-paths" className="occ-primary-cta">
+              Find your path
+            </a>
             <Link href="/contact" className="inline-flex items-center gap-2 border-b border-white/45 pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white">
               Start an enquiry <ArrowUpRight className="size-3.5" />
             </Link>
@@ -67,55 +67,128 @@ export default function HomeTemplate() {
         </div>
       </section>
 
-      <section className="border-t border-occ-primary/12 bg-occ-background px-6 py-20 sm:px-8 md:py-24" aria-labelledby="commercial-paths-title">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-occ-primary/52">Choose your path</p>
-          <h2 id="commercial-paths-title" className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-occ-primary md:text-4xl">
-            From Cambodian coffee to a commercial program.
-          </h2>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-occ-primary/72 md:text-lg">
-            Start with the business outcome you need. OCC keeps Cambodia-origin coffee at the center while routing each enquiry to the right supply, roast, hospitality, or market-development path.
-          </p>
-          <div className="mt-12 grid grid-cols-1 border-l border-t border-occ-primary/14 sm:grid-cols-2">
+      <section id="commercial-paths" className="scroll-mt-20 border-t border-occ-primary/14 bg-occ-background" aria-labelledby="commercial-paths-title">
+        <div className="mx-auto grid max-w-[1360px] grid-cols-1 md:grid-cols-12">
+          <div className="border-b border-occ-primary/14 px-6 py-14 sm:px-8 md:col-span-4 md:border-b-0 md:border-r md:px-10 md:py-20 lg:px-12 lg:py-24">
+            <div className="md:sticky md:top-28">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-occ-secondary">
+                Commercial Pathways / 01
+              </p>
+              <h2 id="commercial-paths-title" className="mt-7 max-w-sm font-[var(--font-display)] text-[clamp(2.6rem,4.4vw,4.4rem)] font-normal leading-[0.94] tracking-[-0.04em] text-occ-primary">
+                What are you trying to do?
+              </h2>
+              <p className="mt-7 max-w-sm text-[15px] leading-7 text-occ-primary/64">
+                Start with the business outcome you need now. OCC will route the enquiry to the right coffee, program, pilot, or market path.
+              </p>
+              <Link href="/contact" className="mt-9 inline-flex items-center gap-2 border-b border-occ-primary/35 pb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-primary transition-colors hover:border-occ-burgundy hover:text-occ-burgundy">
+                Not sure? Tell us what you need <ArrowUpRight className="size-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="md:col-span-8">
             {[
               {
-                eyebrow: "Ready-to-Sell",
+                number: "01",
+                tag: "Ready-to-Sell",
+                question: "I need coffee I can buy now.",
                 title: "Wholesale Coffee",
-                body: "For roasters, retailers, cafés, hotels, and professional buyers evaluating OCC-developed Cambodia-origin coffee for commercial supply.",
+                body: "For cafés, hotels, retailers, roasters, and professional buyers that need Cambodia-origin coffee ready for commercial supply.",
                 href: "/solutions/wholesale",
-                cta: "Explore Wholesale",
+                cta: "Explore wholesale",
               },
               {
-                eyebrow: "Made-for-You",
+                number: "02",
+                tag: "Made-for-You",
+                question: "I need a coffee built for my business.",
                 title: "Custom Roasting",
-                body: "For businesses that need a roast profile built around a customer, brewing application, menu role, or product direction.",
+                body: "For businesses that want a roast profile developed around a target customer, brewing method, menu role, or product direction.",
                 href: "/solutions/roasting-program",
-                cta: "Explore Roasting",
+                cta: "Build a coffee profile",
               },
               {
-                eyebrow: "Hospitality",
-                title: "Hotel Partnerships",
-                body: "For hotels that want to test Cambodian coffee through an on-site pour-over pilot, then move into the right coffee supply model with staff training and guest-experience support.",
+                number: "03",
+                tag: "Hospitality",
+                question: "I want coffee to become part of the guest experience.",
+                title: "Hotel Partnership",
+                body: "Start with a live hotel pilot, choose an OCC coffee or custom profile, train the team, and build toward repeat purchasing.",
                 href: "/solutions/hotels",
-                cta: "Explore Hotel Partnerships",
+                cta: "Explore hotel partnership",
               },
               {
-                eyebrow: "International Markets",
-                title: "Distribution Partnerships",
-                body: "For importers and distributors assessing Cambodia-origin coffee for established retail, hospitality, or specialty channels.",
+                number: "04",
+                tag: "International Markets",
+                question: "I want to bring Cambodian coffee to my market.",
+                title: "Distribution",
+                body: "For importers and distributors evaluating Cambodia-origin coffee for established retail, hospitality, or specialty channels.",
                 href: "/distribution",
-                cta: "Explore Distribution",
+                cta: "Explore distribution",
               },
             ].map((item) => (
-              <article key={item.title} className="border-b border-r border-occ-primary/14 p-7 sm:p-8">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-occ-secondary">{item.eyebrow}</p>
-                <h3 className="mt-5 text-2xl font-semibold tracking-tight text-occ-primary">{item.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-occ-primary/66">{item.body}</p>
-                <Link href={item.href} className="mt-7 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary">
-                  {item.cta} <ArrowUpRight className="size-3.5" />
-                </Link>
-              </article>
+              <Link
+                key={item.number}
+                href={item.href}
+                className="group grid min-h-[210px] grid-cols-12 border-b border-occ-primary/14 px-6 py-8 transition-colors duration-300 hover:bg-occ-burgundy hover:text-occ-background sm:px-8 md:px-10 md:py-10 lg:px-12"
+              >
+                <div className="col-span-2 pt-1 md:col-span-1">
+                  <span className="text-[10px] font-semibold tracking-[0.2em] text-occ-secondary transition-colors group-hover:text-white/55">
+                    {item.number}
+                  </span>
+                </div>
+                <div className="col-span-10 md:col-span-4">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-occ-secondary transition-colors group-hover:text-white/55">
+                    {item.tag}
+                  </p>
+                  <p className="mt-4 max-w-xs text-sm leading-6 text-occ-primary/58 transition-colors group-hover:text-white/70">
+                    {item.question}
+                  </p>
+                </div>
+                <div className="col-span-10 col-start-3 mt-8 md:col-span-7 md:col-start-auto md:mt-0 md:pl-8">
+                  <div className="flex h-full flex-col justify-between">
+                    <div>
+                      <h3 className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.03em] text-occ-primary transition-colors group-hover:text-white sm:text-4xl">
+                        {item.title}
+                      </h3>
+                      <p className="mt-5 max-w-xl text-[14px] leading-7 text-occ-primary/64 transition-colors group-hover:text-white/72">
+                        {item.body}
+                      </p>
+                    </div>
+                    <div className="mt-8 flex items-center justify-between border-t border-occ-primary/12 pt-5 transition-colors group-hover:border-white/20">
+                      <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-occ-primary transition-colors group-hover:text-white">
+                        {item.cta}
+                      </span>
+                      <ArrowUpRight className="size-5 text-occ-primary transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
             ))}
+          </div>
+        </div>
+
+        <div className="border-b border-occ-primary/14 bg-occ-primary text-occ-background">
+          <div className="mx-auto max-w-[1360px] px-6 py-12 sm:px-8 md:px-10 lg:px-12">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
+              <div className="md:col-span-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/45">How it converts</p>
+                <h3 className="mt-4 font-[var(--font-display)] text-3xl font-normal leading-tight tracking-[-0.03em] text-white">
+                  From interest to a real commercial next step.
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-7 md:col-span-8 md:grid-cols-4 md:pl-8">
+                {[
+                  ["01", "Choose a path"],
+                  ["02", "Share requirements"],
+                  ["03", "Sample, pilot or quote"],
+                  ["04", "Move into supply"],
+                ].map(([number, label]) => (
+                  <div key={number} className="border-t border-white/18 pt-4">
+                    <p className="text-[9px] tracking-[0.18em] text-white/35">{number}</p>
+                    <p className="mt-3 text-sm leading-6 text-white/78">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
