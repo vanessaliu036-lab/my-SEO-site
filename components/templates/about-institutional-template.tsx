@@ -18,21 +18,16 @@ type AboutInstitutionalTemplateProps = {
   featureGrid?: FeatureItem[]
   practiceLabel?: string
   practiceTitle?: string
+  visual: { src: string; alt: string }
   next?: { href: string; label: string; description: string; note?: string }
 }
 
-const chapterImages = [
-  "/occ-pages/assets/occ-origin-mondulkiri-farm.webp",
-  "/occ-pages/assets/occ-sensory-cupping.webp",
-  "/occ-pages/assets/occ-roasting-sample-evaluation.webp",
-  "/occ-pages/assets/occ-roasting-espresso.webp",
-]
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const anchor = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
 
 export function AboutInstitutionalTemplate({
   index, title, subtitle, lead, sections, closing = [], faqs = [], featureGrid = [],
-  practiceLabel = "Our approach", practiceTitle = "The work, put into practice.", next,
+  practiceLabel = "Our approach", practiceTitle = "The work, put into practice.", visual, next,
 }: AboutInstitutionalTemplateProps) {
   const reducedMotion = useReducedMotion()
   const reveal = (y = 22) => ({
@@ -56,7 +51,7 @@ export function AboutInstitutionalTemplate({
             <a href="#chapters" className="mt-6 inline-flex items-center gap-3 border-b border-[#984650] pb-2 text-sm font-bold hover:text-[#984650]">Explore the story <span aria-hidden="true">↓</span></a>
           </motion.div>
           <motion.figure {...reveal(32)} className="relative m-0 min-h-[340px] overflow-hidden bg-[#e9e1da] md:min-h-[490px]">
-            <img src="/occ-pages/assets/occ-roasting-hero.webp" alt="Coffee being prepared and evaluated by Origin Coffee Cambodia" className="absolute inset-0 size-full object-cover" />
+            <img src={visual.src} alt={visual.alt} className="absolute inset-0 size-full object-cover" />
             <figcaption className="absolute bottom-0 left-0 bg-[#f2ede7] px-5 py-3 text-xs font-bold tracking-[.08em]">Origin Coffee Cambodia · {index} / 04</figcaption>
           </motion.figure>
         </div>
@@ -88,7 +83,7 @@ export function AboutInstitutionalTemplate({
         </div>
         {sections.map((section, i) => (
           <motion.article id={anchor(section.title)} key={section.title} {...reveal()} className="grid scroll-mt-24 grid-cols-1 items-center gap-6 border-b border-[#d8cec5] py-10 md:grid-cols-2 md:gap-12 md:py-14">
-            <figure className={`m-0 min-w-0 bg-[#e9e1da] ${i % 2 ? "md:order-2" : ""}`}><img src={chapterImages[i % chapterImages.length]} alt="" loading="lazy" className="aspect-[1.3] w-full object-cover"/><figcaption className="bg-[#f2ede7] pt-3 text-xs font-semibold text-[#685f5b]">Origin · Quality · Professional coffee</figcaption></figure>
+            <figure className={`m-0 min-w-0 bg-[#e9e1da] ${i % 2 ? "md:order-2" : ""}`}><img src={visual.src} alt="" loading="lazy" className="aspect-[1.3] w-full object-cover"/><figcaption className="bg-[#f2ede7] pt-3 text-xs font-semibold text-[#685f5b]">Origin · Quality · Professional coffee</figcaption></figure>
             <div className={i % 2 ? "md:order-1" : ""}>
               <div className="mb-4 flex items-center gap-3"><span className="border-b border-[#984650] pb-1 text-[13px] font-extrabold text-[#984650]">{String(i + 1).padStart(2, "0")}</span><span className="text-[11px] font-bold uppercase tracking-[.1em] text-[#685f5b]">Chapter · OCC</span></div>
               <h3 className="mb-5 font-[var(--font-display)] text-[clamp(2.2rem,4vw,3.25rem)] leading-[1.08] tracking-[-.045em]">{section.title}</h3>
