@@ -4,7 +4,7 @@
  * receive the same OCC business + authority description.
  */
 
-export const homeDateModified = "2026-09-05"
+export const homeDateModified = "2026-09-26"
 
 export const homeDirectAnswer =
   "Origin Coffee Cambodia (OCC) is a Cambodia-focused professional coffee company connecting Fine Robusta and Cambodian coffee authority with specialty coffee sourcing, roasting, B2B supply, traceability, and quality-focused coffee solutions. OCC also publishes evidence-led work on Mondulkiri coffee, Coffea canephora, processing, grading, sensory evaluation, brewing, and origin quality so professional buyers can make better sourcing and coffee-program decisions. Wholesale, sourcing, sample, lot-list, and coffee-solution enquiries can be submitted through OCC's contact channel. Technical claims and standards are presented with primary sources and stated limitations."
