@@ -9,7 +9,11 @@ import { getPublishedPosts } from '@/lib/airtable'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
-  const posts = await getPublishedPosts()
+  const hasAirtableCredentials = Boolean(
+    (process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN) &&
+      process.env.AIRTABLE_BASE_ID
+  )
+  const posts = hasAirtableCredentials ? await getPublishedPosts() : []
   const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${siteUrl}/blog/${p.slug}`,
     lastModified: p.publish_date ? new Date(p.publish_date) : now,
