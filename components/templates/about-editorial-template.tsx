@@ -57,7 +57,7 @@ export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps
           <motion.div {...reveal(18)} className={styles.heroCopyInner}>
             <p className={styles.eyebrow}>Who we are · Origin Coffee Cambodia</p>
             <h1>One origin.<br /><em>Cambodia.</em></h1>
-            <p className={styles.heroLead}>A Cambodia-origin specialty coffee supplier and Fine Robusta specialist.</p>
+            <p className={styles.heroLead}>OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist.</p>
             <p className={styles.heroBody}>We connect origin, quality, and roasting with the people and businesses bringing Cambodian coffee to new markets.</p>
             <Link href="#why-occ" className={styles.textLink}>Discover OCC <ArrowDown aria-hidden="true" /></Link>
           </motion.div>
