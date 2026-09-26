@@ -116,7 +116,7 @@ export default function FounderPage() {
           "Origin knowledge should improve sourcing, quality, roasting, and repeatability.",
         ]}
         sections={sections}
-        heroImage={{ src: "/media/cambodian-coffee-origin-field-notes.jpg", alt: "Cambodian coffee origin field notes and evidence work" }}
+        heroImage={{ src: "/about/institutional/occ-founder-evidence.svg", alt: "Editorial composition representing evidence-led coffee decisions" }}
         chapterImage="/about/institutional/occ-founder-evidence.svg"
         featureGrid={featureGrid}
         practiceLabel="The founder's principle"
