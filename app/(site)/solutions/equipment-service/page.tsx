@@ -61,7 +61,7 @@ const breadcrumbSchema = {
 
 const internalLinks: Record<string, string> = {
   wholesale: "/solutions/wholesale",
-  staffing: "/solutions/barista-staffing",
+  marketing: "/solutions/coffee-marketing",
   roasting: "/solutions/roasting-program",
 }
 
@@ -83,7 +83,7 @@ export default function EquipmentServicePage() {
   const relatedServices = [
     { title: "Wholesale", href: "/solutions/wholesale", desc: "Coffee supply and buyer due diligence" },
     { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness framework" },
-    { title: "Barista Staffing", href: "/solutions/barista-staffing", desc: "Hiring and training evaluation framework" },
+    { title: "Coffee Marketing", href: "/solutions/coffee-marketing", desc: "Coffee activation, hospitality collaboration, and market-development support" },
   ]
 
   const sections = [
