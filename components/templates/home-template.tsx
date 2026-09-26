@@ -64,6 +64,37 @@ export default function HomeTemplate() {
         </div>
       </section>
 
+      <section className="border-b border-occ-primary/14 bg-occ-background" aria-labelledby="home-intent-paths-title">
+        <div className="mx-auto w-full max-w-[1360px] px-6 py-9 sm:px-8 lg:px-12 lg:py-11">
+          <div className="grid gap-7 lg:grid-cols-[0.85fr_2.15fr] lg:items-end">
+            <div>
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.26em] text-occ-burgundy">Choose your path</p>
+              <h2 id="home-intent-paths-title" className="max-w-[420px] text-3xl font-normal leading-[1.02] tracking-[-0.035em] text-occ-primary sm:text-4xl">Start with what you need.</h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Link href="/origins" className="group border border-occ-primary/14 bg-white/40 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70">
+                <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">Discover</span>
+                <h3 className="mt-3 text-xl font-normal leading-tight tracking-[-0.02em] text-occ-primary">Cambodian Coffee</h3>
+                <p className="mt-3 text-sm leading-6 text-occ-primary/62">Explore origin, regions, people and the path from place to cup.</p>
+                <span className="mt-5 inline-flex text-xs font-medium text-occ-primary transition-transform group-hover:translate-x-1">Explore Origins →</span>
+              </Link>
+              <Link href="/solutions/wholesale" className="group border border-occ-primary/14 bg-white/40 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70">
+                <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">Source</span>
+                <h3 className="mt-3 text-xl font-normal leading-tight tracking-[-0.02em] text-occ-primary">Wholesale Coffee</h3>
+                <p className="mt-3 text-sm leading-6 text-occ-primary/62">Move into samples, buying requirements and supply discussions for your market.</p>
+                <span className="mt-5 inline-flex text-xs font-medium text-occ-primary transition-transform group-hover:translate-x-1">Explore Wholesale →</span>
+              </Link>
+              <Link href="/fine-robusta-cambodia" className="group border border-occ-primary/14 bg-white/40 p-5 transition-colors hover:border-occ-burgundy/55 hover:bg-white/70">
+                <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-occ-burgundy">Understand</span>
+                <h3 className="mt-3 text-xl font-normal leading-tight tracking-[-0.02em] text-occ-primary">Fine Robusta</h3>
+                <p className="mt-3 text-sm leading-6 text-occ-primary/62">Review Cambodia-specific quality, evaluation and buyer context.</p>
+                <span className="mt-5 inline-flex text-xs font-medium text-occ-primary transition-transform group-hover:translate-x-1">Open Fine Robusta Guide →</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-occ-primary/12 bg-occ-background px-6 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-occ-primary/52">Origin Coffee Cambodia</p>
