@@ -151,13 +151,13 @@ export default function CoffeeMarketingPage() {
         title="COFFEE MARKETING"
         lead="Make customers remember who you are — and come back."
         description="Signature drink development, menu direction, product memory, and launch support for Cambodian cafés building a clearer reason for customers to return."
-        heroImage={{ src: "/images/solutions/occ-solutions-signature-drink-development.webp", alt: "Signature coffee drink development for a Cambodian café" }}
+        heroImage={{ src: "/occ-pages/assets/occ-roasting-hospitality.webp", alt: "Pour-over coffee preparation for a Cambodian café signature drink" }}
         heroCtaLabel="Design Your Signature Drink"
         heroCtaHref="/contact"
         splitId="program"
         processImages={[
-          { src: "/images/partnerships/occ-partnerships-cafe-conversation.webp", alt: "Café team discussing a signature drink and menu direction" },
-          { src: "/images/partnerships/occ-partnerships-roast.webp", alt: "Coffee product evaluation supporting a café menu concept" },
+          { src: "/occ-pages/assets/occ-sensory-cupping.webp", alt: "Coffee evaluator tasting samples for a café menu concept" },
+          { src: "/occ-pages/assets/occ-roasting-espresso.webp", alt: "Barista preparing espresso during signature drink development" },
         ]}
         splitTitle="Built from the menu you already have"
         splitDescription="OCC reviews the current menu, identifies the missing product opportunity, develops the signature concept, and connects the drink to clearer naming, staff explanation, and launch communication."
@@ -167,7 +167,7 @@ export default function CoffeeMarketingPage() {
         featureEyebrow="Product memory"
         featureTitle="A memorable product for a visually strong market."
         featureDescription="Cambodia's cafés already compete strongly on space and presentation. OCC adds a product layer customers can remember, recommend, and reorder."
-        featureImage={{ src: "/images/solutions/occ-solutions-custom-roasting-profile.webp", alt: "Coffee development work for a repeatable signature café product" }}
+        featureImage={{ src: "/occ-pages/assets/occ-roasting-profile.webp", alt: "Roaster evaluating coffee for a repeatable signature café product" }}
         ctaId="contact"
         ctaEyebrow="Signature Drink Development"
         ctaTitle="Build the drink your café can own."
