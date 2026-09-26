@@ -23,6 +23,23 @@ function isProductionE2E(params: URLSearchParams) {
   )
 }
 
+function hasInternalAnalyticsReferrer() {
+  if (!document.referrer) return false
+
+  try {
+    const referrerHost = new URL(document.referrer).hostname.toLowerCase().replace(/^www\./, "")
+    return (
+      referrerHost === "vercel.com" ||
+      referrerHost.endsWith(".vercel.com") ||
+      referrerHost === "localhost" ||
+      referrerHost === "127.0.0.1" ||
+      referrerHost === "[::1]"
+    )
+  } catch {
+    return false
+  }
+}
+
 function deriveSourceMedium() {
   const params = new URLSearchParams(window.location.search)
   const utmSource = params.get("utm_source")?.trim()
@@ -53,9 +70,11 @@ function deriveSourceMedium() {
 export function AnalyticsGate({
   measurementId,
   clarityId,
+  ahrefsKey,
 }: {
   measurementId?: string
   clarityId: string
+  ahrefsKey?: string
 }) {
   const pathname = usePathname()
   const [eligible, setEligible] = useState(false)
@@ -64,14 +83,15 @@ export function AnalyticsGate({
     const params = new URLSearchParams(window.location.search)
     const qaMode = params.get("occ_qa")
     const productionE2E = isProductionE2E(params)
+    const internalReferrer = hasInternalAnalyticsReferrer()
 
     if (qaMode === "1") {
       window.localStorage.setItem(QA_DISABLE_KEY, "1")
       window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
     }
-    if (productionE2E) {
-      // Synthetic production checks must never become GA4 traffic or lead KPIs.
-      // Keep this session-scoped so a tester's next normal visit is unaffected.
+    if (productionE2E || internalReferrer) {
+      // Synthetic production checks and developer-tool referrals must never
+      // become GA4/Ahrefs traffic or lead KPIs. Keep this session-scoped.
       window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
     }
     if (qaMode === "0") {
@@ -107,15 +127,20 @@ export function AnalyticsGate({
       const params = new URLSearchParams(window.location.search)
       const qaMode = params.get("occ_qa")
       const productionE2E = isProductionE2E(params)
+      const internalReferrer = hasInternalAnalyticsReferrer()
 
       if (qaMode === "1") window.localStorage.setItem(QA_DISABLE_KEY, "1")
       if (qaMode === "0") window.localStorage.removeItem(QA_DISABLE_KEY)
-      if (productionE2E) window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
+      if (productionE2E || internalReferrer) {
+        window.sessionStorage.setItem(ATTRIBUTION_KEYS.kpiExclude, "1")
+      }
 
       const isProductionHost = PRODUCTION_HOSTS.has(hostname)
       const isAutomatedBrowser = navigator.webdriver === true
       const isInternalQa =
-        window.localStorage.getItem(QA_DISABLE_KEY) === "1" || productionE2E
+        window.localStorage.getItem(QA_DISABLE_KEY) === "1" ||
+        productionE2E ||
+        internalReferrer
 
       if (!isProductionHost || isAutomatedBrowser || isInternalQa) {
         if (!cancelled) setEligible(false)
@@ -164,6 +189,14 @@ export function AnalyticsGate({
         }}
       />
       {measurementId ? <GoogleAnalytics measurementId={measurementId} /> : null}
+      {ahrefsKey ? (
+        <Script
+          id="ahrefs-analytics"
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key={ahrefsKey}
+          strategy="afterInteractive"
+        />
+      ) : null}
       <Script
         id="microsoft-clarity"
         strategy="afterInteractive"
