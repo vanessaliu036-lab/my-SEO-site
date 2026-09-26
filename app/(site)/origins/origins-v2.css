@@ -5,15 +5,15 @@
 .occ-origins-v2 img {display:block;width:100%;height:100%;object-fit:cover}
 .occ-origins-v2 .originWrap {width:min(1180px,calc(100% - 48px));margin:auto}
 .occ-origins-v2 .originEyebrow {font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--occ-accent);font-weight:600}
-.occ-origins-v2 .originHero {height:clamp(540px,64vw,680px);position:relative;color:#f2ede7;display:flex;align-items:flex-end;background:var(--occ-page-background)}
-.occ-origins-v2 .originHeroImage {position:absolute;inset:0}
-.occ-origins-v2 .originHero::after {content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(41,36,36,.08),rgba(41,36,36,.68))}
-.occ-origins-v2 .originHeroCopy {position:relative;z-index:2;padding:0 0 70px;max-width:1240px}
-.occ-origins-v2 .originHeroCopy > * {max-width:760px}
-.occ-origins-v2 .originEyebrowLight {color:#e9e1da}
+.occ-origins-v2 .originHero {min-height:clamp(500px,58vw,620px);position:relative;color:#f6f3eb;display:grid;grid-template-columns:minmax(360px,.82fr) minmax(0,1.18fr);background:#601e27}
+.occ-origins-v2 .originHeroMedia {min-width:0;overflow:hidden}
+.occ-origins-v2 .originHeroImage {position:relative;inset:auto}
+.occ-origins-v2 .originHeroCopy {position:relative;z-index:2;width:100%;padding:clamp(110px,12vw,150px) clamp(36px,5vw,76px) 70px;align-self:center}
+.occ-origins-v2 .originHeroCopy > * {max-width:560px;margin-left:auto}
+.occ-origins-v2 .originEyebrowLight {color:rgba(246,243,235,.72)}
 .occ-origins-v2 h1, .occ-origins-v2 h2, .occ-origins-v2 h3 {font-family:var(--font-display),Georgia,serif;font-weight:400}
-.occ-origins-v2 .originHero h1 {font-size:clamp(56px,6vw,72px);line-height:.96;letter-spacing:-.04em;margin:14px 0 22px}
-.occ-origins-v2 .originHero p {font-size:17px;line-height:1.8;color:#e9e1da}
+.occ-origins-v2 .originHero h1 {font-size:clamp(50px,5vw,66px);line-height:.96;letter-spacing:-.04em;margin:14px 0 20px;color:#f6f3eb}
+.occ-origins-v2 .originHero p {font-size:16px;line-height:1.75;color:rgba(246,243,235,.76)}
 .occ-origins-v2 .originSection {padding:clamp(5rem,8vw,7rem) 0}
 .occ-origins-v2 .originIntro {display:grid;grid-template-columns:.7fr 1.3fr;gap:70px}
 .occ-origins-v2 .originIntro h2 {font-size:58px;line-height:1;margin:10px 0}
@@ -48,10 +48,12 @@
 .occ-origins-v2 .originButton {display:inline-block;padding:13px 16px;background:var(--occ-accent);color:#f2ede7;font-size:10px;letter-spacing:.14em;text-transform:uppercase;transition:transform 220ms var(--occ-ease),background-color 220ms var(--occ-ease)}
 .occ-origins-v2 .originButton:hover {transform:translateY(-2px);background:#685f5b}
 .occ-origins-v2 .originButtonDark {background:var(--occ-burgundy)}
-.occ-origins-v2 .originButtonDark:hover {background:#843b45}
+.occ-origins-v2 .originButtonDark:hover {background:#4f171f}
 @media(max-width:780px) {
- .occ-origins-v2 .originHero {height:560px}
- .occ-origins-v2 .originHeroCopy {padding:0 24px 50px}
+ .occ-origins-v2 .originHero {min-height:0;grid-template-columns:1fr}
+ .occ-origins-v2 .originHeroCopy {padding:96px 24px 48px}
+ .occ-origins-v2 .originHeroCopy > * {margin-left:0}
+ .occ-origins-v2 .originHeroMedia {height:340px}
  .occ-origins-v2 .originWrap {width:min(100% - 36px,1180px)}
  .occ-origins-v2 .originHero h1 {font-size:46px}
  .occ-origins-v2 .originIntro,.occ-origins-v2 .originChapter,.occ-origins-v2 .originTrustGrid,.occ-origins-v2 .originFinalBox {grid-template-columns:1fr}

@@ -4,7 +4,7 @@
   --ink: #292424;
   --muted: #685f5b;
   --line: rgba(41, 36, 36, 0.14);
-  --accent: #984650;
+  --accent: #601e27;
   overflow: clip;
   background: var(--paper);
   color: var(--ink);

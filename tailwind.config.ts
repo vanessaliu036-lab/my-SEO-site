@@ -24,7 +24,7 @@ const config: Config = {
         white: '#f2ede7',
         black: '#292424',
         'occ-primary': '#292424',
-        'occ-burgundy': '#984650',
+        'occ-burgundy': '#601e27',
         'occ-secondary': '#685f5b',
         'occ-surface': '#e9e1da',
         'occ-surface-soft': '#f7f4f0',

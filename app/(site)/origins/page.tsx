@@ -54,11 +54,13 @@ export default function OriginsPage() {
   return (
     <div className="occ-origins-v2">
       <section className="originHero" aria-labelledby="origin-title">
-        <img src="/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg" alt="Coffee farmers walking through a Cambodian coffee landscape" className="originHeroImage" />
         <div className="originWrap originHeroCopy">
           <div className="originEyebrow originEyebrowLight">ORIGINS · CAMBODIA</div>
           <h1 id="origin-title">Coffee with<br />a place behind it.</h1>
           <p>Origin Coffee Cambodia begins with coffee grown in Cambodia, with particular attention to Mondulkiri and the potential of Fine Robusta.</p>
+        </div>
+        <div className="originHeroMedia">
+          <img src="/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg" alt="Coffee farmers walking through a Cambodian coffee landscape" className="originHeroImage" />
         </div>
       </section>
 

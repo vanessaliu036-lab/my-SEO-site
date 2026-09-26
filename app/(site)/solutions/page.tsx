@@ -4,9 +4,9 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Solutions Cambodia | Wholesale, Custom Roasting & Coffee Marketing | OCC",
+  title: "Coffee Solutions Cambodia | Wholesale & Custom Roasting | OCC",
   description:
-    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, custom roasting, and coffee marketing, with evidence-led B2B supply, product development, and signature drink direction.",
+    "Explore evidence-led OCC coffee solutions for wholesale sourcing, custom roasting and signature drink development, with Cambodia-origin supply and clear B2B processes.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",

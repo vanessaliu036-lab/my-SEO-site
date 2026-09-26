@@ -15,7 +15,7 @@ const categoryVisuals: Record<BlogCategorySlug, { image: string; alt: string }> 
 }
 
 export const metadata: Metadata = {
-  title: "Cambodia Coffee Journal | Fine Robusta Research & Market Insights | OCC",
+  title: "Cambodia Coffee Journal | Fine Robusta Research | OCC",
   description: "Explore OCC's journal on Cambodian coffee, Fine Robusta, processing, roasting, quality, origins, producers and buyer intelligence.",
   alternates: alternatesFromCanonical(`${siteUrl}/blog`),
   openGraph: {

@@ -309,13 +309,14 @@ export function WholesaleEditorialTemplate({
             <p className={eyebrowClass}>FAQ</p>
             <div className="mt-6 border-t border-black/12">
               {faqs.map((item, faqIndex) => (
-                <article key={item.q} className="grid grid-cols-[38px_1fr] gap-4 border-b border-black/12 py-6 sm:grid-cols-[48px_1fr]">
-                  <span className="pt-1 text-[9px] tracking-[0.18em] text-black/34">{String(faqIndex + 1).padStart(2, "0")}</span>
-                  <div>
+                <details key={item.q} className="group border-b border-black/12">
+                  <summary className="grid list-none grid-cols-[38px_1fr_auto] gap-4 py-6 sm:grid-cols-[48px_1fr_auto] [&::-webkit-details-marker]:hidden">
+                    <span className="pt-1 text-[9px] tracking-[0.18em] text-black/34">{String(faqIndex + 1).padStart(2, "0")}</span>
                     <h3 className={`${displayTitleClass} text-[1.65rem] leading-[1.05]`}>{item.q}</h3>
-                    <div className="mt-4 text-sm leading-7 text-black/60">{item.a}</div>
-                  </div>
-                </article>
+                    <span aria-hidden="true" className="text-xl font-light transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <div className="pb-6 pl-[54px] text-sm leading-7 text-black/60 sm:pl-16">{item.a}</div>
+                </details>
               ))}
             </div>
           </MotionReveal>

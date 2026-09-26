@@ -5,8 +5,8 @@
   --contact-muted: #685f5b;
   --contact-line: rgba(41, 36, 36, 0.13);
   --contact-line-strong: rgba(41, 36, 36, 0.22);
-  --contact-wine: #984650;
-  --contact-soft-wine: rgba(152, 70, 80, 0.08);
+  --contact-wine: #601e27;
+  --contact-soft-wine: rgba(96, 30, 39, 0.08);
   background: var(--contact-ivory);
   color: var(--contact-ink);
 }
@@ -34,7 +34,7 @@
   right: -115px;
   width: 390px;
   height: 390px;
-  border: 1px solid rgba(152, 70, 80, 0.13);
+  border: 1px solid rgba(96, 30, 39, 0.13);
   border-radius: 50%;
   content: "";
   pointer-events: none;
@@ -323,7 +323,7 @@
 }
 
 .occ-contact-pill:hover span {
-  border-color: rgba(152, 70, 80, 0.35);
+  border-color: rgba(96, 30, 39, 0.35);
   color: var(--contact-wine);
 }
 
@@ -363,7 +363,7 @@
 .occ-contact-shell .occ-contact-message:focus-visible {
   border-color: var(--contact-wine);
   background: var(--contact-paper);
-  box-shadow: 0 0 0 3px rgba(152, 70, 80, .05);
+  box-shadow: 0 0 0 3px rgba(96, 30, 39, .05);
 }
 
 .occ-contact-message-meta {
@@ -392,7 +392,7 @@
 .occ-contact-server-error {
   margin: 0 0 24px;
   padding: 13px 15px;
-  border: 1px solid rgba(152, 70, 80, .3);
+  border: 1px solid rgba(96, 30, 39, .3);
   color: var(--contact-wine);
   font-size: 12px;
 }

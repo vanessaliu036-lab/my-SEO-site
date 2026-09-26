@@ -4,7 +4,7 @@ import { siteUrl, ogImage } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 const title = "Cambodian Coffee Supplier | Wholesale Fine Robusta | OCC"
-const description = "Source Cambodia-origin wholesale coffee with OCC: Fine Robusta and roasted coffee supply for roasters, retailers, hotels and cafés, with samples and commercial terms confirmed per enquiry."
+const description = "Source Cambodia-origin wholesale coffee with OCC for roasters, retailers, hotels and cafés, with Fine Robusta expertise, samples and terms confirmed per enquiry."
 
 export const metadata: Metadata = {
   title, description,
@@ -23,10 +23,8 @@ const faqs = [
   { q: "Which countries can you ship to?", a: "Share your destination and delivery requirements. Export documentation, logistics responsibility and shipping feasibility must be confirmed for the actual order." }
 ]
 
-const faqSchema = {
-  "@context": "https://schema.org", "@type": "FAQPage",
-  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
-}
+// Visible FAQ content is rendered on the page; FAQPage JSON-LD is intentionally omitted.
+
 const breadcrumbSchema = {
   "@context": "https://schema.org", "@type": "BreadcrumbList",
   itemListElement: [
@@ -39,7 +37,6 @@ const breadcrumbSchema = {
 export default function WholesalePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <WholesaleApprovedLayout />
     </>

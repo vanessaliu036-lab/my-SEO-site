@@ -297,7 +297,7 @@
   background: transparent !important;
   border-radius: 9999px !important;
   text-decoration: none !important;
-  -webkit-tap-highlight-color: rgba(152, 70, 80, 0.12);
+  -webkit-tap-highlight-color: rgba(96, 30, 39, 0.12);
   touch-action: manipulation;
 }
 

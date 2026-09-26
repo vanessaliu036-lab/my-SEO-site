@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Founder Philosophy | Origin Coffee Cambodia - OCC",
   description:
-    "The founding philosophy behind Origin Coffee Cambodia: build a Cambodia specialty coffee company around Fine Robusta, origin knowledge, accountable sourcing, B2B supply, and repeatable roasting.",
+    "Explore the founding philosophy behind OCC: evidence-led Cambodian coffee sourcing, Fine Robusta expertise, accountable B2B supply, and repeatable roasting.",
   keywords:
     "Origin Coffee Cambodia founder philosophy, OCC coffee company, Cambodia specialty coffee, Fine Robusta Cambodia, B2B coffee supply Cambodia, coffee roasting Cambodia",
   alternates: pageAlternates("/about/founder"),
@@ -18,12 +18,14 @@ export const metadata: Metadata = {
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
     type: "website",
+    images: [{ url: `${siteUrl}/about/chapters/founder-04.webp`, width: 1200, height: 1200, alt: "Coffee evidence folders and samples on a worktable" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Founder Philosophy | Origin Coffee Cambodia - OCC",
     description:
       "Build the coffee business on evidence: origin knowledge, Fine Robusta, sourcing, quality, roasting, and repeatability.",
+    images: [`${siteUrl}/about/chapters/founder-04.webp`],
   },
 }
 
@@ -127,6 +129,7 @@ export default function FounderPage() {
         featureGrid={featureGrid}
         practiceLabel="The founder's principle"
         practiceTitle="Evidence that improves the work."
+        storyTitle="How evidence becomes operating discipline."
         faqs={faqs}
         next={{
           href: "/about/manifesto",

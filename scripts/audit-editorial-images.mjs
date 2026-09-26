@@ -36,7 +36,8 @@ function scanImports(file, root, seen, images, counts) {
   const relative = path.relative(root, file).replaceAll(path.sep, '/')
   // Metadata and site identity configuration aren't page-visible editorial imagery.
   if (/^(?:lib\/siteConfig\.ts|lib\/seo\.ts)$/.test(relative)) return
-  for (const candidate of content.matchAll(imageLiteral)) {
+  const visibleContent = content.replace(/export const metadata[^=]*=\s*\{[\s\S]*?^\}\s*$/m, '')
+  for (const candidate of visibleContent.matchAll(imageLiteral)) {
     const image = normalize(candidate[0])
     if (!exemptIdentity.test(image)) {
       images.add(image)
@@ -68,8 +69,6 @@ export function auditEditorialImages(projectRoot = process.cwd()) {
   const sameRouteDuplicates = []
   const routes = {}
   const rewrittenPages = new Map([
-    ['/solutions/roasting-program', 'public/occ-pages/roasting-program.html'],
-    ['/origins/cambodia-regions', 'public/occ-pages/cambodia-regions.html'],
     ['/partnerships', 'public/occ-pages/partnerships.html'],
   ])
 

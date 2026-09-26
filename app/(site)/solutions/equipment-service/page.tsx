@@ -18,36 +18,7 @@ export const metadata: Metadata = {
   alternates: pageAlternates("/solutions/equipment-service"),
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What should be verified before choosing a coffee equipment service provider?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Verify the exact equipment models covered, technician experience, access to service documentation, parts sourcing, preventive-maintenance scope, response expectations, reporting, warranty implications, and escalation process.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How should emergency response claims be evaluated?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Ask whether response time is a contractual service level or only a target, which locations are covered, what hours apply, whether parts availability changes the timeline, and what happens when the target cannot be met.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What should buyers check about spare parts?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Confirm which parts are actually held locally, which must be ordered, expected lead times, compatibility, authenticity, warranty conditions, and who bears the cost of expedited sourcing.",
-      },
-    },
-  ],
-}
+// Visible FAQ content is rendered on the page; FAQPage JSON-LD is intentionally omitted.
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -61,7 +32,7 @@ const breadcrumbSchema = {
 
 const internalLinks: Record<string, string> = {
   wholesale: "/solutions/wholesale",
-  marketing: "/solutions/coffee-marketing",
+  "coffee marketing": "/solutions/coffee-marketing",
   roasting: "/solutions/roasting-program",
 }
 
@@ -83,7 +54,7 @@ export default function EquipmentServicePage() {
   const relatedServices = [
     { title: "Wholesale", href: "/solutions/wholesale", desc: "Coffee supply and buyer due diligence" },
     { title: "Roasting Program", href: "/solutions/roasting-program", desc: "Roast development and production-readiness framework" },
-    { title: "Coffee Marketing", href: "/solutions/coffee-marketing", desc: "Coffee activation, hospitality collaboration, and market-development support" },
+    { title: "Coffee Marketing", href: "/solutions/coffee-marketing", desc: "Menu and signature drink product development" },
   ]
 
   const sections = [
@@ -101,7 +72,23 @@ export default function EquipmentServicePage() {
     },
     {
       title: "Before Contracting",
-      content: <p>Document service scope, covered equipment, maintenance frequency, response terms, labor and travel charges, parts policy, reporting, warranty responsibility, and escalation. Dependencies involving {renderWithLinks("staffing")}, {renderWithLinks("wholesale")}, or {renderWithLinks("roasting")} should be evaluated separately rather than bundled into unsupported operating claims.</p>,
+      content: <p>Document service scope, covered equipment, maintenance frequency, response terms, labor and travel charges, parts policy, reporting, warranty responsibility, and escalation. Dependencies involving {renderWithLinks("coffee marketing")}, {renderWithLinks("wholesale")}, or {renderWithLinks("roasting")} should be evaluated separately rather than bundled into unsupported operating claims.</p>,
+    },
+    {
+      title: "Preventive Maintenance Plan",
+      content: <p>A useful maintenance plan names the equipment, service interval, inspection points, cleaning responsibilities, calibration checks, consumables, replacement thresholds, and the records supplied after each visit. The schedule should reflect drink volume, water conditions, operating hours, and manufacturer guidance rather than applying one generic interval to every café.</p>,
+    },
+    {
+      title: "Water, Calibration & Cup Quality",
+      content: <p>Equipment reliability and beverage quality are connected. Water hardness, filtration, pressure, temperature, grinder condition, burr wear, dose consistency, and machine calibration can change both service risk and cup performance. Confirm who checks each variable, what measuring tools are used, and how adjustments are documented for the operator.</p>,
+    },
+    {
+      title: "Parts & Downtime Planning",
+      content: <p>Ask which critical parts are held locally, which require import, expected lead times, compatibility evidence, warranty coverage, and whether temporary equipment or operating workarounds are available. A fast first response does not guarantee a fast repair when diagnosis, approval, parts sourcing, travel, or specialist support remain unresolved.</p>,
+    },
+    {
+      title: "Service Records & Handover",
+      content: <p>Each visit should leave a usable record: reported fault, inspection findings, work completed, parts replaced, measurements, remaining risks, follow-up date, and the person responsible for the next action. Clear records help operators compare recurring failures, protect warranty decisions, brief another technician, and plan future equipment investment.</p>,
     },
   ]
 
@@ -109,11 +96,13 @@ export default function EquipmentServicePage() {
     { q: "What should be verified before choosing a coffee equipment service provider?", a: <>Verify the exact models covered, technician experience, service documentation, parts sourcing, maintenance scope, response terms, reporting, warranty implications, and escalation process.</> },
     { q: "How should emergency response claims be evaluated?", a: <>Confirm whether the response time is contractual or only a target, the locations and hours covered, parts dependencies, and what happens when the target cannot be met.</> },
     { q: "What should buyers check about spare parts?", a: <>Confirm which parts are held locally, which must be ordered, expected lead times, compatibility, authenticity, warranty conditions, and expedited-sourcing responsibility.</> },
+    { q: "How often should espresso machines and grinders be serviced?", a: <>The interval depends on manufacturer guidance, drink volume, water conditions, operating hours, cleaning practice, and equipment condition. Ask the provider to justify the schedule for the actual models and usage rather than quoting a universal interval.</> },
+    { q: "What should a service report include?", a: <>A practical report should record the fault, inspection findings, measurements, work completed, parts used, unresolved risks, recommended follow-up, and responsibility for the next action.</> },
+    { q: "Should a service provider also train café staff?", a: <>Ask the provider to separate technician work from operator training. Staff guidance may cover daily cleaning, safe shutdown, basic checks, and when to escalate a fault, but it should not encourage unqualified repairs or actions that affect equipment warranty and electrical safety.</> },
   ]
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <SolutionDetailTemplate
         index="04"

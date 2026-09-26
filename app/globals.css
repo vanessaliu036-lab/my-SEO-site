@@ -45,14 +45,14 @@
     --sidebar-ring: 349.9 56.2% 26.9%;
 
     --occ-primary: #292424;
-    --occ-burgundy: #984650;
+    --occ-burgundy: #601e27;
     --occ-secondary: #685f5b;
     --occ-brand-surface: #e9e1da;
     --occ-page-background: #f2ede7;
     --occ-brand-background: var(--occ-page-background);
     --occ-ink: #292424;
     --occ-olive: #292424;
-    --occ-logo-burgundy: #984650;
+    --occ-logo-burgundy: #601e27;
     --occ-forest: #393235;
     --occ-ivory: var(--occ-page-background);
     --occ-stone: #d8cec5;
@@ -61,11 +61,17 @@
     --occ-surface-soft: #f7f4f0;
     --occ-line: rgba(41, 36, 36, 0.14);
     --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --occ-motion-fast: 180ms;
+    --occ-motion-standard: 320ms;
+    --occ-motion-slow: 560ms;
+    --occ-motion-deliberate: 720ms;
+    --occ-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --occ-ease-decelerate: cubic-bezier(0.22, 1, 0.36, 1);
     --occ-wide: 1360px;
     --occ-reading: 720px;
-    --occ-type-display-xl: clamp(3.75rem, 7.6vw, 6.5625rem);
-    --occ-type-display-lg: clamp(2.375rem, 4.8vw, 5.1875rem);
-    --occ-type-display-md: clamp(2rem, 3.7vw, 3.25rem);
+    --occ-type-display-xl: clamp(3rem, 5vw, 4.75rem);
+    --occ-type-display-lg: clamp(2.25rem, 4vw, 3.75rem);
+    --occ-type-display-md: clamp(1.875rem, 3vw, 2.75rem);
     --occ-type-cta-title: clamp(2rem, 3vw, 3.25rem);
     --occ-type-body-lg: 1.125rem;
     --occ-type-body: 1rem;
@@ -215,7 +221,7 @@
 
   .occ-pill:hover {
     transform: translateY(-2px);
-    background: #843b45;
+    background: #4f171f;
   }
 
   .occ-primary-cta {
@@ -236,7 +242,7 @@
 
   .occ-primary-cta:hover {
     transform: translateY(-2px);
-    background: #843b45;
+    background: #4f171f;
   }
 
   .occ-primary-cta:active {
@@ -305,7 +311,7 @@
   .occ-site-main a[href="/contact"][class*="rounded-full"]:hover,
   .occ-site-main a[href="/contact"][class*="bg-"]:hover {
     transform: translateY(-2px);
-    background: #843b45 !important;
+    background: #4f171f !important;
     color: var(--occ-brand-background) !important;
   }
 
@@ -500,6 +506,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --occ-motion-fast: 1ms;
+    --occ-motion-standard: 1ms;
+    --occ-motion-slow: 1ms;
+    --occ-motion-deliberate: 1ms;
+  }
+
   html {
     scroll-behavior: auto;
   }
@@ -526,20 +539,20 @@
   background-color: var(--occ-page-background) !important;
 }
 
-/* Replace forest-green panels with the shared canvas while keeping each layout intact. */
+/* Replace legacy coffee/forest panels with the approved OCC editorial red. */
 .occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]) {
-  background-color: var(--occ-page-background) !important;
-  color: var(--occ-ink) !important;
+  background-color: var(--occ-burgundy) !important;
+  color: var(--occ-page-background) !important;
 }
 
 .occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]):not(:has([role="img"])) [class*="text-white"],
 .occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]):not(:has([role="img"])) [class*="text-occ-background"],
 .occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]):not(:has([role="img"])) [class*="text-occ-surface"] {
-  color: rgba(41, 36, 36, 0.76) !important;
+  color: rgba(242, 237, 231, 0.82) !important;
 }
 
 .occ-site-main [class~="bg-occ-primary"]:not(a):not(button):not([role="button"]) [class*="border-white"] {
-  border-color: var(--occ-line) !important;
+  border-color: rgba(242, 237, 231, 0.24) !important;
 }
 
 .occ-site-main a[class~="bg-occ-primary"],
@@ -682,4 +695,68 @@
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* OCC 2026 visual contract: one restrained scale and one motion language. */
+.occ-site-main h1 {
+  font-family: var(--occ-font-title), Georgia, serif !important;
+  font-size: var(--occ-type-display-xl) !important;
+  font-weight: 300 !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.occ-site-main h2 {
+  font-family: var(--occ-font-title), Georgia, serif !important;
+  font-size: var(--occ-type-display-md) !important;
+  font-weight: 300 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.occ-site-main h3 {
+  font-family: var(--occ-font-title), Georgia, serif !important;
+  font-size: clamp(1.375rem, 2.1vw, 1.8125rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.occ-site-main :is(p, li, dd) {
+  font-family: var(--occ-font-body), Arial, sans-serif !important;
+}
+
+.occ-site-main details summary {
+  cursor: pointer;
+  min-height: 44px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .occ-site-main .occ-motion-block img:not([src*="logo"]) {
+    transform: scale(1.012);
+    transition: transform 900ms var(--occ-ease-decelerate);
+  }
+
+  .occ-site-main .occ-motion-block.is-visible img:not([src*="logo"]) {
+    transform: scale(1);
+  }
+
+  .occ-site-main :is(figure, .occ-image-frame, [class*="Image"], [class*="Visual"]):hover img:not([src*="logo"]) {
+    transform: scale(1.025);
+  }
+
+  .occ-site-main details[open] > :not(summary) {
+    animation: occ-faq-open var(--occ-motion-standard) var(--occ-ease-decelerate) both;
+  }
+}
+
+@keyframes occ-faq-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 639px) {
+  .occ-site-main h1 { font-size: clamp(2.625rem, 12vw, 3.625rem) !important; }
+  .occ-site-main h2 { font-size: clamp(1.875rem, 9vw, 2.5rem) !important; }
+  .occ-site-main h3 { font-size: clamp(1.375rem, 7vw, 1.75rem) !important; }
 }

@@ -1,12 +1,12 @@
 import { Metadata } from "next"
-import { LocalMarketSolutionTemplate } from "@/components/templates/local-market-solution-template"
+import { OccCommercialHtmlLayout } from "@/components/templates/occ-commercial-html-layout"
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Coffee Marketing Cambodia | Signature Drink Development | OCC",
   description:
-    "Coffee marketing for Cambodian cafés built around signature drink development, menu direction, product memory, launch support, and stronger reasons for customers to return.",
+    "Coffee marketing for Cambodian cafés: develop a signature drink, menu direction, product memory, launch support and a clearer reason for customers to return.",
   keywords:
     "coffee marketing Cambodia, cafe marketing Cambodia, signature drink Cambodia, signature coffee drink, coffee menu development Cambodia, cafe signature drink, coffee product development Cambodia, coffee marketing Phnom Penh",
   openGraph: {
@@ -19,36 +19,7 @@ export const metadata: Metadata = {
   alternates: pageAlternates("/solutions/coffee-marketing"),
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What does OCC Coffee Marketing include?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The program starts with the current menu and commercial context, then develops a clearer signature drink direction, product story, menu language, launch direction, and practical next steps for staff and customer communication.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does a café need to replace its current menu?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. OCC begins with the menu the café already has, identifies the missing product opportunity, and develops a signature drink that can strengthen the existing offer rather than forcing a complete menu reset.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Why focus on a signature drink?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A signature drink gives customers a specific product to associate with the café. The goal is to create stronger product memory, clearer differentiation, and a more concrete reason to return beyond the visual experience of the space.",
-      },
-    },
-  ],
-}
+// Visible FAQ content is rendered on the page; FAQPage JSON-LD is intentionally omitted.
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -172,119 +143,75 @@ export default function CoffeeMarketingPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <LocalMarketSolutionTemplate
-        index="03"
+      <OccCommercialHtmlLayout
+        className="occ-coffee-marketing"
+        eyebrow="Coffee Marketing"
         title="COFFEE MARKETING"
-        subtitle="Coffee marketing for Cambodian cafés built around a signature drink, stronger product memory, and a clearer reason for customers to return."
-        heroStatement="Make customers remember who you are — and come back."
+        lead="Make customers remember who you are — and come back."
+        description="Signature drink development, menu direction, product memory, and launch support for Cambodian cafés building a clearer reason for customers to return."
+        heroImage={{ src: "/occ-pages/assets/occ-roasting-hospitality.webp", alt: "Pour-over coffee preparation for a Cambodian café signature drink" }}
         heroCtaLabel="Design Your Signature Drink"
-        highlightTitle="A Beautiful Café Needs a Memorable Product"
-        highlightIntro="Cambodia's cafés already compete strongly on space, design, and social presentation. OCC adds the product layer that turns attention into something customers can remember and reorder."
-        highlightCards={[
-          {
-            title: "Strong First Impression",
-            meta: "Cambodian Market",
-            text: "Beautiful interiors and polished social content already create strong reasons for customers to visit and share the space.",
-          },
-          {
-            title: "Product Memory",
-            meta: "Brand Recall",
-            text: "A recognizable coffee product gives customers something specific to associate with the café after the first visit ends.",
-          },
-          {
-            title: "Signature Drink",
-            meta: "Ownable Product",
-            text: "A drink developed around the menu, coffee base, customer, service workflow, and brand can become a flavor language the café owns.",
-          },
-          {
-            title: "Repeat Visit",
-            meta: "Commercial Value",
-            text: "The strongest signature does more than generate launch attention. It gives customers a concrete reason to come back and order again.",
-          },
+        heroCtaHref="/contact"
+        splitId="program"
+        processImages={[
+          { src: "/occ-pages/assets/occ-sensory-cupping.webp", alt: "Coffee evaluator tasting samples for a café menu concept" },
+          { src: "/occ-pages/assets/occ-roasting-espresso.webp", alt: "Barista preparing espresso during signature drink development" },
         ]}
-        sections={sections}
-        relatedLinks={[
-          {
-            title: "Wholesale Coffee Supply",
-            description: "Choose an OCC-developed coffee direction when the café needs a ready-to-sell coffee foundation.",
-            href: "/solutions/wholesale",
-          },
-          {
-            title: "Custom Roasting Program",
-            description: "Develop a roast profile around the café's own market, application, and product direction.",
-            href: "/solutions/roasting-program",
-          },
-          {
-            title: "Fine Robusta Cambodia",
-            description: "Explore the Cambodia-origin coffee expertise behind OCC's product development work.",
-            href: "/fine-robusta-cambodia",
-          },
-        ]}
-        sidebarFacts={[
-          "Current menu and product-gap review",
-          "Signature drink concept development",
-          "Coffee base and flavor direction",
-          "Naming, menu language, and product story",
-          "Staff explanation and launch communication",
-          "Refinement around customer response",
-        ]}
-        processTitle="From Menu Review to Signature Launch"
-        processIntro="The process turns an existing menu into a clearer product opportunity, then develops that opportunity into something the café can serve, explain, and repeat."
-        processSteps={[
-          {
-            title: "Current Menu Review",
-            text: "Review the existing drinks, pricing structure, menu balance, customer context, and the products already carrying the strongest commercial role.",
-          },
-          {
-            title: "Opportunity Definition",
-            text: "Identify the missing signature opportunity and define what role the new drink should play in the menu and customer experience.",
-          },
-          {
-            title: "Signature Concept",
-            text: "Develop the coffee base, flavor structure, ingredients, sweetness, texture, visual direction, and the product story around the brand.",
-          },
-          {
-            title: "Trial & Refinement",
-            text: "Refine balance, presentation, operational practicality, repeatability, and the way the drink performs in the real service environment.",
-          },
-          {
-            title: "Naming & Positioning",
-            text: "Create a name, menu description, and clearer language that helps the customer understand what makes the drink specific to the café.",
-          },
-          {
-            title: "Launch & Communication",
-            text: "Prepare staff explanation points, menu placement, launch direction, and the communication needed to turn the signature into a repeatable brand asset.",
-          },
-        ]}
-        darkEyebrow="Signature Drink Development"
-        darkTitle="The Product Gives Customers a Reason to Return"
-        darkDescription="OCC connects menu strategy, coffee direction, drink development, naming, staff communication, and launch logic so the signature is built as a product the café can own — not just a temporary promotion."
-        darkCta="Start With Your Menu"
-        supportTitle="The Signature Extends Beyond the Recipe"
-        supportCards={[
-          {
-            eyebrow: "Product Direction",
-            title: "Signature Drink",
-            description: "Build the drink around the café's menu, coffee, customer, flavor direction, pricing context, and service reality.",
-            href: "/contact",
-            cta: "Design Your Signature Drink",
-            active: true,
-          },
-          {
-            eyebrow: "Launch Direction",
-            title: "Brand Memory",
-            description: "Turn the product into clearer menu language, staff explanation, social storytelling, and a stronger reason for customers to remember the café.",
-            href: "/contact",
-            cta: "Build the Launch Direction",
-          },
-        ]}
-        faqs={faqs}
-        ctaLabel="Design Your Signature Drink"
-        ctaDescription="Start with the menu you already have. OCC will identify the missing signature opportunity and develop a clearer product direction around your café, customer, and commercial goal."
-      />
+        splitTitle="Built from the menu you already have"
+        splitDescription="OCC reviews the current menu, identifies the missing product opportunity, develops the signature concept, and connects the drink to clearer naming, staff explanation, and launch communication."
+        splitCtaLabel="Explore the Program"
+        splitCtaHref="#marketing-focus"
+        featureId="signature"
+        featureEyebrow="Product memory"
+        featureTitle="A memorable product for a visually strong market."
+        featureDescription="Cambodia's cafés already compete strongly on space and presentation. OCC adds a product layer customers can remember, recommend, and reorder."
+        featureImage={{ src: "/occ-pages/assets/occ-roasting-profile.webp", alt: "Roaster evaluating coffee for a repeatable signature café product" }}
+        ctaId="contact"
+        ctaEyebrow="Signature Drink Development"
+        ctaTitle="Build the drink your café can own."
+        ctaLabel="Start With Your Menu"
+        ctaHref="/contact"
+      >
+        <section id="marketing-focus" aria-labelledby="marketing-focus-title">
+          <span className="eyebrow">01 / Market Focus</span>
+          <h2 className="extended-heading" id="marketing-focus-title">From First Visit to Product Memory</h2>
+          <p className="extended-intro">The program connects the existing menu, customer context, coffee direction, service workflow, and launch language so the signature works as a repeatable product.</p>
+          <div className="extended-grid">
+            {[
+              ["Strong First Impression", "Cambodian Market", "Beautiful interiors and polished communication already give customers a reason to visit and share the space."],
+              ["Product Memory", "Brand Recall", "A recognizable coffee product gives customers something specific to associate with the café after the visit."],
+              ["Signature Drink", "Ownable Product", "The drink is developed around the menu, coffee base, customer, workflow, and brand position."],
+              ["Repeat Visit", "Commercial Value", "A useful signature gives customers a concrete reason to return and order again."],
+            ].map(([title, label, text], index) => <article className="extended-card" key={title}><span className="number">{String(index + 1).padStart(2, "0")} / {label}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </section>
+        <section aria-label="Coffee marketing and signature drink development">
+          {sections.map((section) => <article className="extended-prose" key={section.title}><div><span className="eyebrow">{section.label}</span><h3>{section.title}</h3></div>{section.content}</article>)}
+        </section>
+        <section aria-labelledby="marketing-process-title" id="process">
+          <span className="eyebrow">02 / Process</span>
+          <h2 className="extended-heading" id="marketing-process-title">From Menu Review to Signature Launch</h2>
+          <p className="extended-intro">A clear sequence turns the existing menu into a product opportunity the café can serve, explain, refine, and repeat.</p>
+          <div className="extended-steps">
+            {[
+              ["Current Menu Review", "Review the drinks, pricing structure, customer context, and products carrying the strongest role."],
+              ["Opportunity Definition", "Define the missing signature opportunity and the role it should play in the customer experience."],
+              ["Signature Concept", "Develop the coffee base, flavor structure, ingredients, texture, presentation, and product story."],
+              ["Trial & Refinement", "Refine balance, service practicality, repeatability, and performance in the real café environment."],
+              ["Naming & Positioning", "Create a name and menu language that explain what makes the drink specific to the café."],
+              ["Launch & Communication", "Prepare staff explanation points, menu placement, and the launch direction for the product."],
+            ].map(([title, text], index) => <article className="extended-step" key={title}><span className="number">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </section>
+        <section aria-labelledby="marketing-faq-title" id="marketing-faq">
+          <span className="eyebrow">03 / Reference</span>
+          <h2 className="extended-heading" id="marketing-faq-title">Program details, kept clear.</h2>
+          <div className="faq-grid">{faqs.map((faq) => <details className="faq-card" key={faq.q}><summary><h3>{faq.q}</h3><span aria-hidden="true">+</span></summary><div className="faq-answer">{faq.a}</div></details>)}</div>
+        </section>
+        <p className="extended-intro">Start with the menu you already have. OCC will identify the missing signature opportunity and develop a clearer product direction around your café, customer, and commercial goal.</p>
+      </OccCommercialHtmlLayout>
     </>
   )
 }

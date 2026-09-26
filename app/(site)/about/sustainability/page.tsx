@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Sustainability | Origin Coffee Cambodia - OCC",
   description:
-    "How OCC approaches sustainability and traceability in Cambodian coffee sourcing and supply: document claims, verify scope, and separate evidence from assumptions.",
+    "See how OCC documents sustainability and traceability claims in Cambodian coffee sourcing, verifies scope, and separates evidence from assumptions for buyers.",
   keywords:
     "sustainable coffee sourcing Cambodia, coffee traceability documentation, Cambodian coffee sustainability, Fine Robusta traceability, coffee sourcing claims, origin transparency evidence",
   alternates: pageAlternates("/about/sustainability"),
@@ -18,12 +18,14 @@ export const metadata: Metadata = {
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
     type: "website",
+    images: [{ url: `${siteUrl}/about/occ-about-sustainability-sorting.webp`, width: 1448, height: 1086, alt: "Hands sorting ripe coffee cherries with processing records" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sustainability | Origin Coffee Cambodia - OCC",
     description:
       "How OCC evaluates sustainability and traceability claims within sourcing, quality, and coffee-supply decisions.",
+    images: [`${siteUrl}/about/occ-about-sustainability-sorting.webp`],
   },
 }
 
@@ -102,6 +104,22 @@ const featureGrid = [
   { label: "02 / Traceability", title: "Follow the documented chain.", body: "Useful traceability describes which origin and custody details are recorded and can be checked." },
   { label: "03 / Claim boundaries", title: "State what is still unknown.", body: "Environmental outcomes depend on local practices; missing evidence stays visible instead of becoming an assumed benefit." },
 ]
+
+const faqs = [
+  {
+    q: "What does sustainability mean in OCC's sourcing work?",
+    a: "OCC treats sustainability as a set of specific practices and outcomes that require evidence. A label alone does not establish how a farm, process, or supply chain performs.",
+  },
+  {
+    q: "How does OCC assess coffee traceability?",
+    a: "OCC looks at which origin and chain-of-custody details are documented for the specific coffee, who recorded them, and which parts can be checked. The scope of each claim stays tied to that evidence.",
+  },
+  {
+    q: "Does OCC claim that every Cambodian coffee is sustainable?",
+    a: "No. Environmental and social outcomes depend on local practices and evidence. OCC keeps unknown or unverified details visible instead of assigning a general benefit to an origin, species, or process.",
+  },
+]
+
 const chapterImages = [
   { src: "/about/chapters/sustainability-01.webp", alt: "Field worker documenting observations beside coffee plants.", caption: "Evidence before labels · Record the specific practice", width: 1200, height: 1200 },
   { src: "/about/chapters/sustainability-02.webp", alt: "Green coffee sample bags receiving traceability tags at a worktable.", caption: "Traceability · Follow the documented chain", width: 1200, height: 1200 },
@@ -129,10 +147,12 @@ export default function SustainabilityPage() {
         featureGrid={featureGrid}
         practiceLabel="How OCC assesses claims"
         practiceTitle="Evidence before declaration."
+        storyTitle="How OCC documents each claim."
         closing={[
-          "Documentation before declaration.",
+          "Document before declaring.",
           "For emerging origins and Fine Robusta in particular, careful claim boundaries are more useful than generic sustainability language.",
         ]}
+        faqs={faqs}
         next={{
           href: "/solutions",
           label: "Solutions",
