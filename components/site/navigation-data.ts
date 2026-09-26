@@ -35,7 +35,7 @@ export const siteNavigation: readonly SiteNavItem[] = [
     children: [
       { label: "Wholesale", href: "/solutions/wholesale" },
       { label: "Roasting Program", href: "/solutions/roasting-program" },
-      { label: "Hotel Coffee Program", href: "/solutions/hotels" },
+      { label: "Hotel Partnerships", href: "/solutions/hotels" },
       { label: "Coffee Marketing", href: "/solutions/coffee-marketing" },
     ],
   },
