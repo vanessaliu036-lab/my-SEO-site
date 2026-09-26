@@ -4,14 +4,14 @@ import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Coffee Solutions Cambodia | Wholesale, Custom Roasting & Coffee Marketing | OCC",
+  title: "Coffee Solutions Cambodia | Wholesale, Roasting & Hospitality | OCC",
   description:
-    "Explore OCC coffee solutions in Cambodia for wholesale sourcing, custom roasting, and coffee marketing, with evidence-led B2B supply, product development, and signature drink direction.",
+    "Explore OCC coffee solutions for wholesale sourcing, custom roasting, hotel coffee programs, distribution partnerships, and market development built around Cambodia-origin coffee.",
   alternates: pageAlternates("/solutions"),
   openGraph: {
     title: "Coffee Solutions Cambodia | OCC",
     description:
-      "Three clear commercial paths from OCC: ready-to-sell wholesale coffee, made-for-you custom roasting, and Cambodian-market coffee marketing built around signature drink development.",
+      "Commercial paths from OCC: ready-to-sell wholesale coffee, made-for-you custom roasting, hospitality programs, distribution partnerships, and Cambodian-market coffee development.",
     url: `${siteUrl}/solutions`,
     type: "website",
   },
@@ -35,6 +35,18 @@ const services = [
     tag: "Cambodian Market",
     title: "Coffee Marketing",
     desc: "Turn the menu you already have into a signature drink customers remember, talk about, and return for.",
+  },
+  {
+    href: "/solutions/hotels",
+    tag: "Hospitality",
+    title: "Hotel Coffee Program",
+    desc: "Build a Cambodian coffee program around guest experience, breakfast service, restaurant operations, staff support, and selected hotel retail.",
+  },
+  {
+    href: "/distribution",
+    tag: "International Markets",
+    title: "Distribution Partnerships",
+    desc: "For importers and regional distributors assessing Cambodia-origin coffee for established retail, hospitality, and specialty channels.",
   },
 ] as const
 
