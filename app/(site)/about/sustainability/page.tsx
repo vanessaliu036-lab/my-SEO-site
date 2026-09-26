@@ -102,6 +102,12 @@ const featureGrid = [
   { label: "02 / Traceability", title: "Follow the documented chain.", body: "Useful traceability describes which origin and custody details are recorded and can be checked." },
   { label: "03 / Claim boundaries", title: "State what is still unknown.", body: "Environmental outcomes depend on local practices; missing evidence stays visible instead of becoming an assumed benefit." },
 ]
+const chapterImages = [
+  { src: "/about/chapters/sustainability-01.webp", alt: "Field worker documenting observations beside coffee plants.", caption: "Evidence before labels · Record the specific practice", width: 1200, height: 1200 },
+  { src: "/about/chapters/sustainability-02.webp", alt: "Green coffee sample bags receiving traceability tags at a worktable.", caption: "Traceability · Follow the documented chain", width: 1200, height: 1200 },
+  { src: "/about/chapters/sustainability-03.webp", alt: "Coffee trees growing above leaf litter and shaded soil.", caption: "Environmental context · Observe before making a claim", width: 1200, height: 1200 },
+  { src: "/about/chapters/sustainability-04.webp", alt: "Coffee workers sorting cherries beside written processing records.", caption: "OCC practice · Document before declaring", width: 1200, height: 1200 },
+]
 
 export default function SustainabilityPage() {
   return (
@@ -110,6 +116,9 @@ export default function SustainabilityPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="04"
+        heroImage={{ src: "/about/occ-about-sustainability-sorting.webp", alt: "Illustrative hands sorting ripe coffee cherries on a wooden worktable.", width: 1448, height: 1086 }}
+        heroCaption="Sustainability · Document before declaring"
+        chapterImages={chapterImages}
         title="SUSTAINABILITY"
         subtitle="EVIDENCE, TRACEABILITY, AND CLAIM BOUNDARIES."
         lead={[
@@ -117,8 +126,6 @@ export default function SustainabilityPage() {
           "We separate documented practice from assumption and keep claim boundaries clear.",
         ]}
         sections={sections}
-        heroImage={{ src: "/about/institutional/occ-sustainability-trace.svg", alt: "Editorial traceability composition representing evidence and claim boundaries" }}
-        chapterImage="/about/institutional/occ-sustainability-trace.svg"
         featureGrid={featureGrid}
         practiceLabel="How OCC assesses claims"
         practiceTitle="Evidence before declaration."

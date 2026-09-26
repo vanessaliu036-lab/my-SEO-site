@@ -41,7 +41,7 @@ export function SiteHeader() {
               alt="Origin Coffee Cambodia"
               width={600}
               height={272}
-              className="h-[42px] w-auto sm:h-[48px] lg:h-[52px]"
+              className={`h-[42px] w-auto sm:h-[48px] lg:h-[52px] ${onHome ? "brightness-0 invert drop-shadow-[0_1px_12px_rgba(0,0,0,0.18)]" : ""}`}
             />
           </Link>
 

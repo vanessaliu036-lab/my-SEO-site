@@ -29,7 +29,7 @@ function resolveLocalImport(from, specifier, root) {
   return null
 }
 
-function scanImports(file, root, seen, images) {
+function scanImports(file, root, seen, images, counts) {
   if (seen.has(file)) return
   seen.add(file)
   const content = fs.readFileSync(file, 'utf8')
@@ -38,13 +38,16 @@ function scanImports(file, root, seen, images) {
   if (/^(?:lib\/siteConfig\.ts|lib\/seo\.ts)$/.test(relative)) return
   for (const candidate of content.matchAll(imageLiteral)) {
     const image = normalize(candidate[0])
-    if (!exemptIdentity.test(image)) images.add(image)
+    if (!exemptIdentity.test(image)) {
+      images.add(image)
+      counts.set(image, (counts.get(image) || 0) + 1)
+    }
   }
   for (const match of content.matchAll(sourceImport)) {
     const next = resolveLocalImport(file, match[1] || match[2], root)
     // Shared navigation/footer imagery is brand identity. Never treat them as an editorial owner.
     if (next && !/\/components\/site\/(?:site-header|site-footer|site-shell|mobile-menu)\.(?:tsx?|jsx?)$/.test(next)) {
-      scanImports(next, root, seen, images)
+      scanImports(next, root, seen, images, counts)
     }
   }
 }
@@ -62,12 +65,23 @@ export function auditEditorialImages(projectRoot = process.cwd()) {
   const missingImages = []
   const hashToImages = new Map()
   const globalImageOverrides = []
+  const sameRouteDuplicates = []
   const routes = {}
+  const rewrittenPages = new Map([
+    ['/solutions/roasting-program', 'public/occ-pages/roasting-program.html'],
+    ['/origins/cambodia-regions', 'public/occ-pages/cambodia-regions.html'],
+    ['/partnerships', 'public/occ-pages/partnerships.html'],
+  ])
 
   for (const page of walk(siteRoot).filter((file) => /\/page\.(?:tsx|jsx)$/.test(file))) {
     const route = routeOf(page, siteRoot)
+    if (rewrittenPages.has(route)) continue
     const images = new Set()
-    scanImports(page, root, new Set(), images)
+    const counts = new Map()
+    scanImports(page, root, new Set(), images, counts)
+    for (const [image, count] of counts) {
+      if (count > 1) sameRouteDuplicates.push({ route, image, count })
+    }
     routes[route] = [...images].sort()
     for (const image of images) {
       if (!imagesToRoutes.has(image)) imagesToRoutes.set(image, new Set())
@@ -83,6 +97,39 @@ export function auditEditorialImages(projectRoot = process.cwd()) {
         continue
       }
       const hash = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')
+      if (!hashToImages.has(hash)) hashToImages.set(hash, new Map())
+      if (!hashToImages.get(hash).has(image)) hashToImages.get(hash).set(image, new Set())
+      hashToImages.get(hash).get(image).add(route)
+    }
+  }
+
+  // These static editorial pages are served before the App Router via next.config rewrites.
+  for (const [route, relative] of rewrittenPages) {
+    const file = path.join(root, relative)
+    if (!fs.existsSync(file)) continue
+    const content = fs.readFileSync(file, 'utf8')
+    const images = new Set()
+    const counts = new Map()
+    for (const match of content.matchAll(/src=["'](?:https?:\/\/origincafekh\.com)?(\/[^"']+\.(?:avif|jpe?g|png|svg|webp))(?:\?[^"']*)?["']/gi)) {
+      const image = normalize(match[1])
+      if (!exemptIdentity.test(image)) {
+        images.add(image)
+        counts.set(image, (counts.get(image) || 0) + 1)
+      }
+    }
+    for (const [image, count] of counts) {
+      if (count > 1) sameRouteDuplicates.push({ route, image, count })
+    }
+    routes[route] = [...images].sort()
+    for (const image of images) {
+      if (!imagesToRoutes.has(image)) imagesToRoutes.set(image, new Set())
+      imagesToRoutes.get(image).add(route)
+      const asset = path.join(root, 'public', image.replace(/^\//, ''))
+      if (!fs.existsSync(asset)) {
+        missingImages.push({ route, image })
+        continue
+      }
+      const hash = crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex')
       if (!hashToImages.has(hash)) hashToImages.set(hash, new Map())
       if (!hashToImages.get(hash).has(image)) hashToImages.get(hash).set(image, new Set())
       hashToImages.get(hash).get(image).add(route)
@@ -106,12 +153,13 @@ export function auditEditorialImages(projectRoot = process.cwd()) {
     const owners = new Set([...paths.values()].flatMap((value) => [...value]))
     return paths.size > 1 && owners.size > 1 ? [{ hash, images: [...paths.keys()].sort(), routes: [...owners].sort() }] : []
   })
-  return { routes, crossRouteDuplicates, duplicateBytes, globalImageOverrides, missingImages }
+  return { routes, crossRouteDuplicates, sameRouteDuplicates, duplicateBytes, globalImageOverrides, missingImages }
 }
 
 export function formatFindings(report) {
   const lines = []
   for (const item of report.crossRouteDuplicates) lines.push(`CROSS_ROUTE ${item.image}: ${item.routes.join(', ')}`)
+  for (const item of report.sameRouteDuplicates) lines.push(`SAME_ROUTE ${item.route} uses ${item.image} ${item.count} times`)
   for (const item of report.duplicateBytes) lines.push(`SAME_BYTES ${item.images.join(', ')}: ${item.routes.join(', ')}`)
   for (const item of report.globalImageOverrides) lines.push(`GLOBAL_OVERRIDE ${item.file}: ${item.images.join(', ')}`)
   for (const item of report.missingImages) lines.push(`MISSING ${item.route}: ${item.image}`)
@@ -121,5 +169,5 @@ export function formatFindings(report) {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const findings = auditEditorialImages()
   console.log(formatFindings(findings))
-  if (findings.crossRouteDuplicates.length || findings.duplicateBytes.length || findings.globalImageOverrides.length || findings.missingImages.length) process.exitCode = 1
+  if (findings.crossRouteDuplicates.length || findings.sameRouteDuplicates.length || findings.duplicateBytes.length || findings.globalImageOverrides.length || findings.missingImages.length) process.exitCode = 1
 }

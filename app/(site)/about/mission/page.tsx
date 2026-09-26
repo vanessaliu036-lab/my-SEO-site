@@ -121,6 +121,12 @@ const faqs = [
     a: "It is for roasters, cafés, hospitality teams, importers, and other professional buyers looking for clearer Cambodian coffee sourcing, wholesale supply, or roast development conversations.",
   },
 ]
+const chapterImages = [
+  { src: "/about/chapters/mission-01.webp", alt: "Coffee workers selecting ripe cherries on a Cambodian hillside farm.", caption: "Vision · A Cambodian origin worth recognising", width: 1200, height: 1200 },
+  { src: "/about/chapters/mission-02.webp", alt: "Coffee professionals tasting samples and recording sensory notes.", caption: "Mission · Quality made clearer through evaluation", width: 1200, height: 1200 },
+  { src: "/about/chapters/mission-03.webp", alt: "Origin map, field photographs, notes, and green coffee samples on a worktable.", caption: "Why OCC exists · Evidence connects place and product", width: 1200, height: 1200 },
+  { src: "/about/chapters/mission-04.webp", alt: "Finished coffee bags arranged for professional dispatch.", caption: "Origin to buyer · Preparing coffee for the next handoff", width: 1200, height: 1200 },
+]
 
 export default function MissionPage() {
   return (
@@ -130,6 +136,9 @@ export default function MissionPage() {
       {/* title="OCC MISSION" — production guard marker; visible heading remains MISSION. */}
       <AboutInstitutionalTemplate
         index="01"
+        heroImage={{ src: "/about/occ-about-mission-sourcing.webp", alt: "Coffee professionals comparing sample cups and beans at a roastery table.", width: 1448, height: 1086 }}
+        heroCaption="Mission · Cambodian coffee from context to buyer"
+        chapterImages={chapterImages}
         title="MISSION"
         subtitle="WHY OCC CONNECTS ORIGIN, QUALITY, SUPPLY, AND ROASTING."
         lead={[
@@ -137,8 +146,6 @@ export default function MissionPage() {
           "Origin Coffee Cambodia connects Cambodian coffee origins, Fine Robusta expertise, and professional capability so coffee can move from origin to buyer with greater clarity.",
         ]}
         sections={sections}
-        heroImage={{ src: "/about/institutional/occ-mission-origin.svg", alt: "Editorial composition connecting Cambodian origin, quality and professional buyers" }}
-        chapterImage="/about/institutional/occ-mission-origin.svg"
         featureGrid={featureGrid}
         practiceLabel="What OCC connects"
         practiceTitle="From context to a workable coffee program."
