@@ -147,6 +147,11 @@ export default function RootLayout({
     <html lang={htmlLang} data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
         <style id="occ-typography-system">{typographyCss}</style>
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="QD8QrYweE2FMiyMSfZEpzQ"
+          async
+        />
       </head>
       <body className="font-sans antialiased">
         {children}
