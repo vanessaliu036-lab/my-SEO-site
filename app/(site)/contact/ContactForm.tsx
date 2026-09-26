@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useRef, useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { submitContactForm } from "./action"
@@ -40,10 +40,12 @@ export default function ContactForm() {
   const [isPending, startTransition] = useTransition()
   const [isSuccess, setIsSuccess] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
+  const hasTrackedContactStart = useRef(false)
 
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm<ContactFormData>({
@@ -52,6 +54,35 @@ export default function ContactForm() {
 
   const selectedType = watch("service")
   const message = watch("message") ?? ""
+
+  const trackContactStart = () => {
+    if (hasTrackedContactStart.current || !window.gtag) return
+    const attribution = readAttribution()
+    if (attribution.kpiExclude) return
+
+    window.gtag("event", "contact_start", {
+      page_path: window.location.pathname,
+      landing_page: attribution.landingPage,
+      last_touch_page: attribution.lastTouchPage,
+      traffic_source_medium: attribution.sourceMedium,
+    })
+    hasTrackedContactStart.current = true
+  }
+
+  const chooseIntent = (type: ContactFormData["service"]) => {
+    setValue("service", type, { shouldDirty: true, shouldTouch: true, shouldValidate: true })
+    const attribution = readAttribution()
+
+    if (!attribution.kpiExclude) {
+      window.gtag?.("event", "contact_intent_select", {
+        lead_type: type,
+        page_path: window.location.pathname,
+        landing_page: attribution.landingPage,
+      })
+    }
+
+    document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   const onSubmit = (data: ContactFormData) => {
     setServerError(null)
@@ -88,6 +119,25 @@ export default function ContactForm() {
               Wholesale, custom roasting, hotel partnerships and Cambodian coffee sourcing —
               tell us what you&apos;re working on.
             </p>
+            <div className="occ-contact-intent-shortcuts" aria-label="Choose enquiry type">
+              {ENQUIRY_TYPES.map((type) => (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => chooseIntent(type)}
+                  className="occ-contact-intent-shortcut"
+                >
+                  {type === "Wholesale / Sourcing"
+                    ? "Wholesale"
+                    : type === "Roasting / Solutions"
+                      ? "Roasting"
+                      : type === "Partnership / Distribution"
+                        ? "Hotel / Partner"
+                        : "Other"}
+                  <span aria-hidden="true">↓</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           <aside className="occ-contact-rail" aria-label="Direct contact">
@@ -136,7 +186,7 @@ export default function ContactForm() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <form onSubmit={handleSubmit(onSubmit)} onFocusCapture={trackContactStart} noValidate>
             <div
               aria-hidden="true"
               style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}
