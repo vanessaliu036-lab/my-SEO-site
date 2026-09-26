@@ -42,9 +42,13 @@ test("GA4 counts App Router navigation with explicit single page views", () => {
 
 test("root layout routes analytics providers through the shared gate", () => {
   const layout = source("app/layout.tsx")
+  const gate = source("components/AnalyticsGate.tsx")
   assert.match(layout, /AnalyticsGate/)
+  assert.doesNotMatch(layout, /analytics\.ahrefs\.com\/analytics\.js/)
   assert.doesNotMatch(layout, /<Analytics \/>/)
   assert.doesNotMatch(layout, /id="microsoft-clarity"/)
+  assert.match(gate, /id="ahrefs-analytics"/)
+  assert.match(gate, /analytics\.ahrefs\.com\/analytics\.js/)
 })
 
 

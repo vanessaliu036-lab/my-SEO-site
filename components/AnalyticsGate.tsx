@@ -70,9 +70,11 @@ function deriveSourceMedium() {
 export function AnalyticsGate({
   measurementId,
   clarityId,
+  ahrefsKey,
 }: {
   measurementId?: string
   clarityId: string
+  ahrefsKey?: string
 }) {
   const pathname = usePathname()
   const [eligible, setEligible] = useState(false)
@@ -187,6 +189,14 @@ export function AnalyticsGate({
         }}
       />
       {measurementId ? <GoogleAnalytics measurementId={measurementId} /> : null}
+      {ahrefsKey ? (
+        <Script
+          id="ahrefs-analytics"
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key={ahrefsKey}
+          strategy="afterInteractive"
+        />
+      ) : null}
       <Script
         id="microsoft-clarity"
         strategy="afterInteractive"
