@@ -10,7 +10,8 @@ test('commercial discussion CTAs route into the Contact form', () => {
   const finalCta = source('components/site/site-final-cta.tsx')
 
   assert.match(origins, /href="\/contact"[^>]*>Discuss wholesale supply/)
-  assert.match(roasting, /href="\/contact">Discuss Wholesale Supply/)
+  assert.match(roasting, /heroCtaHref="\/contact"/)
+  assert.match(roasting, /heroCtaLabel="Develop Your Roast Profile"/)
   assert.doesNotMatch(finalCta, /primaryHref:\s*"(?!\/contact)/)
 })
 
@@ -33,14 +34,16 @@ test('Contact message field has a visible long-form affordance and guidance', ()
   assert.match(styles, /\.occ-contact-shell \.occ-contact-message:focus-visible/)
 })
 
-test('Contact captures the six commercial inbox fields', () => {
+test('Contact captures the current four-intent commercial enquiry fields', () => {
   const form = source('app/(site)/contact/ContactForm.tsx')
   const schema = source('app/(site)/contact/schema.ts')
-  for (const field of ['name', 'company', 'email', 'country', 'service', 'projectStage']) {
+  for (const field of ['name', 'jobTitle', 'phone', 'company', 'email', 'country', 'service', 'message']) {
     assert.ok(form.includes('register("' + field + '")'))
   }
-  assert.ok(schema.includes('"Partnership / Distribution"'))
-  assert.match(schema, /"Ready to order"/)
+  for (const intent of ['Wholesale / Sourcing', 'Roasting / Solutions', 'Partnership / Distribution', 'Other / General']) {
+    assert.ok(schema.includes('"' + intent + '"'))
+  }
+  assert.doesNotMatch(schema, /projectStage/)
 })
 
 test('admin dashboard exposes working Order Inbox and Contact Inquiries workflows', () => {

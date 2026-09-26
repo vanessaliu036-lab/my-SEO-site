@@ -7,7 +7,7 @@ const sample = {
   company: 'QA Hotel',
   jobTitle: 'Purchasing Manager',
   phone: '+855 12 345 678',
-  email: 'qa@example.test',
+  email: 'buyer@example.com',
   country: 'Cambodia',
   service: 'Wholesale / Sourcing',
   message: 'Synthetic smoke test',
@@ -91,7 +91,9 @@ test('never claims success for rejected or unconfirmed Airtable writes', async (
 test('the contact server action gates success on confirmed persistence and does not log PII', async () => {
   const { readFileSync } = await import('node:fs')
   const source = readFileSync(new URL('../app/(site)/contact/action.ts', import.meta.url), 'utf8')
-  assert.ok(source.includes('await persistContactLead(parsed.data)'))
+  assert.ok(source.includes('await persistContactLead({'))
+  assert.ok(source.includes('...parsed.data'))
+  assert.ok(source.includes('...safeAttribution'))
   assert.ok(source.includes('if (!persisted)'))
   assert.ok(source.includes('success: false'))
   assert.doesNotMatch(source, /console\.log|New message received/)

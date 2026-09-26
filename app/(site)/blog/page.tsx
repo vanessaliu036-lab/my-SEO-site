@@ -67,12 +67,20 @@ export default function BlogPage() {
             <p className="mt-7 max-w-[560px] text-xl leading-tight tracking-[-0.025em] text-occ-primary/72 sm:text-2xl lg:text-[1.8rem]">
               Research, origin and commercial coffee intelligence.
             </p>
-            <a
-              href="#blog-categories"
-              className="mt-9 inline-flex w-fit items-center gap-5 bg-occ-primary px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-background transition-colors hover:bg-occ-burgundy"
-            >
-              Explore the journal <span aria-hidden="true">→</span>
-            </a>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a
+                href="#blog-categories"
+                className="inline-flex w-fit items-center gap-5 bg-occ-primary px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-background transition-colors hover:bg-occ-burgundy"
+              >
+                Explore the journal <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="/fine-robusta-cambodia"
+                className="inline-flex w-fit items-center gap-4 border border-occ-primary/20 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-occ-primary transition-colors hover:border-occ-primary"
+              >
+                Fine Robusta Cambodia <span aria-hidden="true">→</span>
+              </a>
+            </div>
             <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 -right-24 h-[310px] w-[460px] rotate-[-17deg] rounded-tr-[100%] border-r border-t border-occ-primary/25" />
           </div>
         </div>
