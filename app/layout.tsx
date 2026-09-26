@@ -61,6 +61,7 @@ export const metadata: Metadata = {
 };
 
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const ahrefsAnalyticsKey = process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY;
 const organizationId = `${siteUrl}/#organization`;
 
 const typographyCss = `
@@ -147,16 +148,15 @@ export default function RootLayout({
     <html lang={htmlLang} data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
         <style id="occ-typography-system">{typographyCss}</style>
-        <script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="QD8QrYweE2FMiyMSfZEpzQ"
-          async
-        />
       </head>
       <body className="font-sans antialiased">
         {children}
 
-        <AnalyticsGate measurementId={gaMeasurementId} clarityId="xjlld0s2hz" />
+        <AnalyticsGate
+          measurementId={gaMeasurementId}
+          clarityId="xjlld0s2hz"
+          ahrefsKey={ahrefsAnalyticsKey}
+        />
 
         <script
           type="application/ld+json"
