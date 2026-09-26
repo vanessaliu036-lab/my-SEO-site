@@ -160,20 +160,19 @@ test("About semantic photo surfaces retain scoped cover-image fallbacks", () => 
 test("approved About hero uses dedicated high-resolution route assets", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
-  assert.match(about, /const heroImage = "\/about\/occ-about-green-hero\.webp"/)
-  assert.match(about, /const whyOccImage = "\/about\/occ-about-intro\.webp"/)
-  assert.match(about, /aria-label="One origin\. Cambodia\."/)
-  assert.match(about, /One origin\.\s*<br \/>Cambodia\./)
-  assert.match(about, /100% Cambodia Origin/)
+  assert.match(about, /src="\/about\/occ-about-green-hero\.webp"/)
+  assert.match(about, /src="\/about\/occ-about-intro\.webp"/)
+  assert.match(about, /One origin\.\s*<br \/><em>Cambodia\.<\/em>/)
+  assert.match(about, /A Cambodia-origin specialty coffee supplier and Fine Robusta specialist\./)
 })
 
 test("approved About content keeps explicit editorial sections without the legacy empty rail", () => {
   const about = read("components/templates/about-editorial-template.tsx")
 
   assert.match(about, /id="why-occ"/)
-  assert.match(about, /aria-label="OCC origin and commercial paths"/)
-  assert.match(about, /aria-labelledby="work-with-occ-title"/)
-  assert.match(about, /aria-labelledby="about-explore-title"/)
+  assert.match(about, /aria-labelledby="capabilities-title"/)
+  assert.match(about, /aria-labelledby="path-title"/)
+  assert.match(about, /aria-labelledby="explore-title"/)
   assert.doesNotMatch(about, /md:col-span-3/)
   assert.doesNotMatch(about, /md:col-start-5/)
 })
@@ -184,7 +183,8 @@ test("approved About visual entrances point to the intended origin and commercia
   for (const href of ["/origins", "/fine-robusta-cambodia", "/solutions/wholesale", "/solutions/roasting-program"]) {
     assert.match(about, new RegExp(`href: "${href.replaceAll("/", "\\/")}"`))
   }
-  assert.match(about, /galleryPanels\.map\([\s\S]*?<Link/)
-  assert.match(about, /href="\/solutions\/wholesale"/)
-  assert.match(about, /href="\/solutions\/roasting-program"/)
+  assert.match(about, /capabilities\.map\([\s\S]*?<Link/)
+  assert.match(about, /pathways\.map\([\s\S]*?<Link href=\{path\.href\}/)
+  assert.match(about, /href: "\/solutions\/wholesale"/)
+  assert.match(about, /href: "\/solutions\/roasting-program"/)
 })
