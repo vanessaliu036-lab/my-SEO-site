@@ -51,6 +51,12 @@ export default function HomeTemplate() {
             <Link href="/contact" className="occ-primary-cta">
               Start an enquiry
             </Link>
+            <Link
+              href="/fine-robusta-cambodia"
+              className="border-b border-white/55 pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors hover:border-white hover:text-white"
+            >
+              Explore Fine Robusta Cambodia
+            </Link>
           </div>
         </div>
 
