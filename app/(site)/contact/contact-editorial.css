@@ -20,7 +20,7 @@
 
 .occ-contact-hero {
   position: relative;
-  min-height: 485px;
+  min-height: 420px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -62,7 +62,7 @@
   align-items: center;
   width: min(1160px, calc(100% - 64px));
   margin: 0 auto;
-  padding: 76px 0 92px;
+  padding: 58px 0 74px;
 }
 
 .occ-contact-hero-copy {
@@ -104,6 +104,46 @@
   color: var(--contact-muted);
   font-size: 15px;
   line-height: 1.8;
+}
+
+.occ-contact-intent-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.occ-contact-intent-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 10px 13px;
+  border: 1px solid var(--contact-line-strong);
+  background: transparent;
+  color: var(--contact-ink);
+  cursor: pointer;
+  font: 600 9px var(--occ-font-body), Inter, system-ui, sans-serif;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.occ-contact-intent-shortcut:hover,
+.occ-contact-intent-shortcut:focus-visible {
+  border-color: var(--contact-wine);
+  background: var(--contact-soft-wine);
+  color: var(--contact-wine);
+  transform: translateY(-1px);
+}
+
+.occ-contact-intent-shortcut:focus-visible {
+  outline: 2px solid var(--contact-wine);
+  outline-offset: 2px;
+}
+
+.occ-contact-intent-shortcut span {
+  color: var(--contact-wine);
 }
 
 .occ-contact-rail {
@@ -522,7 +562,7 @@
   .occ-contact-hero-grid {
     grid-template-columns: 1fr;
     gap: 38px;
-    padding: 58px 0 76px;
+    padding: 46px 0 64px;
   }
 
   .occ-contact-rail {
@@ -573,7 +613,7 @@
   }
 
   .occ-contact-hero-grid {
-    padding: 52px 0 66px;
+    padding: 40px 0 56px;
   }
 
   .occ-contact-hero h1 {
@@ -584,6 +624,18 @@
 
   .occ-contact-intro {
     font-size: 14px;
+  }
+
+  .occ-contact-intent-shortcuts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  .occ-contact-intent-shortcut {
+    justify-content: space-between;
+    width: 100%;
   }
 
   .occ-contact-rail {
