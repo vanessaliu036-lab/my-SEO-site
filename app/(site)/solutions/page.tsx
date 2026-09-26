@@ -40,7 +40,7 @@ const services = [
     href: "/solutions/hotels",
     tag: "Hospitality",
     title: "Hotel Coffee Program",
-    desc: "Build a Cambodian coffee program around guest experience, breakfast service, restaurant operations, staff support, and selected hotel retail.",
+    desc: "Source roasted Cambodian coffee for hotel service or develop a custom flavor and roast profile around your guests, menu, equipment, and brand direction.",
   },
   {
     href: "/distribution",
