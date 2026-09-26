@@ -22,7 +22,7 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee",
+  title: "Origin Coffee Cambodia | Fine Robusta Coffee Supplier",
   description: siteDescription,
   keywords: [
     "Fine Robusta",
