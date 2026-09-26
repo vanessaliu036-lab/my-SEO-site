@@ -23,7 +23,7 @@ export default function HomeTemplate() {
             className="size-full object-cover object-center"
           />
         </picture>
-        <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,14,13,0.72)_0%,rgba(18,14,13,0.56)_46%,rgba(18,14,13,0.30)_100%)]" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(41,36,36,0.18)_0%,rgba(41,36,36,0.08)_42%,rgba(41,36,36,0.58)_100%)]"
           aria-hidden="true"
@@ -39,7 +39,7 @@ export default function HomeTemplate() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto w-full max-w-[1360px] px-6 pb-24 pt-32 text-left sm:px-8 md:pb-20 lg:px-12">
+        <div data-occ-home-copy className="relative z-20 mx-auto w-full max-w-[1360px] px-6 pb-24 pt-32 text-left sm:px-8 md:pb-20 lg:px-12">
           <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.3em] text-white/70 sm:text-xs">
             Cambodia · Coffea canephora · Fine Robusta
           </p>
@@ -57,7 +57,7 @@ export default function HomeTemplate() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between border-t border-white/15 px-5 py-5 text-[9px] uppercase tracking-[0.24em] text-white/55 sm:px-8 lg:px-12">
+        <div data-occ-home-meta className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between border-t border-white/15 px-5 py-5 text-[9px] uppercase tracking-[0.24em] text-white/55 sm:px-8 lg:px-12">
           <span>Origin Coffee Cambodia</span>
           <span className="hidden sm:inline">Sourcing · Quality · Solutions</span>
           <span>01 / Home</span>

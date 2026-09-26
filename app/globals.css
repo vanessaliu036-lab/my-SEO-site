@@ -597,6 +597,30 @@
   min-height: clamp(620px, 78vh, 760px) !important;
 }
 
+.occ-site-main .occ-home-hero [data-occ-home-copy],
+.occ-site-main .occ-home-hero [data-occ-home-copy] h1,
+.occ-site-main .occ-home-hero [data-occ-home-copy] p {
+  color: #fff !important;
+}
+
+.occ-site-main .occ-home-hero [data-occ-home-copy] {
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.42);
+}
+
+.occ-site-main .occ-home-hero [data-occ-home-copy] > p:first-child {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.occ-site-main .occ-home-hero [data-occ-home-copy] > p:nth-of-type(2) {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.occ-site-main .occ-home-hero [data-occ-home-meta],
+.occ-site-main .occ-home-hero [data-occ-home-meta] span {
+  color: rgba(255, 255, 255, 0.72) !important;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
 .occ-about-hero {
   min-height: clamp(540px, 72vh, 660px) !important;
 }
