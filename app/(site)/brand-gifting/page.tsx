@@ -242,9 +242,14 @@ export default function BrandGiftingPage() {
               <p className="text-lg leading-8 text-black/82">
                 The product can connect to origin storytelling, QR content, travel discovery pages, hotel-branded landing pages and search-led Cambodian gift guides. The objective is to make the gift findable again, not just attractive once.
               </p>
-              <p className="text-[15px] leading-7 text-black/62">
-                This is where the partnership goes beyond packaging. OCC builds coffee authority and product credibility. ARUNERA builds the Cambodian gift context around the product. Together, the coffee has a clearer path from origin to discovery, purchase, gifting and memory.
-              </p>
+              <div>
+                <p className="text-[15px] leading-7 text-black/62">
+                  This is where the partnership goes beyond packaging. OCC builds coffee authority and product credibility. ARUNERA builds the Cambodian gift context around the product. Together, the coffee has a clearer path from origin to discovery, purchase, gifting and memory.
+                </p>
+                <p className="mt-5 text-sm leading-7 text-black/58">
+                  Looking for coffee procurement rather than a gifting concept? Use the separate <Link href="/solutions/wholesale" className="underline underline-offset-4">Wholesale &amp; Sourcing</Link> path.
+                </p>
+              </div>
             </div>
           </div>
         </section>
