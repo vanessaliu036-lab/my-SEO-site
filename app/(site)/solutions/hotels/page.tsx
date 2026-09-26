@@ -4,15 +4,15 @@ import { SolutionDetailTemplate } from "@/components/templates/solution-detail-t
 import { siteUrl } from "@/lib/siteConfig"
 import { pageAlternates } from "@/lib/seo"
 
-const title = "Hotel Coffee Program Cambodia | Hospitality Coffee Solutions | OCC"
+const title = "Hotel Coffee Supplier Cambodia | Custom Hotel Coffee Program | OCC"
 const description =
-  "Build a Cambodian coffee program for hotels across breakfast, restaurants, lounges, guest experiences and selected retail, with OCC origin, supply and roast expertise."
+  "OCC supplies roasted Cambodian coffee beans to hotels and develops custom coffee profiles for breakfast, restaurants, lounges and branded hospitality programs in Cambodia."
 
 export const metadata: Metadata = {
   title,
   description,
   keywords:
-    "hotel coffee program Cambodia, Cambodian coffee for hotels, hospitality coffee Cambodia, hotel coffee solution Cambodia, Cambodian coffee guest experience, hotel breakfast coffee Cambodia",
+    "hotel coffee supplier Cambodia, hotel coffee beans Cambodia, wholesale roasted coffee for hotels, custom hotel coffee Cambodia, hotel coffee program Cambodia, hospitality coffee supplier Cambodia, custom roast profile hotel",
   alternates: pageAlternates("/solutions/hotels"),
   openGraph: {
     title,
@@ -38,7 +38,7 @@ const serviceSchema = {
     "@type": "Country",
     name: "Cambodia",
   },
-  serviceType: "Hotel and hospitality coffee program",
+  serviceType: "Hotel coffee supply and custom hospitality coffee program",
 }
 
 const breadcrumbSchema = {
@@ -54,78 +54,80 @@ const breadcrumbSchema = {
 export default function HotelCoffeeProgramPage() {
   const sections = [
     {
-      title: "Coffee for the Guest Experience",
+      title: "Two Ways to Work With OCC Now",
       content: (
         <>
           <p>
-            A hotel coffee program can begin at breakfast, but it does not have to end there. Cambodian coffee can support
-            breakfast service, restaurants, lounges, meetings, guest-facing tasting moments, selected room experiences and
-            hotel retail when each application has a clear operational purpose.
+            OCC is ready to work with hotels now through two commercial paths: <strong>roasted coffee bean supply</strong> for
+            properties that need a dependable Cambodia-origin coffee product, and <strong>custom coffee profile development</strong>
+            for hotels that want a flavor direction built around their own guests, menu, equipment and service style.
           </p>
           <p className="mt-5">
-            OCC helps define where coffee matters in the guest journey before recommending a supply or roast direction.
+            If you are reviewing suppliers, replacing an existing coffee, developing a hotel signature coffee or planning a new
+            hospitality program, send the requirement through <Link href="/contact#enquiry">the OCC commercial enquiry form</Link>.
           </p>
         </>
       ),
     },
     {
-      title: "Built Around Hotel Operations",
+      title: "Roasted Coffee Supply for Hotels",
       content: (
         <>
           <p>
-            The coffee has to work in the service environment where it will be used. Brewing equipment, daily volume, service
-            speed, staff capability, milk-based drinks, holding time, consistency and target cost all shape the right program.
+            Hotels can source OCC-developed roasted Cambodian coffee for breakfast, restaurants, lounges, meetings and other
+            food-and-beverage operations. We discuss the intended use, brewing equipment, expected volume, format and current
+            coffee requirement before confirming the commercial supply direction.
           </p>
           <p className="mt-5">
-            The objective is a coffee program staff can execute consistently, not a concept that only works in a tasting room.
+            This is the hotel-facing application of OCC&apos;s <Link href="/solutions/wholesale">Wholesale Coffee Supply</Link>:
+            a direct B2B path for properties that need roasted coffee ready for professional service.
           </p>
         </>
       ),
     },
     {
-      title: "Cambodia at the Center",
+      title: "Custom Flavor & Roast Profile",
       content: (
         <>
           <p>
-            For international guests, coffee can become one of the first everyday products through which Cambodia is experienced.
-            OCC keeps the origin visible through credible information about Cambodian coffee, Fine Robusta, regions, processing
-            and the evidence available for the coffee being served.
+            A hotel does not have to use a generic roast profile. OCC can develop a coffee direction around the property&apos;s
+            target taste, breakfast style, espresso program, milk-based drinks, guest mix, brewing method and brand positioning.
           </p>
           <p className="mt-5">
-            Deeper origin education remains in the <Link href="/fine-robusta-cambodia">Fine Robusta Cambodia</Link> and{" "}
-            <Link href="/origins">Origins</Link> sections so this page can stay focused on hospitality decisions.
+            The work connects directly to the <Link href="/solutions/roasting-program">Custom Roasting Program</Link>, with the
+            hotel brief translated into a coffee profile that can be evaluated, refined and used as the commercial reference.
           </p>
         </>
       ),
     },
     {
-      title: "Supply, Roast and Format",
+      title: "Built for Real Hotel Operations",
       content: (
         <>
           <p>
-            Hotels that need an OCC-developed coffee for commercial supply should use the{" "}
-            <Link href="/solutions/wholesale">Wholesale</Link> path. Hotels that need a profile developed around a specific
-            breakfast, espresso, milk-drink or branded product target should use the{" "}
-            <Link href="/solutions/roasting-program">Roasting Program</Link>.
+            A hotel coffee program has to perform during service. Brewing equipment, daily volume, workflow, staff capability,
+            milk-based beverage demand, holding time, consistency and target cost all matter when selecting the coffee or defining
+            a custom profile.
           </p>
           <p className="mt-5">
-            The Hotel Coffee Program connects those capabilities to the operational and guest-experience requirements of the property.
+            OCC uses those operating requirements to determine whether the best fit is an existing roasted coffee supply or a
+            custom-developed hotel profile.
           </p>
         </>
       ),
     },
     {
-      title: "Retail and Guest Take-Home",
+      title: "Cambodian Coffee as Part of the Stay",
       content: (
         <>
           <p>
-            Selected hotels may also explore Cambodian coffee for guest gifting or retail. This can include a coffee product
-            connected to the property, local-origin storytelling and a take-home format that extends the guest experience beyond
-            the stay.
+            Serving Cambodian coffee gives a hotel a practical way to connect an everyday guest experience with the country the
+            guest is visiting. OCC keeps the coffee proposition grounded in Cambodia origin, Fine Robusta expertise and the
+            evidence available for the coffee being supplied.
           </p>
           <p className="mt-5">
-            Dedicated gifting and presentation work belongs to <Link href="/brand-gifting">Brand &amp; Gifting</Link>, while
-            coffee quality, roast direction and supply remain within OCC.
+            Hotels that also want a take-home product, gifting format or branded retail concept can connect the coffee program
+            with <Link href="/brand-gifting">Brand &amp; Gifting</Link> after the core coffee supply or custom profile is defined.
           </p>
         </>
       ),
@@ -134,16 +136,20 @@ export default function HotelCoffeeProgramPage() {
 
   const faqs = [
     {
-      q: "Can OCC supply coffee for hotel breakfast service?",
-      a: <>Yes. The commercial supply path is handled through Wholesale, with the hotel program used to define the service context, coffee application and guest-experience requirements.</>,
+      q: "Can OCC supply roasted coffee beans directly to hotels?",
+      a: <>Yes. OCC can supply roasted Cambodia-origin coffee for hotel breakfast, restaurants, lounges and other hospitality applications. Commercial terms are confirmed from the actual requirement, volume and format.</>,
     },
     {
-      q: "Can a hotel develop its own roast profile?",
-      a: <>Yes. When the property needs a specific cup, menu role or branded coffee direction, the Custom Roasting path is used to develop an evaluable roast profile around that requirement.</>,
+      q: "Can OCC develop a custom coffee flavor for our hotel?",
+      a: <>Yes. OCC can develop a custom roast and flavor direction around the property&apos;s guest profile, brewing equipment, menu role and target cup experience.</>,
     },
     {
-      q: "Can Cambodian coffee be used as part of the guest experience?",
-      a: <>Yes. Hotels can explore origin storytelling, selected tastings, guest-facing coffee moments and retail or gifting applications when they fit the property and can be operated consistently.</>,
+      q: "Can we replace our current hotel coffee with OCC coffee?",
+      a: <>Yes. Share the coffee you currently use, service application, equipment, approximate volume and the result you want to improve. OCC can then discuss either a ready-to-supply roasted coffee or a custom profile.</>,
+    },
+    {
+      q: "How do we start a hotel coffee enquiry?",
+      a: <>Use the <Link href="/contact#enquiry">OCC commercial enquiry form</Link> and include the property name, intended application, estimated volume, current coffee if relevant, brewing equipment and target timing.</>,
     },
   ]
 
@@ -177,19 +183,19 @@ export default function HotelCoffeeProgramPage() {
       <SolutionDetailTemplate
         index="03"
         title="HOTEL COFFEE PROGRAM"
-        subtitle="Cambodian coffee for hospitality, built around service reality, guest experience, and the right commercial supply path."
+        subtitle="Roasted Cambodian coffee supply and custom hotel coffee profiles — available now for hospitality partners in Cambodia."
         sections={sections}
         factsTitle="Hospitality Program"
         facts={[
-          "Breakfast and restaurant applications",
-          "Guest-experience coffee moments",
-          "Operational and brewing context",
-          "Wholesale or custom-roast routing",
-          "Selected retail and gifting pathways",
+          "Roasted coffee bean supply",
+          "Custom flavor and roast development",
+          "Breakfast, restaurant and lounge use",
+          "Hotel operating and equipment fit",
+          "Formal B2B enquiry and supply discussion",
         ]}
         faqs={faqs}
         relatedServices={relatedServices}
-        ctaLabel="Discuss your hotel coffee program"
+        ctaLabel="Start a hotel coffee enquiry"
       />
     </>
   )
