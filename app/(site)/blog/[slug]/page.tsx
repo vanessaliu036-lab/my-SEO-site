@@ -1146,19 +1146,6 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          {/* CTA */}
-          <div className="article-cta mx-auto max-w-[720px] mt-12 bg-occ-burgundy text-occ-background p-7 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-            <div>
-              <p className="text-xs tracking-[0.24em] text-occ-background/68 uppercase mb-1">Origin Coffee Cambodia</p>
-              <p className="font-bold tracking-tight">Need wholesale supply or roasting support?</p>
-            </div>
-            <Link
-              href="/contact"
-              className="shrink-0 rounded-full border border-occ-background/55 px-5 py-2.5 text-xs uppercase tracking-[0.14em] text-occ-background transition-colors hover:bg-occ-background hover:text-occ-burgundy"
-            >
-              Talk to Our Team →
-            </Link>
-          </div>
         </article>
 
         <Suspense fallback={null}>

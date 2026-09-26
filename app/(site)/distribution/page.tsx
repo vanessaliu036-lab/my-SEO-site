@@ -339,22 +339,6 @@ export default function DistributionPage() {
         </div>
       </section>
 
-      <section className="occ-page-final-cta bg-occ-surface px-6 py-20 text-center text-occ-primary sm:px-10 lg:px-14 lg:py-24">
-        <p className="mb-7 text-[10px] uppercase tracking-[0.3em] text-occ-primary/52">Represent OCC in Your Market</p>
-        <h2 className="mx-auto max-w-4xl text-[clamp(3rem,5.5vw,5.6rem)] font-normal leading-[0.95] tracking-[-0.04em]">
-          Let's Discuss Your Market.
-        </h2>
-        <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-7 text-occ-primary/68">
-          Share your company, territory, existing channels, import capability, product interests, estimated volumes, and
-          launch timeline. We will use these details to assess a possible international distribution partnership.
-        </p>
-        <Link href="/contact" className="occ-primary-cta mt-9">
-          Discuss an International Distribution Partnership <span aria-hidden="true">↗</span>
-        </Link>
-        <p className="mt-14 text-[10px] uppercase tracking-[0.28em] text-occ-primary/40">
-          Origin Coffee Cambodia · Cambodia-origin coffee. Built for the world.
-        </p>
-      </section>
     </div>
   )
 }

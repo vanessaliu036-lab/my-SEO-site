@@ -249,18 +249,6 @@ export default function BrandGiftingPage() {
           </div>
         </section>
 
-        <section className="border-t border-black/10 bg-occ-background">
-          <div className="mx-auto flex w-full max-w-[1360px] flex-col gap-8 px-6 py-16 sm:px-8 md:flex-row md:items-end md:justify-between md:px-12 lg:px-16 lg:py-20">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/38">Build a Cambodian Coffee Gift</p>
-              <h2 className="mt-5 font-[var(--font-display)] text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[0.96] tracking-[-0.03em]">
-                For hotels, retailers,
-                <br />corporate gifting and travel partners.
-              </h2>
-            </div>
-            <Link href="/solutions/wholesale" className="border-b border-occ-burgundy pb-1 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-burgundy">Coffee Supply <ArrowUpRight className="ml-2 inline size-3" /></Link>
-          </div>
-        </section>
       </div>
     </>
   )

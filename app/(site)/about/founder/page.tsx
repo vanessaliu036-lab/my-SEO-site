@@ -112,8 +112,8 @@ export default function FounderPage() {
         title="FOUNDER"
         subtitle="THE FOUNDING PHILOSOPHY BEHIND OCC."
         lead={[
-          "Build the coffee business on evidence, not assumptions.",
-          "Origin knowledge matters when it improves sourcing, quality, roasting, and repeatability.",
+          "Build the coffee business on evidence.",
+          "Origin knowledge should improve sourcing, quality, roasting, and repeatability.",
         ]}
         sections={sections}
         featureGrid={featureGrid}

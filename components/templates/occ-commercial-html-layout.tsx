@@ -35,7 +35,7 @@ export function OccCommercialHtmlLayout({
   className = "", title, eyebrow, lead, description, heroImage,
   splitId, processImages, splitTitle, splitDescription,
   featureId, featureEyebrow, featureTitle, featureDescription, featureImage,
-  ctaId = "contact", ctaEyebrow, ctaTitle, ctaLabel, ctaHref, children,
+  children,
 }: Props) {
   return (
     <div className={`occ-commercial-html ${className}`}>
@@ -73,13 +73,6 @@ export function OccCommercialHtmlLayout({
           </div>
         </section>
         {children ? <div className="extended-sections">{children}</div> : null}
-        <section className="b2b-cta" id={ctaId}>
-          <div className="b2b-cta-copy">
-            <span className="eyebrow">{ctaEyebrow}</span>
-            <h3>{ctaTitle}</h3>
-          </div>
-          <a href={ctaHref} className="cta-btn">{ctaLabel} <span aria-hidden="true">→</span></a>
-        </section>
       </div>
     </div>
   )

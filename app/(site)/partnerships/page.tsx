@@ -361,17 +361,6 @@ export default function PartnershipsPage() {
           </div>
         </section>
 
-        <section className="bg-occ-surface-soft px-6 py-20 text-occ-primary sm:px-8 md:px-12 lg:px-16 lg:py-28">
-          <div className="mx-auto w-full max-w-[1360px]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-occ-burgundy">Build a Cambodian Coffee Partnership</p>
-            <h2 className="mt-7 max-w-5xl font-[var(--font-display)] text-[clamp(3rem,6vw,6rem)] leading-[0.95] tracking-[-0.04em]">Bring an idea. Begin with Cambodia.</h2>
-            <p className="mt-8 max-w-3xl text-lg leading-8 text-occ-secondary">For hotels, retailers, travel businesses, corporate teams and brands interested in a meaningful Cambodian coffee experience, we would like to hear what you have in mind. Your next step is a conversation, not an obligation to commit.</p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="occ-primary-cta">Discuss a Partnership <ArrowUpRight className="size-4" /></Link>
-            </div>
-            <p className="mt-12 text-[12px] tracking-[0.12em] text-occ-secondary">100% Cambodian coffee. True to its origin, unmistakably its own.</p>
-          </div>
-        </section>
       </main>
     </>
   )

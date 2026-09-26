@@ -65,9 +65,9 @@ const organizationId = `${siteUrl}/#organization`;
 
 const typographyCss = `
   :root {
-    --occ-font-title: var(--font-display);
-    --occ-font-subtitle: var(--font-sans);
-    --occ-font-body: var(--font-sans);
+    --occ-font-title: Georgia, "Times New Roman", serif;
+    --occ-font-subtitle: Arial, Helvetica, sans-serif;
+    --occ-font-body: Arial, Helvetica, sans-serif;
   }
 
   html,

@@ -1,8 +1,55 @@
 :root {
+  --occ-font-title: Georgia, "Times New Roman", serif;
+  --occ-font-body: Arial, Helvetica, sans-serif;
+  --occ-type-display-xl: clamp(60px, 7.6vw, 105px);
+  --occ-type-display-lg: clamp(38px, 4.8vw, 83px);
+  --occ-type-display-md: clamp(32px, 3.7vw, 52px);
+  --occ-type-cta-title: clamp(32px, 3vw, 52px);
+  --occ-type-body-lg: 18px;
+  --occ-type-body: 16px;
+  --occ-type-label: 10px;
   --occ-cta-primary-background: #984650;
   --occ-cta-primary-foreground: #f2ede7;
   --occ-cta-primary-border: #984650;
   --occ-cta-radius: 0px;
+  --occ-final-cta-surface: #f2ede7;
+  --occ-final-cta-foreground: #292424;
+  --occ-final-cta-muted: rgba(41, 36, 36, .68);
+  --occ-final-cta-border: rgba(41, 36, 36, .16);
+  --occ-final-cta-label: #984650;
+  --occ-final-cta-max-width: 1080px;
+}
+
+body {
+  font-family: var(--occ-font-body) !important;
+  font-size: var(--occ-type-body) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.serif,
+.display,
+.hero-lead,
+.origin-quote {
+  font-family: var(--occ-font-title) !important;
+  font-style: normal;
+}
+
+p,
+a,
+li,
+summary,
+button,
+input,
+textarea,
+select,
+.eyebrow,
+.small {
+  font-family: var(--occ-font-body) !important;
 }
 
 .occ-cta-primary {
@@ -35,4 +82,123 @@
 .occ-cta-primary:focus-visible {
   outline: 2px solid var(--occ-cta-primary-border);
   outline-offset: 4px;
+}
+
+.occ-universal-final-cta,
+.occ-universal-final-cta * {
+  box-sizing: border-box;
+}
+
+.occ-universal-final-cta {
+  width: 100%;
+  border-top: 1px solid var(--occ-final-cta-border);
+  background: var(--occ-final-cta-surface);
+  color: var(--occ-final-cta-foreground);
+  font-family: var(--occ-font-body);
+  text-align: center;
+}
+
+.occ-universal-final-cta__inner {
+  width: calc(100% - 48px);
+  max-width: var(--occ-final-cta-max-width);
+  margin: 0 auto;
+  padding: clamp(60px, 5.5vw, 80px) 0;
+}
+
+.occ-universal-final-cta__label p {
+  margin: 0;
+  color: var(--occ-final-cta-label) !important;
+  font: 600 var(--occ-type-label)/1.5 var(--occ-font-body) !important;
+  letter-spacing: .26em !important;
+  text-transform: uppercase !important;
+}
+
+.occ-universal-final-cta__label span {
+  display: none;
+}
+
+.occ-universal-final-cta h2 {
+  max-width: 900px;
+  margin: 20px auto 0;
+  color: var(--occ-final-cta-foreground) !important;
+  font: 300 var(--occ-type-cta-title)/1 var(--occ-font-title) !important;
+  letter-spacing: -.04em !important;
+  text-wrap: balance;
+}
+
+.occ-universal-final-cta__action {
+  margin-top: 28px;
+}
+
+.occ-universal-final-cta__button {
+  min-width: 196px !important;
+  min-height: 56px !important;
+  margin-top: 0 !important;
+  padding-inline: 28px !important;
+}
+
+/* Mission FAQ: one consistent row rhythm with aligned numbers, copy, and controls. */
+html[data-occ-page="mission"] .faq-grid > div:last-child {
+  border-bottom: 1px solid var(--occ-line);
+}
+
+html[data-occ-page="mission"] .faq-item.faq-disclosure {
+  display: block;
+  padding: 0;
+  border: 0;
+}
+
+html[data-occ-page="mission"] .faq-disclosure details {
+  display: block;
+  border-top: 1px solid var(--occ-line);
+}
+
+html[data-occ-page="mission"] .faq-disclosure summary {
+  grid-template-columns: 37px minmax(0, 1fr) 24px;
+  gap: 13px;
+  align-items: start;
+  min-height: 82px;
+  padding: 26px 0;
+}
+
+html[data-occ-page="mission"] .faq-disclosure details[open] summary {
+  padding-bottom: 13px;
+}
+
+html[data-occ-page="mission"] .faq-number {
+  line-height: 2.2;
+}
+
+html[data-occ-page="mission"] .faq-plus {
+  line-height: 1.2;
+}
+
+html[data-occ-page="mission"] .faq-answer {
+  padding: 0 37px 28px 50px;
+}
+
+@media (max-width: 767px) {
+  .occ-universal-final-cta__inner {
+    width: calc(100% - 40px);
+    padding: 52px 0;
+  }
+
+  .occ-universal-final-cta__action {
+    margin-top: 24px;
+  }
+
+  html[data-occ-page="mission"] .faq-disclosure summary {
+    grid-template-columns: 30px minmax(0, 1fr) 22px;
+    gap: 10px;
+    min-height: 74px;
+    padding: 22px 0;
+  }
+
+  html[data-occ-page="mission"] .faq-disclosure details[open] summary {
+    padding-bottom: 12px;
+  }
+
+  html[data-occ-page="mission"] .faq-answer {
+    padding: 0 15px 24px 40px;
+  }
 }

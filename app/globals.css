@@ -63,6 +63,16 @@
     --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --occ-wide: 1360px;
     --occ-reading: 720px;
+    --occ-type-display-xl: clamp(3.75rem, 7.6vw, 6.5625rem);
+    --occ-type-display-lg: clamp(2.375rem, 4.8vw, 5.1875rem);
+    --occ-type-display-md: clamp(2rem, 3.7vw, 3.25rem);
+    --occ-type-cta-title: clamp(2rem, 3vw, 3.25rem);
+    --occ-type-body-lg: 1.125rem;
+    --occ-type-body: 1rem;
+    --occ-type-body-sm: 0.9375rem;
+    --occ-type-label: 0.625rem;
+    --occ-leading-display: 0.94;
+    --occ-leading-body: 1.75;
   }
   .dark {
     --background: 18.5 18.3% 13.9%;
@@ -231,6 +241,51 @@
 
   .occ-primary-cta:active {
     transform: translateY(1px);
+  }
+
+  .occ-universal-final-cta {
+    width: 100%;
+    border-top: 1px solid var(--occ-line);
+    background: var(--occ-page-background);
+    color: var(--occ-primary);
+    text-align: center;
+  }
+
+  .occ-universal-final-cta__inner {
+    width: min(calc(100% - 3rem), 1080px);
+    margin-inline: auto;
+    padding-block: clamp(3.75rem, 5.5vw, 5rem);
+  }
+
+  .occ-universal-final-cta__label p {
+    margin: 0;
+    color: var(--occ-burgundy);
+    font-size: var(--occ-type-label);
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+
+  .occ-universal-final-cta h2 {
+    max-width: 900px;
+    margin: 1.25rem auto 0;
+    font-family: var(--occ-font-title), Georgia, serif !important;
+    font-size: var(--occ-type-cta-title) !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .occ-universal-final-cta__action {
+    margin-top: 1.75rem;
+  }
+
+  .occ-universal-final-cta__button {
+    margin-top: 0;
+    min-width: 196px;
+    min-height: 56px;
+    padding-inline: 1.75rem;
   }
 
   .occ-site-main a[href="/contact"][class*="rounded-full"],

@@ -40,7 +40,6 @@ export function SolutionDetailTemplate({
   facts,
   faqs,
   relatedServices,
-  ctaLabel,
 }: SolutionDetailTemplateProps) {
   return (
     <div className="bg-occ-background text-occ-primary">
@@ -148,20 +147,6 @@ export function SolutionDetailTemplate({
             </div>
           </div>
         </section>
-
-        <MotionReveal>
-          <section className="grid grid-cols-1 border-b border-black/10 py-14 md:grid-cols-12 md:items-end lg:py-18">
-            <div className="md:col-span-3">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-black/35">Next step</p>
-            </div>
-            <div className="mt-6 md:col-span-7 md:col-start-5 md:mt-0">
-              <Link href="/contact" className="group inline-flex items-end gap-4">
-                <span className="font-[var(--font-display)] text-3xl font-normal leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">{ctaLabel}</span>
-                <ArrowUpRight className="mb-1 size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-            </div>
-          </section>
-        </MotionReveal>
 
         <footer className="flex flex-col gap-4 py-9 text-[9px] uppercase tracking-[0.19em] text-black/34 sm:flex-row sm:justify-between">
           <span>Origin Coffee Cambodia · OCC</span>

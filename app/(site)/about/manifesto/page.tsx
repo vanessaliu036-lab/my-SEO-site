@@ -119,8 +119,8 @@ export default function ManifestoPage() {
         title="MANIFESTO"
         subtitle="QUALITY IS A SYSTEM."
         lead={[
-          "We do not believe better coffee comes from one impressive bean, one roast profile, or one skilled barista.",
-          "It comes from a system that makes quality repeatable from Cambodian origin and sourcing through roasting, preparation, and service.",
+          "Quality is a system.",
+          "Origin, sourcing, roasting, preparation, and service must work together.",
         ]}
         sections={sections}
         featureGrid={featureGrid}

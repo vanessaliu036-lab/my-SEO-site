@@ -113,8 +113,8 @@ export default function SustainabilityPage() {
         title="SUSTAINABILITY"
         subtitle="EVIDENCE, TRACEABILITY, AND CLAIM BOUNDARIES."
         lead={[
-          "A sustainability claim is only as useful as the evidence behind it.",
-          "OCC separates documented practice from assumption and treats missing evidence as a boundary, not a blank to fill.",
+          "Evidence before declaration.",
+          "We separate documented practice from assumption and keep claim boundaries clear.",
         ]}
         sections={sections}
         featureGrid={featureGrid}

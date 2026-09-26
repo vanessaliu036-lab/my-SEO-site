@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
 
 // OCC public typography contract: all utility font families resolve to Inter or Cormorant Garamond.
 // all in fixtures is set to tailwind v3 as interims solutions
@@ -134,6 +135,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
 }
 export default config

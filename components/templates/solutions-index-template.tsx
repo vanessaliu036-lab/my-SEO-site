@@ -116,15 +116,6 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
         <div className={styles.pillar}><div className={styles.icon}>♙</div><h3>Sample-ready</h3><small>Let&apos;s Explore Together</small></div>
       </section>
 
-      <section className={styles.bottom} id="contact">
-        <div className={styles.eyebrow}>Work With OCC</div>
-        <h2>We help you build coffee programs <em>with purpose.</em></h2>
-        <p>
-          Whether you&apos;re launching a new blend, expanding your sourcing, or looking for a trusted partner in
-          Cambodian coffee, OCC brings origin, expertise, and long-term thinking to help your business go further.
-        </p>
-        <div className={styles.final}>Better Coffee &nbsp; — &nbsp; A Brighter Cambodia</div>
-      </section>
     </div>
   )
 }

@@ -2,6 +2,13 @@ import { withBotId } from 'botid/next/config'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Keep local worktree previews scoped to the checkout that started Next.js.
+  // Vercel also runs from the project root, so production output is unchanged.
+  turbopack: {
+    root: process.cwd(),
+  },
+  outputFileTracingRoot: process.cwd(),
+
   images: {
     formats: ['image/avif', 'image/webp'],
   },
