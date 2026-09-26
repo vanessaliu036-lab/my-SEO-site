@@ -22,18 +22,23 @@ export const metadata: Metadata = {
   },
 }
 
-const pageSchema = {
+const serviceSchema = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": "Service",
   name: "OCC Hotel Coffee Program",
   url: `${siteUrl}/solutions/hotels`,
   description,
-  about: {
+  provider: {
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: "Origin Coffee Cambodia",
     url: siteUrl,
   },
+  areaServed: {
+    "@type": "Country",
+    name: "Cambodia",
+  },
+  serviceType: "Hotel and hospitality coffee program",
 }
 
 const breadcrumbSchema = {
@@ -167,7 +172,7 @@ export default function HotelCoffeeProgramPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <SolutionDetailTemplate
         index="03"
