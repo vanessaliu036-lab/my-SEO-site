@@ -23,7 +23,7 @@ export default function HomeTemplate() {
             className="size-full object-cover object-center"
           />
         </picture>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,14,13,0.72)_0%,rgba(18,14,13,0.56)_46%,rgba(18,14,13,0.30)_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(41,36,36,0.72)_0%,rgba(41,36,36,0.56)_46%,rgba(41,36,36,0.30)_100%)]" aria-hidden="true" />
         <div
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(41,36,36,0.18)_0%,rgba(41,36,36,0.08)_42%,rgba(41,36,36,0.58)_100%)]"
           aria-hidden="true"
