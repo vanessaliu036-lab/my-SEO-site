@@ -144,8 +144,8 @@ const chapterImages = [
   { src: "/about/chapters/manifesto-02.webp", alt: "Coffee professionals working together in a hospitality environment.", caption: "Business · One system can support many teams", width: 1200, height: 1200 },
   { src: "/about/chapters/manifesto-03.webp", alt: "Barista training and coffee preparation in practice.", caption: "People · Knowledge travels through skilled professionals", width: 1200, height: 1200 },
   { src: "/about/chapters/manifesto-04.webp", alt: "Coffee equipment and service workflow supporting consistent preparation.", caption: "Systems · Quality depends on the entire chain", width: 1200, height: 1200 },
-  { src: "/about/chapters/sustainability-01.webp", alt: "Coffee origin work connecting local production with long-term value.", caption: "Cambodia · Build more value at origin", width: 1200, height: 1200 },
-  { src: "/about/chapters/mission-04.webp", alt: "Finished coffee prepared for a professional buyer handoff.", caption: "Consistency · Repeat good decisions", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-05.svg", alt: "Editorial diagram connecting Cambodian coffee origin, people, and long-term value.", caption: "Cambodia · Build more value at origin", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-06.svg", alt: "Editorial diagram showing repeatable coffee quality through connected operating steps.", caption: "Consistency · Repeat good decisions", width: 1200, height: 1200 },
 ]
 
 export default function ManifestoPage() {
