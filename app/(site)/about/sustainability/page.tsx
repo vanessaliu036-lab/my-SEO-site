@@ -110,6 +110,7 @@ export default function SustainabilityPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="04"
+        heroImage={{ src: "/about/occ-about-sustainability-sorting.webp", alt: "Illustrative hands sorting ripe coffee cherries on a wooden worktable.", width: 1448, height: 1086 }}
         title="SUSTAINABILITY"
         subtitle="EVIDENCE, TRACEABILITY, AND CLAIM BOUNDARIES."
         lead={[

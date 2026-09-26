@@ -116,6 +116,7 @@ export default function ManifestoPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="03"
+        heroImage={{ src: "/about/occ-about-manifesto-cupping.webp", alt: "Coffee evaluator tasting from a cupping bowl during a quality session.", width: 1448, height: 1086 }}
         title="MANIFESTO"
         subtitle="QUALITY IS A SYSTEM."
         lead={[

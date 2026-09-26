@@ -109,6 +109,7 @@ export default function FounderPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="02"
+        heroImage={{ src: "/about/occ-about-founder-notes.webp", alt: "Hands recording coffee notes beside sample beans and a small scale.", width: 1448, height: 1086 }}
         title="FOUNDER"
         subtitle="THE FOUNDING PHILOSOPHY BEHIND OCC."
         lead={[

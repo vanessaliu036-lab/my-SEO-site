@@ -130,6 +130,7 @@ export default function MissionPage() {
       {/* title="OCC MISSION" — production guard marker; visible heading remains MISSION. */}
       <AboutInstitutionalTemplate
         index="01"
+        heroImage={{ src: "/about/occ-about-mission-sourcing.webp", alt: "Coffee professionals comparing sample cups and beans at a roastery table.", width: 1448, height: 1086 }}
         title="MISSION"
         subtitle="WHY OCC CONNECTS ORIGIN, QUALITY, SUPPLY, AND ROASTING."
         lead={[
