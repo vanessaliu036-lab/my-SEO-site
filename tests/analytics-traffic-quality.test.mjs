@@ -18,6 +18,8 @@ test("analytics only loads for production human traffic", () => {
   assert.match(gate, /vercel\.com/)
   assert.match(gate, /127\.0\.0\.1/)
   assert.match(gate, /\/api\/analytics-eligibility/)
+  assert.match(gate, /controller\.abort\(\), 3000/)
+  assert.match(gate, /setEligible\(false\)/)
   assert.match(gate, /pathname\.startsWith\("\/admin\/"\)/)
 })
 
@@ -26,9 +28,10 @@ test("analytics eligibility uses BotID without blocking the public page", () => 
   const instrumentation = source("instrumentation-client.ts")
   assert.match(route, /checkBotId/)
   assert.match(route, /allow:\s*!verification\.isBot/)
+  assert.match(route, /checkLevel:\s*"deepAnalysis"/)
   assert.match(route, /Cache-Control/)
   assert.match(instrumentation, /path:\s*"\/api\/analytics-eligibility"/)
-  assert.match(instrumentation, /checkLevel:\s*"basic"/)
+  assert.match(instrumentation, /checkLevel:\s*"deepAnalysis"/)
 })
 
 test("GA4 counts App Router navigation with explicit single page views", () => {
