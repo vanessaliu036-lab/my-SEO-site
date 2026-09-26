@@ -149,12 +149,6 @@ export function AnalyticsGate({
       />
       {measurementId ? <GoogleAnalytics measurementId={measurementId} /> : null}
       <Script
-        id="ahrefs-web-analytics"
-        src="https://analytics.ahrefs.com/analytics.js"
-        data-key="QD8QrYweE2FMiyMSfZEpzQ"
-        strategy="afterInteractive"
-      />
-      <Script
         id="microsoft-clarity"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
