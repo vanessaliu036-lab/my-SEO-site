@@ -101,6 +101,29 @@ const nextConfig = {
         destination: '/blog/cambodia-specialty-coffee-wholesale-buyer-checklist',
         permanent: true,
       },
+      // GSC-observed legacy URLs that still receive search visibility but no
+      // longer resolve to the surviving Airtable article slug. These are alias
+      // recoveries only: no current article slug, owner, or canonical is changed.
+      {
+        source: '/blog/understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee',
+        destination: '/blog/understanding-technical-specifications-what-wholesale-buyers-need-to-know-about-cambodian-coffee-internal-dup-qgs9',
+        permanent: true,
+      },
+      {
+        source: '/blog/beyond-arabica-why-fine-robusta-deserves-a-place-in-your-specialty-coffee-portfolio-in-phnom-penh',
+        destination: '/blog/beyond-arabica-why-fine-robusta-deserves-a-place-in-your-specialty-coffee-portfolio-in-phnom-penh-internal-dup-ci50',
+        permanent: true,
+      },
+      {
+        source: '/blog/from-net-importer-to-emerging-exporter-unpacking-cambodias-specialty-coffee-supply-constraints-and-growth-trajectory',
+        destination: '/blog/cambodia-coffee-supply-constraints-export-readiness',
+        permanent: true,
+      },
+      {
+        source: '/blog/how-fine-robusta-coffee-files-cup-score-explained',
+        destination: '/blog/how-fine-robusta-coffee-is-graded-cup-score-explained',
+        permanent: true,
+      },
       {
         source: '/blog/fine-robusta-coffee-beans-quality-standards-for-b2b-procurement',
         destination: '/blog/fine-robusta-grading-verify-before-cupping',
