@@ -38,3 +38,19 @@ test("root layout routes analytics providers through the shared gate", () => {
   assert.doesNotMatch(layout, /<Analytics \/>/)
   assert.doesNotMatch(layout, /id="microsoft-clarity"/)
 })
+
+
+test("B2B lead attribution is captured without sending company or market PII to GA4", () => {
+  const gate = source("components/AnalyticsGate.tsx")
+  const form = source("app/(site)/contact/ContactForm.tsx")
+
+  assert.match(gate, /occ-attribution-landing-page/)
+  assert.match(gate, /occ-attribution-last-touch-page/)
+  assert.match(gate, /occ-attribution-source-medium/)
+  assert.match(gate, /occ-attribution-kpi-exclude/)
+  assert.match(form, /lead_delivery:\s*"airtable_persisted"/)
+  assert.match(form, /traffic_source_medium:/)
+  assert.match(form, /landing_page:/)
+  assert.doesNotMatch(form, /company:\s*data\.company/)
+  assert.doesNotMatch(form, /market:\s*data\.country/)
+})

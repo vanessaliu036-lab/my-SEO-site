@@ -4,7 +4,29 @@ import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { submitContactForm } from "./action"
-import { contactSchema, type ContactFormData } from "./schema"
+import { contactSchema, type ContactAttribution, type ContactFormData } from "./schema"
+
+const ATTRIBUTION_KEYS = {
+  landingPage: "occ-attribution-landing-page",
+  lastTouchPage: "occ-attribution-last-touch-page",
+  sourceMedium: "occ-attribution-source-medium",
+  utmCampaign: "occ-attribution-utm-campaign",
+  kpiExclude: "occ-attribution-kpi-exclude",
+} as const
+
+function readAttribution(): ContactAttribution {
+  if (typeof window === "undefined") return {}
+
+  return {
+    landingPage: window.sessionStorage.getItem(ATTRIBUTION_KEYS.landingPage) || window.location.pathname,
+    lastTouchPage: window.sessionStorage.getItem(ATTRIBUTION_KEYS.lastTouchPage) || "",
+    sourceMedium: window.sessionStorage.getItem(ATTRIBUTION_KEYS.sourceMedium) || "(unknown)",
+    utmCampaign: window.sessionStorage.getItem(ATTRIBUTION_KEYS.utmCampaign) || "",
+    kpiExclude:
+      window.sessionStorage.getItem(ATTRIBUTION_KEYS.kpiExclude) === "1" ||
+      window.localStorage.getItem("occ-analytics-disabled") === "1",
+  }
+}
 
 const ENQUIRY_TYPES = [
   "Wholesale / Sourcing",
@@ -34,14 +56,20 @@ export default function ContactForm() {
   const onSubmit = (data: ContactFormData) => {
     setServerError(null)
     startTransition(async () => {
-      const result = await submitContactForm(data)
+      const attribution = readAttribution()
+      const result = await submitContactForm(data, attribution)
       if (result.success) {
-        window.gtag?.("event", "generate_lead", {
-          lead_type: data.service,
-          company: data.company,
-          market: data.country,
-          page_path: `${window.location.pathname}${window.location.search}`,
-        })
+        if (!attribution.kpiExclude) {
+          window.gtag?.("event", "generate_lead", {
+            lead_type: data.service,
+            page_path: window.location.pathname,
+            landing_page: attribution.landingPage,
+            last_touch_page: attribution.lastTouchPage,
+            traffic_source_medium: attribution.sourceMedium,
+            utm_campaign: attribution.utmCampaign || undefined,
+            lead_delivery: "airtable_persisted",
+          })
+        }
         setIsSuccess(true)
       } else {
         setServerError(result.error)

@@ -22,4 +22,13 @@ export const contactSchema = z.object({
   website: z.string().max(200, "Invalid submission").optional(),
 })
 
+export const contactAttributionSchema = z.object({
+  landingPage: z.string().trim().max(300).optional(),
+  lastTouchPage: z.string().trim().max(300).optional(),
+  sourceMedium: z.string().trim().max(200).optional(),
+  utmCampaign: z.string().trim().max(200).optional(),
+  kpiExclude: z.boolean().optional(),
+})
+
 export type ContactFormData = z.infer<typeof contactSchema>
+export type ContactAttribution = z.infer<typeof contactAttributionSchema>

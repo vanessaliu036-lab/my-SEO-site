@@ -23,12 +23,20 @@ test('admin contact inbox exposes contact identity, title, phone, company, marke
           fldCEEsTN9XD3ddK4: 'Cambodia',
           fldq91HTSYa3rxLBC: 'Wholesale & Sourcing',
           fldomWJyClrC2dFH8: 'Need 20kg',
+      fldJHVMy9vt8r4Mwu: '/blog/hotel-coffee-guest-experience-cambodia',
+      fldAvM2AeJ32onisf: '/solutions/wholesale',
+      fldA5l9MZquBNWk5E: 'google / organic',
           fldcUFGqwGNHEQ9SH: '/contact',
           fldyfWd2DzMJSUtxB: 'New',
           fldJTzqH6dFgUtlmy: '2026-09-23T08:00:00.000Z',
           flda7ZyX0xciKGhdN: 'High',
           fldZxno6lrUVyq0F1: 'Unread',
           fldRkeLPYNy4eCpeG: 'Not Converted',
+          fldJHVMy9vt8r4Mwu: '/blog/hotel-coffee-guest-experience-cambodia',
+          fldAvM2AeJ32onisf: '/solutions/wholesale',
+          fldA5l9MZquBNWk5E: 'google / organic',
+          fldOkPloT4e4CZ2Px: 'hotel-outreach',
+          fldKEJcmjmG3yUHLs: false,
         },
       }] }),
     }),
@@ -40,6 +48,11 @@ test('admin contact inbox exposes contact identity, title, phone, company, marke
   assert.equal(records[0].country, 'Cambodia')
   assert.equal(records[0].interest, 'Wholesale & Sourcing')
   assert.equal(records[0].readStatus, 'Unread')
+  assert.equal(records[0].landingPage, '/blog/hotel-coffee-guest-experience-cambodia')
+  assert.equal(records[0].lastTouchPage, '/solutions/wholesale')
+  assert.equal(records[0].sourceMedium, 'google / organic')
+  assert.equal(records[0].utmCampaign, 'hotel-outreach')
+  assert.equal(records[0].kpiExclude, false)
 })
 
 test('contact inbox mutations are restricted to known workflow values', async () => {
@@ -74,6 +87,11 @@ test('qualified contact lead can create a B2B Account without duplicate conversi
       if (options?.method === 'POST') {
         postCount += 1
         assert.match(String(url), /tblIr777MquGF8a2y/)
+        const body = JSON.parse(options.body)
+        assert.match(body.fields.fldqUNnDbdaMLiOG7, /google \/ organic/)
+        assert.match(body.fields.fldqUNnDbdaMLiOG7, /hotel-coffee-guest-experience/)
+        assert.match(body.fields.fldCXyBGZZ7FRoGlH, /Acquisition: google \/ organic/)
+        assert.match(body.fields.fldCXyBGZZ7FRoGlH, /Last touch: \/solutions\/wholesale/)
         return { ok: true, json: async () => ({ id: 'recACCOUNT0000001' }) }
       }
       if (options?.method === 'PATCH') return { ok: true, json: async () => ({}) }
@@ -128,4 +146,16 @@ test('order inbox can mark read, prioritize and mark converted', async () => {
   assert.equal(body.fields.fldVQqb4cduULtxOg, 'Read')
   assert.equal(body.fields.fldkGXp0ICUqVmYJY, 'High')
   assert.equal(body.fields.fldR3iuIBTkuy3pcu, 'Converted')
+})
+
+
+test('admin dashboard surfaces attribution fields and KPI exclusion state', async () => {
+  const { readFileSync } = await import('node:fs')
+  const source = readFileSync(new URL('../app/admin/AdminDashboard.tsx', import.meta.url), 'utf8')
+  assert.match(source, /KPI eligible/)
+  assert.match(source, /KPI EXCLUDED/)
+  assert.match(source, /Acquisition/)
+  assert.match(source, /Landing Page/)
+  assert.match(source, /Last Touch/)
+  assert.match(source, /Campaign/)
 })

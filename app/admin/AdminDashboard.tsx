@@ -44,6 +44,11 @@ type ContactLead = {
   priority: string
   readStatus: string
   conversionStatus: string
+  landingPage: string
+  lastTouchPage: string
+  sourceMedium: string
+  utmCampaign: string
+  kpiExclude: boolean
   accountLinks: string[]
   contactLinks: string[]
   quoteLinks: string[]
@@ -147,6 +152,7 @@ export default function AdminDashboard({
 
   const unreadOrders = initialOrders.filter((item) => item.readStatus === "Unread").length
   const unreadContacts = initialContacts.filter((item) => item.readStatus === "Unread").length
+  const kpiEligibleContacts = initialContacts.filter((item) => !item.kpiExclude).length
   const urgent = [
     ...initialOrders.filter((item) => item.priority === "Urgent"),
     ...initialContacts.filter((item) => item.priority === "Urgent"),
@@ -296,13 +302,17 @@ export default function AdminDashboard({
               <div className="mb-4 flex flex-wrap gap-2 text-xs">
                 <Status>{unreadContacts + " unread"}</Status>
                 <Status>{initialContacts.length + " total"}</Status>
+                <Status>{kpiEligibleContacts + " KPI eligible"}</Status>
               </div>
               <div className="grid gap-4">
                 {initialContacts.map((lead) => (
                   <article key={lead.id} className={"rounded-2xl border bg-[#f7f4f0] p-5 " + (lead.readStatus === "Unread" ? "border-[#7d2f3a]/35" : "border-[#d8cec5]")}>
                     <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#e9e4db] pb-4">
                       <div>
-                        <div className="text-[10px] uppercase tracking-[.12em] text-[#8d95a1]">{lead.status} · {lead.readStatus} · {lead.priority}</div>
+                        <div className="text-[10px] uppercase tracking-[.12em] text-[#8d95a1]">
+                          {lead.status} · {lead.readStatus} · {lead.priority}
+                          {lead.kpiExclude ? " · KPI EXCLUDED" : ""}
+                        </div>
                         <h2 className="mt-2 font-serif text-2xl">{lead.company || lead.name}</h2>
                         <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1 text-sm">
                           <span>{lead.name}</span>
@@ -319,6 +329,12 @@ export default function AdminDashboard({
                       <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Country / Market</div><div className="mt-1">{lead.country || "Not provided"}</div></div>
                       <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Intent</div><div className="mt-1">{lead.interest}</div></div>
                       <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Project Stage</div><div className="mt-1">{lead.stage || "Not provided"}</div></div>
+                    </div>
+                    <div className="mb-4 grid gap-3 rounded-xl border border-[#e5ded6] bg-white/55 p-4 text-xs md:grid-cols-2 xl:grid-cols-4">
+                      <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Acquisition</div><div className="mt-1 break-all">{lead.sourceMedium || "(unknown)"}</div></div>
+                      <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Landing Page</div><div className="mt-1 break-all">{lead.landingPage || "/contact"}</div></div>
+                      <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Last Touch</div><div className="mt-1 break-all">{lead.lastTouchPage || "Direct to contact"}</div></div>
+                      <div><div className="text-[10px] uppercase tracking-wider text-[#9ba1aa]">Campaign</div><div className="mt-1 break-all">{lead.utmCampaign || "None"}</div></div>
                     </div>
                     <div className="mb-4 rounded-xl bg-white/70 p-4 text-sm leading-6 text-[#5f6875]">{lead.message || "No project details provided."}</div>
                     <div className="mb-3 text-[10px] uppercase tracking-[.12em] text-[#8d95a1]">Conversion · {lead.conversionStatus}</div>
