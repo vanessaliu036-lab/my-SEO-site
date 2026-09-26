@@ -61,6 +61,12 @@
     --occ-surface-soft: #f7f4f0;
     --occ-line: rgba(41, 36, 36, 0.14);
     --occ-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --occ-motion-fast: 180ms;
+    --occ-motion-standard: 320ms;
+    --occ-motion-slow: 560ms;
+    --occ-motion-deliberate: 720ms;
+    --occ-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --occ-ease-decelerate: cubic-bezier(0.22, 1, 0.36, 1);
     --occ-wide: 1360px;
     --occ-reading: 720px;
     --occ-type-display-xl: clamp(3.75rem, 7.6vw, 6.5625rem);
@@ -500,6 +506,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --occ-motion-fast: 1ms;
+    --occ-motion-standard: 1ms;
+    --occ-motion-slow: 1ms;
+    --occ-motion-deliberate: 1ms;
+  }
+
   html {
     scroll-behavior: auto;
   }

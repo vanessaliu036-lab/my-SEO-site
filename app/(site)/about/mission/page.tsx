@@ -6,7 +6,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "OCC Mission | Cambodian Coffee Supply & Fine Robusta",
   description:
-    "Learn why Origin Coffee Cambodia connects Cambodian coffee origins and Fine Robusta expertise with B2B supply, quality systems, and roasting solutions.",
+    "Learn how Origin Coffee Cambodia connects Cambodian coffee origins and Fine Robusta expertise with accountable sourcing, B2B supply, and roasting support.",
   keywords:
     "Origin Coffee Cambodia mission, Cambodian coffee supplier, Fine Robusta Cambodia, coffee sourcing Cambodia, coffee roasting solutions",
   alternates: pageAlternates("/about/mission"),
@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     siteName: "Origin Coffee Cambodia",
     locale: "en_US",
     type: "website",
+    images: [{ url: `${siteUrl}/about/occ-about-mission-sourcing.webp`, width: 1448, height: 1086, alt: "Coffee professionals comparing Cambodian coffee samples" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OCC Mission | Cambodian Coffee Supply & Fine Robusta",
+    description: "How OCC connects Cambodian coffee origin, Fine Robusta expertise, accountable sourcing, supply, and roasting support.",
+    images: [`${siteUrl}/about/occ-about-mission-sourcing.webp`],
   },
 }
 
@@ -149,6 +156,7 @@ export default function MissionPage() {
         featureGrid={featureGrid}
         practiceLabel="What OCC connects"
         practiceTitle="From context to a workable coffee program."
+        storyTitle="How the mission moves from origin to buyer."
         closing={closing}
         faqs={faqs}
         next={{
