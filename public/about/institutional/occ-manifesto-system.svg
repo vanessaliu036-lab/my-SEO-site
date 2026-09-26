@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" role="img" aria-labelledby="t d">
+<title id="t">OCC manifesto editorial artwork</title><desc id="d">Interconnected nodes representing coffee quality as a system.</desc>
+<rect width="1600" height="1200" fill="#F2EDE7"/><rect x="70" y="70" width="1460" height="1060" fill="#E9E1DA"/>
+<g stroke="#984650" stroke-width="8" opacity=".8">
+<path d="M360 350 800 600 1240 330M800 600 1200 860M800 600 400 870M360 350 400 870M1240 330 1200 860"/>
+</g>
+<g fill="#F2EDE7" stroke="#292424" stroke-width="8">
+<circle cx="360" cy="350" r="105"/><circle cx="1240" cy="330" r="105"/><circle cx="800" cy="600" r="145"/><circle cx="400" cy="870" r="105"/><circle cx="1200" cy="860" r="105"/>
+</g>
+<circle cx="800" cy="600" r="62" fill="#984650"/>
+<text x="800" y="180" text-anchor="middle" font-family="Georgia,serif" font-size="96" fill="#292424">QUALITY IS A SYSTEM</text>
+<text x="800" y="1080" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" letter-spacing="7" fill="#685F5B">ORIGIN • PROCESS • ROAST • BREW • SERVICE</text>
+</svg>
