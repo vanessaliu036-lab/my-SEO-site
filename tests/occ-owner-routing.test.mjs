@@ -364,7 +364,7 @@ test('broad Cambodian Coffee support pages converge on the discovery pillar', ()
 test('Cambodian Coffee primary support does not also render the generic Fine Robusta support backlink', () => {
   assert.match(
     articlePage,
-    /!isCambodiaCoffeeSupport[\s\S]{0,160}?!isCambodiaGeographySupport[\s\S]{0,160}?!isCambodiaRobustaRegionsOwner/,
+    /!isCambodiaCoffeeSupport[\s\S]{0,160}?!isCambodiaGeographySupport[\s\S]{0,160}?!isCambodiaRobustaRegionsOwner[\s\S]{0,160}?!isCambodiaProductBuyingSupport/,
   )
 })
 
@@ -427,4 +427,28 @@ test('Cambodia Robusta growing-regions owner keeps species and geography boundar
   const excludedOwners = articlePage.match(/const ROBUSTA_PILLAR_EXCLUDED_SLUGS = new Set\(\[([\s\S]*?)\n\]\)/)
   assert.ok(excludedOwners)
   assert.match(excludedOwners[1], /cambodia-robusta-growing-regions/)
+})
+
+
+test('Cambodian coffee product-buying support routes to the dedicated buying owner', () => {
+  assert.match(
+    articlePage,
+    /CAMBODIA_PRODUCT_BUYING_OWNER_HREF =\s*"\/blog\/best-cambodian-coffee-beans-robusta-quality-guide"/,
+  )
+  assert.match(articlePage, /const CAMBODIA_PRODUCT_BUYING_SUPPORT_SLUGS = new Set/)
+  assert.match(articlePage, /best-cambodian-coffee-to-buy-2026/)
+  assert.match(articlePage, /Buying guide/)
+  assert.match(articlePage, /Best Cambodian coffee buyer guide →/)
+  assert.match(articlePage, /isCambodiaProductBuyingSupport/)
+})
+
+test('product-buying support stays separate from local cafe and geography owners', () => {
+  const route = articlePage.match(
+    /"best-cambodian-coffee-to-buy-2026":\s*\{([\s\S]*?)\n\s*\},/,
+  )
+  assert.ok(route, 'product-buying support route must exist')
+  assert.match(route[1], /CAMBODIA_PRODUCT_BUYING_OWNER_HREF/)
+  assert.doesNotMatch(route[1], /href:\s*"\/origins"/)
+  assert.doesNotMatch(route[1], /best-coffee-in-cambodia/)
+  assert.doesNotMatch(route[1], /Cambodian coffee origins guide/)
 })
