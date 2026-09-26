@@ -14,6 +14,9 @@ test("analytics only loads for production human traffic", () => {
   assert.match(gate, /occ_e2e/)
   assert.match(gate, /production-e2e/)
   assert.match(gate, /productionE2E/)
+  assert.match(gate, /hasInternalAnalyticsReferrer/)
+  assert.match(gate, /vercel\.com/)
+  assert.match(gate, /127\.0\.0\.1/)
   assert.match(gate, /\/api\/analytics-eligibility/)
   assert.match(gate, /pathname\.startsWith\("\/admin\/"\)/)
 })
@@ -37,9 +40,14 @@ test("GA4 counts App Router navigation with explicit single page views", () => {
 
 test("root layout routes analytics providers through the shared gate", () => {
   const layout = source("app/layout.tsx")
+  const gate = source("components/AnalyticsGate.tsx")
   assert.match(layout, /AnalyticsGate/)
+  assert.match(layout, /NEXT_PUBLIC_AHREFS_ANALYTICS_KEY/)
+  assert.doesNotMatch(layout, /analytics\.ahrefs\.com\/analytics\.js/)
   assert.doesNotMatch(layout, /<Analytics \/>/)
   assert.doesNotMatch(layout, /id="microsoft-clarity"/)
+  assert.match(gate, /id="ahrefs-analytics"/)
+  assert.match(gate, /analytics\.ahrefs\.com\/analytics\.js/)
 })
 
 
