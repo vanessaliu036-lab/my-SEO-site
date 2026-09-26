@@ -108,6 +108,12 @@ const featureGrid = [
   { label: "02 / Fine Robusta", title: "Evaluate the coffee itself.", body: "Selection, processing, sensory evaluation, and roast fit matter more than a category label." },
   { label: "03 / Supply", title: "Accountability is part of quality.", body: "Clear specifications and practical support help buyers deliver a more consistent result." },
 ]
+const chapterImages = [
+  { src: "/about/chapters/manifesto-01.webp", alt: "Coffee evaluator tasting a structured flight of cupping samples.", caption: "Quality is a system · Evaluate each handoff", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-02.webp", alt: "Coffee worker carefully sorting ripe red cherries by hand.", caption: "Identity · Build around the coffee and its origin", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-03.webp", alt: "Green coffee beans being examined for physical defects.", caption: "Fine Robusta · Standards before assumptions", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-04.webp", alt: "Roaster evaluating espresso beside a roasted coffee sample.", caption: "Supply · Accountability continues through application", width: 1200, height: 1200 },
+]
 
 export default function ManifestoPage() {
   return (
@@ -117,6 +123,8 @@ export default function ManifestoPage() {
       <AboutInstitutionalTemplate
         index="03"
         heroImage={{ src: "/about/occ-about-manifesto-cupping.webp", alt: "Coffee evaluator tasting from a cupping bowl during a quality session.", width: 1448, height: 1086 }}
+        heroCaption="Manifesto · Standards before convenience"
+        chapterImages={chapterImages}
         title="MANIFESTO"
         subtitle="QUALITY IS A SYSTEM."
         lead={[
@@ -124,8 +132,6 @@ export default function ManifestoPage() {
           "Origin, sourcing, roasting, preparation, and service must work together.",
         ]}
         sections={sections}
-        heroImage={{ src: "/about/institutional/occ-manifesto-system.svg", alt: "Editorial system diagram representing OCC coffee quality principles" }}
-        chapterImage="/about/institutional/occ-manifesto-system.svg"
         featureGrid={featureGrid}
         practiceLabel="The OCC manifesto"
         practiceTitle="Quality is a system."
