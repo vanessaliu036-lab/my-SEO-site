@@ -15,8 +15,8 @@ type SolutionsIndexTemplateProps = {
 export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps) {
   const wholesale = services[0]
   const roasting = services[1]
-  const marketing = services[2]
-  const hotel = services[3]
+  const hotel = services[2]
+  const marketing = services[3]
   const distribution = services[4]
 
   return (
