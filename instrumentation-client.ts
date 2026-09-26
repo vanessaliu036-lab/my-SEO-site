@@ -15,7 +15,7 @@ initBotId({
       path: "/api/analytics-eligibility",
       method: "POST",
       advancedOptions: {
-        checkLevel: "basic",
+        checkLevel: "deepAnalysis",
       },
     },
   ],
