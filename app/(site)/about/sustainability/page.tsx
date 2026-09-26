@@ -117,6 +117,7 @@ export default function SustainabilityPage() {
           "OCC separates documented practice from assumption and treats missing evidence as a boundary, not a blank to fill.",
         ]}
         sections={sections}
+        visual={{ src: "/about/institutional/occ-sustainability-trace.svg", alt: "Editorial traceability artwork representing evidence and claim boundaries" }}
         featureGrid={featureGrid}
         practiceLabel="How OCC assesses claims"
         practiceTitle="Evidence before declaration."
