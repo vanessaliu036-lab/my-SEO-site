@@ -1,382 +1,196 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowDown, ArrowUpRight } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
+import styles from "./about-editorial-template.module.css"
 
-type AboutSection = {
-  title: string
-  href: string
-  desc: string
-}
-
-type AboutEditorialTemplateProps = {
-  sections: AboutSection[]
-}
+type AboutSection = { title: string; href: string; desc: string }
+type AboutEditorialTemplateProps = { sections: AboutSection[] }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const heroImage = "/about/occ-about-green-hero.webp"
-const whyOccImage = "/about/occ-about-intro.webp"
 
-const differences = [
-  {
-    title: "One origin",
-    copy: "Every OCC coffee starts in Cambodia. Origin is the product foundation, not a label added later.",
-  },
-  {
-    title: "Small batches",
-    copy: "We prefer smaller, clearer batches over volume that weakens quality or origin identity.",
-  },
-  {
-    title: "Origin clarity",
-    copy: "Country, region, producer, process, and lot claims become more specific only when the evidence does.",
-  },
-  {
-    title: "Quality focus",
-    copy: "We evaluate processing, physical condition, sensory performance, roast application, and consistency.",
-  },
-  {
-    title: "Cambodian Fine Robusta expertise",
-    copy: "Fine Robusta is our specialist wedge: canephora evaluated as a quality category, not a commodity stereotype.",
-  },
+const principles = [
+  ["One origin", "Every OCC coffee starts in Cambodia. Origin is the product foundation, not a label added later."],
+  ["Small batches", "We prefer smaller, clearer batches over volume that weakens quality or origin identity."],
+  ["Origin clarity", "Country, region, producer, process, and lot claims become more specific only when the evidence does."],
+  ["Quality focus", "We evaluate processing, physical condition, sensory performance, roast application, and consistency."],
+  ["Fine Robusta expertise", "Canephora is evaluated as a quality category, with evidence ahead of old assumptions."],
 ]
 
-const galleryPanels = [
-  {
-    label: "ONE ORIGIN",
-    href: "/origins",
-    image: "/about/about-origin.svg",
-    note: "Cambodia first. Always.",
-  },
-  {
-    label: "FINE ROBUSTA",
-    href: "/fine-robusta-cambodia",
-    image: "/about/about-fine-robusta.svg",
-    note: "Our specialist coffee category.",
-  },
-  {
-    label: "READY-TO-SELL",
-    href: "/solutions/wholesale",
-    image: "/about/occ-about-ready-to-sell.webp",
-    note: "Wholesale and supplier evaluation.",
-  },
-  {
-    label: "MADE-FOR-YOU",
-    href: "/solutions/roasting-program",
-    image: "/about/about-made-for-you.svg",
-    note: "Custom roasting and profile development.",
-  },
+const capabilities = [
+  { label: "Origin", note: "Cambodia first. Always.", href: "/origins", image: "/about/about-origin.svg" },
+  { label: "Fine Robusta", note: "Our specialist coffee category.", href: "/fine-robusta-cambodia", image: "/about/about-fine-robusta.svg" },
+  { label: "Ready to sell", note: "Wholesale and supplier evaluation.", href: "/solutions/wholesale", image: "/about/occ-about-ready-to-sell.webp" },
+  { label: "Made for you", note: "Custom roasting and profile development.", href: "/solutions/roasting-program", image: "/about/about-made-for-you.svg" },
 ]
 
-const readyToSellPath = [
-  "Cambodian coffee / Fine Robusta",
-  "Wholesale coffee supply",
-  "Supplier evaluation",
-  "Distributor · Importer · Retailer · Hospitality",
-  "Repeat supply",
-]
-
-const madeForYouPath = [
-  "Cambodian coffee / Fine Robusta",
-  "Custom roasting",
-  "Target cup",
-  "Roast profile development",
-  "Repeatable production profile",
+const pathways = [
+  {
+    number: "01", title: "Ready-to-Sell", kicker: "Choose our profile",
+    copy: "For distributors, importers, retailers, hospitality groups, and coffee businesses looking for a defined Cambodian coffee profile and a clearer route to repeat supply.",
+    items: ["Cambodian coffee / Fine Robusta", "Supplier evaluation", "Wholesale coffee supply", "Repeat supply"],
+    href: "/solutions/wholesale", cta: "Explore wholesale supply",
+  },
+  {
+    number: "02", title: "Made-for-You", kicker: "Build your profile",
+    copy: "For buyers who know the cup, menu, format, or market position they want and need custom roasting to turn that target into repeatable production.",
+    items: ["Target cup", "Custom roasting", "Profile development", "Repeatable production"],
+    href: "/solutions/roasting-program", cta: "Explore custom roasting",
+  },
 ]
 
 export function AboutEditorialTemplate({ sections }: AboutEditorialTemplateProps) {
   const reducedMotion = useReducedMotion()
-  const reveal = (offset = 42) => ({
+  const reveal = (offset = 28) => ({
     initial: reducedMotion ? { opacity: 1 } : { opacity: 0, y: offset },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.18 },
-    transition: { duration: reducedMotion ? 0.01 : 0.68, ease },
+    viewport: { once: true, amount: 0.16 },
+    transition: { duration: reducedMotion ? 0.01 : 0.72, ease },
   })
 
   return (
-    <div className="bg-occ-background text-occ-primary">
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-occ-primary text-occ-background lg:min-h-[700px]">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-          role="img"
-          aria-label="Cambodian coffee at origin"
-        />
-        <div className="absolute inset-0 bg-occ-primary/30" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-occ-primary/8 via-occ-primary/18 to-occ-primary/78" aria-hidden="true" />
-
-        <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1180px] items-center justify-center px-6 pb-16 pt-28 text-center sm:px-8 lg:min-h-[700px] lg:px-12">
-          <motion.div {...reveal(24)} className="mx-auto w-full max-w-[860px]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.38em] text-white/70">
-              Who We Are · Origin Coffee Cambodia
-            </p>
-            <h1
-              aria-label="One origin. Cambodia."
-              className="mx-auto mt-7 max-w-[820px] font-[var(--font-display)] text-[clamp(3.6rem,6vw,6rem)] font-normal leading-[0.92] tracking-[-0.04em] text-white"
-            >
-              One origin.
-              <br />Cambodia.
-            </h1>
-            <p className="mx-auto mt-8 max-w-[660px] text-[clamp(1.12rem,1.5vw,1.45rem)] font-medium leading-[1.34] tracking-[-0.02em] text-white">
-              OCC is a 100% Cambodia-origin specialty coffee supplier and Fine Robusta specialist.
-            </p>
-            <p className="mx-auto mt-6 max-w-[620px] text-sm leading-7 text-white/76 sm:text-[15px]">
-              We work with Cambodian coffee in small batches, connecting origin, quality and roasting with the people and businesses bringing Cambodian coffee to new markets.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
-              <Link
-                href="#why-occ"
-                className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-occ-primary/28 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-[3px] transition-colors hover:bg-white hover:text-occ-primary"
-              >
-                Why OCC <ArrowUpRight className="size-3" />
-              </Link>
-              <span className="text-[9px] uppercase tracking-[0.22em] text-white/54">100% Cambodia Origin</span>
-            </div>
+    <div className={styles.page} data-about-page>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <motion.div {...reveal(18)} className={styles.heroCopyInner}>
+            <p className={styles.eyebrow}>Who we are · Origin Coffee Cambodia</p>
+            <h1>One origin.<br /><em>Cambodia.</em></h1>
+            <p className={styles.heroLead}>A Cambodia-origin specialty coffee supplier and Fine Robusta specialist.</p>
+            <p className={styles.heroBody}>We connect origin, quality, and roasting with the people and businesses bringing Cambodian coffee to new markets.</p>
+            <Link href="#why-occ" className={styles.textLink}>Discover OCC <ArrowDown aria-hidden="true" /></Link>
           </motion.div>
+          <div className={styles.heroIndex}><span>Est. in Cambodia</span><span>01 / About</span></div>
+        </div>
+        <div className={styles.heroMedia}>
+          <Image src="/about/occ-about-green-hero.webp" alt="Cambodian coffee cherries growing at origin" fill priority sizes="(max-width: 900px) 100vw, 55vw" />
+          <div className={styles.heroMediaShade} aria-hidden="true" />
         </div>
       </section>
 
-      <section id="why-occ" className="relative overflow-hidden bg-occ-primary text-occ-background">
-        <div data-about-ghost="origin" aria-hidden="true" className="pointer-events-none absolute -left-6 top-16 font-[var(--font-display)] text-[clamp(5rem,10vw,8rem)] font-semibold leading-none tracking-[-0.05em] text-white/[0.07]">
-          origin
-        </div>
-        <div data-about-ghost="coffee" aria-hidden="true" className="pointer-events-none absolute -right-8 bottom-4 font-[var(--font-display)] text-[clamp(5rem,10vw,8rem)] font-semibold leading-none tracking-[-0.05em] text-white/[0.07]">
-          coffee
-        </div>
-
-        <div className="relative mx-auto w-full max-w-[1180px] px-6 py-20 sm:px-8 md:px-12 lg:py-28">
-          <motion.div {...reveal(22)} className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/60">02 / Why OCC</p>
-          </motion.div>
-
-          <div className="mt-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
-            <motion.div {...reveal(26)} className="max-w-[590px]">
-              <h2 className="font-[var(--font-display)] text-[clamp(2.8rem,4.5vw,4.65rem)] font-normal leading-[0.96] tracking-[-0.035em] text-white">
-                A Cambodian coffee supplier
-                <br />with one origin to protect.
-              </h2>
-              <div className="mt-8 border-t border-white/20 pt-7">
-                <p className="text-[17px] leading-8 text-white/88">
-                  OCC is built around one commercial idea: help Cambodian coffee travel further without losing the identity, evidence, and quality decisions that make the coffee worth choosing.
-                </p>
-                <p className="mt-5 text-[14px] leading-7 text-white/68">
-                  Cambodia is the origin. Fine Robusta is the specialist expertise. Wholesale coffee supply and custom roasting are the two main ways buyers work with us.
-                </p>
+      <main>
+        <section id="why-occ" className={styles.introSection}>
+          <div className={styles.sectionFrame}>
+            <motion.div {...reveal()} className={styles.introGrid}>
+              <div className={styles.introTitle}>
+                <p className={styles.sectionLabel}>02 / Why OCC</p>
+                <h2>A Cambodian coffee company with one origin to protect.</h2>
+              </div>
+              <div className={styles.introCopy}>
+                <p className={styles.statement}>OCC helps Cambodian coffee travel further while keeping the identity, evidence, and quality decisions that make it worth choosing.</p>
+                <p>Cambodia is the origin. Fine Robusta is the specialist expertise. Wholesale supply and custom roasting are the two main ways buyers work with us.</p>
               </div>
             </motion.div>
 
-            <motion.div {...reveal(34)} className="flex justify-center lg:justify-end">
-              <div className="aspect-[6/5] w-full max-w-[470px] overflow-hidden border border-white/15 bg-occ-primary shadow-[0_24px_60px_rgba(41,36,36,0.18)]">
-                <img
-                  src={whyOccImage}
-                  alt="Cambodian coffee origin and production"
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="mt-14 grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 xl:grid-cols-[0.9fr_0.9fr_1fr_1fr_1.35fr]">
-            {differences.map((item, index) => (
-              <motion.div
-                key={item.title}
-                {...reveal(22)}
-                className={`py-7 sm:px-6 xl:px-5 ${index > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""} ${index === 2 ? "sm:border-l-0 xl:border-l" : ""} ${index >= 2 ? "sm:border-t xl:border-t-0" : ""}`}
-              >
-                <p className="text-[9px] tracking-[0.2em] text-white/34">0{index + 1}</p>
-                <h3 className="mt-4 text-sm font-semibold leading-5 text-white">{item.title}</h3>
-                <p className="mt-3 max-w-[260px] text-[12px] leading-[1.65] text-white/58">{item.copy}</p>
+            <div className={styles.originStory}>
+              <motion.div {...reveal(18)} className={styles.originMedia}>
+                <Image src="/about/occ-about-intro.webp" alt="Coffee professionals evaluating Cambodian coffee" fill sizes="(max-width: 900px) 100vw, 52vw" />
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto grid w-full max-w-[1360px] grid-cols-2 gap-3 bg-occ-background px-6 py-16 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-12" aria-label="OCC origin and commercial paths">
-        {galleryPanels.map((panel, index) => (
-          <Link
-            key={panel.label}
-            href={panel.href}
-            className="group relative aspect-[3/4] overflow-hidden bg-occ-primary lg:aspect-[4/3]"
-            aria-label={`${panel.label}: ${panel.note}`}
-          >
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-              style={{ backgroundImage: `url(${panel.image})` }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/90 transition-colors duration-500 group-hover:bg-occ-primary/20" />
-            <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-7 lg:p-8">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-white/70">0{index + 1}</p>
-              <div className="mt-3 flex items-end justify-between gap-3 sm:gap-4">
-                <div>
-                  <h3 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white sm:text-sm sm:tracking-[0.2em]">{panel.label}</h3>
-                  <p className="mt-2 hidden max-w-[230px] text-[12px] leading-5 text-white/80 sm:block">{panel.note}</p>
-                </div>
-                <ArrowUpRight className="size-4 shrink-0 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </div>
-            </div>
-          </Link>
-        ))}
-      </section>
-
-      <main className="bg-occ-background">
-        <motion.section {...reveal()} className="mx-auto w-full max-w-[1180px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:py-28">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-burgundy">03 / What We Are Building</p>
-          <div className="mt-7 grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
-            <h2 aria-label="A Premium Cambodian Coffee Brand" className="max-w-[620px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-occ-primary">
-              A Premium
-              <br />Cambodian Coffee Brand
-            </h2>
-            <div className="border-t border-black/10 pt-8 lg:mt-3">
-              <p className="max-w-[540px] text-lg leading-8 text-black/82">
-                Cambodia is still a young coffee origin in the minds of many international buyers. OCC is building toward a future in which Cambodian coffee can be recognized for its own origin identity.
-              </p>
-              <div className="mt-7 max-w-[540px] space-y-5 text-[15px] leading-7 text-black/64">
-                <p>
-                  Cambodian Fine Robusta should be evaluated for quality rather than reduced to old assumptions about Robusta.
-                </p>
-                <p>
-                  That requires origin clarity, credible quality language, better buyer information, repeatable roasting decisions, and a brand strong enough to carry Cambodia into new commercial conversations.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-px border border-black/10 bg-black/10 sm:grid-cols-2">
-            {[
-              ["Origin first", "Cambodia remains visible from story to supply."],
-              ["Quality made legible", "Processing, sensory, roast and evidence are explained in buyer language."],
-              ["Commercially usable", "Profiles must work in real cafés, retail programs, hospitality, and distribution."],
-              ["Built for recognition", "Each buyer relationship should increase familiarity with Cambodian coffee, not hide it."],
-            ].map(([title, copy]) => (
-              <div key={title} className="bg-occ-background p-7 sm:p-8 lg:min-h-[150px]">
-                <h3 className="text-sm font-semibold text-occ-primary">{title}</h3>
-                <p className="mt-3 max-w-md text-[13px] leading-6 text-black/56">{copy}</p>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        <section className="mx-auto w-full max-w-[1180px] border-b border-black/10 px-6 py-20 sm:px-8 md:px-12 lg:py-28" aria-labelledby="work-with-occ-title">
-          <motion.div {...reveal(30)} className="mx-auto max-w-[920px] text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">04 / Work With OCC</p>
-            <h2 id="work-with-occ-title" aria-label="How would you like to work with OCC?" className="mx-auto mt-6 max-w-[780px] font-[var(--font-display)] text-[clamp(2.7rem,4.4vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.035em] text-occ-primary">
-              How would you like
-              <br />to work with OCC?
-            </h2>
-            <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-7 text-black/62">
-              Overseas buyer conversations belong to one of two paths: choose a Cambodian coffee profile that is ready to evaluate and sell, or build a roasting profile around the cup, market, and application you need.
-            </p>
-          </motion.div>
-
-          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <motion.article {...reveal(28)} className="flex h-full flex-col border border-occ-secondary/30 bg-white/28 p-7 sm:p-9 lg:min-h-[500px]">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-occ-secondary">01 / Ready-to-Sell</p>
-                <span className="text-[9px] uppercase tracking-[0.18em] text-black/34">Choose our profile.</span>
-              </div>
-              <h3 className="mt-7 font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.03em] text-occ-primary">Ready-to-Sell</h3>
-              <p className="mt-5 text-sm leading-7 text-black/66">
-                For distributors, importers, retailers, hospitality groups, and coffee businesses looking for a Cambodian coffee supplier with a defined profile and a clearer route to repeat supply.
-              </p>
-              <div className="mt-8 border-y border-black/10 py-5">
-                {readyToSellPath.map((item, index) => (
-                  <div key={item} className="flex gap-4 py-2 text-[12px] leading-5 text-black/60">
-                    <span className="w-5 shrink-0 text-[9px] tracking-[0.14em] text-black/28">0{index + 1}</span>
-                    <span>{item}</span>
+              <motion.div {...reveal(32)} className={styles.principleList}>
+                {principles.map(([title, copy], index) => (
+                  <div className={styles.principle} key={title}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <div><h3>{title}</h3><p>{copy}</p></div>
                   </div>
                 ))}
-              </div>
-              <Link href="/solutions/wholesale" className="mt-auto inline-flex items-center gap-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.17em] text-occ-primary">
-                Explore Wholesale Coffee Supply <ArrowUpRight className="size-3" />
-              </Link>
-            </motion.article>
-
-            <motion.article {...reveal(34)} className="flex h-full flex-col bg-occ-primary p-7 text-occ-background sm:p-9 lg:min-h-[500px]">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/70">02 / Made-for-You</p>
-                <span className="text-[9px] uppercase tracking-[0.18em] text-white/38">Build yours.</span>
-              </div>
-              <h3 className="mt-7 font-[var(--font-display)] text-4xl font-normal leading-none tracking-[-0.03em]">Made-for-You</h3>
-              <p className="mt-5 text-sm leading-7 text-white/66">
-                For buyers who already know the cup, menu, format, or market position they want and need custom roasting to turn that target into a repeatable production profile.
-              </p>
-              <div className="mt-8 border-y border-white/12 py-5">
-                {madeForYouPath.map((item, index) => (
-                  <div key={item} className="flex gap-4 py-2 text-[12px] leading-5 text-white/62">
-                    <span className="w-5 shrink-0 text-[9px] tracking-[0.14em] text-white/28">0{index + 1}</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-              <Link href="/solutions/roasting-program" className="mt-auto inline-flex items-center gap-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.17em] text-white">
-                Explore Custom Roasting <ArrowUpRight className="size-3" />
-              </Link>
-            </motion.article>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        <motion.section {...reveal()} className="bg-occ-primary px-6 py-20 text-occ-background sm:px-8 md:px-12 lg:py-28">
-          <div className="mx-auto w-full max-w-[1180px]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/46">05 / Where We Are Going</p>
-            <div className="mt-7 grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
-              <h2 className="max-w-[640px] font-[var(--font-display)] text-[clamp(2.8rem,4.7vw,5rem)] font-normal leading-[0.93] tracking-[-0.04em] text-white">
-                Cambodian coffee
-                <br />for international markets.
-              </h2>
-              <div className="border-t border-white/18 pt-8 lg:mt-3">
-                <p className="max-w-[520px] text-lg leading-8 text-white/84">
-                  OCC is building toward long-term relationships with international distributors, importers, retailers, and hospitality partners that want a clearer Cambodian coffee proposition.
-                </p>
-                <div className="mt-7 max-w-[520px] space-y-5 text-[15px] leading-7 text-white/64">
-                  <p>
-                    The goal is repeat business built on fit: the right coffee, the right roast, the right channel, and a supply relationship that can become more precise as origin evidence and commercial requirements become more precise.
-                  </p>
-                  <p>
-                    We are building the conditions for buyers to recognize Cambodian coffee, and especially Cambodian Fine Robusta, on its own terms.
-                  </p>
-                </div>
-                <div className="mt-9 flex flex-wrap gap-3">
-                  <Link href="/solutions/wholesale" className="inline-flex items-center gap-2 rounded-full bg-occ-background px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-occ-primary transition-transform duration-200 hover:-translate-y-0.5">
-                    Discuss Supply <ArrowUpRight className="size-3" />
+        <section className={styles.capabilitySection} aria-labelledby="capabilities-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.sectionHeading}>
+              <p className={styles.sectionLabel}>03 / What defines OCC</p>
+              <h2 id="capabilities-title">From origin evidence<br />to market application.</h2>
+            </div>
+            <div className={styles.capabilityGrid}>
+              {capabilities.map((item, index) => (
+                <motion.div key={item.label} {...reveal(20 + index * 4)}>
+                  <Link href={item.href} className={styles.capability}>
+                    <div className={styles.capabilityImage}>
+                      <Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 25vw" />
+                    </div>
+                    <div className={styles.capabilityMeta}>
+                      <span>0{index + 1}</span>
+                      <div><h3>{item.label}</h3><p>{item.note}</p></div>
+                      <ArrowUpRight aria-hidden="true" />
+                    </div>
                   </Link>
-                  <Link href="/solutions/roasting-program" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
-                    Develop a Roast <ArrowUpRight className="size-3" />
-                  </Link>
-                  <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/35 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-occ-primary">
-                    Contact OCC <ArrowUpRight className="size-3" />
-                  </Link>
-                </div>
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
-        <section className="mx-auto w-full max-w-[1180px] px-6 py-20 sm:px-8 md:px-12 lg:py-28" aria-labelledby="about-explore-title">
-          <div className="mx-auto max-w-[900px] text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-occ-secondary">06 / Explore OCC</p>
-            <h2 id="about-explore-title" className="mt-5 font-[var(--font-display)] text-3xl font-normal leading-[1.02] tracking-[-0.02em] text-occ-primary sm:text-4xl">
-              The thinking
-              <br />behind the company.
-            </h2>
+        <section className={styles.buildSection}>
+          <div className={`${styles.sectionFrame} ${styles.buildGrid}`}>
+            <motion.div {...reveal()} className={styles.buildTitle}>
+              <p className={styles.sectionLabel}>04 / What we are building</p>
+              <h2>A recognized Cambodian coffee origin.</h2>
+            </motion.div>
+            <motion.div {...reveal(22)} className={styles.buildCopy}>
+              <p className={styles.statement}>Cambodia is still a young coffee origin in the minds of many international buyers. OCC is building a future where its coffee is recognized on its own terms.</p>
+              <div className={styles.buildPoints}>
+                {[
+                  ["Origin first", "Cambodia remains visible from story to supply."],
+                  ["Quality made legible", "Processing, sensory, roast, and evidence are explained in buyer language."],
+                  ["Commercially usable", "Profiles work in real cafés, retail programs, hospitality, and distribution."],
+                  ["Built for recognition", "Each relationship increases familiarity with Cambodian coffee."],
+                ].map(([title, copy], index) => (
+                  <div key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></div>
+                ))}
+              </div>
+            </motion.div>
           </div>
+        </section>
 
-          <div className="mx-auto mt-12 max-w-[900px]">
-            {sections.map((section, index) => (
-              <motion.div key={section.href} {...reveal(34)}>
-                <Link href={section.href} className="group grid grid-cols-[38px_1fr_auto] items-end gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr_auto] sm:py-9 lg:py-10">
-                  <span className="pb-1 text-[9px] font-medium tracking-[0.2em] text-black/34">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3 className="font-[var(--font-display)] text-2xl font-normal leading-none tracking-[-0.02em] text-occ-primary transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
-                      {section.title}
-                    </h3>
-                    <p className="mt-3 max-w-xl text-[11px] uppercase tracking-[0.13em] text-black/42">{section.desc}</p>
-                  </div>
-                  <ArrowUpRight className="mb-1 size-5 text-occ-secondary transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-              </motion.div>
-            ))}
+        <section className={styles.pathSection} aria-labelledby="path-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.pathIntro}>
+              <p className={styles.sectionLabel}>05 / Work with OCC</p>
+              <h2 id="path-title">Two paths.<br />One clear origin.</h2>
+              <p>Choose a Cambodian coffee profile ready to evaluate and sell, or build a roast around the cup and market you need.</p>
+            </div>
+            <div className={styles.pathList}>
+              {pathways.map((path, index) => (
+                <motion.article {...reveal(24 + index * 8)} className={styles.path} key={path.title}>
+                  <div className={styles.pathNumber}>{path.number}</div>
+                  <div className={styles.pathMain}><p className={styles.pathKicker}>{path.kicker}</p><h3>{path.title}</h3><p>{path.copy}</p></div>
+                  <ul>{path.items.map((item) => <li key={item}>{item}</li>)}</ul>
+                  <Link href={path.href} aria-label={path.cta}><ArrowUpRight aria-hidden="true" /></Link>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.futureSection}>
+          <motion.div {...reveal()} className={`${styles.sectionFrame} ${styles.futureGrid}`}>
+            <div><p className={styles.sectionLabel}>06 / Where we are going</p><h2>Cambodian coffee for international markets.</h2></div>
+            <div className={styles.futureCopy}>
+              <p>We are building long-term relationships with distributors, importers, retailers, and hospitality partners that want a clearer Cambodian coffee proposition.</p>
+              <p>The goal is repeat business built on fit: the right coffee, roast, channel, and supply relationship.</p>
+              <Link href="/contact" className={styles.lightButton}>Start a conversation <ArrowUpRight aria-hidden="true" /></Link>
+            </div>
+          </motion.div>
+        </section>
+
+        <section className={styles.exploreSection} aria-labelledby="explore-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.exploreHeading}><p className={styles.sectionLabel}>07 / Explore OCC</p><h2 id="explore-title">The thinking behind the company.</h2></div>
+            <div className={styles.exploreList}>
+              {sections.map((section, index) => (
+                <motion.div key={section.href} {...reveal(20)}>
+                  <Link href={section.href}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <div><h3>{section.title}</h3><p>{section.desc}</p></div>
+                    <ArrowUpRight aria-hidden="true" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
