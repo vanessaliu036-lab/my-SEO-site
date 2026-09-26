@@ -358,6 +358,9 @@ export default function PartnershipsPage() {
               <p><span className="font-semibold text-occ-primary">Requirements:</span> packaging, documentation, sampling or other decision criteria.</p>
             </div>
             <p className="mt-6 max-w-3xl text-[15px] leading-7 text-black/60">You can provide this context in your message on our Contact page. Enquiries are reviewed against the proposed project's needs and available coffee or product options.</p>
+            <Link href="/contact" className="occ-primary-cta mt-8 inline-flex items-center gap-2">
+              Discuss a Partnership <ArrowUpRight className="size-3" />
+            </Link>
           </div>
         </section>
 
