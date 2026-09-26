@@ -9,7 +9,12 @@ import { getPublishedPosts } from '@/lib/airtable'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
-  const posts = await getPublishedPosts()
+  let posts: Awaited<ReturnType<typeof getPublishedPosts>> = []
+  try {
+    posts = await getPublishedPosts()
+  } catch (error) {
+    console.warn("[sitemap] Published blog corpus unavailable; emitting strategic routes only.", error instanceof Error ? error.message : "unknown error")
+  }
   const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${siteUrl}/blog/${p.slug}`,
     lastModified: p.publish_date ? new Date(p.publish_date) : now,
