@@ -54,11 +54,8 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
       </section>
 
       <section className={styles.approach} aria-label="Hotel coffee program">
-        <div className={`${styles.approachPhoto} flex items-end bg-occ-primary p-8 text-occ-background`} aria-hidden="true">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.28em] text-white/55">Hospitality</p>
-            <p className="mt-4 max-w-sm text-4xl font-light leading-tight">Cambodian coffee for the guest experience.</p>
-          </div>
+        <div className={styles.approachPhoto}>
+          <img src="/media/cupping-bowls-fine-robusta-grading-cambodia.jpg" alt="Coffee cupping used to evaluate flavor direction for a hotel coffee program" />
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{hotel.tag}</div>
@@ -69,11 +66,8 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
       </section>
 
       <section className={styles.approach} aria-label="International distribution partnerships">
-        <div className={`${styles.approachPhoto} flex items-end border border-occ-primary/12 bg-occ-background p-8 text-occ-primary`} aria-hidden="true">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.28em] text-occ-secondary">International Markets</p>
-            <p className="mt-4 max-w-sm text-4xl font-light leading-tight">From Cambodia to established market channels.</p>
-          </div>
+        <div className={styles.approachPhoto}>
+          <img src="/media/coffee-dispatch-sealed-bags-phnom-penh.jpg" alt="Sealed coffee prepared in Phnom Penh for commercial distribution" />
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{distribution.tag}</div>
