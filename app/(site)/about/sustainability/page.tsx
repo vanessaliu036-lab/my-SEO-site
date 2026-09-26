@@ -117,6 +117,8 @@ export default function SustainabilityPage() {
           "We separate documented practice from assumption and keep claim boundaries clear.",
         ]}
         sections={sections}
+        heroImage={{ src: "/media/cupping-bowls-fine-robusta-grading-cambodia.jpg", alt: "Fine Robusta cupping and grading evidence in Cambodia" }}
+        chapterImage="/about/institutional/occ-sustainability-trace.svg"
         featureGrid={featureGrid}
         practiceLabel="How OCC assesses claims"
         practiceTitle="Evidence before declaration."
