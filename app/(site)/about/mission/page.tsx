@@ -137,6 +137,7 @@ export default function MissionPage() {
           "Origin Coffee Cambodia connects Cambodian coffee origins, Fine Robusta expertise, and professional capability so coffee can move from origin to buyer with greater clarity.",
         ]}
         sections={sections}
+        visual={{ src: "/about/institutional/occ-mission-origin.svg", alt: "Editorial diagram connecting Cambodian origin, quality and professional buyers" }}
         featureGrid={featureGrid}
         practiceLabel="What OCC connects"
         practiceTitle="From context to a workable coffee program."
