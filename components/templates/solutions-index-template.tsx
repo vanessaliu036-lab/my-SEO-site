@@ -55,7 +55,7 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
 
       <section className={styles.approach} aria-label="Hotel coffee program">
         <div className={styles.approachPhoto}>
-          <img src="/occ-pages/assets/occ-hospitality-hotel.webp" alt="Cambodian coffee served in a hotel hospitality setting" />
+          <img src="/images/solutions/occ-solutions-signature-drink-development.webp" alt="Cambodian coffee served in a hotel hospitality setting" />
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{hotel.tag}</div>
@@ -67,7 +67,7 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
 
       <section className={styles.approach} aria-label="International distribution partnerships">
         <div className={styles.approachPhoto}>
-          <img src="/distribution-hero.webp" alt="Cambodia-origin coffee prepared for international distribution" />
+          <img src="/images/solutions/occ-solutions-origin-lot-traceability.webp" alt="Cambodia-origin coffee prepared for international distribution" />
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{distribution.tag}</div>
