@@ -95,7 +95,7 @@ export default function HomeTemplate() {
               {
                 eyebrow: "Hospitality",
                 title: "Hotel Coffee Program",
-                body: "For hotels building a Cambodian coffee experience across breakfast, restaurants, lounges, guest touchpoints, and selected retail.",
+                body: "For hotels that need roasted Cambodian coffee supply now, or a custom flavor and roast profile built around the property, guests, menu, and equipment.",
                 href: "/solutions/hotels",
                 cta: "Explore Hotel Program",
               },
