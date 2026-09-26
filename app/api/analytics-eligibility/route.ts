@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 export async function POST() {
   const verification = await checkBotId({
     advancedOptions: {
-      checkLevel: "basic",
+      checkLevel: "deepAnalysis",
     },
   })
 
