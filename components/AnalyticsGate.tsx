@@ -149,7 +149,7 @@ export function AnalyticsGate({
 
       try {
         const controller = new AbortController()
-        const timeout = window.setTimeout(() => controller.abort(), 1800)
+        const timeout = window.setTimeout(() => controller.abort(), 3000)
         const response = await fetch("/api/analytics-eligibility", {
           method: "POST",
           cache: "no-store",
@@ -163,9 +163,9 @@ export function AnalyticsGate({
         const result = (await response.json()) as { allow?: boolean }
         if (!cancelled) setEligible(result.allow === true)
       } catch {
-        // Fail open for real visitors if the measurement-quality check is unavailable.
-        // Preview, QA and webdriver traffic are still excluded above.
-        if (!cancelled) setEligible(true)
+        // Analytics quality takes precedence over completeness. If the eligibility
+        // check is unavailable, do not load analytics rather than polluting KPIs.
+        if (!cancelled) setEligible(false)
       }
     }
 
