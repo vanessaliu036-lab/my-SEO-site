@@ -53,21 +53,21 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
         </article>
       </section>
 
-      <section className={styles.approach} aria-label="Hotel coffee program">
+      <section className={styles.approach} aria-label="Hotel coffee partnerships">
         <div className={styles.approachPhoto}>
-          <img src="/media/cupping-bowls-fine-robusta-grading-cambodia.jpg" alt="Coffee cupping used to evaluate flavor direction for a hotel coffee program" />
+          <img src="/images/solutions/occ-solutions-hotel-program.png" alt="OCC barista presenting Cambodian coffee in a hospitality setting" />
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{hotel.tag}</div>
           <h2>Make Cambodian coffee part of the guest experience.</h2>
           <p>{hotel.desc}</p>
-          <Link href={hotel.href} className={styles.textLink}>Explore Hotel Coffee Program <span>→</span></Link>
+          <Link href={hotel.href} className={styles.textLink}>Explore Hotel Partnerships <span>→</span></Link>
         </div>
       </section>
 
       <section className={styles.approach} aria-label="International distribution partnerships">
         <div className={styles.approachPhoto}>
-          <img src="/media/coffee-dispatch-sealed-bags-phnom-penh.jpg" alt="Sealed coffee prepared in Phnom Penh for commercial distribution" />
+          <img src="/images/solutions/occ-solutions-distribution-products.jpeg" alt="OCC Cambodia-origin coffee products prepared for commercial distribution" />
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{distribution.tag}</div>
