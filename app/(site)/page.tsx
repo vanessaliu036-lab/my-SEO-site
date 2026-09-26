@@ -9,9 +9,9 @@ import {
 } from "@/lib/homeContent"
 import { pageAlternates } from "@/lib/seo"
 
-const homeTitle = "Origin Coffee Cambodia | Fine Robusta Beans & Specialty Coffee Supplier"
+const homeTitle = "Origin Coffee Cambodia | Fine Robusta & Specialty Coffee"
 const homeDescription =
-  "100% Cambodia-origin specialty coffee from OCC, a Fine Robusta specialist supplying small-batch Cambodian coffee for wholesale, distribution and custom roasting."
+  "Cambodia-origin specialty coffee and Fine Robusta for wholesale, sourcing and custom roasting from Origin Coffee Cambodia."
 
 export const metadata: Metadata = {
   title: homeTitle,
