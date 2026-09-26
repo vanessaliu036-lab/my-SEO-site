@@ -611,3 +611,51 @@
     min-height: 580px !important;
   }
 }
+
+/* Baseline interaction layer shared by every App Router public page. */
+@media (prefers-reduced-motion: no-preference) {
+  html.occ-app-motion .occ-site-main .occ-motion-block {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition:
+      opacity 620ms var(--occ-ease),
+      transform 720ms var(--occ-ease);
+  }
+
+  html.occ-app-motion .occ-site-main .occ-motion-block.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .occ-site-main a,
+  .occ-site-main button,
+  .occ-site-final-cta a {
+    transition:
+      color 220ms ease,
+      background-color 220ms ease,
+      border-color 220ms ease,
+      opacity 220ms ease,
+      transform 260ms var(--occ-ease);
+  }
+
+  @media (hover: hover) {
+    .occ-site-main a:hover,
+    .occ-site-main button:hover,
+    .occ-site-final-cta a:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  .occ-site-main a:active,
+  .occ-site-main button:active,
+  .occ-site-final-cta a:active {
+    transform: translateY(0) scale(0.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .occ-site-main .occ-motion-block {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
