@@ -101,6 +101,11 @@ const featureGrid = [
   { label: "02 / Clear boundaries", title: "Keep claims proportional.", body: "A single lot or dated protocol should not stand in for a whole origin or category." },
   { label: "03 / Business practice", title: "Make evidence useful.", body: "Documented information should improve sourcing, quality, roasting, and repeatable supply." },
 ]
+const chapterImages = [
+  { src: "/about/chapters/founder-01.webp", alt: "Hands reviewing origin notes beside green coffee and a small scale.", caption: "The question · Begin with what can be observed", width: 1200, height: 1200 },
+  { src: "/about/chapters/founder-02.webp", alt: "Coffee team comparing traceability records and green bean samples.", caption: "Evidence before certainty · Compare records with the coffee", width: 1200, height: 1200 },
+  { src: "/about/chapters/founder-03.webp", alt: "Coffee professional recording roast data beside a sample roaster.", caption: "Commercial discipline · Turn evidence into repeatable work", width: 1200, height: 1200 },
+]
 
 export default function FounderPage() {
   return (
@@ -109,6 +114,9 @@ export default function FounderPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <AboutInstitutionalTemplate
         index="02"
+        heroImage={{ src: "/about/chapters/founder-04.webp", alt: "Coffee evidence folders, sample envelopes, beans, and a cupping spoon arranged on a worktable.", width: 1200, height: 1200 }}
+        heroCaption="Founder · Evidence that improves the coffee business"
+        chapterImages={chapterImages}
         title="FOUNDER"
         subtitle="THE FOUNDING PHILOSOPHY BEHIND OCC."
         lead={[
@@ -116,8 +124,6 @@ export default function FounderPage() {
           "Origin knowledge should improve sourcing, quality, roasting, and repeatability.",
         ]}
         sections={sections}
-        heroImage={{ src: "/about/institutional/occ-founder-evidence.svg", alt: "Editorial composition representing evidence-led coffee decisions" }}
-        chapterImage="/about/institutional/occ-founder-evidence.svg"
         featureGrid={featureGrid}
         practiceLabel="The founder's principle"
         practiceTitle="Evidence that improves the work."

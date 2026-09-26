@@ -3,10 +3,14 @@ import "./about-mission-template.css"
 type InstitutionalSection = { title: string; paragraphs: string[] }
 type FaqItem = { q: string; a: string }
 type FeatureItem = { label: string; title: string; body: string }
+type EditorialImage = { src: string; alt: string; caption: string; width: number; height: number }
 type AboutInstitutionalTemplateProps = {
   index: string
   title: string
   subtitle: string
+  heroImage: { src: string; alt: string; width: number; height: number }
+  heroCaption: string
+  chapterImages: EditorialImage[]
   lead: string[]
   sections: InstitutionalSection[]
   closing?: string[]
@@ -14,8 +18,6 @@ type AboutInstitutionalTemplateProps = {
   featureGrid?: FeatureItem[]
   practiceLabel?: string
   practiceTitle?: string
-  heroImage: { src: string; alt: string }
-  chapterImage: string
   next?: { href: string; label: string; description: string; note?: string }
 }
 
@@ -23,6 +25,9 @@ export function AboutInstitutionalTemplate({
   index,
   title,
   subtitle,
+  heroImage,
+  heroCaption,
+  chapterImages,
   lead,
   sections,
   closing = [],
@@ -30,8 +35,6 @@ export function AboutInstitutionalTemplate({
   featureGrid = [],
   practiceLabel = "Our approach",
   practiceTitle = "The work, put into practice.",
-  heroImage,
-  chapterImage,
 }: AboutInstitutionalTemplateProps) {
 
   return (
@@ -44,8 +47,8 @@ export function AboutInstitutionalTemplate({
             <p className="about-hero-support">{lead[1] ?? subtitle}</p>
           </div>
           <figure className="about-hero-media">
-            <img src={heroImage.src} alt={heroImage.alt} />
-            <figcaption className="about-image-marker">Origin · Quality · Professional coffee</figcaption>
+            <img src={heroImage.src} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} />
+            <figcaption className="about-image-marker">{heroCaption}</figcaption>
           </figure>
         </div>
       </section>
@@ -83,8 +86,8 @@ export function AboutInstitutionalTemplate({
             {sections.map((section, sectionIndex) => (
               <article className="about-chapter" key={section.title}>
                 <figure className="about-chapter-visual">
-                  <img src={chapterImage} alt="" loading="lazy" />
-                  <figcaption>Origin · Quality · Professional coffee</figcaption>
+                  <img src={chapterImages[sectionIndex].src} alt={chapterImages[sectionIndex].alt} width={chapterImages[sectionIndex].width} height={chapterImages[sectionIndex].height} loading="lazy" />
+                  <figcaption>{chapterImages[sectionIndex].caption}</figcaption>
                 </figure>
                 <div className="about-chapter-copy">
                   <div className="about-chapter-kicker">

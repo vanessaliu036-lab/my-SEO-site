@@ -221,7 +221,6 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        { source: '/about/mission', destination: '/occ-pages/mission.html' },
         { source: '/solutions/roasting-program', destination: '/occ-pages/roasting-program.html' },
         { source: '/origins/cambodia-regions', destination: '/occ-pages/cambodia-regions.html' },
         { source: '/partnerships', destination: '/occ-pages/partnerships.html' },
