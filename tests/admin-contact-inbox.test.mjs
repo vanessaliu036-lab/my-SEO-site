@@ -79,6 +79,11 @@ test('qualified contact lead can create a B2B Account without duplicate conversi
       fldCEEsTN9XD3ddK4: 'Cambodia',
       fldq91HTSYa3rxLBC: 'Wholesale & Sourcing',
       fldomWJyClrC2dFH8: 'Need 20kg',
+      fldJHVMy9vt8r4Mwu: '/blog/hotel-coffee-guest-experience-cambodia',
+      fldAvM2AeJ32onisf: '/solutions/wholesale',
+      fldA5l9MZquBNWk5E: 'google / organic',
+      fldOkPloT4e4CZ2Px: 'hotel-outreach',
+      fldKEJcmjmG3yUHLs: false,
     },
   }
   const result = await convertContactLead('recABC12345678901', 'account', {
