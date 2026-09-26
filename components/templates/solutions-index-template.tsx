@@ -54,8 +54,11 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
       </section>
 
       <section className={styles.approach} aria-label="Hotel coffee program">
-        <div className={styles.approachPhoto}>
-          <img src="/images/solutions/occ-solutions-signature-drink-development.webp" alt="Cambodian coffee served in a hotel hospitality setting" />
+        <div className={`${styles.approachPhoto} flex items-end bg-occ-primary p-8 text-occ-background`} aria-hidden="true">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.28em] text-white/55">Hospitality</p>
+            <p className="mt-4 max-w-sm text-4xl font-light leading-tight">Cambodian coffee for the guest experience.</p>
+          </div>
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{hotel.tag}</div>
@@ -66,8 +69,11 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
       </section>
 
       <section className={styles.approach} aria-label="International distribution partnerships">
-        <div className={styles.approachPhoto}>
-          <img src="/images/solutions/occ-solutions-origin-lot-traceability.webp" alt="Cambodia-origin coffee prepared for international distribution" />
+        <div className={`${styles.approachPhoto} flex items-end border border-occ-primary/12 bg-occ-background p-8 text-occ-primary`} aria-hidden="true">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.28em] text-occ-secondary">International Markets</p>
+            <p className="mt-4 max-w-sm text-4xl font-light leading-tight">From Cambodia to established market channels.</p>
+          </div>
         </div>
         <div className={styles.approachCopy}>
           <div className={styles.eyebrow}>{distribution.tag}</div>
