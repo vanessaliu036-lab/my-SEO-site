@@ -28,6 +28,21 @@ function readAttribution(): ContactAttribution {
   }
 }
 
+async function sendGenerateLead(params: Record<string, unknown>) {
+  const maxAttempts = 10
+
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    if (window.gtag) {
+      window.gtag("event", "generate_lead", params)
+      return true
+    }
+
+    await new Promise((resolve) => window.setTimeout(resolve, 200))
+  }
+
+  return false
+}
+
 const ENQUIRY_TYPES = [
   "Wholesale / Sourcing",
   "Roasting / Solutions",
@@ -60,7 +75,7 @@ export default function ContactForm() {
       const result = await submitContactForm(data, attribution)
       if (result.success) {
         if (!attribution.kpiExclude) {
-          window.gtag?.("event", "generate_lead", {
+          await sendGenerateLead({
             lead_type: data.service,
             page_path: window.location.pathname,
             landing_page: attribution.landingPage,
