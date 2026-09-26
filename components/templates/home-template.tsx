@@ -70,6 +70,9 @@ export default function HomeTemplate() {
           <h2 className="mb-6 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-occ-primary md:text-3xl">Cambodian coffee authority for sourcing, quality, and B2B decisions.</h2>
           <p className="max-w-3xl text-base leading-relaxed text-occ-primary/72 md:text-lg">{homeDirectAnswer}</p>
           <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/fine-robusta-cambodia" className="inline-flex items-center gap-2 rounded-full border border-occ-primary/20 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-occ-primary transition-colors duration-200 hover:border-occ-primary hover:bg-white/60">
+              Fine Robusta Cambodia <ArrowUpRight className="size-3.5" />
+            </Link>
             <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-occ-primary/20 px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-occ-primary transition-colors duration-200 hover:border-occ-primary hover:bg-white/60">
               Research Journal <ArrowUpRight className="size-3.5" />
             </Link>
