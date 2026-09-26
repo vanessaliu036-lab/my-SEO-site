@@ -94,10 +94,10 @@ export default function HomeTemplate() {
               },
               {
                 eyebrow: "Hospitality",
-                title: "Hotel Coffee Program",
-                body: "For hotels that need roasted Cambodian coffee supply now, or a custom flavor and roast profile built around the property, guests, menu, and equipment.",
+                title: "Hotel Partnerships",
+                body: "For hotels that want to test Cambodian coffee through an on-site pour-over pilot, then move into the right coffee supply model with staff training and guest-experience support.",
                 href: "/solutions/hotels",
-                cta: "Explore Hotel Program",
+                cta: "Explore Hotel Partnerships",
               },
               {
                 eyebrow: "International Markets",
