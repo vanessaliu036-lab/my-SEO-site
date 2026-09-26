@@ -16,6 +16,8 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
   const wholesale = services[0]
   const roasting = services[1]
   const marketing = services[2]
+  const hotel = services[3]
+  const distribution = services[4]
 
   return (
     <div className={styles.page}>
@@ -49,6 +51,30 @@ export function SolutionsIndexTemplate({ services }: SolutionsIndexTemplateProps
             <Link href={roasting.href} className={styles.whiteBtn}>Discover Our Support <span>→</span></Link>
           </div>
         </article>
+      </section>
+
+      <section className={styles.approach} aria-label="Hotel coffee program">
+        <div className={styles.approachPhoto}>
+          <img src="/occ-pages/assets/occ-hospitality-hotel.webp" alt="Cambodian coffee served in a hotel hospitality setting" />
+        </div>
+        <div className={styles.approachCopy}>
+          <div className={styles.eyebrow}>{hotel.tag}</div>
+          <h2>Make Cambodian coffee part of the guest experience.</h2>
+          <p>{hotel.desc}</p>
+          <Link href={hotel.href} className={styles.textLink}>Explore Hotel Coffee Program <span>→</span></Link>
+        </div>
+      </section>
+
+      <section className={styles.approach} aria-label="International distribution partnerships">
+        <div className={styles.approachPhoto}>
+          <img src="/distribution-hero.webp" alt="Cambodia-origin coffee prepared for international distribution" />
+        </div>
+        <div className={styles.approachCopy}>
+          <div className={styles.eyebrow}>{distribution.tag}</div>
+          <h2>Bring Cambodia-origin coffee to your market.</h2>
+          <p>{distribution.desc}</p>
+          <Link href={distribution.href} className={styles.textLink}>Explore Distribution Partnerships <span>→</span></Link>
+        </div>
       </section>
 
       <section className={styles.guide}>
