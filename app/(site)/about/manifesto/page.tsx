@@ -123,6 +123,8 @@ export default function ManifestoPage() {
           "Origin, sourcing, roasting, preparation, and service must work together.",
         ]}
         sections={sections}
+        heroImage={{ src: "/media/coffee-dispatch-sealed-bags-phnom-penh.jpg", alt: "Coffee supply and dispatch prepared for professional buyers" }}
+        chapterImage="/about/institutional/occ-manifesto-system.svg"
         featureGrid={featureGrid}
         practiceLabel="The OCC manifesto"
         practiceTitle="Quality is a system."
