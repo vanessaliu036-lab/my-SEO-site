@@ -68,8 +68,6 @@ export function auditEditorialImages(projectRoot = process.cwd()) {
   const sameRouteDuplicates = []
   const routes = {}
   const rewrittenPages = new Map([
-    ['/solutions/roasting-program', 'public/occ-pages/roasting-program.html'],
-    ['/origins/cambodia-regions', 'public/occ-pages/cambodia-regions.html'],
     ['/partnerships', 'public/occ-pages/partnerships.html'],
   ])
 

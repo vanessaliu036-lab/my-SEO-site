@@ -8,7 +8,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "About OCC | Cambodia-Origin Coffee & Fine Robusta",
   description:
-    "About Origin Coffee Cambodia: a Cambodia-origin specialty coffee company and Fine Robusta specialist connecting origin evidence with sourcing, roasted supply, roast development, and market access.",
+    "Meet Origin Coffee Cambodia, a Cambodia-origin coffee company and Fine Robusta specialist connecting traceable sourcing, roasted supply and roast development.",
   keywords:
     "Origin Coffee Cambodia, OCC, Cambodia coffee, Fine Robusta Cambodia, Cambodian coffee origin, Cambodia coffee sourcing, roasted coffee supply Cambodia, coffee roasting Cambodia, coffee distribution Cambodia",
   openGraph: {

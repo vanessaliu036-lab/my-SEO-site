@@ -7,7 +7,7 @@ import { pageAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "OCC Brand & Gifting | Cambodian Coffee Gifts with ARUNERA",
   description:
-    "OCC partners with ARUNERA to turn Cambodia-origin coffee and Fine Robusta into premium Cambodian coffee gifts, hotel gifts, travel souvenirs, corporate gifting and retail-ready products.",
+    "OCC and ARUNERA create Cambodia-origin coffee gifts for hotels, travel retail, corporate programs and stores, with coffee expertise and Cambodian presentation.",
   keywords:
     "Cambodian coffee gifts, Cambodian coffee souvenir, premium Cambodian gifts, coffee gift Cambodia, hotel coffee gifts Cambodia, Cambodian corporate gifts, Cambodian souvenir coffee, premium souvenir Cambodia, ARUNERA, OCC partnerships",
   alternates: pageAlternates("/brand-gifting"),
@@ -87,7 +87,7 @@ export default function BrandGiftingPage() {
 
       <div className="bg-occ-background text-occ-primary">
         <section className="relative overflow-hidden bg-occ-primary text-occ-background">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(152,70,80,0.08),transparent_30%),linear-gradient(125deg,#f2ede7_0%,#f2ede7_68%,#f2ede7_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(96,30,39,0.08),transparent_30%),linear-gradient(125deg,#f2ede7_0%,#f2ede7_68%,#f2ede7_100%)]" />
           <div className="absolute inset-0 bg-transparent" />
 
           <div className="relative mx-auto grid min-h-[72svh] w-full max-w-[1360px] grid-cols-1 content-end px-6 pb-16 pt-28 sm:px-8 md:grid-cols-12 md:px-12 lg:px-16 lg:pb-20">

@@ -8,15 +8,15 @@
   --occ-type-body-lg: 18px;
   --occ-type-body: 16px;
   --occ-type-label: 10px;
-  --occ-cta-primary-background: #984650;
+  --occ-cta-primary-background: #601E27;
   --occ-cta-primary-foreground: #f2ede7;
-  --occ-cta-primary-border: #984650;
+  --occ-cta-primary-border: #601E27;
   --occ-cta-radius: 0px;
   --occ-final-cta-surface: #f2ede7;
   --occ-final-cta-foreground: #292424;
   --occ-final-cta-muted: rgba(41, 36, 36, .68);
   --occ-final-cta-border: rgba(41, 36, 36, .16);
-  --occ-final-cta-label: #984650;
+  --occ-final-cta-label: #601E27;
   --occ-final-cta-max-width: 1080px;
 }
 

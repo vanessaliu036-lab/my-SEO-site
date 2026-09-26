@@ -112,13 +112,14 @@ export function SolutionDetailTemplate({
             <div className="md:col-span-9 md:col-start-4">
               {faqs.map(({ q, a }, faqIndex) => (
                 <MotionReveal key={q}>
-                  <div className="grid grid-cols-[38px_1fr] gap-4 border-t border-black/10 py-7 last:border-b sm:grid-cols-[54px_1fr]">
-                    <span className="pt-1 text-[9px] tracking-[0.2em] text-black/32">{String(faqIndex + 1).padStart(2, "0")}</span>
-                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-10">
+                  <details className="group border-t border-black/10 last:border-b">
+                    <summary className="grid list-none grid-cols-[38px_1fr_auto] items-start gap-4 py-7 sm:grid-cols-[54px_1fr_auto] [&::-webkit-details-marker]:hidden">
+                      <span className="pt-1 text-[9px] tracking-[0.2em] text-black/32">{String(faqIndex + 1).padStart(2, "0")}</span>
                       <h3 className="font-[var(--font-sans)] text-base font-semibold leading-7 tracking-[-0.01em]">{q}</h3>
-                      <div className="text-sm leading-7 text-black/76 [&_a]:border-b [&_a]:border-black/25">{a}</div>
-                    </div>
-                  </div>
+                      <span aria-hidden="true" className="text-xl font-light transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <div className="pb-7 pl-[54px] text-sm leading-7 text-black/76 sm:pl-[70px] [&_a]:border-b [&_a]:border-black/25">{a}</div>
+                  </details>
                 </MotionReveal>
               ))}
             </div>

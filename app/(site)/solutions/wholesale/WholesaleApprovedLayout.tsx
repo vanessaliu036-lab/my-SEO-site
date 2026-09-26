@@ -86,7 +86,7 @@ export function WholesaleApprovedLayout() {
         <span className="eyebrow">Buyer Questions</span>
         <h2 className="extended-heading" id="wholesale-faq-title">Wholesale FAQs.</h2>
         <p className="extended-intro">Settle the questions that matter before sample approval, quotation and a purchase commitment.</p>
-        <div className="faq-grid">{faqs.map((faq) => <article className="faq-card" key={faq.q}><h3>{faq.q}</h3><p>{faq.a}</p></article>)}</div>
+        <div className="faq-grid">{faqs.map((faq) => <details className="faq-card" key={faq.q}><summary><h3>{faq.q}</h3><span aria-hidden="true">+</span></summary><p>{faq.a}</p></details>)}</div>
       </section>
     </OccCommercialHtmlLayout>
   )

@@ -33,9 +33,9 @@ type Props = {
 /** User-supplied OCC HTML skeleton. SiteShell owns the only navbar and footer. */
 export function OccCommercialHtmlLayout({
   className = "", title, eyebrow, lead, description, heroImage,
-  splitId, processImages, splitTitle, splitDescription,
+  heroCtaLabel, heroCtaHref, splitId, processImages, splitTitle, splitDescription, splitCtaLabel, splitCtaHref,
   featureId, featureEyebrow, featureTitle, featureDescription, featureImage,
-  children,
+  ctaId = "contact", ctaEyebrow, ctaTitle, ctaLabel, ctaHref, children,
 }: Props) {
   return (
     <div className={`occ-commercial-html ${className}`}>
@@ -46,6 +46,7 @@ export function OccCommercialHtmlLayout({
             <h1>{title}</h1>
             <p className="lead">{lead}</p>
             <p className="desc">{description}</p>
+            <a className="pill-btn" href={heroCtaHref}>{heroCtaLabel} <span aria-hidden="true">↗</span></a>
           </div>
           <div className="hero-visual">
             <img src={heroImage.src} alt={heroImage.alt} />
@@ -59,6 +60,7 @@ export function OccCommercialHtmlLayout({
           <div className="info-panel">
             <h2>{splitTitle}</h2>
             <p className="section-copy">{splitDescription}</p>
+            <a className="text-link" href={splitCtaHref}>{splitCtaLabel} <span aria-hidden="true">↓</span></a>
           </div>
         </section>
         <div className="divider" />
@@ -73,6 +75,13 @@ export function OccCommercialHtmlLayout({
           </div>
         </section>
         {children ? <div className="extended-sections">{children}</div> : null}
+        <section className="b2b-cta" id={ctaId} aria-labelledby={`${ctaId}-title`}>
+          <div>
+            <span className="eyebrow">{ctaEyebrow}</span>
+            <h3 id={`${ctaId}-title`}>{ctaTitle}</h3>
+          </div>
+          <a className="cta-btn" href={ctaHref}>{ctaLabel} <span aria-hidden="true">↗</span></a>
+        </section>
       </div>
     </div>
   )

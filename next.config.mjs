@@ -216,13 +216,11 @@ const nextConfig = {
     ]
   },
 
-  // Serve the reviewed editorial pages at their canonical public URLs before
-  // the legacy App Router versions are evaluated.
+  // Partnerships still uses its reviewed static editorial composition.
+  // Origin and solution detail routes use the shared App Router systems.
   async rewrites() {
     return {
       beforeFiles: [
-        { source: '/solutions/roasting-program', destination: '/occ-pages/roasting-program.html' },
-        { source: '/origins/cambodia-regions', destination: '/occ-pages/cambodia-regions.html' },
         { source: '/partnerships', destination: '/occ-pages/partnerships.html' },
       ],
     }

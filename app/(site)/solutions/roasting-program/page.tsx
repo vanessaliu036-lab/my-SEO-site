@@ -5,7 +5,7 @@ import { pageAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Coffee Roasting Supplier Cambodia | Custom Roast Profiles | OCC",
-  description: "Custom coffee roasting and roast profile development from Cambodia for cafés, hotels, coffee brands, and B2B partners. Develop a repeatable coffee profile around your market, customers, and brewing application.",
+  description: "Custom coffee roasting and roast profile development in Cambodia for cafés, hotels and brands building a repeatable product for their market and brewing use.",
   keywords: "Roasting Supplier Cambodia, coffee roasting supplier Cambodia, Custom Roasting Cambodia, Roast Profile development, custom coffee roasting Cambodia, Cambodia roasting supplier, custom roast profile development, coffee roasting service Cambodia, B2B coffee roasting Cambodia, Fine Robusta custom roasting",
   openGraph: {
     title: "Custom Coffee Roasting Program | OCC",
@@ -125,7 +125,7 @@ export default function RoastingProgramPage() {
         <section aria-labelledby="roasting-faq-title" id="roasting-faq">
           <span className="eyebrow">04 / Reference</span>
           <h2 className="extended-heading" id="roasting-faq-title">Commercial details, kept explicit.</h2>
-          <div className="faq-grid">{faqs.map((faq) => <article className="faq-card" key={faq.q}><h3>{faq.q}</h3><p>{faq.a}</p></article>)}</div>
+          <div className="faq-grid">{faqs.map((faq) => <details className="faq-card" key={faq.q}><summary><h3>{faq.q}</h3><span aria-hidden="true">+</span></summary><p>{faq.a}</p></details>)}</div>
         </section>
         <p className="extended-intro">Bring the commercial goal, intended application, market context, current coffee if relevant, and the experience the finished product needs to create. The roast profile can be developed from there.</p>
       </OccCommercialHtmlLayout>

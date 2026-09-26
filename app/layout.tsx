@@ -1,28 +1,12 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { AnalyticsGate } from "@/components/AnalyticsGate";
 import { siteUrl, siteLogoUrl, ogImage, siteName, siteDescription, htmlLang } from "@/lib/siteConfig";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["300", "400", "600", "700"],
-  style: ["normal", "italic"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Origin Coffee Cambodia | Fine Robusta Coffee Supplier",
+  title: "Origin Coffee Cambodia | Fine Robusta Supplier | OCC",
   description: siteDescription,
   keywords: [
     "Fine Robusta",
@@ -65,6 +49,8 @@ const organizationId = `${siteUrl}/#organization`;
 
 const typographyCss = `
   :root {
+    --font-display: Georgia, "Times New Roman", serif;
+    --font-sans: Arial, Helvetica, sans-serif;
     --occ-font-title: Georgia, "Times New Roman", serif;
     --occ-font-subtitle: Arial, Helvetica, sans-serif;
     --occ-font-body: Arial, Helvetica, sans-serif;
@@ -144,18 +130,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={htmlLang} data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang={htmlLang} data-scroll-behavior="smooth">
       <head>
         <style id="occ-typography-system">{typographyCss}</style>
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="QD8QrYweE2FMiyMSfZEpzQ"
+          async
+        />
       </head>
       <body className="font-sans antialiased">
         {children}
 
-        <AnalyticsGate
-          measurementId={gaMeasurementId}
-          clarityId="xjlld0s2hz"
-          ahrefsKey="QD8QrYweE2FMiyMSfZEpzQ"
-        />
+        <AnalyticsGate measurementId={gaMeasurementId} clarityId="xjlld0s2hz" />
 
         <script
           type="application/ld+json"
