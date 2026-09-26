@@ -14,22 +14,10 @@ type AboutInstitutionalTemplateProps = {
   featureGrid?: FeatureItem[]
   practiceLabel?: string
   practiceTitle?: string
+  heroImage: { src: string; alt: string }
+  chapterImage: string
   next?: { href: string; label: string; description: string; note?: string }
 }
-
-const chapterImages = [
-  "/occ-pages/assets/occ-origin-mondulkiri-farm.webp",
-  "/occ-pages/assets/occ-sensory-cupping.webp",
-  "/occ-pages/assets/occ-roasting-sample-evaluation.webp",
-  "/occ-pages/assets/occ-roasting-espresso.webp",
-]
-
-const heroImages = [
-  "/media/cambodian-coffee-farmers-mondulkiri-harvest.jpg",
-  "/media/cambodian-coffee-origin-field-notes.jpg",
-  "/media/coffee-dispatch-sealed-bags-phnom-penh.jpg",
-  "/media/cupping-bowls-fine-robusta-grading-cambodia.jpg",
-]
 
 export function AboutInstitutionalTemplate({
   index,
@@ -42,8 +30,9 @@ export function AboutInstitutionalTemplate({
   featureGrid = [],
   practiceLabel = "Our approach",
   practiceTitle = "The work, put into practice.",
+  heroImage,
+  chapterImage,
 }: AboutInstitutionalTemplateProps) {
-  const pageIndex = Math.max(0, Number(index) - 1)
 
   return (
     <main className="occ-about-mission-template">
@@ -55,7 +44,7 @@ export function AboutInstitutionalTemplate({
             <p className="about-hero-support">{lead[1] ?? subtitle}</p>
           </div>
           <figure className="about-hero-media">
-            <img src={heroImages[pageIndex % heroImages.length]} alt="Cambodian coffee origin and professional quality work" />
+            <img src={heroImage.src} alt={heroImage.alt} />
             <figcaption className="about-image-marker">Origin · Quality · Professional coffee</figcaption>
           </figure>
         </div>
@@ -94,7 +83,7 @@ export function AboutInstitutionalTemplate({
             {sections.map((section, sectionIndex) => (
               <article className="about-chapter" key={section.title}>
                 <figure className="about-chapter-visual">
-                  <img src={chapterImages[sectionIndex % chapterImages.length]} alt="" loading="lazy" />
+                  <img src={chapterImage} alt="" loading="lazy" />
                   <figcaption>Origin · Quality · Professional coffee</figcaption>
                 </figure>
                 <div className="about-chapter-copy">
