@@ -90,6 +90,13 @@ const webPageJsonLd = {
     { "@type": "Thing", name: "Wholesale coffee supply" },
   ],
   citation: homeSources.map((source) => source.href),
+  hasPart: [
+    { "@type": "WebPage", name: "Wholesale Coffee", url: `${siteUrl}/solutions/wholesale` },
+    { "@type": "WebPage", name: "Custom Roasting Program", url: `${siteUrl}/solutions/roasting-program` },
+    { "@type": "WebPage", name: "Hotel Coffee Program", url: `${siteUrl}/solutions/hotels` },
+    { "@type": "WebPage", name: "Distribution Partnerships", url: `${siteUrl}/distribution` },
+    { "@type": "WebPage", name: "Fine Robusta Cambodia", url: `${siteUrl}/fine-robusta-cambodia` },
+  ],
   mainEntity: {
     "@type": "ItemList",
     name: "Fine Robusta quality, sourcing and origin guide",
