@@ -6,10 +6,20 @@ import { getPublishedPosts } from '@/lib/airtable'
  * Only URLs that should be indexed (aligned with `app/robots.ts`).
  * Strategic published routes are emitted explicitly; the Airtable blog corpus expansion remains unchanged.
  */
+async function getPublishedPostsForSitemap() {
+  const hasAirtableCredentials = Boolean(
+    (process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT || process.env.AIRTABLE_TOKEN) &&
+      process.env.AIRTABLE_BASE_ID
+  )
+  if (!hasAirtableCredentials) return []
+  const posts = await getPublishedPosts()
+  return posts
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
-  const posts = await getPublishedPosts()
+  const posts = await getPublishedPostsForSitemap()
   const blogEntries: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${siteUrl}/blog/${p.slug}`,
     lastModified: p.publish_date ? new Date(p.publish_date) : now,
