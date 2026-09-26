@@ -116,6 +116,7 @@ export default function FounderPage() {
           "Origin knowledge matters when it improves sourcing, quality, roasting, and repeatability.",
         ]}
         sections={sections}
+        visual={{ src: "/about/institutional/occ-founder-evidence.svg", alt: "Editorial coffee artwork representing evidence before assumption" }}
         featureGrid={featureGrid}
         practiceLabel="The founder's principle"
         practiceTitle="Evidence that improves the work."
