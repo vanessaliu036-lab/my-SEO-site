@@ -4,15 +4,16 @@ import fs from "node:fs"
 
 const read = (path) => fs.readFileSync(path, "utf8")
 const templatePath = "components/templates/about-editorial-template.tsx"
+const stylePath = "components/templates/about-editorial-template.module.css"
 
 test("About opens with OCC identity before services", () => {
   const source = read(templatePath)
 
-  assert.match(source, /One origin\. Cambodia\./)
+  assert.match(source, /<h1>One origin\.<br \/><em>Cambodia\.<\/em><\/h1>/)
   assert.match(source, /100% Cambodia-origin specialty coffee supplier/i)
   assert.match(source, /Fine Robusta specialist/i)
   assert.match(source, /small batches/i)
-  assert.match(source, /origin, quality and roasting/i)
+  assert.match(source, /origin, quality, and roasting/i)
   assert.match(source, /new markets/i)
 })
 
@@ -24,8 +25,8 @@ test("About explains OCC differentiation in buyer-readable language", () => {
     "Small batches",
     "Origin clarity",
     "Quality focus",
-    "Cambodian Fine Robusta expertise",
-    "A Premium Cambodian Coffee Brand",
+    "Fine Robusta expertise",
+    "A Cambodian coffee company with one origin to protect",
   ]) {
     assert.match(source, new RegExp(phrase, "i"), `${phrase} must be present`)
   }
@@ -34,49 +35,46 @@ test("About explains OCC differentiation in buyer-readable language", () => {
 test("About routes overseas buyers into the two approved commercial paths", () => {
   const source = read(templatePath)
 
-  assert.match(source, /How would you like to work with OCC\?/i)
+  assert.match(source, /Two paths\./i)
   assert.match(source, /Ready-to-Sell/i)
   assert.match(source, /Choose our profile/i)
   assert.match(source, /Made-for-You/i)
-  assert.match(source, /Build yours/i)
+  assert.match(source, /Build your profile/i)
   assert.match(source, /\/solutions\/wholesale/)
   assert.match(source, /\/solutions\/roasting-program/)
-  assert.match(source, /Distributor/i)
-  assert.match(source, /Importer/i)
-  assert.match(source, /Retailer/i)
-  assert.match(source, /Hospitality/i)
+  assert.match(source, /distributors/i)
+  assert.match(source, /importers/i)
+  assert.match(source, /retailers/i)
+  assert.match(source, /hospitality/i)
   assert.match(source, /Custom roasting/i)
   assert.match(source, /Target cup/i)
-  assert.match(source, /Roast profile development/i)
-  assert.match(source, /Repeatable production profile/i)
+  assert.match(source, /Profile development/i)
+  assert.match(source, /Repeatable production/i)
 })
 
 test("About closes with international market direction without service sprawl", () => {
   const source = read(templatePath)
 
-  assert.match(source, /International distributors/i)
-  assert.match(source, /importers/i)
-  assert.match(source, /retailers/i)
-  assert.match(source, /hospitality partners/i)
+  assert.match(source, /Cambodian coffee for international markets/i)
+  assert.match(source, /distributors, importers, retailers, and hospitality partners/i)
+  assert.match(source, /Start a conversation/i)
   assert.doesNotMatch(source, /Barista Staffing|Equipment Service/)
 })
 
 test("About uses the unified OCC semantic palette without replacing shared site chrome", () => {
   const source = read(templatePath)
+  const styles = read(stylePath)
 
-  assert.match(source, /occ-primary/)
-  assert.match(source, /occ-burgundy/)
-  assert.match(source, /occ-secondary/)
-  assert.match(source, /occ-background/)
+  assert.match(styles, /var\(--occ-page-background/)
+  assert.match(styles, /var\(--occ-ink/)
+  assert.match(styles, /var\(--occ-burgundy/)
   assert.match(source, /\/about\/about-origin\.svg/)
   assert.match(source, /\/about\/about-fine-robusta\.svg/)
   assert.match(source, /\/about\/occ-about-ready-to-sell\.webp/)
   assert.match(source, /\/about\/about-made-for-you\.svg/)
   assert.doesNotMatch(source, /occ-about-atlas\.avif/)
-  assert.match(source, /data-about-ghost="origin"/)
-  assert.match(source, /data-about-ghost="coffee"/)
 
-  for (const label of ["ONE ORIGIN", "FINE ROBUSTA", "READY-TO-SELL", "MADE-FOR-YOU"]) {
+  for (const label of ["One origin", "Fine Robusta", "Ready to sell", "Made for you"]) {
     assert.match(source, new RegExp(label, "i"), `${label} gallery label must be present`)
   }
 
