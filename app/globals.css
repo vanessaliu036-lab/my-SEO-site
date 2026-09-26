@@ -604,21 +604,21 @@
 }
 
 .occ-site-main .occ-home-hero [data-occ-home-copy] {
-  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.42);
+  text-shadow: 0 2px 28px rgba(41, 36, 36, 0.42);
 }
 
 .occ-site-main .occ-home-hero [data-occ-home-copy] > p:first-child {
-  color: rgba(255, 255, 255, 0.82) !important;
+  color: rgba(242, 237, 231, 0.82) !important;
 }
 
 .occ-site-main .occ-home-hero [data-occ-home-copy] > p:nth-of-type(2) {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(242, 237, 231, 0.9) !important;
 }
 
 .occ-site-main .occ-home-hero [data-occ-home-meta],
 .occ-site-main .occ-home-hero [data-occ-home-meta] span {
-  color: rgba(255, 255, 255, 0.72) !important;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+  color: rgba(242, 237, 231, 0.72) !important;
+  text-shadow: 0 1px 14px rgba(41, 36, 36, 0.45);
 }
 
 .occ-about-hero {
