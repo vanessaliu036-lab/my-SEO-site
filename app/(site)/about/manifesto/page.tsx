@@ -139,6 +139,15 @@ const featureGrid = [
   },
 ]
 
+const chapterImages = [
+  { src: "/about/chapters/manifesto-01.webp", alt: "Coffee cherries and origin work representing Cambodia's coffee foundation.", caption: "Origin · Better coffee begins with context", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-02.webp", alt: "Coffee professionals working together in a hospitality environment.", caption: "Business · One system can support many teams", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-03.webp", alt: "Barista training and coffee preparation in practice.", caption: "People · Knowledge travels through skilled professionals", width: 1200, height: 1200 },
+  { src: "/about/chapters/manifesto-04.webp", alt: "Coffee equipment and service workflow supporting consistent preparation.", caption: "Systems · Quality depends on the entire chain", width: 1200, height: 1200 },
+  { src: "/about/chapters/sustainability-01.webp", alt: "Coffee origin work connecting local production with long-term value.", caption: "Cambodia · Build more value at origin", width: 1200, height: 1200 },
+  { src: "/about/chapters/mission-04.webp", alt: "Finished coffee prepared for a professional buyer handoff.", caption: "Consistency · Repeat good decisions", width: 1200, height: 1200 },
+]
+
 export default function ManifestoPage() {
   return (
     <>
@@ -153,8 +162,9 @@ export default function ManifestoPage() {
           "Great coffee happens when origin, roasting, people, equipment, and service work together — consistently.",
         ]}
         sections={sections}
-        heroImage={{ src: "/about/institutional/occ-manifesto-system.svg", alt: "Editorial system diagram representing OCC's coffee infrastructure approach" }}
-        chapterImage="/about/institutional/occ-manifesto-system.svg"
+        heroImage={{ src: "/about/occ-about-manifesto-cupping.webp", alt: "Coffee professionals evaluating cups and discussing quality at a cupping table.", width: 1448, height: 1086 }}
+        heroCaption="Manifesto · Better coffee is built across people, origin, and systems"
+        chapterImages={chapterImages}
         featureGrid={featureGrid}
         practiceLabel="What OCC is building"
         practiceTitle="Build more than a cup."
